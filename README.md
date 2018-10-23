@@ -1,6 +1,6 @@
 
 # Guide de survie en actuariat
-Ce projet à pour but de crée un document contenant toutes les feuilles de formules utiles au bac en actuariat.
+Ce projet à pour but de créer un document contenant toutes les feuilles de formules utiles au bac en actuariat.
 
 ## Authors
 - Nicholas Langevin
