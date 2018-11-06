@@ -15,3 +15,5 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 > (coming soon)
 ### ACT- 2009 ~ Processus stochastique
 > (coming soon)
+
+### Fonction décroissante
