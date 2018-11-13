@@ -1,5 +1,3 @@
-
-
 # Guide de survie en actuariat
 Ce projet à pour but de créer un document contenant toutes les feuilles de formules utiles au bac en actuariat.
 
@@ -40,3 +38,4 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 > aide-mémoire Rmarkdown
 
 ### Fonction décroissante
+
