@@ -1,0 +1,2 @@
+# Git Ignore : ignorer le fichier pour les updates vers GitHub.
+*.sh
