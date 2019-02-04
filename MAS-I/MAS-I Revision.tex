@@ -1,0 +1,485 @@
+%% Aide-mémoire
+\documentclass[10pt, french]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\usepackage{xcolor}
+\usepackage{bbding}
+\usepackage{pifont}
+\usepackage{multido}
+\def\cours{Modern Actuarial Statistics}
+\def\sigle{MAS-I}
+\def\session{Avril 2018}
+\def\auteur{Nicholas Langevin}
+\def\BackgroundColor{white}
+% \definecolor{section_color}{rgb}{0.1,0.1,1}
+\def\SubSectionColor{blue!30!black}
+\input{cheatsht-preamble.tex}
+\title{MAS-1 \\ Study Review}
+\author{Nicholas Langevin}
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+
+\maketitle 
+\vspace{50px}
+\begin{center}
+\begin{minipage}[c]{7.5cm}
+    \begin{itemize}
+        \LARGE
+        \item[\color{magenta}\ding{235}] Probability Review 
+        \item[\color{brown}  \ding{235}] \hyperref[Stochastic Processes]{Stochastic Processes} 
+        \item[\color{purple} \ding{235}] Life Contingencies
+        \item[\color{orange} \ding{235}] Simulation
+        \item[\color{red}    \ding{235}] Statistics
+        \item[\color{blue}   \ding{235}] Extended Linear Model
+        \item[\color{green}  \ding{235}] Time Series      
+    \end{itemize}
+\end{minipage}
+\end{center}
+\newpage
+
+\small
+\begin{multicols*}{3} % Nombre de colonnes (peut être changé plus tard.)
+\def\SectionColor{magenta!80!white}
+\section*{Lesson 1: Probability Review}
+\begin{itemize}[align=left,leftmargin=*]
+    \item \textbf{Bernouilli Shortcut:} If a random variable can only assume two values a and b with probability $q$ and $1-q$, then is variance is \\ $q(1-q)(b-a)^2$
+\end{itemize}
+
+\section*{Lesson 2: Parametric Distributions}
+\begin{itemize}[align=left,leftmargin=*]
+    \item \textbf{Transformations:} 
+    \begin{itemize}
+        \item Transformed: $\tau > 0$
+        \item Inverse: $\tau = -1$
+        \item Inverse-Transformed: $\tau < 0, \tau \neq 1$
+    \end{itemize}
+\end{itemize}
+
+\def\SectionColor{brown!80!white}
+\section*{Lesson 4: Markov Chains}
+\begin{itemize}[align=left,leftmargin=*]
+    \item \textbf{Chapman-Kolmogorov:} \[ P_{ij}^{(n+m)} = \sum_{k=0}^\infty P_{ik}^{(n)}  P_{kj}^{(m)} \]
+    \item \textbf{Gambler's ruin:} 
+    \begin{align*}
+        &p_j=
+        \left\{
+        \begin{array}{cc}
+        \frac{j}{N} & ,r=1  \\
+        \frac{r^j-1}{r^N-1} & ,r \neq 1  
+        \end{array}
+        \right. \\
+        & \text{où}\: r = \frac{q}{p}, \text{p: winning prob.}
+    \end{align*} 
+    \item \textbf{Algorithmic efficency:} with $N_j=$ number of steps from $j^{th}$ solution to best solution.
+    \begin{align*}
+        \mathrm{E}[N_j] &= \sum_{i=1}^{j-1} \frac{1}{i} \\
+        \text{Var}(N_j) &= \sum_{i=1}^{j-1} \left( \frac{1}{i} \right) \left(1 -  \frac{1}{i} \right)
+    \end{align*}
+    As $j \rightarrow \infty,\: \mathrm{E}[N_j] \rightarrow \ln j,\: \text{Var}(N_j) \rightarrow \ln j$
+\end{itemize}
+
+\section*{Lesson 5: Markov Chain Classification}
+\begin{itemize}[align=left,leftmargin=*]
+    \item An \textbf{absorbing} state is one that cannot be exited.
+    \item State j is \textbf{accessible}$(i \rightarrow j)$ from state i if $p_{ij}^n > 0,$ \\ $ \forall n \geq 0$.
+    \item Two states \textbf{communicate} if $i \leftrightarrow j$.
+    \item A \textbf{class} of states is a maximal set of state that communicate with each other.
+    \item A Markov chain is \textbf{irreductible} if it has only one class.
+    \item A state (class) is \textbf{recurrent} if the probability of reentering the state is 1. $\sum_{n=1}^\infty p_{ii}^{(n)} = \infty$
+    \item A state (class) si \textbf{transcient} if it is not recurrent.\\ $\sum_{n=1}^\infty p_{ii}^{(n)} < \infty$
+    \item A finite Markov Chain must have at least one recurrent class. If it is irreductible, then it is recurrent.
+\end{itemize}
+
+\section*{Lesson 6: Markov Chains Limiting Probability}
+\label{Stochastic Processes}
+\begin{itemize}[align=left,leftmargin=*]
+    \item A chain is \textbf{positive recurrent} is the expected number of transitions untils the state occur is finite, \textbf{null recurrent} otherwise. Null recurrent mean that the long-term proportion of time in each state is 0.
+    \item A chain is \textbf{periodic} when states occur every n periode for n > 1. 
+    \item A chain is \textbf{aperiodique} when the periode is 1. In other world, $P_{ii}^{(1)} > 0,\: \forall i$
+    \item A chain is \textbf{ergodic} when the chain is aperiodique and positive irreductible recurrent. 
+    \item \textbf{Stationary probability:} \[ \pi_j = \sum_{i=1}^n P_{ij}\pi_i \quad \sum_{i=1}^n \pi_i = 1\]
+    \item \textbf{Limiting probabilities:} is the chain is ergodic, then  
+    \[ 
+    \matr{P}^{(\infty)} = 
+    \begin{pmatrix}
+    \pi_1 & \pi_2 & \pi_3 \\
+    \pi_1 & \pi_2 & \pi_3 \\
+    \pi_1 & \pi_2 & \pi_3
+    \end{pmatrix}   
+    \]
+\end{itemize}
+
+\section*{Lesson 7: Time in Transient States}
+\begin{itemize}[align=left,leftmargin=*]
+    \item Tips: {\color{red}\nameref{Appendix: Inverting a matrix}}
+    \item $\matr{S} = (\matr{I} - \matr{P}_{\text{transcient}})^{-1}\:$, where $s_{ij}$ is the time in state j given that the current state is i.
+    \item $f_{ij} = \frac{s_{ij} - \delta_{i,j}}{s_{jj}} = \sum\limits_{n=1}^\infty f_{ij}^{(n)}$, where $f_{ij}$ is the probability that state i ever transitions to state j.
+\end{itemize}
+
+\section*{Lesson 8: Branching Processes}
+\begin{itemize}[align=left,leftmargin=*]
+    \item A branching process is a special type of Markov chain representing the growth or extinction of a population.
+    \item $\esp{X_n} = \esp{Z}^n\:$, where $\esp{Z}$ is the expected number of people born in a generation.
+    \item $\var{X_n} = \var{Z} \cdot \esp{Z}^{n-1} \sum\limits_{k=1}^n \esp{Z}^{k-1}$
+    \item If $X_0\neq 1$ mean and variance of $X_n$ need to be multiplicated by $X_0$.
+    \item \textbf{Probability of extinction:} $$\pi_0 = \sum\limits_{j=1}^\infty p_j \pi_0^j$$
+    \begin{itemize}
+        \item $\mu \leq 1 \Rightarrow \pi_0 \geq 1$ ,if $X_0 = 1$.
+        \item $\mu > 1 \Rightarrow \pi_0 < 1$ ,if $X_0 = 1$.
+    \end{itemize}
+    For cubic equation, it guaranteed to factor $(\pi_0 - 1)$. Tips: {\color{red}\nameref{Appendix: Synthetic Division}} 
+\end{itemize}
+
+\section*{Lesson 9: Time Reversible}
+\begin{itemize}[align=left,leftmargin=*]
+    \item If $\matr{Q}$ is the reverse-time Markov chain for ergodic $\matr{P}$, then \[ \pi_i Q_{ij} = \pi_j P_{ji} \] 
+    with $P_{ii} = Q_{ii} \text{ and if } p_{ij} = 0 \Leftrightarrow Q_{ji} = 0$
+    \item If ${\matr{Q} = \matr{P}}$, then $\matr{P}$ is said to be \textbf{time-reversible}.
+\end{itemize}
+
+\section*{Lesson 10: Exponential Distribution}
+\begin{itemize}[align=left,leftmargin=*]
+    \item \textbf{Lack of memory:} \[ \prob{X>k+x|X>k} = \prob{X>x} \]
+    \item \textbf{Minimum:} if $X_i \sim \mathrm{Exp}(\lambda_i)$, then \[ \min(X_1, X_2 , ... , X_n) \sim \mathrm{Exp}\left( \sum_{i=1}^n \lambda_i \right)  \]
+    \item The sum of 2 Exponentials randoms variables is the sum of the maximum and the minimum, since one must be the min and the other the max. \[ X_1 + X_2 = \min(X_1,X_2) + \max(X_1,X_2) \]  
+\end{itemize}
+
+\section*{Lesson 11: Poisson Process}
+\begin{itemize}[align=left,leftmargin=*]
+    \item $X(t) \sim \mathrm{Poisson}[m(t)]$ 
+    ,where $m(t)$ is \textbf{mean value function} representing the mean of the number events before time $t$. 
+    \item Poisson process can't deacrease over time. $N(t) \geq N(s)$
+    \item $N(0) = 0$
+    \item Increament are \textbf{independent}: \\
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(6,1)(0,-.5)
+
+        {\color{green}
+        \put(0.06,.25){\line(1,0){2}}
+        \put(0.06,.2){\line(0,1){.1}}
+        % \put(2,.2){\line(0,1){.1}}
+        }
+
+        {\color{blue}
+        \put(2,.25){\line(1,0){2}}
+        \put(2,.2){\line(0,1){.1}}
+        \put(4,.2){\line(0,1){.1}}
+        }
+
+        \put(0,-.1){\line(0,1){.2}}
+        \put(0,-.2){\makebox(0,0)[t]{0}}
+
+        \put(2,-.1){\line(0,1){.2}}
+        \put(2,-.2){\makebox(0,0)[t]{s}}
+
+        \put(4,-.1){\line(0,1){.2}}
+        \put(4,-.2){\makebox(0,0)[t]{t}}
+
+        \put(0,0){\vector(1,0){5}}
+    \end{picture}  
+    $\probb{N(t)-N(s)=n|N(s)=k}=\probb{N(t)-N(s)=n}$
+    \item \textbf{Non-homogeneous Poisson process:} \[ m(t)=\int_0^t \lambda(u) \diff{u} \] where $\lambda(t)$ is the \textbf{intensify function}
+    \item \textbf{Homogeneous Poisson process:} The Poisson process is said to be homogeneous when the intensify function is a constant. \[ m(t)=\int_0^t \lambda \diff{u} = \lambda t \] We then say that the process have \textbf{stationary increments}. \[ \probb{N(s)}=\probb{N(t)-N(s)} \]
+\end{itemize}
+
+\section*{Lesson 12: Poisson Process Time To Next Events}
+\begin{itemize}[align=left,leftmargin=*]
+    \item $T_n$ is the time between the n\up{e} event and the (n-1)\up{e} event.
+    \item $S_n = \sum_{i=1}^n T_i$, is the time for the n\up{e} event.
+    \item $F_{T_1}(t)=1-e^{-\int_0^t \lambda(u) \diff{u}}$
+    \item For homogeneous process: 
+    \begin{align*}
+        T_n &\sim \mathrm{Exp}(\lambda) \\
+        S_n &\sim \mathrm{Gamma}(n, \lambda)
+    \end{align*}
+\end{itemize}
+
+\section*{Lesson 13: Poisson Process Counting Special Type}
+\begin{itemize}[align=left,leftmargin=*]
+    \item If event of type 1 occur with probability $\alpha_1(t)$, then the event follow a Poisson process with intensity $\lambda(t) \alpha_1(t)$. \[ m(t)=\int_0^t \lambda(u)\alpha_1(u) \diff{u} \]
+\end{itemize}
+
+\section*{Lesson 14: Poisson Process Other Characteristics}
+\begin{itemize}[align=left,leftmargin=*]
+    \item Only for homogeneous Poisson processes.
+    \item The probability of $k$ event from process 1 is given by: \[ k \sim \mathrm{Binomial}(k+l-1, \frac{\lambda_1}{\lambda_1 + \lambda_2}) \] Then the probability that $k$ event from process 1 occur before $l$ from process 2 is: \[ \sum_{i=k}^{k+l-1} \binom{k+l-1}{i} \left( \frac{\lambda_1}{\lambda_1+\lambda_2} \right)^i \left(\frac{\lambda_2}{\lambda_1+\lambda_2}\right)^{k+l-1-i} \]
+    \item Given that exactly $N(t) = k$ Poisson events occured before time $t$, the join distribution of event time is the joint distribution of k independent uniform random variable on $(0, t)$. \[ F_{S_1,...,S_n|n(t)}(s_1,...s_n|k) = \frac{k!}{t^k} \]
+    \item For $k$ independent uniform random variable on $(0, t)$, the expected value of the j\up{th} order statistics is: $E[T^{(j)}] =  \frac{jt}{(k+1)} $. 
+    \item Tips: {\color{red}\nameref{Appendix: Statistic Order}}
+\end{itemize}
+
+\section*{Lesson 15: Poisson Process Sums and Mixtures}
+\begin{itemize}[align=left,leftmargin=*]
+    \item A \textbf{Sums} of independent Poisson random variables is a Poisson random with intensify function $\lambda(t)=\sum \lambda_i(t)$. {\color{red}Warning: Substraction dont give a Poisson random variable.} 
+    \item A \textbf{Mixture} of Poisson processes is not a Poisson processes.
+    \begin{itemize}
+        \item \textbf{Discrete} mixture: \[ F_{X(t)}(t) = \sum_i w_i F_{X_i(t)}(t) \] where $w_i>0\:,\sum w_i = 1$
+        \item \textbf{Continuous} mixture: \[ F_{X(t)}(t) = \int F_{\{X_u(t)\}}(t) f(u) \diff{u} \]
+        \item If $N(t)|\lambda$ is a Poisson random variable and $\lambda \sim \mathrm{Gamma}(\alpha, \theta)$, then $N(t) \sim \mathrm{NegBin}(r = \alpha, \beta = \theta t)$.
+    \end{itemize}
+\end{itemize}
+
+\section*{Lesson 16: Compound Poisson Processes}
+\begin{itemize}[align=left,leftmargin=*]
+    \item A \textbf{compound} random variable $S$ is define by $S = \sum_{i=1}^N X_i\:$where $N$ is the \textbf{primary} distribution and $X$ the \textbf{secondary} distribution.
+    \item If $N(t)$ is a Poisson process, then $S(t)$ is a compound Poisson process with:
+    \begin{itemize}
+        \item $\esp{S(t)} =  \lambda t \esp{X}$
+        \item $\var{S(t)} = \lambda t \esp{X^2}$
+    \end{itemize}
+    \item If $X_i$ is discrete, we can separate the process into a sum of subprocess view in LESSON 13.
+    \item \textbf{Sums of compound} homogeneous Poisson process is also a Poisson process with:
+    \begin{itemize}
+        \item $N(t)\sim\textrm{Pois}(\sum \lambda_i)$
+        \item $F_X(x)=\sum_i w_i F_{X_i(t)}(t),\quad w_i = \frac{\lambda_i}{\sum \lambda_i}$
+    \end{itemize}
+\end{itemize}
+
+\section*{Lesson 17: Reliability Structure Functions}
+\begin{itemize}[align=left,leftmargin=*]
+    \item $\phi(\mathbf{x})$ is the \textbf{structure} function for a systeme. It equal 1 if the systeme function, 0 otherwise.
+    \item A \textbf{series} system is define as a \textbf{minimal path set}. The system is working if all components are working.
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(6,1)(0,-.5)
+        \put(1,0){\vector(1,0){4}}
+
+        \put(1.8,.1){$\mathbf{1}$}
+        \put(2.8,.1){$\mathbf{2}$}
+        \put(3.8,.1){$\mathbf{3}$}
+
+        \put(1.88,0){\circle*{0.1}}
+        \put(2.88,0){\circle*{0.1}}
+        \put(3.88,0){\circle*{0.1}}
+    \end{picture}
+    The serie structure function is define as \[\hspace{1cm} \phi(\mathbf{x}) = \prod_{i=1}^n x_i\]
+    \item A \textbf{parallel}  system is define as a \textbf{minimal cut set}. The systeme is working if at least 1 components is working.
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(6,1.4)(0,-.5)
+        \put(1,0){\vector(1,0){4}}
+        \put(2,0){\line(0,1){.5}}
+        \put(2,0){\line(0,-1){.5}}
+        \put(4,0){\line(0,1){.5}}
+        \put(4,0){\line(0,-1){.5}}
+        \put(2,.5){\line(1,0){2}}
+        \put(2,-.5){\line(1,0){2}}
+
+        \put(2.92,.6){$\mathbf{1}$}
+        \put(2.92,.1){$\mathbf{2}$}
+        \put(2.92,-.4){$\mathbf{3}$}
+
+        \put(3,.5){\circle*{0.1}}
+        \put(3,0){\circle*{0.1}}
+        \put(3,-.5){\circle*{0.1}}
+    \end{picture}
+    The parallel structure function is define as  \[\hspace{.6cm} \phi(\mathbf{x}) = 1 - \prod_{i=1}^n (1 - x_i)\]
+    \item Tips: Minimal path set is all way for the system to work, and the minimal cut set is all the way for the system to not work.
+    \item Tips: If set is $\{1,2,3\}$ and $\{1,2\}$, the \emph{minimal} mean we only take $\{1,2\}$.
+    \item Tips: \emph{Minimal cut} is a serie of parallel structure and \emph{minimal path} is a parallel of serie structure.
+\end{itemize}
+
+\section*{Lesson 18: Reliability Probabilities}
+\begin{itemize}[align=left,leftmargin=*]
+    \item $r(\mathbf{p})$ is the same polynomial as $\phi(\mathbf{x})$. 
+    \item Inclusion/exclusion bounds using minimal path: 
+    \begin{align*}
+        r(\mathbf{p}) &\leq \sum A_i \\
+        r(\mathbf{p}) &\geq \sum A_i - \sum A_i \cup A_j \\
+        r(\mathbf{p}) &\leq \sum A_i - \sum A_i \cup A_j + \sum A_i \cup A_j \cup A_k
+    \end{align*} 
+    where $A_i=\sum p_i\:$is the probability of the i\up{e} minimal path set work.  
+    \item Inclusion/exclusion bounds using minimal cut: 
+    \begin{align*}
+        1 - r(\mathbf{p}) &\leq \sum A_i \\
+        1 - r(\mathbf{p}) &\geq \sum A_i - \sum A_i \cup A_j \\
+        1 - r(\mathbf{p}) &\leq \sum A_i - \sum A_i \cup A_j + \sum A_i \cup A_j \cup A_k
+    \end{align*} 
+    where $A_i=\sum (1 - p_i)\:$is the probability of the i\up{e} minimal cut set work.
+    \item Bounds using intersections: \[ \prod \phi(\mathbf{X})^{\textbf{min. cut}} \leq r(\mathbf{p}) \leq \prod \phi(\mathbf{X})^{\textbf{min. path}}\]
+    \item \textbf{Random graph}:
+    \begin{align*}
+        1 - P_n &= \sum_{k=1}^{n-1} \binom{n-1}{k-1} q^{k(n-k)} P_k \\
+        1 - P_n &\leq (n+1)q^{n-1} \\
+        P_1 &= 1
+    \end{align*}
+\end{itemize}
+
+\section*{Lesson 19: Reliability Time to Failure}
+\begin{itemize}[align=left,leftmargin=*]
+    \item Expected amound of time to failure: \[ \esp{\textbf{system life}} = \int_0^\infty r(\mathbf{\bar{F}(t)}) \diff{t} \]
+    where,
+    \begin{itemize}
+        \item For serie system: \[ r(\mathbf{\bar{F}(t)}) = \prod_{i=1}^n \bar{F}_i(t) \]
+        \item For parallel system: \[ r(\mathbf{\bar{F}(t)}) = 1 - \prod_{i=1}^n F_i(t) \]
+    \end{itemize}
+    \item \emph{Shortcut:} k out of n system with exponentials($\theta$): $\esp{T}=\theta \sum_{i=k}^n \frac{1}{i}$ 
+    \item \textbf{Hazard rate function} (\emph{failure rate function}): \[ \hspace{.7cm} h(t) = \frac{f(t)}{\bar{F}(t)} \]
+    and we say that the distribution
+    \begin{itemize}
+        \item is an increasing failure rate if $h(t)$ is non-deacreasing function of $t$.
+        \item is an deacreasing failure rate if $h(t)$ is non-increasing function of $t$. 
+    \end{itemize}
+    \item \textbf{Cumulatice hazard function}: \[ H(t) = \int_0^t h(u) \diff{u}= -\ln \bar{F}(t)  \] with $\frac{H(t)}{t}$ the average of the hazard rate.
+\end{itemize}
+
+\def\SectionColor{purple!80!white}
+\section*{Lesson 20: Survival Models}
+\begin{itemize}[align=left,leftmargin=*]
+    \item $\px[t]{x} = \frac{\lx{x+t}}{\lx{x}},\quad \qx[t]{x}=\frac{\lx{x} - \lx{x+t}}{\lx{x}}$
+    \item $\qx[t|u]{x}=\frac{\lx{x+t} - \lx{x+t+u} }{\lx{x}}$
+    \item $\px[t+u]{x} = \px[u]{x} \cdot \px[t]{x+u}$
+    \item $\qx[t|u]{x}=\qx[t+u]{x} - \qx[t]{x} = \px[t]{x}\cdot \qx[u]{x+t} $
+    \item Let be $N_x$ the number of life surviving to age x, then  \[ (N_{x+t}|N_x=n)\sim\mathrm{Bin}(n, \px[t]{x}) \]
+    \item \textbf{Force of mortality:} \[ \mu_{x+t} = \frac{f_{T_x}(t)}{\px[t]{x}} = - \frac{\diff}{\diff{t}} \ln \px[t]{x} \]
+    \item \textbf{Linear interpolation(D.U.D)}:\\ \hspace*{1cm} $  \lx{x+t} = (1-t)\lx{x}+t \lx{x+1}$ \\  Shortcut: $\forall t \in (0,1),\: \forall x \in \naturels,\: x<x+t<x+1:$
+    \begin{minipage}{3cm}
+        \vspace{.2cm}
+        \begin{itemize}[align=left,leftmargin=*]
+            \item[\ding{223}] $\qx[t]{x}=t\cdot \qx{x}$ 
+            \item[\ding{223}] $\mu_{x+t}=\frac{\qx{x}}{1-t\cdot \qx{x}}$
+        \end{itemize}
+    \end{minipage}
+    \item \textbf{Expected life time:} Let $k_x = \lfloor T_x \rfloor,\:$ the \emph{full years} until death. Then $e_x$ is the \textbf{curtate life expectancy} and $\eringx{x}$ the \textbf{complete life expectancy}. $\omega$ is the age where $\lx{\omega}=0$ and $\omega = \infty$ by convention is nothing is said.
+    \begin{align*}
+        e_x &= \esp{K_x} = \sum_{k=1}^{\omega-x-1} \px[k]{x} \\
+        \eringx{x} &= \esp{T_x} = \int_0^{\omega-x} \px[t]{x} \diff{t} \stackrel{\text{D.U.D}}{=} e_x + 0.5
+    \end{align*} 
+\end{itemize}
+
+\section*{Lesson 21: Contingent Payments}
+The contract here are define with $K_x$ to pay at the end of death year. All same contract can be define with $T_x$ to pay at the moment of death. Then we use integral instead of sum and use \[\hspace*{-5mm} \prob{K=k}=\px[k]{x} \qx{x+k} \Rightarrow f_{T_x}(t) = \px[t]{x} \mu_{x+t}\]
+\begin{itemize}[align=left,leftmargin=*]
+    \item \textbf{Life Insurance:} 
+    \begin{itemize}
+        \item Whole Life insurance: \[ \Ax{x} = \sum_{k=0}^\infty v^{k+1} \px[k]{x} \qx{x+k} \]
+        \item Term Life insurance: \[\hspace*{-2.8mm} \Ax{\nthtop*{1}{x}:\angln} = \sum_{k=0}^n v^{k+1} \px[k]{x} \qx{x+k} \]
+        \item Deferred insurance: \[\hspace*{-3mm} \Ax[m|]{x} = \sum_{k=m}^\infty v^{k+1} \px[k]{x} \qx{x+k} \]
+        \item Endowment insurance: \[\hspace*{-2.8mm} \Ax{x:\angln} = \Ax{\nthtop*{1}{x}:\angln} + \Ex[n]{x} \]
+        \item Pure Endowment: \[\hspace*{-1.4mm} \Ex[n]{x} = v^n \px[n]{x} \] 
+    \end{itemize}
+    \item \textbf{Life Annuities:}
+    \begin{itemize}
+        \item Whole Life annuity \[ \ax**{x} = \sum_{k=0}^\infty v^k \px[k]{x} \]
+        \item Temporary Life annuity \[\hspace*{-2.8mm} \ax**{x:\angln} = \sum_{k=0}^n v^k \px[k]{x} \]
+        \item Deferred annuity \[\hspace*{-3mm} \ax**[m|]{x} = \sum_{k=m}^\infty v^k \px[k]{x} \]
+        \item Certain and life annuity \[\hspace*{-2.8mm} \ax**{\joint\endowxn} =  \ax**{\angln} + \ax**[m|]{x} \]
+    \end{itemize}
+    \item \textbf{Illustrative Life Table:}
+    % \begin{align*}
+    %     -&\: \Ax{x} &&= v^n \qx{x} + x \px{x} \Ax{x+1} \\
+    %     -&\: \Ax[m|]{x} &&= \Ex[m]{x} \Ax{x+m} \\
+    %     -&\: \ax**{x} &&= 1 + \ax{x}
+    % \end{align*}
+    \begin{itemize}
+        \item $\Ax{x} = v^n \qx{x} +  \px{x} \Ax{x+1}$
+        \item $\ax**{x} = 1 + v \px{x} \ax**{x+1}$
+        \item $\Ax{\nthtop*{1}{x}:\angln} = \Ax{x} - \Ex[n]{x} \Ax{x+n}$
+        \item $\ax**{x:\angln} = \ax**{x} - \Ex[n]{x} \ax**{x+n}$
+        \item $\Ax[m|]{x} = \Ex[m]{x} \Ax{x+m}$
+        \item $\ax**[m|]{x} = \Ex[m]{x} \ax**{x+m}$
+        \item $\ax**{x} = 1 + \ax{x}$
+        \item $\Ax{x} = 1 - d \ax**{x}$
+    \end{itemize}
+    \columnbreak
+    \item \textbf{Joint life annuity}($\ax**{xy}$) make payments until the earliest death pf two lives.
+    \item \textbf{Last survivor annuity}($\ax**{\joint{xy}}$) make payments until the last death of two lives. \[ \ax**{x} + \ax**{y} = \ax**{xy} + \ax**{\joint{xy}} \]
+    \item \textbf{Premiums:}
+    \begin{align*}
+        M \cdot \Ax{x} &= P \ax**{x} \\
+        P &= \frac{M \cdot \Ax{x}}{\ax**{x}} = \frac{M}{\ax**{x}} - M \cdot d
+    \end{align*}
+\end{itemize}
+
+\def\SectionColor{orange!80!white}
+\section*{Simulation-Inverse Method}
+
+\newpage
+\title{Appendix}
+\date{}
+\author{}
+\maketitle
+\vspace{-70px}
+% \begin{multicols*}{3}
+\def\SectionColor{black!80!white}
+\section*{Inverting a matrix}
+\label{Appendix: Inverting a matrix}
+\begin{flalign*}
+    \hspace{-25px}
+    \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix}^{-1}  
+    =
+    \frac{1}{ad-bc}
+    \begin{pmatrix}
+            d & -b \\
+            -c & a
+    \end{pmatrix}
+\end{flalign*}
+     
+
+     
+\hl{Ajouter pour une matrice 3x3}
+
+\section*{Synthetic Division}
+\label{Appendix: Synthetic Division}
+\textbf{Exemple:} Factorize $x^3 - 12x^2 - 81$\\ \\
+\begin{tabular}{c|cccc}
+     & 1 & -12 & 0 & -81 \\
+   3 &   &   3 & -27& -81 \\
+   \hline
+     & 1 & -9  & -27  & 0
+\end{tabular} \\
+then, $x^3 - 12x^2 - 81 = (x-3)(x^2-9x-27)$
+
+\section*{Deductible and Limite}
+\begin{align*}
+    X &= \min(X;d) + \max(0;X-d) \\
+    \esp{X} &= \esp{\min(X;d)} + \esp{\max(0;X-d)} \\
+            &= \esp{(X \wedge d)} + \esp{(x-d)_{+}} \\
+            &= \esp{(X \wedge d)} + e_x(d)\cdot S_x(d)
+\end{align*}
+
+\section*{Statistic Order}
+\label{Appendix: Statistic Order}
+\begin{itemize}[align=left,leftmargin=*]
+    \item $Y_1 = \min(X_1, ... ,X_n)$
+    \begin{align*}
+        f_{Y_1}(y) &= nf(y)[S(y)]^{n-1} \\
+        S_{Y_1}(y) &= \prod_{i=1}^n \prob{X_i>x}
+    \end{align*} 
+    \item $Y_n = \max(X_1, ... ,X_n)$
+    \begin{align*}
+        f_{Y_n}(y) &= nf(y)[F(y)]^{n-1} \\
+        F_{Y_n}(y) &= \prod_{i=1}^n \prob{X_i\leq x}
+    \end{align*}
+    \item $Y_k \in (Y_1,...,Y_k,...,Y_n)$
+    \begin{align*}
+        f_{Y_k}(y) &= \frac{n!}{(k-1)!(n-k)!} f(y)[F(y)]^{k-1}[S(y)]^{n-k} \\
+        F_{Y_k}(y) &= \prob{\text{at least k of n $X_i$ are $\leq$ y}} \\
+                   &= \sum_{i=k}^n \binom{n}{i} [F(y)]^i[S(y)]^{n-j}
+    \end{align*}
+    \item $x+y=\min(x,y)+\max(x,y)$, since one is for sure the max and the other the min.
+\end{itemize}
+
+\section*{Mode: Most likely \\ probability}
+\begin{itemize}[align=left,leftmargin=*]
+    \item $g(x) = f(x)$ or some time $g(x) = \ln f(x)$
+    \item \textbf{Mode} is the $x$ that respects: $g'(x) = 0$
+\end{itemize}
+
+\section*{Normal Approximation}
+\begin{itemize}[align=left,leftmargin=*]
+    \item $F_X(x) = \Phi \left( \frac{X - \esp{X}}{\sqrt{\var{X}}} \right)$
+    \item \textbf{Continuity correction} is necessary when X is discrete. $F_X(x) = \Phi \left( \frac{(X \pm k) - \esp{X}}{\sqrt{\var{X}}} \right)\:$ where $k$ is the mid-point of the discrete value.
+\end{itemize}
+
+
+
+\end{multicols*}
+%% -----------------------------
+%% Fin du document
+%% -----------------------------
+\end{document}
