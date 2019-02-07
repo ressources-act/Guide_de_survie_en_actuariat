@@ -114,7 +114,7 @@
 
 \section*{Lesson 7: Time in Transient States}
 \begin{itemize}[align=left,leftmargin=*]
-    \item Tips: {\color{red}\nameref{Appendix: Inverting a matrix}}
+    \item Tips: {\color{AppendixColor}\nameref{Appendix: Inverting a matrix}}
     \item $\matr{S} = (\matr{I} - \matr{P}_{\text{transcient}})^{-1}\:$, where $s_{ij}$ is the time in state j given that the current state is i.
     \item $f_{ij} = \frac{s_{ij} - \delta_{i,j}}{s_{jj}} = \sum\limits_{n=1}^\infty f_{ij}^{(n)}$, where $f_{ij}$ is the probability that state i ever transitions to state j.
 \end{itemize}
@@ -130,7 +130,7 @@
         \item $\mu \leq 1 \Rightarrow \pi_0 \geq 1$ ,if $X_0 = 1$.
         \item $\mu > 1 \Rightarrow \pi_0 < 1$ ,if $X_0 = 1$.
     \end{itemize}
-    For cubic equation, it guaranteed to factor $(\pi_0 - 1)$. Tips: {\color{red}\nameref{Appendix: Synthetic Division}} 
+    For cubic equation, it guaranteed to factor $(\pi_0 - 1)$. Tips: {\color{AppendixColor}\nameref{Appendix: Synthetic Division}} 
 \end{itemize}
 
 \section*{Lesson 9: Time Reversible}
@@ -208,7 +208,7 @@
     \item The probability of $k$ event from process 1 is given by: \[ k \sim \mathrm{Binomial}(k+l-1, \frac{\lambda_1}{\lambda_1 + \lambda_2}) \] Then the probability that $k$ event from process 1 occur before $l$ from process 2 is: \[ \sum_{i=k}^{k+l-1} \binom{k+l-1}{i} \left( \frac{\lambda_1}{\lambda_1+\lambda_2} \right)^i \left(\frac{\lambda_2}{\lambda_1+\lambda_2}\right)^{k+l-1-i} \]
     \item Given that exactly $N(t) = k$ Poisson events occured before time $t$, the join distribution of event time is the joint distribution of k independent uniform random variable on $(0, t)$. \[ F_{S_1,...,S_n|n(t)}(s_1,...s_n|k) = \frac{k!}{t^k} \]
     \item For $k$ independent uniform random variable on $(0, t)$, the expected value of the j\up{th} order statistics is: $E[T^{(j)}] =  \frac{jt}{(k+1)} $. 
-    \item Tips: {\color{red}\nameref{Appendix: Statistic Order}}
+    \item Tips: {\color{AppendixColor}\nameref{Appendix: Statistic Order}}
 \end{itemize}
 
 \section*{Lesson 15: Poisson Process Sums and Mixtures}
@@ -348,7 +348,7 @@
     \end{align*} 
 \end{itemize}
 
-\section*{Lesson 21: Contingent Payments}
+\section*{Lesson 21: Contingent \\ Payments}
 The contract here are define with $K_x$ to pay at the end of death year. All same contract can be define with $T_x$ to pay at the moment of death. Then we use integral instead of sum and use \[\hspace*{-5mm} \prob{K=k}=\px[k]{x} \qx{x+k} \Rightarrow f_{T_x}(t) = \px[t]{x} \mu_{x+t}\]
 \begin{itemize}[align=left,leftmargin=*]
     \item \textbf{Life Insurance:} 
@@ -393,7 +393,48 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
 \end{itemize}
 
 \def\SectionColor{orange!80!white}
-\section*{Simulation-Inverse Method}
+\section*{Lesson 22: Simulation \\ Inverse Method}
+\begin{itemize}[align=left,leftmargin=*]
+    \item \textbf{Linear congruential generators:}
+    \begin{align*}
+        x_k &= (ax_{k-1}+c)\: \mathrm{mod}\: m \\
+        x_k &= b - \left\lfloor \frac{b}{m} \right\rfloor m
+    \end{align*}
+    where $b = (ax_{i-k}+c)$ and $x_0\equiv\mathrm{seed}$
+    \item \textbf{Inverse transformation method:}\\ $ \prob{F^{-1}(u)\leq x} = \prob{u\leq F(x)} = F(x) $ \\ then $x = F^{-1}(u)$ where $U \sim \mathrm{Unif}(0,1)$
+    \begin{itemize}
+        \item Normal Case: $x = \mu + \sigma z$
+        \item Log-Normal Case: $x = e^{\mu + \sigma z}$
+    \end{itemize}
+    where $z = \Phi^{-1}(u)$, with linear interpolation.
+    \item Tips: {\color{AppendixColor}\nameref{Appendix: Discrete Cumulative Function}}
+    \item Tips: if $\Uparrow U \equiv\: \Downarrow X$ then $(1-u_i)\Rightarrow u_i$ 
+\end{itemize}
+
+\section*{Lesson 23: Simulation \\ Application}
+\begin{itemize}[align=left,leftmargin=*]
+    \item $\prob{X \leq x} \simeq \frac{1}{m} \sum\limits_{j=1}^{m} \indic{x^{(j)} \leq x}  $
+    \item $\mathrm{E}[X^k] \simeq \frac{1}{m} \sum\limits_{j=1}^{m} [x^{(j)}]^k  $
+    \item $\mathrm{VaR}_k(X) \simeq X^{[j]} $
+    \item $\mathrm{TVaR}_k(X) \simeq \frac{1}{m(1-k)} \sum\limits_{j=j_0+1}^{m} X^{(j)} \indic{X^{(j)}>X^{[j_0]}} $ \\ $\phantom{\mathrm{TVaR}_k(X)}  \simeq \frac{1}{m-j_0} \sum\limits_{j=j_0+1}^{m} X^{[j]} $ \\ where
+    \begin{itemize}
+        \item $m \equiv\:$ Number of simulations.
+        \item $j_0 = \lfloor m \cdot k \rfloor$
+        \item $X^{(j)} \equiv j\up{e}$ simulations.
+        \item $X^{[j]} \equiv j\up{e}$ simulations in ascending order.
+    \end{itemize} 
+\end{itemize}
+
+\section*{Lesson 24: Simulation \\ Rejection Method}
+\begin{itemize}[align=left,leftmargin=*]
+    \item \textbf{General method:} Let $f(x)$ be the density function of variable to simulate, and let $g(x)$ be the \textbf{base distribution}, a random density function that is easy-to-simulate with nonzero wherever $f(x)\neq 0$. \[\hspace*{1cm} c = \max \frac{f(x)}{g(x)} \]
+     Generate two uniform number $u_1, u_2$. Let \\ $x = G^{-1}(u_i)$. Accept $x_1$ only if \[\hspace*{.5cm} u_2 \leq \frac{f(x_1)}{c \cdot g(x_1)} \]
+    \item \textbf{Simulating gamma distribution:} Use \\ $\mathrm{Exp}(\alpha \cdot \theta)$ as the base distribution and $c = \alpha \cdot \theta$. 
+    \item \textbf{Simulating standart normal distribution:} \\ Generate 3 uniform $u_1, u_2, u_3$. Let $y_1 = -\ln u_2$ and $y_2 = -\ln u_2$. Accept $y_1$ if \[\hspace*{.5cm} y_2 \geq \frac{(y_1-1)^2}{2} \] and add $(-)$ if $u_3 \geq 0.5$
+\end{itemize}
+
+\def\SectionColor{red!80!white}
+\section*{Lesson 25: Estimator Quality}
 
 \newpage
 \title{Appendix}
@@ -457,7 +498,7 @@ then, $x^3 - 12x^2 - 81 = (x-3)(x^2-9x-27)$
     \end{align*}
     \item $Y_k \in (Y_1,...,Y_k,...,Y_n)$
     \begin{align*}
-        f_{Y_k}(y) &= \frac{n!}{(k-1)!(n-k)!} f(y)[F(y)]^{k-1}[S(y)]^{n-k} \\
+        f_{Y_k}(y) &= \frac{n!\cdot f(y)[F(y)]^{k-1}[S(y)]^{n-k}}{(k-1)!(n-k)!} \\
         F_{Y_k}(y) &= \prob{\text{at least k of n $X_i$ are $\leq$ y}} \\
                    &= \sum_{i=k}^n \binom{n}{i} [F(y)]^i[S(y)]^{n-j}
     \end{align*}
@@ -475,6 +516,82 @@ then, $x^3 - 12x^2 - 81 = (x-3)(x^2-9x-27)$
     \item $F_X(x) = \Phi \left( \frac{X - \esp{X}}{\sqrt{\var{X}}} \right)$
     \item \textbf{Continuity correction} is necessary when X is discrete. $F_X(x) = \Phi \left( \frac{(X \pm k) - \esp{X}}{\sqrt{\var{X}}} \right)\:$ where $k$ is the mid-point of the discrete value.
 \end{itemize}
+
+\section*{Discrete Cumulative Function}
+\label{Appendix: Discrete Cumulative Function}
+\begin{align*}
+    \prob{X = x} &= 
+    \left\{ 
+        \begin{array}{cl}
+            0.10, & x = 0 \\
+            0.30, & x = 5 \\
+            0.15, & x = 10 \\
+            0.25, & x = 15 \\
+            0.20, & x = 20 \\
+        \end{array}
+    \right. \\
+    \prob{X \leq x} &= 
+    \left\{ 
+        \begin{array}{cc}
+        0.10, & 0 \leq x < 5 \\
+        0.40, & 5 \leq x < 10 \\
+        0.55, & 10 \leq x < 15 \\
+        0.80, & 15 \leq x < 20 \\
+        1, & x \geq 20 \\
+        \end{array}  
+    \right.
+\end{align*}
+\begin{tikzpicture}
+    \begin{axis}[
+        height=6.5cm,
+        width=7cm,
+        axis x line=bottom,
+        axis y line=left,
+        xlabel = {$x$},
+        title = {\hspace*{-5.5cm} $F(x)$},
+        ytick={0, 0.10, 0.40, 0.55, 0.80, 1},
+        xmin = 0,
+        xmax = 25,
+        ymin = 0,
+        ymax = 1.1]
+        \addplot[mark=o, draw=black, line width=1pt] coordinates { (0,0.1)(5,0.1) };
+        \addplot[mark=o, draw=black, line width=1pt] coordinates { (5,0.4)(10,0.4) };
+        \addplot[mark=o, draw=black, line width=1pt] coordinates { (10,0.55)(15,0.55) };
+        \addplot[mark=o, draw=black, line width=1pt] coordinates { (15,0.8)(20,0.8) };
+        \addplot[mark=o, draw=black, line width=1pt] coordinates { (20,1)(25,1) };
+
+        \addplot[mark=*, draw=black, line width=1pt] coordinates { (0,0.1) };
+        \addplot[mark=*, draw=black, line width=1pt] coordinates { (5,0.4) };
+        \addplot[mark=*, draw=black, line width=1pt] coordinates { (10,0.55) };
+        \addplot[mark=*, draw=black, line width=1pt] coordinates { (15,0.8) };
+        \addplot[mark=*, draw=black, line width=1pt] coordinates { (20,1) };
+
+        \addplot[mark=none, draw=blue, line width=1pt, fill=blue, opacity=0.2] coordinates { (0,0.55)(15,0.55) }\closedcycle;
+        \addplot[mark=none, draw=red, line width=1pt, densely dashed] coordinates { (0,0.50)(15,0.50) };
+
+        \draw (45,25) node[right]{$F^{-1}(0.50) = 10$};
+    \end{axis}
+\end{tikzpicture}
+
+\section*{Contract}
+\begin{itemize}[align=left,leftmargin=*]
+    \item \textbf{Deductible(d)}
+    \item \textbf{Maximum(u)}
+    \item \textbf{Inflation(r)}
+    \item \textbf{Coinsurance($\boldsymbol{\alpha}$)}
+\end{itemize}
+\begin{align*}
+    Y &= 
+    \left\{ 
+        \begin{array}{cc}
+        0 & x \leq \frac{d}{1+r}\\
+        \alpha[(1+r)x-d] & \frac{d}{1+r} < x < \frac{u}{1+r} \\
+        \alpha[u - d] & x \geq \frac{u}{1+r} \\
+        \end{array}  
+    \right.
+\end{align*} \\
+{\color{red} Warning: The maximal don't include the deductible.}
+
 
 
 

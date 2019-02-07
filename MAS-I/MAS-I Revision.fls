@@ -1,9 +1,9 @@
-PWD c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision
+PWD a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I
 INPUT d:/texlive/2017/texmf.cnf
 INPUT d:/texlive/2017/texmf-dist/web2c/texmf.cnf
 INPUT d:/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.tex
-OUTPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.log
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.tex
+OUTPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.log
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/article.cls
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/article.cls
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/size10.clo
@@ -29,8 +29,8 @@ INPUT d:/texlive/2017/texmf-dist/tex/latex/multido/multido.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/multido/multido.sty
 INPUT d:/texlive/2017/texmf-dist/tex/generic/multido/multido.tex
 INPUT d:/texlive/2017/texmf-dist/tex/generic/multido/multido.tex
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/cheatsht-preamble.tex
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/cheatsht-preamble.tex
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/cheatsht-preamble.tex
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/cheatsht-preamble.tex
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/utf8.def
@@ -137,6 +137,10 @@ INPUT d:/texlive/2017/texmf-dist/tex/latex/numprint/numprint.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/numprint/numprint.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/tools/array.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/tools/array.sty
+INPUT d:/texlive/2017/texmf-dist/tex/latex/bbm-macros/bbm.sty
+INPUT d:/texlive/2017/texmf-dist/tex/latex/bbm-macros/bbm.sty
+INPUT d:/texlive/2017/texmf-dist/tex/latex/doublestroke/dsfont.sty
+INPUT d:/texlive/2017/texmf-dist/tex/latex/doublestroke/dsfont.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/cancel/cancel.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/cancel/cancel.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/actuarialsymbol/actuarialsymbol.sty
@@ -253,6 +257,83 @@ INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT d:/texlive/2017/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
 INPUT d:/texlive/2017/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
 INPUT d:/texlive/2017/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+INPUT d:/texlive/2017/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def
+INPUT d:/texlive/2017/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+INPUT d:/texlive/2017/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+INPUT d:/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+INPUT d:/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+INPUT d:/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+INPUT d:/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+INPUT d:/texlive/2017/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_pgflibraryfpu.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_pgfmathfloat.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-pdftex.def
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-pdftex.def
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+INPUT d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 INPUT d:/texlive/2017/texmf-dist/tex/latex/pdfpages/pdfpages.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/pdfpages/pdfpages.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/ifthen.sty
@@ -286,9 +367,9 @@ INPUT d:/texlive/2017/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/titling/titling.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/titling/titling.sty
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.aux
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.aux
-OUTPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.aux
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux
+OUTPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux
 INPUT d:/texlive/2017/texmf-dist/tex/latex/fourier/fmlfutm.fd
 INPUT d:/texlive/2017/texmf-dist/tex/latex/fourier/fmlfutm.fd
 INPUT d:/texlive/2017/texmf-dist/tex/latex/fourier/fmsfutm.fd
@@ -312,14 +393,14 @@ INPUT d:/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT d:/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 INPUT d:/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.out
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.out
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.out
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.out
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.out
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.out
-OUTPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.out
-OUTPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.pdf
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+OUTPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+OUTPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf
 INPUT d:/texlive/2017/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/graphics/lscape.sty
@@ -472,6 +553,14 @@ INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-alt-ita.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futb8t.vf
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futb8r.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-alt-bold.tfm
+INPUT d:/texlive/2017/texmf-dist/tex/latex/doublestroke/udsrom.fd
+INPUT d:/texlive/2017/texmf-dist/tex/latex/doublestroke/udsrom.fd
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futmi.vf
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom12.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futr8t.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futr8t.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmii.tfm
@@ -489,24 +578,31 @@ INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/latex-fonts/lasy5.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futb8t.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futb8t.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmiib.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmiib.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmib.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmib.tfm
-INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futmi.vf
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.aux
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.out
-INPUT c:/Users/Nicholas/Dropbox/Examen_Professionnelle_actu/MAS-I/Feuille_révision/MAS-I Revision.out
+INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futmiib.vf
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-mlitb.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-mlb.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futbi8r.tfm
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
 INPUT d:/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesometwo.enc
 INPUT d:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc
 INPUT d:/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb
+INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-bb.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mex.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ml.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlit.pfb
+INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlitb.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb
