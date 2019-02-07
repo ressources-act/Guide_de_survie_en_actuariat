@@ -5,7 +5,11 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 - Nicholas Langevin
 - Gabriel Crépault-Cauchon
 
-## Contents 
+## Contents
+
+## MAS-I ~ Modern Actuarial Statistics
+> Feuille de formules
+
 ### ACT-2003 ~ Modèles linéaires en actuariat
 > (coming soon)
 ### ACT- 2004 ~ Mathématique actuarielles vie I
@@ -37,5 +41,4 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 ### IFT-1902 ~ Introduction à la programmation en R
 > aide-mémoire Rmarkdown
 
-### Fonction décroissante
 
