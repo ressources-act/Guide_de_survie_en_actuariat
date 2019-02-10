@@ -1,0 +1,5 @@
+PWD a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I
+INPUT d:/texlive/2017/texmf.cnf
+INPUT d:/texlive/2017/texmf-dist/web2c/texmf.cnf
+INPUT d:/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.tex

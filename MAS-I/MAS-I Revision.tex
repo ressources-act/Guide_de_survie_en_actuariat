@@ -429,12 +429,47 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
 \begin{itemize}[align=left,leftmargin=*]
     \item \textbf{General method:} Let $f(x)$ be the density function of variable to simulate, and let $g(x)$ be the \textbf{base distribution}, a random density function that is easy-to-simulate with nonzero wherever $f(x)\neq 0$. \[\hspace*{1cm} c = \max \frac{f(x)}{g(x)} \]
      Generate two uniform number $u_1, u_2$. Let \\ $x = G^{-1}(u_i)$. Accept $x_1$ only if \[\hspace*{.5cm} u_2 \leq \frac{f(x_1)}{c \cdot g(x_1)} \]
-    \item \textbf{Simulating gamma distribution:} Use \\ $\mathrm{Exp}(\alpha \cdot \theta)$ as the base distribution and $c = \alpha \cdot \theta$. 
+    \item \textbf{Simulating gamma distribution:} Use \\ $\mathrm{Exp}(\alpha \cdot \theta)$ as the base distribution and $x = \alpha \cdot \theta$ that maximize $c$. 
     \item \textbf{Simulating standart normal distribution:} \\ Generate 3 uniform $u_1, u_2, u_3$. Let $y_1 = -\ln u_2$ and $y_2 = -\ln u_2$. Accept $y_1$ if \[\hspace*{.5cm} y_2 \geq \frac{(y_1-1)^2}{2} \] and add $(-)$ if $u_3 \geq 0.5$
+    \item  The \textbf{Number of itération} is a Ross-geometric distribution with mean c. Let be $\beta$ the mean of a geometric distribution given in the annexe:
+    \begin{align*}
+    \hspace*{.7cm}
+        \esp{N} &= 1 + \beta = c \\
+        \var{N} &= \beta(1+\beta)
+    \end{align*}
 \end{itemize}
 
 \def\SectionColor{red!80!white}
 \section*{Lesson 25: Estimator Quality}
+\begin{itemize}[align=left,leftmargin=*]
+    \item \textbf{Bias:} This quality mesure if on average, the estimator is on the expected value of the parameter. \[\hspace*{.5cm} \esp{\hat{\theta}} = \theta + \mathrm{bias}_{\hat{\theta}}(\theta) \]
+    \begin{itemize}
+        \item If $\mathrm{bias}_{\hat{\theta}}(\theta) = 0$, then $\hat{\theta}$ is \textbf{unbiased}.
+        \item If $\lim\limits_{n\to \infty} \mathrm{bias}_{\hat{\theta}}(\theta) = 0$, then $\hat{\theta}$ is \textbf{asymptotically unbiased}.
+        \item If $\mathrm{bias}_{\hat{\theta}}(\theta) \neq 0$, then $\hat{\theta}$ is \textbf{biased}.
+    \end{itemize}
+    \item \textbf{Consistency:} This quality mesure if the probability that the estimator is different from the parameter by more than $\varepsilon$ goes to $0$ as $n$ goes to infinity. \[ \lim_{n\to \infty} \prob{|\hat{\theta} - \theta|>\varepsilon} \to 0,\:\: \forall \varepsilon>0 \] In other word, as $n\to \infty$, $\esp{\hat{\theta}}\to \theta$, $\var{\hat{\theta}}\to 0$
+    \item \textbf{Efficency:} This quality mesure the variance of the estimator. More the variance is low, more efficency the estimator is. \[\hspace*{-.6cm} \text{Relative efficiency of $\hat{\theta}_1$ to $\hat{\theta}_2$} = \frac{\var{\hat{\theta}_2}}{\var{\hat{\theta}_1}} \]
+    \item \textbf{Mean Square Error:} This quality mesure the expected value of the square difference between the estimator and the parameter.
+    \begin{align*}
+        \hspace*{-.6cm}
+        \mathrm{MSE}_{\hat{\theta}}(\theta) &= \esp{(\hat{\theta} - \theta)^2} 
+                                            = \left(\mathrm{bias}_{\hat{\theta}}(\theta)\right)^2 + \var{\hat{\theta}}
+    \end{align*}
+    \item An estimator is called a \textbf{uniformly minimum variance unbiased estimator(UMVUE)} if it unbiased and if there is no other unbiased estimator with a smaller variance for anu true value $\theta$.
+    \item Some estimator:
+    \begin{itemize}
+        \item $\bar{x}=\frac{1}{n}\sum x_i$ is a unbiased estimator of the mean $\mu$. $\var{\bar{x}}=\frac{1}{n}\var{x}$
+        \item $s^2=\sum \frac{(x_i-\bar{x})^2}{n-1}$ is a unbiased estimator of the variance $\sigma^2$.
+        \item $\hat{\sigma}^2=\sum \frac{(x_i-\bar{x})^2}{n}$ is an asymptotically unbiased of the variance $\sigma^2$.
+        \item $\hat{\mu}_k'=\frac{1}{n}\sum x_i^k$, where $\hat{\mu}_1'=\bar{x}$ and $\hat{\mu}_k=\frac{1}{n}\sum (x_i - \bar{x})^k$, where $\hat{\mu}_1=0$ and $\hat{\mu}_2=\hat{\sigma}^2$.
+    \end{itemize}
+\end{itemize}
+
+\section*{Lesson 26: Kernel Density Estimation}
+\begin{itemize}[align=left,leftmargin=*]
+    \item 
+\end{itemize}
 
 \newpage
 \title{Appendix}
@@ -591,6 +626,16 @@ then, $x^3 - 12x^2 - 81 = (x-3)(x^2-9x-27)$
     \right.
 \end{align*} \\
 {\color{red} Warning: The maximal don't include the deductible.}
+
+\section*{Moments}
+\begin{itemize}[align=left,leftmargin=*]
+    \item k\up{e} moment about the origin. $\mu_k'=\esp{X^k}$
+    \item k\up{e} moment about the mean. $\mu_k=\esp{(X-\mu)^k}$
+    \item The \textbf{Skewness} moment give infomation about the asymmetry of the distribution. If $S_{sk}=0$, the distribution is normal. \[\hspace*{1cm} S_{sk} = \esp{\left(\frac{X-\mu}{\sigma^2}\right)^3} \] %If $S_{sk}=0$, the distribution is normal.
+    \includegraphics[scale=0.34]{src/Illustration-skewness-and-kurtosis.png}
+    \item The \textbf{kurtosis} moment give infomation about the flattening of the distribution. If $S_{ku}=0$, the distribution is normal. \[\hspace*{1cm} S_{ku} = \esp{\left(\frac{X-\mu}{\sigma^2}\right)^4} \] %If $S_{ku}=0$, the distribution is normal.
+    \item The \textbf{coefficient of variation} give information about the dispersion of the distribution. \[\hspace*{1.1cm} \mathrm{CV} = \frac{\sigma}{\esp{X}} \]
+\end{itemize}
 
 
 

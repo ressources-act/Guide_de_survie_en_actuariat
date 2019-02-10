@@ -558,9 +558,6 @@ INPUT d:/texlive/2017/texmf-dist/tex/latex/doublestroke/udsrom.fd
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
-INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futmi.vf
-INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom12.tfm
-INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futr8t.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futr8t.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmii.tfm
@@ -586,6 +583,12 @@ INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmiib.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmiib.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmib.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmib.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futmi.vf
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom12.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/src/Illustration-skewness-and-kurtosis.png
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/src/Illustration-skewness-and-kurtosis.png
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/src/Illustration-skewness-and-kurtosis.png
 INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futmiib.vf
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-mlitb.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-mlb.tfm
