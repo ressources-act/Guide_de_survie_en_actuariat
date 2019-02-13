@@ -412,6 +412,7 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
 \end{itemize}
 
 \section*{Lesson 23: Simulation \\ Application}
+\label{Lesson 23}
 \begin{itemize}[align=left,leftmargin=*]
     \item $\prob{X \leq x} \simeq \frac{1}{m} \sum\limits_{j=1}^{m} \indic{x^{(j)} \leq x}  $
     \item $\mathrm{E}[X^k] \simeq \frac{1}{m} \sum\limits_{j=1}^{m} [x^{(j)}]^k  $
@@ -468,7 +469,111 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
 
 \section*{Lesson 26: Kernel Density Estimation}
 \begin{itemize}[align=left,leftmargin=*]
-    \item 
+    \item \textbf{Empirical distribution:} All data is assigning a probability of $\frac{1}{n}$. This is the same method used for simulation, see {\color{orange}\nameref{Lesson 23}}.
+    \begin{align*}
+        \hspace*{.5cm}
+        F_e(x) &= \frac{1}{n} \sum\limits_{i=1}^{n} \indic{x_i \leq x} \\
+        f_e(x) &= \frac{1}{n} \sum\limits_{i=1}^{n} \indic{x_i = x} \\
+               &= F_e(x) - F_e(x_{i-1})
+    \end{align*} 
+    % \begin{tikzpicture}
+    %     \begin{axis}[
+    %         height=5cm,
+    %         width=6cm,
+    %         axis x line=bottom,
+    %         axis y line=left,
+    %         xlabel = {$x$},
+    %         title = {\hspace*{-5.5cm} $F(x)$},
+    %         ytick={0, 0.10, 0.40, 0.55, 0.80, 1},
+    %         yticklabels={0,$F(x_1)$,$F(x_2)$,$F(x_3)$,$F(x_4)$,1},
+    %         xtick={0,5,10,15,20,25},
+    %         xticklabels={0,$x_1$,$x_2$,$x_3$,$x_4$,},
+    %         xmin = 0,
+    %         xmax = 25,
+    %         ymin = 0,
+    %         ymax = 1.1]
+    %         \addplot[mark=none, draw=black, line width=1pt] coordinates { (0,0.1)(5,0.1) (5,0.4)(10,0.4) (10,0.55)(15,0.55) (15,0.8)(20,0.8) (20,1)(25,1)};
+    %         \addplot[mark=none, draw=blue, line width=1pt, fill=blue, opacity=0.2] coordinates { (0,0.1)(5,0.1) (5,0.4)(10,0.4) (10,0.55)(15,0.55)   }\closedcycle;
+    %         \addplot[mark=none, draw=red, line width=1pt, fill=red, opacity=0.2] coordinates {  (15,0.8)(20,0.8)  }\closedcycle;
+    
+    %         \draw (146,35) node[right]{$f_e(x_4)$};
+    %     \end{axis}
+    % \end{tikzpicture}
+    \item \textbf{Kernel Density} is a empirical distribution smoothed with a base fonction. Let define the scaling factor $b$ called \textbf{bandwith}. \\
+    \begin{itemize}
+        \item  The kernel-density estimate of the density function is: $\hat{f}(x) = \frac{1}{n} \sum k \left( \frac{x-x_i}{b} \right)$ \\ $\hspace*{1.1cm} \Leftrightarrow \sum f_e(x)k\left( \frac{x-x_i}{b} \right)$
+        \item  The kernel-density estimate of the distribution is: $\hat{F}(x) = \frac{1}{n} \sum K \left( \frac{x-x_i}{b} \right)$
+    \end{itemize}
+    \item \textbf{Rectangular(uniform, box) kermel:} 
+    \begin{align*}
+        k(x) &= 
+            \left\{
+                \begin{array}{cc}
+                    \frac{1}{2b}, & -1 \leq x \leq 1 \\
+                    0,   & \mathrm{otherwise}
+                \end{array} 
+            \right. \\
+        K(x) &= 
+        \left\{
+            \begin{array}{cc}
+                0, & x < -1 \\
+                0.5(x+1), & -1 \leq x \leq 1 \\ 
+                1,   & x > 1 
+            \end{array} 
+        \right.\\
+        \hat{f}(x) &= \frac{F_e(x+b)-F_e(x-b^-)}{2b}
+    \end{align*}
+    % \begin{tikzpicture}
+    %     \begin{axis}[
+    %         scale=0.5,
+    %         axis x line=bottom,
+    %         axis y line=left,
+    %         xtick={5,20},
+    %         xticklabels={$x_i$,$x_{i+1}$},
+    %         xmin = 0,
+    %         xmax = 25,
+    %         ymin = 0,
+    %         ymax = 1.1]
+    %         \addplot[mark=none, draw=black, line width=1pt] coordinates {  (0,0.2)(5,0.2) (5,0.8)(20,0.8)  (20,1)};
+    %         \addplot[mark=none, draw=blue, line width=1pt] coordinates {  (5,0.2) (20,0.8)  };    
+
+    %         \draw (axis cs:10,0.4) -| (axis cs:12,0.48);
+    %         \draw (115,35) node[right]{$\frac{1}{2b}$};
+    %     \end{axis}
+    % \end{tikzpicture}
+    \item \textbf{Triangular kernel:} 
+    \begin{align*}
+        k(x) &= 
+            \left\{
+                \begin{array}{cc}
+                    \frac{1 - |x|}{b}, & -1 \leq x \leq 1 \\
+                    0,   & \mathrm{otherwise}
+                \end{array} 
+            \right. \\
+        K(x) &= 
+        \left\{
+            \begin{array}{cc}
+                0, & x < -1 \\
+                \frac{(1+x)^2}{2}, & -1 \leq x \leq 0 \\ 
+                1 - \frac{(1-x)^2}{2}, & 0 \leq x \leq 1 \\ 
+                1,   & x > 1 
+            \end{array} 
+        \right.
+    \end{align*}
+    \item \textbf{Gaussian kernel:} The distribution become normal with $\mu=x_i$ and $\sigma=b$.
+    \begin{align*}
+        k(x) &= \frac{e^{-x^2/2}}{b\sqrt{2\pi}} \\
+        K(x) &= \Phi(x)
+    \end{align*}
+    \item Other kernel: $k(x)=\beta(x)$ and $k(x) = B(x)$
+    \item \textbf{kernel moments:} Let $X$ be the kernel density estimate and $Y$ the empirical estimate.
+    \begin{align*}
+        \esp{X} &= \esp{y} \\
+        \var{X_R} &= \var{Y} + \frac{b^2}{3} \\
+        \var{X_T} &= \var{Y} + \frac{b^2}{6} \\
+        \var{X_G} &= \var{Y} + b^2
+    \end{align*}
+     
 \end{itemize}
 
 \newpage
