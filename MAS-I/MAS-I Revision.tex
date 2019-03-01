@@ -576,6 +576,66 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
      
 \end{itemize}
 
+\section*{Lesson 30: MLE Special \\ Techniques}
+\begin{itemize}[align=left,leftmargin=*]
+    \item Case MLE equals MME
+    \begin{itemize}
+        \item For Exponential, $\hat{\theta}^{\mathrm{MLE}}=\bar{x}$
+        \item For Gamma with fixed $\alpha$, \\ $\hat{\theta}^{\mathrm{MLE}} = \hat{\theta}^{\mathrm{MME}}$
+        \item For Normal, $\hat{\mu}^{\mathrm{MLE}}=\bar{x}$ and \\ $(\hat{\sigma}^2)^{\mathrm{MLE}} = \frac{1}{n} \sum (x_i-\hat{\mu})^2$
+        \item For Binomial, $mq=\bar{x}$ then \\ given $m$, $\hat{q}^{\mathrm{MLE}}=\frac{\bar{x}}{m}$
+        \item For Poisson, $\hat{\lambda}^{\mathrm{MLE}}=\hat{\lambda}^{\mathrm{MME}}$
+        \item For Binomial Negative, \\ given  $r$ or $\beta$, $(r \beta)^{\mathrm{MLE}} = \bar{x}$
+    \end{itemize}
+    \item Exponential distribution: If the data is censored(u) or truncated(d), then \[ \hat{\theta}^{\mathrm{MLE}}=\frac{\sum (x_i - d)}{\sum \indic{x_i \leq u}}\]
+    \item Parametrization and Shifting:
+    \begin{itemize}
+        \item Parametrization: MLE's are \\ independent of parametrization \\ $\hspace*{1cm} \lambda = \frac{1}{\theta} \Leftrightarrow \hat{\lambda}^{\mathrm{MLE}} = \frac{1}{\hat{\theta}^{\mathrm{MLE}}}$ 
+        \item Shifting the distribution is equivalent of shifting the data.
+    \end{itemize}
+    \item Transformations: MLE's are invariant under one-to-one transformation. Then if we have a transformed variable, we can untransform the data and find the parameter of the untransform distribution. \\
+    Tips: {\color{AppendixColor} \nameref{Appendix: Transformations distribution}}
+    \item Uniform(0, $\theta$): We take the smalest $\theta$ possible, $\hat{\theta}^{\mathrm{MLE}} = \max(x_1,...,x_n)$
+    \begin{itemize}
+        \item Censored(u): $\hat{\theta}^{\mathrm{MLE}} = \frac{n d}{\sum \indic{x_i < d }}$
+        \item Grouped: We take the heighest interval(L, U). $\hat{\theta}^{\mathrm{MLE}} = \min(U, \hat{\theta}^{\mathrm{MLE}}_{\mathrm{Censored(L)}}) $
+    \end{itemize}
+    \item Bernouilli: $\hat{p} = \frac{\sum \indic{x_i = 1}}{n}$
+    \item Tips: If $L(\theta)$ look like a density distribution, $\hat{\theta}^{\mathrm{MLE}}\equiv\text{mode of the distribution}$.
+\end{itemize}
+
+\section*{Lesson 31: Variance of MLE}
+\begin{itemize}[align=left,leftmargin=*]
+    \item \textbf{Fisher information matrix}: 
+    \begin{align*}
+        I(\theta) &= n \esp{\left( \frac{\diff \ln f(x;\theta)}{\diff{\theta}} \right)^2} \\
+                  &= -n \esp{\frac{\diff^2 \ln f(x;\theta)}{\diff \theta^2}}
+    \end{align*} 
+    using the loglikehood function
+    \begin{align*}
+        I(\theta) &= \esp{\left( \frac{\diff l(x_1,...,x_n;\theta)}{\diff{\theta}} \right)^2} \\
+                  &= -\esp{\frac{\diff^2 l(x_1,...,x_n;\theta)}{\diff \theta^2}}
+    \end{align*}
+    \item \textbf{Rao-Cramer lower bound} is the lowest possible variance for a unbiased estimator $\hat{\theta}$ of $\theta$. Then $\hat{\theta} \sim \mathrm{Normal(0, \var{\hat{\theta}})}$
+    \[ \var{\hat{\theta}} \geq \frac{1}{I(\theta)} \]
+    under certain regularity conditions are satisfied
+    \begin{itemize}
+        \item The loglikehood function avec second derivative.
+        \item The support of the density function is not function of $\theta$.
+    \end{itemize}
+\end{itemize}
+
+\section*{Lesson 32: Sufficient Statistics}
+\begin{itemize}[align=left,leftmargin=*]
+    \item A \textbf{sufficient statistics} are statistics that capture all the information about the parameter we are estimating that the sample as to offer. 
+    \item A statistics is sufficient when the distribution of a sample given a statistics does not depend on the parameter. $Y$ is a sufficient statistics for a parameter $\theta$ if and only if 
+    \begin{align*}
+        L(x_1,...,x_n;\theta|Y) &= h(x_1,...,x_n) \\
+        L(x_1,...,x_n;\theta)&= g(y)h(x_1,...,x_n)
+    \end{align*}
+    where $h(x_1,...,x_n)$ is a function that does not involve $\theta$.
+\end{itemize}
+
 \newpage
 \title{Appendix}
 \date{}
@@ -742,8 +802,32 @@ then, $x^3 - 12x^2 - 81 = (x-3)(x^2-9x-27)$
     \item The \textbf{coefficient of variation} give information about the dispersion of the distribution. \[\hspace*{1.1cm} \mathrm{CV} = \frac{\sigma}{\esp{X}} \]
 \end{itemize}
 
+\section*{Transformations of distribution}
+\label{Appendix: Transformations distribution}
+\begin{itemize}[align=left,leftmargin=*]
+    \item Lognormal: $Y = e^{X}$, where
+    \begin{align*}
+        Y &\sim \mathrm{Lognormal}(\mu, \sigma) \\
+        X &\sim \mathrm{Normal}(\mu, \sigma)
+    \end{align*}
+    \item Inverse Exponential: $Y = \frac{1}{X}$, where 
+    \begin{align*}
+        Y &\sim \mathrm{Inverse\:Exponential}(1/\theta) \\
+        X &\sim \mathrm{Exponential}(\theta)
+    \end{align*}
+    \item Weibull: $Y = X^{1/\tau}$, where
+    \begin{align*}
+        Y &\sim \mathrm{Weibull}(\sqrt[\tau]{\theta}) \\
+        X &\sim \mathrm{Exponential}(\theta)
+    \end{align*}
+\end{itemize}
 
-
+\section*{Parameter interpretation}
+\begin{itemize}[align=left,leftmargin=*]
+    \item \textbf{Scale parameter ($\theta$, $\beta$, $\sigma$):} Affect the spread of the distribution.
+    \item \textbf{Rate parameter ($\lambda$):} Affect the rate of data at mean. (1/scale)
+    \item \textbf{Shape parameter ($\alpha$, $\tau$, $\gamma$):} Affect the shape rather then simply shift the distribution.
+\end{itemize}
 
 \end{multicols*}
 %% -----------------------------
