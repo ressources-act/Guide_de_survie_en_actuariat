@@ -198,22 +198,23 @@
 \end{itemize}
 
 \section*{Lesson 13: Poisson Process Counting Special Type}
+\label{Lesson 13}
 \begin{itemize}[align=left,leftmargin=*]
-    \item If event of type 1 occur with probability $\alpha_1(t)$, then the event follow a Poisson process with intensity $\lambda(t) \alpha_1(t)$. \[ m(t)=\int_0^t \lambda(u)\alpha_1(u) \diff{u} \]
+    \item If event of type 1 occur with probability $\alpha_1(t)$, then the event follow a Poisson process with intensity $\lambda(t) \cdot  \alpha_1(t)$. \[ m(t)=\int_0^t \lambda(u)\alpha_1(u) \diff{u} \]
 \end{itemize}
 
 \section*{Lesson 14: Poisson Process Other Characteristics}
 \begin{itemize}[align=left,leftmargin=*]
     \item Only for homogeneous Poisson processes.
-    \item The probability of $k$ event from process 1 is given by: \[ k \sim \mathrm{Binomial}(k+l-1, \frac{\lambda_1}{\lambda_1 + \lambda_2}) \] Then the probability that $k$ event from process 1 occur before $l$ from process 2 is: \[ \sum_{i=k}^{k+l-1} \binom{k+l-1}{i} \left( \frac{\lambda_1}{\lambda_1+\lambda_2} \right)^i \left(\frac{\lambda_2}{\lambda_1+\lambda_2}\right)^{k+l-1-i} \]
-    \item Given that exactly $N(t) = k$ Poisson events occured before time $t$, the join distribution of event time is the joint distribution of k independent uniform random variable on $(0, t)$. \[ F_{S_1,...,S_n|n(t)}(s_1,...s_n|k) = \frac{k!}{t^k} \]
-    \item For $k$ independent uniform random variable on $(0, t)$, the expected value of the j\up{th} order statistics is: $E[T^{(j)}] =  \frac{jt}{(k+1)} $. 
+    \item The probability of $k$ event from process 1 is given by: \[ k \sim \mathrm{Binomial}\left( k+l-1, \frac{\lambda_1}{\lambda_1 + \lambda_2} \right) \] Then the probability that $k$ event from process 1 occur before $l$ from process 2 is: \[ \sum_{i=k}^{k+l-1} \binom{k+l-1}{i} \left( \frac{\lambda_1}{\lambda_1+\lambda_2} \right)^i \left(\frac{\lambda_2}{\lambda_1+\lambda_2}\right)^{k+l-1-i} \]
+    \item Given that exactly $N(t) = k$ Poisson events occured before time $t$, the joint distribution of event time is the joint distribution of $k$ independent uniform random variables on $(0, t)$. \[ F_{S_1,...,S_n|n(t)}(s_1,...s_n|k) = \frac{k!}{t^k} \]
+    \item For $k$ independent uniform random variable on $(0, t)$, the expected value of the $j$\up{th} order statistics is: $E[T^{(j)}] =  \frac{jt}{(k+1)} $. 
     \item Tips: {\color{AppendixColor}\nameref{Appendix: Statistic Order}}
 \end{itemize}
 
 \section*{Lesson 15: Poisson Process Sums and Mixtures}
 \begin{itemize}[align=left,leftmargin=*]
-    \item A \textbf{Sums} of independent Poisson random variables is a Poisson random with intensify function $\lambda(t)=\sum \lambda_i(t)$. {\color{red}Warning: Substraction dont give a Poisson random variable.} 
+    \item A \textbf{Sums} of independent Poisson random variables is a Poisson random with intensify function $\lambda(t)=\sum \lambda_i(t)$. {\color{red}Warning: Substraction don't give a Poisson random variable.} 
     \item A \textbf{Mixture} of Poisson processes is not a Poisson processes.
     \begin{itemize}
         \item \textbf{Discrete} mixture: \[ F_{X(t)}(t) = \sum_i w_i F_{X_i(t)}(t) \] where $w_i>0\:,\sum w_i = 1$
@@ -230,7 +231,7 @@
         \item $\esp{S(t)} =  \lambda t \esp{X}$
         \item $\var{S(t)} = \lambda t \esp{X^2}$
     \end{itemize}
-    \item If $X_i$ is discrete, we can separate the process into a sum of subprocess view in LESSON 13.
+    \item If $X_i$ is discrete, we can separate the process into a sum of subprocess view in {\color{brown!80!white}\nameref{Lesson 13}}.
     \item \textbf{Sums of compound} homogeneous Poisson process is also a Poisson process with:
     \begin{itemize}
         \item $N(t)\sim\textrm{Pois}(\sum \lambda_i)$
@@ -296,7 +297,7 @@
         1 - r(\mathbf{p}) &\geq \sum A_i - \sum A_i \cup A_j \\
         1 - r(\mathbf{p}) &\leq \sum A_i - \sum A_i \cup A_j + \sum A_i \cup A_j \cup A_k
     \end{align*} 
-    where $A_i=\sum (1 - p_i)\:$is the probability of the i\up{e} minimal cut set work.
+    where $A_i=\sum (1 - p_i)\:$is the probability of the $i$\up{e} minimal cut set work.
     \item Bounds using intersections: \[ \prod \phi(\mathbf{X})^{\textbf{min. cut}} \leq r(\mathbf{p}) \leq \prod \phi(\mathbf{X})^{\textbf{min. path}}\]
     \item \textbf{Random graph}:
     \begin{align*}
@@ -314,7 +315,7 @@
         \item For serie system: \[ r(\mathbf{\bar{F}(t)}) = \prod_{i=1}^n \bar{F}_i(t) \]
         \item For parallel system: \[ r(\mathbf{\bar{F}(t)}) = 1 - \prod_{i=1}^n F_i(t) \]
     \end{itemize}
-    \item \emph{Shortcut:} k out of n system with exponentials($\theta$): $\esp{T}=\theta \sum_{i=k}^n \frac{1}{i}$ 
+    \item \emph{Shortcut:} $k$ out of $n$ system with exponentials($\theta$): $\esp{T}=\theta \sum_{i=k}^n \frac{1}{i}$ 
     \item \textbf{Hazard rate function} (\emph{failure rate function}): \[ \hspace{.7cm} h(t) = \frac{f(t)}{\bar{F}(t)} \]
     and we say that the distribution
     \begin{itemize}
@@ -331,7 +332,7 @@
     \item $\qx[t|u]{x}=\frac{\lx{x+t} - \lx{x+t+u} }{\lx{x}}$
     \item $\px[t+u]{x} = \px[u]{x} \cdot \px[t]{x+u}$
     \item $\qx[t|u]{x}=\qx[t+u]{x} - \qx[t]{x} = \px[t]{x}\cdot \qx[u]{x+t} $
-    \item Let be $N_x$ the number of life surviving to age x, then  \[ (N_{x+t}|N_x=n)\sim\mathrm{Bin}(n, \px[t]{x}) \]
+    \item Let be $N_x$ the number of life surviving to age $x$, then  \[ (N_{x+t}|N_x=n)\sim\mathrm{Bin}(n, \px[t]{x}) \]
     \item \textbf{Force of mortality:} \[ \mu_{x+t} = \frac{f_{T_x}(t)}{\px[t]{x}} = - \frac{\diff}{\diff{t}} \ln \px[t]{x} \]
     \item \textbf{Linear interpolation(D.U.D)}:\\ \hspace*{1cm} $  \lx{x+t} = (1-t)\lx{x}+t \lx{x+1}$ \\  Shortcut: $\forall t \in (0,1),\: \forall x \in \naturels,\: x<x+t<x+1:$
     \begin{minipage}{3cm}
@@ -431,8 +432,8 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
     \item \textbf{General method:} Let $f(x)$ be the density function of variable to simulate, and let $g(x)$ be the \textbf{base distribution}, a random density function that is easy-to-simulate with nonzero wherever $f(x)\neq 0$. \[\hspace*{1cm} c = \max \frac{f(x)}{g(x)} \]
      Generate two uniform number $u_1, u_2$. Let \\ $x = G^{-1}(u_i)$. Accept $x_1$ only if \[\hspace*{.5cm} u_2 \leq \frac{f(x_1)}{c \cdot g(x_1)} \]
     \item \textbf{Simulating gamma distribution:} Use \\ $\mathrm{Exp}(\alpha \cdot \theta)$ as the base distribution and $x = \alpha \cdot \theta$ that maximize $c$. 
-    \item \textbf{Simulating standart normal distribution:} \\ Generate 3 uniform $u_1, u_2, u_3$. Let $y_1 = -\ln u_2$ and $y_2 = -\ln u_2$. Accept $y_1$ if \[\hspace*{.5cm} y_2 \geq \frac{(y_1-1)^2}{2} \] and add $(-)$ if $u_3 \geq 0.5$
-    \item  The \textbf{Number of itération} is a Ross-geometric distribution with mean c. Let be $\beta$ the mean of a geometric distribution given in the annexe:
+    \item \textbf{Simulating standard normal distribution:} \\ Generate 3 uniform $u_1, u_2, u_3$. Let $y_1 = -\ln u_2$ and $y_2 = -\ln u_2$. Accept $y_1$ if \[\hspace*{.5cm} y_2 \geq \frac{(y_1-1)^2}{2} \] and add $(-)$ if $u_3 \geq 0.5$
+    \item  The \textbf{Number of iteration} is a Ross-geometric distribution with mean c. Let be $\beta$ the mean of a geometric distribution given in the exam appendix:
     \begin{align*}
     \hspace*{.7cm}
         \esp{N} &= 1 + \beta = c \\
@@ -443,21 +444,21 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
 \def\SectionColor{red!80!white}
 \section*{Lesson 25: Estimator Quality}
 \begin{itemize}[align=left,leftmargin=*]
-    \item \textbf{Bias:} This quality mesure if on average, the estimator is on the expected value of the parameter. \[\hspace*{.5cm} \esp{\hat{\theta}} = \theta + \mathrm{bias}_{\hat{\theta}}(\theta) \]
+    \item \textbf{Bias:} This quality measures if, on average, the estimator is on the expected value of the parameter. \[\hspace*{.5cm} \esp{\hat{\theta}} = \theta + \mathrm{bias}_{\hat{\theta}}(\theta) \]
     \begin{itemize}
         \item If $\mathrm{bias}_{\hat{\theta}}(\theta) = 0$, then $\hat{\theta}$ is \textbf{unbiased}.
         \item If $\lim\limits_{n\to \infty} \mathrm{bias}_{\hat{\theta}}(\theta) = 0$, then $\hat{\theta}$ is \textbf{asymptotically unbiased}.
         \item If $\mathrm{bias}_{\hat{\theta}}(\theta) \neq 0$, then $\hat{\theta}$ is \textbf{biased}.
     \end{itemize}
-    \item \textbf{Consistency:} This quality mesure if the probability that the estimator is different from the parameter by more than $\varepsilon$ goes to $0$ as $n$ goes to infinity. \[ \lim_{n\to \infty} \prob{|\hat{\theta} - \theta|>\varepsilon} \to 0,\:\: \forall \varepsilon>0 \] In other word, as $n\to \infty$, $\esp{\hat{\theta}}\to \theta$, $\var{\hat{\theta}}\to 0$
-    \item \textbf{Efficency:} This quality mesure the variance of the estimator. More the variance is low, more efficency the estimator is. \[\hspace*{-.6cm} \text{Relative efficiency of $\hat{\theta}_1$ to $\hat{\theta}_2$} = \frac{\var{\hat{\theta}_2}}{\var{\hat{\theta}_1}} \]
-    \item \textbf{Mean Square Error:} This quality mesure the expected value of the square difference between the estimator and the parameter.
+    \item \textbf{Consistency:} This quality measures if the probability that the estimator is different from the parameter by more than $\varepsilon$ goes to $0$ as $n$ goes to infinity. \[ \lim_{n\to \infty} \prob{|\hat{\theta} - \theta|>\varepsilon} \to 0,\:\: \forall \varepsilon>0 \] In other word, as $n\to \infty$, $\esp{\hat{\theta}}\to \theta$, $\var{\hat{\theta}}\to 0$
+    \item \textbf{Efficiency:} This quality measures the variance of the estimator. Lower the variance is, more efficient is  the estimator. \[\hspace*{-.6cm} \text{Relative efficiency of $\hat{\theta}_1$ to $\hat{\theta}_2$} = \frac{\var{\hat{\theta}_2}}{\var{\hat{\theta}_1}} \]
+    \item \textbf{Mean Square Error:} This quality measures the expected value of the square difference between the estimator and the parameter.
     \begin{align*}
         \hspace*{-.6cm}
         \mathrm{MSE}_{\hat{\theta}}(\theta) &= \esp{(\hat{\theta} - \theta)^2} 
                                             = \left(\mathrm{bias}_{\hat{\theta}}(\theta)\right)^2 + \var{\hat{\theta}}
     \end{align*}
-    \item An estimator is called a \textbf{uniformly minimum variance unbiased estimator(UMVUE)} if it unbiased and if there is no other unbiased estimator with a smaller variance for anu true value $\theta$.
+    \item An estimator is called a \textbf{uniformly minimum variance unbiased estimator(UMVUE)} if it's unbiased and if there is no other unbiased estimator with a smaller variance for any true value $\theta$.
     \item Some estimator:
     \begin{itemize}
         \item $\bar{x}=\frac{1}{n}\sum x_i$ is a unbiased estimator of the mean $\mu$. $\var{\bar{x}}=\frac{1}{n}\var{x}$
