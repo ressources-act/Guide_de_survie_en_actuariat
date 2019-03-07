@@ -9,7 +9,7 @@
 \usepackage{multido}
 \def\cours{Modern Actuarial Statistics}
 \def\sigle{MAS-I}
-\def\session{Avril 2018}
+\def\session{Avril 2019}
 \def\auteur{Nicholas Langevin}
 \def\BackgroundColor{white}
 % \definecolor{section_color}{rgb}{0.1,0.1,1}
@@ -96,12 +96,12 @@
 \section*{Lesson 6: Markov Chains Limiting Probability}
 \label{Stochastic Processes}
 \begin{itemize}[align=left,leftmargin=*]
-    \item A chain is \textbf{positive recurrent} is the expected number of transitions untils the state occur is finite, \textbf{null recurrent} otherwise. Null recurrent mean that the long-term proportion of time in each state is 0.
-    \item A chain is \textbf{periodic} when states occur every n periode for n > 1. 
-    \item A chain is \textbf{aperiodique} when the periode is 1. In other world, $P_{ii}^{(1)} > 0,\: \forall i$
-    \item A chain is \textbf{ergodic} when the chain is aperiodique and positive irreductible recurrent. 
+    \item A chain is \textbf{positive recurrent} is the expected number of transitions until the state occur is finite, \textbf{null recurrent} otherwise. Null recurrent mean that the long-term proportion of time in each state is 0.
+    \item A chain is \textbf{periodic} when states occur every n periods for $n > 1$. 
+    \item A chain is \textbf{aperiodic} when the period is 1. In other world, $P_{ii}^{(1)} > 0,\: \forall i$
+    \item A chain is \textbf{ergodic} when the chain is aperiodic and positive irreductible recurrent. 
     \item \textbf{Stationary probability:} \[ \pi_j = \sum_{i=1}^n P_{ij}\pi_i \quad \sum_{i=1}^n \pi_i = 1\]
-    \item \textbf{Limiting probabilities:} is the chain is ergodic, then  
+    \item \textbf{Limiting probabilities:} if the chain is ergodic, then  
     \[ 
     \matr{P}^{(\infty)} = 
     \begin{pmatrix}
@@ -181,8 +181,8 @@
         \put(0,0){\vector(1,0){5}}
     \end{picture}  
     $\probb{N(t)-N(s)=n|N(s)=k}=\probb{N(t)-N(s)=n}$
-    \item \textbf{Non-homogeneous Poisson process:} \[ m(t)=\int_0^t \lambda(u) \diff{u} \] where $\lambda(t)$ is the \textbf{intensify function}
-    \item \textbf{Homogeneous Poisson process:} The Poisson process is said to be homogeneous when the intensify function is a constant. \[ m(t)=\int_0^t \lambda \diff{u} = \lambda t \] We then say that the process have \textbf{stationary increments}. \[ \probb{N(s)}=\probb{N(t)-N(s)} \]
+    \item \textbf{Non-homogeneous Poisson process:} \[ m(t)=\int_0^t \lambda(u) \diff{u} \] where $\lambda(t)$ is the \textbf{intensity function}
+    \item \textbf{Homogeneous Poisson process:} The Poisson process is said to be homogeneous when the intensity function is a constant. \[ m(t)=\int_0^t \lambda \diff{u} = \lambda t \] We then say that the process have \textbf{stationary increments}. \[ \probb{N(s)}=\probb{N(t)-N(s)} \]
 \end{itemize}
 
 \section*{Lesson 12: Poisson Process Time To Next Events}
