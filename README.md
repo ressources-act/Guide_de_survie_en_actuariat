@@ -10,14 +10,22 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 ## MAS-I ~ Modern Actuarial Statistics
 > Feuille de formules
 
+### ACT-2007 ~ Mathématique actuarielle vie 2
+>  cheatsheet LaTeX
+### ACT-2008 ~ Mathématique actuarielle IARD 2
+>  cheatsheet LaTeX
+### ACT-2011 ~ Gestion du risque financier 2
+>  cheatsheet LaTeX
+
+
 ### ACT-2003 ~ Modèles linéaires en actuariat
-> (coming soon)
+> cheatsheet LaTeX
 ### ACT- 2004 ~ Mathématique actuarielles vie I
-> (coming soon)
+>  cheatsheet LaTeX
 ### ACT- 2005 ~ Mathématique actuarielles IARD I
-> (coming soon)
+>  cheatsheet LaTeX
 ### ACT- 2009 ~ Processus stochastique
-> (coming soon)
+>  cheatsheet LaTeX
 
 ### ACT-1002 ~ Analyse probabilistique des risques actuariels
 > Aide-mémoire pour les lois de probabilités usuelles (continues et discrètes)
