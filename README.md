@@ -3,7 +3,7 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 
 ## Authors
 - Nicholas Langevin
-- Gabriel Crépault-Cauchon
+- Gabriel Crépeault-Cauchon
 
 ## Contents
 
