@@ -1,0 +1,7 @@
+\select@language {french}
+\contentsline {section}{\numberline {2}R\IeC {\'e}gression lin\IeC {\'e}aire simple}{1}{section.2}
+\contentsline {section}{\numberline {3}R\IeC {\'e}gression lin\IeC {\'e}aire multiple}{2}{section.3}
+\contentsline {section}{\numberline {4}S\IeC {\'e}lection de mod\IeC {\`e}le et r\IeC {\'e}gression r\IeC {\'e}gularis\IeC {\'e}e}{3}{section.4}
+\contentsline {section}{\numberline {5}Mod\IeC {\`e}les lin\IeC {\'e}aires g\IeC {\'e}n\IeC {\'e}ralis\IeC {\'e}s (GLM)}{5}{section.5}
+\contentsline {paragraph}{Note}{5}{section*.64}
+\contentsline {section}{\numberline {6}Mod\IeC {\'e}lisation de donn\IeC {\'e}es de comptage}{6}{section.6}

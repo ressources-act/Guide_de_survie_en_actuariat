@@ -1,0 +1,534 @@
+%% Aide-mémoire
+\documentclass[10pt, french]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\usepackage{xcolor}
+\usepackage{bbding}
+\usepackage{pifont}
+\usepackage{tikz}
+\def\BackgroundColor{white}
+\def\SectionColor{teal!90!black}
+\def\SubSectionColor{teal!45!black}
+\input{preamble/cheatsht-preamble.tex}
+\title{GRF-II \\ Document d'étude}
+\author{Nicholas Langevin}
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+
+\input{preamble/page-couverture}
+\newpage
+
+\small
+\begin{multicols*}{2} % Nombre de colonnes (peut être changé plus tard.)
+
+\section{Introduction aux produits dérivés}
+\paragraph{Produits dérivés} Contrat entre 2 parties qui fixe les flux financiers futurs fondé sur ceux de \underline{l'actif sous-jacent} $S$.
+
+\subsection*{Étapes d'une transaction}
+\begin{enumerate}
+\item l'acheteur et le vendeur se trouve (sur un marché quelquonque)
+\item on définit les obligations de chaques parties (\textit{i.e. actif à livrer, date d'échéance, prix, etc.}. \textbf{Note : il y a souvent un intermédiaire (\textit{clearing house}) qui intervient.}
+\item La transaction a lieu et les obligations sont remplies par chaque parties
+\item Les registres de propriétés sont mis à jour.
+\end{enumerate}
+
+\paragraph{Transaction gré-à-gré} transaction sans intermédiaire ou à l'extérieur de la bourse. Plusieurs raisons peuvent justifier ce type de transaction  :
+\begin{itemize}
+\item Ce sont souvent de grosses transaction. On peut donc économiser sur les frais de transaction.
+\item On peut combiner (sur une même transaction) plusieurs micro-transaction et plusieurs types d'actifs.
+\end{itemize}
+
+\paragraph{Valeur notionelle} \hl{définition exacte à valider}
+
+\paragraph{Origine des marchés de produits dérivés} Après 1971, le président Nixon a vouli défaire le standard de l'or (qui a causé de l'hyperinflation dans plusieurs pays) pour plutôt laisser le libre-marché fixer la valeur des devise de chaque pays.
+
+\paragraph{Rôle des marchés financiers} Partage du risque et diversification des risques.
+
+\paragraph{Utilité des produits dérivés}
+\begin{itemize}
+\item Gestion des risques
+\item Spéculation
+\item Réduction des frais de transaction
+\item Arbitrage réglementaire
+\end{itemize}
+
+\paragraph{Bid-Ask Spread} Correspond à la marge que le teneur de marché (\textit{market maker}) conserve. En l'absence d'arbitrage, on aura $Ask - Bid > 0$
+\begin{description}
+\item[Ask] prix le plus haut que quelqu'un est prêt à payer pour le sous-jacent
+\item[Bid] prix le plus bas que quelqu'un est prêt à payer pour le sous-jacent
+\end{description}
+
+\subsection*{Terminologie}
+\begin{description}
+\item[market order] ordre au marché : on achète et vend selon les prix Bid Ask actuels.
+\item[limit order] Ordre limite : on achète le sous-jacent si $Ask < k$ ou on vend le sous-jacent si $Bid > k$.
+\item[Stop Loss] ordre de vente stop : on veut limiter sa perte si un sous-jacent perd énormément de valeur. Donc, on va vendre le sous-jacent si $Bid \leq k$.
+\item[Long] On se considère en position longue sur le sous-jacent si notre stratégie nous permet de bénéficier d'une \green{hausse} du sous-jacent.
+\item[Short] On se considère en position longue sur le sous-jacent si notre stratégie nous permet de bénéficier d'une \red{baisse} du sous-jacent.
+\end{description}
+
+\paragraph{Type de risques}
+\begin{description}
+\item[Risque de défaut] Risque de ne pas être payé. Ce risque peut être réduit avec un dépôt initial en garantie ou une marge de sécurité.
+\item[Risque de rareté] Si il est difficile de trouver un acheteur et un vendeur pour le sous-jacent (pas beaucoup de transactions signifie beaucoup de négociations et de variation dans les prix)
+\end{description}
+
+\section{Introduction aux Forwards et aux options}
+Pour chaque stratégie qu'on voit dans le cours, on peut calculer
+\begin{description}
+\item[Premium] Il s'agit des cashflow à $t=0$ (si positif, il s'agît d'un coût ; si négatif, il s'agît d'une \textit{compensation}).
+\item[Payoff] Valeur à l'échéance $t = T$, i.e. les Cash-flow au temps $t = T$.
+\item[Profit] $= Payoff - \text{AV}(Premium)\footnote{AV veut dire \textit{accumulated value}.}$
+\end{description}
+
+\paragraph{Quelques définitions}
+\begin{description}
+\item[$r_f$] taux d'intérêt sans risque. Parfois exprimé comme une force d'intérêt $r$ continue.
+\item[$S$] Sous-jacent (peut être une action, une devise, ...)
+\item[$S_0$] valeur actuelle du sous-jacent $S$.
+\item[$S_T$] valeur du sous-jacent $S$ au temps $t = T$.
+\item[$F_{0,T}$] Prix \textit{forward} du sous-jacent au temps $T$, qu'on définit comme
+\[F_{0,T} = S_0 (1 + r_f)^{T}\]
+\item[$F_{0,T}^{P}$] Prix d'un forward prépayé, i.e. on débourse $F_{0,T}^{P}$ à $t=0$ et on reçoit le sous-jacent à $t  = T$, alors
+\[F_{0,T}^{P} = F_{0,T} (1 + r_f)^{-T}\]
+illustration graphique : 
+\input{tikz/forward}
+\end{description}
+\paragraph{Achat ferme et emprunt} On utilise parfois la lettre $S$ pour désigner dans stratégie l'action de faire un achat ferme (i.e. acheter et se faire livrer le sous-jacent à $t=0$) et $B$ pour désigner un dépôt/emprunt (qu'on exprime comme une obligation zéro-coupon).
+
+
+\subsection*{$Call(K,T)$}
+Contrat qui \textit{permet} au détenteur de se procurer $S$ au prix $K$ à l'échéance $T$. \textbf{position longue dans le sous-jacent}
+\[Premium = C(K,T) \]
+\[Payoff =
+\begin{cases}
+0				& , S_T \leq K \\
+S_T - K		& , S_T > K \\
+\end{cases}
+\]
+\input{tikz/call}
+
+
+\subsection*{$Put(K,T)$}
+Contrat qui \textit{permet} au détenteur de vendre $S$ au prix $K$ à l'échéance $T$. \textbf{position courte dans le sous-jacent}
+\[Premium = P(K,T)\]
+\[Payoff = 
+\begin{cases}
+K - S_T			& , S_T \leq K \\
+0					& , S_T > K \\
+\end{cases}
+\]
+\input{tikz/put}
+
+\subsection*{Forward synthétique}
+On peut créer un Forward synthétique 2 de façon (en combinant d'autres transactions) : 
+\[Forward = Stock - Bond \]
+\[Forward = Call(K,T) - Put(K,T) \]
+Ces deux égalités définissent la \emph{Put-Call Parity} vu un peu plus loin.
+
+
+\section{Stratégie de couverture}
+\subsection*{Floor}
+On achète $S$ en se protégant contre une baisse trop importante du sous-jacent (\textbf{position longue})
+\[Floor = Stock + Put(K,T)\]
+\[Premium = S_0 + P(K,T) > 0\]
+\[Payoff = 
+\begin{cases}
+K					& , S_T \leq K \\
+S_T				& , S_T > K \\
+\end{cases}
+\]
+\input{tikz/floor}
+
+\subsection*{Cap}
+On vend à découvert $S$ en se protégant contre une hausse trop importante du sous-jacent (car il faudra éventuellement le racheter!). \textbf{Position courte}.
+\[Cap = Call(K,T) - Stock\]
+\[Premium = C(K,T) - S_0 < 0\]
+\[Payoff
+\begin{cases}
+- S_T 			& , S_T \leq K \\
+- K				& , S_T > K \\
+\end{cases}
+\]
+\input{tikz/cap}
+
+\subsection*{Bull Spread}
+Combinaison de 2 Call (ou 2 Put) pour spéculer sur un marché haussier. Avec $K_1 < K_2$, on a
+\paragraph{Avec option d'achat}
+\[Bull Spread (Call) = Call(K_1, T) - Call(K_2, T) \]
+
+\[Premium = C(K_1, T) - Call(K_2, T) > 0 \]
+\[Payoff = 
+\begin{cases}
+0					& , S_T \leq K_1 \\
+S_T - K_1		& , k_1 < S_T \leq K_2 \\
+K_2 -K_1		& , S_T > K_2 \\
+\end{cases}
+\]
+\paragraph{Avec option de vente}
+\[Bull Spread(Put) = Put(K_1, T) - Put(K_2,T) \]
+\[Premium = P(K_1,T) - P(K_2, T) < 0\]
+\[Payoff = 
+\begin{cases}
+K_1 - K_2 			& , S_T \leq K_1 \\
+K_2 - S_T				& , K_1 < S_T \leq K_2 \\
+0							& , S_T > K_2 \\
+\end{cases}
+\]
+
+\input{tikz/bull_spread}
+
+
+\subsection*{Bear Spread}
+Combinaison de 2 Call ou 2 Put pour spéculer sur un marché baissier.
+\paragraph{Avec option d'achat}
+\begin{align*}
+Bear(Call) & =  - Bull(Call) \\
+& = Call(K_2, T) - Call(K_1, T) \\
+Premium		& = 	 C(K_2,T) - C(K_1,T) < 0 \\
+Profit	& = 
+\begin{cases}
+0					& , S_T \leq K_1 \\
+K_1 - S_T 	& , K_1 < S_T \leq K_2 \\
+-(K_2 - K_1)& , S_T > K_2 \\
+\end{cases}
+\end{align*}
+
+\paragraph{Avec option de vente}
+\begin{align*}
+Bear(Put) 				& =  - Bull(Put) \\
+								& = Put(K_2, T) - Put(K_1, T) \\
+Premium					& = 	 P(K_2,T) - P(K_1,T) > 0 \\
+Profit						& = 
+\begin{cases}
+K_2 - K_1					& , S_T \leq K_1 \\
+K_2 - S_T 				& , K_1 < S_T \leq K_2 \\
+0								& , S_T > K_2 \\
+\end{cases}
+\end{align*}
+\input{tikz/bear_spread}
+
+\subsection*{Ratio Spread}
+Cette stratégie est une combinaison un peu sur mesure (on ne peut pas nécessairement dire si elle est longue ou courte). On achète $n$ options d'achat à un prix d'exercice $K_1$ et on en vend $m$ à un prix d'exercice $K_2$.\footnote{On peut faire cette stratégie avec des options de vente aussi.}
+\begin{align*}
+Ratio Spread 		& 	= n Call(K_1, T) - m Call(K_2, T) \\
+Premium				& = n C(K_1, T) - m C(K_2,T) \\
+Payoff					& = ...
+\end{align*}
+
+\subsection*{Box Spread}
+Cette stratégie réplique l'achat d'une obligation zéro-coupon, en impliquant 2 option d'achat et 2 options de vente.
+\begin{align*}
+Box Spread			& = Bull(Call) + Bear(Put) \\
+& = Call(K_1, T) - Call(K_2, T)  \\
+& + Put(K_2, T) - Put(K_1, T) \\
+Premium				& = C(K_1, T) - C(K_2, T) \\
+							&  + P(K_2, T) - P(K_1,T) >  0 \\
+Payoff					& = K_2 - K_1  \ , \forall S_T \\
+\end{align*}
+\input{tikz/box_spread}
+
+
+\subsection*{Collar}
+La prime initiale du Collar peut être soit positive ou négative (dépendant du strike price).
+\begin{align*}
+Collar				& = Put(K_1, T) - Call(K_2, T) \\
+Premium			& = P(K_1, T) - C(K_2,T) \\
+Payoff				& = 
+\begin{cases}
+K_1 - S_T			& , S_T \leq K_1 \\
+0						& , K_1 < S_T \leq K_2 \\
+K_2 - S_T			& , S_T > K_2 \\
+\end{cases}
+\end{align*}
+\input{tikz/collar}
+
+
+\subsection*{Stock Covered by Collar}
+\begin{itemize}
+\item On effectue la même stratégie qu'un Collar, en ayant initialement le sous-jacent $S$. \textbf{Position longue dans le sous-jacent}.
+\item Cette stratégie reproduit les flux monétaires d'un Bull Spread, alors
+\end{itemize}
+\begin{align*}
+BullSpread				& = Collar + Stock \\
+								& = Put(K_1, T) - Call(K_2, T) + Stock \\
+Premium					& = P(K_1, T) - C(K_2,T) + S_0 > 0  \\
+Payoff						& = 
+\begin{cases}
+K_1 					& , S_T \leq K_1 \\
+S_T					& , K_1 < S_T \leq K_2 \\
+K_2 					& , S_T > K_2 \\
+\end{cases}
+\end{align*}
+\input{tikz/stock_covered_collar}
+
+
+\subsection*{Straddle}
+Stratégie pour spéculer sur la volatilité du sous-jacent $S$ autour du point $K$.
+\begin{align*}
+Straddle			& = Put(K,T) + Call(K,T) \\
+Premium			& = P(K,T) + C(K,T) > 0 \\
+Payoff				& =
+\begin{cases}
+K - S_T				& , S_T \leq K \\
+S_T - K				& , S_T > K \\
+\end{cases}
+\end{align*}
+\input{tikz/straddle}
+
+\subsection*{Strangle}
+Même genre de stratégie que le strangle, on spécule sur la volatilité du sous-jacent à l'extérieur de l'intervalle $[K_1, K_2]$ : 
+\begin{align*}
+Strangle			& = Put(K_1, T) + Call(K_2, T) \\
+Premium			& = P(K_1, T) + C(K_2, T) > 0 \\
+Payoff				& = 
+\begin{cases}
+K_1 - S_T			& , S_T \leq K_1 \\
+0						& , K_1 < S_T \leq K_2 \\
+S_T - K_2 		& , S_T > K_2 \\
+\end{cases}
+\end{align*}
+\input{tikz/strangle}
+
+
+\subsection*{Butterfly Spread (BFS)}
+On combine un Straddle($K_2$) et un Strangle($K_1, K_3$) pour spéculer sur la non-volatilité du sous-jacent autour de $K_2$, mais en limitant nos pertes à $K_1 - K_2$ : 
+\begin{align*}
+Butterfly  & = Strangle - Straddle(K_2) \\
+& = Put(K_1, T) - Put(K_2, T) \\
+& - Call(K_2, T) + Call(K_3,T) \\
+Premium	& = P(K_1, T) - P(K_2, T) \\
+& - C(K_2, T) + C(K_3, T) < 0\\
+Payoff		& = 
+\begin{cases}
+K_1 - K_2			& , S_T \leq K_1 \\
+S_T - K_2			& , K_1 < S_T \leq K_2 \\
+K_2 - S_T			& , K_2 < S_T \leq K_3 \\
+K_2 - K_3			& , S_T > K_3 \\
+\end{cases}
+\end{align*}
+\paragraph{Note} De façon générale (plusieurs combinaisons sont possibles), on a 
+\[BFS = Bull(K_1, K_2) + Bear(K_2, K_3) \]
+\input{tikz/butterfly_spread}
+
+\paragraph{Asymetric Butterfly Spread} 
+\begin{itemize}
+\item Comme le Ratio Spread, il est possible de faire une stratégie sur mesure en achetant $n$ Bull Spread et en achetant $m$ Bear Spread en respectant les 3 prix d'exercices $K_1 < K_2 < K_3$.
+\item Si on désire avoir un BFS qui a un profit nul pour $S_T < K_1$ et $S_T > K_3$, alors on trouve $n$ et $m$ tel que
+\begin{align*}
+\frac{n}{m} = \frac{K_3 - K_2}{K_2 - K_1}
+\end{align*}
+\end{itemize}
+
+% --- Chapitre 5 ---
+% J'ai rassemblé une partie de la matière du chap.5 dans le chapitre 9, étant donné qu'on répétait de l'information.
+\setcounter{section}{4}
+\section{Forwards et Futures}
+\subsection*{Forward avec dividendes}
+\paragraph{Définition de base}
+\[C(K,T) - P(K,T) = S_0 - K(1+r_f)^{T}\]
+
+\paragraph{Action qui verse des dividendes}
+\begin{align*}
+C(K,T) - P(K,T) 		& = S - \text{PV}(Div) - K(1 + r_f)^{T} \\
+& = S_0 e^{-\delta T} - K e^{-rT}
+\end{align*}
+où $\delta$ est un taux de versement des dividendes continu. \\
+
+De plus, on a
+\begin{align*}
+F_{0,T} & = F_{0,T}^{P} (1 + r_f)^{T} \\
+& = (S_0 - \text{PV}(div))(1+r_f)^{T} \\
+& = S_0 - \sum_{i=1}^{T} d_i (1+r_f)^{T-i} \\
+& = S_0 e^{(r-\delta)T}
+\end{align*}
+
+\paragraph{Forward synthétique avec dividendes}
+On suppose le réinvestissement des dividendes.
+\begin{align*}
+\text{Forward}_{\text{avec div.}} & = e^{-\delta T} Stock - (e^{-\delta T} \cdot S_0) Bond \\
+Premium		& =  e^{-\delta T} S_0 - e^{-\delta T} S_0 = 0 \\
+Payoff			& = S_T - S_0 e^{(r-\delta) T}
+\end{align*}
+
+\paragraph{Cash-and-carry}
+Stratégie qui consiste  à créer un Forward synthétique et vendre un Forward (profit nul).
+
+
+\subsection*{Calcul avec prime de risque et nuance}
+\begin{itemize}
+\item Certains sous-jacent ont une composante de risque non-négligeable. Or, on ne peut pas dire que $F_{0,T} = \esp{S_T}$. Toutefois,
+\[F_{0,T} = \esp{S_T} e^{-(\alpha - r) T}\]
+\end{itemize}
+où $\alpha$ est la prime de risque 	qu'on enlève pour obtenir le prix du Forward, tel que
+\[\alpha = \underbrace{r}_{\text{Taux sans risque}} + \underbrace{(\alpha - r)}_{\text{Prime de risque}}\]
+
+\subsection*{Forward de devise}
+\paragraph{Put-Call parity avec les devises}
+\begin{description}
+\item[DD] Devise locale
+\item[DÉ] Device étrangère
+\item[$x_0$] Taux de change $\frac{DD}{DÉ}$ actuel ($t=0$)
+\item[$r_D$] Taux sans risque \underline{local}
+\item[$r_{É}$] Taux sans risque étranger
+\end{description}
+Le prix Forward prépayé pour une unité de DÉ à $t =0$ (payé en DD) est
+\[F_{0,T}^{P}  = x_0 \left(1 + r_{É} \right)^{-T} \]
+Et le prix Forward (à $t = T$) pour une unité de DÉ est
+\begin{align*}
+F_{0,T} & = F_{0,T}^{P} \left(1+r_D \right)^{T} \\
+& = x_0 \left(  \frac{1+r_D}{1+r_{É}}   \right)^{T}\\
+&  = x_0 e^{(r_D - r_{É})T}
+\end{align*}
+
+\paragraph{Forward synthétique de devise}
+\begin{itemize}
+\item Emprunt de $x_0(1+r_{É})^{-T}$ DD au taux $r_D$
+\item Convertir les DD en DÉ
+\item Dépôt de $(1+r_{É})^{-T}$ DÉ (au taux $r_{É}$) de 0 à $T$.
+\end{itemize}
+Le payoff sera $x_t - x_0 \left(  \frac{1+r_D}{1+r_{É}}   \right)^{T}$.
+
+
+\subsection*{Future}
+Essentiellement la même chose qu'un Forward, à quelques différences près : 
+\begin{itemize}
+\item Surveillé et contrôlé par des instances officielles (aucun \textit{Over-the-counter})
+\item S'applique sur certains types d'actifs définis seulement ;
+\item liquise et efficient
+\item nécessite un dépôt initial des 2 parties (le risque de défaut est minimisé)
+\item Transaction continues (règlement avec l'intermédiaire de façon quotidienne)
+\item Variation extrêmes dans les prix de Future sont limités (possibilité du \textit{circuit Breaker})
+\end{itemize}
+
+\paragraph{Fonctionnement}
+\begin{enumerate}
+\item L'intermédaire demande un dépôt initial (\textit{initial margin}), \textbf{souvent un \% de la valeur notionnelle}.
+\item Ce dépôt est accumulé à un taux de rendement $i$ fixé par l'intermédiaire.
+\item À chaque période de règlement, on calcule la marge en fonction du prix du Future : \\
+$\text{Marge}_T = \text{Marge}_{t} \cdot (1+i)^{T-t} + \text{Variation totale}_{[t,T]}$
+\item Si $\text{Marge}_t  < \text{Maintenance margin}$\footnote{Cette marge est souvent exprimée en \% de la marge initiale.}, on doit \textbf{ajouter des fonds à la marge pour revenir à la marge initiale.}
+avec $t < T$
+\end{enumerate}
+
+
+
+% --- Chapitre 9 ---
+\setcounter{section}{8}
+\section{Put-Call Parity}
+\begin{align*}
+Call - Put = Stock - Bond
+\end{align*}
+
+\subsection*{Put-Call Parity avec devises}
+\begin{description}
+\item[$Call(x_0, K, T)$ : ] Option d'achat qui permet d'acheter 1 unité de DÉ pour K unité de DD à l'échéance $t = T$.
+\item[$Put(x_0, K, T)$ : ] Option de vente qui permet d'acheter 1 unité de DÉ pour K unité de DD à l'échéance $t = T$.
+\end{description}
+Alors, on peut réécrire l'équation Put-Call Parity : 
+\begin{align*}
+Call(x_0, K,T) - Put(x_0, K, T) = x_0(1+r_{É})^{-T} - K(1+r_D)^{-T}
+\end{align*}
+
+
+\subsection*{Parité généralisée et option d'échange}
+\begin{description}
+\item[$Call(S_t, Q_t, T - t)$ : ] Option d'achat qui permet d'acheter le sous-jacent $S$ au prix du sous-jacent $Q$ au temps $t = T$.
+\item[$Put(S_t, Q_t, T - t)$ : ] Option de vente qui permet de vendre le sous-jacent $S$ au prix du sous-jacent $Q$ au temps $t = T$.
+\end{description}
+On peut généraliser l'équation Put-Call Parity : 
+\begin{align*}
+C(S_t, Q_t, T - t) - P(S_t, Q_t, T-t) = F_{t,T}^{P}(S) - F_{t,T}^{P}(Q)
+\end{align*}
+
+\subsection*{Options sur devise}
+\begin{align*}
+Call_{DD}(x_0, K, T) & = K \cdot Put_{DD}\left( \frac{1}{x_0}, \frac{1}{K}, T \right) \\
+& = K \cdot x_0 \cdot Put_{DÉ} \left( \frac{1}{x_0}, \frac{1}{K}, T \right) \\
+\end{align*}
+
+
+\subsection*{Comparaison de différentes options}
+\paragraph{Option américaine vs européenne}
+\begin{align*}
+C_{amer}(K,T) & \geq C_{euro}(K,T) \\
+P_{amer}(K,T) & \geq P_{euro}(K,T) \\
+\end{align*}
+
+\paragraph{Option d'achat américaine}
+Bien qu'on puisse exercer l'option américaine au moment qu'on veut, il \underline{peut} être optimal d'exercer avant l'échéance seulement si
+\begin{align*}
+PV(div) > K \left(1 - (1+r_f)^{-(T-t)} \right)
+\end{align*}
+ou si
+\begin{align*}
+PV(div) > P(K, T-t) + K \left(1 - (1+r_f)^{-(T-t)} \right)
+\end{align*}
+
+\paragraph{Option de vente américaine}
+Le moment optimal pour exercer le Put serait tout juste \textbf{après la date ex-dividende}.
+
+
+
+\paragraph{Date d'expiration}
+Pour $T_1 < T_2$,
+\begin{align*}
+C(K, T_1) & \leq C(K, T_2) \\ 
+P(K, T_1) & \leq P(K, T_2)
+\end{align*}
+
+
+\paragraph{Prix d'exercice}
+Les différentes conditions énumérées ci-bas doivent être respectées : 
+\begin{tabbing}
+\hspace{5cm}\=\kill
+ $C(K,T) \geq S_0 - K$ \>  $ P(K,T) \geq K - S_0$ \\ 
+  $C(K_1, T) > C(K_2, T)$ \> $P(K_1, T) < P(K_2, T)$ \\
+ $C(K_1, T) - C(K_2, T) \leq K_2 - K_1$ \> $P(K_2, T) - P(K_1, T) \leq K_2 - K_1$ \\
+ $\frac{C(K_1, T) - C(K_2, T)}{K_2 - K_1} \geq \frac{C(K_2, T) - C(K_3, T)}{K_3 - K_2}$ \>  $\frac{P(K_2, T) - P(K_1, T)}{K_2 - K_1} \geq \frac{P(K_3, T) - P(K_2, T)}{K_3 - K_2}$ \\
+\end{tabbing}
+Si le prix d'exercice est \textit{Constant en valeur actualisée}\footnote{i.e. $K_t = K(1+r_f)^{T}$.}, alors, avec $t < T$
+\begin{align*}
+C(K_t, t) & \leq C(K_T, T) \\
+P(K_t, t) & \leq P(K_T, T) \\
+\end{align*}
+
+% --- Chapitre 10 ---
+\section{Introduction au modèle binomial d'évaluation des options}
+\subsection*{Probabilité neutre au risque}
+\begin{itemize}
+\item $U = uS$ est la valeur supérieure que peut prendre le sous-jacent $S$
+\item $D = dS$ est la valeur inférieure que peut prendre le sous-jacent $S$
+\item $p$ est la probabilité (Bernouilli) que le sous-jacent prenne la valeur $U$.
+\item $C_u$, $C_d$, $P_u$ et $P_d$ sont les payoff d'un call (ou put) selon la valeur du sous-jacent après $h$ périodes.
+\item $r$ et $\delta$ sont respectivement la force d'intérêt sans risque et le taux de dividende continu.
+\end{itemize}
+ Alors, la probabilité \textit{neutre au risque} est
+\begin{align*}
+p = \frac{e^{(r-\delta)h} - d}{u-d}
+\end{align*}
+
+\subsection*{Portefeuille réplicatif d'une option}
+On peut reproduire une option (Call ou Put) avec la stratégie suivante  :
+\[C = \Delta S + B\]
+où $B$ et $\Delta S$ changent de signe selon si c'est un Call ou un Put. On peut obtenir la prime initiale (\textit{Premium}) et les composantes du portefeuille réplicatif avec
+\begin{align*}
+\Delta = e^{-\delta h} \left( \frac{C_u - C_d}{U - D} \right) =   e^{-\delta h} \left( \frac{C_u - C_d}{S(u -d)} \right)
+\end{align*}
+\begin{align*}
+B = e^{-rh} \left( \frac{U \cdot C_d - D \cdot C_u}{U - D} \right) = e^{-rh} \left( \frac{u C_d - d C_u}{u-d} \right)
+\end{align*}
+\begin{align*}
+\text{Premium} = \Delta S_0 + B
+\end{align*}
+
+
+\end{multicols*}
+
+%% -----------------------------
+%% Fin du document
+%% -----------------------------
+\end{document}

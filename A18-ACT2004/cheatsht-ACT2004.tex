@@ -1,0 +1,368 @@
+% Template pour faire aide-mémoire
+\documentclass[10pt, french]{article}
+
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{preamble/cheatsht-preamble.tex}
+
+
+\setlength{\abovedisplayskip}{-15pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+
+\usepackage{mathrsfs}
+\begin{document}
+
+
+% j'enlève le footnotesize temporairement, sinon je ne vois rien! GCC
+\footnotesize % Écrire petit (peut être modifié)
+\begin{multicols*}{3} % Nombre de colonnes (peut être changé plus tard.)
+\section*{Rappel de Math. financière}
+\subsection*{Facteurs d'actualisation}
+\begin{align*}
+	\ax{\angln}&= \frac{1 - v^t}{i} \\
+	\ax{\angl{\infty}} &= \frac{1}{i} \\
+	\ax*{\angln} &= \int_0^n v^t dt = \frac{1 - v^n}{\delta}
+\end{align*}
+
+\subsection*{Facteur d'accumulation}
+\begin{align*}
+\sx{\angln} &= \frac{(1+i)^{n} - 1}{i} \\
+\sx**{\angln} &= \frac{(1+i)^{n} - 1}{d} \\
+\end{align*}
+
+
+\section{Survie et mortalité}
+\subsection{Définitions de base}
+\begin{itemize}
+\item[$X$ : ] Âge au décès d'un nouveau-né
+\item[$T_x$ : ] Durée de vie résiduelle d'un individu d'âge $x$.
+\[T_x = (X-x | X \geq x) \]
+\[ f_{T_x} = \px[t]{x} \mu_{x+t} \]
+\[ F_{T_x}   =\qx[t]{x} = \frac{S_X(x) - S_X(x+t)}{S_X(x)}  \]
+\[ \prob{t \leq T_x \leq t+u} = \qx[t|u]{x} = \px[x]{t} \qx[u]{x+t} \]
+\[S_{T_x}(t) = \frac{S_x(x+t)}{S_X(x)} = \exp \left\{ - \int_{0}^{t} \mu_{x+s} ds \right\}  \]
+\item[$K_x$ : ] Durée de vie résiduelle entière d'un individu d'âge $x$.
+\[K_x = \lfloor T_x \rfloor \]
+\[\prob{K_x = k} = \prob{\lfloor T_x \rfloor = k} = \px[k|]{x} \]
+
+\item[$\mu_x$ : ] Force de mortalité pour $(x)$
+\[\mu_x = \lim_{t \to 0} \frac{\qx[t]{x}}{t} = \derivee{x} \Big( \ln(S_X(x)\Big) \]
+\[\mu_{x+t} = - \derivee{t} \Big( \ln ( \px[t]{x}) \Big) \]
+\end{itemize}
+
+\subsection{Tables de mortalité}
+\begin{itemize}
+\item[$\ell_0$ : ] Nombre d'individus initial dans une cohorte.
+\item[$\ell_x$ : ] Nombre d'invidu de la cohorte ayant survécu jusqu'à l'âge $x$.
+
+\[\qx[t]{x} = \frac{\ell_x - \ell_{x+t}}{\ell_x}\]
+\[\px[t]{x} = \frac{\ell_{x+t}}{\ell_x} \]
+\[\qx[t|u]{x} = \frac{\dx[u]{x+t}}{\ell_x}\]
+
+\item[$I_j(x)$ : ] Indicateur de survie du $j$\up{e} individu jusqu'à l'âge $x$.
+\[I_j(x) \sim Bin(1, S_X(x))\]
+\item[$\mathscr{L}_x$ : ] v.a. du nombre de survivants jusqu'à l'âge $x$.
+\[\ell_x = \esp{\mathscr{L}_x} = \sum_{j=1}^{\ell_0} I_j(x)\]
+
+\item[$\prescript{}{n}{\mathcal{D}}_x$ : ] v.a. du nombre de décès entre l'âge $x$ et $x+n$.
+\[\Dx[n]{x} = \mathscr{L}_x - \mathscr{L}_{x+n}\]
+\[\dx[n]{x} = \esp{\Dx[n]{x}} = \ell_{x} - \ell_{x+n} \]
+\end{itemize}
+\subsection{Espérance de vie résiduelle}
+\[\eringx{x} = \esp{T_x} =  \int_{0}^{\omega - x} t \px[t]{x} \mu_{x+t} dt= \int_{0}^{\omega - x} \px[t]{x} dt \]
+\[\eringx{x:\angln} = \left( \int_{0}^{n} t \px[t]{x} \mu_{x+t} dt   \right) + n \cdot \px[n]{x} = \int_{0}^{n} \px[t]{x} dt \]
+
+
+\subsection{Hypothèses d'interpolation}
+Pour $t \in [0,1]$ et $x \in \entiers$.
+
+\textbf{Distribution uniforme des décès (DUD)}
+\begin{align*}
+\ell_{x+t} = (1-t) \ell_x + t \ell_{x+1}
+\end{align*}
+
+\textbf{Force constante (FC)}
+\begin{align*}
+\ell_{x+t} = \ell_x^{(1-t)} \ell_{x+1}^{(t)}
+\end{align*}
+% Tableau repris de Nicholas Langevin dans l'ancienne feuille de formules
+\textbf{Tableau résumé}
+\[
+\begin{array}{|l|c|c|c|} 
+                        \hline
+                        & \text{DUD} & \text{FC} \\
+                        \hline 
+                        \actsymb[t]{q}{x} & t \cdot q_x                 & 1 - p_x^{t}   \\
+                        \hline
+                        \actsymb[t]{p}{x} & 1 - t \cdot q_x             & p_x^{t}   \\
+                        \hline
+                        \dx[1]{x}         & t \cdot \dx[n]{x}           & \lx{x} (1 - p_x^{t})  \\
+                        \hline
+                        f_{t_x}(t)        & q_x                         & -p_x^t  \ln(p_x)   \\
+                        \hline
+                        \mu_{x+t}         & \frac{q_x}{1 - t \cdot q_x} & - \ln(p_x)   \\
+                        \hline
+\end{array}
+\]
+
+\subsection{Lois de mortalité}
+\subsubsection*{DeMoivre}
+\begin{align*}
+	X &\sim \mathrm{Unif}(0, \omega) \\
+	S_X(x) &= 1 - \frac{x}{\omega},\: 0 < x < \omega \\
+	T_x &\sim \mathrm{Unif}(0, \omega - x) \\
+	S_{T_x}(t) &= 1 - \frac{t}{\omega - x},\: 0 < t < \omega - x
+\end{align*}
+
+\subsubsection*{Loi Exponentielle}
+\begin{align*}
+	x &\sim \mathrm{Exp}(\mu) \\
+	S_x(x) &= e^{-\mu x},\: x \geq 0 \\
+	T_x &\sim \mathrm{Exp}(\mu) \\
+	S_{T_x}(t) &= e^{-\mu t},\: t \geq 0
+\end{align*}
+
+\section{Contrats d'assurance-vie}
+Le paiement est soit en continu, soit à la fin de l'année ou à la fin de la $\frac{1}{m}$ d'année.
+
+\paragraph{Assurance-vie entière} On verse le capital au décès de l'assuré
+
+\begin{flalign*}
+\Ax*{x} & = \int_{0}^{\omega - x} v^t \px[t]{x} \mu_{x+t} dt \\
+\Ax{x}	& = \sum_{k=0}^{\omega - x - 1} v^{k+1} \qx[k|]{x} \\
+	& = \sum_{k=0}^{\omega - x - 1} v^{k+1} \px[k]{x} \qx[]{x+k} \\
+\end{flalign*}
+\begin{align*}
+\Ax{x} = v \qx[]{x} + v p_x \Ax{x+1}
+\end{align*}
+
+
+\paragraph{Assurance-vie temporaire} On verse le capital au décès de l'assuré, s'il survient dans les $n$ prochaines années.
+\begin{flalign*}
+\Ax*{\termxn}	& = \int_{0}^{n} v^t \px[t]{x} \mu_{x+t} dt \\
+\Ax{\termxn}		& = \sum_{k=0}^{n-1} v^{k+1} \qx[k|]{x} \\
+	& = \sum_{k=0}^{n-1} v^{k+1} \px[k]{x} \qx[]{x+k} \\
+\end{flalign*}
+
+\paragraph{Assurance-vie dotation pure} On verse le capital à l'assuré si celui-ci est toujours en vie après $n$ années.
+\begin{align*}
+\Ax{\pureendowxn}	& = \px[n]{x} v^n = \Ex[n]{x} \\
+\end{align*}
+où $\Ex[n]{x}$ est un facteur d'actualisation actuarielle.
+
+\paragraph{Assurance mixte} On verse le capital à l'assuré si il décède dans les $n$ prochaines années, ou si il est toujours en vie après cette période.
+\begin{align*}
+\Ax*{x:\angln}	& = \int_{0}^{n} v^t \px[t]{x} \mu_{x+t} dt + v^n \px[n]{x} \\
+	& = \Ax*{\termxn} + \Ax{\pureendowxn} \\
+\Ax{x:\angln}		& = \sum_{k=0}^{n-1} v^{k+1} \qx[k|]{x} + v^n \px[n]{x} \\
+\end{align*}
+
+\paragraph{Assurance différée} On verse le capital à l'assuré lors de son décès seulement si le décès survient dans plus de $m$ années \footnote{Interprétation : Une assurance-vie entière qui débute dans $m$ années.}
+
+\begin{align*}
+\Ax*[m|]{x}	& = \int_{m}^{\omega -x} v^t \px[t]{x} \mu_{x+t} dt \\
+	& = v^m \px[m]{x} \int_{0}^{\omega - x - m} v^t \px[t]{x+m} \mu_{(x+m)+t} dt \\
+	& = \Ex[m]{x} \Ax*{x+m} \\
+\Ax[m|]{x}	& = \sum_{k=m}^{\omega - x -1} v^{k+1} \qx[k|]{x} \\
+	& = \sum_{k=0}^{\omega - x - m - 1} v^{k+1+m} \qx[(k+m)|]{x} \\
+	& = v^m \px[m]{x} \sum_{k=0}^{\omega - (x+m) - 1} v^{k+1} \px[k]{x+m} \qx[]{x+m+k} \\
+	& = \Ex[m]{x} \Ax{x+m} \\
+\end{align*}
+\paragraph{Lien entre assurance différée, assurance vie entière et assurance-vie temporaire}
+
+\begin{align*}
+\Ax*[m|]{x}	& = \Ax*{x} - \Ax*{\itop{x}:\angl{m}}
+\end{align*}
+
+% Je met quelques formules de increase qui permet une rapidité dans les calculs 
+\paragraph{Assurance Vie entière croissante} On verse le capital au décès de l'assuré. Ce capital augmente chaque années.
+
+\begin{align*}
+	\IbA*_x &= \int_0^{\omega - x} t v^t \px[t]{x} \mu_{x+t} dt \\
+		%&= \int_0^{\omega - x} \Ax*[s|]{x} ds \\ 
+	\IA*_{x} &= \int_0^{\omega - x} (1 + \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
+		&= \Ax*{x} + \Ax*[1|]{x} + \Ax*[2|]{x} + ...
+\end{align*}
+
+\paragraph{Assurance Vie temporaire croissante} On verse le capital au décès de l'assuré, s'il survient dans les $n$ prochaines années. Ce capital croit chaque années.
+
+\begin{align*}
+	\IbA*_{\termxn} &= \int_0^n t v^t \px[t]{x} \mu_{x+t} dt \\
+	\IA*_{\termxn}  &= \int_0^n (1 + \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
+		&= \actsymb{\bar{A}}{\nthtop{1}{x}:\angln} + \actsymb[1|]{\bar{A}}{\nthtop{1}{x}:\angl{n-1}} + ... + \actsymb[n-1|]{\bar{A}}{\nthtop{1}{x}:\angl1}
+\end{align*}
+
+\paragraph{Assurance vie entière croissante temporairement} On verse le capital au décès de l'assuré. Ce capital croit pendent $n$ années
+
+\begin{align*}
+	\twoletsymb{I_{\angln}}{\bar{A}}_{x}  &= \int_0^n (1 + \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
+	& + \int_n^{\omega - x} n v^t \px[t]{x} \mu_{x+t} dt \\
+		&= \Ax*{x} + \Ax*[1|]{x} + ... + \Ax*[n-1|]{x}
+\end{align*}
+
+\paragraph{Assurance Vie temporaire décroissante} On verse le capital au décès de l'assuré, s'il survient dans les $n$ prochaines années. Ce capital décroit chaque années.
+
+\begin{align*}
+	\DbA*_{\termxn} &= \int_0^{\omega - x} (n - t) v^t \px[t]{x} \mu_{x+t} dt \\
+	\DA*_{\termxn}  &= \int_0^{\omega - x} (n - \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
+		&= \actsymb{\bar{A}}{\nthtop{1}{x}:\angl1} + \actsymb{\bar{A}}{\nthtop{1}{x}:\angl2} + ... + \actsymb{\bar{A}}{\nthtop{1}{x}:\angln}
+\end{align*}
+
+\section{Contrats de rente}
+\paragraph{Rente viagère} On verse une rente à l'assuré jusqu'à son décès. 
+\begin{align*}
+Y	&  = \ax*{\angl{T_{x}}} = \frac{1-v^{T_x}}{\delta} = \frac{1 -\overline{Z}_x}{\delta} \\
+\ax*{x} & = \int_{0}^{\infty}  \ax*{\angl{T_{x}}}  \px[t]{x} \mu_{x+t} dt \\
+	& = \int_{0}^{\infty} v^t \px[t]{x} dt \\
+	& = \frac{1 - \Ax*{x}}{\delta} \\
+\variance{Y}	& = \variance{\frac{1- v^{T_x}}{\delta}} =  \frac{\Ax*[][2]{x} - \Ax*{x}^2}{\delta^2} \\
+\end{align*}
+
+\paragraph{Rente temporaire $n$ années} Ce contrat de rentes prévoit payer une rente à l'assuré s'il est en vie, au maximum $n$ années.
+\begin{align*}
+Y & = \begin{cases}
+\ax*{\angl{T_x}}	& , T_x < n \\
+\ax*{\angln}			& , T_x \geq n \\
+\end{cases} = \frac{1  - \overline{Z}_{x:\angln}}{\delta} \\
+\ax*{x:\angln}	& = \int_{0}^{n} \ax*{\angl{t}} \  \px[t]{x} \  \mu_{x+t} dt \\
+	& = \int_{0}^{n} v^t \px[t]{x} dt \\
+	& = \frac{1 - \Ax*{x:\angln}}{\delta} \\
+\variance{Y}	& = \frac{\Ax*[][2]{x:\angln} - \Ax*{x:\angln}^2}{\delta^2} \\	
+ \end{align*}
+
+\paragraph{Rente viagère différée $m$ années} C'est un contrat de rente viagère, qui débute dans $m$ années (si $(x)$ est en vie).
+\begin{align*}
+Y & = \begin{cases}
+0											& T_x	 < 	 m	\\
+v^m \ax*{\angl{T_x - m}}	& T_x 	\geq m	\\
+\end{cases} = \frac{\overline{Z}_{20:\itop{\angl{10}}} - \prescript{}{m|}{\overline{Z}}_{20}}{\delta} \\ 
+\ax*[m|]{x}	& = \int_{m}^{\infty} \ax*{t-m} \px[t]{x} \mu_{x+t} dt \\
+	& = \Ex[m]{x} \ax*{x+m} \\
+	& = \ax*{x} - \ax*{x:\angl{m}} \\
+\end{align*}
+
+\paragraph{Rente garantie (certaine) $n$ années} Le contrat prévoit une rente minimale de $n$ années, pouvant se prolonger jusqu'au décès de l'assuré.
+\begin{align*}
+Y & = \begin{cases}
+\ax*{\angln}	& = T_x < n \\
+\ax*{\angl{T_x}}	& = T_x \geq n \\
+\end{cases} = \overline{Y}_{x:\angln} + \prescript{}{n|}{Y}_x \\
+\ax*{\joint{x:\angln}}	& =\ax*{\angln} \cdot \qx[n]{x} + \int_{n}^{\infty} \ax*{\angl{t}} \px[t]{x} \mu_{x+t} dt \\
+	& = \ax*{\angln} + \ax*[n|]{x} \\
+\end{align*}
+
+\section{Primes nivelées}
+\subsection{Notation et définitions}
+On définit $L$ comme la perte à l'émission d'un contrat pour l'assureur. Dans ce chapitre, le paiement de la PUN s'étalle sur une période de temps, et est conditionnel  à la survie de l'assuré. Dans le cas d'une assurance-vie,
+\[L = Z - Y\]
+où $Z$ est la valeur présente actuarielle est prestations à payer et $Y$ la valeur présente actuarielle des primes à recevoir. De même, pour les rentes,
+\[L = Y_1 - Y_2\]
+où $Y_1$ représente la valeur présente actuarielle des prestations de rente à payer et $Y_2$ la valeur présente actuarielle des primes à recevoir. \\
+
+On définit la prime nette nivellée $\pi$ selon 3 principes. 
+
+\subsection{Principe d'équivalence (PE)}
+Sous le principe d'équivalence, $\pi^{PE}$ est la solution de
+\begin{align*}
+\esp{L}	& = 0 \\
+\esp{Z} - \esp{Y}	& = 0 \\
+\esp{Z} & = \esp{Y} \\
+\end{align*}
+
+
+\subsection{Principe de la perte maximale probable (PPMP)}
+Sous le Principe de la perte maximale probable, $\pi^{PPMP}$ est la solution de
+\begin{align*}
+\prob{L < \lambda} \geq \alpha
+\end{align*}
+Pour résoudre, on va plutôt exprimer $\prob{L < \lambda} \leftrightarrow \px[t^*]{x}$ pour solutionner $\pi^{PPMP}$.
+
+
+\subsection{Principe du portefeuille (PP)}
+Similaire au PPMP, en terme de \emph{portefeuille} : $\pi^{PP}$ est la solution de
+\begin{align*}
+\prob{\frac{L_1 + ... + L_n}{n} < \lambda} &  \geq \alpha \\
+\prob{L_1 + ... + L_n < n \lambda} & \geq \alpha \\
+\end{align*}
+On passe par le Théorème central limite (TCL) pour évaluer cette expression. Ainsi,
+\begin{gather*}
+\prob{\frac{L_1 + ... + L_n - \esp{L_1 + ... + L_n}}{\sqrt{\variance{L_1 + ... + L_n}}} < \frac{n \lambda - \esp{L_1 + ... + L_n}}{\sqrt{n \variance{L}}}  }  \geq \alpha \\
+\shortintertext{Puisque les pertes à l'émission sont \emph{iid,}} \\
+\prob{Z < \frac{n \lambda - n \esp{L}}{\sqrt{n \variance{L}}}}  \geq \alpha \\
+\shortintertext{Par le TCL,} \\
+\Phi \left( \frac{n \lambda - n \esp{L}}{\sqrt{n \variance{L}}} \right)  \geq \alpha \\
+\end{gather*}
+Où $Z \sim N(0,1)$ et $\Phi$ la fonction de répartition de $Z$. Le défi se trouve dans le calcul de $\variance{L}$, où
+\begin{align*}
+\variance{L}	& = \variance{Z - Y} \\
+& = \variance{Z} + \variance{Y} - 2 \  \covar{Z, Y} \\
+& = \variance{Z}  + \variance{Y} - 2 \left( \esp{ZY} - \esp{Z} \esp{Y} \right) \\
+\end{align*}
+
+\subsection{Retour de primes}
+\begin{itemize}
+\item Certains contrats (surtout rentes différée) vont prévoir un remboursement partiel ($\alpha$) ou total des cotisations (accumulées au taux $j < i$)\footnote{Le taux $i$ est le taux préférentiel de l'assureur, tandis que le taux $j$ est le taux offert à l'assuré pour l'accumulation de ses cotisations dans sa clause de retour de primes.} en cas de décès de l'assuré pendant la période différée.
+\item On introduit la v.a. $W$, qui représente la valeur présente actuarielle d'un retour de prime, telle que
+\begin{align*}
+W = 
+\begin{cases}
+\alpha \pi v_i^{K_x + 1} \sx**{\angl{K_x + 1}j} & K_x = 0, 1, ..., n-1 \\
+0	& K_x = n, n+1, ... \\
+\end{cases}
+\end{align*}
+Alors,
+\[L = Y_1 - Y_2 + W\]
+\item Aussi, on trouve que
+\[\esp{W} = \sum_{k=0}^{n - 1} \alpha \pi v_i^{k+1} \sx**{\angl{k+1} j} \qx[k|]{x} = \alpha \pi \psi\]
+\end{itemize}
+
+\subsection{Primes brutes}
+\begin{itemize}
+\item Pour tenir compte des dépenses de l'assureur, on calcule la prime \emph{brute} $G$, qui considère la valeur actualisée des dépenses de l'assureur $D$ dans le calcul de la perte à l'émission.
+\item Alors, on a
+\[L = Z + D - Y\]
+avec $Y$ qui est fonction de $G$ (la prime brute), et non $\pi$.
+\item Il y a 3 types de dépenses : 
+\begin{enumerate}[label=\Roman*)]
+	\item Dépenses initiales ;
+	\begin{enumerate}[label=\textbullet]
+		\item À l'émission du contrat ; 
+		\item Commission des ventes (\% de $G$ ou du montant d'assurance $M$) ;
+		\item Coût des employés qui saisissent les informations dans le système ;
+		\item Impression et envoi par courrier de la police.
+		\item ...
+	\end{enumerate}
+	\item Dépenses de renouvellement ;
+	\begin{enumerate}[label=\textbullet]
+		\item Commission de renouvellement (\% de $G$ ou du montant d'assurance $M$), si $G$ est payée (i.e. conditionnel à la survie de l'assuré).
+	\end{enumerate}
+	\item Dépenses de fin de contrat.
+	\begin{enumerate}[label=\textbullet]
+		\item Saisie informatique et frais de fermeture de dossier ;
+		\item Émission du chèque de prestations ;
+		\item Enquête (dans certains cas).
+	\end{enumerate}
+\end{enumerate}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+\end{multicols*}
+%% -----------------------------
+%% Fin du document
+%% -----------------------------
+\end{document}

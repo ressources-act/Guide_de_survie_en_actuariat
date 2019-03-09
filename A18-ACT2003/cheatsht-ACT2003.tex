@@ -1,0 +1,721 @@
+\documentclass[10pt, french]{article}
+
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble.tex}
+
+% On débute la numérotation des chapitres à 2 pour suivre les notes à Marie-Pier.
+\setcounter{section}{1}
+
+
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+
+% \small
+\begin{multicols*}{3} % Nombre de colonnes (peut être changé plus tard.)
+\section{Régression linéaire simple}
+\subsection*{Postulats}
+\begin{enumerate}[label=$\mathbf{H}_{\arabic*}$]
+\item Linéarité : $\esp{\varepsilon_i} = 0$
+\item Homoscédasticité : $\variance{\varepsilon_i}= \sigma^2$
+\item Indépendance : $\covar{\varepsilon_i, \varepsilon_j} = 0$
+\item Normalité : $\varepsilon_i \sim \mathcal{N} (0, \sigma^2)$
+\end{enumerate}
+\subsection*{Modèle}
+\begin{align*}
+\esp{Y_i | x_i} 	& = \beta_0 + \beta_1 x_i \\
+\variance{Y_i | x_i}	& = \sigma^2 \\
+Y_i | x_i & \overset{\mathbf{H}_4}{\sim} \mathcal{N} (\beta_0 + \beta_1 x_i, \sigma^2) \\
+\end{align*}
+
+\subsection*{Estimation des paramètres}
+\begin{align*}
+\hat{\beta}_0 	& = \bar{Y} - \hat{\beta}_1 \bar{x} \\
+\hat{\beta}_1	& = \frac{\sum_{i=1}^{n} x_i Y_i - \bar{Y} \sum_{i=1}^{n} x_i}{\sum_{i=1}^{n} x_i^2 - \bar{x} \sum_{i=1}^{n} x_i} = \frac{\sum_{i=1}^{n}(x_i - \bar{x})Y_i}{S_{XX}}
+\end{align*}
+
+\subsection*{Estimation de $\sigma^2$}
+\begin{align*}
+\hat{\sigma^2} = s^2 = \frac{\sum_{i=1}^{n} \hat{\varepsilon_i}^2}{n-p'} = \frac{\sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2}{n-2}
+\end{align*}
+
+\subsection*{Propriété des estimateurs}
+\begin{align*}
+\esp{\hat{\beta}_1} = \beta_1 \quad , \variance{\hat{\beta}_1} = \frac{\sigma^2}{S_{XX}} \\
+\hat{\beta}_1 \overset{H_4}{\sim} \mathcal{N}(\beta_1, \frac{\sigma^2}{S_{XX}}) \\
+\esp{\hat{\beta}_0} = \beta_0 \quad , \variance{\hat{\beta}_0} = \sigma^2 \left( \frac{1}{n} + \frac{\bar{x}^2}{S_{XX}} \right) \\
+\hat{\beta}_0 \overset{H_4}{\sim} \mathcal{N} \left(\beta_0, \sigma^2 \left( \frac{1}{n}  + \frac{\bar{x}^2}{S_{XX}} \right) \right) \\
+\mathrm{Cov}(\hat{\beta}_0, \hat{\beta}_1) = - \frac{\bar{x} \sigma^2}{S_{XX}}
+\end{align*}
+
+\subsection*{Tests d'hypothèse sur les paramètres}
+$H_0$ : $\hat{\beta} = \theta_0$ , $H_1$ : $\hat{\beta} \neq \theta_0$
+\begin{align*}
+t_{obs} = \frac{\hat{\beta} - \theta_0}{\sqrt{\hat{Var(\hat{\beta}})}} \sim T_{n-2}
+\end{align*}
+On Rejette $H_0$ si $t_{obs} > | t_{n-2} (1 - \frac{\alpha}{2})|$
+
+\subsection*{Intervalle de confiance}
+\subsubsection*{Pour la droite de régression ($\esp{Y_0|x_0}$)}
+Sachant que $\esp{Y_0 | x_0} = \beta_0 + \beta_1 x_0$, on a l'IC suivant
+\begin{align*}
+\left[ \hat{Y_0} \pm t_{n-2} \left(1 - \frac{\alpha}{2} \right) \sqrt{s^2 \left( \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{XX}} \right)} \right]
+\end{align*}
+
+\subsubsection*{Pour la prévision de $Y_0$}
+Sachant que $Y_0 = \beta_0 + \beta_1 x_0 + \varepsilon$, on a l'IC suivant
+\begin{align*}
+\hat{Y_0} \pm t_{n-2} \left(1 - \frac{\alpha}{2} \right) \sqrt{s^2 \left( 1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{XX}} \right)}
+\end{align*}
+
+\subsection*{Analyse de la variance (ANOVA)}
+\begin{tabular}{|f| *{4}{C|}}
+\hline
+\rowcolor{green!40!black} Source & \text{dl} & \text{SS} & \text{MS} & F \\\hline
+Model & p & \thead{\sum_{i=1}^{n} (\hat{Y}_i - \bar{Y})^2 \\ (SSR)}  & \thead{SSR / dl_1 \\ (MSR)} & \frac{MSR}{MSE} \\\hline
+Residual error & n - p' & \thead{\sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2 \\ (SSE)} & \thead{SSE / dl_2 \\(MSE = s^2)} & \cellcolor{gray!30!white} \\\hline
+Total & n - 1 & \thead{\sum_{i=1}^{n} (Y_i - \bar{Y})^2 \\ (SST)} & \cellcolor{gray!30!white} & \cellcolor{gray!30!white} \\\hline
+\end{tabular}
+Où $p$ est le nombre de variables explicatives dans le modèle.
+
+\subsubsection*{Coefficient de détermination}
+\begin{align*}
+R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
+\end{align*}
+On a aussi la relation suivante avec $F_{obs}$ : 
+\begin{align*}
+F = \frac{R^2}{1 - R^2} \cdot \frac{n-p'}{p}
+\end{align*}
+
+\subsubsection*{Test F de Fisher pour la validité globale de la régression}
+On rejette $H_0 : \beta_1 =  \beta_2 = ... =  \beta_p = 0$ si 
+\begin{align*}
+F_{obs} = \frac{MSR}{MSE} \geq F_{n, n-p'}(1 - \alpha)
+\end{align*}
+où $p$ est le nombre de variables explicatives dans le modèle (régression linéaire simple, $p=1$ et $p' = p+1$).
+
+
+
+\subsection*{Distribution d'un résidu $\varepsilon$}
+\begin{align*}
+\esp{\hat{\varepsilon}_i} = 0 \quad , Var \left( \hat{\varepsilon}_i \right) = \sigma^2 (1 - h_{ii})
+\end{align*}
+où $h_{ii} = \frac{1}{n} + \frac{(\bar{x} - x_i)^2}{S_{XX}}$.
+
+On peut aussi prouver que
+\begin{align*}
+\mathrm{Cov}(\hat{\varepsilon}_i, \hat{\varepsilon}_j) = - \sigma^2 \left( \frac{1}{n} + \frac{(x_i - \bar{x})(x_j - \bar{x})}{S_{XX}} \right)
+\end{align*}
+
+\subsection*{Vérification des postulats}
+Les résidus studentisés sont définis par
+\begin{align*}
+r_i = \frac{\hat{\varepsilon}_i}{\sqrt{s^2(1 - h_{ii})}}
+\end{align*}
+\subsubsection*{Linéarité}
+\begin{itemize}
+\item graphique $Y_i | x_i$
+\item graphique $\hat{\varepsilon}_i | \hat{Y}_i$
+\item graphique $\hat{\varepsilon}_i | x_i$
+\end{itemize}
+Les deux derniers graphique doivent être centrés à 0 et d'allure aléatoire.
+
+\subsubsection*{Homoscédasticité}
+\begin{itemize}
+\item Graphique $r_i | \hat{Y}_i$ : la dispersion des résidus doit être constante, pas de forme d'entonnoir ou de résisus absolus supérieurs à 3.
+\end{itemize}
+
+\subsubsection*{Indépendance}
+\begin{itemize}
+\item Graphique $r_i|i$ : si il y a un \textit{pattern}, présence d'auto-corrélation (le postulat $H_3$ n'est donc pas respecté).
+\end{itemize}
+
+\subsubsection*{Normalité}
+\begin{itemize}
+\item Histogramme des $r_i$
+\item Q-Q Plot Normal : les résidus du modèle doivent suivre la droite des quantiles normaux théoriques.
+\end{itemize}
+
+
+
+
+\section{Régression linéaire multiple}
+% \mathrm{•} utilise la notation matricielle
+% \bm{•} est utilisé pour la notation matricielle, mais lorsqu'il y a des symboles mathématiques.
+\subsection*{Le modèle et ses propriétés}
+\begin{align*}
+\matr{Y}_{n \times 1} & = \matr{X}_{n \times p'} \bm{\beta}_{p' \times 1} + \bm{\varepsilon}_{n \times 1} \\
+\esp{\matr{Y}}	& = \matr{X} \bm{\beta} \quad , \variance{\matr{Y}} = \sigma^2 \matr{I}_{n \times n} \\
+Y & \overset{H_4}{\sim} \mathcal{N}_n(\matr{X} \bm{\beta}, \sigma^2 \matr{I}_{n \times n}) \\
+\end{align*}
+
+\subsection*{Paramètres du modèle}
+\subsubsection*{Estimation et propriétés des paramètres}
+\begin{align*}
+\hat{\bm{\beta}} & = \matr{(X^\top X)^{-1} X^\top Y} \\
+\esp{\hat{\bm{\beta}}}	& = \bm{\beta} \quad , Var(\hat{\bm{\beta}}) = \sigma^2 (\matr{X^\top X)^{-1}} \\
+\hat{\bm{\beta}} & \overset{H_4}{\sim} \mathcal{N}_p(\bm{\beta}, \sigma^2 (\matr{X^\top X)^{-1}})
+\end{align*}
+
+\subsubsection*{Intervalle de confiance sur les paramètres}
+\begin{align*}
+&var[\beta_j] = \sigma^2 v_{jj} \\
+&\beta_j \in \left[ \hat{\beta_j} \pm t_{n-p'} \left(1- \frac{\alpha}{2} \right) \sqrt{s^2 v_{jj}} \right]
+\end{align*}
+où $v_{jj}$ est l'élément $(j,j)$ de la matrice $\matr{(X^\top X)^{-1}}$.
+
+\subsubsection*{Estimation de $\sigma^2$}
+\begin{align*}
+\hat{\sigma}^2 = s^2 = \frac{\hat{\bm{\varepsilon}}^\top \hat{\bm{\varepsilon}}}{n-p'} \\
+\end{align*}
+Il peut être démontré que cette estimateur est sans biais \\
+et indépendant de $\bm{\hat{\beta}}$
+
+\subsubsection*{Test d'hypothèse sur un paramètre du modèle}
+On rejète $H_0 : \beta_j = 0$ si
+\begin{align*}
+|t_{obs, j}| = \frac{\beta_j}{\sqrt{s^2 v_{jj}} } > t_{n-p'}\left(1 - \frac{\alpha}{2} \right) \\
+\end{align*}
+
+\subsection*{Propriétés de la droite de régression}
+\begin{align*}
+	\hat{\matr{Y}}	& = \matr{X} \bm{\hat{\beta}}  &&\hat{\varepsilon} = \matr{Y} - \hat{\matr{Y}}\\
+		& = \matr{X(X^\top X)^{-1} X^\top Y} && \:\:= (\matr{I}_n - \matr{H})\matr{Y}	\\
+		& = \matr{H Y} 
+\end{align*}	
+où $\matr{H = X(X^\top X)^{-1}X^\top}$ est la \textit{hat matrix}.
+
+On a aussi que
+\begin{align*}
+\esp{\hat{\matr{Y}}} & = \matr{X} \bm{\beta} \quad , \variance{\hat{\matr{Y}}} = \sigma^2 \matr{H} \\
+\hat{\matr{Y}} & \overset{H_4}{\sim} N_n(\matr{X} \bm{\beta} , \sigma^2 \matr{H}) \\
+\end{align*}
+
+Pour les résidus de la droite de régression, on a
+\begin{align*}
+\esp{\hat{\bm{\varepsilon}}}  \overset{H_1}{=} 0 \quad , \variance{\hat{\bm{\varepsilon}}} = \sigma^2(\matr{I}_{n \times n} - \matr{H}) \\
+\hat{\bm{\varepsilon}} \overset{H_4}{\sim} \mathcal{N}_n(0, \sigma^2 (\matr{I}_{n \times n} - \matr{H})) \\
+\end{align*}
+
+\subsection*{Matrice de projection}
+Les matrices $\matr{H}$ et $\matr{I_n - H}$ peuvent être vues commes des matrices de projection. Ces deux opérateurs possèdent plusieurs propriétés:
+\begin{enumerate}
+	\item $\matr{H}^\top = \matr{H}\:$(symétrie)
+	\item $\matr{H}\matr{H} = \matr{H}\:$(idempotence)
+	\item $\matr{HX} = \matr{X}$
+	\item $(\matr{I}_n - \matr{H}) = (\matr{I}_n - \matr{H})^\top \:$(symétrie)
+	\item $(\matr{I}_n - \matr{H})(\matr{I}_n - \matr{H}) = (\matr{I}_n - \matr{H})$
+	\item $(\matr{I}_n - \matr{H})\matr{X} = 0 $
+	\item $(\matr{I}_n - \matr{H})\matr{H} = 0 $
+\end{enumerate}
+
+\subsection*{Intervalle de confiance pour la prévision}
+\subsubsection*{Théorème de Gauss-Markov}
+Selon les postulats $H_1$ à $H_4$, l'estimateur
+\begin{align*}
+\mathrm{a^\top} \hat{\bm{\beta}} = \matr{a^\top (X^\top X)^{-1} X^\top Y}
+\end{align*}
+est le meilleur estimateur pour $\matr{a^\top} \bm{\beta}$
+
+(BLUE : \textit{Best linear unbiaised estimator}).
+
+\subsubsection*{I.C. pour la prévision de la valeur moyenne $\esp{\matr{Y} | \matr{X^*}}$}
+\begin{align*}
+\left[ \matr{{X^*}^\top} \hat{\bm{\beta}} \pm t_{n-p'}\left(1 - \frac{\alpha}{2} \right) \sqrt{s^2 \matr{{X^*}^\top} (\matr{X}^\top \matr{X})^{-1}\matr{X^*}} \right]
+\end{align*}
+
+\subsubsection*{I.C. pour la valeur prédite $\hat{\matr{Y}}|\matr{X^*}$}
+\begin{align*}
+\left[ \matr{{X^*}^\top} \hat{\bm{\beta}} \pm t_{n-p'}\left(1 - \frac{\alpha}{2} \right) \sqrt{s^2\left( 1 +  \matr{{X^*}^\top} (\matr{X}^\top \matr{X})^{-1}\matr{X^*}\right)} \right]
+\end{align*}
+
+
+\subsection*{Analyse de la variance}
+\subsubsection*{Tableau ANOVA}
+\begin{itemize}
+\item On utilise le même tableau ANOVA qu'en régression linéaire simple.
+\item $SSR_{\text{régression}} = \sum_{i=1}^{p} SSR_i $, où $SSR_i$ représente le SSR individuel de la variable explicative $i$ calculé par R. On peut ensuite trouver $MSR$ et la statistique $F_{obs}$.
+\end{itemize}
+
+\subsubsection*{Test F pour la validité globale de la régression}
+Même test qu'en régression linéaire simple.
+
+
+\subsubsection*{Test F partiel pour la réduction du modèle}
+Avec $k < p$, on va rejeter
+\begin{align*}
+H_0 : Y_i = \beta_0 + \beta_1 x_{i1} + ... \beta_{ik} \quad \text{(modèle réduit)}
+\end{align*}
+Pour
+\begin{align*}
+H_1 : Y_i = \beta_0 + \beta_1 x_{i1} + ... \beta_{ip} \quad \text{(modèle complet)}
+\end{align*}
+Si
+\begin{align*}
+F_{obs} = \frac{(SSE^{(0)} - SSE^{(1)}) / \Delta dl}{SSE^{(1)} / (n-p')} \geq F_{p-k, n-p'}(1- \alpha)
+\end{align*}
+où $\Delta dl = p - k$, $SSE^{(0)}$ pour le modèle réduit ($H_0$) et $SSE^{(1)}$ pour le modèle complet ($H_1$).
+
+\subsection*{Multicollinéarité}
+\subsubsection*{Problèmes potentiels}
+\begin{itemize}
+\item Instabilité de $\mathrm{(X^\top X)^{-1}}$, i.e. une petite variation de $Y$ peut changer de grandes variations en $\hat{\beta}$ et $\hat{Y}$ ;
+\item $\hat{\beta_i}$ de signes contre-intuitif ;
+\item $Var(\hat{\beta_i})$ et $Var(\hat{Y})$ très grandes ;
+\item Les méthodes de sélection de variable ne concordent pas ;
+\item Conclusions erronées sur la significativité de certains paramètres, malgré une forte corrélation avec $Y$.
+\end{itemize}
+
+\subsubsection*{Détection}
+\begin{itemize}
+\item Si $r_{ij}$ dans la matrice de corrélation $\matr{{X^*}^\top X^*}$ est élevée, où $\matr{X^*} = \begin{bmatrix}
+\frac{x_1 - \bar{x}_1}{s_1} & ... & \frac{x_p - \bar{x}_p}{s_p}
+\end{bmatrix}_{1 \times p}$
+
+\item Si le facteur d'influence de la variance ($VIF_j$) est élevé, où
+\begin{align*}
+VIF_j = \frac{1}{1 - R_j^2}
+\end{align*}
+avec $R_j^2$ le coefficient de détermination de la régression ayant comme variable réponse le $j$\up{e} variable et les $(j-1)$ autres variables exogènes en \textit{input}.
+\item La variance de $\hat{\beta}_j$ s'exprime en fonction du VIF comme suit:
+\begin{align*}
+	\variance{\hat{\beta}_j} = \frac{\sigma^2}{(\matr{X^{*\top} \matr{X^*})_{jj}}} VIF_j
+\end{align*}
+\end{itemize}
+
+\subsubsection*{Solution}
+\begin{itemize}
+	\item On retire les variables ayant un VIF élevé (une à la fois)
+	\item On combine des variables exogènes redondantes	
+\end{itemize}
+
+\subsection*{Validation du modèle et des postulats}
+\subsubsection*{Linéarité}
+\begin{itemize}
+\item On trace les graphiques à variable ajoutée ( $\hat{\varepsilon}_{\matr{Y} | \matr{X_{-j}}}$ en fonction de $\hat{\varepsilon}_{x_j | \matr{X_{-j}}}$).
+\item Ces graphiques doivent normalement donner une droite de pente $\beta_j$.
+\begin{itemize}
+	\item Si le graphique ressemble à un graphique de résidus normaux, $x_j$ est inutile.
+	\item Si il y a une courbe, $x_j$ est non-linéaire.
+\end{itemize}
+\end{itemize}
+
+\subsubsection*{Homogénéité des variances}
+\begin{itemize}
+\item Graphique $r_i | \hat{Y}_i$
+\end{itemize}
+
+\subsubsection*{Indépendance entre les observations}
+\begin{itemize}
+\item Graphique $\hat{\varepsilon}_i | i$
+\item Test de Durbin-Watson (pas à l'examen)
+\end{itemize}
+
+
+\section{Sélection de modèle et régression régularisée}
+En présence de beaucoup de variable exogènes, on court le danger d'en garder trop ou pas assez
+\begin{itemize}
+	\item \textbf{Trop}: On augmente inutilement la variance des estimations$(\hat{\beta})$
+	\item \textbf{Moins}: On augmente inutilement le biais des estimations$(\hat{\beta})$
+\end{itemize}
+
+\subsection*{Critères de comparaison classiques}
+\begin{itemize}
+	\item Coefficient de détermination (pour mesurer la qualité globale du modèle) :
+	\[ R_2 = \frac{SSR}{SST} \]
+	Si on ajoute une variable exogène, il est certain que $R^2$ augmentera, on utilise donc ce critère pour valider si la régression est utile pour prédire $Y$, mais pas pour critère de sélection des variables exogènes.
+	\item Coeficient de détermination ajusté:
+	\[ R_a^2 = \frac{SSE / p}{SST / (n-1)} = \frac{MSE}{MST} \]
+	Ce critère permet de valider l'ajout de nouvelles variables exogènes.
+\end{itemize}
+Ces deux critères sont inutiles pour comparer des modèles avec des transformations différentes et pour des modèles avec/sans ordonnée à l'origine.
+
+\subsection*{Méthode basées sur la puissance de prévision}
+Ce critère maximise l'habileté du modèle a prédire de nouvelles données.
+\subsubsection*{Principe de la validation croisée}
+\begin{enumerate}
+\item Pour $i = 1, ..., n$,
+\begin{enumerate}[label=1.\arabic*]
+	\item Enlever la $i$\up{e} observation du jeu de données.
+	\item Estimer les paramètres du modèle à partir des $n - 1$ données restante.
+	\item Prédire $Y_i$ à partir de $x_i$ et du modèle obtenu en 2, noté $\hat{Y}_{i,-i}$
+\end{enumerate}
+\item Calculer la somme des carrés des erreurs de prévision $PRESS = \sum_{i=1}^n (Y_i - \hat{Y}_{i,-i})^2$
+\end{enumerate}
+	On cherche a minimiser le PRESS ou à maximiser le coefficient de détermination de prévision:
+	\[ R_p^2 = 1 - \frac{PRESS}{SST} \]
+\subsubsection*{Les résidus PRESS}
+	Il est possible de trouver la statistique PRESS sans devoir calculer $n$ régressions :
+	\[ PRESS = \sum_{i=1}^n \left( \frac{\hat{\varepsilon_i}}{1 - h_{ii}} \right)^2 \]
+\subsubsection*{Échantillion de test et validation croisée par $k$ ensemble}
+\begin{enumerate}
+\item Pour $k = 1, ..., K$,
+\begin{enumerate}[label=1.\arabic*]
+	\item Enlever le $k$\up{e} ensemble du jeu de donnée.
+	\item  Estimer les paramètres du modèle à partir des données des $k - 1$ échantillons restants.
+	\item Prédire les observations du $k$\up{e} ensemble $(\hat{Y}_{i,-k})$ et calculer
+	\[ MSEP_k = \frac{1}{n_k} \sum_{i\in group\:k} (Y_i - \hat{Y}_{i,-k})^2 \]
+\end{enumerate}
+	\item Calculer la moyenne des sommes des carrés des erreurs de prévision $\frac{1}{k} \sum_{k=1}^k MSEP_k$
+\end{enumerate}
+	On choisit le modèle qui minimise $\frac{1}{k} \sum_{k=1}^k MSEP_k$
+
+
+\subsection*{Le $C_p$ de Mallows}
+\[ C_p = p' + \frac{(s_p^2 - \hat{\sigma^2})(n - p')}{\hat{\sigma^2}} = \frac{SSE}{\hat{\sigma^2}} + 2p' - n\]
+On cherche le modèle pour lequel $C_p \approx p'$
+
+\subsection*{Critère d'information d'akaike et critère bayésien de Schwarz}
+\begin{itemize}
+\item Ce critère est le plus utilisé dans la pratique et permet d'évaluer la qualité de l'ajustement d'un modèle. 
+\[ AIC = n \cdot \ln \left(\frac{SSE}{n}\right) + 2p' \]
+AIC prend en compte à la fois la qualité des prédictions du modèle et sa complexité.
+\item BIC est similaire a AIC, mais la pénalité des paramètres dépend de la taille de l'échantillon.
+On cherche à minimiser ces 2 critères.
+\[ BIC = n \cdot \ln \left(\frac{SSE}{n}\right) + \ln(n)p' \]
+\end{itemize}
+
+
+
+
+
+\subsection*{Méthode algorithmiques}
+
+\subsubsection*{Méthode d'inclusion (\textit{forward})}
+\begin{enumerate}
+\item On commence avec le modèle le plus simple (i.e. $\hat{Y}_i = \beta_0$)
+\item On essaie d'ajouter la variable qui, en l'incluant dans le modèle, permet de réduire le plus le $SSE$ du modèle.
+\item On valide si la variable diminue de façon significative les résidus avec un test $F$, où
+\begin{align*}
+F_{obs} = \frac{SSE_{\text{petit modèle}} - SSE_{\text{grand modèle}}}{SSE_{\text{grand modèle}} / (n-p')}
+\end{align*}
+On ajoute la variable au modèle si
+\begin{align*}
+F_{obs} > F_{1, n-p'}(1 - \alpha)
+\end{align*}
+\item On répète jusqu'à ce qu'aucune variable ne vaille la peine d'être ajoutée.
+\end{enumerate}
+
+
+\subsubsection*{Méthode d'exclusion (\textit{backward})}
+\begin{enumerate}
+\item On débute avec le modèle complet
+\item On veut enlever la variable exogène qui, en l'excluant du modèle, permet de minimiser l'augmentation du $SSE$ de la régression.
+\item Même test $F$ qu'à l'étape 3 de la méthode \textit{forward}, sauf qu'on enlève la variable seulement si
+\begin{align*}
+F_{obs} < F_{1, n-p'}(1-\alpha)
+\end{align*}
+\item On répète jusqu'à ce qu'aucune variable ne vaille la peine d'être enlevée.
+\end{enumerate}
+
+
+\subsubsection*{Méthode pas à pas (\textit{step-wise})}
+\begin{enumerate}
+\item On débute avec la méthode d'inclusion
+\item Après l'ajout d'une variable au modèle, on effectue la méthode d'exclusion pour les variables qui sont actuellement dans le modèle (on remet constamment le modèle en question).
+\end{enumerate}
+
+\subsection*{Régression Ridge}
+\begin{itemize}
+\item Les coefficients de la régularisation sont réduits (\emph{shrinked}) car on applique une pénalité sur leur taille totale avec la norme $\ell_2 = \sqrt{\sum_{i=1}^{p} \beta_j^2}$
+\item On veut minimiser l'équation suivante : 
+\[R^{Ridge}(\beta) = \sum_{i=1}^{n} \left( Y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x^{ij} \right)^2 + \lambda \sum_{j=1}^{p} \beta_j^2  \]
+Et on trouve que
+\[\hat{\bm{\beta}}^{Ridge} = \left( \matr{X}^\top Y + \lambda \matr{I}_{p \times p} \right)^{-1}  \matr{X}^\top \matr{Y}  \]
+\item Cette méthode est très utile \textbf{Lorsqu'il y a beaucoup de variables explicatives}. On choisit la valeur optimale pour le coefficient de régularisation $\lambda$ avec une validation croisée.
+\item Si la valeur de $\lambda$ augmente, le modèle perd en flexibilité et donc la variance des estimateurs diminue. Par contre, le biais augmente.
+\item Le modèle de régression Ridge est plus difficile à interpréter, car plusieurs coefficients des paramètres peuvent être près de 0.
+\end{itemize}
+
+\subsection*{Régression Lasso (\emph{Least Absolute Shrinkage and Selection Operator})}
+\begin{itemize}
+\item Très similaire à la régression Ridge, sauf qu'on utilise la norme $\ell_1$ pour appliquer une contrainte à l'équation à minimiser : 
+$\ell_1 = \sum_{j=1}^{p} | \beta_j | $
+
+\item L'équation à minimiser est donc
+\[S^{Lasso}(\bm{\beta})  = \sum_{i=1}^{n} \left( Y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij} \right)^2 + \lambda \sum_{j=1}^{p} | \beta_j | \]
+
+\item La différence avec Ridge est que les paramètres peuvent être égaux à zéro \textbf{(il y a donc une sélection des variables)}.
+\end{itemize}
+
+
+
+\section{Modèles linéaires généralisés (GLM)}
+\subsection*{Famille exponentielle linéaire}
+\subsubsection*{Définition}
+Une loi de probabilité fait partie de la famille exponentielle linéaire si
+\begin{enumerate}[label=\faAngleRight]
+\item On peut exprimer la fonction de densité (ou masse) de probabilité comme
+\[f(y ; \theta, \phi) =   \exp \left( \frac{y \theta - b(\theta)}{a(\phi)} + c(y ; \phi)    \right)  \] 
+où $\theta$ est le paramètre canonique et $\phi$ est le paramètre de dispersion.
+
+\item la fonction $c$ ne dépend pas du paramètre $\theta$.
+\item Le support de $Y$ ne dépend pas des paramètres $\theta$ ou $\phi$.
+\end{enumerate}
+
+\subsubsection*{Propriétés}
+Soit $\mu = \dot{b}(\theta) = \derivee{\theta} b(\theta)$ et $V(\mu) = \ddot{b}(\theta) = \frac{\partial^2}{\partial \theta^2} b(\theta)$. Alors, si $Y$ fait partie de la famille exponentielle linéaire, on peut exprimer l'espérance et la variance comme
+\begin{align*}
+\esp{Y}	& = \dot{b}(\theta) = \mu \\
+\variance{Y}	& = a(\phi) \ddot{b}(\theta) = a(\phi) V(\mu) \\
+\end{align*}
+
+\subsubsection*{Lemme de la Log-vraisemblance}
+Soit $\ell(\theta, \phi ; Y) = \mathrm{L}(\theta, \phi ; Y)$ la log-vraisemblance. Alors,
+\[\esp{\derivee{\theta} \ell(\theta, \phi ; Y)} = 0\]
+et
+\[\esp{\left( \derivee{\theta}  \ell(\theta, \phi ; Y \right)^2} = - \esp{\frac{\partial^2}{\partial \theta^2} \ell(\theta, \phi ; Y)}\]
+
+\subsection*{Fonction de lien}
+Soit $\eta = \matr{X} \boldsymbol{\beta}$. La fonction de lien est la transformation qu'on applique à $\eta$ afin de limiter le support de $Y$.
+\begin{description}
+\item[Lien log] $\eta = \ln \mu \leftrightarrow \mu = e^{\eta}$
+\item[Lien logistique] $\eta = \ln \left( \frac{\mu}{1 - \mu} \right) \leftrightarrow \mu = \frac{e^{\eta}}{1 + e^{\eta}}$
+
+\item[Lien probit] $\eta = \Phi^{-1}(\mu) \leftrightarrow \mu = \Phi(\eta)$
+
+\item[Lien log-log complémentaire] $\eta = \ln ( - \ln (1 - \mu)) \leftrightarrow \mu = 1 - e^{-e^{\eta}}$
+
+\item[Lien canonique] $\eta = \theta$ 
+\end{description}
+
+\subsection*{Estimation des paramètres}
+\begin{enumerate}[label=\faAngleRight]
+\item On estime $\hat{\beta}$ avec la méthode du maximum de vraisemblance (EMV ou \emph{MLE} en anglais)
+
+\item L'EMV est cohérent, i.e.
+\[\hat{\bm{\beta}} \underset{n \to \infty}{\longrightarrow} \bm{\beta} \]
+
+\item L'estimateur a une normalité asymptotique, i.e. lorsque $n \to \infty$,
+\[  \hat{\bm{\beta}} \sim \mathcal{N} \left( \bm{\beta}, \frac{\mathcal{I}(\bm{\beta})^{-1}}{n} \right)    \]
+où $\mathcal{I}(\bm{\beta})_{(p' \times p')}$ est la matrice d'information de Fisher : 
+\begin{align*}
+\mathcal{I}(\bm{\beta}) & = \esp{\dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n) \dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)^{\top} } \\
+	& = - \esp{\ddot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)} \\
+\end{align*}
+
+\item On peut estimer la matrice d'information  de Fisher avec \textbf{l'information observée} :
+\[\mathcal{I}(\hat{\bm{\beta}}) = - \sum_{i=1}^{n} \frac{\partial^2}{\partial \bm{\beta}^2} \ell(\bm{\beta} ; Y_i)  \eval_{\hat{\bm{\beta}}} \]
+\end{enumerate}
+
+\subsubsection*{Algorithme de Newton-Raphson}
+L'objectif est de trouver $\hat{\bm{\beta}}$ qui maximise $\ell(\hat{\bm{\beta}})$, ce qui revient à trouver $\dot{\ell}(\hat{\bm{\beta}}) = 0$. On utilise l'approximation de Taylor de premier ordre dans l'algorithme : 
+\begin{enumerate}[label = (\arabic*)]
+\item Choisir des valeurs de départ pour le vecteur $\hat{\bm{\beta}}^{H_0}$
+\item Pour $k = 1, 2, ...$
+\begin{enumerate}[label = (2.\arabic*)]
+	\item $\hat{\bm{\beta}}^{(k)} = \hat{\bm{\beta}}^{(k-1)} +  \left \{ - \ddot{\ell}(\hat{\bm{\beta}})^{(k-1)} \right \}^{-1} \dot{\ell}(\hat{\bm{\beta}})^{(k-1)}$
+	\item Si $|\dot{\ell}(\hat{\bm{\beta}})^{(k)}| < \varepsilon $, on converge vers les paramètres optimaux pour le modèle et on arrète.
+	\item Répéter les étapes (2.1) et (2.2) jusqu'à une convergence.
+\end{enumerate}
+\end{enumerate}
+
+\subsubsection*{Méthode du score de Fisher}
+Cette méthode est la même que l'algorithme de Newton-Raphson, à l'exception qu'on remplace $\ddot{\ell}(\hat{\bm{\beta}})$ par $- \esp{\ddot{\ell}(\hat{\bm{\beta}})}$ à l'étape (2.1)
+
+\subsubsection*{Construction d'IC sur les paramètres}
+\begin{itemize}
+\item Lorsqu'on prédit des données, on peut aussi créer un I.C de confiance pour le prédicteur linéaire $\eta_i$. Par les propriétés du maximum de vraisemblance, quand $n \to \infty$, on a que $\hat{\bm{\beta}}$ est asymptotiquement normal. Alors, puisque $\eta$ est une combinaison linéaire de v.a. \emph{approximativement} normales, alors
+\[\eta_i \approx \mathcal{N} \left( \eta_i,  \widehat{\mathrm{Var}}(\hat{\eta_i})   \right) \]
+
+\item Et on a que (dans le cas simple où le modèle est $\beta_0 + \beta_1 x_{i1}$),
+\begin{align*}
+\variance{\hat{\eta}_i}	& = \variance{\hat{\beta}_0 + \hat{\beta}_1 x_{i1}} \\
+& = \variance{\hat{\beta}_0} + x_{i1}^2 \variance{\hat{\beta}_1}  \\
+& + 2 x _{i1}  \covar{\hat{\beta}_0, \hat{\beta}_1}
+\end{align*}
+
+\item Dans le cas multivarié, on a
+\begin{align*}
+\variance{\hat{\eta}_i}	 & = \matr{X}^{\top} \mathcal{I}(\hat{\bm{\beta}})^{-1} \matr{X}
+\end{align*}
+
+\item L'intervalle de confiance  pour $\eta_i$ est
+\[\hat{\eta}_i  \pm z_{1- \alpha/2} \sqrt{\widehat{\mathrm{Var}}(\hat{\eta_i})} \]
+
+\item Un intervalle de confiance (non-centré) pour $\mu_i$, en utilisant la fonction de lien inverse $g^{-1}(\eta)$ serait
+\[ \mu_i \in \left [ g^{-1} \left( \hat{\eta}_i^{(L)}\right),  g^{-1} \left( \hat{\eta}_i^{(U)} \right)      \right]   \]
+
+\item En utilisant la méthode Delta, on obtient un I.C qui est centré pour $\mu_i$, on a
+\[\mu_i \in z_{1 - \frac{\alpha}{2}} \sqrt{\widehat{\mathrm{Var}}(\hat{\mu}_i)}  \]
+où
+\begin{align*}
+\variance{\hat{\mu}_i}	& = \left( \derivee{\eta_i} g^{-1}(\eta_i) \eval_{\eta_i = \hat{\eta}_I} \right)^2 \variance{\hat{\eta}_i}
+\end{align*}
+\end{itemize}
+
+
+
+\subsection*{Statistique de Wald}
+Test d'hypothèse pour tester $H_0 : \beta_j = 0$, $H_1 : \beta_j \neq 0$. On a que
+\[Z = \frac{\beta_j}{\sqrt{\widehat{\mathrm{Var}}(\hat{\beta}_j)}} \sim \mathcal{N}(0,1) \]
+On rejète donc $H_0$ si $Z > z_{1 - \frac{\alpha}{2}}$.
+
+\paragraph{Note} On obtient $\widehat{\mathrm{Var}}(\hat{\beta}_j)$ sur les éléments de la diagonale de $\{ \mathcal{I}(\hat{\beta}) \}^{-1} / n$.
+
+\subsection*{Test du rapport de vraisemblance}
+%% On pourrait peut-être synthétiser mieux cette section ...
+On teste $H_0 : \beta \in \beta_0$ et $H_1 : \beta \in \beta_1$, où $\beta_1$ est le complément de l'espace $\beta_0$, qui est une sélection réduite des variables explicatives disponibles. On teste
+\[\lambda(y) = \frac{\mathrm{L}\left(\hat{\beta}^{(H_0)} \right)}{\mathrm{L}(\hat{\beta})}   \]
+$\lambda(y)$ sera assurément plus petit que 1 (il y a moins de variables explicatives). Mais on veut tester si $\lambda(y)$ est plus petit qu'une certaine valeur critique.
+
+\begin{enumerate}[label=\faAngleRight]
+\item Si \emph{$H_0$ spécifie tous les paramètres du modèle}, on a
+\[-2 \ln \lambda(y) \sim \chi_{p'}^2 \quad , \text{Sous $H_0$}\]
+\item Si \emph{$H_0$ spécifie partiellement les paramètres du modèle}, on a
+\[-2 \ln \lambda(y) \sim \chi_{k_2 - k_1}^2 \quad , \text{Sous $H_0$}\]
+où $k_1$ est le nombre de paramètres non-spécifiés dans $H_0$ et $k_2$ le nombre de paramètres non-spécifiés dans $H_1$.
+\item Avec le TRV, on peut seulement comparer des modèles qui sont liés ($\hat{\beta}^{(H_0)}$ doit être un sous-ensemble de $\hat{\beta}$).
+\end{enumerate}
+
+\subsection*{Adéquation du modèle}
+
+\subsubsection*{Statistiques $\chi^2$ de Pearson}
+On peut valider l'adéquation du modèle avec la statistique $X^2$, où
+\[  X^2 = \sum_{i=1}^{n} \left( \frac{y_i -  \hat{\mu}_i}{\sqrt{V(\hat{\mu}_i)}} \right)^2   \sim \chi_{n-p'}^2 \]
+Avec $X^2 \leq \chi_{n-p', 1 - \frac{\alpha}{2}}^2$ si le modèle est adéquat. Si $\phi$ est inconnu, on peut l'estimer avec $\hat{\phi} = \frac{X^2}{n-p'}$
+
+\subsubsection*{Déviance}
+On a
+\[2(\ell(\tilde{\theta}) - \ell(\hat{\theta}))  \sim \chi_{n-p'}^2 \]
+avec $\bar{\theta}$ est le modèle nul, $\hat{\theta}$ le modèle à l'étude et $\tilde{\theta}$ le modèle complet, où $\hat{\mu}_i = y_i$. Cette expression représente la déviance $D(y ; \hat{\mu})$ : 
+\begin{align*}
+2(\ell(\tilde{\theta}) - \ell(\hat{\theta}))	& = 2 \sum_{i=1}^{n} \frac{w_i}{\phi} (y_i \tilde{\theta} - b(\tilde{\theta}) - y_i \hat{\theta} + b(\hat{\theta})) \\
+&= 2 \sum_{i=1}^{n} \frac{w_i}{\phi} y_i (\tilde{\theta} - \hat{\theta}) - (b(\tilde{\theta} - b(\hat{\theta})) \\
+& = \frac{D(y ; \hat{\mu})}{\phi}
+\end{align*}
+Si $\phi$ est inconnu, on peut l'estimer avec $\hat{\phi} = \frac{D(y ; \hat{\mu})}{n-p'}$
+
+\subsection*{Comparaison de modèles}
+Les critères classiques AIC et BIC peuvent être utilisés pour comparer des modèles. On peut aussi faire une analyse de la déviance
+
+\subsubsection*{Analyse de la déviance}
+\label{sssec:analyse_deviance}
+On compare le modèle $A$ et le modèle $B$ (où $A$ est une simplification de $B$). Le modèle $A$ sera une bonne simplification de $B$ si
+\[\frac{D(y ; \hat{\mu}_A) - D(y ; \hat{\mu}_B)}{\phi}  \sim \chi_{p_B - p_A}^2  \]
+Il est certain que la déviance va augmenter en diminuant le nombre de paramètres. On veut valider si la déviance augmente \emph{significativement} au point de ne pas pouvoir simplifier $B$. On rejète $H_0$ que $A$ est une bonne simplification de $B$ si la différence est déviance réduite est supérieure à $\chi_{p_B - p_A, 1 - \frac{\alpha}{2}}^2$
+
+
+\subsection*{Analyse des résidus}
+
+\subsubsection*{Résidus de Pearson}
+\begin{align*}
+r_{P_i} = \frac{y_i - \hat{\mu}_i}{\sqrt{V(\hat{\mu})_i}}
+\end{align*}
+Aussi,  les résidus d'Anscombe et les résidus de la déviance.
+
+
+
+
+
+
+
+% --- DÉBUT CHAPITRE 6 : MODÉLISATION DE DONNÉES DE COMPTAGE
+\section{Modélisation de données de comptage}
+
+\subsection*{Terme \emph{offset}}
+On veut souvent modéliser le taux  de réclamation, cela se fait avec un terme \emph{offset} $t_i$ qui représente l'exposition au risque (i.e. le nombre d'années qu'on a assuré la personne) : 
+\begin{align*}
+\ln \left( \frac{\mu_i}{t_i} \right) & = \bm{x}_i \bm{\beta} \\
+\ln (\mu_i) & = \bm{x}_i \bm{\beta} + \ln (t_i) \\
+\mu_i & = t_i e^{\eta_i}
+\end{align*}
+le terme \emph{offset} peut être vu comme une variable explicative additionnelle (où le coefficient est toujours 1)
+
+\subsection*{Notation pour les interactions}
+Lorsqu'on utilise des variables catégoriques qui ont plusieurs niveaux, on peut utiliser une notation abbrégée. Prenons un modèle quelquonque \verb=A * B= avec la variable \verb=A= qui a I = 3 niveaux et \verb=B= qui a J = 2 niveaux. Alors, on aurait
+\begin{align*}
+\ln (\mu_{i,j}) = \alpha + \beta_i^A + \beta_j^B + \gamma_{i,j} \quad i = 1,2,3 \text{ et } j = 1,2
+\end{align*}
+0ù on impose les contraintes telles que $\beta_1^A = \beta_1^B = 0$ et $\gamma_{1,j} = \gamma_{j,1} = 0$. 
+
+\subsection*{Approximation de la Binomiale par une Poisson}
+Si la variable qu'on veut modéliser obéit à une $Bin(m, \pi)$ avec $m$ grand et $\pi$ petit, alors on peut l'approximer avec une loi de Poisson en prenant le modèle
+\[\ln(\mu_i) = \ln(m_i) + \ln(\pi_i) \]
+où $\ln(m_i)$ est un terme \emph{offset}
+
+\subsection*{Tableau de contingence}
+Lorsque toutes les variables sont des catégorielles, on peut créer un tableau de contingence, où on veut modéliser le nombre dans chaque case avec un GLM Poisson. \\
+
+On a 3 modèles dans les tableaux de contingence (illustré avec des modèles simples qui ont les variables explicatives \verb=A=, \verb=B= et \verb=C= avec J,K et L niveaux  : 
+\begin{enumerate}[label=\faAngleRight]
+\item Modèle d'indépendance : $A + B + C$
+
+\item Modèle d'indépendance partielle (celui qu'on veut tester) : 
+\[A + B * C\]
+
+\item Modèle d'indépendance conditionnelle (aussi appelé le \emph{modèle saturé}\footnote{Ce modèle est celui qui prédit le mieux, mais n'est d'aucune utilité car il a autant de paramètres qu'on a d'observations. On essaie donc de voir si le modèle d'indépendance partielle est une bonne simplification.} : 
+\[A * B * C\]
+\end{enumerate}
+On peut alors tester l'indépendance de certaines variables en faisant une \textbf{Analyse de la déviance} (\autoref{sssec:analyse_deviance}).
+
+
+\subsection*{Cote}
+La cote de $A$ est définie par
+\[\mathrm{Cote}(A) = \frac{\prob{A}}{\prob{\overline{A}}} = \frac{\prob{A}}{1 - \prob{A}} \]
+
+
+\subsection*{Sousdispersion et susdispersion}
+Avec le modèle Poisson, on suppose que $\esp{Y_i |x_i} = \variance{Y_i | x_i}$. Toutefois, les données peuvent être \textbf{sous-dispersées} si
+\[  \esp{Y_i |x_i} > \variance{Y_i | x_i} \]
+On détecte aussi la sous-dispersion si $D(y ; \hat{\mu}) / dl < 0.6$ ou $X^2 < 0.6$. On peut régler les problèmes de sous-dispersion en utilisant une distribution binomiale. Les données peuvent être \textbf{surdispersées} si
+\[ \esp{Y_i |x_i} < \variance{Y_i | x_i}  \]
+On le détecte lorsque $D(y ; \hat{\mu}) / dl > 1.7$ ou $X^2 > 1.7$
+
+\subsection*{Binomiale négative}
+Lorsque les données sont surdispersées, on peut utiliser la distribution binomiale négative dans notre modélisation. Soit $Y | Z = z \sim Pois(\mu z)$ et $Z \sim \Gamma(\theta_z, \theta_z)$, alors $\esp{Y} = \mu$ et $\variance{Y} = \mu + \frac{\mu^2}{\theta_z}$ et on a que $Y \sim BinNeg(\mu, \theta_z)$ telle que
+\[f_Y(y) = \frac{\Gamma(\theta_z + y)}{\Gamma(\theta_z) y!} \left( \frac{\mu}{\mu + \theta_z} \right)^{y} \left( \frac{\theta_z}{\mu + \theta_z} \right)^{\theta_z}  \]
+Lorsque $\theta_z \to \infty$, on retombe sur le modèle Poisson. On peut faire un TRV pour valider si le modèle Poisson est une bonne simplification du modèle binomiale négative : 
+\[ \prob{ 2\Big(\ell^{Pois}(\bm{\hat{\beta}}) - \ell^{NB}(\bm{\hat{\beta}}) \Big) > x} = \frac{1}{2} \prob{\chi_{(1)}^2 > x} \] 
+
+\subsection*{Modèle Poisson gonflée à zéro}
+Lorsqu'on a une masse de probabilité à zéro plus importante à 0, on peut utiliser la loi de Poisson \emph{gonflée à zéro}, en modélisant à la fois la probabilité $\pi_i$ que la fréquence soit égale à zéro (avec un modèle binomial logistique) et $\lambda_i$ la fréquence avec un modèle Poisson avec fonction de lien log.
+
+
+\section{Modélisation de données binomiales}
+
+
+
+
+
+\subsection{Cas Bernouilli}
+
+\subsubsection*{Tableau de mauvaise classification}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+  & \multicolumn{2}{c|}{Prédiction $\hat{Y}_i$} \\ \hline
+Vrai $Y_i$ & 0 & 1 \\ 
+  \hline
+0 & $a$ & $b$ \\ 
+  1 & $c$ & $d$ \\ 
+   \hline
+\end{tabular}
+\end{center}
+En forçant $\hat{Y}_i$ tel que
+\begin{align*}
+\hat{Y}_i = 
+\begin{cases}
+0	& , \hat{\pi}_i < \tau \\
+1	& , \hat{\pi}_i \geq \tau \\
+\end{cases}
+\end{align*}
+On peut calculer la statistique de \textbf{sensitivité} (i.e. le taux de bonne classificiation des vrais 1) et de \textbf{spécificité} (i.e. le taux de bonne classification des vrais 0) : 
+\begin{align*}
+\text{Sensitivité}	& = \alpha(\tau) = \frac{d}{c+d} \\
+\text{Spécificité}	& = \beta(\tau) = \frac{a}{a+b} \\
+\end{align*}
+
+
+
+
+
+
+\end{multicols*}
+%% -----------------------------
+%% Fin du document
+%% -----------------------------
+\end{document}

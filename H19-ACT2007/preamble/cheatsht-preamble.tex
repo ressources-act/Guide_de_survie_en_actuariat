@@ -1,0 +1,211 @@
+% !TEX encoding = UTF-8 Unicode
+% LaTeX Preamble
+% Author : Gabriel Crépeault-Cauchon
+
+% HOW-TO : copy-paste this file in the same directory as your .tex file, and add in your preamble the next command right after you have specified your documentclass : 
+% \input{preamble-cheatsht.tex}
+% ---------------------------------------------
+% ---------------------------------------------
+
+%% -----------------------------
+%% Encoding packages
+%% -----------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{lmodern}
+
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+
+
+\def\cours{Mathématiques actuarielles Vie II}
+\def\sigle{ACT-2007}
+\def\session{Hiver 2019}
+\def\auteur{Gabriel Crépeault-Cauchon // Nicholas Langevin // Alexandre Turcotte}
+\def\BackgroundColor{white}
+\def\SectionColor{burntorange}
+\def\SubSectionColor{burntsienna}
+
+
+%% -----------------------------
+%% Margin and layout
+%% -----------------------------
+% Determine the margin for cheatsheet
+\usepackage[landscape, hmargin=1cm, vmargin=1.7cm]{geometry}
+\usepackage{multicol}
+
+% Remove automatic indentation after section/subsection title.
+\setlength{\parindent}{0cm}
+
+% Save space in cheatsheet by removing space between align environment and normal text.
+\usepackage{etoolbox}
+\newcommand{\zerodisplayskips}{%
+  \setlength{\abovedisplayskip}{0pt}%
+  \setlength{\belowdisplayskip}{0pt}%
+  \setlength{\abovedisplayshortskip}{0pt}%
+  \setlength{\belowdisplayshortskip}{0pt}}
+\appto{\normalsize}{\zerodisplayskips}
+\appto{\small}{\zerodisplayskips}
+\appto{\footnotesize}{\zerodisplayskips}
+
+%% -----------------------------
+%% URL and links
+%% -----------------------------
+\usepackage{hyperref}
+\hypersetup{colorlinks = true, urlcolor = gray!70!white, linkcolor = black}
+
+%% -----------------------------
+%% Document policy (uncomment only one)
+%% -----------------------------
+%	\usepackage{concrete}
+	\usepackage{mathpazo}
+%	\usepackage{frcursive} %% permet d'écrire en lettres attachées
+%	\usepackage{aeguill}
+%	\usepackage{mathptmx}
+%	\usepackage{fourier} 
+
+%% -----------------------------
+%% Math configuration
+%% -----------------------------
+\usepackage[fleqn]{amsmath}
+\usepackage{amsthm,amssymb,latexsym,amsfonts}
+\usepackage{empheq}
+\usepackage{numprint}
+
+% Mathematics shortcut
+\newcommand{\reels}{\mathbb{R}}
+\newcommand{\entiers}{\mathbb{Z}}
+\newcommand{\naturels}{\mathbb{N}}
+\newcommand{\eval}{\biggr \rvert}
+\usepackage{cancel}
+\newcommand{\derivee}[1]{\frac{\partial}{\partial #1}}
+\newcommand{\prob}[1]{\Pr \left( #1 \right)}
+\newcommand{\esp}[1]{\mathrm{E} \left[ #1 \right]}
+\newcommand{\variance}[1]{\mathrm{Var} \left( #1 \right)}
+\newcommand{\covar}[1]{\mathrm{Cov} \left( #1 \right)}
+\newcommand{\laplace}{\mathcal{L}}
+
+% To indicate equation number on a specific line in align environment
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+% Actuarial notation package
+\usepackage{actuarialsymbol}
+\usepackage{actuarialangle}
+
+% Matricial anotation for math symbols (\bm{•})
+\usepackage{bm}
+% matricial notation variable (bold style)
+\newcommand{\matr}[1]{\mathbf{#1}}
+
+
+
+%% -----------------------------
+%% tcolorbox configuration
+%% -----------------------------
+\usepackage{tcolorbox}
+\tcbuselibrary{xparse}
+\tcbuselibrary{breakable}
+
+%% Définition boite pour définition
+\DeclareTColorBox{definition}{ o }% #1 parameter
+{colframe=\SectionColor ,colback=\BackgroundColor , % color of the box
+breakable, pad at break*=0mm, % to split the box
+title = {#1},
+after title = {\large \hfill \faBook}
+}
+
+%% -----------------------------
+%% Graphics and pictures
+%% -----------------------------
+\usepackage{graphicx}
+\usepackage{pict2e}
+
+%% -----------------------------
+%% insert pdf pages into document
+%% -----------------------------
+\usepackage{pdfpages}
+
+%% -----------------------------
+%% Color configuration
+%% -----------------------------
+\usepackage{color, soulutf8, colortbl}
+
+
+% New color definition
+% Source : http://latexcolor.com
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{burntsienna}{rgb}{0.91, 0.45, 0.32}
+
+% usefull shortcut for colored text
+\newcommand{\orange}{\textcolor{orange}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\cyan}{\textcolor{cyan}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\green}{\textcolor{green}}
+\newcommand{\purple}{\textcolor{magenta}}
+\newcommand{\yellow}{\textcolor{yellow}}
+
+
+%% -----------------------------
+%% Enumerate environment configuration
+%% -----------------------------
+% Custum enumerate & itemize Package
+\usepackage{enumitem}
+% French Setup for itemize function
+\frenchbsetup{StandardItemLabels=true}
+% Change default label for itemize
+\renewcommand{\labelitemi}{\faAngleRight}
+
+%% -----------------------------
+%% Tabular column type configuration
+%% -----------------------------
+\newcolumntype{C}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{R}{>{$}r<{$}} % math-mode version of "r" column type
+\newcolumntype{f}{>{\columncolor{green!20!white}}p{1cm}}
+% configuration to force a line break within a single cell
+\usepackage{makecell}
+
+
+
+%% -----------------------------
+%% Fontawesome for special symbols
+%% -----------------------------
+\usepackage{fontawesome}
+
+%% -----------------------------
+%% Section Font customization
+%% -----------------------------
+\usepackage{sectsty}
+\sectionfont{\color{\SectionColor}}
+\subsectionfont{\color{\SubSectionColor}}
+
+%% -----------------------------
+%% Footer/Header Customization
+%% -----------------------------
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\fancyhead{} 	% Reset
+\fancyhead[L]{Aide-mémoire pour~ \cours ~(\textbf{\sigle})}
+\fancyhead[R]{\auteur}
+
+% Footer
+\fancyfoot{}		% Reset
+\fancyfoot[R]{\thepage ~de~ \pageref{LastPage}}
+\fancyfoot[L]{\href{https://github.com/gabrielcrepeault/latex-template}{\faGithub \ gabrielcrepeault/latex-template}}
+
+% page background color
+\pagecolor{\BackgroundColor}
+
+
+
+
+
+
+%% END OF PREAMBLE
+% ---------------------------------------------
+% ---------------------------------------------

@@ -1,0 +1,616 @@
+%% Aide-mémoire
+\documentclass[10pt, french, landscape]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+
+\def\cours{Processus stochastique}
+\def\sigle{ACT-2009}
+\def\session{Automne 2018}
+\def\auteur{Gabriel Crepeault-Cauchon / Nicholas Langevin}
+\def\BackgroundColor{white}
+\def\SectionColor{blue!80!white}
+\def\SubSectionColor{blue!30!black}
+\input{../../preamble-template/cheatsht-preamble.tex}
+
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+
+\small
+\begin{multicols*}{3} % Nombre de colonnes (peut être changé plus tard.)
+\section{Probabilités conditionnelles}
+\begin{enumerate}[label=\faAngleRight]
+\item Rappel théorème de Bayes : 
+\begin{align*}
+\prob{A | B} = \frac{\prob{A \cap B}}{\prob{B}} = \frac{\prob{B|A} \prob{A}}{\prob{B}}
+\end{align*}
+
+\item Distribution conditionnelle : 
+\begin{align*}
+\prob{X_1 = x_1 | X_2 = x_2} & = \frac{\prob{X_1 = x_1, X_2 = x_2}}{\prob{X_2 = x_2}} \\
+\end{align*}
+
+\item L'espérance d'une fonction conditionnelle : 
+\begin{align*}
+\esp{g(X_1) | X_2 = x_2} = \sum_{i=0}^{\infty} g(x) \prob{X_1 = x_1 | X_2 = x_2}
+\end{align*}
+
+\item La variance d'une fonction conditionnelle :
+\begin{align*}
+\mathrm{Var} (g(X_1) | X_2) = \esp{g(X_1)^2 |X_2} - \esp{g(X_1) | X_2}^2
+\end{align*}
+
+\item L'espérance conditionnelle : 
+\begin{align*}
+\esp{X_1} 	& = \esp{\esp{X_1 | X_2}} = \sum_{x_2 = 0}^{\infty} \esp{X_1 | X_2} \prob{X_2 = x_2} \\
+\esp{X_1}	& = \esp{\esp{X_1 | X_2}} = \int_{-\infty}^{\infty} \esp{X_1 | X_2} f_{X_2}(x_2) d x_2 \\
+\end{align*}
+
+\item La variance conditionnelle : 
+\begin{align*}
+\mathrm{Var} (X_1) = \esp{\mathrm{Var} (X_1 | X_2)} + \mathrm{Var} \left( \esp{X_1 | X_2} \right)
+\end{align*}
+\end{enumerate}
+
+Lorsqu'il y a 3 v.a., l'espérance devient
+\begin{align*}
+\esp{X_1 | X_2}	& = \esp{\esp{X_1 | X_2, X_3} | X_2} \\
+	& = \sum_{x_3 = 0}^{\infty} \esp{X_1 | X_2, X_3} \prob{X_3 = x_3 | X_2 = x_2} \\
+	& = \int_{-\infty}^{\infty} \esp{X_1 | X_2, X_3} f_{X_3| X_2}(x_3 | x_2) dx_3
+\end{align*}
+La variance conditionnelle devient
+\begin{align*}
+Var(X_1) = \esp{Var(X_1 | X_2, X_3)}  + \mathrm{Var} \left( \esp{X_1 | X_2, X_3} \right)
+\end{align*}
+De plus,
+\begin{align*}
+\covar{X, Y} = \esp{\covar{X, Y | Z}} + \covar{\esp{X | Z}, \esp{Y | Z}}
+\end{align*}
+
+\subsection*{Poisson composée}
+\begin{enumerate}[label=\faAngleRight]
+\item Soit $S = X_1 + ... + X_N$, où les $X_i$ sont \textit{iid}, $N \sim Pois(\lambda)$ est stochastiquement indépendant des $X_i$. Alors, on a
+\begin{align*}
+\esp{S h(S)} = \lambda \esp{X h(S+X)}
+\end{align*}
+
+\item On peut aussi trouver que
+\begin{align*}
+\esp{S^n} = \lambda \sum_{j=0}^{n-1} \binom{n-1}{j} \esp{S^j} \esp{X^{n-j}}
+\end{align*}
+\end{enumerate}
+
+\subsection*{Mesures de risque}
+\begin{enumerate}[label=\faAngleRight]
+\item Value-At-Risk ($VaR$) : représente le quantile au niveau $\kappa$ de $X$.
+\begin{align*}
+VaR_\kappa(X) = F_X^{-1}(\kappa) = \inf \{ x \geq 0 : F_X(x) \geq \kappa \}
+\end{align*}
+
+\item Tail Value-At-Risk (aussi appelée \textit{Conditional Tail Expectation})  : représente la perte moyenne de $X$, sachant qu'elle est au dessus de la valeur $VaR_\kappa(X)$.
+\begin{align*}
+TVaR_\kappa(X) & = \esp{X | X > VaR_\kappa(X)} \\
+	& = \int_{0}^{\infty} x f_{X | X > VaR_\kappa(X)}(x) dx \\
+	& = \int_{VaR_\kappa(X)}^{\infty} \frac{x f_X(x)}{\overline{F}_X(VaR_\kappa(X))} dx \\
+	& = \frac{1}{1 - \kappa} \int_{VaR_\kappa(X)}^{\infty} x f_X(x) dx \\
+\end{align*}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Chaînes de Markov}
+\subsection*{Définition}
+Une chaîne de Markov est homogène si
+\begin{align*}
+\prob{X_{n+1} = j | X_{n}=i, ..., X_0 = i_0} & = \prob{X_{n+1} = j | X_n = i}  \\
+ & = p_{ij} \\
+\end{align*}
+On définit la matrice des probabilités de transition
+\begin{align*}
+P = [p_{ij}]_{i \times j}  
+\end{align*}
+
+\subsection*{Équation de Chapman-Kolmogorov}
+\begin{align*}
+p_{ij}^{(n)} 	& = \prob{X_{k+n} = j | X_k = i} \\
+p_{ij}^{(n+m)} 	& = \sum_{k=0}^{\infty} p_{ik}^{(n)} p_{kj}^{(m)} \\
+\end{align*}
+Note : soit $P$ la matrice des probabilités de transition. On peut trouver $P^{(n+m)} = P^{(n)} \cdot P^{(m)}$, avec $P^{(n)} = P^n = P\cdot P \cdot P \cdot ... \cdot P$.
+
+\begin{align*}
+\prob{X_n = j} & = \sum_{i=0}^{\infty} p_{ij}^{(n)} p_{x_0}(i) \\
+	& = \sum_{i=0}^{\infty} \prob{X_n = j | X_0 = i} \prob{X_0 = i} \\
+\end{align*}
+
+\subsection*{États accessibles et communicants}
+\begin{enumerate}[label=\faAngleRight]
+\item $j$ est accessible de $i$ si $p_{ij}^{(n)} >0$, pour $n \in \naturels$.
+
+\item si $i$ et $j$ sont accessibles réciproquement ($i \leftrightarrow i$), alors ils sont \textbf{communicants}. Ils forment donc une classe (ainsi que les autres états communicants).
+
+\item Une chaîne de Markov est dite \underline{irréductible} si elle est composée d'une seule classe.
+\end{enumerate}
+
+\subsubsection*{Propriété d'une classe}
+\begin{enumerate}[label=\faCheck]
+\item Réflexibilité : $p_{ii}^{(0)} = 1$.
+\item Symétrie : $i \leftrightarrow j$ est équivalent à $j \leftrightarrow i$.
+\item Transitivité : si $i$ communique avec $j$ (i.e. $p_{ij}^{(n)} >0$) et que $j$ communique avec $k$ (i.e. $p_{jk}^{(m)}>0$), alors
+\begin{align*}
+p_{ik}^{(n+m)} = \sum_{r=0}^{\infty} p_{ir}^{(n)} p_{rk}^{(m)} \geq p_{ij}^{(n)} p_{jk}^{(m)} > 0
+\end{align*}
+\end{enumerate}
+
+\subsection*{États récurrents, transcients et absorbants}
+\begin{enumerate}[label=\faAngleRight]
+\item $f_{ii}$ : probabilité de revenir éventuellement à l'état $i$ en ayant comme point de départ $i$.
+\item Si $f_{ii} = 1$, $i$ est récurrent. Si $f_{ii} < 1$, alors $i$ est transcient.
+\item Aussi, si $\sum_{n=1}^{\infty} p_{ii}^{(n)} = \infty$, alors $i$ est récurrent. Sinon, il est transcient.
+\item Si l'état $i$ est récurrent et que $i \leftrightarrow j$, alors $j$ est récurrent aussi.
+\item $f_{ii}^{(n)}$ : probabilité de revenir à l'état $i$ pour la première fois après $n$ étapes.
+\item Une chaîne de Markov irréductible avec espace d'état fini \textbf{n'a que des états récurrents}.
+\item \textbf{État absorbant} : $j$ est un état absorbant si $p_{jj} = 1$. De plus, Si $j$ est un état absorbant, alors
+\begin{align*}
+f_{ij} = \sum_{k=0}^{m} p_{ik} f_{kj}
+\end{align*}
+\end{enumerate}
+
+\subsection*{Probabilité limites}
+\begin{enumerate}[label=\faAngleRight]
+\item \textbf{État périodique} : si l'état a une période $d$, alors il sera possible de revenir à cet état après $n$ étapes, qui est un multiple de $d$. i.e
+\begin{align*}
+d(i) = P.G.C.D\{n \in \naturels ~ | ~ p_{ii}^{(n)} > 0 \}
+\end{align*}
+\item si $d(i)=1$, alors l'état $i$ est \textbf{apériodique}.
+\item La périodicité est une propriété de classe : si $i \leftrightarrow j$, alors $d(i) = d(j)$.
+\item Le temps de retour moyen pour l'état $i$ est défini par
+\begin{align*}
+\mu_{ii} = \sum_{n=1}^{\infty} n f_{ii}^{(n)}
+\end{align*}
+avec $\pi_i = \frac{1}{\mu_{ii}}$
+
+\item \textbf{État récurrent positif} : si, à partir de l'état $i$, le temps de retour moyen $\mu_{ii}$ à l'état $i$ est fini, alors l'état $i$ est récurrent positif.
+
+\item \textbf{État ergodique} : un état qui est à la fois apériodique et récurrent positif.
+
+\item Si une Chaîne de Markov est irréductible et que tout ses états sont ergodiques, alors
+\begin{enumerate}[label=(\arabic*)]
+	\item $	\lim_{n \to \infty} p_{ij}^{(n)} = \pi_j < \infty$
+	\item $\pi_j = \sum_{i=0}^{\infty} \pi_i p_{ij}$
+	\item $\sum_{j=0}^{\infty} \pi_j = 1$
+\end{enumerate}
+
+\item On peut alors résoudre un système d'équations pour trouver nos $\pi_i$.
+\end{enumerate}
+
+\section{Processus de Poisson}
+Soit $N(t)$ le nombre d'évènements qui se sont produits dans l'intervalle $t$.
+
+\subsection*{Définitions}
+\begin{definition}[Définition 1]
+Un processus de dénombrement $\{N(t) ; t \geq 0 \}$ est dit un processus de Poisson avec $\lambda >0$ ssi
+\begin{enumerate}[label=(\arabic*)]
+\item $N(0)=0$
+\item Le processus a des accroissements indépendants, i.e pour $0 \leq t_1 \leq t_2 < t_3$, les accroissements $(N(t_3) - N(t_2))$ et $(N(t_2)-N(t_1))$ sont stochastiquement indépendants.
+\item $\forall t \ $, $(N(s+t) - N(s)) \sim Pois(\lambda t)$. Alors,
+\begin{align*}
+\prob{N(s+t) - N(s) = n} = \frac{(\lambda t)^n e^{-\lambda t}}{n!}
+\end{align*}
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Définition 2]
+Un processus de dénombrement $\{N(t) ; t \geq 0 \}$ est dit un processus de Poisson avec $\lambda>0$ ssi
+\begin{enumerate}[label=(\arabic*)]
+\item $N(0)=0$
+\item a des accroissements indépendants et stationnaires
+\item $\prob{N(h) = 1} = \lambda h + o(h)$
+\item $\prob{N(h) \geq 2} = o(h)$
+\end{enumerate}
+Avec $o(h)$ une fonction où $f(h) = o(h)$ si $\lim_{n \to \infty} \frac{f(h)}{h} = 0$.
+\end{definition}
+On peut prouver que ces 2 définitions sont équivalentes.
+
+\subsubsection*{Rappels sur la loi de Poisson}
+La fonction génératrice des moments de $X \sim Pois(\lambda)$ est
+\[ M_X(t) = \esp{e^{tX}}  = e^{-\lambda(e^{t} -1)} \]
+
+
+\subsection*{Temps séparant 2 évènements successifs}\begin{enumerate}[label=\faAngleRight]
+\item Soit $T_i$ le temps entre le $(i-1)$\up{e} et le $i$\up{e} évènement.
+
+\item Alors, $T_n \sim Exp (\lambda)$.
+
+\item Soit $S_n$ le moment où se produit le $i$\up{e} évènement. On a
+\begin{align*}
+S_n = \sum_{i=1}^{n} T_i
+\end{align*}
+\item On peut facilement prouver que $S_n \sim \Gamma(n, \lambda)$.
+
+\item Si $N(t) \geq n$, alors nécessairement $S_n \leq t$.
+\end{enumerate}
+
+\subsection*{Processus de Poisson avec évènements de type I et II}
+\begin{enumerate}[label=\faAngleRight]
+\item Soit un Processus de Poisson $\{N(t) ; t \geq 0 \}$ où il peut y avoir un évènement de type I avec probabilité $p$ ou un de type II avec probabilité $q$.
+\item Nécessairement, on a
+\begin{align*}
+N(t) = N_1(t) + N_2(t)
+\end{align*}
+Avec $N_1(t)$ et $N_2(t)$ qui sont stochastiquement indépendants.
+
+\item $N_i(t) \sim Pois(\lambda p_i t)$, où $p_i$ est la probabilité que l'évènement de type $i$ se produise.
+\end{enumerate}
+
+
+\subsection*{Distribution conditionnelle des temps d'occurence}
+\begin{itemize}
+\item Pour un processus de Poisson $\{ N(t) ; t \geq 0 \}$, la distribution conditionnelle des temps d'occurence $S_1, ... S_n$ sachant que $N(t) = n$ est définie par
+\begin{align*}
+f_{S_1, ..., S_n | N(t)}(s_1, ..., s_n | n) = \frac{n!}{t^n}
+\end{align*}
+pour $0 < s_1 < ... < s_n$.
+
+\item La distribution de $S_1, ..., S_n | N(t) = n$ a la même distribution que les statistiques d'ordre : 
+\begin{align*}
+U_{(1)}, ..., U_{(n)} \sim U(0,t)
+\end{align*}
+\end{itemize}
+
+\subsection*{Processus de Poisson non-homogène}
+\begin{definition}[Définition]
+Un processus de dénombrement $\{ N(t) ; t \geq 0 \}$ est dit être un processus de Poisson non-homogène avec fonction d'intensité $\lambda(t)$ si
+\begin{enumerate}[label=(\arabic*)]
+\item $N(0) = 0$ ;
+\item $\{ N(t) ; t \geq 0 \}$ a des accroissements indépendants ;
+\item $\prob{N(t+h) - N(t) = 1} = \lambda(t) h + o(h)$ ;
+\item $\prob{N(t+h) - N(t) \geq 2} = o(h)$ où $o(h)$ est une fonction négligeable.
+\end{enumerate}
+\end{definition}
+
+\subsubsection*{Proposition 1}
+\[\prob{N(t+s) - N(t) = n}  = \frac{\left(m(t+s) - m(s) \right)^n}{n!} e^{-(m(t+s) - m(s))} \]
+où $m(t) = \int_{0}^{t} \lambda(x) dx$. On a alors que
+\[N(t+s) - N(s) \sim Pois(m(t+s) - m(s))\]
+
+
+\subsubsection*{Proposition 2}
+Si $S_n$ désigne le temps d'occurence du $n$\up{e} évènement, alors
+\[f_{S_n}(t) = \lambda(t) \frac{m(t)^{n-1}}{(n-1)!} e^{-m(t)} \]
+
+\subsubsection*{Proposition 3}
+Si $T_n = S_{n} - S_{n-1}$, alors on a, pour $n \geq 2$,
+\[f_{T_n}(t) = \frac{1}{(n-2)!} \int_{0}^{\infty} \lambda(s) \lambda(t+s) m(s)^{n-2} e^{-m(t+s)} ds \]
+\subsection*{Processus de Poisson composé}
+\begin{definition}[Définition]
+Un processus stochastique $\{ N(t) ; t \geq 0  \}$ est dit être un processus de Poisson composé s'il peut être représenté comme suit : 
+\[X(t) = \sum_{i=1}^{N(t)} Y_i\]
+où $\{ N(t) ; t \geq 0  \}$ est un Processus de Poisson avec paramètre $\lambda > 0$ et $\{ Y_i ; i \in \naturels \}$ est une suite de v.a. \emph{iid} indépendantes de $N(t)$.
+\end{definition}
+
+\subsubsection*{Proposition 1}
+Soit $\{ X(t) ; t \geq 0 \}$ un processus de Poisson composé avec paramètre $\lambda > 0$ et supposons que $\prob{Y_i = \alpha_j} = p_j$, $\sum p_j = 1$. Alors,
+\[X(t) = \sum_j \alpha_j N_j(t) \]
+où $N_j(t)$ est le nombre de fois que se produit l'évènement $\alpha_j$ dans l'intervalle de temps $[0,t]$, et $\{N(t) ; t \geq 0  \}$ forme une suite de v.a. indépentantes telles que $N_j(t) \sim Pois(\lambda p_j t)$. \\
+Lorsque $t \to \infty$, alors $X(t)$ est asymptotiquement normal, i.e.
+\[X(t) \sim \mathcal{N}\left( \lambda t \esp{Y}, \lambda t \esp{Y^2} \right)\]
+
+\subsubsection*{Proposition 2}
+Si $\{ X(t) ; t \geq 0 \}$ et $\{ Y(t) ; t \geq 0 \}$ sont 2 processus de Poisson composés indépendants avec paramètres et fonctions de répartition $\lambda_1, F_{X_1}$ et $\lambda_2, F_{Y_1}$ respectivement, alors $\{ X(t) + Y(t) ; t \geq 0 \}$ est aussi un processus de Poisson composé avec paramètre $\lambda_1  \lambda_2$ et fonction de répartition $F_{X_1 + Y_1}$ telle que
+\[F_{X_1 + Y_1} = \frac{\lambda_1 F_{X_1} + \lambda_2 F_{Y_1}}{\lambda_1 + \lambda_2}  \]
+
+\subsection*{Processus de Poisson conditionnel}
+\begin{definition}[Définition]
+Un processus de dénombrement avec un taux aléatoire $\Lambda > 0$ est un processus de Poisson conditionnel si $\{ N(t) | \Lambda = \lambda ; t \geq 0 \}$ est un processus de Poisson avec taux $\lambda > 0$.
+\end{definition}
+
+\subsubsection*{Rappel sur la loi Gamma}
+La fonction de répartition de la loi Gamma, lorsque $\alpha \in \entiers$, est définie par
+\[F_X(x) = 1 - \sum_{k=1}^{\alpha-1} \frac{(\lambda x)^k e^{-\lambda x}}{k!}\]
+De plus, on a $\Gamma(\alpha) = (\alpha-1)!$ et $\Gamma(\alpha) = (\alpha - 1) \Gamma(\alpha - 1)$. Aussi, la transformée de Laplace pour $X \sim \Gamma(\alpha, \theta)$ est
+\[\laplace_X(s) = \esp{e^{-s X}}  = \left( \frac{\lambda}{\lambda + s} \right)^{\alpha} \]
+
+\subsubsection*{Remarques importantes}
+\begin{enumerate}[label=(\arabic*)]
+\item Un processus de Poisson conditionnel a des accroissements stationnaires (i.e. l'accroissement ne dépend pas d'où on est, mais plutôt de l'intervalle de temps) ; 
+\item Mais le processus de Poisson conditionnel n'a pas nécessairement des accroissements indépendants ;
+\item Identité Poisson-Gamma : si on a $\Lambda \sim \Gamma(m, \theta)$, alors\footnote{Être capable de faire cette démonstration pour l'examen}
+\[N(t) \sim NB\left(r = m, p = \frac{\theta}{\theta + t} \right) \]
+
+\item L'espérance et la variance d'un processus de Poisson conditionnel sont définies par
+\begin{align*}
+\esp{N(t)} & = t \esp{\Lambda} \\
+\variance{N(t)} & =  t \esp{\Lambda} + t^2 \variance{\Lambda}
+\end{align*}
+
+\item En utilisant le théorème de Bayes, on peut trouver la fonction de répartition $F_{\Lambda | N(t)}(x | n)$ et fonction de densité $f_{\Lambda | N(t)}(x | n)$ telles que
+\begin{align*}
+F_{\Lambda | N(t)}(x | n)	& = \frac{\prob{\Lambda \leq x | N(t) = n}}{\prob{N(t) = n}} \\
+& = \frac{\prob{N(t) = n | \Lambda} f_\Lambda(\lambda) d \lambda}{\int_{0}^{\infty} \prob{N(t) = n | \Lambda = \lambda} f_\Lambda(\lambda) d\lambda} \\
+\end{align*}
+
+\item On a, $\forall t > 0$,
+\begin{align*}
+\prob{N(t) > n} = \int_{0}^{\infty} \overline{F}_{\Lambda}\left( \frac{x}{n} \right) \frac{x^n}{n!} e^{-x} dx
+\end{align*}
+\end{enumerate}
+
+\section{Processus de renouvellement}
+\subsection*{Définitions générales}
+\begin{itemize}
+\item $T_n$ : intervalle de temps entre le $(n-1)$\up{e} et le $n$\up{e} renouvellement ;
+\item $S_n = \sum_{i=1}^{n} T_i$ : le temps d'occurence du $n$\up{e} renouvellement. On va souvent noter $S_{N(t)}$, avec $N(t)$ comme temps d'arrêt du processus\footnote{$N(t)$ est le temps d'arrêt dans le sens où on cesse le processus de dénombrement lorsqu'on atteint $N(t)$.} ;
+
+\item $\mu = \esp{T_i}$ : temps moyen d'attente entre 2 renouvellements ;
+\end{itemize}
+
+\subsection*{Distribution de $N(t)$}
+On définit $N(t)$ comme $N(t) = \max \{ n : S_n \leq t \}$. Alors,
+\begin{align*}
+\prob{N(t) = n} = F_T^{\ast n}(t) - F_T^{\ast(n+1)}(t)
+\end{align*}
+Dans le cas où $T \sim Erlang(m, \lambda)$, alors
+\[\prob{N(t) = n}  = \sum_{k=mn}^{m(n+1) - 1} \frac{(\lambda x)^k e^{-\lambda x}}{k!} \]
+
+\subsection*{Fonction de renouvellement}
+La fonction de renouvellement est le nombre moyen d'occurences dans l'intervalle $[0,t]$  :
+\[m(t) = \esp{N(t)} = \sum_{n=1}^{\infty} F_T^{\ast(n)}(t)  \]
+
+\subsubsection*{Solution de l'équation de renouvellement}
+$m(t)$ satisfait \emph{l'équation de renouvellement}, soit
+\[m(t) = F_T(t) + \int_{0}^{t} m(t-x) f_T(x) dx  \]
+
+\subsubsection*{Relation biunivoque entre $m(t)$ et $F_T$}
+Avec la transformée de Laplace de $m(t)$, $\hat{m}(s)$, on a
+\begin{align*}
+\hat{m}(s) &  = \frac{\hat{f}_T(s)}{s} + \hat{m}(s) \hat{f}_T(s) \\
+& = \frac{\hat{f}(s)}{s\left(1 - \hat{f}(s)    \right)}
+\end{align*}
+
+
+\subsection*{Théorèmes limites}
+\begin{enumerate}[label=(\arabic*)]
+\item On a que $N(\infty) = \infty$ avec probabilité 1. De plus,
+\begin{align*}
+\frac{N(t)}{t} \underset{t \to \infty}{\longrightarrow} \frac{1}{\esp{T}}
+\end{align*}
+avec une probabilité \emph{presque certaine}.
+
+\item \emph{Théorème élémentaire du renouvellement} : avec $t \to \infty$, on a
+\[\frac{m(t)}{t} \underset{t \to \infty}{\longrightarrow} \frac{1}{\esp{T}} \]
+
+\item Lorsque $t \to \infty$, $N(t)$ est aymptotiquement normale, telle que
+%\begin{align*} % version sous forme de \Phi
+%\frac{N(t) - \frac{t}{\esp{T}}}{\sqrt{\frac{t \variance{T}}{\esp{T}^3}}} \sim \mathcal{N} (0,1)
+%\end{align*}
+
+\begin{flalign*} % version 2
+N(t) \sim \mathcal{N} \left( \frac{t}{\esp{T}},  \frac{t \variance{T}}{\esp{T}^3}   \right)
+\end{flalign*}
+\end{enumerate}
+
+\subsection*{Équation de renouvellement}
+De façon générale, si on a une équation intégrale d'une fonction $g(t)$ telle que
+\[g(t) = h(t) + \int_{0}^{t} g(t-x) dF_T(x) \]
+Alors, la seule solution est
+\[g(t) = h(t) + \int_{0}^{t} h(t-x) d m(x) \]
+
+\subsection*{Distribution de $S_{N(t)}$}
+On peut définir la fonction de répartition et l'espérance de $S_{N(t)}$ comme
+\[F_{S_{N(t)}}(x) = \overline{F}_T(t) + \int_{0}^{x} \overline{F}_T(t-y) dm(y)  \]
+et
+\[\esp{S_{N(t)}}  = t F_T(t) - \int_{0}^{t} (t-y)\overline{F}_T(t-y) d m(y) \]
+De plus, selon l'équation de Wald\footnote{l'équation de Wald se base sur le concept que $S_n = \sum_{i=1}^{N(t)} T_i$, très semblable au modèle fréquence-sévérité.},
+\[\esp{S_{N(t) + 1}} = \esp{T}(m(t) + 1)\]
+
+\subsection*{Key renewal theorem}
+\[\lim_{t \to \infty} \int_{0}^{t} h(t-x) d m(x) = \frac{1}{\esp{T}} \int_{0}^{\infty} h(x) dx \]
+
+\subsection*{Processus de renouvellement avec délai}
+\begin{itemize}
+\item Soit $\{ T_n : n \in \naturels \}$ des temps entre des renouvellements succesifs qui sont \emph{iid} tel que $F_{T_n}(t) = F_{T_2}(t)$ pour $n \geq 2$ et $F_{T_1(t)} \neq F_{T_2}(t)$. Alors $\{N_d(t) ; t \geq 0 \}$ est dit être un processus de renouvellement avec délai. 
+
+\item La distribution de $N_d(t)$ est
+\[\prob{N_d(t) = n} = F_{T_1} \ast F_{T_2}^{\ast(n-1)}(t) - F_{T_1} \ast F_{T_2}^{\ast (n)}(t)  \]
+
+\item la fonction de renouvellement $m_d(t)$ est donc
+\[m_d(t) = \sum_{n=1}^{\infty} F_{T_1} \ast F_{T_2}^{\ast (n-1)}(t)  \]
+
+\item De plus, $m_d(t)$ satisfait aussi l'équation de renouvellement, telle que
+\[m_d(t) = F_{T_1}(t) + \int_{0}^{t}  m_o(t-x) f_{T_1}(x) dx \]
+où $m_o(t)$ est la fonction de renouvellement d'un processus de renouvellement ordinaire qui débute à $T_2$.
+\end{itemize}
+
+\subsection*{Processus de renouvellement \emph{stationnaire}}
+\begin{itemize}
+\item Un processus de renouvellement $\{ N_e(t) ; t \geq 0 \}$ est dit stationnaire si
+\[F_{T_1} = F_e(t) = \frac{\int_{0}^{t} \overline{F}_{T_2}(x) dx  }{\esp{T_2}}\]
+
+\item La fonction de renouvellement $m_e(t)$ est définie par
+\[m_e(t) = \esp{N_e(t)} = \frac{t}{\esp{T_2}} \]
+
+\item La distribution de $N_e(t)$ est définie par
+\[\prob{N_e(t+h) - N_e(t) = n} = \prob{N_e(h) = n}\]
+Car les accroissements sont stationnaires.
+\end{itemize}
+
+\subsection*{Processus de renouvellement alterné}
+\begin{itemize}
+\item Soit la suite $\{ (T_n, T_n') ; n \in \naturels \}$ des vecteurs \emph{iid} où les composantes $(T_n, T_n')$ peuvent être dépendantes. $T_n$ représente un intervalle de temps dans lequel le processus (de renouvellement) est \emph{on} et $T_n'$ un intervalle de temps où le processus est \emph{off}.
+
+\item On peut donc définir 2 processus  (\emph{on} et \emph{off}) :  
+\begin{itemize}
+	\item $\{ N_1(t) ; t \geq 0 \}$ est un processus de renouvellement \emph{avec délai} généré par la suite des temps $\{ T_1, T_n' + T_{n+1} ; n \in \entiers \}$, et sa fonction de renouvellement est
+	\begin{align*}
+	m_1(t) & = \sum_{n=1}^{\infty} F_{T_1} \ast F_{T_2 + T_1'}
+	^{\ast(n-1)}(t) \\
+	& = \sum_{n=1}^{\infty} F_{T_1}^{\ast(n)}(t) \ast F_{T_1'}^{\ast(n-1)}(t) \\
+	\end{align*}
+	\item 	$\{ N_2(t) ; t \geq 0 \}$ est un processus de renouvellement \emph{ordinaire} généré par la suite des temps $\{ T_n + T_n'; n \in \entiers \}$, et sa fonction de renouvellement est
+	\begin{align*}
+	m_2(t) &= \sum_{n=1}^{\infty} F_{T_1 +  T_1'}^{\ast(n)}(t) = \sum_{n=1}^{\infty} F_{T_1}^{\ast(n)} \ast F_{T_1'}^{\ast(n)}(t) \\
+	\end{align*}
+\end{itemize}
+\item \textbf{Proposition 1 : } Supposons que $T_n$ est indépendant de $T_n'$, $\forall n \in \naturels$ et soit $p_i(t)$ la probabilité que le processus de renouvellement alterné soit dans l'état $i$ au temps $t$, $i=1,2$. Alors,
+\[p_1(t) = m_2(t) - m_1(t) + 1 = 1 - p_2(t) \]
+
+\item \textbf{Proposition 2 : } Avec les mêmes hypothèses qu'à la proposition 1, on a
+\[\lim_{t \to \infty} p_1(t) = \frac{\esp{T_1}}{\esp{T_1} + \esp{T_1'}} = 1 - \lim_{t \to \infty} p_2(t) \]
+\end{itemize}
+
+\subsection*{Application : somme de renouvellements avec réclamations escomptées}
+\begin{itemize}
+\item On considère le processus des réclamations escomptées à $t=0$, soit $\{ Z(t) ; t \geq 0 \}$, défini par
+\[Z(t) = \sum_{k=1}^{N(t)} e^{-\delta S_k} X_k  \]
+où
+\begin{itemize}
+	\item $\{N(t) ; t \geq 0 \}$ un processus de renouvellement ordinaire ;
+	\item $S_k$ est le moment où se produit la $k$\up{e} réclamation ;
+	\item La suite $\{ X_n ; n \in \entiers \}$ de v.a. \emph{iid} et indépendantes de $N(t)$ représentant les montants de réclamations ;
+	\item $\delta$ est la force d'intérêt appliquée pour actualiser les réclamations.
+\end{itemize}
+
+\item Dans un processus de renouvellement ordinaire, on a, pour $k = 1, 2, ..., n$,
+\begin{align*}
+f_{S_k | N(t)}(x | n) = f_{S_k}(x) \frac{\prob{N(t-x) = n-k}}{\prob{N(t) = n}}
+\end{align*}
+
+\item On peut calculer le premier moment du processus des réclamations escomptées $\{ Z(t) ; t \geq 0 \}$ : 
+\[\esp{Z(t)} = \esp{X} \int_{0}^{t} e^{-\delta x} d m(x) \]
+où $m(t)$ est la fonction de renouvellement du processus de renouvellement $\{ N(t) ; t \geq 0 \}$.
+\end{itemize}
+
+\section{Mouvement Brownien}
+\subsection*{Définitions}
+\begin{definition}[Définition générale]
+Un processus stochastique $\{ X(t) ; t \geq 0 \}$ est dit être un mouvement Brownien \emph{avec paramètre de variance} $\sigma^2$ si
+\begin{enumerate}[label=(\arabic*)]
+\item $X(0) = 0$ ;
+\item $\{ X(t) ; t \geq 0 \}$  a des accroissements indépendants et stationnaires ;
+\item $\forall t > 0$, $X(t) \sim \mathcal{N}(0, \sigma^2 t)$.
+\end{enumerate}
+\end{definition}
+Note : on appelle aussi $\sigma$ le \emph{paramètre de volatilité} ou \emph{coefficient de diffusion}. Un mouvement Brownien est dit \emph{standard} si $\sigma = 1$.
+
+\subsubsection*{Proposition 1}
+Considérons un mouvement Brownien standard. Alors, $\forall 0 < t_1 < t_2 < ... < t_{n}$, on a
+\begin{align*}
+f_{X_1(t_1), ..., X_n(t_n)}(x_1, ..., x_n) = \frac{e^{-\frac{1}{2} \left(\frac{x_1^2}{t_1} + \frac{(x_2 - x_1)^2}{t_2 - t_1} + ... + \frac{(x_n - x_{n-1})^2}{t_n - t_{n-1}} \right)}}{(2 \pi)^{\frac{n}{2}} (t_1 (t_2 - t_2) ... (t_n - t_{n-1}))^{\frac{1}{2}}} 
+\end{align*}
+
+\vfill{3cm}
+
+\subsubsection*{Proposition 2}
+Considérons un mouvement Brownien standard. Alors, $\forall 0 < s < t$, $X(s) | X(t)$ obéit à une loi normale, tel que
+\begin{align*}
+\esp{X(s) | X(t) = x}&  = \frac{s}{t} x \\
+\variance{X(s) |X(t) = x} & = \frac{s}{t} \left( t - s \right) \\
+\end{align*}
+
+\subsection*{Temps d'atteinte d'une barrière}
+\begin{itemize}
+\item Soit $T_a$ le le premier moment où le mouvement Brownien standard atteint le niveau $a$. Alors,
+\[\prob{T_a \leq t} = \sqrt{\frac{2}{\pi}} \int_{|a| / \sqrt{t}}^{\infty} e^{- \frac{x^2}{2}} dx   \]
+
+\item On peut trouver la distribution de la valeur maximale que peut prendre $\{ X(s) ; 0 \leq s \leq t \}$, telle que
+\[\prob{\max_{0 \leq s \leq t} X(s) \geq a} =  \sqrt{\frac{2}{\pi}} \int_{a / \sqrt{t}}^{\infty} e^{- \frac{x^2}{2}} dx\]
+\end{itemize}
+
+
+\subsection*{Variations sur le mouvement Brownien}
+\subsubsection*{Mouvement Brownien avec dérive}
+Un mouvement Brownien avec dérive (\emph{drifted}) a exactement la même définition qu'un mouvement Brownien standar, à l'exception que
+\[X(t) \sim \mathcal{N} \left(\mu t, \sigma^2 t \right) \]
+où $\mu$ est le \emph{paramètre de dérive}.\\
+ Note : on a donc que $X(t) = \mu t + \sigma B(t)$, où $B(t)$ est un mouvement Brownien standard.
+
+\subsubsection*{Mouvement Brownien géométrique}
+\begin{definition}[Définition]
+Soit $\{X(t) ; t \geq 0 \}$ un mouvement Brownien brownien avec dérive $\mu$ et volatilité $\sigma$. Alors, le processus $\{X(t) ; t \geq 0 \}$ défini par
+\[X(t) = e^{Y(t)}\]
+est dit être un mouvement Brownien \emph{géométrique}.
+\end{definition}
+\textbf{Proposition : } Soit $\{X(t) ; t \geq 0 \}$ un mouvement Brownien géométrique avec dérive $\mu$ et volatilité $\sigma$. Alors,
+\[\esp{X(t) | X(u)} = X(s) e^{(t-s) \left(\mu + \frac{\sigma^2}{2} \right)} \]
+pour $ 0 \leq u \leq s \leq t$.
+
+\subsubsection*{Pont Brownien}
+\begin{definition}[Processus Gaussien]
+Un processus stochastique $\{X(t) ; t \geq 0 \}$ est dit être un processus Gaussien si, $\forall 0 < t_1 < t_2 < ... < t_n$, $X(t_1), ..., X(t_n)$ a une distribution normale multivariée.
+\end{definition}
+
+\begin{definition}[Définition alternative d'un mouvement Brownien standard]
+Un processus $\{X(t) ; t \geq 0 \}$ est un mouvement Brownien standard ssi
+\begin{enumerate}[label=(\arabic*)]
+\item $\{X(t) ; t \geq 0 \}$ est un processus Gaussien ;
+\item $\forall t > 0$, $\esp{X(t)} = 0$, avec $X(0) = 0$ ;
+\item $\forall 0 \leq s \leq t$, on a $\covar{X(s), X(t)} = s$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Définition d'un pont Brownien]
+Soit $\{X(t) ; t \geq 0 \}$ un mouvement Brownien standard. Alors, le processus conditionnel $\{X(t) ; 0 \leq t \leq 1 | X(1) = 0 \}$ est dit être un \emph{pont} Brownien.  De plus, on a
+\begin{align*}
+\esp{X(t) | X(1) = 0} & = 0 \\
+\shortintertext{Et, pour $s < t < 1$,} \\
+\covar{X(s), X(t) | X(1) = 0} & = s(1-t). \\
+\end{align*}
+\end{definition}
+Une autre condition pour déterminer si le processus $\{ Z(t) ; t \geq 0 \}$ est un point Brownien est de vérifier que l'équation suivante est respectée : 
+\[Z(t) = X(t) - t X(1) \]
+
+\subsection*{Mouvement Brownien intégré}
+\begin{definition}[Définition de l'Intégrale d'Îto]
+Soit $\{X(t) ; t \geq 0 \}$ un mouvement Brownien standard et une fonction $f$ est une dérivée continue. Alors, nous définissons \emph{l'intégrale stochastique d'Îto} comme \\
+$\int_{a}^{b} f(t) d X(t) = f(b) X(b) - f(a) X(a) - \int_{a}^{b} X(t) d f(t)$
+\end{definition}
+
+\begin{definition}[Définition du mouvement Brownien intégré]
+Si $\{X(t) ; t \geq 0 \}$ un mouvement Brownien standard, alors le processus Soit $\{Z(t) ; t \geq 0 \}$ défini par (en utilisant \emph{l'intégrale d'Îto)}
+\[Z(t) = \int_{0}^{t} X(s) ds = t X(t) - \int_{0}^{t} v \cdot  d X(v) \]
+\end{definition}
+
+
+\subsubsection*{Proposition 2}
+L'espérance et la variance de $\int_{a}^{b} f(t) d X(t) $ sont respectivement
+\begin{align*}
+\esp{\int_{a}^{b} f(t) d X(t) } & = 0 \\
+\variance{\int_{a}^{b} f(t) d X(t)  } & =  \int_{a}^{b} f(t)^2 dt \\
+\end{align*}
+
+
+\subsubsection*{Proposition 3}
+La mouvement Brownien intégré (tout comme le mouvement Brownien standard) obéit à une loi Normale. En combinant avec les hypothèses de la proposition 2, on a
+\begin{align*}
+\int_{a}^{b} f(t) d X(t) \sim \mathcal{N} \left( 0 , \int_{a}^{b} f(t)^2 dt \right)
+\end{align*}
+et
+\begin{align*}
+\int_{a}^{b} X(t) d f(t) \sim \mathcal{N} \left( 0, a\left(f(b) - f(a)\right)^2 + \int_{a}^{b} \left( f(b) - f(t) \right)^2 dt \right)
+\end{align*}
+
+
+
+
+
+\end{multicols*}
+
+%% -----------------------------
+%% Fin du document
+%% -----------------------------
+\end{document}

@@ -1,0 +1,180 @@
+\documentclass[10pt, french]{article}
+
+% Fichier préambule contenant la configuration pour la feuille aide-mémoire
+\input{preamble/cheatsht-preamble.tex}
+
+\setlength{\abovedisplayskip}{-15pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+
+\begin{document}
+% j'enlève le footnotesize temporairement, sinon je ne vois rien! GCC
+% \footnotesize % Écrire petit (peut être modifié)
+\begin{multicols*}{2} % Permet d'écrire dans plusieurs colonnes l'entièreté du document
+% -------------------------------------------------------------
+\section{Rappels généraux}
+\subsection*{Mathématiques financières}
+\[v = \frac{1}{1+i} = 1 - d = e^{-\delta t}\]
+conversion : 
+\[   \left(1 - \frac{d^{(m)}}{m} \right)^m = 1  - d  \]
+\[\left(1 + \frac{i^{(m)}}{m} \right)^m = 1  +i\]
+\[ \ax{\angln} = \frac{1 - v^n}{i}, \ax**{\angln} = \frac{1 - v^n}{d}, \ax*{\angln} = \frac{1 - v^n}{\delta}  \]
+\[\ax{\angln}[(m)] = \frac{1 - v^n}{i^{(m)}} , \ax**{\angln}[(m)] = \frac{1 - v^n}{d^{(m)}}   \]
+
+\subsection*{Modèles de survie}
+\begin{itemize}
+\item $T_x$ : durée de vie de $(x)$
+\item $K_x =  \lfloor T_x \rfloor$
+\item $\px[t]{x}[] = \prob{T_x > t} = e^{- \int_{0}^{t} \mu_{x+s} ds}$
+\item $\qx[t]{x}[] = 1 - \px[t]{x}[] = \prob{T_x \leq t}$
+\item $\px[t + u]{x}[] = \px[t]{x}[] \cdot \px[u]{x+t}[]$
+\item $\qx[t|u]{x}[] = \px[t]{x}[] \cdot \qx[u]{x+t}[]$
+\end{itemize}
+
+\subsection*{Loi de mortalité}
+\paragraph{Force constante}
+$\mu_x = \mu$, $\px[t]{x}[] = e^{-\mu t}$
+
+\paragraph{Uniforme (DeMoivre)}
+\begin{itemize}
+\item  $\mu_u = \frac{1}{\omega - x}$, avec $0 \leq x \leq \omega$
+\item $\px[t]{x}[] = \frac{\omega - x - t}{\omega - x}$
+\end{itemize}
+
+\subsection*{DUD}
+\begin{itemize}
+\item $\qx[]{x+h}[] = h \cdot \qx[]{x}[]$
+\item $\Ax*{x} = \frac{i}{\delta} \Ax{x}$
+\end{itemize}
+
+
+
+\subsection*{Contrat d'assurance}
+\paragraph{Assurance entière}
+Cas discret : 
+\[\Ax{x} = \sum_{k=0}^{\infty} b_k v^{k+1} \qx[k|]{x}[]\]
+Cas continu : 
+\[\Ax*{x} = \int_{0}^{\infty} v^t \px[t]{x}[] \mu_{x+t} dt  \]
+
+\paragraph{Assurance dotation pure (\emph{pure endowment)}}
+\[\Ax{\endowxn} = \Ax{\termxn} + \Ax{\pureendowxn}\]
+où $\Ax{\pureendowxn} = \Ex[n]{x} = v^n \px[n]{x}[]$
+
+\paragraph{Assurance temporaire $n$ année}
+\[\Ax{\termxn} = \Ax{x} - \Ax[n|]{x} \]
+où $\Ax[n|]{x}  = \Ex[n]{x} \Ax{x+n}$ (i.e. une assurance différée)
+
+\paragraph{Assurance différée}
+\[\Ax[m|][]{x}[] = \Ex[m]{x} \Ax[][]{x+m}[]\]
+\[\Ax[m|][2]{x}[] = v^{m} \Ex[m]{x} \Ax[][]{x+m}[]\]
+
+\paragraph{Assurance payable $m$ fois l'an}
+\[\Ax{x}[(m)] = \sum_{k=0}^{\infty} v^{\frac{(k+1)}{m}} \qx[\frac{k}{m} | \frac{1}{m}]{x}[] \]
+
+
+\subsection*{Contrat de rente}
+\paragraph{Rente entière} Cas discret : 
+\[\ax**{x} = \sum_{k=0}^{\infty} v^{k} \px[k]{x}[]  \]
+
+Cas continu : 
+\[\ax*{x} = \int_{0}^{\infty}  v^t \px[t]{x}[] dt \]
+
+\paragraph{Rente temporaire}
+\[\ax**{\endowxn} = \frac{1 - \Ax{x:\angln}}{d} \leftrightarrow \Ax{\endowxn} =1 - d \ax**{\endowxn}\]
+
+Raccourci : 
+\[\ax{\endowxn} = \ax{x} - \Ex[n]{x} \ax{x+n}  \]
+
+
+
+
+\subsection*{Principe d'équivalence}
+$\pi$, lorsque calculée sous le principe d'équivalence, est la solution de
+\[\esp{Z} = \esp{Y}\]
+où $Z$ est la valeur présente des prestations futures et $Y$ la valeur présente des primes futures à recevoir.
+
+\subsection*{Formule de Woolhouse}
+\[\ax**{x}[(m)] \approx \ax**{x} - \frac{m-1}{2m} - \frac{m^2 -1}{12m^2} (\delta + \mu_x)  \]
+\[\ax**{\endowxn}[(m)] \approx  \ax**{\endowxn} - \frac{m-1}{2m}(1  -v^n \px[n]{x}[]) - \frac{m^2 -1}{12m^2} \Big( \delta + \mu_x - v^n \px[n]{x}[](\delta + \mu_{x+n}) \Big)  \]
+\[\ax*{\endowxn} = \lim_{m \to \infty}  \ax**{\endowxn}[(m)] \approx  \ax**{\endowxn} - \frac{1}{2} (1  -v^n \px[n]{x}[]) - \frac{1}{12} \Big( \delta + \mu_x - v^n \px[n]{x}[](\delta + \mu_{x+n}) \Big)  \]
+
+
+
+\section{Calcul de réserve}
+\paragraph{Perte prospective}
+\begin{align*}
+\actsymb[t]{L}{} & = \{ \actsymb[t]{L}{} | T_x > t \} \\
+& = VP_{@t}(\text{Prest.}) - VP_{@t}(\text{Primes}) \\
+& = Z - Y
+\end{align*}
+
+\paragraph{Réserve au temps $t$}
+Selon la méthode prospective,
+\[\actsymb[t]{V}{} = \esp{\actsymb[t]{L}{}} = \esp{Z} - \esp{Y}\]
+Selon la méthode rétrospective,
+\[\actsymb[t]{V}{} = \frac{\text{VPA}_{@t}(\text{$\pi$ reçues avant $h$}) - \text{VPA}_{@t}(\text{Prest. à payer avant $h$})}{g}\]
+
+\paragraph{Relation récursive pour les réserves (discrètes)}
+Formule générale\footnote{Si les frais ne sont pas applicables pour le problème, simplement poser $G_h = E_h = 0$.} : 
+\[\actsymb[h+1]{V}{} = \frac{(\actsymb[h]{V}{} + G_h - e_h)(1+i) - (b_{h+1} - E_{h+1}) \qx[]{x+h}[]}{\px[]{x+h}[]}\]
+où $G_h$ est la prime à recevoir à $t=h$, $e_h$ les frais relié à la collecte de la prime et $E_h$ les frais reliés aux paiement de la prestation.
+
+\paragraph{Formules alternatives pour Contrat d'assurance-vie entière (si $\pi^{PE}$)}
+\begin{align*}
+\actsymb[h]{V}{} & = M \Ax{x+h} - \pi \ax**{x+h} = M \left( 1 - \frac{\ax**{x+h}}{\ax**{x}} \right) = M \left( \frac{\Ax{x+h} - \Ax{x}}{1 - \Ax{x}} \right)
+\end{align*}
+ Remarque : ces formules fonctionnent aussi dans le cas d'un contrat d'assurance-vie entière continu.
+ 
+ \paragraph{Approximation classique pour les réserves à durées fractionnaires}
+ \[\actsymb[h+s]{V}{} = (\actsymb[h]{V}{} + G_h - e_h)(1-s) + (\actsymb[h+1]{V}{})(s) \]
+
+
+
+\subsection*{Profit de l'assureur}
+\paragraph{Profit de l'assureur en changeant les 3 composantes}
+\begin{flalign*}
+\actsymb[k+1]{V}{}^A - \actsymb[k+1]{V}{}^E	& = N_k (\actsymb[k]{V}{} + G - e_k')(1+i') - (b_{k+1} + E_{k+1}' - \actsymb[k+1]{V}{}) N_k \qx[]{x+k}['] \\
+& - \left[N_k(\actsymb[k]{V}{} + G = e_k)(1+i) - (b_{k+1} + E_{k+1} - \actsymb[k+1]{V}{}) N_k \qx[]{x+k}[] \right]
+\end{flalign*}
+
+\paragraph{Profit de l'assureur en changeant une seule composante} : 
+\\
+
+\begin{tabular}{|c|C|}
+\hline 
+Intérêt ($i$) & N_k(\actsymb[k]{V}{} + G - e_k)(i' - i) \\ 
+\hline 
+Frais $e_k$ ou $E_k$ & N_k(e_k - e'_k)(1 + i) + (E_{k+1} - E'_{k+1})N_k \qx[]{k+1}[] \\ 
+\hline 
+Mortalité $\qx{x+k}$ & (b_{k+1} + E_{k+1} - \actsymb[k+1]{V}{})(N_k \qx[]{x+k}[] - N_k \qx[]{x+k}['])\\ 
+\hline 
+\end{tabular} 
+
+\subsection*{Quote-Part de l'actif (\emph{Asset shares})}
+Alors que la réserve $\actsymb[t]{V}{}$ nous dit le montant que l'assureur doit avoir de côté, la quote-part de l'actif nous indique plutôt le montant réel que l'assureur a de côté pour le contrat donné.
+\[AS_{K+1} = \frac{(AS_{k} + G_k - e'_k)(1 + i') - (b_{k+1} + E'_{k+1}) \qx[]{x+k}[']     }{\px[]{x+k}[']}\]
+
+
+\subsection*{Équation de Thiele}
+Cette équation permet d'obtenir le \emph{taux instantanné d'accroissement} de $\actsymb[t]{V}{}$.
+\[\derivee{t} \left( \actsymb[t]{V}{} \right) =\delta_t \actsymb[t]{V}{} + G_t - e_t - (b_t + E_t) - \actsymb[t]{V}{} \mu_{[x] + t}  \]
+on peut approximer $\actsymb[t]{V}{}$ avec la \underline{Méthode d'Euler} : 
+\[\actsymb[t]{V}{} = \frac{\actsymb[t+h]{V}{} - h(G_t - e_t - (b_t + E_t)\mu_{[x] + t})}{1 + h \delta_t + h \mu_{[x] + t}}   \]
+
+\subsection*{Modification de contrat}
+\subsubsection*{Valeur de rachat (\emph{Cash value at surrender})}
+
+
+
+
+
+
+
+
+
+% -------------------------------------------------------------
+% Fin de la feuille aide-mémoire
+\end{multicols*}
+\end{document}
