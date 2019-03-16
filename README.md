@@ -15,7 +15,7 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 
 
 | Cours     |     Notes       |   Cheatsheet |
-| ----------|: -------------: | ---------: |
+| :----------:| :-------------: | :---------: |
 | ACT1001   |        <img src="image\check-square-regular.png" height="25" width="25">        |      value |
 | ACT1002   |        2        |      value |
 | ACT1003   |        3        |      value |
