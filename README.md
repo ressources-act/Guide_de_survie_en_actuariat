@@ -1,6 +1,3 @@
----
-output: html_document
----
 # Guide de survie en actuariat
 Ce projet à pour but de créer un document contenant toutes les feuilles de formules utiles au bac en actuariat.
 
@@ -10,13 +7,12 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 
 ## Contents
 
-<img src="image\check-square-regular.png" height="15" width="15">
 
 
 
 | Cours     |     Notes       |   Cheatsheet |
 | :----------:| :-------------: | :---------: |
-| ACT1001   |        <img src="image\check-square-regular.png" height="25" width="25">        |      value |
+| ACT1001   |        <img src="image\check-square-regular.png" height="25" width="25">        |       |
 | ACT1002   |        2        |      value |
 | ACT1003   |        3        |      value |
 | IFT1902   |        3        |      value |
@@ -31,7 +27,7 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 | ACT2009   |        3        |      value |
 
 | Examens     |     Notes       |   Cheatsheet |
-| ----------|: -------------: | ---------: |
+| :----------:|:-------------: | :---------: |
 | MAS-I    |        1        |      value |
 
 
