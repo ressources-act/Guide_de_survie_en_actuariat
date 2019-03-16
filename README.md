@@ -1,3 +1,6 @@
+---
+output: html_document
+---
 # Guide de survie en actuariat
 Ce projet à pour but de créer un document contenant toutes les feuilles de formules utiles au bac en actuariat.
 
@@ -6,6 +9,32 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 - Gabriel Crépeault-Cauchon
 
 ## Contents
+
+<img src="image\check-square-regular.png" height="15" width="15">
+
+
+
+| Cours     |     Notes       |   Cheatsheet |
+| ----------|: -------------: | ---------: |
+| ACT1001   |        <img src="image\check-square-regular.png" height="25" width="25">        |      value |
+| ACT1002   |        2        |      value |
+| ACT1003   |        3        |      value |
+| IFT1902   |        3        |      value |
+| ACT2000   |        3        |      value |
+| ACT2001   |        3        |      value |
+| ACT2002   |        3        |      value |
+| ACT2003   |        3        |      value |
+| ACT2004   |        3        |      value |
+| ACT2005   |        3        |      value |
+| ACT2007   |        3        |      value |
+| ACT2008   |        3        |      value |
+| ACT2009   |        3        |      value |
+
+| Examens     |     Notes       |   Cheatsheet |
+| ----------|: -------------: | ---------: |
+| MAS-I    |        1        |      value |
+
+
 
 ## MAS-I ~ Modern Actuarial Statistics
 > Feuille de formules
@@ -48,5 +77,3 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 
 ### IFT-1902 ~ Introduction à la programmation en R
 > aide-mémoire Rmarkdown
-
-
