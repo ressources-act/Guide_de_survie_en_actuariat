@@ -420,10 +420,10 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
     \item $\mathrm{VaR}_k(X) \simeq X^{[j]} $
     \item $\mathrm{TVaR}_k(X) \simeq \frac{1}{m(1-k)} \sum\limits_{j=j_0+1}^{m} X^{(j)} \indic{X^{(j)}>X^{[j_0]}} $ \\ $\phantom{\mathrm{TVaR}_k(X)}  \simeq \frac{1}{m-j_0} \sum\limits_{j=j_0+1}^{m} X^{[j]} $ \\ where
     \begin{itemize}
-        \item $m \equiv\:$ Number of simulations.
         \item $j_0 = \lfloor m \cdot k \rfloor$
-        \item $X^{(j)} \equiv j\up{e}$ simulations.
-        \item $X^{[j]} \equiv j\up{e}$ simulations in ascending order.
+        \item $m$ is the number of simulations.
+        \item $X^{(j)}$ is the j\up{th} simulations.
+        \item $X^{[j]}$ is the j\up{th} simulations in order statistics.
     \end{itemize}
 \end{itemize}
 
@@ -570,15 +570,59 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
         K(x) &= \Phi(x)
     \end{align*}
     \item Other kernel: $k(x)=\beta(x)$ and $k(x) = B(x)$
-    \item \textbf{kernel moments:} Let $X$ be the kernel density estimate and $Y$ the empirical estimate.
+    \item \textbf{kernel moments:} Let $X$ be the kernel density estimate and $x_i$ the empirical estimate. We then condition on $x_i$.
     \begin{align*}
-        \esp{X} &= \esp{y} \\
-        \var{X_R} &= \var{Y} + \frac{b^2}{3} \\
-        \var{X_T} &= \var{Y} + \frac{b^2}{6} \\
-        \var{X_G} &= \var{Y} + b^2
+        \esp{X} &= \esp{\esp{X|x_i}} = \esp{x_i} \\
+        \var{X_R} &= \var{x_i} + \frac{b^2}{3} \\
+        \var{X_T} &= \var{x_i} + \frac{b^2}{6} \\
+        \var{X_G} &= \var{x_i} + b^2
     \end{align*}
-
+\item Tips: For rectangular kernel, $\esp{x|x_i}$ is a uniform($x_i-b,x_i+b$).
 \end{itemize}
+
+\section*{Lesson 27: Method of \\ Moments}
+\begin{itemize}[align=left,leftmargin=*]
+\item \textbf{Types of data:}
+\begin{itemize}
+    \item Complete data: Data is complete if we are given the exact value of each observation.
+    \item Grouped data: Set of interval and we know how many observation are in each.
+    \item Censored data: Value that are in a interval, but we don't know the exact value. Like limits ($\min(X,u)$).
+    \item Truncated data: We have data only when it in certain range, otherwise we don't know. Like deductible ($X|X>d$).
+\end{itemize}
+\item \textbf{Method of Moments:} We match $\hat{\mu}_k'=\esp{X^k}$ and find the parameters. If data is Censored or Truncated, we need to match the censored or truncated moment: $\hat{\mu}_k'=\esp{\min(X,u)^k}$ or $\hat{\mu}_k'=\esp{X^k|X>d}$.
+\item For pareto distribution, if $\hat{\mu}_2'=\hat{\sigma}^2 + \bar{x}^2 \leq 2 \bar{x}^2$, the method of moment is unstable and can't be used.
+\end{itemize}
+
+\section*{Lesson 28: Percentile \\Matching}
+\begin{itemize}[align=left,leftmargin=*]
+\item \textbf{Percentile Matching:} We match $F_e(\hat{\pi}_{p}) = p$ and find the parameters.
+\begin{itemize}
+    \item For censored data, we need select percentiles within the range of the uncensored portion of the data.
+    \item For truncated data, we need to match the percentiles of the conditional distribution:\\
+        $F(x|X>d)=\frac{\prob{d<X\leq x}}{\prob{X>d}}=\frac{F(x)-F(d)}{1- F(d)}$ \\
+        $S(x|X>d)=\frac{S(x)}{S(d)}$
+\end{itemize}
+\item \textbf{Smoothed empirical percentile:} \\ $\hspace*{1.3cm} \hat{\pi}_{p} = (1-h)X^{[j]} + h X^{[j+1]}$ \\ where
+\begin{itemize}
+    \item $j = \lfloor (n+1)p \rfloor$
+    \item $h = (n+1)p - j$
+    \item $X^{[j]}$ is the j\up{th} order statistics.
+\end{itemize}
+\end{itemize}
+
+\section*{Lesson 29: Maximum \\Likehood Estimators}
+\begin{itemize}[align=left,leftmargin=*]
+\item \textbf{Maximum Likehood Estimators:} We maximize the probability of observing the data. \\
+$\hspace*{1.6cm} L(\theta) = \prod g(x_i;\theta)$ \\
+$\hspace*{1.65cm} l(\theta) = \sum \ln g(x_i;\theta)$
+\begin{itemize}
+    \item Individual data: $g(x_i;\theta) = f(x_i)$
+    \item Grouped data: $g(x_i;\theta) = F(x_i) - F(x_{i-1})$
+    \item Censored data: $g(x_i;\theta) = S(x_i) $
+    \item Truncated data:  $g(x_i;\theta) = \frac{f(x)}{s(x)} $
+\end{itemize}
+\end{itemize}
+
 
 \section*{Lesson 30: MLE Special \\ Techniques}
 \begin{itemize}[align=left,leftmargin=*]
@@ -713,6 +757,7 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
 
     \end{axis}
 \end{tikzpicture}
+
 
 \newpage
 % -------------------------------------
