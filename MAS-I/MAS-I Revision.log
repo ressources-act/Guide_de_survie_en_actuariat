@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.10.31)  15 MAR 2019 20:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.10.31)  17 MAR 2019 15:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -626,7 +626,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip50
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 56.
+Package hyperref Info: Option `colorlinks' set `true' on input line 63.
  (d:/texlive/2017/texmf-dist/tex/latex/fourier/fourier.sty
 Package: fourier 2005/01/01 1.4 fourier-GUTenberg package
 Now handling font encoding FML ...
@@ -1464,7 +1464,7 @@ Library (tcolorbox): 'tcbbreakable.code.tex' version '4.11'
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'definition' with sig. ' o ' on line 121.
+. Defining environment 'definition' with sig. ' o ' on line 128.
 .................................................
  (d:/texlive/2017/texmf-dist/tex/latex/pgfplots/pgfplots.sty (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
 Package: pgfplots 2017/06/05 v1.15 Data Visualization (1.15)
@@ -1917,38 +1917,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 506--508
 
 [5]
 PGFPlots: reading {normal.txt}
+PGFPlots: reading {normal-3.txt}
  [6]
-Underfull \hbox (badness 10000) in paragraph at lines 795--803
-
- []
-
-
-Underfull \hbox (badness 7869) in paragraph at lines 846--846
+Underfull \hbox (badness 7869) in paragraph at lines 915--915
 [][]\T1/futs/b/n/14.4 Discrete Cu-mu-la-tive Func-
  []
 
 
-Overfull \hbox (5.05447pt too wide) in paragraph at lines 869--901
+Overfull \hbox (5.05447pt too wide) in paragraph at lines 938--970
 [] 
  []
 
-<src/Illustration-skewness-and-kurtosis.png, id=91, 524.71031pt x 266.49562pt>
+<src/Illustration-skewness-and-kurtosis.png, id=93, 524.71031pt x 266.49562pt>
 File: src/Illustration-skewness-and-kurtosis.png Graphic file (type png)
 <use src/Illustration-skewness-and-kurtosis.png>
-Package pdftex.def Info: src/Illustration-skewness-and-kurtosis.png  used on input line 926. on input line 926.
-Package pdftex.def Info: Requested size: 178.39914pt x 90.6073pt on input line 926.
+Package pdftex.def Info: src/Illustration-skewness-and-kurtosis.png  used on input line 995. on input line 995.
+Package pdftex.def Info: Requested size: 178.39914pt x 90.6073pt on input line 995.
 
-Overfull \hbox (7.4823pt too wide) in paragraph at lines 925--927
+Overfull \hbox (7.4823pt too wide) in paragraph at lines 994--996
 [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1028--1029
+
  []
 
 [7 <./src/Illustration-skewness-and-kurtosis.png>] 
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 962.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 962.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1039.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1039.
 (./MAS-I Revision.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 962.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 962.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1039.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1039.
 Package rerunfilecheck Info: File `"MAS-I Revision".out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1958,18 +1959,18 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 44410 strings out of 492990
- 976261 string characters out of 6136348
- 1199529 words of memory out of 5000000
- 47174 multiletter control sequences out of 15000+600000
+ 44401 strings out of 492990
+ 975992 string characters out of 6136348
+ 1214499 words of memory out of 5000000
+ 47161 multiletter control sequences out of 15000+600000
  675002 words of font info for 179 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,16n,96p,10457b,1999s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 64i,16n,96p,10457b,2105s stack positions out of 5000i,500n,10000p,200000b,80000s
 {d:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{d:/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc}<d:/texlive/2017/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-bb.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mex.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ml.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlit.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlitb.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on "MAS-I Revision.pdf" (7 pages, 172020 bytes).
+Output written on "MAS-I Revision.pdf" (7 pages, 178160 bytes).
 PDF statistics:
- 159 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
- 51 named destinations out of 1000 (max. 500000)
+ 162 PDF objects out of 1000 (max. 8388607)
+ 138 compressed objects within 2 object streams
+ 54 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

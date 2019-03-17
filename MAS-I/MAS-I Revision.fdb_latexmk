@@ -1,9 +1,9 @@
 # Fdb version 3
-["pdflatex"] 1552695050 "MAS-I Revision.tex" "MAS-I Revision.pdf" "MAS-I Revision" 1552695108
-  "MAS-I Revision.aux" 1552695053 1830 bf0adcd0aed1107cdb16a28e527fab5f ""
-  "MAS-I Revision.out" 1552695053 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "MAS-I Revision.tex" 1552695107 48941 bb3ef6ac92ada5a444447c79841b4843 ""
-  "cheatsht-preamble.tex" 1552694176 6563 f3a75e4c6500c4da4ba07841011b2c33 ""
+["pdflatex"] 1552851261 "MAS-I Revision.tex" "MAS-I Revision.pdf" "MAS-I Revision" 1552851264
+  "MAS-I Revision.aux" 1552851264 1830 d3e4df898814bfe5fe9ace71171e074b ""
+  "MAS-I Revision.out" 1552851263 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "MAS-I Revision.tex" 1552851260 52903 cdb39dff5823b3bc397794f2128b158e ""
+  "cheatsht-preamble.tex" 1552747872 6765 d08f6951a9937e1aadded915dc460e5a ""
   "d:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc" 1509485234 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "d:/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc" 1509485475 1687 f004baecce60175c6453d0e3f808cf20 ""
   "d:/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1509485482 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -300,12 +300,11 @@
   "d:/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1509487815 2508709 46ddddb2e959b5cbd8651db24c30effd ""
   "d:/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt" 1509487908 4126632 5a6eb754e922f994651622f36326a0a5 ""
   "d:/texlive/2017/texmf.cnf" 1509487793 673 4ae7b2f49cee444c5343a45b5d0f169c ""
+  "normal-3.txt" 1552746283 1979 5cf5dafa22ce4ab0e076c5e36c2f3e4a ""
   "normal.txt" 1552694176 2014 d22d018c00678fcebc92c7da2eef0f24 ""
   "src/Illustration-skewness-and-kurtosis.png" 1549736087 24637 cbc118060e653173ff20dc0c99248f7b ""
   (generated)
-  "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.log"
-  "MAS-I Revision.pdf"
   "MAS-I Revision.out"
   "MAS-I Revision.log"
   "MAS-I Revision.aux"
-  "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf"
+  "MAS-I Revision.pdf"

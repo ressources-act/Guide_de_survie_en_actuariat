@@ -585,6 +585,7 @@ INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futsy.vf
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-ms.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-mcl.tfm
 INPUT normal.txt
+INPUT normal-3.txt
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom12.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
 INPUT src/Illustration-skewness-and-kurtosis.png

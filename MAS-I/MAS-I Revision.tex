@@ -320,7 +320,7 @@
     and we say that the distribution
     \begin{itemize}
         \item is an increasing failure rate if $h(t)$ is non-deacreasing function of $t$.
-        \item is an deacreasing failure rate if $h(t)$ is non-increasing function of $t$. 
+        \item is an deacreasing failure rate if $h(t)$ is non-increasing function of $t$.
     \end{itemize}
     \item \textbf{Cumulatice hazard function}: \[ H(t) = \int_0^t h(u) \diff{u}= -\ln \bar{F}(t)  \] with $\frac{H(t)}{t}$ the average of the hazard rate.
 \end{itemize}
@@ -701,17 +701,30 @@ $\hspace*{1.65cm} l(\theta) = \sum \ln g(x_i;\theta)$
 \section*{Lesson 33: Hypothesis \\ Testing}
 \begin{itemize}[align=left,leftmargin=*]
   \item
-\end{itemize}
+  \begin{flushleft}
+    Let be $H_0$ the \textbf{null hypothesis} and $H_1$ the \textbf{alternative hypothesis}.
+  \end{flushleft}
+  \begin{tabular}{ccc}
+    \hline
+    & Accept $H_0$ & Reject $H_0$ \\
+    \hline
+    $H_0$ True &  $1 - \alpha$ & $\alpha$ \\
+    $H_1$ True & $\beta$ & $1-\beta$ \\
+    \hline
+  \end{tabular}
+
 \begin{tikzpicture}
     \begin{axis}[
-        scale=0.5,
+        % scale=0.5,
+        height=5cm,
+        width=7cm,
         axis x line=bottom,
         axis y line=left,
         xtick={-1.5,1.5},
         xticklabels={$z_{\frac{\alpha}{2}}$,$z_{1 - \frac{\alpha}{2}}$},
         ytick=\empty,
         xmin = -3,
-        xmax = 3,
+        xmax = 6,
         ymin = 0,
         ymax = 0.5]
         % Normal density
@@ -755,8 +768,64 @@ $\hspace*{1.65cm} l(\theta) = \sum \ln g(x_i;\theta)$
          (3, 0.00443184841193801)
           }\closedcycle;
 
+        \addplot[mark=none, draw=black, line width=1pt, smooth] file {normal-3.txt};
+
     \end{axis}
 \end{tikzpicture}
+\item The $\alpha$ value is usuly name:
+\begin{itemize}
+  \item Probability of Type I error
+  \item Size of critical region
+  \item signifiance level
+\end{itemize}
+The $\beta$ value is usuly name:
+\begin{itemize}
+  \item Probability of Type II error
+\end{itemize}
+The ($1 - \beta$) value is usuly name:
+\begin{itemize}
+  \item The power of test.
+\end{itemize}
+\item We will reject $H_0$ in favor of $H_1$ if a certain condition occured ($X>\gamma$), named the \textbf{critical region}. Then the probability of rejecting $H_0$ is giving by \\
+$\hspace*{1cm} \prob{X>\gamma|H_0\equiv \mathrm{true}} = \alpha$
+\item Lowering the probability of type I error came at the cost of raising the probability of type II error. One way to lower both is to increase sample size.
+\item The \textbf{p-value} is the probability of the observation if $H_0$ is true. $H_0$ is rejected if and only if the p-value is less then the signifiance level. \\ $\hspace*{2cm} P_{\mathrm{value}}<\alpha$
+\end{itemize}
+
+\section*{Lesson 34: Confidence \\ Interval and Sample Size}
+\begin{itemize}[align=left,leftmargin=*]
+  \item Let be $c$ the \textbf{confidence coefficient}. Then we can say the we're $100c\%$ confident that the parameter is between ($a, b$), called the \textbf{confidence interval}. $\alpha = 1 - c$ \\
+  $\hspace*{1.8cm} \theta \in \hat{\theta} \pm z_{\frac{1+c}{2}}\sqrt{\var{\hat{\theta}}}$
+  \item We can found the probability that the half-width of the interval is less then $k$.
+  \begin{align*}
+    \hspace*{0.8cm}
+    \prob{|\hat{\theta} - \theta| \leq k} &\geq \frac{1+c}{2} \\
+    \Phi\left(\frac{k}{\sqrt{\sigma^2/n}}\right) &\geq \frac{1+c}{2}
+  \end{align*}
+  \item To find the sample size needed to have a certain ($\alpha$) and ($1 - \beta$), we resolve
+  \begin{align*}
+    \prob{\bar{x}>k|H_0} &= 1 - \Phi\left( \frac{k-\mu_{0}}{\sqrt{\sigma^2/n}} \right) = \alpha \\
+    \prob{\bar{x}>k|H_1} &= 1 - \Phi\left( \frac{k-\mu_{1}}{\sqrt{\sigma^2/n}} \right) = 1 - \beta \\
+  \end{align*}
+\end{itemize}
+
+\section*{Lesson 35: Confidence \\ Intervals for Means}
+\begin{itemize}[align=left,leftmargin=*]
+  \item The \textbf{chi-sqare} distribution is a one-parameter family distribution. In definition, it a gamma with $\alpha=\frac{n}{2}$ and $\theta=2$. The only parameter $n$ is called \textbf{degree of freedom}.
+  \begin{itemize}
+    \item Let $X_i, i=i,...,n$ be normal random variable with mean $\mu$ and varianve $\sigma^2$.  \\
+    $\hspace*{1.2cm} Y=\sum\limits_{i=1}^n  \frac{(X_i-\mu)^2}{\sigma^2}\sim\chi_{(n)}^2$
+    \item Let $x_i, i=i,...,n,n\geq2$ be random sample from normal distribution with variance $\sigma^2$.  \\
+    $\hspace*{1.2cm} W=\sum\limits_{i=1}^n  \frac{(x_i-\bar{x})^2}{\sigma^2}\sim\chi_{(n-1)}^2$
+  \end{itemize}
+  % \item Let $X_i, i=i,...,n$ be normal random variable with mean $\mu$ and varianve $\sigma^2$.  \\
+  % $\hspace*{1.2cm} Y=\sum\limits_{i=1}^n  \frac{(X_i-\mu)^2}{\sigma^2}\sim\chi_{(n)}^2$
+  % \item Let $x_i, i=i,...,n,n\geq2$ be random sample from normal distribution with variance $\sigma^2$.  \\
+  % $\hspace*{1.2cm} W=\sum\limits_{i=1}^n  \frac{(x_i-\bar{x})^2}{\sigma^2}\sim\chi_{(n-1)}^2$
+\end{itemize}
+
+
+
 
 
 \newpage
@@ -792,7 +861,7 @@ $\hspace*{1.65cm} l(\theta) = \sum \ln g(x_i;\theta)$
 
 \section*{Synthetic Division}
 \label{Appendix: Synthetic Division}
-\textbf{Exemple:} Factorize $x^3 - 12x^2 - 81$\\ \\
+\textbf{Exemple:} Factorize $x^3 - 12x^2 - 81$\\
 \begin{tabular}{c|cccc}
      & 1 & -12 & 0 & -81 \\
    3 &   &   3 & -27& -81 \\
@@ -954,6 +1023,14 @@ then, $x^3 - 12x^2 - 81 = (x-3)(x^2-9x-27)$
     \item \textbf{Rate parameter ($\lambda$):} Affect the rate of data at mean. (1/scale)
     \item \textbf{Shape parameter ($\alpha$, $\tau$, $\gamma$):} Affect the shape rather then simply shift the distribution.
 \end{itemize}
+
+\section*{Produit de convolution}
+The convolution of 2 random variable is difine as the sum of the two. \\
+\begin{align*}
+  f_{X_1+X_2}(x) &= \int_{-\infty}^\infty f_{X_1}(x - s)f_{X_2}(s)\diff{s} \\
+  F_{X_1+X_2}(x) &= \int_{-\infty}^x F_{X_1}(x - s)f_{X_2}(s)\diff{s}
+\end{align*}
+
 
 \end{multicols*}
 %% -----------------------------
