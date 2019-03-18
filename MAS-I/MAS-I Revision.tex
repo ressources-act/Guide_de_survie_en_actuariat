@@ -720,38 +720,18 @@ $\hspace*{1.65cm} l(\theta) = \sum \ln g(x_i;\theta)$
         width=7cm,
         axis x line=bottom,
         axis y line=left,
-        xtick={-1.5,1.5},
-        xticklabels={$z_{\frac{\alpha}{2}}$,$z_{1 - \frac{\alpha}{2}}$},
+        xtick=\empty,
+        % xticklabels={$z_{\frac{1+c}{2}}$},
         ytick=\empty,
-        xmin = -3,
+        xmin = -2,
         xmax = 6,
         ymin = 0,
         ymax = 0.5]
         % Normal density
         \addplot[mark=none, draw=black, line width=1pt, smooth] file {normal.txt};
-
-        \addplot[mark=none, draw=black, line width=1pt, smooth, fill=red, opacity=0.7] coordinates {%
-        (-3, 0.00443184841193801)
-        (-2.9, 0.00595253241977585)
-        (-2.8, 0.00791545158297997)
-        (-2.7, 0.0104209348144226)
-        (-2.6, 0.0135829692336856)
-        (-2.5, 0.0175283004935685)
-        (-2.4, 0.0223945302948429)
-        (-2.3, 0.0283270377416012)
-        (-2.2, 0.0354745928462314)
-        (-2.1, 0.0439835959804272)
-        (-2, 0.0539909665131881)
-        (-1.9, 0.0656158147746766)
-        (-1.8, 0.0789501583008942)
-        (-1.7, 0.094049077376887)
-        (-1.6, 0.110920834679456)
-        (-1.5, 0.129517595665892)
-         }\closedcycle;
+        \addplot[mark=none, draw=black, line width=1pt, smooth] file {normal-3.txt};
 
          \addplot[mark=none, draw=black, line width=1pt, smooth, fill=red, opacity=0.7] coordinates {%
-         (1.5, 0.129517595665892)
-         (1.6, 0.110920834679455)
          (1.7, 0.0940490773768869)
          (1.8, 0.0789501583008941)
          (1.9, 0.0656158147746766)
@@ -768,8 +748,45 @@ $\hspace*{1.65cm} l(\theta) = \sum \ln g(x_i;\theta)$
          (3, 0.00443184841193801)
           }\closedcycle;
 
-        \addplot[mark=none, draw=black, line width=1pt, smooth] file {normal-3.txt};
+          \addplot[mark=none, draw=black, line width=1pt, smooth, fill=green, opacity=0.7] coordinates {%
+          (-1, 0.000133830225764885)
+          (-0.9, 0.000198655471392773)
+          (-0.8, 0.00029194692579146)
+          (-0.7, 0.000424780270550751)
+          (-0.6, 0.000611901930113772)
+          (-0.5, 0.00087268269504576)
+          (-0.4, 0.00123221916847302)
+          (-0.3, 0.00172256893905368)
+          (-0.2, 0.00238408820146484)
+          (-0.1, 0.00326681905619992)
+          (0, 0.00443184841193801)
+          (0.1, 0.00595253241977585)
+          (0.2, 0.00791545158297997)
+          (0.3, 0.0104209348144226)
+          (0.4, 0.0135829692336856)
+          (0.5, 0.0175283004935685)
+          (0.6, 0.0223945302948429)
+          (0.7, 0.0283270377416012)
+          (0.8, 0.0354745928462314)
+          (0.9, 0.0439835959804272)
+          (1, 0.0539909665131881)
+          (1.1, 0.0656158147746766)
+          (1.2, 0.0789501583008942)
+          (1.3, 0.094049077376887)
+          (1.4, 0.110920834679456)
+          (1.5, 0.129517595665892)
+          (1.6, 0.149727465635745)
+          (1.7, 0.171368592047807)
+           }\closedcycle;
 
+           \draw (axis cs:-0,0.43) node{$H_0$};
+           \draw (axis cs:3,0.43) node{$H_1$};
+
+           \draw (axis cs:1.95,0.03) node{$\alpha$};
+           \draw (axis cs:1.3,0.03) node{$\beta$};
+
+           \draw (axis cs:0,0.2) node{$1 - \alpha$};
+           \draw (axis cs:3,0.2) node{$1 - \beta$};
     \end{axis}
 \end{tikzpicture}
 \item The $\alpha$ value is usuly name:
@@ -835,7 +852,7 @@ $\hspace*{1cm} \prob{X>\gamma|H_0\equiv \mathrm{true}} = \alpha$
     where $S^2=\frac{(n-1)S_x^2+(m-1)S_y^2}{m+n-2}.$
     \item Two dependent distributions:
     \begin{align*}
-      (x_1,y_1),...,(x_n,y_n)\sim \mathrm{bivariate\:Normal\:distribution} 
+      (x_1,y_1),...,(x_n,y_n)\sim \mathrm{bivariate\:Normal\:distribution}
     \end{align*}
   \end{itemize}
 \end{itemize}

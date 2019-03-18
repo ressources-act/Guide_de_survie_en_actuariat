@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1552867132 "MAS-I Revision.tex" "MAS-I Revision.pdf" "MAS-I Revision" 1552867137
+["pdflatex"] 1552920847 "MAS-I Revision.tex" "MAS-I Revision.pdf" "MAS-I Revision" 1552920849
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc" 1480098667 1687 f004baecce60175c6453d0e3f808cf20 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -296,15 +296,15 @@
   "/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1495593472 2350277 a699055bee05bf8a40b0504752487295 ""
   "/usr/local/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt" 1495593487 4129592 0e6cfee100d68e6d96b92c0258f2ff73 ""
   "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
-  "MAS-I Revision.aux" 1552867137 1830 d3e4df898814bfe5fe9ace71171e074b ""
-  "MAS-I Revision.out" 1552867135 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "MAS-I Revision.tex" 1552867132 52429 b6667cd4179273a6a22189c1d12ea2ae ""
+  "MAS-I Revision.aux" 1552920849 1830 d3e4df898814bfe5fe9ace71171e074b ""
+  "MAS-I Revision.out" 1552920848 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "MAS-I Revision.tex" 1552920847 53107 7cde4070e5f36cd64682487d06e98122 ""
   "cheatsht-preamble.tex" 1552863485 6544 d08f6951a9937e1aadded915dc460e5a ""
-  "normal-3.txt" 1552863485 1898 5cf5dafa22ce4ab0e076c5e36c2f3e4a ""
+  "normal-3.txt" 1552919577 1846 818698b200ae3361edae87a525862e72 ""
   "normal.txt" 1552694002 1933 d22d018c00678fcebc92c7da2eef0f24 ""
   "src/Illustration-skewness-and-kurtosis.png" 1550168801 24637 cbc118060e653173ff20dc0c99248f7b ""
   (generated)
   "MAS-I Revision.out"
   "MAS-I Revision.log"
-  "MAS-I Revision.aux"
   "MAS-I Revision.pdf"
+  "MAS-I Revision.aux"
