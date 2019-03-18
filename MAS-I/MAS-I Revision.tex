@@ -811,17 +811,33 @@ $\hspace*{1cm} \prob{X>\gamma|H_0\equiv \mathrm{true}} = \alpha$
 
 \section*{Lesson 35: Confidence \\ Intervals for Means}
 \begin{itemize}[align=left,leftmargin=*]
-  \item The \textbf{chi-sqare} distribution is a one-parameter family distribution. In definition, it a gamma with $\alpha=\frac{n}{2}$ and $\theta=2$. The only parameter $n$ is called \textbf{degree of freedom}.
+  \item The \textbf{chi-sqare} is a one-parameter family distribution. In definition, it a gamma with $\alpha=\frac{n}{2}$ and $\theta=2$. The only parameter $n$ is called \textbf{degree of freedom}.
   \begin{itemize}
     \item Let $X_i, i=i,...,n$ be normal random variable with mean $\mu$ and varianve $\sigma^2$.  \\
     $\hspace*{1.2cm} Y=\sum\limits_{i=1}^n  \frac{(X_i-\mu)^2}{\sigma^2}\sim\chi_{(n)}^2$
     \item Let $x_i, i=i,...,n,n\geq2$ be random sample from normal distribution with variance $\sigma^2$.  \\
     $\hspace*{1.2cm} W=\sum\limits_{i=1}^n  \frac{(x_i-\bar{x})^2}{\sigma^2}\sim\chi_{(n-1)}^2$
   \end{itemize}
-  % \item Let $X_i, i=i,...,n$ be normal random variable with mean $\mu$ and varianve $\sigma^2$.  \\
-  % $\hspace*{1.2cm} Y=\sum\limits_{i=1}^n  \frac{(X_i-\mu)^2}{\sigma^2}\sim\chi_{(n)}^2$
-  % \item Let $x_i, i=i,...,n,n\geq2$ be random sample from normal distribution with variance $\sigma^2$.  \\
-  % $\hspace*{1.2cm} W=\sum\limits_{i=1}^n  \frac{(x_i-\bar{x})^2}{\sigma^2}\sim\chi_{(n-1)}^2$
+  \item The \textbf{strudent} is a one-parameter family distribution. We define it as
+  \[\hspace*{1.2cm} T_{(n)} = \frac{Z}{\sqrt{W/n}} \]
+  where $Z\sim\mathrm{N}(0,1)$ and $W\sim\chi_{(n)}^2$. \\
+  Note that as $n\to\infty$, $T\to N(0,1)$
+  \item When the variance is unknow, we need to estimate it with the unbiased estimator $S^2$.
+  \[\hspace*{1cm} T_{(n-1)} = \frac{\bar{x}-\mu}{\sqrt{S^2/n}} \]
+  \item Testing the difference of means from two population.
+  \begin{itemize}
+    \item Two independent normal distributions:
+    \begin{align*}
+      x_1,...,x_n &\sim N(\mu_x,\sigma_x^2) \\
+      y_1,...,y_m &\sim N(\mu_y,\sigma_y^2) \\
+      T_{(n+m-2)} &= \frac{(\bar{x}+\bar{y})-(\mu_x-\mu_y)}{S\sqrt{\frac{1}{n}+\frac{1}{m}}}
+    \end{align*} \\
+    where $S^2=\frac{(n-1)S_x^2+(m-1)S_y^2}{m+n-2}.$
+    \item Two dependent distributions:
+    \begin{align*}
+      (x_1,y_1),...,(x_n,y_n)\sim \mathrm{bivariate\:Normal\:distribution} 
+    \end{align*}
+  \end{itemize}
 \end{itemize}
 
 
