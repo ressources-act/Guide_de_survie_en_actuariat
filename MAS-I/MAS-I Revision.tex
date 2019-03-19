@@ -806,7 +806,7 @@ The ($1 - \beta$) value is usuly name:
 \item We will reject $H_0$ in favor of $H_1$ if a certain condition occured ($X>\gamma$), named the \textbf{critical region}. Then the probability of rejecting $H_0$ is giving by \\
 $\hspace*{1cm} \prob{X>\gamma|H_0\equiv \mathrm{true}} = \alpha$
 \item Lowering the probability of type I error came at the cost of raising the probability of type II error. One way to lower both is to increase sample size.
-\item The \textbf{p-value} is the probability of the observation if $H_0$ is true. $H_0$ is rejected if and only if the p-value is less then the signifiance level. \\ $\hspace*{2cm} P_{\mathrm{value}}<\alpha$
+\item The \textbf{p-value} is the probability of being greater or equal to the observation if $H_0$ is true. $H_0$ is rejected if and only if the p-value is less then the signifiance level. \\ $\hspace*{2cm} P_{\mathrm{value}}<\alpha$
 \end{itemize}
 
 \section*{Lesson 34: Confidence \\ Interval and Sample Size}
@@ -838,27 +838,67 @@ $\hspace*{1cm} \prob{X>\gamma|H_0\equiv \mathrm{true}} = \alpha$
   \item The \textbf{strudent} is a one-parameter family distribution. We define it as
   \[\hspace*{1.2cm} T_{(n)} = \frac{Z}{\sqrt{W/n}} \]
   where $Z\sim\mathrm{N}(0,1)$ and $W\sim\chi_{(n)}^2$. \\
-  Note that as $n\to\infty$, $T\to N(0,1)$
+  Note that as $n\to\infty$, $T_{(n)}\to N(0,1)$
   \item When the variance is unknow, we need to estimate it with the unbiased estimator $S^2$.
   \[\hspace*{1cm} T_{(n-1)} = \frac{\bar{x}-\mu}{\sqrt{S^2/n}} \]
   \item Testing the difference of means from two population.
-  \begin{itemize}
-    \item Two independent normal distributions:
-    \begin{align*}
-      x_1,...,x_n &\sim N(\mu_x,\sigma_x^2) \\
-      y_1,...,y_m &\sim N(\mu_y,\sigma_y^2) \\
-      T_{(n+m-2)} &= \frac{(\bar{x}+\bar{y})-(\mu_x-\mu_y)}{S\sqrt{\frac{1}{n}+\frac{1}{m}}}
-    \end{align*} \\
-    where $S^2=\frac{(n-1)S_x^2+(m-1)S_y^2}{m+n-2}.$
-    \item Two dependent distributions:
-    \begin{align*}
-      (x_1,y_1),...,(x_n,y_n)\sim \mathrm{bivariate\:Normal\:distribution}
-    \end{align*}
-  \end{itemize}
+  \begin{align*}
+    x_1,...,x_n &\sim N(\mu_x,\sigma_x^2) \\
+    y_1,...,y_m &\sim N(\mu_y,\sigma_y^2) \\
+    T_{(n+m-2)} &= \frac{(\bar{x}+\bar{y})-(\mu_x-\mu_y)}{S\sqrt{\frac{1}{n}+\frac{1}{m}}}
+  \end{align*} \\
+  where $S^2=\frac{(n-1)S_x^2+(m-1)S_y^2}{m+n-2}.$
+  % \begin{itemize}
+  %   \item Two unpaired normal distributions:
+  %   \begin{align*}
+  %     x_1,...,x_n &\sim N(\mu_x,\sigma_x^2) \\
+  %     y_1,...,y_m &\sim N(\mu_y,\sigma_y^2) \\
+  %     T_{(n+m-2)} &= \frac{(\bar{x}+\bar{y})-(\mu_x-\mu_y)}{S\sqrt{\frac{1}{n}+\frac{1}{m}}}
+  %   \end{align*} \\
+  %   where $S^2=\frac{(n-1)S_x^2+(m-1)S_y^2}{m+n-2}.$
+  %   \item Two paired distributions:
+  %   \begin{align*}
+  %     (x_1,y_1),...,(x_n,y_n)\sim \mathrm{N}
+  %   \end{align*}
+  % \end{itemize}
+  \item Testing for mean of bernouilli population. Let $p_0$ the probability on $H_0$. \\ \\
+  $\hspace*{2cm} Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$
 \end{itemize}
 
+\section*{Lesson 36: Kolmogorov-Smirnov Tests}
+\begin{itemize}[align=left,leftmargin=*]
+  \item The \textbf{Kolmogorov-Smirnov test} is one methode for determining how well a parametric model fits its data. This test is only appropriate for continuous distribution.\\
+  $\hspace*{1.3cm} D = \max|F_e(x) - F^*(x;\hat{\theta})|$ \\ \\
+  where $d \leq x \leq u$ and $F^*(x) = \frac{F(x) - F(u)}{S(d)}$. \\
+  \begin{tabular}{ccccc}
+    \hline
+    $x_i$ & $F^*(x_i)$ & $F_e(x_i^-)$ & $F_e(x_i)$ & $\max$ \\
+    \hline
+    $x_1$ & $0.5$ & $0.2$ & $0.6$ &  $0.3$ \\
+    \vdots & \vdots & \vdots & \vdots & \vdots \\
+    \hline
+  \end{tabular}
+\end{itemize}
 
+\section*{Lesson 37: Chi Square Test}
+\begin{itemize}[align=left,leftmargin=*]
+  \item The \textbf{Chi Square} look for equality of means between $k$ group. Let $O_i$ be the observation and $E_i=np_i$ the expected on each group. \\ $\hspace*{1.5cm} H_0: \mu_1 = ... = \mu_k$ \\ \\
+  $\hspace*{0.2cm} Q = \sum\limits_{i=1}^k \frac{(O_i - E_i)^2}{E_i} = \sum\limits_{i=1}^k \left(\frac{O_i^2}{E_i}\right) - n \sim \chi_{(k-1-\theta^{'})}^2$ \\ \\
+  Note: This test can be use to test the fit of as parametric model. $\theta^{'}$ is the number of parameter fited with the same data as the test.
+  \item \textbf{Two-dimensional chi-square:} \\
+  $\hspace*{0.8cm} Q = \sum\limits_{i=1}^k \sum\limits_{j=1}^c \frac{(O_{ij}-E_{ij})^2}{E_{ij}} \sim \chi^2_{(k-1)(c-1)}$
+\end{itemize}
 
+\section*{Lesson 38: Confience Interval for Variances}
+\begin{itemize}[align=left,leftmargin=*]
+  \item To find a confidence interval for the variance, we need the following statistic. \\
+  $\hspace*{1.5cm} W = \frac{(n-1)S^2}{\sigma^2}\sim\chi_{(n-1)}^2$
+  \item The \textbf{Fisher} distribution is define as \\
+  $\hspace*{1.5cm} F_{(r_1,r_2)} = \frac{W_1/r_1}{W_2/r_2}$
+  \item[] where $r_1$ and $r_2$ are the degree of freedom.
+  \item To find a confidence interval for variance ratio, we need the following statistic. \\
+  $\hspace*{1.5cm} F_{(r_1,r_2)} = \frac{S_y^2/\sigma_y^2}{S_x^2/\sigma_x^2}$
+\end{itemize}
 
 
 \newpage
