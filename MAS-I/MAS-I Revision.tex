@@ -23,7 +23,7 @@
 \begin{document}
 
 \maketitle
-\vspace{50px}
+\vspace{50pt}
 \begin{center}
 \begin{minipage}[c]{7.5cm}
     \begin{itemize}
@@ -417,7 +417,7 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
 \begin{itemize}[align=left,leftmargin=*]
     \item $\prob{X \leq x} \simeq \frac{1}{m} \sum\limits_{j=1}^{m} \indic{x^{(j)} \leq x}  $
     \item $\mathrm{E}[X^k] \simeq \frac{1}{m} \sum\limits_{j=1}^{m} [x^{(j)}]^k  $
-    \item $\mathrm{VaR}_k(X) \simeq X^{[j]} $
+    \item $\mathrm{VaR}_k(X) \simeq X^{[j_0]} $
     \item $\mathrm{TVaR}_k(X) \simeq \frac{1}{m(1-k)} \sum\limits_{j=j_0+1}^{m} X^{(j)} \indic{X^{(j)}>X^{[j_0]}} $ \\ $\phantom{\mathrm{TVaR}_k(X)}  \simeq \frac{1}{m-j_0} \sum\limits_{j=j_0+1}^{m} X^{[j]} $ \\ where
     \begin{itemize}
         \item $j_0 = \lfloor m \cdot k \rfloor$
@@ -594,6 +594,7 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
 \end{itemize}
 
 \section*{Lesson 28: Percentile \\Matching}
+\label{Def:empirical percentile}
 \begin{itemize}[align=left,leftmargin=*]
 \item \textbf{Percentile Matching:} We match $F_e(\hat{\pi}_{p}) = p$ and find the parameters.
 \begin{itemize}
@@ -834,6 +835,7 @@ $\hspace*{1cm} \prob{X>\gamma|H_0\equiv \mathrm{true}} = \alpha$
     $\hspace*{1.2cm} Y=\sum\limits_{i=1}^n  \frac{(X_i-\mu)^2}{\sigma^2}\sim\chi_{(n)}^2$
     \item Let $x_i, i=i,...,n,n\geq2$ be random sample from normal distribution with variance $\sigma^2$.  \\
     $\hspace*{1.2cm} W=\sum\limits_{i=1}^n  \frac{(x_i-\bar{x})^2}{\sigma^2}\sim\chi_{(n-1)}^2$
+    \item Tips: $\chi_{(2)}^2 \sim \mathrm{Exp}(\theta=2)$
   \end{itemize}
   \item The \textbf{strudent} is a one-parameter family distribution. We define it as
   \[\hspace*{1.2cm} T_{(n)} = \frac{Z}{\sqrt{W/n}} \]
@@ -889,16 +891,80 @@ $\hspace*{1cm} \prob{X>\gamma|H_0\equiv \mathrm{true}} = \alpha$
   $\hspace*{0.8cm} Q = \sum\limits_{i=1}^k \sum\limits_{j=1}^c \frac{(O_{ij}-E_{ij})^2}{E_{ij}} \sim \chi^2_{(k-1)(c-1)}$
 \end{itemize}
 
-\section*{Lesson 38: Confience Interval for Variances}
+\section*{Lesson 38: Confience \\ Interval for Variances}
 \begin{itemize}[align=left,leftmargin=*]
   \item To find a confidence interval for the variance, we need the following statistic. \\
   $\hspace*{1.5cm} W = \frac{(n-1)S^2}{\sigma^2}\sim\chi_{(n-1)}^2$
+  \item Warning: $W$ is on the denominator, so for upper one-sided interval, we take the lower percentile $\alpha$ and $1-\alpha$ for lower one-sided interval.
+  \begin{enumerate}
+      \item $\left(0, \frac{(n-1)S^2}{w_{\alpha}} \right)$
+      \item $\left(\frac{(n-1)S^2}{1-\alpha}, \infty \right)$
+      \item  $\left(\frac{(n-1)S^2}{w_{1-\frac{\alpha}{2}}}, \frac{(n-1)S^2}{w_{\frac{\alpha}{2}}} \right)$
+  \end{enumerate}
   \item The \textbf{Fisher} distribution is define as \\
   $\hspace*{1.5cm} F_{(r_1,r_2)} = \frac{W_1/r_1}{W_2/r_2}$
   \item[] where $r_1$ and $r_2$ are the degree of freedom.
-  \item To find a confidence interval for variance ratio, we need the following statistic. \\
-  $\hspace*{1.5cm} F_{(r_1,r_2)} = \frac{S_y^2/\sigma_y^2}{S_x^2/\sigma_x^2}$
+  \item If $T\sim \mathrm{Strudent}, \text{then} T^2\sim \mathrm{Fisher}$.
+  \item
+  \begin{flushleft}
+    To find a confidence interval for variance ratio, we need the following statistic.
+  \end{flushleft}
+  $\hspace*{1.2cm} F_{(n_x - 1,n_y - 1)} = \frac{S_x^2/\sigma_x^2}{S_y^2/\sigma_y^2}$
 \end{itemize}
+
+\section*{Lesson 39: Uniformly Most Powerful critical Regions}
+\begin{itemize}[align=left,leftmargin=*]
+  \item The \textbf{Neyman-Pearson lemma} states that for tests of one \emph{simple} hypothesis against another, the best critical region for any ($\alpha$) is to select all that minimize the likehood ratio. \\
+  $\hspace*{1.7cm} h(x) = \frac{L(x_1,...,x_n;\theta|H_0)}{L(x_1,...,x_n;\theta|H_1)} < c$
+  \begin{itemize}
+    \item If $h(x)$ is increasing, $F(k|H_0) < \alpha$.
+    \item If $h(x)$ is deacreasing, $S(k|H_0) < \alpha$.
+  \end{itemize}
+  \item If the alternative hypothesis is \emph{composite}, then we can find the \textbf{uniformly most powerful critical region} with the same likehood ratio. This region only exist for one-sided test.
+\end{itemize}
+
+\section*{Lesson 40: Likehood Ratio Tests}
+\begin{itemize}[align=left,leftmargin=*]
+  \item This test is usefull when there is no uniformly most powerful critical region. \\
+  $\hspace*{1.7cm} h(x) = \frac{g(x_1,...,x_n;\theta|H_0)}{g(x_1,...,x_n;\theta|H_1)}$
+  \item[] where $g(x_1,...,x_n;\theta)$ is the maximum likehood.
+  \item For large sample, we can use the asymptotic distribution of the likehood. \\
+  $\hspace*{1cm} -2[l(\theta|H_0) - l(\theta|H_1)] \sim \chi_{(k - l)}^2$
+  \item[] where $k$ is the number of parameters specifies by $H_0$ and $l$ is the combinaison of numbers of parameters specifies by $H_0$ and $H_1$.
+  \item The last test can also be use to dicide if it worth to add parameter to a distribution fit.
+\end{itemize}
+
+\section*{Lesson 41: q-q Plots}
+\begin{itemize}[align=left,leftmargin=*]
+  \item This plot compare quantile of two distribution. It consiste of a plot of coordinate pairs: $\mathbf{\left( x_i, F^{-1}(p_i)\right)}$ where $p_i$ is the {\color{red}\hyperref[Def:empirical percentile]{empirical percentile}} of $x_i$. Then the fit is good if the point are close to a $45^\circ$ line.
+\end{itemize}
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            scale=0.5,
+            axis x line=bottom,
+            axis y line=left,
+            xtick=\empty,
+            ytick=\empty,
+            xlabel={Fitted quantile},
+            ylabel={Observed point},
+            xlabel near ticks,
+            ylabel near ticks,
+            xmin = 0,
+            xmax = 10,
+            ymin = 0,
+            ymax = 10]
+            \addplot[mark=none, draw=black, line width=1pt] coordinates {%
+                  (0,0) (9,9)
+            };
+            \addplot+[mark=*, draw=red] coordinates {%
+                  (0,2.5) (1,3) (2,3) (3,3.5) (5,4.5) (6,5.5) (6,6.5) (8.5,9)
+            };
+
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
 
 
 \newpage
@@ -909,13 +975,13 @@ $\hspace*{1cm} \prob{X>\gamma|H_0\equiv \mathrm{true}} = \alpha$
 \date{}
 \author{}
 \maketitle
-\vspace{-70px}
+\vspace{-70pt}
 % \begin{multicols*}{3}
 \def\SectionColor{black!80!white}
 \section*{Inverting a matrix}
 \label{Appendix: Inverting a matrix}
 \begin{flalign*}
-    \hspace{-25px}
+    \hspace{-2cm}
     \begin{pmatrix}
             a & b \\
             c & d

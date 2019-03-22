@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1552959099 "MAS-I Revision.tex" "MAS-I Revision.pdf" "MAS-I Revision" 1552959102
-  "MAS-I Revision.aux" 1552959102 1830 c7226209e1e0be71d9a27598313f3ec3 ""
-  "MAS-I Revision.out" 1552959101 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "MAS-I Revision.tex" 1552959098 56717 2ab4d8c6617e61a7ea9b0c6dc9ddc813 ""
+["pdflatex"] 1553288321 "MAS-I Revision.tex" "MAS-I Revision.pdf" "MAS-I Revision" 1553288325
+  "MAS-I Revision.aux" 1553288325 1922 f8614b34bf6299daca4d07e9d68ecbc7 ""
+  "MAS-I Revision.out" 1553288324 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "MAS-I Revision.tex" 1553288320 60091 aa6eb15d93b78188caa084b5f6ae1afb ""
   "cheatsht-preamble.tex" 1552747872 6765 d08f6951a9937e1aadded915dc460e5a ""
   "d:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc" 1509485234 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "d:/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc" 1509485475 1687 f004baecce60175c6453d0e3f808cf20 ""
@@ -304,7 +304,7 @@
   "normal.txt" 1552694176 2014 d22d018c00678fcebc92c7da2eef0f24 ""
   "src/Illustration-skewness-and-kurtosis.png" 1549736087 24637 cbc118060e653173ff20dc0c99248f7b ""
   (generated)
-  "MAS-I Revision.aux"
-  "MAS-I Revision.out"
-  "MAS-I Revision.pdf"
   "MAS-I Revision.log"
+  "MAS-I Revision.out"
+  "MAS-I Revision.aux"
+  "MAS-I Revision.pdf"
