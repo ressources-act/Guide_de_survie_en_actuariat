@@ -965,6 +965,111 @@ $\hspace*{1cm} \prob{X>\gamma|H_0\equiv \mathrm{true}} = \alpha$
     \end{tikzpicture}
 \end{center}
 
+\def\SectionColor{blue!80!white}
+\section*{Lesson 42: Introduction to Extended Linear Models}
+There are two purposes in building a extended linear model.
+\begin{enumerate}[align=left,leftmargin=*]
+  \item \textbf{Prediction:} We want to predic the valu of the \emph{response} variable given specific values of the \emph{explanatory} variables.
+  \item \textbf{Inference:} We want to understand which \emph{explanatory} variables explain the \emph{response} variable and how much their explain it.
+\end{enumerate}
+To evaluate the accuracy of a model, we estimate it mean square error.
+\[\hspace*{0.5cm} \mathrm{MSE} = \frac{1}{n} \sumn (y_i - \hat{y}_i) \]
+% \vspace{10cm}
+\columnbreak
+\section*{Lesson 43: How a Generalized Linear Model Works}
+\begin{itemize}[align=left,leftmargin=*]
+  \item \textbf{Linear Model:} \\
+  $\hspace*{0.5cm} Y = \eta + \varepsilon =  \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon $
+  \item[] where
+  \begin{align*}
+    \hspace*{1cm}
+    \varepsilon &\sim N(0, \sigma^2) \\
+    Y &\sim N(\eta, \sigma^2)
+  \end{align*}
+  \textbf{Hypothesis}:
+  \begin{itemize}
+    \item[($\mathbf{H_1}$)] $\esp{\varepsilon} = 0\quad\quad\quad\quad\:$(Linearity)
+    \item[($\mathbf{H_2}$)] $\var{\varepsilon} = \sigma^2\quad\quad\:\:\:\:$(Homoscedasticity)
+    \item[($\mathbf{H_3}$)] $\covar{\varepsilon_i, \varepsilon_j} = 0\quad$(Independence)
+  \end{itemize}
+  \item The \textbf{Box-Cox transformation} is a general set of transformation. When the variance of the error terms is not constant($\mathrm{H_2}$), we need to transforme $Y$.
+  \[ \hspace*{0.5cm}
+  Y^{*} = \left\{
+  \begin{array}{lr}
+    \frac{Y^\lambda - 1}{\lambda} & \lambda \neq 0 \\
+    \ln Y & \lambda = 0
+  \end{array}
+  \right.
+  \]
+  \item[] where $\lambda$ is chossen to best stabilize the variance of the error terms.
+  \item The \emph{feature} must be linearly independent. That mean their can't be a function of another. Ex: $X_3 = 1 - X_2$.
+  \item We need to encode categorials variables with $k$ levels into ($k-1$) indicators variables(called \emph{dummy} variables) to avoid \emph{feature} to be dependent. For interaction with 2 categorials variables, ($k-1$)($l-1$) dummy variables are needed.
+  \item \textbf{GLM:} \\
+  $\hspace*{1cm} g(\esp{Y}) = \beta_0 + \sumn \beta_i x_i$
+  \item[] where g($\cdot$) is the link function.
+  \item \textbf{Exponential Family:} \\
+  $\hspace*{0.7cm} f(y;\theta) = \mathrm{exp}\{a(y)b(\theta) + c(\theta) + d(y)\}$
+  \item[] with
+  \begin{align*}
+    \hspace*{0.2cm}
+    \esp{a(y)} &= -\frac{c'(\theta)}{b'(\theta)} \\
+    \var{a(y)} &= \frac{b''(\theta)c'(\theta) - c''(\theta)b'(\theta)}{[b'(\theta)]^3}
+  \end{align*}
+  \item \textbf{Tweedie} distribution: \\
+  $\hspace*{2cm}  \var{Y} = a\esp{y}^p$
+  \item \textbf{link function:} The GLM estimate is unbiased when the canonical link is used.
+  \begin{center}
+    \begin{tabular}{ll}
+    \hline
+    Distribution & Canonical link \\
+    \hline
+    Normal & $g(y) = y$ \\
+    Binomial & $g(y) = \ln \frac{y}{1-y}$ \\
+    Poisson & $g(y) = \ln y$ \\
+    Gamma &  $g(y)=\frac{1}{y}$ \\
+    \hline
+    \end{tabular}
+  \end{center}
+  \item \textbf{Offset:} We add $\ln n_i$ for cell with $n_i$ exposure.
+  \item \textbf{Rate ratio:} \\
+  $\hspace*{2cm} RR = \frac{\esp{Y_i|x_j = 1}}{\esp{Y_i|x_j = 0}}$
+\end{itemize}
+\columnbreak
+
+\section*{Lesson 44: Categorial \\ Response}
+\subsubsection*{Binomial Response}
+\begin{itemize}[align=left,leftmargin=*]
+  \item Let $\pi_i\in(0,1)$  be the response variable. We than need to have link that map $\eta$ into $(0,1)$.
+  \begin{itemize}
+    \item \textbf{logit:} $ \ln\left(\frac{\pi}{1-\pi}\right) = \eta$
+    \item \textbf{Probit:} $ \Phi^{-1}(\pi) = \eta$
+    \item \textbf{Log-log:} $\ln(-\ln(1-\pi)) = \eta$
+  \end{itemize}
+  \item \textbf{Odds Ratio:} $o = \frac{\pi}{1 - \pi}$
+\end{itemize}
+\subsubsection*{Nominal Response}
+\begin{itemize}[align=left,leftmargin=*]
+  \item Suppose the response can be $J$ values. Then we create a model of relative odds. \\
+  $\hspace*{1cm}\ln \frac{\pi_j}{\pi_1} = \eta_j \Leftrightarrow \pi_j = \pi_1e^{\eta_j}$
+  \begin{itemize}
+    \item $\pi_i = \frac{1}{1 + \sum_{j=2}^J e^{\eta_j}}$
+    \item $\pi_j = \frac{e^{\eta_j}}{1 + \sum_{j=2}^J e^{\eta_j}}$
+  \end{itemize}
+  \item If $x_i$ is a binary feature, then the odds ratio of this \textbf{variable} in the category $j$ to the base categorie is $e^{\beta_{ij}}$.
+\end{itemize}
+\subsubsection*{Ordinal Response}
+Ordinal response variables have several categories in logical order.
+\begin{itemize}[align=left,leftmargin=*]
+  \item \textbf{Cumulative logit and proportional odds models:}
+  \item \textbf{Adjacent categorie logit model:} \\
+  \begin{align*}
+    \ln \frac{\pi_j}{\pi_{j+1}} &= \beta_{1j} + \sum_{i=2}^p \beta_i x_i \\
+    \sum_{j=1}^J \pi_j &= 1
+  \end{align*}
+  \item \textbf{Continuation ratio logit model:}
+\end{itemize}
+
+
 
 
 \newpage
