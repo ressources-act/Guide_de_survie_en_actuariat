@@ -1,9 +1,9 @@
-PWD A:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I
+PWD a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I
 INPUT d:/texlive/2017/texmf.cnf
 INPUT d:/texlive/2017/texmf-dist/web2c/texmf.cnf
 INPUT d:/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT ./MAS-I Revision.tex
-OUTPUT MAS-I Revision.log
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.tex
+OUTPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.log
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/article.cls
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/article.cls
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/size10.clo
@@ -29,8 +29,8 @@ INPUT d:/texlive/2017/texmf-dist/tex/latex/multido/multido.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/multido/multido.sty
 INPUT d:/texlive/2017/texmf-dist/tex/generic/multido/multido.tex
 INPUT d:/texlive/2017/texmf-dist/tex/generic/multido/multido.tex
-INPUT cheatsht-preamble.tex
-INPUT cheatsht-preamble.tex
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/cheatsht-preamble.tex
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/cheatsht-preamble.tex
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/base/utf8.def
@@ -367,9 +367,9 @@ INPUT d:/texlive/2017/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/titling/titling.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/titling/titling.sty
-INPUT MAS-I Revision.aux
-INPUT MAS-I Revision.aux
-OUTPUT MAS-I Revision.aux
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux
+OUTPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux
 INPUT d:/texlive/2017/texmf-dist/tex/latex/fourier/fmlfutm.fd
 INPUT d:/texlive/2017/texmf-dist/tex/latex/fourier/fmlfutm.fd
 INPUT d:/texlive/2017/texmf-dist/tex/latex/fourier/fmsfutm.fd
@@ -393,14 +393,14 @@ INPUT d:/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT d:/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 INPUT d:/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-INPUT MAS-I Revision.out
-INPUT MAS-I Revision.out
-INPUT MAS-I Revision.out
-INPUT MAS-I Revision.out
-INPUT ./MAS-I Revision.out
-INPUT ./MAS-I Revision.out
-OUTPUT MAS-I Revision.out
-OUTPUT MAS-I Revision.pdf
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+OUTPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+OUTPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf
 INPUT d:/texlive/2017/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 INPUT d:/texlive/2017/texmf-dist/tex/latex/graphics/lscape.sty
@@ -584,20 +584,51 @@ INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futmi.vf
 INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futsy.vf
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-ms.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-mcl.tfm
-INPUT normal.txt
-INPUT normal-3.txt
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/normal.txt
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/normal-3.txt
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futr8t.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmii.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmii.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futsy.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futsy.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-mex.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-mex.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmi.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmi.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-bb.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-bb.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/latex-fonts/lasy10.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom12.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom10.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futb8t.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmiib.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmiib.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmib.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futmib.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/latex-fonts/lasyb10.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futmii.vf
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-mlit.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-ml.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futr8r.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futri8r.tfm
+INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futmi.vf
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom12.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
-INPUT src/Illustration-skewness-and-kurtosis.png
-INPUT ./src/Illustration-skewness-and-kurtosis.png
-INPUT ./src/Illustration-skewness-and-kurtosis.png
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/src/Illustration-skewness-and-kurtosis.png
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/src/Illustration-skewness-and-kurtosis.png
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/src/Illustration-skewness-and-kurtosis.png
 INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futmiib.vf
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-mlitb.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-mlb.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futbi8r.tfm
-INPUT MAS-I Revision.aux
-INPUT ./MAS-I Revision.out
-INPUT ./MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
+INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out
 INPUT d:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc
 INPUT d:/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb
@@ -608,6 +639,7 @@ INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ml.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlit.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlitb.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb
+INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb

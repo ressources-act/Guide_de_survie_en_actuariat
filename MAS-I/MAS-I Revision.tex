@@ -1061,21 +1061,161 @@ To evaluate the accuracy of a model, we estimate it mean square error.
 Ordinal response variables have several categories in logical order.
 \begin{itemize}[align=left,leftmargin=*]
   \item \textbf{Cumulative logit and proportional odds models:}
-  \item \textbf{Adjacent categorie logit model:} \\
   \begin{align*}
-    \ln \frac{\pi_j}{\pi_{j+1}} &= \beta_{1j} + \sum_{i=2}^p \beta_i x_i \\
+    o_j = \ln \frac{\sum_{k=1}^j \pi_k}{1-\sum_{k=1}^j \pi_k} = \eta_j
+  \end{align*}
+  Tips: The model is cumulative, so to find $\pi_{2}$, we need to find $\pi_{1}$ and $\pi_{1}+\pi_{2}$. \\
+  This model is proportional so if we $\textbf{fix}$ the categorie but consider two set of feature $x_{i1}$ and $x_{i2}$, the relative odds are \\
+  $\hspace*{1cm} \frac{(o_j|x_i=x_{i1})}{(o_j|x_i=x_{i2})} = e^{\sum \beta_i (x_{i1} - x_{i2})}$
+  \item \textbf{Adjacent categorie logit model:}  \\
+  \begin{align*}
+    \hspace*{1cm}
+    \ln \frac{\pi_j}{\pi_{j+1}} &= \eta_j \\
     \sum_{j=1}^J \pi_j &= 1
   \end{align*}
-  \item \textbf{Continuation ratio logit model:}
+  \item \textbf{Continuation ratio logit model:} \\
+  \hspace*{0.5cm}
+    $\ln \frac{\pi_j}{\sum_{k=j+1}^J \pi_k} = \ln \frac{\pi_j}{1 - \sum_{k=1}^j \pi_k} = \eta_j$ \\
+    Tips: Resolve for $\pi_1$ then for $\pi_2$ and so on ...
+\end{itemize}
+\columnbreak
+
+\section*{Lesson 45: Estimating Parameters}
+\begin{itemize}[align=left,leftmargin=*]
+  \item Let $\matr{X}$ be the \textbf{design matrix}, the p x n features matrix.
+  \item \textbf{Linear Regression:} \\
+  \begin{align*}
+    \hat{\beta}_1 &= \frac{\sum x_iy_i - n\bar{x}\bar{y}}{\sum x_i^2 - n\bar{x}^2} \\
+    \hat{\beta}_0 &= \bar{y} - \hat{\beta}_1 \hat{x} \\
+    \matr{b} &= (\matr{X}^\intercal\matr{X}^{-1})\matr{X}^\intercal \matr{y}
+  \end{align*}
+  \item The \textbf{score} function is define as the derivative of the loglikehood \\
+  $\hspace*{2cm} \matr{U}(\beta) = \ell'(\beta)$
+  \item \textbf{Newton-Raphson} algorithm: \\
+  $\hspace*{1.5cm} \beta^{(k+1)} =\beta^{(k)} - \frac{\matr{U}(\beta^{(k)})}{\matr{U}'(\beta^{(k)})}$
+  \item \textbf{Fisher Scoring} algorithm:\\
+  $\hspace*{1.5cm} \beta^{(k+1)} =\beta^{(k)} - \frac{\matr{U}(\beta^{(k)})}{\esp{\matr{U}'(\beta^{(k)})}}$
+  \item The score vector has components \\
+  $\hspace*{1cm} U_j =\sumn \frac{y_i - \mu_i}{\var{y_i}}x_{ij}\left( \frac{\diff g(\mu_i)}{\diff \mu_i}\right)$
+  \item The information matrix: $I(\theta) = \matr{X}^\intercal\matr{W}\matr{X}$
+  \item Let $\matr{W}$ be the diagonal matrix with entries \\
+  $\hspace*{1.5cm}w_{ii} =\left( \frac{\diff g(\mu_i)}{\diff\mu_i} \var{y_i}\right)^{-1}$
+  \item Let $\matr{G}$ be the diagonal matrix with entries \\
+  $\hspace*{2cm}G_{ii} =\frac{g(\mu_i)}{\mu_i}$
+  \item The regression variable for one iteration \\
+  $\hspace*{0.5cm}\matr{z}^{(k-1)}= \matr{X}\matr{b}^{(k-1)} + \matr{G}^{(k-1)}(\matr{y} - \matr{\mu}^{(k-1)})$
+  \item The \textbf{Weighted Least Square}: \\
+  $\hspace*{0.5cm} \matr{b}^{(k)} = (\matr{X}^\intercal\matr{W}^{(k-1)}\matr{X})^{-1}\matr{X}^\intercal\matr{W}^{(k-1)}\matr{z}^{(k-1)}$
 \end{itemize}
 
+\section*{Lesson 46: Measures of Fit}
+\begin{itemize}[align=left,leftmargin=*]
+  \item The \textbf{satured} model is when we have as much feature as parameters($p=n$). $g^{-1}(\matr{X}^\intercal\matr{b}) = \matr{y}$
+  \item The \textbf{deviance} statistic test compare a model to the satured model. \\
+  $\hspace*{1cm} D = 2[\ell(\matr{b}_{max}) - \ell(\matr{b})] \approx n - p'$
+  \item[] where $p'=p+1$ and $p$ the number of feature.
+  \begin{itemize}
+    \item Binomial:\\
+    $D = 2 \sumn \left(y_i \ln \frac{y_i}{\hat{y}_i} + (n_i - y_i)\ln \frac{n_i - y_i}{n_i - \hat{y}_i} \right)$
+    \item Normal (\emph{scaled deviance}): \\
+    $\sigma^2 D = \sumn (y_i - \hat{y}_i)^2$
+    \item Poisson: \\
+    $D = 2\sumn \left(y_i \ln \frac{y_i}{\hat{y}_i} - (y_i - \hat{y}_i) \right)$
+    \item Gamma: \\
+    $D = 2 \alpha \sumn \left(-\ln \frac{y_i}{\hat{y}_i} + \frac{y_i - \hat{y}_i}{\hat{y}_i} \right)$
+  \end{itemize}
+\end{itemize}
+\columnbreak
+\subsubsection*{Signifiance of Feature}
+\begin{itemize}[align=left,leftmargin=*]
+  \item \textbf{Loglikehood ratio test:} These tests compare a \textbf{unconstrained} modele with $p+q$ parameters versus another \textbf{constrained }model with $p$ parameters. \\
+  $\hspace*{1.5cm} 2(\tilde{\ell}_{p+q} - \hat{\ell}_p) \sim \chi_{(q)}^2$\\
+  $\hspace*{2cm} \hat{D} - \tilde{D} \sim \chi_{(1)}^2$
+  \item \textbf{Wald test:} To test wheter a single parameter $\beta_j=r$. \\
+  $\hspace*{1.7cm} W = \frac{(\hat{\beta}_j - r)^2}{\var{\hat{\beta}_j}} \sim \chi_{(1)}^2$
+  \item[] $\sqrt{W} \sim N(0,1)$, is usefull for confidence interval.
+  \item[] $I(\theta)^{-1} = (\matr{X}^\intercal\matr{W}\matr{X})^{-1}$ is the covariance matrix.
+  \item \textbf{Score text:} $ \matr{U}^\intercal I(\theta)^{-1}\matr{U}\sim \chi_{(q)}^2$
+  \item[] If $q=1,\; \frac{U}{\sqrt{I(\theta)}}\sim N(0,1).$
+  \item We want the lowest AIC and BIC.
+\end{itemize}
 
+\section*{Lesson 47: Standard Error, $R^2$, and Strudent Statistic}
+$\hspace*{2cm} SST = SSE + SSR$
+\begin{itemize}[align=left,leftmargin=*]
+  \item \textbf{Total sum of square:} $SST = \sumn (y_i - \bar{y})^2$
+  \item \textbf{Error sum of square:} $SSE = \sumn (y_i - \hat{y}_i)^2$ \\
+  $\hspace*{1cm} SSE = \matr{\varepsilon^\intercal\varepsilon} = \matr{y}^\intercal\matr{y} - \matr{b}^\intercal\matr{x}^\intercal\matr{y} $
+  \item \textbf{Regression sum of square:} $SSR = \sumn (\hat{y}_i - \bar{y})^2$
+\end{itemize}
+\begin{center}
+  \begin{tabular}{cccc}
+    \hline
+    \multicolumn{4}{c}{ANOVA} \\
+    \hline
+    SS & df & MS & F \\
+    \hline
+    SSR & p & MSR = SSR/df & $\frac{MSR}{MSE}$\\
+    SSE & n-p' & MSE = SSE/df &\\
+    SST & n-1 & MST = SST/df &\\
+    \hline
+  \end{tabular}
+\end{center}
+\begin{itemize}[align=left,leftmargin=*]
+  \item The standort error of the regression is \\
+  $\hspace*{2cm}  s=\sqrt{MSE}$
+  \item The \textbf{coefficient of determination} is the proportion explain by the regression. \\
+  $\hspace*{1.2cm} R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$
+  \item \textbf{Strudent test:} To test $\beta_i = \beta^*$\\
+  $\hspace*{2cm} t_{n-p'} = \frac{\beta_i - \beta^*}{S_{\beta_i}}$
+  \item[] Matrice variance-covariance: $\sigma^2(\matr{X}^\intercal\matr{X})^{-1}$
+  \item Simple linear regression:
+  \begin{itemize}
+    \item $\var{\hat{\beta}_0} = \sigma^2 \left(\frac{1}{n} + \frac{\bar{x}^2}{S_{xx}} \right)$
+    \item $\var{\hat{\beta}_1} = \frac{\sigma^2}{S_{xx}}$
+    \item $\covar{\hat{\beta}_0, \hat{\beta}_1} = -\frac{\bar{x}\sigma^2}{S_{xx}}$
+  \end{itemize}
+\end{itemize}
+\columnbreak
 
+\section*{Lesson 48: Fisher Statistic and VIF}
+\begin{itemize}[align=left,leftmargin=*]
+  \item The \textbf{Fisher} statistic test the signifiance od the entire regression, in other word if all $\beta_i = 0$. For simple linear regression $F = T^2$.
+  Tips: Divide numerator and denominator of $F$ by SST to find $R^2$.
+  \item \textbf{Partial Fisher test:} To test is $q$ added variables have signifiance. \\
+  $\hspace*{1cm} F_{\Delta_{df},n-p'} = \frac{SSE^{(0)} - SSE^{(1)}/\Delta_{df}}{SSE^{(1)}/(n-p')}$
+  \item The \textbf{Variance Inflation Factor} test the collinearity of the features. To mesure it, we take the $x_j$ feature and take it as the response. Let $R_{(j)}^2$ be the $R^2$ of this regression. \\
+  $\hspace*{2cm} \textrm{VIF} = \frac{1}{1 - r_{(j)}^2}$
+  \item[] We want the lowest VIF.
+  \item \textbf{Coeficient of correlation:} \\
+  $\hspace*{1cm} r = \frac{\covar{X,Y}}{\sigma_x \sigma_y} = \frac{\sum (x_i-\bar{x})(y_i - \bar{y}) }{\sqrt{\sum (x_i-\bar{x})^2 \sum (y_i - \bar{y})^2}}$
+  \item For two-feature model $R_{(y)}^2 = r^2$.
 
-\newpage
-% -------------------------------------
-% Appendix
-% -------------------------------------
+\end{itemize}
+
+\section*{Lesson 49: Validation} 
+\begin{itemize}[align=left,leftmargin=*]
+   \item The \textbf{Hat matrix} put a hat on $y$ since $\hat{\matr{y}} = \matr{H}\matr{y}$. \\
+   $\hspace*{2cm} \matr{H} = \matr{X}(\matr{X}^\intercal\matr{X})^{-1}\matr{x}^\intercal$
+   \item It follow that $\var{\hat{\varepsilon}} = (\matr{I} - \matr{H})\sigma^2$
+   \item For simple linear regression: \\
+   $\hspace*{2cm}h_{ii} = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{S_{xx}}$
+   \item The \textbf{studentized residuals} are define as \\
+   $\hspace*{2cm} r_i = \frac{\hat{\varepsilon}_i}{\sqrt{S^2(1 - h_{ii})}}$
+   \item[] where $h_{ii}$ is the \textbf{leverage}. Average leverage should be at $\frac{p}{n}$.
+   \item A \textbf{influence point} is a observatio that influence a lot $y$. A \textbf{outliers} is a observation that have $|r_i|>3$. 
+   \item Two mesure for influence point.
+   \begin{itemize}
+      \item $\mathrm{DFITS}_i = r_i \sqrt{\frac{h_{ii}}{1- h_{ii}}}$
+      \item \textbf{Cook:} $D_i = r_i^2 \frac{h_{ii}}{p'(1 - h_{ii})}$
+      \item[] $D_i>1$ is too high. 
+   \end{itemize}
+ \end{itemize} 
+ 
+ \newpage
+ % -------------------------------------
+ % Appendix 
+ % ------------------------------------- 
 \title{Appendix}
 \date{}
 \author{}

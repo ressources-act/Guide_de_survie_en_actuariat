@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.10.31)  24 MAR 2019 22:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.10.31)  29 MAR 2019 21:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"./MAS-I Revision.tex"
-(./MAS-I Revision.tex
+**"a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.tex"
+(a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.tex
 LaTeX2e <2017-04-15>
 Babel <3.14> and hyphenation patterns for 84 language(s) loaded.
 (d:/texlive/2017/texmf-dist/tex/latex/base/article.cls
@@ -60,7 +60,7 @@ Package: multido 2004/05/17 package wrapper for PSTricks `multido.tex', (HV/RN)
 \multido@stuff=\toks14
 )
 File: multido.tex 2010/05/14 v1.42 `multido' (tvz,hv)
-) (./cheatsht-preamble.tex (d:/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
+) (a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/cheatsht-preamble.tex (d:/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
@@ -375,8 +375,7 @@ Now handling font encoding U ...
    defining Unicode char U+2423 (decimal 9251)
 )) (d:/texlive/2017/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
-
-(d:/texlive/2017/texmf-dist/tex/latex/base/t1enc.def
+ (d:/texlive/2017/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 )) (d:/texlive/2017/texmf-dist/tex/generic/babel/babel.sty
@@ -528,8 +527,7 @@ Package: etoolbox 2017/01/02 v2.4 e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count110
 ) (d:/texlive/2017/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2017/03/14 v6.85a Hypertext links for LaTeX
-
-(d:/texlive/2017/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+ (d:/texlive/2017/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
  (d:/texlive/2017/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
 Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
@@ -1073,8 +1071,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
 (Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
 ) (d:/texlive/2017/texmf-dist/tex/latex/doublestroke/dsfont.sty
 Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
-)
-(d:/texlive/2017/texmf-dist/tex/latex/cancel/cancel.sty
+) (d:/texlive/2017/texmf-dist/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
 ) (d:/texlive/2017/texmf-dist/tex/latex/actuarialsymbol/actuarialsymbol.sty
 Package: actuarialsymbol 2017/06/14 v1.0a Actuarial symbols
@@ -1120,8 +1117,7 @@ Package: tcolorbox 2017/09/14 version 4.11 text color boxes
 \pgfutil@abb=\box56
  (d:/texlive/2017/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
-))
-(d:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+)) (d:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
 Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
 ))
 Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
@@ -1175,8 +1171,7 @@ File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
 \pgfsyssoftpath@bigbuffer@items=\count156
 ) (d:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
-))
-(d:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+)) (d:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
  (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen171
@@ -1185,8 +1180,7 @@ Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 \pgfmath@toks=\toks46
 \pgfmath@stack@operand=\toks47
 \pgfmath@stack@operation=\toks48
-) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex)
-(d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex))) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex))) (d:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count158
 )) (d:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
@@ -1232,8 +1226,7 @@ File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
 File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
 ) (d:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
 File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
-)
-(d:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+) (d:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
 \pgfarrowsep=\dimen194
 ) (d:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
@@ -1269,8 +1262,7 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \verbatim@in@stream=\read2
 ) (d:/texlive/2017/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
-
-(d:/texlive/2017/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+ (d:/texlive/2017/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
 \tcb@titlebox=\box63
@@ -1503,8 +1495,7 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 \pgf@matrix@numberofcolumns=\count326
 )
 \tikz@expandcount=\count327
-
-(d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+ (d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 ))) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
 \t@pgfplots@toka=\toks53
@@ -1522,11 +1513,9 @@ Package pgfplots: loading complementary arithmetics for your pgf version...
 ) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
 \c@pgfplotstable@counta=\count332
 \t@pgfplotstable@a=\toks56
-) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex))
-(d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
+) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
 \c@pgfplotslibrarysurf@no=\count333
- (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (d:/texlive/2017/texmf-di
-st/tex/generic/pgfplots/pgfplots.paths.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+ (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (d:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
 \pgfdecoratedcompleteddistance=\dimen295
 \pgfdecoratedremainingdistance=\dimen296
 \pgfdecoratedinputsegmentcompleteddistance=\dimen297
@@ -1547,8 +1536,7 @@ st/tex/generic/pgfplots/pgfplots.paths.code.tex) (d:/texlive/2017/texmf-dist/tex
 \pgfplots@zmax@reg=\dimen307
 ) (d:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
 File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-(d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+ (d:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
 ))) (d:/texlive/2017/texmf-dist/tex/latex/pdfpages/pdfpages.sty
 Package: pdfpages 2017/08/14 v0.5k Insert pages of external PDF documents (AM)
@@ -1602,8 +1590,7 @@ Package: fontawesome 2016/05/15 v4.6.3.1 font awesome icons
 Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading styles
 ) (d:/texlive/2017/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
-)
-(d:/texlive/2017/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+) (d:/texlive/2017/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footers
 \f@nch@headwidth=\skip81
 \f@nch@O@elh=\skip82
@@ -1621,7 +1608,7 @@ Package: titling 2009/09/04 v2.1d maketitle typesetting
 \droptitle=\skip92
 )
 \GPT@outputbox=\box98
-) (./MAS-I Revision.aux)
+) (a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux)
 \openout1 = `"MAS-I Revision.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
@@ -1746,7 +1733,7 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 23.
 LaTeX Info: Redefining \pageref on input line 23.
 LaTeX Info: Redefining \nameref on input line 23.
- (./MAS-I Revision.out) (./MAS-I Revision.out)
+ (a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out) (a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.out)
 \@outlinefile=\write6
 \openout6 = `"MAS-I Revision.out"'.
 
@@ -1944,42 +1931,57 @@ Underfull \hbox (badness 10000) in paragraph at lines 887--890
  []
 
 [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 1064--1065
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1071
 
  []
 
-[8]
-Underfull \hbox (badness 7869) in paragraph at lines 1159--1159
+
+Underfull \hbox (badness 10000) in paragraph at lines 1086--1087
+
+ []
+
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 13.24796pt on input line 1143.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 7.35999pt on input line 1143.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 13.24796pt on input line 1143.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 7.35999pt on input line 1143.
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 1143.
+[8] [9]
+Underfull \hbox (badness 7869) in paragraph at lines 1299--1299
 [][]\T1/futs/b/n/14.4 Discrete Cu-mu-la-tive Func-
  []
 
 
-Overfull \hbox (5.05447pt too wide) in paragraph at lines 1182--1214
+Overfull \hbox (5.05447pt too wide) in paragraph at lines 1322--1354
 [] 
  []
 
-<src/Illustration-skewness-and-kurtosis.png, id=121, 524.71031pt x 266.49562pt>
+<src/Illustration-skewness-and-kurtosis.png, id=132, 524.71031pt x 266.49562pt>
 File: src/Illustration-skewness-and-kurtosis.png Graphic file (type png)
 <use src/Illustration-skewness-and-kurtosis.png>
-Package pdftex.def Info: src/Illustration-skewness-and-kurtosis.png  used on input line 1239. on input line 1239.
-Package pdftex.def Info: Requested size: 178.39914pt x 90.6073pt on input line 1239.
+Package pdftex.def Info: src/Illustration-skewness-and-kurtosis.png  used on input line 1379. on input line 1379.
+Package pdftex.def Info: Requested size: 178.39914pt x 90.6073pt on input line 1379.
 
-Overfull \hbox (7.4823pt too wide) in paragraph at lines 1238--1240
+Overfull \hbox (7.4823pt too wide) in paragraph at lines 1378--1380
 [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1272--1273
+Underfull \hbox (badness 10000) in paragraph at lines 1412--1413
 
  []
 
-[9 <./src/Illustration-skewness-and-kurtosis.png>] 
+[10 <a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/src/Illustration-skewness-and-kurtosis.png>] 
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1283.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1283.
-(./MAS-I Revision.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1283.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1283.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1423.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1423.
+(a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1423.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1423.
 Package rerunfilecheck Info: File `"MAS-I Revision".out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1989,18 +1991,18 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 44456 strings out of 492990
- 977042 string characters out of 6136348
- 1213453 words of memory out of 5000000
- 47197 multiletter control sequences out of 15000+600000
- 675002 words of font info for 179 fonts, out of 8000000 for 9000
+ 44495 strings out of 492990
+ 978579 string characters out of 6136348
+ 1213462 words of memory out of 5000000
+ 47223 multiletter control sequences out of 15000+600000
+ 695918 words of font info for 208 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,16n,103p,10457b,2085s stack positions out of 5000i,500n,10000p,200000b,80000s
-{d:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{d:/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc}<d:/texlive/2017/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-bb.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mex.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ml.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlit.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlitb.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on "MAS-I Revision.pdf" (9 pages, 195203 bytes).
+ 64i,16n,103p,10525b,2085s stack positions out of 5000i,500n,10000p,200000b,80000s
+{d:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{d:/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc}<d:/texlive/2017/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-bb.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mex.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ml.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlit.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlitb.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf" (10 pages, 213598 bytes).
 PDF statistics:
- 194 PDF objects out of 1000 (max. 8388607)
- 168 compressed objects within 2 object streams
- 73 named destinations out of 1000 (max. 500000)
+ 209 PDF objects out of 1000 (max. 8388607)
+ 181 compressed objects within 2 object streams
+ 80 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

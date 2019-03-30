@@ -1,8 +1,10 @@
 # Fdb version 3
-["pdflatex"] 1553480908 "MAS-I Revision.tex" "MAS-I Revision.pdf" "MAS-I Revision" 1553480911
-  "MAS-I Revision.aux" 1553480911 1922 4a530c8eab3452d8cd504e443660e5cf ""
-  "MAS-I Revision.out" 1553480910 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "MAS-I Revision.tex" 1553480906 65066 64e75342a9d7a315410933ec4fc34487 ""
+["pdflatex"] 1553909569 "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.tex" "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf" "MAS-I Revision" 1553909572
+  "MAS-I Revision.aux" 1553909572 1931 cd8f9af6da196b4e04e75c805d662699 ""
+  "MAS-I Revision.out" 1553909571 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "MAS-I Revision.tex" 1553909568 73302 861f0434632b6b9d3d1f52b95a613efd ""
+  "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux" 1553909572 1931 cd8f9af6da196b4e04e75c805d662699 ""
+  "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.tex" 1553909568 73302 861f0434632b6b9d3d1f52b95a613efd ""
   "cheatsht-preamble.tex" 1553389690 6806 fb061ce09acf1a1aec66ba77c7983935 ""
   "d:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc" 1509485234 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "d:/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc" 1509485475 1687 f004baecce60175c6453d0e3f808cf20 ""
@@ -18,6 +20,7 @@
   "d:/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm" 1509483727 940 75ac932a52f80982a9f8ea75d03a34cf ""
   "d:/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1509483727 940 228d6584342e91276bf566bcf9716b83 ""
   "d:/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmr10.tfm" 1509484192 1296 45809c5a464d5f32c8f98ba97c1bb47f ""
+  "d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom10.tfm" 1509485193 452 168d896d9b2ead965bf08c9db69c947f ""
   "d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom12.tfm" 1509485193 452 d8b5931fd510ede40dce06480d31d007 ""
   "d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm" 1509485193 452 dc44cdd7c88ff2b15557f125edfc277b ""
   "d:/texlive/2017/texmf-dist/fonts/tfm/public/fontawesome/FontAwesome--fontawesomeone.tfm" 1509485475 1360 edd73eeb60d8a74bfaa55e699a26e7be ""
@@ -54,6 +57,7 @@
   "d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb" 1509487609 36737 6946087c3bf3ef810605d9989b3e7a11 ""
   "d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb" 1509487609 36507 bc28f9f0cdba50a8a348a6e4dc8a5378 ""
   "d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb" 1509487609 37756 112837e95d30cb64c320437ea63bd4d6 ""
+  "d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb" 1509483727 33366 60462f3d16c3d0f024f1f856e64b09cd ""
   "d:/texlive/2017/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb" 1509485193 17066 253bfbb6e5fc3054bb423ea41ca809e2 ""
   "d:/texlive/2017/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb" 1509485475 173219 890b1c7806f4fd8da5584bf52ad6c3d7 ""
   "d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-bb.pfb" 1509485508 6232 c3fc7954848548c26c82678efc1400a6 ""
@@ -304,7 +308,9 @@
   "normal.txt" 1552694176 2014 d22d018c00678fcebc92c7da2eef0f24 ""
   "src/Illustration-skewness-and-kurtosis.png" 1549736087 24637 cbc118060e653173ff20dc0c99248f7b ""
   (generated)
-  "MAS-I Revision.out"
-  "MAS-I Revision.aux"
-  "MAS-I Revision.log"
   "MAS-I Revision.pdf"
+  "MAS-I Revision.aux"
+  "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.log"
+  "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf"
+  "MAS-I Revision.out"
+  "MAS-I Revision.log"
