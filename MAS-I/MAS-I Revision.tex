@@ -1182,6 +1182,8 @@ $\hspace*{2cm} SST = SSE + SSR$
 \begin{itemize}[align=left,leftmargin=*]
   \item The \textbf{Fisher} statistic test the signifiance od the entire regression, in other word if all $\beta_i = 0$. For simple linear regression $F = T^2$.
   Tips: Divide numerator and denominator of $F$ by SST to find $R^2$.
+  \item For simple linear regression, since $p=1$, then \\
+  $\hspace*{2cm} T_{(n)} = \sqrt{F_{1,n}}$.
   \item \textbf{Partial Fisher test:} To test is $q$ added variables have signifiance. \\
   $\hspace*{1cm} F_{\Delta_{df},n-p'} = \frac{SSE^{(0)} - SSE^{(1)}/\Delta_{df}}{SSE^{(1)}/(n-p')}$
   \item The \textbf{Variance Inflation Factor} test the collinearity of the features. To mesure it, we take the $x_j$ feature and take it as the response. Let $R_{(j)}^2$ be the $R^2$ of this regression. \\
@@ -1212,6 +1214,38 @@ $\hspace*{2cm} SST = SSE + SSR$
    \end{itemize}
  \end{itemize} 
  
+\section*{Lesson 50: Prediction}
+\begin{itemize}[align=left,leftmargin=*]
+    \item A \textbf{confidence interval} for predicted values. \\
+    $\hspace*{0.5cm}y^{*} \in \hat{y}^{*} \pm t_{(n-2)} \sqrt{S^2\left(\frac{1}{n}+\frac{(x^{*} - \bar{x})^2}{S_{xx}}\right)}$
+    \item A \textbf{prediction interval} for predicted values. \\
+    $\hspace*{0.5cm}y^{*} \in \hat{y}^{*} \pm t_{(n-2)} \sqrt{S^2\left(1+\frac{1}{n}+\frac{(x^{*} - \bar{x})^2}{S_{xx}}\right)}$
+\end{itemize}
+ 
+\section*{Lesson 51: ANOVA}
+\subsubsection*{One-factor ANOVA}
+$\hspace*{1cm} \mathrm{SST} = \mathrm{SSE} + \mathrm{SSTR}$
+\begin{itemize}[align=left,leftmargin=*]
+   \item  \textbf{Within sum of square} \\
+   $\hspace*{1cm} \mathrm{SSE} = \sum\limits_{i=1}^k \sum\limits_{j=1}^{n_i} (y_{ij} - \bar{y}_{i\Sigma})^2$
+   \item \textbf{Between sum of square} \\
+   $\mathrm{SSTR} = \sum\limits_{i=1}^k n_i (\bar{y}_{i\Sigma} - \bar{y}_{\Sigma\Sigma})^2 = \sum\limits_{i=1}^k (n_i \bar{y}_{i\Sigma}) - n\bar{y}_{\Sigma\Sigma}^2$
+   \item \textbf{Total sum of square} \\
+   $\mathrm{SST} = \sum\limits_{i=1}^k \sum\limits_{j=1}^{n_i} (y_{ij} - \bar{y}_{\Sigma\Sigma}) = \sum\limits_{j=1}^{n_i} (y_{ij}^2) - n\bar{y}_{\Sigma\Sigma}^2$ \\
+   \item \textbf{Fishier test} \\
+   $F_{(k-1, n-k)} = \frac{\mathrm{SSTR}/(k-1)}{\mathrm{SSE}/(n-k)} = \frac{(D_M - D_A)/(k-1)}{D_A/(n-k)}$
+   \item[] where $D_M$ is the \emph{scale deviance} of the minimal model.
+\end{itemize}
+\subsubsection*{Two-factor ANOVA without replication}
+\begin{itemize}
+  \item   
+\end{itemize}
+
+
+
+
+
+
  \newpage
  % -------------------------------------
  % Appendix 
@@ -1291,7 +1325,7 @@ then, $x^3 - 12x^2 - 81 = (x-3)(x^2-9x-27)$
 \end{itemize}
 
 \section*{Normal Approximation}
-\begin{itemize}[align=left,leftmargin=*]
+\begin{itemize}[align=left,leftmargin=*]    
     \item $F_X(x) = \Phi \left( \frac{X - \esp{X}}{\sqrt{\var{X}}} \right)$
     \item \textbf{Continuity correction} is necessary when X is discrete. $F_X(x) = \Phi \left( \frac{(X \pm k) - \esp{X}}{\sqrt{\var{X}}} \right)\:$ where $k$ is the mid-point of the discrete value.
 \end{itemize}
