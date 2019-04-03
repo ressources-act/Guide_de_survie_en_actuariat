@@ -1224,25 +1224,73 @@ $\hspace*{2cm} SST = SSE + SSR$
  
 \section*{Lesson 51: ANOVA}
 \subsubsection*{One-factor ANOVA}
-$\hspace*{1cm} \mathrm{SST} = \mathrm{SSE} + \mathrm{SSTR}$
+$\hspace*{2cm} \mathrm{SST} = \mathrm{SSE} + \mathrm{SSTR}$
+   \begin{center}
+      \begin{tabular}{lcc}
+        \hline
+        Model & Sum of square & Deviance \\
+        \hline
+         $Y = \mu + \varepsilon_{ij}$ & SST & $D_M$ \\
+         $Y = \mu_i + \varepsilon_{ij}$ & SSE & $D_A$ \\
+         \hline
+      \end{tabular} 
+   \end{center} 
 \begin{itemize}[align=left,leftmargin=*]
    \item  \textbf{Within sum of square} \\
    $\hspace*{1cm} \mathrm{SSE} = \sum\limits_{i=1}^k \sum\limits_{j=1}^{n_i} (y_{ij} - \bar{y}_{i\Sigma})^2$
    \item \textbf{Between sum of square} \\
-   $\mathrm{SSTR} = \sum\limits_{i=1}^k n_i (\bar{y}_{i\Sigma} - \bar{y}_{\Sigma\Sigma})^2 = \sum\limits_{i=1}^k (n_i \bar{y}_{i\Sigma}) - n\bar{y}_{\Sigma\Sigma}^2$
+   $\mathrm{SSTR} = \sum\limits_{i=1}^k n_i (\bar{y}_{i\Sigma} - \bar{y}_{\Sigma\Sigma})^2 = \sum\limits_{i=1}^k \left(\frac{y_{i\Sigma^2}}{n_i}\right)  - n\bar{y}_{\Sigma\Sigma}^2$
    \item \textbf{Total sum of square} \\
-   $\mathrm{SST} = \sum\limits_{i=1}^k \sum\limits_{j=1}^{n_i} (y_{ij} - \bar{y}_{\Sigma\Sigma}) = \sum\limits_{j=1}^{n_i} (y_{ij}^2) - n\bar{y}_{\Sigma\Sigma}^2$ \\
+   $\mathrm{SST} = \sum\limits_{i=1}^k \sum\limits_{j=1}^{n_i} (y_{ij} - \bar{y}_{\Sigma\Sigma})^2 = \sum\limits_{j=1}^{n_i} (y_{ij}^2) - n\bar{y}_{\Sigma\Sigma}^2$ \\
    \item \textbf{Fishier test} \\
    $F_{(k-1, n-k)} = \frac{\mathrm{SSTR}/(k-1)}{\mathrm{SSE}/(n-k)} = \frac{(D_M - D_A)/(k-1)}{D_A/(n-k)}$
    \item[] where $D_M$ is the \emph{scale deviance} of the minimal model.
 \end{itemize}
 \subsubsection*{Two-factor ANOVA without replication}
-\begin{itemize}
-  \item   
+$\hspace*{1.5cm} \mathrm{SST} = \mathrm{SSE} + \mathrm{SSTR} + \mathrm{SSB}$
+   \begin{center}
+      \begin{tabular}{llc}
+        \hline
+        Model & Sum of square (DF)& Deviance \\
+        \hline
+         $Y = \mu + \varepsilon_{ij}$ & SST$(bk-1)$ & $D_M$ \\
+         $Y = \mu + \alpha_i + \varepsilon_{ij}$ & SSTR $(k-1)$& $D_A$ \\
+         $Y = \mu + \beta_j + \varepsilon_{ij}$ &SSB$(b-1)$& $D_B$ \\
+         $Y = \mu +\alpha_i +  \beta_j + \varepsilon_{ij}$ & SSE$(k-1)(b-1)$ & $D_I$ \\
+         \hline
+      \end{tabular} 
+   \end{center} 
+\begin{itemize}[align=left,leftmargin=*]
+  \item The formula are the same but $n_i$ is $k$ for SSTR and $b$ for SSB. 
+\end{itemize}
+\subsubsection*{Two-factor ANOVA with replication}
+\begin{itemize}[align=left,leftmargin=*]
+   \item To test interaction:\\
+   $F_{(I-1)(J-1),IJ(K-1)} = \frac{(D_I - D_s)/(I-1)(J-1)}{D_s/IJ(k-1)}$ 
+   \item To test factor A:\\
+   $F_{(I-1),IJ(K-1)} = \frac{(D_B - D_I)/(I-1)}{D_s/IJ(k-1)}$ 
+   \item To test factor B: \\
+   $F_{(J-1),IJ(K-1)} = \frac{(D_M - D_B)/(J-1)}{D_s/IJ(k-1)}$ 
+   \item[] where $D_s$ is the satured model, I for additive model.
+   \item ANCOVA
 \end{itemize}
 
 
-
+\section*{Measures of Fit II}
+For \textbf{contingencies table}  with binomial or poisson distribution.
+\begin{itemize}[align=left,leftmargin=*]
+   \item Deviance: $D = 2 \sum O_i \ln \frac{O_i}{E_i}$ 
+   \item Pearson: $\chi^2 = \sum \frac{(O_i - E_i)^2}{E_i}$
+   \item Likelihood ratio chi-square: $C = 2[\ell - \ell_{\mathbf{min}}]$
+   \item \textbf{Pseudo}$R^2$: $\mathrm{pseudo}R^2 = 
+   \frac{\ell_{\mathbf{min} -  \ell}}{\ell_{\mathbf{min}}}$
+\end{itemize}
+\subsubsection*{Residus}
+\begin{itemize}[align=left,leftmargin=*]
+   \item Pearson residual: $X_k = \frac{y_i - \hat{\mu}_i}{\sqrt{\var{\hat{\mu}_i}}}$
+   \item Deviance residual: $d_k = s_k\sqrt{\mathrm{deviance}}$ 
+   \item[] where $s_k$ is the signe of $y_k-\hat{y}_i$
+\end{itemize}
 
 
 
