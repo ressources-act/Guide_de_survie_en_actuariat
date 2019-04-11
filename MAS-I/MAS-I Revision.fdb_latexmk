@@ -1,10 +1,10 @@
 # Fdb version 3
-["pdflatex"] 1554262258 "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.tex" "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf" "MAS-I Revision" 1554262262
-  "MAS-I Revision.aux" 1554262261 1931 a59f3de81a7ba0338ab0e12297122bb4 ""
-  "MAS-I Revision.out" 1554262260 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "MAS-I Revision.tex" 1554262257 77208 7f104c63665279e3bd86454b362207f7 ""
-  "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux" 1554262261 1931 a59f3de81a7ba0338ab0e12297122bb4 ""
-  "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.tex" 1554262257 77208 7f104c63665279e3bd86454b362207f7 ""
+["pdflatex"] 1554997709 "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.tex" "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf" "MAS-I Revision" 1554997712
+  "MAS-I Revision.aux" 1554997712 1931 57492a80a1611ae0c3e6db29b383656f ""
+  "MAS-I Revision.out" 1554997711 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "MAS-I Revision.tex" 1554997708 89470 7582620a03f77d7d01e22f868e6d41b4 ""
+  "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux" 1554997712 1931 57492a80a1611ae0c3e6db29b383656f ""
+  "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.tex" 1554997708 89470 7582620a03f77d7d01e22f868e6d41b4 ""
   "cheatsht-preamble.tex" 1553389690 6806 fb061ce09acf1a1aec66ba77c7983935 ""
   "d:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc" 1509485234 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "d:/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc" 1509485475 1687 f004baecce60175c6453d0e3f808cf20 ""
@@ -57,6 +57,7 @@
   "d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb" 1509487609 36737 6946087c3bf3ef810605d9989b3e7a11 ""
   "d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb" 1509487609 36507 bc28f9f0cdba50a8a348a6e4dc8a5378 ""
   "d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb" 1509487609 37756 112837e95d30cb64c320437ea63bd4d6 ""
+  "d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1509483727 31764 459c573c03a4949a528c2cc7f557e217 ""
   "d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb" 1509483727 33366 60462f3d16c3d0f024f1f856e64b09cd ""
   "d:/texlive/2017/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb" 1509485193 17066 253bfbb6e5fc3054bb423ea41ca809e2 ""
   "d:/texlive/2017/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb" 1509485475 173219 890b1c7806f4fd8da5584bf52ad6c3d7 ""
@@ -308,9 +309,9 @@
   "normal.txt" 1552694176 2014 d22d018c00678fcebc92c7da2eef0f24 ""
   "src/Illustration-skewness-and-kurtosis.png" 1549736087 24637 cbc118060e653173ff20dc0c99248f7b ""
   (generated)
+  "MAS-I Revision.pdf"
   "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.log"
   "MAS-I Revision.aux"
-  "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf"
-  "MAS-I Revision.log"
   "MAS-I Revision.out"
-  "MAS-I Revision.pdf"
+  "MAS-I Revision.log"
+  "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf"

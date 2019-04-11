@@ -618,9 +618,6 @@ INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futr8r.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futri8r.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futmi.vf
 INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futmi.vf
-INPUT d:/texlive/2017/texmf-dist/fonts/vf/public/fourier/futb8t.vf
-INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/futb8r.tfm
-INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/fourier/fourier-alt-bold.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom12.tfm
 INPUT d:/texlive/2017/texmf-dist/fonts/tfm/public/doublestroke/dsrom8.tfm
 INPUT a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/src/Illustration-skewness-and-kurtosis.png
@@ -643,6 +640,7 @@ INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ml.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlit.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlitb.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb
+INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb
 INPUT d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb

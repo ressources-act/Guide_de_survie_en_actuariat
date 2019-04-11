@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.10.31)  2 APR 2019 23:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.10.31)  11 APR 2019 11:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1955,43 +1955,58 @@ Underfull \hbox (badness 10000) in paragraph at lines 1243--1245
 
  []
 
-
-Overfull \hbox (40.49348pt too wide) in paragraph at lines 1252--1262
- [] 
+[9]
+Overfull \hbox (3.85649pt too wide) in paragraph at lines 1371--1373
+[] \FMS/futm/m/n/9 Å []$ 
  []
 
-[9]
-Underfull \hbox (badness 7869) in paragraph at lines 1381--1381
+
+Overfull \hbox (5.4757pt too wide) in paragraph at lines 1390--1392
+[][] \FMS/futm/m/n/9 Å \FML/futmi/m/it/9 ^^M[] \FMS/futm/m/n/9 Å \T1/futs/m/n/9 E[] ([])$ 
+ []
+
+
+Underfull \hbox (badness 5316) in paragraph at lines 1433--1433
+[][]\T1/futs/b/n/14.4 Lesson 60 : Au-to-re-gres-sive
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1440--1441
+
+ []
+
+[10] [11]
+Underfull \hbox (badness 7869) in paragraph at lines 1618--1618
 [][]\T1/futs/b/n/14.4 Discrete Cu-mu-la-tive Func-
  []
 
 
-Overfull \hbox (5.05447pt too wide) in paragraph at lines 1404--1436
+Overfull \hbox (5.05447pt too wide) in paragraph at lines 1641--1673
 [] 
  []
 
-<src/Illustration-skewness-and-kurtosis.png, id=140, 524.71031pt x 266.49562pt>
+<src/Illustration-skewness-and-kurtosis.png, id=164, 524.71031pt x 266.49562pt>
 File: src/Illustration-skewness-and-kurtosis.png Graphic file (type png)
 <use src/Illustration-skewness-and-kurtosis.png>
-Package pdftex.def Info: src/Illustration-skewness-and-kurtosis.png  used on input line 1461. on input line 1461.
-Package pdftex.def Info: Requested size: 178.39914pt x 90.6073pt on input line 1461.
+Package pdftex.def Info: src/Illustration-skewness-and-kurtosis.png  used on input line 1698. on input line 1698.
+Package pdftex.def Info: Requested size: 178.39914pt x 90.6073pt on input line 1698.
 
-Overfull \hbox (7.4823pt too wide) in paragraph at lines 1460--1462
+Overfull \hbox (7.4823pt too wide) in paragraph at lines 1697--1699
 [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1494--1495
+Underfull \hbox (badness 10000) in paragraph at lines 1731--1732
 
  []
 
-[10 <a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/src/Illustration-skewness-and-kurtosis.png>] 
+[12 <a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/src/Illustration-skewness-and-kurtosis.png>] 
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1505.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1505.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1742.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1742.
 (a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1505.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1505.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1742.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1742.
 Package rerunfilecheck Info: File `"MAS-I Revision".out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -2001,18 +2016,18 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 44504 strings out of 492990
- 978678 string characters out of 6136348
+ 44520 strings out of 492990
+ 978856 string characters out of 6136348
  1213462 words of memory out of 5000000
- 47223 multiletter control sequences out of 15000+600000
- 696348 words of font info for 210 fonts, out of 8000000 for 9000
+ 47224 multiletter control sequences out of 15000+600000
+ 695918 words of font info for 208 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,16n,103p,10525b,2085s stack positions out of 5000i,500n,10000p,200000b,80000s
-{d:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{d:/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc}<d:/texlive/2017/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-bb.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mex.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ml.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlit.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlitb.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf" (10 pages, 218090 bytes).
+{d:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{d:/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc}<d:/texlive/2017/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-bb.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mex.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ml.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlit.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlitb.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb><d:/texlive/2017/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on "a:/Users/Nicholas/Documents/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf" (12 pages, 241325 bytes).
 PDF statistics:
- 217 PDF objects out of 1000 (max. 8388607)
- 189 compressed objects within 2 object streams
- 87 named destinations out of 1000 (max. 500000)
+ 248 PDF objects out of 1000 (max. 8388607)
+ 216 compressed objects within 3 object streams
+ 104 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

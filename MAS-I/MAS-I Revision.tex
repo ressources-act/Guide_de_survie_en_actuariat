@@ -1204,7 +1204,7 @@ $\hspace*{2cm} SST = SSE + SSR$
    $\hspace*{2cm}h_{ii} = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{S_{xx}}$
    \item The \textbf{studentized residuals} are define as \\
    $\hspace*{2cm} r_i = \frac{\hat{\varepsilon}_i}{\sqrt{S^2(1 - h_{ii})}}$
-   \item[] where $h_{ii}$ is the \textbf{leverage}. Average leverage should be at $\frac{p}{n}$.
+   \item[] where $h_{ii}$ is the \textbf{leverage}. Average leverage should be at $\frac{p'}{n}$.$\quad \sum h_{ii} = p'$
    \item A \textbf{influence point} is a observatio that influence a lot $y$. A \textbf{outliers} is a observation that have $|r_i|>3$. 
    \item Two mesure for influence point.
    \begin{itemize}
@@ -1249,14 +1249,14 @@ $\hspace*{2cm} \mathrm{SST} = \mathrm{SSE} + \mathrm{SSTR}$
 \subsubsection*{Two-factor ANOVA without replication}
 $\hspace*{1.5cm} \mathrm{SST} = \mathrm{SSE} + \mathrm{SSTR} + \mathrm{SSB}$
    \begin{center}
-      \begin{tabular}{llc}
+      \begin{tabular}{ll}
         \hline
-        Model & Sum of square (DF)& Deviance \\
+        Model & Sum of square (DF) \\
         \hline
-         $Y = \mu + \varepsilon_{ij}$ & SST$(bk-1)$ & $D_M$ \\
-         $Y = \mu + \alpha_i + \varepsilon_{ij}$ & SSTR $(k-1)$& $D_A$ \\
-         $Y = \mu + \beta_j + \varepsilon_{ij}$ &SSB$(b-1)$& $D_B$ \\
-         $Y = \mu +\alpha_i +  \beta_j + \varepsilon_{ij}$ & SSE$(k-1)(b-1)$ & $D_I$ \\
+         $Y = \mu + \varepsilon_{ij}$ & SST$(bk-1)$  \\
+         $Y = \mu + \alpha_i + \varepsilon_{ij}$ & SSTR $(k-1)$ \\
+         $Y = \mu + \beta_j + \varepsilon_{ij}$ &SSB$(b-1)$ \\
+         $Y = \mu +\alpha_i +  \beta_j + \varepsilon_{ij}$ & SSE$(k-1)(b-1)$  \\
          \hline
       \end{tabular} 
    \end{center} 
@@ -1276,21 +1276,258 @@ $\hspace*{1.5cm} \mathrm{SST} = \mathrm{SSE} + \mathrm{SSTR} + \mathrm{SSB}$
 \end{itemize}
 
 
-\section*{Measures of Fit II}
+\section*{Lesson 52: Measures of Fit II}
 For \textbf{contingencies table}  with binomial or poisson distribution.
 \begin{itemize}[align=left,leftmargin=*]
-   \item Deviance: $D = 2 \sum O_i \ln \frac{O_i}{E_i}$ 
-   \item Pearson: $\chi^2 = \sum \frac{(O_i - E_i)^2}{E_i}$
-   \item Likelihood ratio chi-square: $C = 2[\ell - \ell_{\mathbf{min}}]$
+%    \item Deviance: $D = 2 \sum O_i \ln \frac{O_i}{E_i}$ 
+   \item Pearson: $\chi^2 = \sum \frac{(O_i - E_i)^2}{E_i} \sim \chi_{(n-p')}^2$
+   \item Likelihood ratio chi-square: \\ $\hspace*{1.5cm} C = 2[\ell - \ell_{\mathbf{min}}] \sim \chi_{(p'-1)}^2$
    \item \textbf{Pseudo}$R^2$: $\mathrm{pseudo}R^2 = 
-   \frac{\ell_{\mathbf{min} -  \ell}}{\ell_{\mathbf{min}}}$
+   frac{\ell_{\mathbf{min}} -  \ell}{\ell_{\mathbf{min}}}$
 \end{itemize}
 \subsubsection*{Residus}
 \begin{itemize}[align=left,leftmargin=*]
    \item Pearson residual: $X_k = \frac{y_i - \hat{\mu}_i}{\sqrt{\var{\hat{\mu}_i}}}$
    \item Deviance residual: $d_k = s_k\sqrt{\mathrm{deviance}}$ 
    \item[] where $s_k$ is the signe of $y_k-\hat{y}_i$
+   \item To standartize them, divide by $\sqrt{1-h_{ii}}$
 \end{itemize}
+
+
+\section*{Lesson 53: Resampling Methods}
+\begin{itemize}[align=left,leftmargin=*]
+   \item \textbf{Cross-Validation:}\\
+  $\hspace*{1.5cm}  \mathrm{CV}_{(K)} = \frac{1}{k} \sum\limits_{i=1}^k MSE_i $ 
+  \item[] If $k=n$ then is the $\mathrm{LOOCV}$ statistic.
+  \item $\mathrm{LOOCV}$ for least-square regression: \\
+  $\hspace*{1.5cm} \mathrm{CV}_{(K)} = \frac{1}{n} \sum_{i=1}^n \left( \frac{\varepsilon_i}{1-h_{ii}}\right)^2$
+  \item \textbf{Bootstap:} \\
+  $\hspace*{1.5cm} \mathrm{SE}_B(\alpha) = \sqrt{\frac{1}{1-B} \sum\limits_{i=1}^B (\hat{\alpha} - \bar{\alpha})^2}$
+\end{itemize}
+
+\section*{Lesson 54: Subset Selection}
+Using a lot of feature will result of lower standard error on training data, but poor prediction. We need to keep only the feature that truly impact the response.
+\begin{itemize}[align=left,leftmargin=*]
+   \item \textbf{Subset selection} For $k$ possible feature, $2^k$ different model are possible.
+   \begin{itemize}
+    \item For 2 model with same number of feature, we take the one with lowest $SSE$.
+    \item Otherwise, we compare with: Mallow's $C_p$, AIC, BIC and adjusted $R^2$.
+   \end{itemize}
+   \item \textbf{Foward stepwise selection} consist of starting with the null, then fit $k$ models with one variable and select the best base on SSE, then fit $k-1$ variables and so on. We obtain $k+1$ model, the best for each number of predictor, and select the final one with cross-validation or the 4 statistics. For categorial variables, each categorie is added independently.
+   \item \textbf{Total fitted model:} 
+   \begin{itemize}
+      \item Foward: $1 + \sum\limits_{i=0}^{\min(p,n)} (\min(p,n) - i)$ 
+      \item Backward: $1 + \sum\limits_{i=1}^{\min(p,n)} i$
+   \end{itemize}
+\end{itemize}
+\subsubsection*{Choosing the best model}
+\begin{itemize}
+   \item \textbf{Cross-validation} is the more accurate.
+   \item \textbf{Mallow's $\mathbf{C_p}$:} $C_p = \frac{1}{n}(SSE + 2p\hat{\sigma}^2)$ 
+   \item[] IF $\hat{\sigma}^2$ is unbiased then $C_p$ is unbiased.
+   \item \textbf{Adjested $\mathbf{R^2}$:} $R_a^2 = 1 -  \frac{MSE}{MST}$
+   \item We want the lowest Mallow's $C_p$, AIC, BIC and the heighest $R_a^2$.
+\end{itemize}
+
+\section*{Lesson 55: Shrinkage and Dimension Reduction}
+\begin{itemize}[align=left,leftmargin=*]
+   \item  \textbf{Ridge Regression:} Minimize \\
+   $\hspace{1cm} \left(\sumn y_i - \beta_0 - \sum\limits_{j=1}^{p'-1} \beta_j x_{ij}\right) + \lambda \sum\limits_{j=1}^{p'-1} \beta_j^2$
+   \item \textbf{Lasso Regression:} Minimize \\
+   $\hspace{1cm} \left(\sumn y_i - \beta_0 - \sum\limits_{j=1}^{p'-1} \beta_j x_{ij}\right) + \lambda \sum\limits_{j=1}^{p'-1} |\beta_j|$
+   \item \textbf{Standart Predictors} $\tilde{x} = \frac{x_{ij}}{\sqrt{\frac{1}{n}\sum (x_{ij}-\bar{x})^2}}$
+   \begin{align*}
+      \lambda &\to \infty \Leftrightarrow \beta_j \to 0 \\
+      \lambda &\to 0 \Leftrightarrow \beta_j \to \hat{\beta}_j^{\mathrm{normal}}
+   \end{align*}
+\end{itemize}
+
+\section*{Lesson 56:Extension to the Linear Model}
+\begin{itemize}[align=left,leftmargin=*]
+   \item \textbf{Extention:} These type can be treate as same as GLM. $y_i = \beta_0 + \beta_1 b_1(x_i) + \beta_2 b_2(x_i) + ... + \varepsilon_i$
+   \item[] For \textbf{polynomial regression}, $b_j(x) = x^j$.
+   \item[] For \textbf{piecewise constant regression} \\ $ b_j(x) = \indic{a\leq x<b}(x) $
+   \item \textbf{Generalized Additive Model:} \\
+   $\hspace*{1cm} y_i = \beta_0 + \sum_{j=1}^p f_i(x_{ij}) + \varepsilon_i$
+   \begin{itemize}
+      \item Allows nonlinear fits for each explanatory variable.
+      \item Effet on each explanatory is separate, so easily identifiable.
+      \item Does not allow foe effect of interaction among variable. 
+   \end{itemize}
+\end{itemize}
+
+
+\def\SectionColor{green!80!black}
+\section*{Lesson 57: Trend and \\Seasonality}
+\begin{itemize}[align=left,leftmargin=*]
+  \item \textbf{Trend} measures the amount by which the serie increase from period to period.
+  \item \textbf{Seasonal} variation measure cycle within a year.  
+  \item \textbf{Decomposition models}
+  \begin{itemize}
+     \item  Additive Model: $x_t = m_t + s_t + z_t$
+     \item Multiplicative Seasonality: $x_t s_t + z_t$
+     \item Multiplicative Model: $x_t = m_t s_t z_t$
+  \end{itemize}
+  \item \textbf{Centered moving average:} \\
+  $\hat{m}_t = \frac{0.5m_{t-k} + m_{t-k+1} + ... + m_t + ... + m_{t+k-1} + 0.5m_{t+k}}{2k}$
+  \item \textbf{Seasonal variation factor:}  
+  \begin{itemize}
+     \item Additive Seasonality: $\hat{s}_t = x_t - \hat{m}_t$
+     \item[] Ajusted so that $\sum (s_t + c) = 0$.
+     \item  Multiplicative Seasonality $\hat{s}_t = \frac{x_t}{\hat{m}_t}$
+     \item[] Ajusted so that $\sum \frac{(\hat{s}_t + c)}{n}= 1$.
+  \end{itemize}
+\end{itemize}
+
+\section*{Lesson 58: correlation}
+\begin{itemize}[align=left,leftmargin=*]
+    \item if $\mu(t) $ and $\sigma^2(t)$ does not vary with $t$ then the time serie is \textbf{second order stationnary}
+   \item \textbf{Variance:} $\sigma^2(t) = \esp{(x_t -       \mu(t))^2}$
+\end{itemize}
+\subsubsection*{Stationnary Time serie}
+\begin{itemize}[align=left,leftmargin=*]
+    \item \textbf{sample variance} $s^2 = \frac{1}{n-1} \sumn (x_t - \bar{x})^2$
+    \item \textbf{Covariance} at lag $k$ : \\
+    $\covar{x_t,x_{t+k}} = \gamma_k = \esp{(x_t - \mu)(x_{t+k} - \mu)} \: (\textbf{acvf}) $
+    \item[] $c_k = \frac{1}{n} \sum_{i=1}^{n-k} (x_t - \bar{x})(x_{t+k} - \bar{x})\quad (\textbf{sample acvf})$
+    \item \textbf{Auto-correration} \\
+     $\rho_k = \frac{\covar{x_t,x_{t+k}}}{\sigma^2}\quad (\textbf{acf})$ \\
+    $r_k = \frac{c_k}{c_0}\quad (\textbf{sample acf})$
+\end{itemize}
+\subsubsection*{Relationships of different time serie}
+\begin{itemize}[align=left,leftmargin=*]
+   \item A \textbf{leading variable} is one that impact another.   
+   \item \textbf{Cross-covariance} \\
+    $\gamma_k(x,y) = \esp{(x_{t+k} - \mu_x)(y_t - \mu_y)} \quad (\textbf{ccvf}) $
+    \item[] $c_k = \frac{1}{n} \sum\limits_{i=1}^{n-k} (x_{t+k} - \bar{x})(y_t - \bar{y})\quad (\textbf{sample ccvf})$
+    \item \textbf{Cross-correration} \\
+     $\rho_k(x,y) = \frac{\gamma_k(x,y)}{\sigma_x \sigma_y}\quad (\textbf{ccf}) $ \\
+    $r_k = \frac{c_k(x,y)}{\sqrt{c_0(x,x)c_0(y,y)}}\quad (\textbf{sample ccf})$
+    \item Notice
+    \begin{align*}
+      \gamma_k(x,y) &= \gamma_{-k}(x,y) \\
+      \rho_k(x,y) &= \rho_{-k}(x,y) \\
+       c_0(x,x) &= c_0
+    \end{align*}
+\end{itemize}
+
+\section*{Lesson 59: White Noise and Random Walks}
+\begin{itemize}[align=left,leftmargin=*]
+   \item \textbf{White noise} each term are independant and variance $\sigma^2$. The correlogram has autocorrelations all close to 0 except for $r_0$. \\
+   $\hspace*{1.5cm} w \sim N(0,\sigma^2) $
+   \item A \textbf{Random Walks} is a nonstationary time series which is the accumulation of white noise. The correlogram will decrease slowly from 1 to 0.
+   $\hspace*{2cm}x_i = w_i$ \\
+   $\hspace*{2cm}x_t = x_{t-1} + w_t$
+   \item[] with 
+   \begin{align*}
+        \hspace*{1cm}
+      \mu(t) &= 0 \\
+      \sigma^2(t) &= t\sigma_w^2 \\
+      \gamma_k(t) &= t\sigma_w^2 \\
+      \rho_k(t) &= \frac{1}{\sqrt{1 + \frac{k}{t}}}
+   \end{align*} 
+   \item A \textbf{Walk with drift} drift the mean $\mu(t) = t\delta$ by don't affect variance and autocorrelations.
+   $\hspace*{2cm} x_t = x_{t-1} + \delta + w_t$ 
+\end{itemize}
+
+\section*{Lesson 60: Autoregressive Models}
+\begin{itemize}[align=left,leftmargin=*]
+    \item An \textbf{autoregressive} model of order ($p$), or AR(p) is a time series where term may be expressed in term of previous terms plus white noise.
+    \begin{align*}
+    x_t - \mu =& \alpha_1(x_{t-1} - \mu) + \alpha_2(x_{t-2} - \mu) \\ 
+    +& ...  + \alpha_p(x_{t-p} - \mu) + w_t
+    \end{align*}
+    \item An AR(1) process is stationary if $|a|<1$. correlogram is deacreasing exponentially. For a stationary AR(1) process \\
+    \begin{align*}
+    \hspace*{1cm}
+      \mu_k &= 0 \\  
+      \gamma_k &= \frac{\alpha^k \sigma_w^2}{1 - \alpha^2} \\
+      \rho &= \alpha^k
+    \end{align*}
+    \item Notation: $\matr{B}^kx_t = x_{t-k}$
+    \begin{align*}
+        w_t &= x_t - \alpha_1 x_{t-1} - \alpha_2 x_{t-2}\\
+        &= (\alpha_2\matr{B}^2 - \alpha_1\matr{B} + 1)x_t \\
+        &= \theta_p(\matr{B})x_t
+    \end{align*}
+    \item[] where $\theta_p(\matr{B})$ is the \textbf{characterictic equation}. 
+    \item Testing stationarity: Root $< 1$
+    \item[(given)] $x_t = \alpha_1 x_{t-1} + \alpha_2 x_{t-2} + w_t$
+    \item[(solve)] $\theta_p(\matr{B}) = 0$  
+    \item[(answer)] If $|\matr{B}| > 1$, the process is stationary.
+    \item tips: For 2 param:
+    \begin{align*}
+        \hspace*{1cm}
+       \alpha_2 - \alpha_1 < 1 \\
+       \alpha_2 + \alpha_1 < 1 \\
+       |\alpha_2| < 1 
+    \end{align*}
+    \item Forecast $\hat{x}_{n+1|n}$ is the same equation omitting $w_t$.
+\end{itemize}
+
+\section*{Lesson 61: Regression}
+\begin{itemize}[align=left,leftmargin=*]
+    \item Variance of sample mean with correction is given by \\ $\var{\bar{x}} = \frac{\sigma^2}{n} \left(1 + 2\sum\limits_{k=1}^{n-1} \left(1 - \frac{k}{n}\right)\rho_k\right)$
+    \item \textbf{Harmonic Seasonal model}\\
+    $x_t = m_t + \sum_{i=1}^{[S/2]} s_i \sin(2\pi i t/s) $\\
+    $\hspace*{1cm}+ c_i \cos(2\pi i t/s) + z_t$
+    \item Forecast correction
+    \begin{itemize}
+       \item Lognormal: $e^{\sigma^2/2}$ 
+       \item Empirical: $\frac{\Sigma e^{z_t}}{n}$
+    \end{itemize}
+\end{itemize}
+
+\section*{Lesson 62: moving Average Models}
+\begin{itemize}[align=left,leftmargin=*]
+   \item A \textbf{moving average} time serie (MA(q)) is alway stationary. It define as \\ 
+    $x_t = \mu + w_t + \beta_1 w_{t-1} + ... + \beta_q w_{t-q}$ \\ 
+    $\hspace*{0.35cm}= \mu + \phi(\matr{B})w_t$ 
+    \item[] with 
+    \begin{align*}
+      \mu(t) &= 0 \\  
+       \gamma_k &= \sigma_w^2 \sum_{i=0}^{q-k} \beta_i \beta_{i+k}\quad \beta_0 = 1\\
+    \end{align*} 
+    \item[] and $\gamma_k = 0$ for $k>q$ so MA(q) may be good fit is we observe $\gamma_q = 0$ in correlogram.
+    \item $q$ beta + $\mu$ + $\sigma_w^2 = q+2$ parameters fit.
+    \item A MA(q) is \textbf{Inversible} if all the root of 
+    $ \phi(\matr{B})$ are $|\matr{B}|>1$
+    \item Express MA(q) in form of AR($\infty$). If $ \phi(\matr{B})$ is reversible: \\
+    $\frac{1}{1+x} = 1 - x + x^2 - x^3 + x^4 + ..$\\
+    $\frac{1}{1-x} = 1 + x + x^2 + x^2 + x^4 + ...$
+    \item ARIMA with $p = d = 0$ is a MA(q) model.
+    \item conditional sum of squared residuals: $\sum w_t^2$
+\end{itemize} 
+
+
+\section*{Lesson 63: ARMA Models}
+\begin{itemize}[align=left,leftmargin=*]
+   \item The ARMA(p,q) models:\\
+   $x_t = \alpha_1 x_{t-1} + ... + \alpha_p x_{t-p} + \beta_1 + w_{t-1} + ... + \hspace*{0.35cm} \beta_q w_{t-q} + w_t$
+   \item[] $\theta_p(\matr{B})x_t = \phi_q(\matr{B})w_t$
+   \item The process is stationary if all roots of $\theta(x)>1$ and the process is inversible if all roots of $\phi(x)>1$
+   \item[]
+    \begin{align*}
+      \gamma_0 &= \sigma_w^2 \left(\frac{1 + 2\alpha\beta + \beta^2}{1 - \alpha^2} \right)  \\
+      \gamma_k &= \sigma_w^2 (\alpha + \beta) \alpha^{k-1}\left(\frac{1+\alpha\beta}{1 - \alpha^2}\right)
+    \end{align*}
+    \item[] $\rho_k = \alpha\rho_{k-1}$ for $k\geq2$.
+    \item If the process is stationary, $\esp{x_t} = \esp{x_{t-1}}$. 
+\end{itemize}
+
+\section*{Lesson 64: ARIMA and SARIMA models}
+\begin{itemize}[align=left,leftmargin=*]
+    \item $\triangledown x_t + x_t - x_{t-1} = (1 - \matr{B})x_t$
+   \item An \textbf{ARIMA} model is a nonstationary process. If $x_t$ is an ARIMA model, then $y_t = \triangledown^d x_t$ is an ARMA(p,q). Then the ARIMA(p,d,q) is \\
+   $\hspace*{1cm} \theta(\matr{B})(1-\matr{B})^d x_t = \phi(\matr{B})w_t$
+   \begin{itemize}
+     \item With no MA(q), this is ARI(p,d)
+     \item With no AR(p), this is IMA(d,q)  
+   \end{itemize}
+   \item An \textbf{SARIMA} model is a ARIMA with seasonal effect.
+   \item To forecast, we take the difference and then forecast ARMA(p,q) model.
+\end{itemize}
+
 
 
 
