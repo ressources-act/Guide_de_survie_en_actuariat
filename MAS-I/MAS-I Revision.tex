@@ -62,7 +62,7 @@
 \section*{Lesson 4: Markov Chains}
 \begin{itemize}[align=left,leftmargin=*]
     \item \textbf{Chapman-Kolmogorov:} \[ P_{ij}^{(n+m)} = \sum_{k=0}^\infty P_{ik}^{(n)}  P_{kj}^{(m)} \]
-    \item \textbf{Gambler's ruin:}
+    \item \textbf{Gambler's ruin:} Let N the target and j the actual status.
     \begin{align*}
         &p_j=
         \left\{
@@ -151,7 +151,7 @@
 \begin{itemize}[align=left,leftmargin=*]
     \item $X(t) \sim \mathrm{Poisson}[m(t)]$
     ,where $m(t)$ is \textbf{mean value function} representing the mean of the number events before time $t$.
-    \item Poisson process can't decrease over time. $N(t) \geq N(s)$
+    \item Poisson process can't decrease over time. $N(t) \geq N(s)\quad \text{for}\:t \geq s$
     \item $N(0) = 0$
     \item Increament are \textbf{independent}: \\
     \setlength{\unitlength}{1cm}
@@ -182,7 +182,7 @@
     \end{picture}
     $\probb{N(t)-N(s)=n|N(s)=k}=\probb{N(t)-N(s)=n}$
     \item \textbf{Non-homogeneous Poisson process:} \[ m(t)=\int_0^t \lambda(u) \diff{u} \] where $\lambda(t)$ is the \textbf{intensity function}
-    \item \textbf{Homogeneous Poisson process:} The Poisson process is said to be homogeneous when the intensity function is a constant. \[ m(t)=\int_0^t \lambda \diff{u} = \lambda t \] We then say that the process have \textbf{stationary increments}. \[ \probb{N(s)}=\probb{N(t)-N(s)} \]
+    \item \textbf{Homogeneous Poisson process:} The Poisson process is said to be homogeneous when the intensity function is a constant. \[ m(t)=\int_0^t \lambda \diff{u} = \lambda t \] We then say that the process have \textbf{stationary increments}. \[ \probb{N(s - t)}=\probb{N(t)-N(s)} \]
 \end{itemize}
 
 \section*{Lesson 12: Poisson Process Time To Next Events}
@@ -208,7 +208,7 @@
     \item Only for homogeneous Poisson processes.
     \item The probability of $k$ event from process 1 is given by: \[ k \sim \mathrm{Binomial}\left( k+l-1, \frac{\lambda_1}{\lambda_1 + \lambda_2} \right) \] Then the probability that $k$ event from process 1 occur before $l$ from process 2 is: \[ \sum_{i=k}^{k+l-1} \binom{k+l-1}{i} \left( \frac{\lambda_1}{\lambda_1+\lambda_2} \right)^i \left(\frac{\lambda_2}{\lambda_1+\lambda_2}\right)^{k+l-1-i} \]
     \item Given that exactly $N(t) = k$ Poisson events occured before time $t$, the joint distribution of event time is the joint distribution of $k$ independent uniform random variables on $(0, t)$. \[ F_{S_1,...,S_n|n(t)}(s_1,...s_n|k) = \frac{k!}{t^k} \]
-    \item For $k$ independent uniform random variable on $(0, t)$, the expected value of the $j$\up{th} order statistics is: $E[T^{(j)}] =  \frac{jt}{(k+1)} $.
+    \item For $k$ independent uniform random variable on $(0, t)$, the expected value of the $j$\up{th} order statistics is: $E[T^{[j]}] =  \frac{jt}{(k+1)} $.
     \item Tips: {\color{AppendixColor}\nameref{Appendix: Statistic Order}}
 \end{itemize}
 
@@ -241,7 +241,7 @@
 
 \section*{Lesson 17: Reliability Structure Functions}
 \begin{itemize}[align=left,leftmargin=*]
-    \item $\phi(\mathbf{x})$ is the \textbf{structure} function for a systeme. It equal 1 if the systeme function, 0 otherwise.
+    \item $\phi(\mathbf{x})$ is the \textbf{structure} function for a systeme. It equal 1 if the systeme work, 0 otherwise.
     \item A \textbf{series} system is define as a \textbf{minimal path set}. The system is working if all components are working.
     \setlength{\unitlength}{1cm}
     \begin{picture}(6,1)(0,-.5)
@@ -430,7 +430,7 @@ The contract here are define with $K_x$ to pay at the end of death year. All sam
 \section*{Lesson 24: Simulation \\ Rejection Method}
 \begin{itemize}[align=left,leftmargin=*]
     \item \textbf{General method:} Let $f(x)$ be the density function of variable to simulate, and let $g(x)$ be the \textbf{base distribution}, a random density function that is easy-to-simulate with nonzero wherever $f(x)\neq 0$. \[\hspace*{1cm} c = \max \frac{f(x)}{g(x)} \]
-     Generate two uniform number $u_1, u_2$. Let \\ $x = G^{-1}(u_i)$. Accept $x_1$ only if \[\hspace*{.5cm} u_2 \leq \frac{f(x_1)}{c \cdot g(x_1)} \]
+     Generate two uniform number $u_1, u_2$. Let \\ $x_1 = G^{-1}(u_1)$. Accept $x_1$ only if \[\hspace*{.5cm} u_2 \leq \frac{f(x_1)}{c \cdot g(x_1)} \]
     \item \textbf{Simulating gamma distribution:} Use \\ $\mathrm{Exp}(\alpha \cdot \theta)$ as the base distribution and $x = \alpha \cdot \theta$ that maximize $c$.
     \item \textbf{Simulating standard normal distribution:} \\ Generate 3 uniform $u_1, u_2, u_3$. Let $y_1 = -\ln u_2$ and $y_2 = -\ln u_2$. Accept $y_1$ if \[\hspace*{.5cm} y_2 \geq \frac{(y_1-1)^2}{2} \] and add $(-)$ if $u_3 \geq 0.5$
     \item  The \textbf{Number of iteration} is a Ross-geometric distribution with mean c. Let be $\beta$ the mean of a geometric distribution given in the exam appendix:
@@ -645,12 +645,12 @@ $\hspace*{1.65cm} l(\theta) = \sum \ln g(x_i;\theta)$
     Tips: {\color{AppendixColor} \nameref{Appendix: Transformations distribution}}
     \item Weibull distribution: If the data is censored(u) or truncated(d), then \[ \left(\hat{\theta}^{\mathrm{MLE}}\right)^\tau=\frac{\sum (x_i - d_i)^\tau}{\sum \indic{x_i \leq u}}\]
     if $\tau=1$, then the distribution is Exponential.
-    \item Pareto distribution with fixed $\theta$: $\hat{\alpha} = \frac{n}{K}$
+    \item Pareto distribution with fixed $\theta$: $\hat{\alpha} = -\frac{n}{K}$
     \begin{align*}
       K = \sum_{i=1}^{n+c} \ln(\theta+d_i) - \sum_{i=1}^{n+c} \ln(\theta+x_i)
     \end{align*}
     where $n\equiv$ number of non-censored(c) data.
-    \item Single-parameter Pareto: $\hat{\alpha} = \frac{n}{K}$
+    \item Single-parameter Pareto: $\hat{\alpha} = -\frac{n}{K}$
     \begin{align*}
       K = \sum_{i=1}^{n+c} \ln \max(\theta, d_i) - \sum_{i=1}^{n+c} \ln x_i
     \end{align*}
@@ -663,6 +663,7 @@ $\hspace*{1.65cm} l(\theta) = \sum \ln g(x_i;\theta)$
     \item Bernouilli: Let have a random variable that can take 2 values, $n$ and $m$. Then \\
     $\hspace*{2cm} \hat{p} = \frac{n}{n+m}$
     \item Tips: If $L(\theta)$ look like a density distribution, $\hat{\theta}^{\mathrm{MLE}}\equiv\text{mode of this distribution}$.
+    \item \textbf{Ground-up loss} is define as (x|x>d).
 \end{itemize}
 
 \section*{Lesson 31: Variance of MLE}
@@ -898,7 +899,7 @@ $\hspace*{1cm} \prob{X>\gamma|H_0\equiv \mathrm{true}} = \alpha$
   \item Warning: $W$ is on the denominator, so for upper one-sided interval, we take the lower percentile $\alpha$ and $1-\alpha$ for lower one-sided interval.
   \begin{enumerate}
       \item $\left(0, \frac{(n-1)S^2}{w_{\alpha}} \right)$
-      \item $\left(\frac{(n-1)S^2}{1-\alpha}, \infty \right)$
+      \item $\left(\frac{(n-1)S^2}{w_{1-\alpha}}, \infty \right)$
       \item  $\left(\frac{(n-1)S^2}{w_{1-\frac{\alpha}{2}}}, \frac{(n-1)S^2}{w_{\frac{\alpha}{2}}} \right)$
   \end{enumerate}
   \item The \textbf{Fisher} distribution is define as \\
@@ -1086,8 +1087,8 @@ Ordinal response variables have several categories in logical order.
   \item \textbf{Linear Regression:} \\
   \begin{align*}
     \hat{\beta}_1 &= \frac{\sum x_iy_i - n\bar{x}\bar{y}}{\sum x_i^2 - n\bar{x}^2} \\
-    \hat{\beta}_0 &= \bar{y} - \hat{\beta}_1 \hat{x} \\
-    \matr{b} &= (\matr{X}^\intercal\matr{X}^{-1})\matr{X}^\intercal \matr{y}
+    \hat{\beta}_0 &= \bar{y} - \hat{\beta}_1 \bar{x} \\
+    \matr{b} &= (\matr{X}^\intercal\matr{X})^{-1}\matr{X}^\intercal \matr{y}
   \end{align*}
   \item The \textbf{score} function is define as the derivative of the loglikehood \\
   $\hspace*{2cm} \matr{U}(\beta) = \ell'(\beta)$
@@ -1099,7 +1100,7 @@ Ordinal response variables have several categories in logical order.
   $\hspace*{1cm} U_j =\sumn \frac{y_i - \mu_i}{\var{y_i}}x_{ij}\left( \frac{\diff g(\mu_i)}{\diff \mu_i}\right)$
   \item The information matrix: $I(\theta) = \matr{X}^\intercal\matr{W}\matr{X}$
   \item Let $\matr{W}$ be the diagonal matrix with entries \\
-  $\hspace*{1.5cm}w_{ii} =\left( \frac{\diff g(\mu_i)}{\diff\mu_i} \var{y_i}\right)^{-1}$
+  $\hspace*{1.5cm}w_{ii} =\left( \left(\frac{\diff g(\mu_i)}{\diff\mu_i}\right)^2 \var{y_i}\right)^{-1}$
   \item Let $\matr{G}$ be the diagonal matrix with entries \\
   $\hspace*{2cm}G_{ii} =\frac{g(\mu_i)}{\mu_i}$
   \item The regression variable for one iteration \\
@@ -1129,6 +1130,8 @@ Ordinal response variables have several categories in logical order.
 \subsubsection*{Signifiance of Feature}
 \begin{itemize}[align=left,leftmargin=*]
   \item \textbf{Loglikehood ratio test:} These tests compare a \textbf{unconstrained} modele with $p+q$ parameters versus another \textbf{constrained }model with $p$ parameters. \\
+  $\hspace*{1.5cm} H_0: \mathrm{Model}p+q)$ \\
+  $\hspace*{1.5cm} H_1: \mathrm{Model}(p)$ \\ 
   $\hspace*{1.5cm} 2(\tilde{\ell}_{p+q} - \hat{\ell}_p) \sim \chi_{(q)}^2$\\
   $\hspace*{2cm} \hat{D} - \tilde{D} \sim \chi_{(1)}^2$
   \item \textbf{Wald test:} To test wheter a single parameter $\beta_j=r$. \\
@@ -1209,7 +1212,7 @@ $\hspace*{2cm} SST = SSE + SSR$
    \item Two mesure for influence point.
    \begin{itemize}
       \item $\mathrm{DFITS}_i = r_i \sqrt{\frac{h_{ii}}{1- h_{ii}}}$
-      \item \textbf{Cook:} $D_i = r_i^2 \frac{h_{ii}}{p'(1 - h_{ii})}$
+      \item \textbf{Cook:} $D_i =\frac{\sum (\hat{y}_j - y_{j(i)})^2}{p^{'}S^2} =r_i^2 \frac{h_{ii}}{p'(1 - h_{ii})}$
       \item[] $D_i>1$ is too high. 
    \end{itemize}
  \end{itemize} 
@@ -1283,7 +1286,7 @@ For \textbf{contingencies table}  with binomial or poisson distribution.
    \item Pearson: $\chi^2 = \sum \frac{(O_i - E_i)^2}{E_i} \sim \chi_{(n-p')}^2$
    \item Likelihood ratio chi-square: \\ $\hspace*{1.5cm} C = 2[\ell - \ell_{\mathbf{min}}] \sim \chi_{(p'-1)}^2$
    \item \textbf{Pseudo}$R^2$: $\mathrm{pseudo}R^2 = 
-   frac{\ell_{\mathbf{min}} -  \ell}{\ell_{\mathbf{min}}}$
+   \frac{\ell_{\mathbf{min}} -  \ell}{\ell_{\mathbf{min}}}$
 \end{itemize}
 \subsubsection*{Residus}
 \begin{itemize}[align=left,leftmargin=*]
@@ -1341,6 +1344,16 @@ Using a lot of feature will result of lower standard error on training data, but
       \lambda &\to 0 \Leftrightarrow \beta_j \to \hat{\beta}_j^{\mathrm{normal}}
    \end{align*}
 \end{itemize}
+\begin{tabular}{l|l}
+    \hline
+   PCA & Partial Least Square \\
+   \hline
+   unsupervised & supervised \\
+   \multicolumn{2}{c}{variables are linear combianaire of the original} \\
+   Higher bias & Lower bias \\
+   Lower variance & Higher variance  \\
+   \hline 
+\end{tabular}
 
 \section*{Lesson 56:Extension to the Linear Model}
 \begin{itemize}[align=left,leftmargin=*]
@@ -1416,7 +1429,7 @@ Using a lot of feature will result of lower standard error on training data, but
    \item \textbf{White noise} each term are independant and variance $\sigma^2$. The correlogram has autocorrelations all close to 0 except for $r_0$. \\
    $\hspace*{1.5cm} w \sim N(0,\sigma^2) $
    \item A \textbf{Random Walks} is a nonstationary time series which is the accumulation of white noise. The correlogram will decrease slowly from 1 to 0.
-   $\hspace*{2cm}x_i = w_i$ \\
+   $\hspace*{2cm}x_1 = w_1$ \\
    $\hspace*{2cm}x_t = x_{t-1} + w_t$
    \item[] with 
    \begin{align*}
@@ -1478,7 +1491,7 @@ Using a lot of feature will result of lower standard error on training data, but
     \end{itemize}
 \end{itemize}
 
-\section*{Lesson 62: moving Average Models}
+\section*{Lesson 62: Moving Average Models}
 \begin{itemize}[align=left,leftmargin=*]
    \item A \textbf{moving average} time serie (MA(q)) is alway stationary. It define as \\ 
     $x_t = \mu + w_t + \beta_1 w_{t-1} + ... + \beta_q w_{t-q}$ \\ 
@@ -1530,22 +1543,15 @@ Using a lot of feature will result of lower standard error on training data, but
 
 
 
-
- \newpage
  % -------------------------------------
  % Appendix 
  % ------------------------------------- 
-\title{Appendix}
-\date{}
-\author{}
-\maketitle
-\vspace{-70pt}
-% \begin{multicols*}{3}
+\part*{Appendix}
 \def\SectionColor{black!80!white}
 \section*{Inverting a matrix}
 \label{Appendix: Inverting a matrix}
-\begin{flalign*}
-    \hspace{-2cm}
+\begin{align*}
+    \hspace*{-0.9cm}
     \begin{pmatrix}
             a & b \\
             c & d
@@ -1556,7 +1562,7 @@ Using a lot of feature will result of lower standard error on training data, but
             d & -b \\
             -c & a
     \end{pmatrix}
-\end{flalign*}
+\end{align*}
 
 
 
@@ -1734,6 +1740,27 @@ The convolution of 2 random variable is difine as the sum of the two. \\
   F_{X_1+X_2}(x) &= \int_{-\infty}^x F_{X_1}(x - s)f_{X_2}(s)\diff{s}
 \end{align*}
 
+\section*{Shifting Exponential}
+\begin{align*}
+   f(x;\theta;d) &= \frac{1}{\theta} e^{-(x-d)/\theta} \\
+   \esp{x}&= \theta + d \\
+    \var{x} &= \theta^2    
+\end{align*}
+
+\section*{Norme d'un vecteur}
+\begin{align*}
+   \ell_1 &= x_1 + x_2 + ... + x_n \\
+   \ell_2 &= \sqrt{x_1^2 + x_2^2 + ... + x_n^2}
+\end{align*}
+
+\section*{Greedy algorithm}
+A group of $n$ peoples is to be assigned to $k$ job, one to each job. The cost of job j is $c_{ij}$ if person i is assigned.
+Select the assignement to have the minimal cost. 
+\begin{align*}
+   c_{ij} &\sim \mathrm{Exp}(\theta) \\
+   \esp{\textbf{Total cost}} &= \sum \min(c_{11} + ... + c_{1n} + ... + c_{kn}) \\
+   \esp{\textbf{Total cost}} &= \frac{\theta}{n\cdot k} + \frac{\theta}{(n-1)\cdot(k-1)} + ... 
+\end{align*}
 
 \end{multicols*}
 %% -----------------------------
