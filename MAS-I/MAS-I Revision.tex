@@ -643,7 +643,7 @@ $\hspace*{1.65cm} l(\theta) = \sum \ln g(x_i;\theta)$
     \end{itemize}
     \item Transformations: MLE's are invariant under one-to-one transformation. Then if we have a transformed variable, we can untransform the data and find the parameter of the untransform distribution. \\
     Tips: {\color{AppendixColor} \nameref{Appendix: Transformations distribution}}
-    \item Weibull distribution: If the data is censored(u) or truncated(d), then \[ \left(\hat{\theta}^{\mathrm{MLE}}\right)^\tau=\frac{\sum (x_i - d_i)^\tau}{\sum \indic{x_i \leq u}}\]
+    \item Weibull distribution: If the data is censored(u) or truncated(d), then \[ \left(\hat{\theta}^{\mathrm{MLE}}\right)^\tau=\frac{\sum x_i^\tau - \sum d_i^\tau}{\sum \indic{x_i \leq u}}\]
     if $\tau=1$, then the distribution is Exponential.
     \item Pareto distribution with fixed $\theta$: $\hat{\alpha} = -\frac{n}{K}$
     \begin{align*}
@@ -1063,7 +1063,7 @@ Ordinal response variables have several categories in logical order.
 \begin{itemize}[align=left,leftmargin=*]
   \item \textbf{Cumulative logit and proportional odds models:}
   \begin{align*}
-    o_j = \ln \frac{\sum_{k=1}^j \pi_k}{1-\sum_{k=1}^j \pi_k} = \eta_j
+    \ln o_j = \ln \frac{\sum_{k=1}^j \pi_k}{1-\sum_{k=1}^j \pi_k} = \eta_j
   \end{align*}
   Tips: The model is cumulative, so to find $\pi_{2}$, we need to find $\pi_{1}$ and $\pi_{1}+\pi_{2}$. \\
   This model is proportional so if we $\textbf{fix}$ the categorie but consider two set of feature $x_{i1}$ and $x_{i2}$, the relative odds are \\
@@ -1130,8 +1130,6 @@ Ordinal response variables have several categories in logical order.
 \subsubsection*{Signifiance of Feature}
 \begin{itemize}[align=left,leftmargin=*]
   \item \textbf{Loglikehood ratio test:} These tests compare a \textbf{unconstrained} modele with $p+q$ parameters versus another \textbf{constrained }model with $p$ parameters. \\
-  $\hspace*{1.5cm} H_0: \mathrm{Model}p+q)$ \\
-  $\hspace*{1.5cm} H_1: \mathrm{Model}(p)$ \\ 
   $\hspace*{1.5cm} 2(\tilde{\ell}_{p+q} - \hat{\ell}_p) \sim \chi_{(q)}^2$\\
   $\hspace*{2cm} \hat{D} - \tilde{D} \sim \chi_{(1)}^2$
   \item \textbf{Wald test:} To test wheter a single parameter $\beta_j=r$. \\
@@ -1242,7 +1240,7 @@ $\hspace*{2cm} \mathrm{SST} = \mathrm{SSE} + \mathrm{SSTR}$
    \item  \textbf{Within sum of square} \\
    $\hspace*{1cm} \mathrm{SSE} = \sum\limits_{i=1}^k \sum\limits_{j=1}^{n_i} (y_{ij} - \bar{y}_{i\Sigma})^2$
    \item \textbf{Between sum of square} \\
-   $\mathrm{SSTR} = \sum\limits_{i=1}^k n_i (\bar{y}_{i\Sigma} - \bar{y}_{\Sigma\Sigma})^2 = \sum\limits_{i=1}^k \left(\frac{y_{i\Sigma^2}}{n_i}\right)  - n\bar{y}_{\Sigma\Sigma}^2$
+   $\mathrm{SSTR} = \sum\limits_{i=1}^k n_i (\bar{y}_{i\Sigma} - \bar{y}_{\Sigma\Sigma})^2 = \sum\limits_{i=1}^k \left(\frac{y^2_{i\Sigma}}{n_i}\right)  - n\bar{y}_{\Sigma\Sigma}^2$
    \item \textbf{Total sum of square} \\
    $\mathrm{SST} = \sum\limits_{i=1}^k \sum\limits_{j=1}^{n_i} (y_{ij} - \bar{y}_{\Sigma\Sigma})^2 = \sum\limits_{j=1}^{n_i} (y_{ij}^2) - n\bar{y}_{\Sigma\Sigma}^2$ \\
    \item \textbf{Fishier test} \\
@@ -1300,7 +1298,8 @@ For \textbf{contingencies table}  with binomial or poisson distribution.
 \section*{Lesson 53: Resampling Methods}
 \begin{itemize}[align=left,leftmargin=*]
    \item \textbf{Cross-Validation:}\\
-  $\hspace*{1.5cm}  \mathrm{CV}_{(K)} = \frac{1}{k} \sum\limits_{i=1}^k MSE_i $ 
+  $\hspace*{1.5cm}  \mathrm{CV}_{(K)} = \frac{1}{k} \sum\limits_{i=1}^k MSE_i $\\ 
+  As $k\to n\: \mathrm{bias} \Downarrow\: \var{CV_k} \Uparrow$ 
   \item[] If $k=n$ then is the $\mathrm{LOOCV}$ statistic.
   \item $\mathrm{LOOCV}$ for least-square regression: \\
   $\hspace*{1.5cm} \mathrm{CV}_{(K)} = \frac{1}{n} \sum_{i=1}^n \left( \frac{\varepsilon_i}{1-h_{ii}}\right)^2$
@@ -1480,7 +1479,7 @@ Using a lot of feature will result of lower standard error on training data, but
 
 \section*{Lesson 61: Regression}
 \begin{itemize}[align=left,leftmargin=*]
-    \item Variance of sample mean with correction is given by \\ $\var{\bar{x}} = \frac{\sigma^2}{n} \left(1 + 2\sum\limits_{k=1}^{n-1} \left(1 - \frac{k}{n}\right)\rho_k\right)$
+    \item Variance of sample mean with correlation is given by \\ $\var{\bar{x}} = \frac{\sigma^2}{n} \left(1 + 2\sum\limits_{k=1}^{n-1} \left(1 - \frac{k}{n}\right)\rho_k\right)$
     \item \textbf{Harmonic Seasonal model}\\
     $x_t = m_t + \sum_{i=1}^{[S/2]} s_i \sin(2\pi i t/s) $\\
     $\hspace*{1cm}+ c_i \cos(2\pi i t/s) + z_t$
@@ -1755,12 +1754,30 @@ The convolution of 2 random variable is difine as the sum of the two. \\
 
 \section*{Greedy algorithm}
 A group of $n$ peoples is to be assigned to $k$ job, one to each job. The cost of job j is $c_{ij}$ if person i is assigned.
-Select the assignement to have the minimal cost. 
+Select the assignement to have the minimal cost. We fixe the job or the people such as the $\min(n,k)$ and take the \textbf{minimum} cost for this personne(job).  
 \begin{align*}
    c_{ij} &\sim \mathrm{Exp}(\theta) \\
-   \esp{\textbf{Total cost}} &= \sum \min(c_{11} + ... + c_{1n} + ... + c_{kn}) \\
-   \esp{\textbf{Total cost}} &= \frac{\theta}{n\cdot k} + \frac{\theta}{(n-1)\cdot(k-1)} + ... 
+% $   \esp{\textbf{Total cost}} = \sum\limits_{i=1}^{\min(n,k)} \min(c_{i,1} + c_{i,2} + ... + c_{i,\max(n,k)}) $ \\
+   \esp{\textbf{Total cost}} &= \sum\limits_{i=1}^{\min(n,k)} \frac{\theta}{\max(n,k)}
 \end{align*}
+
+\section*{Potential outliers}
+Let $Q_1$ and $Q_2$ be the 25\up{e} and the 75\up{75} quantile. Then $h=1.5(Q_3 - Q_1)$. Observation are
+potential outliers if their are not in 
+\begin{align*}
+  (Q_1 - h, Q_3 + h)  
+\end{align*}
+
+\section*{Test III}
+Type III tests are tests on variable or set of variable that assume that all other variables are present in the model. 
+The \textbf{Wald} test is type III.
+
+\section*{Overdispersion}
+If the variance of the observation is \textbf{higher} than indicated by the binomial or poisson model. 
+\textbf{Hight diviance} may indicate Overdispersion. We can solve it with \textbf{quasi-likehood}: 
+$\phi \var{y}$. This don't affect the fit but many statistic like Pearson. For Poison, we can use
+a Binomial Negative model.
+
 
 \end{multicols*}
 %% -----------------------------

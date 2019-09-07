@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  15 APR 2019 20:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  20 APR 2019 18:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1885,85 +1885,80 @@ Underfull \hbox (badness 10000) in paragraph at lines 1087--1088
  []
 
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 13.24796pt on input line 1146.
+(Font)              scaled to size 13.24796pt on input line 1144.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 1146.
+(Font)              scaled to size 7.35999pt on input line 1144.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 13.24796pt on input line 1146.
+(Font)              scaled to size 13.24796pt on input line 1144.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 1146.
+(Font)              scaled to size 7.35999pt on input line 1144.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 1146.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 1144.
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 1246--1248
+Underfull \hbox (badness 10000) in paragraph at lines 1244--1246
 
- []
-
-
-Overfull \hbox (6.8397pt too wide) in paragraph at lines 1347--1357
-[] 
  []
 
 [9]
-Overfull \hbox (3.85649pt too wide) in paragraph at lines 1384--1386
+Overfull \hbox (6.8397pt too wide) in paragraph at lines 1346--1356
+[] 
+ []
+
+
+Overfull \hbox (3.85649pt too wide) in paragraph at lines 1383--1385
 [] \FMS/futm/m/n/9 Å []$ 
  []
 
 
-Overfull \hbox (5.4757pt too wide) in paragraph at lines 1403--1405
+Overfull \hbox (5.4757pt too wide) in paragraph at lines 1402--1404
 [][] \FMS/futm/m/n/9 Å \FML/futmi/m/it/9 ^^M[] \FMS/futm/m/n/9 Å \T1/futs/m/n/9 E[] ([])$ 
  []
 
 
-Underfull \hbox (badness 5316) in paragraph at lines 1446--1446
+Underfull \hbox (badness 5316) in paragraph at lines 1445--1445
 [][]\T1/futs/b/n/14.4 Lesson 60 : Au-to-re-gres-sive
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1453--1454
+Underfull \hbox (badness 10000) in paragraph at lines 1452--1453
 
  []
 
 [10]
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 1549.
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 1548.
 
-Underfull \hbox (badness 7869) in paragraph at lines 1624--1624
+Underfull \hbox (badness 7869) in paragraph at lines 1623--1623
 [][]\T1/futs/b/n/14.4 Discrete Cu-mu-la-tive Func-
  []
 
 
-Overfull \hbox (5.05447pt too wide) in paragraph at lines 1647--1679
+Overfull \hbox (5.05447pt too wide) in paragraph at lines 1646--1678
 [] 
  []
 
 <src/Illustration-skewness-and-kurtosis.png, id=156, 524.71031pt x 266.49562pt>
 File: src/Illustration-skewness-and-kurtosis.png Graphic file (type png)
  <use src/Illustration-skewness-and-kurtosis.png>
-Package pdftex.def Info: src/Illustration-skewness-and-kurtosis.png used on input line 1704.
+Package pdftex.def Info: src/Illustration-skewness-and-kurtosis.png used on input line 1703.
 (pdftex.def)             Requested size: 178.39914pt x 90.6073pt.
 
-Overfull \hbox (7.4823pt too wide) in paragraph at lines 1703--1705
+Overfull \hbox (7.4823pt too wide) in paragraph at lines 1702--1704
 [] 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 1737--1738
+Underfull \hbox (badness 10000) in paragraph at lines 1736--1737
 
- []
-
-
-Overfull \hbox (17.13945pt too wide) in paragraph at lines 1763--1763
-[] 
  []
 
 [12 </Users/nicholaslangevin/GitHub/Guide_de_survie_en_actuariat/MAS-I/src/Illustration-skewness-and-kurtosis.png>] 
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1769.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1769.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1786.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1786.
 (/Users/nicholaslangevin/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1769.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1769.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1786.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1786.
 Package rerunfilecheck Info: File `"MAS-I Revision".out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1973,18 +1968,18 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 43719 strings out of 492995
- 961418 string characters out of 6132704
+ 43722 strings out of 492995
+ 961451 string characters out of 6132704
  1187570 words of memory out of 5000000
  46408 multiletter control sequences out of 15000+600000
  178276 words of font info for 204 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,16n,103p,10521b,2086s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-bb.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mex.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ml.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlit.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-mlitb.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on "/Users/nicholaslangevin/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf" (12 pages, 243378 bytes).
+Output written on "/Users/nicholaslangevin/GitHub/Guide_de_survie_en_actuariat/MAS-I/MAS-I Revision.pdf" (12 pages, 244668 bytes).
 PDF statistics:
- 251 PDF objects out of 1000 (max. 8388607)
- 219 compressed objects within 3 object streams
- 107 named destinations out of 1000 (max. 500000)
+ 256 PDF objects out of 1000 (max. 8388607)
+ 224 compressed objects within 3 object streams
+ 110 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
