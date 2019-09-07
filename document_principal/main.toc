@@ -1,0 +1,42 @@
+\babel@toc {french}{}
+\contentsline {part}{I\hspace {1em}Fondements math\IeC {\'e}matiques utiles}{3}{part.1}% 
+\contentsline {chapter}{\numberline {1}Alg\IeC {\`e}bre lin\IeC {\'e}aire}{4}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}D\IeC {\'e}finition d'un vecteur et une matrice}{4}{section.1.1}% 
+\contentsline {paragraph}{Vecteur ligne}{4}{section*.2}% 
+\contentsline {paragraph}{Matrice}{4}{section*.3}% 
+\contentsline {paragraph}{Matrice carr\IeC {\'e}e}{4}{section*.4}% 
+\contentsline {paragraph}{non-n\IeC {\'e}gative}{4}{section*.5}% 
+\contentsline {paragraph}{positive}{4}{section*.6}% 
+\contentsline {paragraph}{semi-positive}{5}{section*.7}% 
+\contentsline {paragraph}{Orthogonale}{5}{section*.8}% 
+\contentsline {paragraph}{Matrice sym\IeC {\'e}trique}{5}{section*.9}% 
+\contentsline {paragraph}{Matrice triangulaire (inf\IeC {\'e}rieure ou sup\IeC {\'e}rieure)}{5}{section*.10}% 
+\contentsline {paragraph}{Matrice diagonale}{5}{section*.11}% 
+\contentsline {paragraph}{Matrice diagonalisable}{6}{section*.12}% 
+\contentsline {section}{\numberline {1.2}Matrice transpos\IeC {\'e}e}{6}{section.1.2}% 
+\contentsline {section}{\numberline {1.3}Op\IeC {\'e}rations matricielles}{6}{section.1.3}% 
+\contentsline {section}{\numberline {1.4}Trace, d\IeC {\'e}terminant et matrice inverse}{7}{section.1.4}% 
+\contentsline {subsection}{\numberline {1.4.1}Trace d'une matrice}{7}{subsection.1.4.1}% 
+\contentsline {paragraph}{Propri\IeC {\'e}t\IeC {\'e}s de la trace d'une matrice}{7}{section*.13}% 
+\contentsline {subsection}{\numberline {1.4.2}D\IeC {\'e}terminant d'une matrice}{7}{subsection.1.4.2}% 
+\contentsline {subsection}{\numberline {1.4.3}Matrice inverse}{8}{subsection.1.4.3}% 
+\contentsline {section}{\numberline {1.5}D\IeC {\'e}composition LDU de Choleski}{8}{section.1.5}% 
+\contentsline {section}{\numberline {1.6}Vecteurs et valeurs propres}{8}{section.1.6}% 
+\contentsline {subsection}{\numberline {1.6.1}D\IeC {\'e}finition}{8}{subsection.1.6.1}% 
+\contentsline {subsection}{\numberline {1.6.2}Propri\IeC {\'e}t\IeC {\'e}s int\IeC {\'e}ressantes}{8}{subsection.1.6.2}% 
+\contentsline {subsection}{\numberline {1.6.3}D\IeC {\'e}composition spectrale}{9}{subsection.1.6.3}% 
+\contentsline {section}{\numberline {1.7}D\IeC {\'e}riv\IeC {\'e}es de matrice ou vecteurs}{9}{section.1.7}% 
+\contentsline {part}{II\hspace {1em}Mati\IeC {\`e}re vue dans le baccalaur\IeC {\'e}at en actuariat}{10}{part.2}% 
+\contentsline {chapter}{\numberline {2}Probabilit\IeC {\'e}s et statistiques}{11}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}D\IeC {\'e}finition d'une variable al\IeC {\'e}atoire}{11}{section.2.1}% 
+\contentsline {section}{\numberline {2.2}Distribution d'une variable al\IeC {\'e}atoire}{11}{section.2.2}% 
+\contentsline {section}{\numberline {2.3}Moments et quantit\IeC {\'e}s importantes}{11}{section.2.3}% 
+\contentsline {paragraph}{Esp\IeC {\'e}rance}{11}{section*.14}% 
+\contentsline {paragraph}{Variance}{11}{equation.2.3.3}% 
+\contentsline {paragraph}{Covariance}{12}{equation.2.3.4}% 
+\contentsline {section}{\numberline {2.4}Distribution de probabilit\IeC {\'e} qui reviennent souvent}{12}{section.2.4}% 
+\contentsline {chapter}{\numberline {3}Math\IeC {\'e}matiques financi\IeC {\`e}res}{13}{chapter.3}% 
+\contentsline {chapter}{\numberline {4}Processus al\IeC {\'e}atoire}{14}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Cha\IeC {\^\i }ne de Markov}{14}{section.4.1}% 
+\contentsline {part}{III\hspace {1em}Mati\IeC {\`e}re pour les examens professionnels}{15}{part.3}% 
+\contentsline {chapter}{\numberline {A}Principales distribution de probabilit\IeC {\'e} utilis\IeC {\'e}es}{16}{appendix.A}% 
