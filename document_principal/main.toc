@@ -28,15 +28,21 @@
 \contentsline {section}{\numberline {1.7}D\IeC {\'e}riv\IeC {\'e}es de matrice ou vecteurs}{9}{section.1.7}% 
 \contentsline {part}{II\hspace {1em}Mati\IeC {\`e}re vue dans le baccalaur\IeC {\'e}at en actuariat}{10}{part.2}% 
 \contentsline {chapter}{\numberline {2}Probabilit\IeC {\'e}s et statistiques}{11}{chapter.2}% 
-\contentsline {section}{\numberline {2.1}D\IeC {\'e}finition d'une variable al\IeC {\'e}atoire}{11}{section.2.1}% 
-\contentsline {section}{\numberline {2.2}Distribution d'une variable al\IeC {\'e}atoire}{11}{section.2.2}% 
-\contentsline {section}{\numberline {2.3}Moments et quantit\IeC {\'e}s importantes}{11}{section.2.3}% 
-\contentsline {paragraph}{Esp\IeC {\'e}rance}{11}{section*.14}% 
-\contentsline {paragraph}{Variance}{11}{equation.2.3.3}% 
-\contentsline {paragraph}{Covariance}{12}{equation.2.3.4}% 
-\contentsline {section}{\numberline {2.4}Distribution de probabilit\IeC {\'e} qui reviennent souvent}{12}{section.2.4}% 
-\contentsline {chapter}{\numberline {3}Math\IeC {\'e}matiques financi\IeC {\`e}res}{13}{chapter.3}% 
-\contentsline {chapter}{\numberline {4}Processus al\IeC {\'e}atoire}{14}{chapter.4}% 
-\contentsline {section}{\numberline {4.1}Cha\IeC {\^\i }ne de Markov}{14}{section.4.1}% 
-\contentsline {part}{III\hspace {1em}Mati\IeC {\`e}re pour les examens professionnels}{15}{part.3}% 
-\contentsline {chapter}{\numberline {A}Principales distribution de probabilit\IeC {\'e} utilis\IeC {\'e}es}{16}{appendix.A}% 
+\contentsline {section}{\numberline {2.1}Concepts de probabilit\IeC {\'e} de base}{11}{section.2.1}% 
+\contentsline {subsection}{\numberline {2.1.1}Probabilit\IeC {\'e} conditionnelle}{11}{subsection.2.1.1}% 
+\contentsline {paragraph}{D\IeC {\'e}finition de base}{11}{equation.2.1.1}% 
+\contentsline {paragraph}{Loi des probabilit\IeC {\'e}s totales}{11}{section*.15}% 
+\contentsline {paragraph}{Relation importante}{11}{section*.16}% 
+\contentsline {subsection}{\numberline {2.1.2}Th\IeC {\'e}or\IeC {\`e}me de Bayes}{12}{subsection.2.1.2}% 
+\contentsline {section}{\numberline {2.2}D\IeC {\'e}finition d'une variable al\IeC {\'e}atoire}{12}{section.2.2}% 
+\contentsline {section}{\numberline {2.3}Distribution d'une variable al\IeC {\'e}atoire}{12}{section.2.3}% 
+\contentsline {section}{\numberline {2.4}Moments et quantit\IeC {\'e}s importantes}{12}{section.2.4}% 
+\contentsline {paragraph}{Esp\IeC {\'e}rance}{12}{section*.17}% 
+\contentsline {paragraph}{Variance}{12}{equation.2.4.7}% 
+\contentsline {paragraph}{Covariance}{13}{equation.2.4.8}% 
+\contentsline {section}{\numberline {2.5}Distribution de probabilit\IeC {\'e} qui reviennent souvent}{13}{section.2.5}% 
+\contentsline {chapter}{\numberline {3}Math\IeC {\'e}matiques financi\IeC {\`e}res}{14}{chapter.3}% 
+\contentsline {chapter}{\numberline {4}Processus al\IeC {\'e}atoire}{15}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Cha\IeC {\^\i }ne de Markov}{15}{section.4.1}% 
+\contentsline {part}{III\hspace {1em}Mati\IeC {\`e}re pour les examens professionnels}{16}{part.3}% 
+\contentsline {chapter}{\numberline {A}Principales distribution de probabilit\IeC {\'e} utilis\IeC {\'e}es}{17}{appendix.A}% 
