@@ -1,11 +1,7 @@
 % !TEX encoding = UTF-8 Unicode
 % LaTeX Preamble
 % Author : Gabriel Crépeault-Cauchon
-% Last update : 07/10/2018
-
-% HOW-TO : copy-paste this file in the same directory as your .tex file, and add in your preamble the next command right after you have specified your documentclass : 
-% \input{preambule_utf8.tex}
-
+% Last update : 08/09/2019
 % ---------------------------------------------
 % BEGINNING OF PREAMBLE
 % ---------------------------------------------
@@ -69,6 +65,10 @@
 % Color package
 \usepackage{color, soulutf8, colortbl}
 
+% Mathematics table
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+
 % usefull shortcut for colored text
 \newcommand{\orange}{\textcolor{orange}}
 \newcommand{\red}{\textcolor{red}}
@@ -97,9 +97,12 @@
 \newcommand{\matr}[1]{\mathbf{#1}} % Notation matricielle
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\Adj}{Adj}
+\newcommand{\derivee}[1]{\frac{\partial}{\partial #1}}
+\newcommand{\indic}[1]{\mathds{1}_{\{ #1 \}}}
 
 
 % Matricial anotation for math symbols (\bm{•})
+% à enlever éventuellement, j'ai ajouté la macro \matr{} à la place.
 \usepackage{bm}
 
 % Actuarial notation package
@@ -112,11 +115,13 @@
 % Other shortcut
 \newcommand{\p}{\paragraph{}}
 \newcommand{\n}{\newline}
-\newcommand{\derivee}[1]{\frac{\partial}{\partial #1}}
-\newcommand{\indic}[1]{\mathds{1}_{\{ #1 \}}}
+
+% source : https://tex.stackexchange.com/questions/112576/math-mode-in-tabular-without-having-to-use-everywhere
+
+
 
 % Special symbols package
-\usepackage[tikz]{bclogo}
+ \usepackage[tikz]{bclogo}
 \usepackage{fontawesome}
 
 % Retire l'indentation automatique de Latex

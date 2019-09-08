@@ -13,232 +13,33 @@
 
 \part{Fondements mathématiques utiles}
 
-\chapter{Algèbre linéaire}
 
-\section{Définition d'un vecteur et une matrice}
-\paragraph{Vecteur ligne} Un vecteur ligne $\bm{x}$est un vecteur de dimension $p \times 1$, tel que
-\begin{align*}
-\matr{x} = 
-\begin{bmatrix}
-x_1 \\
-x_2 \\
-... \\
-x_p \\
-\end{bmatrix}
-\end{align*}
+\chapter{Calculs}
 
-\paragraph{Matrice} Une matrice $\matr{A}=[a_{ij}]_{m \times n}$  de dimension $m$ lignes par $n$ colonnes , définie telle que
-\begin{equation}
-\label{eq:matrice-base}
-\matr{A} = 
-\begin{bmatrix}
-a_{11}    & a_{12}    &  ...   &  a_{1n} \\
-a_{21}    & a_{22}    &  ...   &  a_{2n} \\
-...    & ...    &  \ddots   &  ... \\
-a_{m1}    & a_{m2}    &  ...   &  a_{mn} \\
-\end{bmatrix}
-\end{equation}
+\section{Règles de dérivation}
+Dans le tableau, on utilise $k \in \reels$ ou $n$ pour parler d'une constante, $u$, $v$ ou $w$ pour parler d'une fonction.
 
-
-\paragraph{Matrice carrée} Une matrice carrée $\matr{A}$ de dimensions $m \times m$ a autant de lignes que de colonnes.
-
-\paragraph{non-négative} $\matr{A}$ est définie comme \textit{non-négative} si $\matr{x^{\top} A x }\geq 0$, $\forall \matr{x}\in \reels^n$.
-
-\paragraph{positive} $\matr{A}$ est définie comme \textit{positive} si $\matr{x^{\top} A x} > 0$, $\forall \matr{x} \neq 0$.
-
-\paragraph{semi-positive} $\matr{A}$ est définie comme non-négative, mais elle n'est \underline{pas} définie positive.
-
-\paragraph{Orthogonale} $\matr{A}$ est \textit{orthogonale} si elle est non-singulière et $\matr{A}^{-1} = \matr{A}^{\top}$ (voir \autoref{ssec:matrice-inverse} pour définition de $\matr{A}^{-1}$)
-
-
-\paragraph{Matrice symétrique} La mactrice $\matr{A}$ est symétrique si  $a_{ij} = a_{ji}  \ \forall i,j$, i.e
-\begin{align*}
-\matr{A} = 
-\begin{bmatrix}
-1     & 2    &  3   \\
-2     & 1   & 4 \\
-3   & 4   & 1 \\
-\end{bmatrix}
-\end{align*}
-
-\paragraph{Matrice triangulaire (inférieure ou supérieure)} Une matrice inférieure $\matr{L}$ est constituée de 0 en dessous de la diagonale : 
-\begin{align*}
-\matr{L} = 
-\begin{bmatrix}
-1     & 2    &  3   \\
-\red{0}     & 1   & 4 \\
-\red{0}   & \red{0}   & 1 \\
-\end{bmatrix}
-\end{align*}
-
-À l'inverse, on peut aussi avoir une matrice triangulaire supérieure $\matr{U}$ , où les éléments en haut de la diagonale sont tous égaux à 0 : 
-\begin{align*}
-\matr{U} = 
-\begin{bmatrix}
-1     & \red{0}    &  \red{0}   \\
-8     & 3   & \red{0} \\
-2   & 3   & 9 \\
-\end{bmatrix}
-\end{align*}
-
-\paragraph{Matrice diagonale} Une matrice diagonale $\matr{D}$ a des éléments $d_{ii} > 0$ sur sa diagonale seulement. Cette matrice est à la fois triangulaire inférieure et supérieure. i.e.
-\begin{align*}
-D = 
-\begin{bmatrix}
-1     & \red{0}    &  \red{0}   \\
-\red{0}     & 3   & \red{0} \\
-\red{0}   & \red{0}   & 2 \\
-\end{bmatrix}
-\end{align*}
-Un cas spécial de la matrice diagonale est la matrice identité $\matr{I}$, où $\matr{I}_{ii} = 1 ,\ \forall i$, i.e
-\begin{equation}
-\label{eq:matrice-identite}
-\matr{I} = 
-\begin{bmatrix}
-1     & 0    &  0   \\
-0     & 1   & 0 \\
-0   & 0   & 1 \\
-\end{bmatrix}
-\end{equation}
-
-
-\paragraph{Matrice diagonalisable} Une matrice $\matr{A}_{n\times n}$ est dite \textit{diagonalisable} s'il existe une matrice carrée $\matr{Q}_{n \times n}$ inversible (ou non-singulière) et une matrice $\matr{D}$ diagonale telle que
-\begin{equation}
-\label{eq:matrice-diagonalisable}
-\matr{Q^{-1} A Q = D} \leftrightarrow \matr{A = Q D Q^{-1}}
-\end{equation}
-(Théorème sur les matrices symétriques) : Toute matrice carrée symétrique est diagonalisable apr uen matrice orthogonale $\matr{Q}$.
-
-\section{Matrice transposée} Soit la matrice $\matr{A}$ définie en \eqref{eq:matrice-base}. On peut trouver la matrice transposée $\matr{A^{\top}}$, où $[a_{ij}] = [a_{ji]}$. \textbf{En d'autres mots, les lignes deviennent des colonnes.}
-
-Voici quelques propriétés intéressantes avec les matrices transposées : 
-\begin{itemize}
-  \item $\matr{(A^\top)^\top = A}$
-  \item $\matr{(A+B)^\top = A^\top + B^\top}$
-  \item $\matr{(kA)^\top = kA^\top}$
-  \item $\matr{(AB)^\top = B^\top A^\top}$
-  \item $\matr{A^\top A}$ et $\matr{A A^\top}$ sont symétriques.
-\end{itemize}
-
-\section{Opérations matricielles} Voici une liste non-exhaustive des opérations matricielles possibles. Côté notation, $A$ et $B$ représente des matrices, $c$ re présente une constante
-\begin{itemize}
-\item $\matr{A + B}  = [a_{ij} + b_{ij}]$
-\item $\matr{A - B}  = [a_{ij} - b_{ij}]$
-\item $c\matr{A}   = [ca_{ij}]$
-\item Produit matriciel :
-\begin{equation}
-\label{eq:produit-matriciel}
-\matr{AB}   = \left[ \sum_{k=1}^p a_{ik} b_{kj}  \right]_{i \times j}
-\end{equation}
-,  avec $\matr{A}=[a_{ip}]$ et $B = [b_{pj}]$
-\item $\matr{A(B +C) = AB + AC}$
-\item $\matr{A^{-1} A = I =A A^{-1}}$, où $I$ est la matrice identité (voir \autoref{eq:matrice-identite}) et $A^{-1}$ est la matrice inverse de $A$ (voir \autoref{ssec:matrice-inverse} au besoin)
-\item $(AB)^{-1} = B^{-1} A^{-1}$
-\end{itemize}
+\begin{tabular}{|L | L |}
+% Voir préambule, L est un type de colonne défini (custom) qui place le texte entre $•$
+\hline
+\text{Fonction}	& \text{Dérivée} \\\hline \hline
+f(x) = k	& f'(x) = 0 \\\hline
+f(x) = k x	& f'(x) = k \\\hline
+f(x) = x^{n}	& f'(x) = n x^{n-1} \\\hline
+f(x) = k g(x)	& f'(x) = k g'(x) \\\hline
+f(x) = g(x) \pm h(x)	& f'(x) = g'(x) \pm h'(x) \\\hline
+f(x) = g(x) \cdot h(x)	& f'(x) = g'(x) \cdot h(x) + g(x) \cdot h'(x) \\\hline
+f(x) = \frac{g(x)}{h(x)}	& f'(x) = \frac{g'(x) h(x) - g(x) h'(x)}{h(x)^2} \\\hline
+f(x) = g(x)^{n}	& f'(x) = n \cdot g(x)^{n-1} \cdot g'(x) \\\hline
+f(x) = k^{g(x)}	& f'(x) = k^{g(x)} \ln k \cdot g'(x) \\\hline
+f(x) = e^{g(x)}	& f'(x) = e^{g(x)} \cdot g'(x) \\\hline
+f(x) = \ln (g(x)) 	& f'(x) = \frac{g'(x)}{g(x)} \\\hline
+\hline
+\end{tabular}
 
 
 
-
-
-
-\section{Trace, déterminant et matrice inverse}
-\subsection{Trace d'une matrice}
-\label{ssec:trace-matrice}
-Soit la matrice carrée $\matr{A}$. On peut trouver la trace de cette matrice en sommant les éléments de sa diagonale, i.e.
-
-\begin{equation}
-\label{eq:trace-mat}
-\Tr(\matr{A}) = \sum_{i=1}^n a_{ii}
-\end{equation} 
-\paragraph{Propriétés de la trace d'une matrice}
-\begin{itemize}
-\item $\Tr(\matr{A+B}) = \Tr(\matr{A}) + \Tr(\matr{B})$
-\item $\Tr(\matr{AB}) = \Tr(\matr{BA})$ et $\Tr(\matr{ABC}) = \Tr(\matr{CAB}) = \Tr(\matr{BCA})$
-\end{itemize}
-
-\subsection{Déterminant d'une matrice}
-\label{ssec:det-matrice}
-Soit la matrice carrée $\matr{A}$. On peut trouver le déterminant de $\matr{A}$, noté $\det(\matr{A})$ ou $|\matr{A}|$, avec
-\begin{equation}
-\det(\matr{A}) =
-\begin{vmatrix}
-a & b \\
-c & d \\
-\end{vmatrix} = ad - bc
-\end{equation}
-De façon générale, lorsque les dimensions de la matrice carrée sont supérieures à 2, on a
-\begin{equation}
-\label{eq:det-matrice}
-\det(A) = \sum_{j=1}^n a_{ij} C_{ij}
-\end{equation}
-avec $1 \le i \le n$ où $C_{ij}  = (-1)^{i+j} M_{ij}$ et $M_{ij}$ est le déterminant de la nouvelle matrice en enlevant la ligne $i$ et la colonne $j$.
-
-Si la matrice $\matr{A}$ est inversible (ou non-singulière, voir la \autoref{ssec:matrice-inverse}), alors le déterminant aura les propriétés suivantes : 
-\begin{itemize}
-\item $\det(A^\top)  = \det(A)$
-\item $\det(kA)   = k^n \det(A)$
-\item $\det(A + B)  \neq \det(A) + \det(B)$
-\item $\det(AB)   = \det(A) \det(B)$
-\item $\det(A^{-1})  = \frac{1}{\det(AB)} = \det(A)^{-1}$
-\end{itemize}
-
-\subsection{Matrice inverse}
-\label{ssec:matrice-inverse}
-Soit la matrice carrée $\matr{A}$. On peut trouver la matrice inverse $\matr{A}^{-1}$ telle que
-
-\begin{equation}
-\label{eq:mat-inverse}
-\matr{A}^{-1} = \frac{1}{\det(\matr{A})} \Adj(\matr{A})
-\end{equation}
-où $\Adj(\matr{A})   = [C_{ij}]_{m \times n}^T$ et  $C_{ij}   = (-1)^{i+j} M_{ij}$.
-
-
-\section{Décomposition LDU de Choleski}
-Soit $\matr{A}$ une matrice carrée symétrique définie positive. Alors, il existe une décomposition unique telle que
-\begin{equation}
-\label{eq:decomp-choleski}
-\matr{A} = \matr{LDU}
-\end{equation}
-où $\matr{L, D, U}$ sont respectivement des matrices triangulaire inférieure, triangulaire supérieure et diagonale.
-
-\hl{Cette décomposition peut être fortement utile en programmation lorsqu'on fait des opérations sur des matrices, afin de limiter le nombre d'opérations.}
-
-\section{Vecteurs et valeurs propres}
-\subsection{Définition}
-Soit $\matr{A}$ une matrice carrée. On dit que $\lambda$ est une \textit{valeur propre} de $\matr{A}$ s'il existe un vecteur $\matr{x} \neq 0$ tel que
-\begin{equation}
-\label{eq:vecteur-propre}
-\matr{Ax = \lambda x}
-\end{equation}
-On appelle le vecteur $\matr{x}$ un \textit{vecteur propre} correspondant à la valeur propre $\lambda$. De plus, l'ensemble des nombres réels $\lambda$ satisfaisant l'\autoref{eq:vecteur-propre} est appelé \textit{spectre} de la matrice $\matr{A}$.
-
-\subsection{Propriétés intéressantes}
-Les vecteurs propres et valeurs propres permettent d'avoir plusieurs propriétés appréciables, notamment : 
-\begin{itemize}
-\item Si $\matr{x}$ est un vecteur propre de $\matr{A}$ correspondant à la valeur propre $\lambda$, alors $c\matr{x}$ sera également un vecteur propre de $\matr{A}$ correspondant à $\lambda$.
-\item Si $\matr{A}$ est symétrique et $\matr{x_1}$ et $\matr{x_2}$ sont des vecteurs propres correspondant à des valeurs propres différentes de $\matr{A}$, alors $\matr{x_1}$ et $\matr{x_2}$ sont des vecteurs ortogonaux, i.e. $\matr{x_{1}^{\top} x_2}  =0$.
-\item Si $\matr{A}$ a les valeurs propres (pas nécessairement distinctes) $\lambda_1, \dots, \lambda_n$, alors $\det(\matr{A}) = \prod_{i=1}^{n} \lambda_i$ et $\Tr(\matr{A}) = \sum_{i=1}^{n} \lambda_i$.
-\end{itemize}
-
-\subsection{Décomposition spectrale} Soit $\matr{A}_{n\times n}$ une matrice symétrique avec les $n$ valeurs propres $\lambda_1, \dots, \lambda_n$. Il existe une matrice orthogonale $\matr{Q}$ telle que
-\begin{equation}
-\label{eq:decomposition-spectrale}
-\matr{A = Q \Lambda Q^{\top}}
-\end{equation}
-avec $\matr{\Lambda} = diag(\lambda_1, \dots , \lambda_n)$. Cette décomposition est fort utile lorsqu'on veut faire des produits matriciels successifs de la même matrice (appliqué directement dans les chaînes de Markov, voir \autoref{sec:chaine-markov}) : 
-\begin{align*}
-\matr{AA} & \matr{= Q \Lambda \underbrace{Q^{\top} Q}_{=I} \Lambda Q^{\top} } \\
- & = \matr{Q \Lambda^2 Q^{\top}}
-\end{align*}
-
-\section{Dérivées de matrice ou vecteurs}
-Voici quelques entités pratiques : 
-\begin{align*}
-\derivee{\matr{v}} \matr{w^{\top} v} = w
-\end{align*}
-\begin{align*}
-\derivee{\matr{v}} = \matr{v^{\top} A v = (A + A^{\top})v}
-\end{align*}
+\include{algebre-lineaire}
 
 
 
