@@ -1,0 +1,71 @@
+% Chapitre sur les concepts de probabilité (ACT-1002) et statistiques (ACT-2000)
+\chapter{Probabilités et statistiques}
+
+\section{Concepts de probabilité de base}
+
+\subsection{Probabilité conditionnelle}
+\paragraph{Définition de base}
+\begin{equation}
+\label{eq:prob-cond}
+\prob{A|B} = \frac{\prob{A \cap B}}{\prob{B}}
+\end{equation}
+
+\paragraph{Loi des probabilités totales} Soit $E_i$ le \textit{outcome} $i$ parmi l'ensemble des $n$ \textit{outcome} possibles de l'évènement $E$, alors, on peut représenter la probabilité que l'évènement $A$ survienne comme
+\begin{equation}
+\label{eq:loi-prob-totales}
+\prob{A} = \sum_{i=1}^{n} \prob{A | E_i} \prob{E_i}
+\end{equation}
+avec $\sum_{i=1}^{n} \prob{E_i} = 1$.
+
+\paragraph{Relation importante} de l'\autoref{eq:prob-cond}, on peut représenter $\prob{A|B}$ comme
+\begin{equation}
+\label{eq:prob-cond-2}
+\prob{A|B} = \frac{\prob{B|A} \prob{A}}{\prob{B}}
+\end{equation}
+
+\subsection{Théorème de Bayes} En combinant l'\autoref{eq:prob-cond-2} et la loi des probabilités totales (l'\autoref{eq:loi-prob-totales}), on obtient le théorème de Bayes : 
+\begin{equation}
+\prob{A|B} = \frac{\prob{B|A} \prob{A}}{\sum_{i=1}^{n} \prob{B | A_i} \prob{A_i}}
+\end{equation}
+
+
+\section{Définition d'une variable aléatoire}
+
+\section{Distribution d'une variable aléatoire}
+Fonction de densité, répartition, survie, hazard rate, etc.
+
+\section{Moments et quantités importantes}
+Espérance, variance, covariance, coefficient de variation, corrélation
+
+\paragraph{Espérance} Soit une v.a. $X$ (continue ou discrète). Son espérance est définie telle que
+\begin{equation}
+\label{eq:esp-univarie}
+\esp{X} = \mu = \sum_{x=0}^{\infty} x \prob{X = x} = \int_{0}^{\infty} x f_X(x) dx
+\end{equation}
+L'espérance d'une fonction de la v.a $X$ est
+\begin{equation}
+\label{eq:esp-fct-univarie}
+\esp{g(X)} = \sum_{x=0}^{\infty} g(x) \prob{X = x} = \int_{0}^{\infty} g(x) f_X(x) dx
+\end{equation}
+
+\paragraph{Variance}
+\begin{equation}
+\label{eq:variance}
+\variance{X} = \sigma^2 = \esp{(X - \esp{X})^2} = \esp{X^2} - \esp{X}^2
+\end{equation}
+quelques propriétés à savoir : 
+\begin{align*}
+\variance{aX} 		& = a^2 \variance{X} \\
+\variance{X + b}	& = \variance{X}
+\end{align*}
+
+\paragraph{Covariance}
+\begin{equation}
+\label{eq:covariance}
+\covar{X,Y} =  \sigma_{X,Y} = \esp{(X-\esp{X})(Y - \esp{Y})} = \esp{XY} - \esp{X} \esp{Y}
+\end{equation}
+
+
+
+\section{Distribution de probabilité qui reviennent souvent}
+Un tableau récapitulatif des différentes distribution de probabilité est disponible à l'
