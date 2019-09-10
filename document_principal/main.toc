@@ -48,3 +48,24 @@
 \contentsline {section}{\numberline {5.1}Cha\IeC {\^\i }ne de Markov}{16}{section.5.1}% 
 \contentsline {part}{III\hspace {1em}Mati\IeC {\`e}re pour les examens professionnels}{17}{part.3}% 
 \contentsline {chapter}{\numberline {A}Principales distribution de probabilit\IeC {\'e} utilis\IeC {\'e}es}{18}{appendix.A}% 
+\contentsline {chapter}{\numberline {B}Preuves}{19}{appendix.B}% 
+\contentsline {section}{\numberline {B.1}Stop-Loss ($\pi _X(d)$)}{19}{section.B.1}% 
+\contentsline {section}{\numberline {B.2}TVaR}{21}{section.B.2}% 
+\contentsline {subsection}{\numberline {B.2.1}Les 3 formes explicites de la $TVaR$ }{21}{subsection.B.2.1}% 
+\contentsline {section}{\numberline {B.3}Sous-additivit\IeC {\'e} de la $TVaR$}{22}{section.B.3}% 
+\contentsline {subsection}{\numberline {B.3.1}\IeC {\`A} l'aide de la fonction convexe $\varphi (x)$}{23}{subsection.B.3.1}% 
+\contentsline {paragraph}{}{23}{section*.20}% 
+\contentsline {subsection}{\numberline {B.3.2}Avec les fonctions indicatrices}{25}{subsection.B.3.2}% 
+\contentsline {paragraph}{}{25}{section*.21}% 
+\contentsline {paragraph}{}{26}{section*.22}% 
+\contentsline {subsection}{\numberline {B.3.3}\IeC {\`A} l'aide des statistiques d'ordre}{27}{subsection.B.3.3}% 
+\contentsline {section}{\numberline {B.4}Loi des grands nombres}{27}{section.B.4}% 
+\contentsline {section}{\numberline {B.5}Somme de v.a. ind\IeC {\'e}pendantes d'une loi Poisson Compos\IeC {\'e}e}{28}{section.B.5}% 
+\contentsline {paragraph}{}{29}{section*.23}% 
+\contentsline {section}{\numberline {B.6}Th\IeC {\'e}or\IeC {\`e}me d'Euler}{30}{section.B.6}% 
+\contentsline {paragraph}{D\IeC {\'e}finition}{30}{section*.24}% 
+\contentsline {section}{\numberline {B.7}D\IeC {\'e}riv\IeC {\'e}e de l'\IeC {\'e}cart-type (g\IeC {\'e}n\IeC {\'e}rale)}{31}{section.B.7}% 
+\contentsline {paragraph}{Rappel d'ACT-1002}{31}{section*.25}% 
+\contentsline {paragraph}{}{32}{section*.26}% 
+\contentsline {paragraph}{}{32}{section*.27}% 
+\contentsline {section}{\numberline {B.8}Distribution limite de $W_n$}{34}{section.B.8}% 
