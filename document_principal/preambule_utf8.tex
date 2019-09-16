@@ -35,9 +35,9 @@
 
 
 % Tcolorbox config
-%\usepackage{tcolorbox}
-%\tcbuselibrary{xparse}
-%\tcbuselibrary{breakable}
+\usepackage{tcolorbox}
+\tcbuselibrary{xparse}
+\tcbuselibrary{breakable}
 %% Définition Boite pour exemple
 %\newcounter{ex}[section]
 %\DeclareTColorBox{exemple}{ o }% #1 parameter
@@ -57,6 +57,13 @@
 %title = {#1},
 %after title = {\large \hfill \faBook}
 %}
+
+\DeclareTColorBox{note}{ o }
+    {colframe=black,
+     colback=white,
+     sharp corners,
+     pad at break*=0mm,
+     IfValueTF={#1}{title={#1}, fonttitle=\bfseries}{title=Note, fonttitle=\bfseries}}
 
 
 % Graphics and picture import Packages
