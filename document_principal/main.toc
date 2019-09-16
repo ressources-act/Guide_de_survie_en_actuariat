@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 \select@language {french}
 \contentsline {part}{I\hspace {1em}Fondements math\IeC {\'e}matiques utiles}{3}{part.1}
 \contentsline {chapter}{\numberline {1}Alg\IeC {\`e}bre lin\IeC {\'e}aire}{4}{chapter.1}
@@ -129,3 +130,76 @@
 \contentsline {paragraph}{Definition}{36}{section*.76}
 \contentsline {subsection}{\numberline {5.7.3}Seasonal ARIMA models}{36}{subsection.5.7.3}
 \contentsline {chapter}{\numberline {A}Principales distribution de probabilit\IeC {\'e} utilis\IeC {\'e}es}{37}{appendix.A}
+=======
+\babel@toc {french}{}
+\contentsline {part}{I\hspace {1em}Fondements math\IeC {\'e}matiques utiles}{3}{part.1}% 
+\contentsline {chapter}{\numberline {1}Calculs}{4}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}R\IeC {\`e}gles de d\IeC {\'e}rivation}{4}{section.1.1}% 
+\contentsline {chapter}{\numberline {2}Alg\IeC {\`e}bre lin\IeC {\'e}aire}{5}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}D\IeC {\'e}finition d'un vecteur et une matrice}{5}{section.2.1}% 
+\contentsline {paragraph}{Vecteur ligne}{5}{section*.2}% 
+\contentsline {paragraph}{Matrice}{5}{section*.3}% 
+\contentsline {paragraph}{Matrice carr\IeC {\'e}e}{5}{section*.4}% 
+\contentsline {paragraph}{non-n\IeC {\'e}gative}{5}{section*.5}% 
+\contentsline {paragraph}{positive}{5}{section*.6}% 
+\contentsline {paragraph}{semi-positive}{6}{section*.7}% 
+\contentsline {paragraph}{Orthogonale}{6}{section*.8}% 
+\contentsline {paragraph}{Matrice sym\IeC {\'e}trique}{6}{section*.9}% 
+\contentsline {paragraph}{Matrice triangulaire (inf\IeC {\'e}rieure ou sup\IeC {\'e}rieure)}{6}{section*.10}% 
+\contentsline {paragraph}{Matrice diagonale}{6}{section*.11}% 
+\contentsline {paragraph}{Matrice diagonalisable}{7}{section*.12}% 
+\contentsline {section}{\numberline {2.2}Matrice transpos\IeC {\'e}e}{7}{section.2.2}% 
+\contentsline {section}{\numberline {2.3}Op\IeC {\'e}rations matricielles}{7}{section.2.3}% 
+\contentsline {section}{\numberline {2.4}Trace, d\IeC {\'e}terminant et matrice inverse}{8}{section.2.4}% 
+\contentsline {subsection}{\numberline {2.4.1}Trace d'une matrice}{8}{subsection.2.4.1}% 
+\contentsline {paragraph}{Propri\IeC {\'e}t\IeC {\'e}s de la trace d'une matrice}{8}{section*.13}% 
+\contentsline {subsection}{\numberline {2.4.2}D\IeC {\'e}terminant d'une matrice}{8}{subsection.2.4.2}% 
+\contentsline {subsection}{\numberline {2.4.3}Matrice inverse}{9}{subsection.2.4.3}% 
+\contentsline {section}{\numberline {2.5}D\IeC {\'e}composition LDU de Choleski}{9}{section.2.5}% 
+\contentsline {section}{\numberline {2.6}Vecteurs et valeurs propres}{9}{section.2.6}% 
+\contentsline {subsection}{\numberline {2.6.1}D\IeC {\'e}finition}{9}{subsection.2.6.1}% 
+\contentsline {subsection}{\numberline {2.6.2}Propri\IeC {\'e}t\IeC {\'e}s int\IeC {\'e}ressantes}{9}{subsection.2.6.2}% 
+\contentsline {subsection}{\numberline {2.6.3}D\IeC {\'e}composition spectrale}{10}{subsection.2.6.3}% 
+\contentsline {section}{\numberline {2.7}D\IeC {\'e}riv\IeC {\'e}es de matrice ou vecteurs}{10}{section.2.7}% 
+\contentsline {part}{II\hspace {1em}Mati\IeC {\`e}re vue dans le baccalaur\IeC {\'e}at en actuariat}{11}{part.2}% 
+\contentsline {chapter}{\numberline {3}Probabilit\IeC {\'e}s et statistiques}{12}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Concepts de probabilit\IeC {\'e} de base}{12}{section.3.1}% 
+\contentsline {subsection}{\numberline {3.1.1}Probabilit\IeC {\'e} conditionnelle}{12}{subsection.3.1.1}% 
+\contentsline {paragraph}{D\IeC {\'e}finition de base}{12}{equation.3.1.1}% 
+\contentsline {paragraph}{Loi des probabilit\IeC {\'e}s totales}{12}{section*.15}% 
+\contentsline {paragraph}{Relation importante}{12}{section*.16}% 
+\contentsline {subsection}{\numberline {3.1.2}Th\IeC {\'e}or\IeC {\`e}me de Bayes}{13}{subsection.3.1.2}% 
+\contentsline {section}{\numberline {3.2}D\IeC {\'e}finition d'une variable al\IeC {\'e}atoire}{13}{section.3.2}% 
+\contentsline {section}{\numberline {3.3}Distribution d'une variable al\IeC {\'e}atoire}{13}{section.3.3}% 
+\contentsline {section}{\numberline {3.4}Moments et quantit\IeC {\'e}s importantes}{13}{section.3.4}% 
+\contentsline {paragraph}{Esp\IeC {\'e}rance}{13}{section*.17}% 
+\contentsline {paragraph}{Variance}{13}{equation.3.4.7}% 
+\contentsline {paragraph}{Covariance}{14}{equation.3.4.8}% 
+\contentsline {section}{\numberline {3.5}Distribution de probabilit\IeC {\'e} qui reviennent souvent}{14}{section.3.5}% 
+\contentsline {chapter}{\numberline {4}Math\IeC {\'e}matiques financi\IeC {\`e}res}{15}{chapter.4}% 
+\contentsline {chapter}{\numberline {5}Processus al\IeC {\'e}atoire}{16}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Cha\IeC {\^\i }ne de Markov}{16}{section.5.1}% 
+\contentsline {part}{III\hspace {1em}Mati\IeC {\`e}re pour les examens professionnels}{17}{part.3}% 
+\contentsline {chapter}{\numberline {A}Principales distribution de probabilit\IeC {\'e} utilis\IeC {\'e}es}{18}{appendix.A}% 
+\contentsline {chapter}{\numberline {B}Preuves}{19}{appendix.B}% 
+\contentsline {section}{\numberline {B.1}Stop-Loss ($\pi _X(d)$)}{19}{section.B.1}% 
+\contentsline {section}{\numberline {B.2}TVaR}{21}{section.B.2}% 
+\contentsline {subsection}{\numberline {B.2.1}Les 3 formes explicites de la $TVaR$ }{21}{subsection.B.2.1}% 
+\contentsline {section}{\numberline {B.3}Sous-additivit\IeC {\'e} de la $TVaR$}{22}{section.B.3}% 
+\contentsline {subsection}{\numberline {B.3.1}\IeC {\`A} l'aide de la fonction convexe $\varphi (x)$}{23}{subsection.B.3.1}% 
+\contentsline {paragraph}{}{23}{section*.20}% 
+\contentsline {subsection}{\numberline {B.3.2}Avec les fonctions indicatrices}{25}{subsection.B.3.2}% 
+\contentsline {paragraph}{}{25}{section*.21}% 
+\contentsline {paragraph}{}{26}{section*.22}% 
+\contentsline {subsection}{\numberline {B.3.3}\IeC {\`A} l'aide des statistiques d'ordre}{27}{subsection.B.3.3}% 
+\contentsline {section}{\numberline {B.4}Loi des grands nombres}{27}{section.B.4}% 
+\contentsline {section}{\numberline {B.5}Somme de v.a. ind\IeC {\'e}pendantes d'une loi Poisson Compos\IeC {\'e}e}{28}{section.B.5}% 
+\contentsline {paragraph}{}{29}{section*.23}% 
+\contentsline {section}{\numberline {B.6}Th\IeC {\'e}or\IeC {\`e}me d'Euler}{30}{section.B.6}% 
+\contentsline {paragraph}{D\IeC {\'e}finition}{30}{section*.24}% 
+\contentsline {section}{\numberline {B.7}D\IeC {\'e}riv\IeC {\'e}e de l'\IeC {\'e}cart-type (g\IeC {\'e}n\IeC {\'e}rale)}{31}{section.B.7}% 
+\contentsline {paragraph}{Rappel d'ACT-1002}{31}{section*.25}% 
+\contentsline {paragraph}{}{32}{section*.26}% 
+\contentsline {paragraph}{}{32}{section*.27}% 
+\contentsline {section}{\numberline {B.8}Distribution limite de $W_n$}{34}{section.B.8}% 
+>>>>>>> 62dc222107be972b1d46be8a77f0f87a525b7409

@@ -1,11 +1,7 @@
 % !TEX encoding = UTF-8 Unicode
 % LaTeX Preamble
 % Author : Gabriel Crépeault-Cauchon
-% Last update : 07/10/2018
-
-% HOW-TO : copy-paste this file in the same directory as your .tex file, and add in your preamble the next command right after you have specified your documentclass : 
-% \input{preambule_utf8.tex}
-
+% Last update : 08/09/2019
 % ---------------------------------------------
 % BEGINNING OF PREAMBLE
 % ---------------------------------------------
@@ -38,25 +34,26 @@
 \usepackage{tcolorbox}
 \tcbuselibrary{xparse}
 \tcbuselibrary{breakable}
-%% Définition Boite pour exemple
-%\newcounter{ex}[section]
-%\DeclareTColorBox{exemple}{ o }% #1 parameter
-%{colframe=green!20!black,colback=green!5!white, % color of the box
-%breakable, pad at break*=0mm, % to split the box
-%before title = {\textbf{Exemple \stepcounter{ex} \arabic{chapter}.\arabic{section}.\arabic{ex} }},
-%IfValueTF = {#1}{title= {#1}}{title= \hphantom},
-%after title = {\large \hfill \faWrench}
-%}
+
+% Définition Boite pour exemple
+\newcounter{ex}[section]
+\DeclareTColorBox{exemple}{ o }% #1 parameter
+{colframe=green!20!black,colback=green!5!white, % color of the box
+breakable, pad at break*=0mm, % to split the box
+before title = {\textbf{Exemple \stepcounter{ex} \arabic{chapter}.\arabic{section}.\arabic{ex} }},
+IfValueTF = {#1}{title= {#1}}{title= \hphantom},
+after title = {\large \hfill \faWrench}
+}
 
 %% Définition boite pour définition
-%\newcounter{def}[section]
-%\DeclareTColorBox{definition}{ o }% #1 parameter
-%{colframe=blue!60!green,colback=blue!5!white, % color of the box
-%breakable, pad at break*=0mm, % to split the box
-%before title = {\textbf{Définition \stepcounter{def} \arabic{chapter}.\arabic{section}.\arabic{def} }},
-%title = {#1},
-%after title = {\large \hfill \faBook}
-%}
+\newcounter{def}[section]
+\DeclareTColorBox{definition}{ o }% #1 parameter
+{colframe=blue!60!green,colback=blue!5!white, % color of the box
+breakable, pad at break*=0mm, % to split the box
+before title = {\textbf{Définition \stepcounter{def} \arabic{chapter}.\arabic{section}.\arabic{def} }},
+title = {#1},
+after title = {\large \hfill \faBook}
+}
 
 \DeclareTColorBox{note}{ o }
     {colframe=black,
@@ -76,12 +73,18 @@
 % Color package
 \usepackage{color, soulutf8, colortbl}
 
+% Mathematics table
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+
 % usefull shortcut for colored text
 \newcommand{\orange}{\textcolor{orange}}
 \newcommand{\red}{\textcolor{red}}
 \newcommand{\cyan}{\textcolor{cyan}}
 \newcommand{\blue}{\textcolor{blue}}
 \newcommand{\green}{\textcolor{green}}
+\definecolor{darkgreen}{RGB}{37, 128, 40}
+\newcommand{\darkgreen}{\textcolor{darkgreen}}
 \newcommand{\purple}{\textcolor{magenta}}
 \newcommand{\yellow}{\textcolor{yellow}}
 
@@ -103,10 +106,14 @@
 \newcommand{\laplace}{\mathcal{L}}
 \newcommand{\matr}[1]{\mathbf{#1}} % Notation matricielle
 \DeclareMathOperator{\Tr}{Tr}
+\newcommand{\fgp}{\mathcal{P}}
 \DeclareMathOperator{\Adj}{Adj}
+\newcommand{\derivee}[1]{\frac{\partial}{\partial #1}}
+\newcommand{\indic}[1]{\mathds{1}_{\{ #1 \}}}
 
 
 % Matricial anotation for math symbols (\bm{•})
+% à enlever éventuellement, j'ai ajouté la macro \matr{} à la place.
 \usepackage{bm}
 
 % Actuarial notation package
@@ -119,11 +126,13 @@
 % Other shortcut
 \newcommand{\p}{\paragraph{}}
 \newcommand{\n}{\newline}
-\newcommand{\derivee}[1]{\frac{\partial}{\partial #1}}
-\newcommand{\indic}[1]{\mathds{1}_{\{ #1 \}}}
+
+% source : https://tex.stackexchange.com/questions/112576/math-mode-in-tabular-without-having-to-use-everywhere
+
+
 
 % Special symbols package
-\usepackage[tikz]{bclogo}
+ \usepackage[tikz]{bclogo}
 \usepackage{fontawesome}
 
 % Retire l'indentation automatique de Latex
