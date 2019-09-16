@@ -1,205 +1,154 @@
-<<<<<<< HEAD
 \select@language {french}
-\contentsline {part}{I\hspace {1em}Fondements math\IeC {\'e}matiques utiles}{3}{part.1}
-\contentsline {chapter}{\numberline {1}Alg\IeC {\`e}bre lin\IeC {\'e}aire}{4}{chapter.1}
-\contentsline {section}{\numberline {1.1}D\IeC {\'e}finition d'un vecteur et une matrice}{4}{section.1.1}
-\contentsline {paragraph}{Vecteur ligne}{4}{section*.2}
-\contentsline {paragraph}{Matrice}{4}{section*.3}
-\contentsline {paragraph}{Matrice carr\IeC {\'e}e}{4}{section*.4}
-\contentsline {paragraph}{non-n\IeC {\'e}gative}{4}{section*.5}
-\contentsline {paragraph}{positive}{4}{section*.6}
-\contentsline {paragraph}{semi-positive}{5}{section*.7}
-\contentsline {paragraph}{Orthogonale}{5}{section*.8}
-\contentsline {paragraph}{Matrice sym\IeC {\'e}trique}{5}{section*.9}
-\contentsline {paragraph}{Matrice triangulaire (inf\IeC {\'e}rieure ou sup\IeC {\'e}rieure)}{5}{section*.10}
-\contentsline {paragraph}{Matrice diagonale}{5}{section*.11}
-\contentsline {paragraph}{Matrice diagonalisable}{6}{section*.12}
-\contentsline {section}{\numberline {1.2}Matrice transpos\IeC {\'e}e}{6}{section.1.2}
-\contentsline {section}{\numberline {1.3}Op\IeC {\'e}rations matricielles}{6}{section.1.3}
-\contentsline {section}{\numberline {1.4}Trace, d\IeC {\'e}terminant et matrice inverse}{7}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}Trace d'une matrice}{7}{subsection.1.4.1}
-\contentsline {paragraph}{Propri\IeC {\'e}t\IeC {\'e}s de la trace d'une matrice}{7}{section*.13}
-\contentsline {subsection}{\numberline {1.4.2}D\IeC {\'e}terminant d'une matrice}{7}{subsection.1.4.2}
-\contentsline {subsection}{\numberline {1.4.3}Matrice inverse}{8}{subsection.1.4.3}
-\contentsline {section}{\numberline {1.5}D\IeC {\'e}composition LDU de Choleski}{8}{section.1.5}
-\contentsline {section}{\numberline {1.6}Vecteurs et valeurs propres}{8}{section.1.6}
-\contentsline {subsection}{\numberline {1.6.1}D\IeC {\'e}finition}{8}{subsection.1.6.1}
-\contentsline {subsection}{\numberline {1.6.2}Propri\IeC {\'e}t\IeC {\'e}s int\IeC {\'e}ressantes}{8}{subsection.1.6.2}
-\contentsline {subsection}{\numberline {1.6.3}D\IeC {\'e}composition spectrale}{9}{subsection.1.6.3}
-\contentsline {section}{\numberline {1.7}D\IeC {\'e}riv\IeC {\'e}es de matrice ou vecteurs}{9}{section.1.7}
-\contentsline {part}{II\hspace {1em}Mati\IeC {\`e}re vue dans le baccalaur\IeC {\'e}at en actuariat}{10}{part.2}
-\contentsline {chapter}{\numberline {2}Probabilit\IeC {\'e}s et statistiques}{11}{chapter.2}
-\contentsline {section}{\numberline {2.1}Concepts de probabilit\IeC {\'e} de base}{11}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Probabilit\IeC {\'e} conditionnelle}{11}{subsection.2.1.1}
-\contentsline {paragraph}{D\IeC {\'e}finition de base}{11}{equation.2.1.1}
-\contentsline {paragraph}{Loi des probabilit\IeC {\'e}s totales}{11}{section*.15}
-\contentsline {paragraph}{Relation importante}{11}{section*.16}
-\contentsline {subsection}{\numberline {2.1.2}Th\IeC {\'e}or\IeC {\`e}me de Bayes}{12}{subsection.2.1.2}
-\contentsline {section}{\numberline {2.2}D\IeC {\'e}finition d'une variable al\IeC {\'e}atoire}{12}{section.2.2}
-\contentsline {section}{\numberline {2.3}Distribution d'une variable al\IeC {\'e}atoire}{12}{section.2.3}
-\contentsline {section}{\numberline {2.4}Moments et quantit\IeC {\'e}s importantes}{12}{section.2.4}
-\contentsline {paragraph}{Esp\IeC {\'e}rance}{12}{section*.17}
-\contentsline {paragraph}{Variance}{12}{equation.2.4.7}
-\contentsline {paragraph}{Covariance}{13}{equation.2.4.8}
-\contentsline {section}{\numberline {2.5}Distribution de probabilit\IeC {\'e} qui reviennent souvent}{13}{section.2.5}
-\contentsline {chapter}{\numberline {3}Math\IeC {\'e}matiques financi\IeC {\`e}res}{14}{chapter.3}
-\contentsline {chapter}{\numberline {4}Processus al\IeC {\'e}atoire}{15}{chapter.4}
-\contentsline {section}{\numberline {4.1}Cha\IeC {\^\i }ne de Markov}{15}{section.4.1}
-\contentsline {part}{III\hspace {1em}Mati\IeC {\`e}re pour les examens professionnels}{16}{part.3}
-\contentsline {chapter}{\numberline {5}Time Series}{17}{chapter.5}
-\contentsline {paragraph}{Trend}{18}{section*.20}
-\contentsline {paragraph}{Seasonal Variation}{18}{section*.21}
-\contentsline {paragraph}{Notation}{18}{section*.22}
-\contentsline {paragraph}{Forecast}{18}{section*.23}
-\contentsline {section}{\numberline {5.1}Base Models}{18}{section.5.1}
-\contentsline {paragraph}{Additive Decomposition}{18}{section*.24}
-\contentsline {paragraph}{Multiplication Model}{18}{section*.25}
-\contentsline {subsection}{\numberline {5.1.1}Estimating Trends}{18}{subsection.5.1.1}
-\contentsline {paragraph}{Centered Moving Average}{18}{section*.26}
-\contentsline {subsection}{\numberline {5.1.2}Estimating Seasonal Effect}{19}{subsection.5.1.2}
-\contentsline {paragraph}{Additive Effect}{19}{section*.27}
-\contentsline {paragraph}{Multiplicative Effect}{19}{section*.28}
-\contentsline {subsection}{\numberline {5.1.3}Smoothing Procedure}{19}{subsection.5.1.3}
-\contentsline {section}{\numberline {5.2}Correlation}{20}{section.5.2}
-\contentsline {paragraph}{Mean Function}{20}{section*.29}
-\contentsline {paragraph}{Sample Mean}{20}{section*.30}
-\contentsline {paragraph}{Variance Function}{20}{section*.31}
-\contentsline {paragraph}{Sample Variance}{21}{section*.32}
-\contentsline {paragraph}{Stationarity}{21}{section*.33}
-\contentsline {paragraph}{Ergodic Serie}{21}{section*.34}
-\contentsline {paragraph}{Covariance}{21}{section*.35}
-\contentsline {paragraph}{Sample Covariance}{21}{section*.36}
-\contentsline {paragraph}{Correlation}{21}{section*.37}
-\contentsline {paragraph}{Sample Correlation}{21}{section*.38}
-\contentsline {paragraph}{Autocovariance (acvf)}{22}{section*.39}
-\contentsline {paragraph}{Sample Autocorrelation}{22}{section*.40}
-\contentsline {paragraph}{Autocorrelation (acf)}{22}{section*.41}
-\contentsline {paragraph}{Sample Autocorrelation}{22}{section*.42}
-\contentsline {paragraph}{Second-order Stationary}{22}{section*.43}
-\contentsline {subsection}{\numberline {5.2.1}The Correlogram}{22}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Covariance of sums of random variables}{23}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Forecasting Strategies}{24}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Relationships of different time serie}{24}{subsection.5.3.1}
-\contentsline {paragraph}{Cross-covariance (ccvf)}{24}{section*.44}
-\contentsline {paragraph}{Sample Cross-covariance}{24}{section*.45}
-\contentsline {paragraph}{Cross-correlation (ccf)}{24}{section*.46}
-\contentsline {paragraph}{Sample Cross-correlation}{24}{section*.47}
-\contentsline {section}{\numberline {5.4}Basic Stochastic Models}{25}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}White Noise}{25}{subsection.5.4.1}
-\contentsline {paragraph}{Residual Error}{25}{section*.48}
-\contentsline {paragraph}{Definition}{25}{section*.49}
-\contentsline {subsection}{\numberline {5.4.2}Random Walks}{26}{subsection.5.4.2}
-\contentsline {paragraph}{Definition}{26}{section*.50}
-\contentsline {paragraph}{Backward Operator}{26}{section*.51}
-\contentsline {paragraph}{Second-order Properties}{26}{section*.52}
-\contentsline {paragraph}{The Difference Operator}{26}{section*.53}
-\contentsline {paragraph}{Random Walk with Drift}{27}{section*.54}
-\contentsline {subsection}{\numberline {5.4.3}Autoregressive Models}{27}{subsection.5.4.3}
-\contentsline {paragraph}{Definition}{27}{section*.55}
-\contentsline {paragraph}{Stationary and non-stationary AR processes}{28}{section*.56}
-\contentsline {paragraph}{Second-order properties of an AR(1) model}{28}{section*.57}
-\contentsline {paragraph}{Partial Autocorrelation}{28}{section*.58}
-\contentsline {section}{\numberline {5.5}Regression}{29}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Linear Models}{29}{subsection.5.5.1}
-\contentsline {paragraph}{Definition}{29}{section*.59}
-\contentsline {paragraph}{Stationarity}{29}{section*.60}
-\contentsline {paragraph}{Autocorrelation variance estimation of the sample mean}{30}{section*.61}
-\contentsline {paragraph}{Generalised least squares}{30}{section*.62}
-\contentsline {subsection}{\numberline {5.5.2}Linear Models with Seasonal Variables}{30}{subsection.5.5.2}
-\contentsline {paragraph}{Additive Seasonal Indicator Variables}{30}{section*.63}
-\contentsline {paragraph}{Harmonic Seasonal models}{30}{section*.64}
-\contentsline {subsection}{\numberline {5.5.3}Forecasting from regression}{30}{subsection.5.5.3}
-\contentsline {paragraph}{Bias Correction}{31}{section*.65}
-\contentsline {subparagraph}{Lognormal Correction}{32}{section*.66}
-\contentsline {subparagraph}{Empirical Correction}{32}{section*.67}
-\contentsline {section}{\numberline {5.6}Stationary Models}{32}{section.5.6}
-\contentsline {subsection}{\numberline {5.6.1}Strictly Stationary Series}{32}{subsection.5.6.1}
-\contentsline {subsection}{\numberline {5.6.2}Moving average models}{33}{subsection.5.6.2}
-\contentsline {paragraph}{Definition}{33}{section*.68}
-\contentsline {paragraph}{Second-order properties}{33}{section*.69}
-\contentsline {paragraph}{Invertible properties}{33}{section*.70}
-\contentsline {subsection}{\numberline {5.6.3}Mized Models: The ARMA process}{33}{subsection.5.6.3}
-\contentsline {paragraph}{Definition}{33}{section*.71}
-\contentsline {paragraph}{Second-order Properties}{35}{section*.72}
-\contentsline {section}{\numberline {5.7}Non-stationary Models}{35}{section.5.7}
-\contentsline {subsection}{\numberline {5.7.1}Differencing}{35}{subsection.5.7.1}
-\contentsline {subparagraph}{Differencing random walk}{35}{section*.73}
-\contentsline {subparagraph}{Differencing linear trend}{35}{section*.74}
-\contentsline {paragraph}{Integrated Model}{35}{section*.75}
-\contentsline {subsection}{\numberline {5.7.2}Non-Seasonal ARIMA Models}{36}{subsection.5.7.2}
-\contentsline {paragraph}{Definition}{36}{section*.76}
-\contentsline {subsection}{\numberline {5.7.3}Seasonal ARIMA models}{36}{subsection.5.7.3}
-\contentsline {chapter}{\numberline {A}Principales distribution de probabilit\IeC {\'e} utilis\IeC {\'e}es}{37}{appendix.A}
-=======
-\babel@toc {french}{}
-\contentsline {part}{I\hspace {1em}Fondements math\IeC {\'e}matiques utiles}{3}{part.1}% 
-\contentsline {chapter}{\numberline {1}Calculs}{4}{chapter.1}% 
-\contentsline {section}{\numberline {1.1}R\IeC {\`e}gles de d\IeC {\'e}rivation}{4}{section.1.1}% 
-\contentsline {chapter}{\numberline {2}Alg\IeC {\`e}bre lin\IeC {\'e}aire}{5}{chapter.2}% 
-\contentsline {section}{\numberline {2.1}D\IeC {\'e}finition d'un vecteur et une matrice}{5}{section.2.1}% 
-\contentsline {paragraph}{Vecteur ligne}{5}{section*.2}% 
-\contentsline {paragraph}{Matrice}{5}{section*.3}% 
-\contentsline {paragraph}{Matrice carr\IeC {\'e}e}{5}{section*.4}% 
-\contentsline {paragraph}{non-n\IeC {\'e}gative}{5}{section*.5}% 
-\contentsline {paragraph}{positive}{5}{section*.6}% 
-\contentsline {paragraph}{semi-positive}{6}{section*.7}% 
-\contentsline {paragraph}{Orthogonale}{6}{section*.8}% 
-\contentsline {paragraph}{Matrice sym\IeC {\'e}trique}{6}{section*.9}% 
-\contentsline {paragraph}{Matrice triangulaire (inf\IeC {\'e}rieure ou sup\IeC {\'e}rieure)}{6}{section*.10}% 
-\contentsline {paragraph}{Matrice diagonale}{6}{section*.11}% 
-\contentsline {paragraph}{Matrice diagonalisable}{7}{section*.12}% 
-\contentsline {section}{\numberline {2.2}Matrice transpos\IeC {\'e}e}{7}{section.2.2}% 
-\contentsline {section}{\numberline {2.3}Op\IeC {\'e}rations matricielles}{7}{section.2.3}% 
-\contentsline {section}{\numberline {2.4}Trace, d\IeC {\'e}terminant et matrice inverse}{8}{section.2.4}% 
-\contentsline {subsection}{\numberline {2.4.1}Trace d'une matrice}{8}{subsection.2.4.1}% 
-\contentsline {paragraph}{Propri\IeC {\'e}t\IeC {\'e}s de la trace d'une matrice}{8}{section*.13}% 
-\contentsline {subsection}{\numberline {2.4.2}D\IeC {\'e}terminant d'une matrice}{8}{subsection.2.4.2}% 
-\contentsline {subsection}{\numberline {2.4.3}Matrice inverse}{9}{subsection.2.4.3}% 
-\contentsline {section}{\numberline {2.5}D\IeC {\'e}composition LDU de Choleski}{9}{section.2.5}% 
-\contentsline {section}{\numberline {2.6}Vecteurs et valeurs propres}{9}{section.2.6}% 
-\contentsline {subsection}{\numberline {2.6.1}D\IeC {\'e}finition}{9}{subsection.2.6.1}% 
-\contentsline {subsection}{\numberline {2.6.2}Propri\IeC {\'e}t\IeC {\'e}s int\IeC {\'e}ressantes}{9}{subsection.2.6.2}% 
-\contentsline {subsection}{\numberline {2.6.3}D\IeC {\'e}composition spectrale}{10}{subsection.2.6.3}% 
-\contentsline {section}{\numberline {2.7}D\IeC {\'e}riv\IeC {\'e}es de matrice ou vecteurs}{10}{section.2.7}% 
-\contentsline {part}{II\hspace {1em}Mati\IeC {\`e}re vue dans le baccalaur\IeC {\'e}at en actuariat}{11}{part.2}% 
-\contentsline {chapter}{\numberline {3}Probabilit\IeC {\'e}s et statistiques}{12}{chapter.3}% 
-\contentsline {section}{\numberline {3.1}Concepts de probabilit\IeC {\'e} de base}{12}{section.3.1}% 
-\contentsline {subsection}{\numberline {3.1.1}Probabilit\IeC {\'e} conditionnelle}{12}{subsection.3.1.1}% 
-\contentsline {paragraph}{D\IeC {\'e}finition de base}{12}{equation.3.1.1}% 
-\contentsline {paragraph}{Loi des probabilit\IeC {\'e}s totales}{12}{section*.15}% 
-\contentsline {paragraph}{Relation importante}{12}{section*.16}% 
-\contentsline {subsection}{\numberline {3.1.2}Th\IeC {\'e}or\IeC {\`e}me de Bayes}{13}{subsection.3.1.2}% 
-\contentsline {section}{\numberline {3.2}D\IeC {\'e}finition d'une variable al\IeC {\'e}atoire}{13}{section.3.2}% 
-\contentsline {section}{\numberline {3.3}Distribution d'une variable al\IeC {\'e}atoire}{13}{section.3.3}% 
-\contentsline {section}{\numberline {3.4}Moments et quantit\IeC {\'e}s importantes}{13}{section.3.4}% 
-\contentsline {paragraph}{Esp\IeC {\'e}rance}{13}{section*.17}% 
-\contentsline {paragraph}{Variance}{13}{equation.3.4.7}% 
-\contentsline {paragraph}{Covariance}{14}{equation.3.4.8}% 
-\contentsline {section}{\numberline {3.5}Distribution de probabilit\IeC {\'e} qui reviennent souvent}{14}{section.3.5}% 
-\contentsline {chapter}{\numberline {4}Math\IeC {\'e}matiques financi\IeC {\`e}res}{15}{chapter.4}% 
-\contentsline {chapter}{\numberline {5}Processus al\IeC {\'e}atoire}{16}{chapter.5}% 
-\contentsline {section}{\numberline {5.1}Cha\IeC {\^\i }ne de Markov}{16}{section.5.1}% 
-\contentsline {part}{III\hspace {1em}Mati\IeC {\`e}re pour les examens professionnels}{17}{part.3}% 
-\contentsline {chapter}{\numberline {A}Principales distribution de probabilit\IeC {\'e} utilis\IeC {\'e}es}{18}{appendix.A}% 
-\contentsline {chapter}{\numberline {B}Preuves}{19}{appendix.B}% 
-\contentsline {section}{\numberline {B.1}Stop-Loss ($\pi _X(d)$)}{19}{section.B.1}% 
-\contentsline {section}{\numberline {B.2}TVaR}{21}{section.B.2}% 
-\contentsline {subsection}{\numberline {B.2.1}Les 3 formes explicites de la $TVaR$ }{21}{subsection.B.2.1}% 
-\contentsline {section}{\numberline {B.3}Sous-additivit\IeC {\'e} de la $TVaR$}{22}{section.B.3}% 
-\contentsline {subsection}{\numberline {B.3.1}\IeC {\`A} l'aide de la fonction convexe $\varphi (x)$}{23}{subsection.B.3.1}% 
-\contentsline {paragraph}{}{23}{section*.20}% 
-\contentsline {subsection}{\numberline {B.3.2}Avec les fonctions indicatrices}{25}{subsection.B.3.2}% 
-\contentsline {paragraph}{}{25}{section*.21}% 
-\contentsline {paragraph}{}{26}{section*.22}% 
-\contentsline {subsection}{\numberline {B.3.3}\IeC {\`A} l'aide des statistiques d'ordre}{27}{subsection.B.3.3}% 
-\contentsline {section}{\numberline {B.4}Loi des grands nombres}{27}{section.B.4}% 
-\contentsline {section}{\numberline {B.5}Somme de v.a. ind\IeC {\'e}pendantes d'une loi Poisson Compos\IeC {\'e}e}{28}{section.B.5}% 
-\contentsline {paragraph}{}{29}{section*.23}% 
-\contentsline {section}{\numberline {B.6}Th\IeC {\'e}or\IeC {\`e}me d'Euler}{30}{section.B.6}% 
-\contentsline {paragraph}{D\IeC {\'e}finition}{30}{section*.24}% 
-\contentsline {section}{\numberline {B.7}D\IeC {\'e}riv\IeC {\'e}e de l'\IeC {\'e}cart-type (g\IeC {\'e}n\IeC {\'e}rale)}{31}{section.B.7}% 
-\contentsline {paragraph}{Rappel d'ACT-1002}{31}{section*.25}% 
-\contentsline {paragraph}{}{32}{section*.26}% 
-\contentsline {paragraph}{}{32}{section*.27}% 
-\contentsline {section}{\numberline {B.8}Distribution limite de $W_n$}{34}{section.B.8}% 
->>>>>>> 62dc222107be972b1d46be8a77f0f87a525b7409
+\contentsline {part}{I\hspace {1em}Fondements math\IeC {\'e}matiques utiles}{4}{part.1}
+\contentsline {chapter}{\numberline {1}Calculs}{5}{chapter.1}
+\contentsline {section}{\numberline {1.1}R\IeC {\`e}gles de d\IeC {\'e}rivation}{5}{section.1.1}
+\contentsline {chapter}{\numberline {2}Alg\IeC {\`e}bre lin\IeC {\'e}aire}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}D\IeC {\'e}finition d'un vecteur et une matrice}{6}{section.2.1}
+\contentsline {paragraph}{Vecteur ligne}{6}{section*.2}
+\contentsline {paragraph}{Matrice}{6}{section*.3}
+\contentsline {paragraph}{Matrice carr\IeC {\'e}e}{6}{section*.4}
+\contentsline {paragraph}{non-n\IeC {\'e}gative}{6}{section*.5}
+\contentsline {paragraph}{positive}{6}{section*.6}
+\contentsline {paragraph}{semi-positive}{7}{section*.7}
+\contentsline {paragraph}{Orthogonale}{7}{section*.8}
+\contentsline {paragraph}{Matrice sym\IeC {\'e}trique}{7}{section*.9}
+\contentsline {paragraph}{Matrice triangulaire (inf\IeC {\'e}rieure ou sup\IeC {\'e}rieure)}{7}{section*.10}
+\contentsline {paragraph}{Matrice diagonale}{7}{section*.11}
+\contentsline {paragraph}{Matrice diagonalisable}{8}{section*.12}
+\contentsline {section}{\numberline {2.2}Matrice transpos\IeC {\'e}e}{8}{section.2.2}
+\contentsline {section}{\numberline {2.3}Op\IeC {\'e}rations matricielles}{8}{section.2.3}
+\contentsline {section}{\numberline {2.4}Trace, d\IeC {\'e}terminant et matrice inverse}{9}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Trace d'une matrice}{9}{subsection.2.4.1}
+\contentsline {paragraph}{Propri\IeC {\'e}t\IeC {\'e}s de la trace d'une matrice}{9}{section*.13}
+\contentsline {subsection}{\numberline {2.4.2}D\IeC {\'e}terminant d'une matrice}{9}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Matrice inverse}{10}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}D\IeC {\'e}composition LDU de Choleski}{10}{section.2.5}
+\contentsline {section}{\numberline {2.6}Vecteurs et valeurs propres}{10}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}D\IeC {\'e}finition}{10}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Propri\IeC {\'e}t\IeC {\'e}s int\IeC {\'e}ressantes}{10}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}D\IeC {\'e}composition spectrale}{11}{subsection.2.6.3}
+\contentsline {section}{\numberline {2.7}D\IeC {\'e}riv\IeC {\'e}es de matrice ou vecteurs}{11}{section.2.7}
+\contentsline {part}{II\hspace {1em}Mati\IeC {\`e}re vue dans le baccalaur\IeC {\'e}at en actuariat}{12}{part.2}
+\contentsline {chapter}{\numberline {3}Probabilit\IeC {\'e}s et statistiques}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Concepts de probabilit\IeC {\'e} de base}{13}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Probabilit\IeC {\'e} conditionnelle}{13}{subsection.3.1.1}
+\contentsline {paragraph}{D\IeC {\'e}finition de base}{13}{equation.3.1.1}
+\contentsline {paragraph}{Loi des probabilit\IeC {\'e}s totales}{13}{section*.15}
+\contentsline {paragraph}{Relation importante}{13}{section*.16}
+\contentsline {subsection}{\numberline {3.1.2}Th\IeC {\'e}or\IeC {\`e}me de Bayes}{14}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}D\IeC {\'e}finition d'une variable al\IeC {\'e}atoire}{14}{section.3.2}
+\contentsline {section}{\numberline {3.3}Distribution d'une variable al\IeC {\'e}atoire}{14}{section.3.3}
+\contentsline {section}{\numberline {3.4}Moments et quantit\IeC {\'e}s importantes}{14}{section.3.4}
+\contentsline {paragraph}{Esp\IeC {\'e}rance}{14}{section*.17}
+\contentsline {paragraph}{Variance}{14}{equation.3.4.7}
+\contentsline {paragraph}{Covariance}{15}{equation.3.4.8}
+\contentsline {section}{\numberline {3.5}Distribution de probabilit\IeC {\'e} qui reviennent souvent}{15}{section.3.5}
+\contentsline {chapter}{\numberline {4}Math\IeC {\'e}matiques financi\IeC {\`e}res}{16}{chapter.4}
+\contentsline {chapter}{\numberline {5}Processus al\IeC {\'e}atoire}{17}{chapter.5}
+\contentsline {section}{\numberline {5.1}Cha\IeC {\^\i }ne de Markov}{17}{section.5.1}
+\contentsline {part}{III\hspace {1em}Mati\IeC {\`e}re pour les examens professionnels}{18}{part.3}
+\contentsline {chapter}{\numberline {6}Time Series}{19}{chapter.6}
+\contentsline {paragraph}{Trend}{20}{section*.20}
+\contentsline {paragraph}{Seasonal Variation}{20}{section*.21}
+\contentsline {paragraph}{Notation}{20}{section*.22}
+\contentsline {paragraph}{Forecast}{20}{section*.23}
+\contentsline {section}{\numberline {6.1}Base Models}{20}{section.6.1}
+\contentsline {paragraph}{Additive Decomposition}{20}{section*.24}
+\contentsline {paragraph}{Multiplication Model}{20}{section*.25}
+\contentsline {subsection}{\numberline {6.1.1}Estimating Trends}{20}{subsection.6.1.1}
+\contentsline {paragraph}{Centered Moving Average}{20}{section*.26}
+\contentsline {subsection}{\numberline {6.1.2}Estimating Seasonal Effect}{21}{subsection.6.1.2}
+\contentsline {paragraph}{Additive Effect}{21}{section*.27}
+\contentsline {paragraph}{Multiplicative Effect}{21}{section*.28}
+\contentsline {subsection}{\numberline {6.1.3}Smoothing Procedure}{21}{subsection.6.1.3}
+\contentsline {section}{\numberline {6.2}Correlation}{22}{section.6.2}
+\contentsline {paragraph}{Mean Function}{22}{section*.29}
+\contentsline {paragraph}{Sample Mean}{22}{section*.30}
+\contentsline {paragraph}{Variance Function}{22}{section*.31}
+\contentsline {paragraph}{Sample Variance}{23}{section*.32}
+\contentsline {paragraph}{Stationarity}{23}{section*.33}
+\contentsline {paragraph}{Ergodic Serie}{23}{section*.34}
+\contentsline {paragraph}{Covariance}{23}{section*.35}
+\contentsline {paragraph}{Sample Covariance}{23}{section*.36}
+\contentsline {paragraph}{Correlation}{23}{section*.37}
+\contentsline {paragraph}{Sample Correlation}{23}{section*.38}
+\contentsline {paragraph}{Autocovariance (acvf)}{24}{section*.39}
+\contentsline {paragraph}{Sample Autocorrelation}{24}{section*.40}
+\contentsline {paragraph}{Autocorrelation (acf)}{24}{section*.41}
+\contentsline {paragraph}{Sample Autocorrelation}{24}{section*.42}
+\contentsline {paragraph}{Second-order Stationary}{24}{section*.43}
+\contentsline {subsection}{\numberline {6.2.1}The Correlogram}{24}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Covariance of sums of random variables}{25}{subsection.6.2.2}
+\contentsline {section}{\numberline {6.3}Forecasting Strategies}{26}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Relationships of different time serie}{26}{subsection.6.3.1}
+\contentsline {paragraph}{Cross-covariance (ccvf)}{26}{section*.44}
+\contentsline {paragraph}{Sample Cross-covariance}{26}{section*.45}
+\contentsline {paragraph}{Cross-correlation (ccf)}{26}{section*.46}
+\contentsline {paragraph}{Sample Cross-correlation}{26}{section*.47}
+\contentsline {section}{\numberline {6.4}Basic Stochastic Models}{27}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}White Noise}{27}{subsection.6.4.1}
+\contentsline {paragraph}{Residual Error}{27}{section*.48}
+\contentsline {paragraph}{Definition}{27}{section*.49}
+\contentsline {subsection}{\numberline {6.4.2}Random Walks}{28}{subsection.6.4.2}
+\contentsline {paragraph}{Definition}{28}{section*.50}
+\contentsline {paragraph}{Backward Operator}{28}{section*.51}
+\contentsline {paragraph}{Second-order Properties}{28}{section*.52}
+\contentsline {paragraph}{The Difference Operator}{28}{section*.53}
+\contentsline {paragraph}{Random Walk with Drift}{29}{section*.54}
+\contentsline {subsection}{\numberline {6.4.3}Autoregressive Models}{29}{subsection.6.4.3}
+\contentsline {paragraph}{Definition}{29}{section*.55}
+\contentsline {paragraph}{Stationary and non-stationary AR processes}{30}{section*.56}
+\contentsline {paragraph}{Second-order properties of an AR(1) model}{30}{section*.57}
+\contentsline {paragraph}{Partial Autocorrelation}{30}{section*.58}
+\contentsline {section}{\numberline {6.5}Regression}{31}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Linear Models}{31}{subsection.6.5.1}
+\contentsline {paragraph}{Definition}{31}{section*.59}
+\contentsline {paragraph}{Stationarity}{31}{section*.60}
+\contentsline {paragraph}{Autocorrelation variance estimation of the sample mean}{32}{section*.61}
+\contentsline {paragraph}{Generalised least squares}{32}{section*.62}
+\contentsline {subsection}{\numberline {6.5.2}Linear Models with Seasonal Variables}{32}{subsection.6.5.2}
+\contentsline {paragraph}{Additive Seasonal Indicator Variables}{32}{section*.63}
+\contentsline {paragraph}{Harmonic Seasonal models}{32}{section*.64}
+\contentsline {subsection}{\numberline {6.5.3}Forecasting from regression}{32}{subsection.6.5.3}
+\contentsline {paragraph}{Bias Correction}{33}{section*.65}
+\contentsline {subparagraph}{Lognormal Correction}{34}{section*.66}
+\contentsline {subparagraph}{Empirical Correction}{34}{section*.67}
+\contentsline {section}{\numberline {6.6}Stationary Models}{34}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Strictly Stationary Series}{34}{subsection.6.6.1}
+\contentsline {subsection}{\numberline {6.6.2}Moving average models}{35}{subsection.6.6.2}
+\contentsline {paragraph}{Definition}{35}{section*.68}
+\contentsline {paragraph}{Second-order properties}{35}{section*.69}
+\contentsline {paragraph}{Invertible properties}{35}{section*.70}
+\contentsline {subsection}{\numberline {6.6.3}Mized Models: The ARMA process}{35}{subsection.6.6.3}
+\contentsline {paragraph}{Definition}{35}{section*.71}
+\contentsline {paragraph}{Second-order Properties}{37}{section*.72}
+\contentsline {section}{\numberline {6.7}Non-stationary Models}{37}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Differencing}{37}{subsection.6.7.1}
+\contentsline {subparagraph}{Differencing random walk}{37}{section*.73}
+\contentsline {subparagraph}{Differencing linear trend}{37}{section*.74}
+\contentsline {paragraph}{Integrated Model}{37}{section*.75}
+\contentsline {subsection}{\numberline {6.7.2}Non-Seasonal ARIMA Models}{38}{subsection.6.7.2}
+\contentsline {paragraph}{Definition}{38}{section*.76}
+\contentsline {subsection}{\numberline {6.7.3}Seasonal ARIMA models}{38}{subsection.6.7.3}
+\contentsline {chapter}{\numberline {A}Principales distribution de probabilit\IeC {\'e} utilis\IeC {\'e}es}{39}{appendix.A}
+\contentsline {chapter}{\numberline {B}Preuves}{40}{appendix.B}
+\contentsline {section}{\numberline {B.1}Stop-Loss ($\pi _X(d)$)}{40}{section.B.1}
+\contentsline {section}{\numberline {B.2}TVaR}{42}{section.B.2}
+\contentsline {subsection}{\numberline {B.2.1}Les 3 formes explicites de la $TVaR$ }{42}{subsection.B.2.1}
+\contentsline {section}{\numberline {B.3}Sous-additivit\IeC {\'e} de la $TVaR$}{43}{section.B.3}
+\contentsline {subsection}{\numberline {B.3.1}\IeC {\`A} l'aide de la fonction convexe $\varphi (x)$}{44}{subsection.B.3.1}
+\contentsline {paragraph}{}{44}{section*.77}
+\contentsline {subsection}{\numberline {B.3.2}Avec les fonctions indicatrices}{46}{subsection.B.3.2}
+\contentsline {paragraph}{}{46}{section*.78}
+\contentsline {paragraph}{}{47}{section*.79}
+\contentsline {subsection}{\numberline {B.3.3}\IeC {\`A} l'aide des statistiques d'ordre}{48}{subsection.B.3.3}
+\contentsline {section}{\numberline {B.4}Loi des grands nombres}{48}{section.B.4}
+\contentsline {section}{\numberline {B.5}Somme de v.a. ind\IeC {\'e}pendantes d'une loi Poisson Compos\IeC {\'e}e}{49}{section.B.5}
+\contentsline {paragraph}{}{50}{section*.80}
+\contentsline {section}{\numberline {B.6}Th\IeC {\'e}or\IeC {\`e}me d'Euler}{51}{section.B.6}
+\contentsline {paragraph}{D\IeC {\'e}finition}{51}{section*.81}
+\contentsline {section}{\numberline {B.7}D\IeC {\'e}riv\IeC {\'e}e de l'\IeC {\'e}cart-type (g\IeC {\'e}n\IeC {\'e}rale)}{52}{section.B.7}
+\contentsline {paragraph}{Rappel d'ACT-1002}{52}{section*.82}
+\contentsline {paragraph}{}{53}{section*.83}
+\contentsline {paragraph}{}{53}{section*.84}
+\contentsline {section}{\numberline {B.8}Distribution limite de $W_n$}{55}{section.B.8}
