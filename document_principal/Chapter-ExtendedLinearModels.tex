@@ -1,0 +1,45 @@
+{ \color{red} Thissection resume the Chapters 5-9 of \emph{An Introduction to Generalized Linear Models}.}
+
+\hl{Add to biblio:}
+
+\section{Inference}
+
+The two tool to do inference are \textbf{confidence intervals} and \textbf{hypothesis tests}. For GLM, a hypothesis tests can be use to compare two models, but their need to have the same probability function and the same link. Also, the null hypothesis $H_0$ is a sinpler model and must be a special case of the other. 
+
+\subsection{Sampling distribution for the score statistic}
+\paragraph{Score Function}
+Let $\ell = \ln f(y)$ be the log-likehood function, then the score function $U$, is define as
+\[ U_j = \frac{\partial \ell}{\partial \mu} = \sum_{i=1}^N \left[ \frac{(Y_i - \mu_i)}{\variance{Y_i}} x_{i,j} \left( \frac{\partial \mu_i}{\partial \eta} \right) \right] \]
+
+\paragraph{Information matrix}
+The information matrix is define as the variance-covariance matrix of the score function. This information matrix is defined as 
+\[ I(\theta) = \variance{U} \]
+
+\paragraph{Score Statistic}
+If there is only one $\beta$, the score statistic has the asymptotic sampling distribution
+\[ \frac{U}{\sqrt{I(\theta)}} \sim N(0, 1),  \frac{U^2}{I(\theta)} \sim \chi^2(1) \]
+
+If there is a vector of $\underline{\beta}$
+\[ U^T I(\theta)^{-1} U \sum \chi^2(p) \]
+
+\section{Normal Linear Models}
+\subsection{Basis Result}
+
+\paragraph{Maximum likelihood}
+The maximum likelihood estimation of $\beta$ is given by
+\[ \mathrm{b} = (\mathrm{X}^T \mathrm{X})^{-1} \mathrm{X}^T \mathrm{y} \]
+The estimator is unbiasedm with the variance-covariance matrix
+\[ I(\theta)^{-1} = \sigma^2 (\mathrm{X}^T \mathrm{X}^{-1}) \]
+However, the unbiased estimator of $\sigma^2$ is given by
+\[ \hat{\sigma^2} = \frac{1}{N-p} (\mathrm{y} - \mathrm{X}\mathrm{b})^T \]
+
+\paragraph{Least Square Estimation}
+In the case of linear models, we obtain the same result as the maximum likelihood
+\[ \mathrm{b} = (\mathrm{X}^T \mathrm{X})^{-1} \mathrm{X}^T \mathrm{y} \]
+
+\paragraph{Deviance}
+The diviance is define by the square of the error $\mathrm{\varepsilon}$.
+\[ \frac{1}{\sigma^2} \mathrm{\varepsilon}^T \mathrm{\varepsilon} = \frac{1}{\sigma^2} (\mathrm{y} - \mathrm{X}\mathrm{b})^T(\mathrm{y} - \mathrm{X}\mathrm{b}) \]
+or, in case of simple linear model,
+\[ \frac{1}{\sigma^2} \sum (Y_i - \hat{Y_i})^2 \]
+
