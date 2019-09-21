@@ -1,13 +1,24 @@
 \documentclass[12pt, french]{report}
 \input{preambule_utf8.tex}
-\author{Gabriel Crépeault-Cauchon et Nicholas Langevin}
-\title{Guide de survie en actuariat}
+\author{Gabrielle Crépault \\  Nicholas Langevin}
+\date{}
+\newcommand{\TITLE}{%
+\sffamily
+\bfseries\fontsize{52}{42}\selectfont
+Guide de survie  %The blank line after is needed.
+
+\vspace{3mm}
+en Actuariat
+}
 
 \begin{document}
 % Page titre et table des matières
-\maketitle
-\newpage
-\tableofcontents
+\include{couverture}
+{
+    \hypersetup{linkcolor=tocColor}
+    \bfseries % Pas encore sur si c'est plus beau...
+    \tableofcontents
+}
 \newpage
 % ------
 

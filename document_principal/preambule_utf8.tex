@@ -68,7 +68,7 @@ after title = {\large \hfill \faBook}
 \usepackage{pict2e}
 
 % insert PDF package
-%\usepackage{pdfpages}
+\usepackage{pdfpages}
 
 % Color package
 \usepackage{color, soulutf8, colortbl}
@@ -83,10 +83,13 @@ after title = {\large \hfill \faBook}
 \newcommand{\cyan}{\textcolor{cyan}}
 \newcommand{\blue}{\textcolor{blue}}
 \newcommand{\green}{\textcolor{green}}
-\definecolor{darkgreen}{RGB}{37, 128, 40}
 \newcommand{\darkgreen}{\textcolor{darkgreen}}
 \newcommand{\purple}{\textcolor{magenta}}
 \newcommand{\yellow}{\textcolor{yellow}}
+
+% Colors define
+\definecolor{darkgreen}{RGB}{37, 128, 40}
+\definecolor{tocColor}{HTML}{8A2507}
 
 % Custum enumerate & itemize Package
 \usepackage{enumitem}
@@ -137,6 +140,12 @@ after title = {\large \hfill \faBook}
 
 % Retire l'indentation automatique de Latex
 \setlength{\parindent}{0pt}
+
+% Utilisé pour la page couverture
+\usepackage[absolute]{textpos} % Textblock environement
+\usepackage{anyfontsize} % Avoir un gros titre
+\usepackage{titling} % Avoir un gros titre
+\usepackage{changepage} % ajustwidth environement
 
 % ---------------------------------------------
 % END OF PREAMBLE

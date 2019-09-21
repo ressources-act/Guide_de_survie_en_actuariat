@@ -1,6 +1,6 @@
 MAIN=main.tex
 NAME=Guide-en-Actuariat
-SHELL=/bin/bash
+SHELL:=/bin/bash
 
 all: # Call: make
 	latexmk -pdf $(MAIN) -jobname="$(NAME)" # Will compile the document
