@@ -1,0 +1,22 @@
+\chapter{Notions de calcul différentiel et calcul intégral}
+
+\section{Règles de dérivation}
+Dans le tableau, on utilise $k \in \reels$ ou $n$ pour parler d'une constante, $u$, $v$ ou $w$ pour parler d'une fonction.
+
+\begin{tabular}{|L | L |}
+% Voir préambule, L est un type de colonne défini (custom) qui place le texte entre $•$
+\hline
+\text{Fonction}	& \text{Dérivée} \\\hline \hline
+f(x) = k	& f'(x) = 0 \\\hline
+f(x) = k x	& f'(x) = k \\\hline
+f(x) = x^{n}	& f'(x) = n x^{n-1} \\\hline
+f(x) = k g(x)	& f'(x) = k g'(x) \\\hline
+f(x) = g(x) \pm h(x)	& f'(x) = g'(x) \pm h'(x) \\\hline
+f(x) = g(x) \cdot h(x)	& f'(x) = g'(x) \cdot h(x) + g(x) \cdot h'(x) \\\hline
+f(x) = \frac{g(x)}{h(x)}	& f'(x) = \frac{g'(x) h(x) - g(x) h'(x)}{h(x)^2} \\\hline
+f(x) = g(x)^{n}	& f'(x) = n \cdot g(x)^{n-1} \cdot g'(x) \\\hline
+f(x) = k^{g(x)}	& f'(x) = k^{g(x)} \ln k \cdot g'(x) \\\hline
+f(x) = e^{g(x)}	& f'(x) = e^{g(x)} \cdot g'(x) \\\hline
+f(x) = \ln (g(x)) 	& f'(x) = \frac{g'(x)}{g(x)} \\\hline
+\hline
+\end{tabular}
