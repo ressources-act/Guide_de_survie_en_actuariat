@@ -1,0 +1,39 @@
+\chapter{Théorie du risque}
+
+\section{Processus Stochastique}
+
+\subsection{Processus Homogène Composée}
+
+\paragraph{Definition}
+\[ S(t) = \sum_{k=1}^{N(t)} X_k \]
+
+\paragraph{Fonction de répartition}
+\[ F_{S(t)}(x) = \prob{N(t) = 0} + \sum_{k=1}^\infty \prob{N(t) = k} * F_{X_1+...+X_k}(x) \]
+\begin{lstlisting}[language=R, caption={Exemple Pois-Gamma}]
+F_s <- function(x, t){
+    dpois(0, lambda * t) + sum(sapply(1:k0, function(k) dpois(k, lambda * t) * pgamma(x, alpha * k, beta)
+}
+\end{lstlisting}
+
+\paragraph{Value at risk}
+\[ \VaR{S(t)} = F_{S(t)}^{-1}(k) \]
+
+\begin{lstlisting}[language=R, caption={Exemple Pois-Gamma}]
+VaR_s <- function(kappa, t){
+    if(kappa <= dpois(0, lambda * t)
+        return(0)
+    uniroot(function(x) F_s(x, t) - kappa, c(0, 10000))$root
+}
+\end{lstlisting}
+
+\paragraph{Tail Values at Risk}
+\[ \TVaR{S(t)} = \sum_{k=0}^\infty \prob{N(t) = k} \cdot \TVaR{X_1+...+X_k}\]
+
+\begin{lstlisting}[language=R, caption={Exemple Pois-Gamma}]
+TvaR_S <- function(kappa, t){
+    sum(sapply(1:k0, function(k) dpois(k, 1.8 * t) * alp    ha * k / beta * (1 - pgamma(VaR_s(kappa, t), (alpha*k)+1, beta)))) / (1 - kappa)
+}
+\end{lstlisting}
+
+\subsection{Processus Mixte}
+
