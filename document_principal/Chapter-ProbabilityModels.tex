@@ -1,0 +1,45 @@
+
+{ \color{red} This section resume the \emph{Introduction to probability models} }
+
+\section{Reliability Theory}
+
+\subsection{Struture Functions}
+
+\paragraph{State Vector}
+The state vector is difine as $\mathrm{x} = (x_1,...,x_n)$, where $x_i = 1$ if the component is functioning, 0 otherwise.
+
+\paragraph{Structure function}
+The structure function $\phi(\mathrm{x}) = 1$ if the system is functionning when the state vector is $\mathrm{x}$.
+
+\paragraph{Serie Structure}
+A series system functions if and only if all of its components are functioning.
+\[ \phi(\mathrm{x}) = \min(x_1,...,x_n) = \prod_{i=1}^n x_i \]
+
+\paragraph{Parallel Struture}
+A parallel system functions if and only if at least one of its components is functioning. 
+\[ \phi(\mathrm{x}) = \max(x_1,...,x_n) = 1 - \prod_{i=1}^n (1 - x_i) \]
+
+\paragraph{k-out-of-n Struture}
+The series and parallel systems are both special cases of a k-out-of-n system. Such a system functions if and only if at least k of the n components are functioning. 
+\[ \phi(\mathrm{x}) = \left\{
+\begin{array}{lr}
+    1, & \text{if} \sum_{i=1}^n x_i \geq k \\
+    0, & \text{if} \sum_{i=1}^n x_i < k
+\end{array} \right. \]
+
+\begin{note}
+    {\color{blue}(If and only if)} mean $\min(x_1,...,x_n) = \prod x_i$ \\
+    {\color{blue}(At least one)} mean $\max(x_1,...,x_n) = 1 - \prod (1 - x_i)$
+\end{note}
+
+\subsection{Minimal Path and Minimal Cut Sets}
+
+\paragraph{Minimal Path Sets}
+A minimal path set is a minimal set of components whose functioning ensures the functioning of the system.
+
+\begin{note}
+    k-out-of-n system have $\binom{n}{k}$ minimal path sets.
+\end{note}
+
+\paragraph{Minimal Cut Sets}
+A minimal cut set is a minimal set of components whose failure ensures the failure of the system.
