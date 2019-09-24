@@ -1778,6 +1778,13 @@ If the variance of the observation is \textbf{higher} than indicated by the bino
 $\phi \var{y}$. This don't affect the fit but many statistic like Pearson. For Poison, we can use
 a Binomial Negative model.
 
+\section*{Tail Value at Risk}
+\begin{align*}
+    \text{TvaR}_k(x) &= \text{VaR}_k(x) + \frac{\esp{(x - \text{VaR}_k)_+}}{S_x(\text{VaR}_k)} \\
+                     &= \text{VaR}_k(x) + \frac{\esp{x} - \esp{x \wedge \text{VaR}_k}}{S_x(\text{VaR}_k)}
+\end{align*}
+
+
 
 \end{multicols*}
 %% -----------------------------
