@@ -13,7 +13,7 @@
 
 % HYPERREF (URL's and Link options)
 \usepackage{hyperref}
-\hypersetup{colorlinks = true, urlcolor = blue, linkcolor = red!60!black}
+\hypersetup{colorlinks = true, urlcolor = red!60!black, linkcolor = red!60!black}
 
 % POLICY (choose one of them)
 %	\usepackage{concrete}
@@ -68,7 +68,7 @@ after title = {\large \hfill \faBook}
 \usepackage{pict2e}
 
 % insert PDF package
-%\usepackage{pdfpages}
+\usepackage{pdfpages}
 
 % Color package
 \usepackage{color, soulutf8, colortbl}
@@ -83,10 +83,13 @@ after title = {\large \hfill \faBook}
 \newcommand{\cyan}{\textcolor{cyan}}
 \newcommand{\blue}{\textcolor{blue}}
 \newcommand{\green}{\textcolor{green}}
-\definecolor{darkgreen}{RGB}{37, 128, 40}
 \newcommand{\darkgreen}{\textcolor{darkgreen}}
 \newcommand{\purple}{\textcolor{magenta}}
 \newcommand{\yellow}{\textcolor{yellow}}
+
+% Colors define
+\definecolor{darkgreen}{RGB}{37, 128, 40}
+\definecolor{tocColor}{HTML}{8A2507}
 
 % Custum enumerate & itemize Package
 \usepackage{enumitem}
@@ -110,6 +113,8 @@ after title = {\large \hfill \faBook}
 \DeclareMathOperator{\Adj}{Adj}
 \newcommand{\derivee}[1]{\frac{\partial}{\partial #1}}
 \newcommand{\indic}[1]{\mathds{1}_{\{ #1 \}}}
+\newcommand{\VaR}[2][k]{\mathrm{VaR}_{#1}{\left( #2 \right)}}
+\newcommand{\TVaR}[2][k]{\mathrm{TVaR}_{#1}{\left( #2 \right)}}
 
 
 % Matricial anotation for math symbols (\bm{•})
@@ -137,6 +142,121 @@ after title = {\large \hfill \faBook}
 
 % Retire l'indentation automatique de Latex
 \setlength{\parindent}{0pt}
+
+% Utilisé pour la page couverture
+\usepackage[absolute]{textpos} % Textblock environement
+\usepackage{anyfontsize} % Avoir un gros titre
+\usepackage{titling} % Avoir un gros titre
+\usepackage{changepage} % ajustwidth environement
+
+% Pour afficher du code
+\usepackage{listings}
+
+\definecolor{codegray}{gray}{0.9}
+\newcommand{\code}[1]{\colorbox{codegray}{\texttt{#1}}}
+
+\definecolor{insideBlackTerminal}{RGB}{33,33,33}
+% Set Language
+% \lstset{
+%     language={bash},
+%     basicstyle=\small\ttfamily\color{white}, % Global Code Style
+%     captionpos=b, % Position of the Caption (t for top, b for bottom)
+%     extendedchars=true, % Allows 256 instead of 128 ASCII characters
+%     tabsize=2, % number of spaces indented when discovering a tab 
+%     columns=fixed, % make all characters equal width
+%     keepspaces=true, % does not ignore spaces to fit width, convert tabs to spaces
+%     showstringspaces=false, % lets spaces in strings appear as real spaces
+%     breaklines=true, % wrap lines if they don't fit
+%     frame=single, % draw a frame at the top, right, left and bottom of the listing
+%     numberstyle=\tiny\ttfamily, % style of the line numbers
+%     % commentstyle=\color{red}, % style of comments
+%     % keywordstyle=\color{red}, % style of keywords
+%     % stringstyle=\color{red}, % style of strings
+%     backgroundcolor = \color{insideBlackTerminal},
+%     rulecolor=\color{red}
+% }
+
+\usepackage{lstlinebgrd}
+\definecolor{grayComment}{HTML}{8D90B8}
+\lstset{
+language=R,                     % the language of the code
+basicstyle=\ttfamily, % the size of the fonts that are used for the code
+% numbers=left,                   % where to put the line-numbers
+% numberstyle=\color{blue},  % the style that is used for the line-numbers
+% stepnumber=1,                   % the step between two line-numbers. If it is 1, each line
+% will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+linebackgroundcolor=\color{white},
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,                   % adds a frame around the code
+rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+tabsize=2,                      % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+%   keywordstyle=\color{functionR},      % keyword style
+commentstyle=\color[HTML]{9F0808},  %\color[HTML]{8D90B8},   % comment style
+%   stringstyle=\color[HTML]{1D9507},      % string literal style
+moredelim=**[is][\color{grayComment}]{@}{@}, % couleur manuel
+literate=%
+{à}{{\`a}}1
+{é}{{\'e}}1
+{è}{{\`e}}1
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 % ---------------------------------------------
 % END OF PREAMBLE

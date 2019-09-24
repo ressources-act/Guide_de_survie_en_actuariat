@@ -1,0 +1,73 @@
+\documentclass[12pt, french]{book}
+\input{preambule_utf8.tex}
+\newcommand{\TITLE}{%
+Guide de survie  %The blank line after is needed.
+
+\vspace{3mm}
+en Actuariat
+}
+\newcommand{\AUTHORS}{%
+Gabriel Crépeault-Cauchon \href{https://github.com/gabrielcrepeault}{\faGithub}  \href{https://www.linkedin.com/in/gabrielcrepeault/}{\faLinkedinSquare}  \\
+Nicholas Langevin  \href{https://github.com/NicholasLangevin}{\faGithub}  \href{https://www.linkedin.com/in/nicholas-langevin-216474182/}{\faLinkedinSquare} \\
+}
+
+\begin{document}
+% Page titre et table des matières
+\include{couverture}
+
+\frontmatter % PRÉFACE
+\include{introduction}
+\include{liste-collaborateurs}
+
+{
+    \hypersetup{linkcolor=tocColor}
+    \bfseries % Pas encore sur si c'est plus beau...
+    \tableofcontents
+}
+\newpage
+% ------
+
+\mainmatter % début du document principal
+
+% FONDEMENTS MATHÉMATIQUES
+\part{Fondements mathématiques utiles}
+
+\include{notions-calculs}
+\include{algebre-lineaire}
+
+
+
+% UNIVERSITÉ
+\part{Matière vue dans le baccalauréat en actuariat}
+
+\include{prob-stats}
+\include{math-financieres}
+\include{processus-aleatoires}
+\include{Chapter-TheorieDuRisque}
+
+
+% EXAMENS PROFESSIONNELS
+\part{Matière pour les examens professionnels}
+
+\chapter{Time Series}
+\include{Chapter-SerieChronologique}
+\label{sec:Serie-Chronologique}
+
+\chapter{Extended Linear Models}
+\include{Chapter-ExtendedLinearModels}
+\label{sec:Extended-Linear-Models}
+
+% ANNEXES DU DOCUMENT
+\appendix
+\chapter{Principales distribution de probabilité utilisées}
+introduction
+
+
+\chapter{Résultats (et démonstrations) utiles}
+\include{preuves-importantes}
+
+\include{git_workflow}
+
+
+
+\end{document}
