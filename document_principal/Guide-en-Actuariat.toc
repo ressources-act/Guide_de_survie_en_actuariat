@@ -61,119 +61,120 @@
 \contentsline {paragraph}{Preuve (ind\IeC {\'e}pendance)}{23}{section*.28}
 \contentsline {part}{III\hspace {1em}Mati\IeC {\`e}re pour les examens professionnels}{27}{part.3}
 \contentsline {chapter}{\numberline {7}Time Series}{29}{chapter.7}
-\contentsline {paragraph}{Trend}{30}{section*.29}
-\contentsline {paragraph}{Seasonal Variation}{30}{section*.30}
-\contentsline {paragraph}{Notation}{30}{section*.31}
-\contentsline {paragraph}{Forecast}{30}{section*.32}
-\contentsline {section}{\numberline {7.1}Base Models}{30}{section.7.1}
-\contentsline {paragraph}{Additive Decomposition}{30}{section*.33}
+\contentsline {paragraph}{Trend}{29}{section*.29}
+\contentsline {paragraph}{Seasonal Variation}{29}{section*.30}
+\contentsline {paragraph}{Notation}{29}{section*.31}
+\contentsline {paragraph}{Forecast}{29}{section*.32}
+\contentsline {section}{\numberline {7.1}Base Models}{29}{section.7.1}
+\contentsline {paragraph}{Additive Decomposition}{29}{section*.33}
 \contentsline {paragraph}{Multiplication Model}{30}{section*.34}
 \contentsline {subsection}{\numberline {7.1.1}Estimating Trends}{30}{subsection.7.1.1}
 \contentsline {paragraph}{Centered Moving Average}{30}{section*.35}
-\contentsline {subsection}{\numberline {7.1.2}Estimating Seasonal Effect}{31}{subsection.7.1.2}
-\contentsline {paragraph}{Additive Effect}{31}{section*.36}
-\contentsline {paragraph}{Multiplicative Effect}{31}{section*.37}
+\contentsline {subsection}{\numberline {7.1.2}Estimating Seasonal Effect}{30}{subsection.7.1.2}
+\contentsline {paragraph}{Additive Effect}{30}{section*.36}
+\contentsline {paragraph}{Multiplicative Effect}{30}{section*.37}
 \contentsline {subsection}{\numberline {7.1.3}Smoothing Procedure}{31}{subsection.7.1.3}
 \contentsline {section}{\numberline {7.2}Correlation}{32}{section.7.2}
 \contentsline {paragraph}{Mean Function}{32}{section*.38}
 \contentsline {paragraph}{Sample Mean}{32}{section*.39}
 \contentsline {paragraph}{Variance Function}{32}{section*.40}
-\contentsline {paragraph}{Sample Variance}{33}{section*.41}
-\contentsline {paragraph}{Stationarity}{33}{section*.42}
-\contentsline {paragraph}{Ergodic Serie}{33}{section*.43}
-\contentsline {paragraph}{Covariance}{33}{section*.44}
-\contentsline {paragraph}{Sample Covariance}{33}{section*.45}
+\contentsline {paragraph}{Sample Variance}{32}{section*.41}
+\contentsline {paragraph}{Stationarity}{32}{section*.42}
+\contentsline {paragraph}{Ergodic Serie}{32}{section*.43}
+\contentsline {paragraph}{Covariance}{32}{section*.44}
+\contentsline {paragraph}{Sample Covariance}{32}{section*.45}
 \contentsline {paragraph}{Correlation}{33}{section*.46}
 \contentsline {paragraph}{Sample Correlation}{33}{section*.47}
-\contentsline {paragraph}{Autocovariance (acvf)}{34}{section*.48}
-\contentsline {paragraph}{Sample Autocovariance}{34}{section*.49}
-\contentsline {paragraph}{Autocorrelation (acf)}{34}{section*.50}
-\contentsline {paragraph}{Sample Autocorrelation}{34}{section*.51}
+\contentsline {paragraph}{Autocovariance (acvf)}{33}{section*.48}
+\contentsline {paragraph}{Sample Autocovariance}{33}{section*.49}
+\contentsline {paragraph}{Autocorrelation (acf)}{33}{section*.50}
+\contentsline {paragraph}{Sample Autocorrelation}{33}{section*.51}
 \contentsline {paragraph}{Second-order Stationary}{34}{section*.52}
 \contentsline {subsection}{\numberline {7.2.1}The Correlogram}{34}{subsection.7.2.1}
 \contentsline {subsection}{\numberline {7.2.2}Covariance of sums of random variables}{35}{subsection.7.2.2}
-\contentsline {section}{\numberline {7.3}Forecasting Strategies}{36}{section.7.3}
-\contentsline {subsection}{\numberline {7.3.1}Relationships of different time serie}{36}{subsection.7.3.1}
-\contentsline {paragraph}{Cross-covariance (ccvf)}{36}{section*.53}
-\contentsline {paragraph}{Sample Cross-covariance}{36}{section*.54}
-\contentsline {paragraph}{Cross-correlation (ccf)}{36}{section*.55}
+\contentsline {section}{\numberline {7.3}Forecasting Strategies}{35}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Relationships of different time serie}{35}{subsection.7.3.1}
+\contentsline {paragraph}{Cross-covariance (ccvf)}{35}{section*.53}
+\contentsline {paragraph}{Sample Cross-covariance}{35}{section*.54}
+\contentsline {paragraph}{Cross-correlation (ccf)}{35}{section*.55}
 \contentsline {paragraph}{Sample Cross-correlation}{36}{section*.56}
-\contentsline {section}{\numberline {7.4}Basic Stochastic Models}{37}{section.7.4}
-\contentsline {subsection}{\numberline {7.4.1}White Noise}{37}{subsection.7.4.1}
-\contentsline {paragraph}{Residual Error}{37}{section*.57}
-\contentsline {paragraph}{Definition}{37}{section*.58}
-\contentsline {subsection}{\numberline {7.4.2}Random Walks}{38}{subsection.7.4.2}
-\contentsline {paragraph}{Definition}{38}{section*.59}
-\contentsline {paragraph}{Backward Operator}{38}{section*.60}
-\contentsline {paragraph}{Second-order Properties}{38}{section*.61}
-\contentsline {paragraph}{The Difference Operator}{38}{section*.62}
-\contentsline {paragraph}{Random Walk with Drift}{39}{section*.63}
-\contentsline {subsection}{\numberline {7.4.3}Autoregressive Models}{39}{subsection.7.4.3}
-\contentsline {paragraph}{Definition}{39}{section*.64}
-\contentsline {paragraph}{Stationary and non-stationary AR processes}{40}{section*.65}
-\contentsline {paragraph}{Second-order properties of an AR(1) model}{40}{section*.66}
-\contentsline {paragraph}{Partial Autocorrelation}{40}{section*.67}
-\contentsline {section}{\numberline {7.5}Regression}{41}{section.7.5}
-\contentsline {subsection}{\numberline {7.5.1}Linear Models}{41}{subsection.7.5.1}
-\contentsline {paragraph}{Definition}{41}{section*.68}
+\contentsline {section}{\numberline {7.4}Basic Stochastic Models}{36}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}White Noise}{36}{subsection.7.4.1}
+\contentsline {paragraph}{Residual Error}{36}{section*.57}
+\contentsline {paragraph}{Definition}{36}{section*.58}
+\contentsline {subsection}{\numberline {7.4.2}Random Walks}{36}{subsection.7.4.2}
+\contentsline {paragraph}{Definition}{36}{section*.59}
+\contentsline {paragraph}{Backward Operator}{36}{section*.60}
+\contentsline {paragraph}{Second-order Properties}{37}{section*.61}
+\contentsline {paragraph}{The Difference Operator}{37}{section*.62}
+\contentsline {paragraph}{Random Walk with Drift}{38}{section*.63}
+\contentsline {subsection}{\numberline {7.4.3}Autoregressive Models}{38}{subsection.7.4.3}
+\contentsline {paragraph}{Definition}{38}{section*.64}
+\contentsline {paragraph}{Stationary and non-stationary AR processes}{39}{section*.65}
+\contentsline {paragraph}{Second-order properties of an AR(1) model}{39}{section*.66}
+\contentsline {paragraph}{Partial Autocorrelation}{39}{section*.67}
+\contentsline {section}{\numberline {7.5}Regression}{40}{section.7.5}
+\contentsline {subsection}{\numberline {7.5.1}Linear Models}{40}{subsection.7.5.1}
+\contentsline {paragraph}{Definition}{40}{section*.68}
 \contentsline {paragraph}{Stationarity}{41}{section*.69}
-\contentsline {paragraph}{Autocorrelation variance estimation of the sample mean}{42}{section*.70}
-\contentsline {paragraph}{Generalised least squares}{42}{section*.71}
-\contentsline {subsection}{\numberline {7.5.2}Linear Models with Seasonal Variables}{42}{subsection.7.5.2}
-\contentsline {paragraph}{Additive Seasonal Indicator Variables}{42}{section*.72}
+\contentsline {paragraph}{Autocorrelation variance estimation of the sample mean}{41}{section*.70}
+\contentsline {paragraph}{Generalised least squares}{41}{section*.71}
+\contentsline {subsection}{\numberline {7.5.2}Linear Models with Seasonal Variables}{41}{subsection.7.5.2}
+\contentsline {paragraph}{Additive Seasonal Indicator Variables}{41}{section*.72}
 \contentsline {paragraph}{Harmonic Seasonal models}{42}{section*.73}
 \contentsline {subsection}{\numberline {7.5.3}Forecasting from regression}{42}{subsection.7.5.3}
-\contentsline {paragraph}{Bias Correction}{43}{section*.74}
-\contentsline {subparagraph}{Lognormal Correction}{44}{section*.75}
-\contentsline {subparagraph}{Empirical Correction}{44}{section*.76}
-\contentsline {section}{\numberline {7.6}Stationary Models}{44}{section.7.6}
-\contentsline {subsection}{\numberline {7.6.1}Strictly Stationary Series}{44}{subsection.7.6.1}
-\contentsline {subsection}{\numberline {7.6.2}Moving average models}{45}{subsection.7.6.2}
-\contentsline {paragraph}{Definition}{45}{section*.77}
+\contentsline {paragraph}{Bias Correction}{42}{section*.74}
+\contentsline {subparagraph}{Lognormal Correction}{42}{section*.75}
+\contentsline {subparagraph}{Empirical Correction}{42}{section*.76}
+\contentsline {section}{\numberline {7.6}Stationary Models}{42}{section.7.6}
+\contentsline {subsection}{\numberline {7.6.1}Strictly Stationary Series}{43}{subsection.7.6.1}
+\contentsline {subsection}{\numberline {7.6.2}Moving average models}{44}{subsection.7.6.2}
+\contentsline {paragraph}{Definition}{44}{section*.77}
 \contentsline {paragraph}{Second-order properties}{45}{section*.78}
 \contentsline {paragraph}{Invertible properties}{45}{section*.79}
 \contentsline {subsection}{\numberline {7.6.3}Mized Models: The ARMA process}{46}{subsection.7.6.3}
 \contentsline {paragraph}{Definition}{46}{section*.80}
-\contentsline {paragraph}{Second-order Properties}{47}{section*.81}
+\contentsline {paragraph}{Second-order Properties}{46}{section*.81}
 \contentsline {section}{\numberline {7.7}Non-stationary Models}{47}{section.7.7}
 \contentsline {subsection}{\numberline {7.7.1}Differencing}{47}{subsection.7.7.1}
 \contentsline {subparagraph}{Differencing random walk}{47}{section*.82}
 \contentsline {subparagraph}{Differencing linear trend}{47}{section*.83}
-\contentsline {paragraph}{Integrated Model}{48}{section*.84}
-\contentsline {subsection}{\numberline {7.7.2}Non-Seasonal ARIMA Models}{48}{subsection.7.7.2}
-\contentsline {paragraph}{Definition}{48}{section*.85}
+\contentsline {paragraph}{Integrated Model}{47}{section*.84}
+\contentsline {subsection}{\numberline {7.7.2}Non-Seasonal ARIMA Models}{47}{subsection.7.7.2}
+\contentsline {paragraph}{Definition}{47}{section*.85}
 \contentsline {subsection}{\numberline {7.7.3}Seasonal ARIMA models}{48}{subsection.7.7.3}
 \contentsline {chapter}{\numberline {8}Extended Linear Models}{49}{chapter.8}
-\contentsline {section}{\numberline {8.1}Inference}{50}{section.8.1}
-\contentsline {subsection}{\numberline {8.1.1}Sampling distribution for the score statistic}{50}{subsection.8.1.1}
-\contentsline {paragraph}{Score Function}{50}{section*.86}
-\contentsline {paragraph}{Information matrix}{50}{section*.87}
-\contentsline {paragraph}{Score Statistic}{50}{section*.88}
-\contentsline {section}{\numberline {8.2}Normal Linear Models}{51}{section.8.2}
-\contentsline {subsection}{\numberline {8.2.1}Basis Result}{51}{subsection.8.2.1}
-\contentsline {paragraph}{Maximum likelihood}{51}{section*.89}
-\contentsline {paragraph}{Least Square Estimation}{51}{section*.90}
-\contentsline {paragraph}{Deviance}{51}{section*.91}
+\contentsline {chapter}{\numberline {9}Extended Linear Models}{51}{chapter.9}
+\contentsline {section}{\numberline {9.1}Inference}{51}{section.9.1}
+\contentsline {subsection}{\numberline {9.1.1}Sampling distribution for the score statistic}{51}{subsection.9.1.1}
+\contentsline {paragraph}{Score Function}{51}{section*.86}
+\contentsline {paragraph}{Information matrix}{51}{section*.87}
+\contentsline {paragraph}{Score Statistic}{52}{section*.88}
+\contentsline {section}{\numberline {9.2}Normal Linear Models}{52}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}Basis Result}{52}{subsection.9.2.1}
+\contentsline {paragraph}{Maximum likelihood}{52}{section*.89}
+\contentsline {paragraph}{Least Square Estimation}{52}{section*.90}
+\contentsline {paragraph}{Deviance}{52}{section*.91}
 \contentsline {chapter}{\numberline {A}Principales distribution de probabilit\IeC {\'e} utilis\IeC {\'e}es}{53}{appendix.A}
 \contentsline {chapter}{\numberline {B}R\IeC {\'e}sultats (et d\IeC {\'e}monstrations) utiles}{55}{appendix.B}
-\contentsline {section}{\numberline {B.1}Stop-Loss ($\pi _X(d)$)}{56}{section.B.1}
+\contentsline {section}{\numberline {B.1}Stop-Loss ($\pi _X(d)$)}{55}{section.B.1}
 \contentsline {section}{\numberline {B.2}TVaR}{57}{section.B.2}
 \contentsline {subsection}{\numberline {B.2.1}Les 3 formes explicites de la $TVaR$ }{57}{subsection.B.2.1}
-\contentsline {section}{\numberline {B.3}Sous-additivit\IeC {\'e} de la $TVaR$}{59}{section.B.3}
-\contentsline {subsection}{\numberline {B.3.1}\IeC {\`A} l'aide de la fonction convexe $\varphi (x)$}{60}{subsection.B.3.1}
-\contentsline {paragraph}{}{60}{section*.92}
-\contentsline {subsection}{\numberline {B.3.2}Avec les fonctions indicatrices}{62}{subsection.B.3.2}
-\contentsline {paragraph}{}{62}{section*.93}
-\contentsline {paragraph}{}{63}{section*.94}
-\contentsline {subsection}{\numberline {B.3.3}\IeC {\`A} l'aide des statistiques d'ordre}{64}{subsection.B.3.3}
-\contentsline {section}{\numberline {B.4}Loi des grands nombres}{64}{section.B.4}
-\contentsline {section}{\numberline {B.5}Somme de v.a. ind\IeC {\'e}pendantes d'une loi Poisson Compos\IeC {\'e}e}{65}{section.B.5}
-\contentsline {paragraph}{}{66}{section*.95}
-\contentsline {section}{\numberline {B.6}Th\IeC {\'e}or\IeC {\`e}me d'Euler}{67}{section.B.6}
-\contentsline {paragraph}{D\IeC {\'e}finition}{67}{section*.96}
-\contentsline {section}{\numberline {B.7}D\IeC {\'e}riv\IeC {\'e}e de l'\IeC {\'e}cart-type (g\IeC {\'e}n\IeC {\'e}rale)}{68}{section.B.7}
-\contentsline {paragraph}{Rappel d'ACT-1002}{68}{section*.97}
-\contentsline {paragraph}{}{69}{section*.98}
-\contentsline {paragraph}{}{69}{section*.99}
-\contentsline {section}{\numberline {B.8}Distribution limite de $W_n$}{71}{section.B.8}
+\contentsline {section}{\numberline {B.3}Sous-additivit\IeC {\'e} de la $TVaR$}{58}{section.B.3}
+\contentsline {subsection}{\numberline {B.3.1}\IeC {\`A} l'aide de la fonction convexe $\varphi (x)$}{59}{subsection.B.3.1}
+\contentsline {paragraph}{}{59}{section*.92}
+\contentsline {subsection}{\numberline {B.3.2}Avec les fonctions indicatrices}{61}{subsection.B.3.2}
+\contentsline {paragraph}{}{61}{section*.93}
+\contentsline {paragraph}{}{62}{section*.94}
+\contentsline {subsection}{\numberline {B.3.3}\IeC {\`A} l'aide des statistiques d'ordre}{63}{subsection.B.3.3}
+\contentsline {section}{\numberline {B.4}Loi des grands nombres}{63}{section.B.4}
+\contentsline {section}{\numberline {B.5}Somme de v.a. ind\IeC {\'e}pendantes d'une loi Poisson Compos\IeC {\'e}e}{64}{section.B.5}
+\contentsline {paragraph}{}{65}{section*.95}
+\contentsline {section}{\numberline {B.6}Th\IeC {\'e}or\IeC {\`e}me d'Euler}{66}{section.B.6}
+\contentsline {paragraph}{D\IeC {\'e}finition}{66}{section*.96}
+\contentsline {section}{\numberline {B.7}D\IeC {\'e}riv\IeC {\'e}e de l'\IeC {\'e}cart-type (g\IeC {\'e}n\IeC {\'e}rale)}{67}{section.B.7}
+\contentsline {paragraph}{Rappel d'ACT-1002}{67}{section*.97}
+\contentsline {paragraph}{}{68}{section*.98}
+\contentsline {paragraph}{}{68}{section*.99}
+\contentsline {section}{\numberline {B.8}Distribution limite de $W_n$}{70}{section.B.8}
 \contentsline {chapter}{\numberline {C}Travail collaboratif avec git}{73}{appendix.C}

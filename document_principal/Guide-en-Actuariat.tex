@@ -13,11 +13,11 @@ Nicholas Langevin  \href{https://github.com/NicholasLangevin}{\faGithub}  \href{
 
 \begin{document}
 % Page titre et table des matières
-\include{couverture}
+\include{Main-Couverture}
 
 \frontmatter % PRÉFACE
-\include{introduction}
-\include{liste-collaborateurs}
+\include{Main-Introduction}
+\include{Main-ListeCollaborateurs}
 
 {
     \hypersetup{linkcolor=tocColor}
@@ -32,41 +32,49 @@ Nicholas Langevin  \href{https://github.com/NicholasLangevin}{\faGithub}  \href{
 % FONDEMENTS MATHÉMATIQUES
 \part{Fondements mathématiques utiles}
 
-\include{notions-calculs}
-\include{algebre-lineaire}
+\include{Chapter-NotionCalculs}
+\label{Chapter:NotionCalculs}
 
+\include{Chapter-AlgebreLineaire}
+\label{Chapter:AlgebreLineaire}
 
 
 % UNIVERSITÉ
 \part{Matière vue dans le baccalauréat en actuariat}
 
-\include{prob-stats}
-\include{math-financieres}
-\include{processus-aleatoires}
+\include{Chapter-ProbEtStatistique}
+\label{Chapter:ProbEtStatistique}
+
+\include{Chapter-MathematiqueFinanciere}
+\label{Chapter:MathematiqueFinanciere}
+
+\include{Chapter-ProcessusAleatoires}
+\label{Chapter:ProcessusAleatoires}
+
 \include{Chapter-TheorieDuRisque}
+\label{Chapter:TheorieDuRisque}
 
 
 % EXAMENS PROFESSIONNELS
 \part{Matière pour les examens professionnels}
 
-\chapter{Time Series}
 \include{Chapter-SerieChronologique}
-\label{sec:Serie-Chronologique}
+\label{Chapter:SerieChronologique}
 
 \chapter{Extended Linear Models}
 \include{Chapter-ExtendedLinearModels}
-\label{sec:Extended-Linear-Models}
+\label{Chapter:ExtendedLinearModels}
 
 % ANNEXES DU DOCUMENT
 \appendix
 \chapter{Principales distribution de probabilité utilisées}
 introduction
 
+\include{Appendix-PreuveImportante}
+\label{Appendix:PreuveImportante}
 
-\chapter{Résultats (et démonstrations) utiles}
-\include{preuves-importantes}
-
-\include{git_workflow}
+\include{Appendix-GitWorkflow}
+\label{Appendix:GitWorkflow}
 
 
 
