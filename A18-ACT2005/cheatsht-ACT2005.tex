@@ -20,18 +20,231 @@
 \small
 \begin{multicols*}{3} % Nombre de colonnes (peut être changé plus tard.)
 
-
+\setcounter{section}{2}
 \section{Estimation non-paramétrique}
 \subsection*{Moments à savoir}
 \begin{align*}
 \mu_k^{\prime} 	& = \esp{X^k} \\
 \mu_k			& = \esp{(X-\mu)^k} \\
-CV				& = \frac{\sigma}{\esp{X}} \\
-\gamma_1			& = \frac{\mu_3}{\sigma^3}  \\
-\gamma_2			& = \frac{\mu_4}{\sigma^4} \\
+CV				& = \frac{\sigma}{\mu} \\
+\gamma			& = \frac{\mu_3}{\sigma^3}  \\
+\kappa			& = \frac{\mu_4}{\sigma^4} \\
 \end{align*}
 
-\subsection*{Fonction empirique}
+\subsection*{3 critères pour évaluer les queues de distributions}
+
+\begin{enumerate}
+
+\item La loi avec le moins de moments a la queue la plus lourde.
+\item Première à diverger du quotient des distributions a la queue la plus lourde.
+\[\lim_{x \to \infty} \frac{f_{X_1}(x)}{f_{X_2}(x)}\]
+\item Si la fonction hasard $h(x) = \frac{f_X(x)}{S_X(x)}$ est croissante alors la queue est fine, sinon elle est lourde.
+\[
+\begin{matrix}
+	h_X'(x) < 0 & \text{queue lourde} \\
+	h_X'(x) > 0 & \text{queue fine} \\
+\end{matrix}
+\]
+\end{enumerate}
+
+
+\subsection*{Quantités des distributions à connaître}
+
+\begin{itemize}
+\item[$Y^P$ : ] 
+	\textbf{Excess loss}, alias \textbf{left truncated} and \textbf{shifted} variable. \\
+	On interprete comme le \textit{montant de perte} en \textit{excès d'un déductible d} sachant que la perte est au delà de ce montant.
+
+
+\item[$Y^L$ : ] 
+	\textbf{Left censored} and \textbf{shifted} variable. \\ 
+	Elle est défini comme étant 0 pour toutes les pertes inférieures à d, alors que l'excès-moyen n'est simplement pas défini dans ces cas. \\
+	Donc, celle-ci a une masse à 0.
+
+
+\item[$Y$ : ] 
+	\textbf{Limited loss}, alias \textbf{right censored} variable. \\ 
+	
+
+
+	\begin{itemize}
+		\item[\textbf{shifted} :] d est soustrait des valeurs restantes. \\
+		On peut visualiser le déplacement de la courbe de densité à la gauche.
+		\item[\textbf{left truncated} :] Toutes valeurs inférieures à d ne sont pas observées.			\item[\textbf{left censored} :] Toutes valeurs inférieures à d sont égale à 0.
+		\item[\textbf{right censored} :] Toutes valeurs supérieures à u sont égale à u.
+	\end{itemize}	
+\end{itemize}
+
+
+\begin{itemize}
+\item[] \textbf{Moments}
+\begin{align*}
+	\esp{Y^P} &= \esp{X-d | X \geq d} = \frac{\int_{d}^{\infty} S_X(x)}{S_X(d)} = e_X(d) \\
+	\esp{Y^L} &= \esp{(X - d)_+} = \int_{d}^{\infty} (x - d) f_X(x) dx \\
+	\esp{Y} &= E[X \wedge d] = \int_0^d f_X(x) dx \Leftrightarrow \int_0^d S_X(x) dx
+\end{align*}
+
+%\item[] \textbf{Définitions des variables}
+%\begin{align*}
+%Y^P 	&= ( X - d | X > d ) 
+%	&= 
+%	\left\{
+%		\begin{array}{ll}
+%			\text{undefined}, 	& X \leq d \\
+%			X - d, 				& X > d
+%		\end{array}
+%	\right. \\
+%Y^L 	&= ( X - d )_+ 
+%	&= 
+%	\left\{
+%		\begin{array}{ll}
+%			0, 		& X \leq d \\
+%			X - d, 	& X > d
+%		\end{array}
+%	\right. \\
+%Y 	&= (X \wedge u)
+%	&= 
+%	\left\{
+%		\begin{array}{ll}
+%			X, & X < u \\
+%			u, & X \geq u
+%		\end{array}
+%	\right.
+%\end{align*}
+\end{itemize}
+
+\setcounter{section}{7}
+\section{Fréquence et sévérité avec modifications aux contrats}
+\subsection*{Déductible ordinaire}
+
+\subsubsection*{L'assureur paye tout montant en excédent du montant d.}
+%\setlength{\abovedisplayskip}{-20pt}
+%\setlength{\belowdisplayskip}{20pt}
+\begin{align*}
+Y^L &= (X-d)_+ = 
+	\begin{cases}
+		0		& , X \leq d \\
+		X - d	& , X > d \\
+	\end{cases} \\
+Y^P &= (X-d)_+ = 
+	\begin{cases}
+		\text{Non-défini}	& , X \leq d \\
+		X - d				& , X > d \\
+	\end{cases}
+\end{align*}
+
+\subsection*{Déductible franchise}
+\subsubsection*{L'assureur paye l'entièreté des coûts pour toute perte qui surpasse le montant d.\\ \textit{Pour éviter les petites réclamations}}
+\begin{align*}
+Y^L &= (X-d)_+ = 
+	\begin{cases}
+		0		& , X \leq d \\
+		X		& , X > d \\
+	\end{cases} \\
+Y^P &= (X-d)_+ = 
+	\begin{cases}
+		\text{Non-défini}	& , X \leq d \\
+		X 					& , X > d \\
+	\end{cases}
+\end{align*}
+
+\subsubsection*{Moments}
+\begin{align*}
+E[Y_{(O\textcolor{red}{|F)}}^{(L\textcolor{blue}{|P)}}] &= \frac{E[X] - E[X \wedge d] + \textcolor{red}{d S_X(d)} }{\textcolor{blue}{S_X(d)}} \\
+\end{align*}
+Où (L|P) et (O|F) est à être interprété en REGEX. \\
+C'est soit per loss (L) ou \textcolor{blue}{per payment (P)} \\
+C'est soit un déductible ordinaire (O) ou \textcolor{red}{avec franchise (F)}.
+De plus, on note que:
+\begin{align*}
+E[Y_{(O)}^{(\textcolor{blue}{P)}}] &= e_X(d) \\
+E[Y_{(O)}^{(L)}] &= \pi_X(d)
+\end{align*}
+
+\subsubsection*{Fonctions}
+\begin{align*}
+f_{Y^{(L\textcolor{blue}{|P)}}_{(O)}} &= \frac{f_X(y+d)}{\textcolor{blue}{S_X(d)}} \\
+S_{Y^{(L\textcolor{blue}{|P)}}_{(O)}} &= \frac{S_X(y+d)}{\textcolor{blue}{S_X(d)}} \\
+F_{Y^{(L\textcolor{blue}{|P)}}_{(O)}} &= \frac{F_X(y+d) \textcolor{blue}{- F_X(d)}}{\textcolor{blue}{S_X(d)}} \\
+h_{Y^{(Y|P)}_{(O)}} &= h_X(y+d) \\
+\end{align*}
+
+
+\subsection*{LER et inflation du déductible ordinaire}
+%\subsubsection*{}
+Le LER nous donne le pourcentage de perte qu'on ne paie pas grâce au déductible
+\begin{align*}
+	LER 	 &= \frac{\esp{X} - \esp{(X-u)_+}}{\esp{X}} \\
+	     &= \frac{\esp{X \wedge u}}{\esp{X}} \\
+\end{align*}
+Soit $X^I = (1 + r) X$
+\begin{align*}
+	E[{X^I} \wedge u]	 &= (1 + r) E[X \wedge \frac{u}{1 + r}] \\
+	f_{X^I}(x) &= \frac{f_X\left(\frac{y}{1 + r}\right)}{1 + r} \\
+	F_{X^I}(x) &= F_X\left(\frac{y}{1 + r}\right)
+\end{align*}
+
+\subsection*{Limite de police}
+\subsubsection*{L'assureur paye un maximum de $u$}
+
+\begin{align*}
+Y 	&= (X \wedge u)
+	= 
+	\left\{
+		\begin{array}{ll}
+			X, & X < u \\
+			u, & X \geq u
+		\end{array}
+	\right. \\
+f_Y(y) &=
+		\left\{
+			\begin{array}{ll}
+				f_X(y), & y < u \\
+				S_X(u), & y = u
+			\end{array}
+		\right. \\
+F_Y(y) &=
+		\left\{
+			\begin{array}{ll}
+				F_X(y), & y \leq u \\
+				1, & y > u
+			\end{array}
+		\right. \\
+\end{align*}
+
+\subsection*{Coassurance}
+\subsubsection*{L'assureur paye une fraction, $\alpha$, de la perte.}
+
+Si la coassurance est la seule modification, alors nous obtenons $Y = \alpha X$. \\
+\textit{L'impact sur les fonctions est le même qu'avec de l'inflation}.
+
+\subsection*{Formule récapitulative}
+\subsubsection*{Lorsque les 4 items sont présent (déductible \textit{ordinaire}, limite, inflation et coassurance.}
+
+\begin{align*}
+Y^L = 
+\begin{cases}
+0		& ,\ x  < \frac{d}{1+r} \\
+\alpha \Big( (1+r) x - d \Big)	& ,\ \frac{d}{1+r} \leq x < \frac{u}{1+r} \\
+\alpha (u-d)		& ,\ x \geq \frac{u}{1+r} \\
+\end{cases}
+\end{align*}
+\begin{align*}
+Y^P = 
+\begin{cases}
+\text{Non-défini}		& ,\ x  < \frac{d}{1+r} \\
+\alpha \Big( (1+r) x - d \Big)	& ,\ \frac{d}{1+r} \leq x < \frac{u}{1+r} \\
+\alpha (u-d)		& ,\ x \geq \frac{u}{1+r} \\
+\end{cases}
+\end{align*}
+
+\begin{align*}
+\esp{Y^L} &= \alpha (1+r) \left( \esp{X \wedge \frac{u}{1+r}} - \esp{X \wedge \frac{d}{1+r}}   \right) \\
+\esp{Y^P} &= \frac{\esp{Y^L}}{S_X \left( \frac{d}{1+r} \right)}
+\end{align*}
+
+\setcounter{section}{13}
+\section{Estimation non-paramétrique des fonctions de répartition et de survie}
 \begin{align*}
 F_n(x) &= \frac{1}{n} \sum\limits_{j=1}^n I_{\{ x_j \leq x\}} \\
 f_n(x) &= \frac{1}{n} \sum\limits_{j=1}^n I_{\{ x_j = x\}}  \\

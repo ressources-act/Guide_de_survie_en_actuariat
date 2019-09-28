@@ -1,0 +1,66 @@
+%% Aide-mémoire
+\documentclass[french, landscape]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+%% Bug avec les accents dans la définition des variables ici, à voir plus tard.
+
+\input{cheatsht-preamble-A19.tex}
+\usepackage{xcolor}
+
+% Couleur de la page
+%\pagecolor{gray!10!white}
+\newcolumntype{a}{>{\columncolor{red!20!white}$}p{2cm}<{$}}
+
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+
+\twocolumn
+\begin{table}
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        Variable & Fonction    & Déductible ordinaire                        & Déductible avec franchise                                                                                            		\\ \hline
+        \\$Y^P$    & $f_{Y^P}$   & $\frac{f_X(y+d)}{S_X(d)}$                   & $\frac{f_X(d)}{S_X(d)}$                                                                                                	\\ 
+        ~        & $S_{Y^P}$   & $\frac{S_X(y+d)}{S_X(d)}$                   & $\begin{cases} \\ 1	 		 &  , 0 \leq y \leq d 	\\ \\ \frac{S_X(y)}{S_X(d)}	 	&  , y > d			\\ \\ \end{cases}$          \\ 
+        ~        & $F_{Y^P}$   & $\frac{F_X(y+d) - F_X(d)}{S_X(d)}$          & $\begin{cases} \\ F_X(d)	 &  , y = 0 				\\ \\ F_X(d)	 					&  , 0 < y \leq d 	\\ \\ \frac{F_X(y) - F_X(d)}{S_X(d)}	 &  , y > d \\ \\ \end{cases}$ \\ 
+        ~        & $h_{Y^P}$   & $h_X(y+d)$                                  & $\begin{cases} \\ 0		 	 &  , 0 < y \leq d 		\\ \\ h_X(y)	 					&  , y > d 			\\ \\ \end{cases}$                              	\\ 
+        ~        & $\esp{Y^P}$ & $\begin{aligned}
+        &= \frac{\esp{(X - d)_+}}{S_X(d)} \\
+        &= \frac{\esp{X} - \esp{X \wedge d}}{S_X(d)}
+        \end{aligned}$ & $\begin{aligned}
+        &= \frac{\esp{(X-d)_+^F}}{S_X(d)} \\
+        &= \frac{\esp{X} - \esp{X \wedge d}}{S_X(d)} + d
+        \end{aligned}$                                                      	\\ 
+        \hline
+    \end{tabular}
+    \caption{Fonctions left truncated and shifted}
+\end{table}
+
+\begin{table}
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        Variable & Fonction    & Déductible ordinaire                        & Déductible avec franchise                                                                                            		\\ \hline
+        $Y^L$    & $f_{Y^L}$   & $f_X(y+d)$                                  & $\begin{cases} \\ F_X(d)	 &  , y = 0 		\\ \\ f_X(y)	 &  , y > 0 \\ \\ \end{cases}$                              	\\ 
+        ~        & $S_{Y^L}$   & $S_X(y+d)$                                  & $\begin{cases} \\ S_X(d)	 &  , 0 < y \leq d \\ \\ S_X(x)	 &  , y > d \\ \\ \end{cases}$                              	\\ 
+        ~        & $F_{Y^L}$   & $F_X(y+d)$                                  & $\begin{cases} \\ F_X(d)	 &  , 0 < y \leq d \\ \\ F_X(y)	 &  , y > d \\ \\ \end{cases}$                          	\\ 
+        ~        & $h_{Y^L}$   & $h_X(y+d)$                                           & $\begin{cases} \\ h_X(d)	 &  , 0 < y \leq d \\ \\ h_X(x)	 &  , y > d \\ \\ \end{cases}$ \\                           	\\ 
+        ~        & $\esp{Y^L}$ &                                     $\begin{aligned}
+        &= \esp{(X-d)_+} \\
+        &= \esp{X} - \esp{X \wedge d}\\
+        &= \pi_X(d)
+        \end{aligned}$
+        & $\begin{aligned}
+        &= \esp{(X-d)_+^F} \\
+        &= \esp{X} - \esp{X \wedge d} + d S_X(d) \\
+        &
+        \end{aligned}$                                                     
+\\
+        \hline
+    \end{tabular}
+    \caption{Fonctions left censored and shifted}
+\end{table}
+
+
+\end{document}

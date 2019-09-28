@@ -1,9 +1,9 @@
 \documentclass[10pt, french]{article}
-
 %% -----------------------------
 %% Préambule
 %% -----------------------------
 \input{cheatsht-preamble.tex}
+\newcolumntype{g}{>{\columncolor{green!40!white}}m{1.2cm}}
 
 % On débute la numérotation des chapitres à 2 pour suivre les notes à Marie-Pier.
 \setcounter{section}{1}
@@ -39,56 +39,112 @@ Y_i | x_i & \overset{\mathbf{H}_4}{\sim} \mathcal{N} (\beta_0 + \beta_1 x_i, \si
 
 \subsection*{Estimation de $\sigma^2$}
 \begin{align*}
-\hat{\sigma^2} = s^2 = \frac{\sum_{i=1}^{n} \hat{\varepsilon_i}^2}{n-p'} = \frac{\sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2}{n-2}
+\widehat{\sigma}^2 = s^2 = \frac{\sum_{i=1}^{n} \hat{\varepsilon_i}^2}{n-p'} = \frac{\sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2}{n-2}
 \end{align*}
 
 \subsection*{Propriété des estimateurs}
-\begin{align*}
-\esp{\hat{\beta}_1} = \beta_1 \quad , \variance{\hat{\beta}_1} = \frac{\sigma^2}{S_{XX}} \\
-\hat{\beta}_1 \overset{H_4}{\sim} \mathcal{N}(\beta_1, \frac{\sigma^2}{S_{XX}}) \\
-\esp{\hat{\beta}_0} = \beta_0 \quad , \variance{\hat{\beta}_0} = \sigma^2 \left( \frac{1}{n} + \frac{\bar{x}^2}{S_{XX}} \right) \\
-\hat{\beta}_0 \overset{H_4}{\sim} \mathcal{N} \left(\beta_0, \sigma^2 \left( \frac{1}{n}  + \frac{\bar{x}^2}{S_{XX}} \right) \right) \\
-\mathrm{Cov}(\hat{\beta}_0, \hat{\beta}_1) = - \frac{\bar{x} \sigma^2}{S_{XX}}
-\end{align*}
+\begin{tabular}{|L | C | C | C | C| }
+\hline
+\rowcolor{cyan!40!white} \text{E[$\hat{\beta}_j$]} & \text{V($\hat{\beta}_j$)} & \text{Sous l'hypothèse de normalité } \\\hline
+
+	\beta_0 & 
+	\thead{\sigma^2 \left( \frac{1}{n} \frac{\bar{x}^2}{S_{xx}} \right)} & 
+	\thead{\hat{\beta}_0 \overset{H_4}{\sim} \mathcal{N} \left(\beta_0, \sigma^2 \left[ \frac{1}{n}  + \frac{\bar{x}^2}{S_{XX}} \right] \right)}
+\\\hline
+
+	\beta_1 & 
+	\thead{\frac{\sigma^2}{S_{xx}}} & 
+	\thead{\hat{\beta}_1 \overset{H_4}{\sim} \mathcal{N}\left(\beta_1, \frac{\sigma^2}{S_{XX}} \right)} 
+\\\hline
+\end{tabular}
 
 \subsection*{Tests d'hypothèse sur les paramètres}
-$H_0$ : $\hat{\beta} = \theta_0$ , $H_1$ : $\hat{\beta} \neq \theta_0$
-\begin{align*}
-t_{obs} = \frac{\hat{\beta} - \theta_0}{\sqrt{\hat{Var(\hat{\beta}})}} \sim T_{n-2}
-\end{align*}
-On Rejette $H_0$ si $t_{obs} > | t_{n-2} (1 - \frac{\alpha}{2})|$
+\begin{tabular}{| C | C | C| }
+\hline
+\text{Hypothèses} & t_{obs} & C \\\hline
+	\begin{aligned}
+		H_0 &: \hat{\beta} = \theta_0 \\
+		H_1 &:\hat{\beta} \neq \theta_0
+	\end{aligned} &  
+	\frac{\hat{\beta} - \theta_0}{\sqrt{\widehat{Var(\hat{\beta}})}} \overset{H_1}{\sim} T_{(n - 2)}  &
+	| t_{obs} | > \left| t_{(n - 2), \frac{k}{2}} \right| \\
+\hline
+\end{tabular}
+\\
+$\therefore$ rejete $H_0$ si $| t_{obs} | > \left| t_{(n - 2), \frac{k}{2}} \right| $.
 
 \subsection*{Intervalle de confiance}
-\subsubsection*{Pour la droite de régression ($\esp{Y_0|x_0}$)}
-Sachant que $\esp{Y_0 | x_0} = \beta_0 + \beta_1 x_0$, on a l'IC suivant
+
+\subsubsection*{Pour les paramètres $\widehat{\beta}_0$ et $\widehat{\beta}_1$}
 \begin{align*}
-\left[ \hat{Y_0} \pm t_{n-2} \left(1 - \frac{\alpha}{2} \right) \sqrt{s^2 \left( \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{XX}} \right)} \right]
+\Bigg[\widehat{\beta}_0 &\pm t_{(n - 2), \frac{k}{2}} s \sqrt{\frac{1}{n} + \frac{\bar{x}^{2}}{S_{xx}}} \Bigg] \\
+\Bigg[ \hat{\beta}_1 &\pm t_{(n - 2), \frac{k}{2}} \frac{s}{\sqrt{S_{xx}}} \Bigg]
 \end{align*}
 
-\subsubsection*{Pour la prévision de $Y_0$}
-Sachant que $Y_0 = \beta_0 + \beta_1 x_0 + \varepsilon$, on a l'IC suivant
+\subsection*{Prévisions}
+\subsubsection*{2 types de prévisions possibles pour une valeur $x_0$ donnée}
+\begin{enumerate}
+	\item Prévoir la valeur moyenne 
+\[ 
+			\esp{Y_0 | x_0} = \beta_0 + \beta_1 x_0
+\]
+
+	\item Prévoir la 'vraie' valeur de $Y_0$
+\[
+		Y_0 = \beta_0 + \beta_1 x_0 + \epsilon
+\]
+
+\end{enumerate}
+$\because \esp{\epsilon} = 0  \therefore \widehat{\esp{Y | x_o }} = \widehat{Y}_o = \beta_0 + \beta_1 x_0$ 
+
+% clear column and go to the next one
+%\vfill\null
+
+\subsubsection*{2 sources d'erreur dans nos prévisions}
+\begin{enumerate}
+	\item \textbf{Parameter risk} pour $\esp{Y | x_o }$ et $Y_0$. \\
+		\textit{alias incertitude liée à l'estimation des paramètres } $\beta_0 \text{ \& } \beta_1$.
+	\item \textbf{Process risk} pour $Y_0$. \\
+		\textit{alias fluctuation des valeurs de la variable réponse autour de sa moyenne} $\epsilon$.
+\end{enumerate}
+
+\subsubsection*{Intervalles de confiance de niveau $1 - \kappa$}
 \begin{align*}
-\hat{Y_0} \pm t_{n-2} \left(1 - \frac{\alpha}{2} \right) \sqrt{s^2 \left( 1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{XX}} \right)}
+\esp{Y | x_o } &: \Bigg[ \widehat{Y}_0 \pm t_{(n - 2), \frac{k}{2}} \sqrt{s^2 \bigg( \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{XX}} \bigg)} \Bigg] \\
+Y_0 &: \Bigg[ \widehat{Y}_0 \pm t_{(n - 2), \frac{k}{2}} \sqrt{s^2 \bigg( 1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{XX}} \bigg)}\Bigg]
 \end{align*}
 
 \subsection*{Analyse de la variance (ANOVA)}
-\begin{tabular}{|f| *{4}{C|}}
+\textbf{Pour déterminer la proportion de la variabilité de $Y$ est expliquée par le modèle}\\
+C'est-à-dire, que ça explique la variabilité des $Y_i$ à la moyenne $\bar{Y}$.\\
+\begin{tabular}{|g| *{4}{C|}}
 \hline
-\rowcolor{green!40!black} Source & \text{dl} & \text{SS} & \text{MS} & F \\\hline
-Model & p & \thead{\sum_{i=1}^{n} (\hat{Y}_i - \bar{Y})^2 \\ (SSR)}  & \thead{SSR / dl_1 \\ (MSR)} & \frac{MSR}{MSE} \\\hline
-Residual error & n - p' & \thead{\sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2 \\ (SSE)} & \thead{SSE / dl_2 \\(MSE = s^2)} & \cellcolor{gray!30!white} \\\hline
-Total & n - 1 & \thead{\sum_{i=1}^{n} (Y_i - \bar{Y})^2 \\ (SST)} & \cellcolor{gray!30!white} & \cellcolor{gray!30!white} \\\hline
+\rowcolor{green!40!black} \color{white}{\text{Source}} & \color{white}{\text{dl}} & \color{white}{\text{SS}} & \color{white}{\text{MS}} & \color{white}{F} 
+\\\hline
+	Model & 
+	p & 
+	\thead{\sum_{i=1}^{n} (\hat{Y}_i - \bar{Y})^2 \\ \textbf{(SSR)}}  & \thead{SSR / dl_1 \\ (\textbf{MSR})} & \frac{MSR}{MSE} 
+\\\hline
+	Residual error & n - p' & \thead{\sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2 \\ \textbf{(SSE)}} & \thead{SSE / dl_2 \\(\textbf{MSE} = s^2)} & \cellcolor{gray!30!white} 
+\\\hline
+	Total & n - 1 & \thead{\sum_{i=1}^{n} (Y_i - \bar{Y})^2 \\ \textbf{(SST)}} & \cellcolor{gray!30!white} & \cellcolor{gray!30!white} 
+\\\hline
 \end{tabular}
-Où $p$ est le nombre de variables explicatives dans le modèle.
+Où $p$ est le nombre de variables explicatives dans le modèle.\\
+Où $p$' est le nombre de variables estiméees dans le modèle.\\
+
+\textbf{SSR}: Quantifie la variabilité des prévisions $\widehat{Y}_i$ expliquée par le modèle car elles ne sont pas tous égales à la moyenne $\bar{Y}_i$. \\
+\textbf{SSE}: Quantifie la variabilité des $Y_i - \widehat{Y}_i$ \textit{\textbf{pas}} expliquée par le modèle car il n'explique pas parfaitement $Y_i$.
 
 \subsubsection*{Coefficient de détermination}
+Représente la proportion de la variation totale dans $Y$ qui est expliquée par $x$
 \begin{align*}
 R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 \end{align*}
-On a aussi la relation suivante avec $F_{obs}$ : 
-\begin{align*}
-F = \frac{R^2}{1 - R^2} \cdot \frac{n-p'}{p}
-\end{align*}
+%On a aussi la relation suivante avec $F_{obs}$ : 
+%\begin{align*}
+%F = \frac{R^2}{1 - R^2} \cdot \frac{n-p'}{p}
+%\end{align*}
 
 \subsubsection*{Test F de Fisher pour la validité globale de la régression}
 On rejette $H_0 : \beta_1 =  \beta_2 = ... =  \beta_p = 0$ si 
@@ -100,15 +156,22 @@ où $p$ est le nombre de variables explicatives dans le modèle (régression lin
 
 
 \subsection*{Distribution d'un résidu $\varepsilon$}
-\begin{align*}
-\esp{\hat{\varepsilon}_i} = 0 \quad , Var \left( \hat{\varepsilon}_i \right) = \sigma^2 (1 - h_{ii})
-\end{align*}
+\begin{tabular}{| >{\columncolor[gray]{.8}}c |c |}
+\hline
+$E[\widehat{\epsilon}_i]$ & $0$ \\\hline
+$V(\widehat{\epsilon}_i)$ & $\sigma^2(1 - h_{ii})$ \\\hline
+$Cov(\widehat{\epsilon}_i, \widehat{\epsilon}_j)$ & $-\sigma^2 \bigg( \frac{1}{n} + \frac{(x_i - \bar{x})(x_j - \bar{x})}{S_{xx}}\bigg)$ \\\hline
+\end{tabular} \\
 où $h_{ii} = \frac{1}{n} + \frac{(\bar{x} - x_i)^2}{S_{XX}}$.
-
-On peut aussi prouver que
-\begin{align*}
-\mathrm{Cov}(\hat{\varepsilon}_i, \hat{\varepsilon}_j) = - \sigma^2 \left( \frac{1}{n} + \frac{(x_i - \bar{x})(x_j - \bar{x})}{S_{XX}} \right)
-\end{align*}
+%\begin{align*}
+%\esp{\hat{\varepsilon}_i} = 0 \quad , Var \left( \hat{\varepsilon}_i \right) = \sigma^2 (1 - h_{ii})
+%\end{align*}
+%où $h_{ii} = \frac{1}{n} + \frac{(\bar{x} - x_i)^2}{S_{XX}}$.
+%
+%On peut aussi prouver que
+%\begin{align*}
+%\mathrm{Cov}(\hat{\varepsilon}_i, \hat{\varepsilon}_j) = - \sigma^2 \left( \frac{1}{n} + \frac{(x_i - \bar{x})(x_j - \bar{x})}{S_{XX}} \right)
+%\end{align*}
 
 \subsection*{Vérification des postulats}
 Les résidus studentisés sont définis par
@@ -138,6 +201,18 @@ Les deux derniers graphique doivent être centrés à 0 et d'allure aléatoire.
 \item Histogramme des $r_i$
 \item Q-Q Plot Normal : les résidus du modèle doivent suivre la droite des quantiles normaux théoriques.
 \end{itemize}
+
+\subsection*{Transformation des données}
+\begin{enumerate}
+	\item $V(\epsilon_i) \propto \esp{Y_i}$ et les données de type Poisson.\\
+	$g(Y) = \sqrt{Y}$
+	\item $V(\epsilon_i) \propto (\esp{Y_i})^2$ avec la situation la plus efficace étant si $Y$ possède une très grande étendue.\\
+	$g(Y) = log(Y)$
+	\item $V(\epsilon_i) \propto (\esp{Y_i})^4$. \\
+	$g(Y) = 1/Y$
+	\item $V(\epsilon_i) \propto \esp{Y_i}(1 - \esp{Y_i})$, $Y \in [0, 1]$ et $Y \sim \text{Bern}$. \\
+	$g(Y) = \text{arcsin}(\sqrt{Y})$
+\end{enumerate}
 
 
 
