@@ -1,4 +1,5 @@
 library(shiny)
+library(magrittr)
 
 # Ce fichier sert de backend à l'application
 shinyServer(function(input, output) {
@@ -16,7 +17,11 @@ shinyServer(function(input, output) {
     })
     
     output$flashcard <- renderUI({
+        input$files %>% 
+            paste0('flashcards/', .) %>% 
+            includeHTML() %>% 
+            withMathJax()
         # On pourrait même mettre un mode random
-        includeHTML(paste0('flashcards/', input$files))
+        # withMathJax(includeHTML(paste0('flashcards/', input$files)))
     })
 })

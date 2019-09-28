@@ -1,12 +1,10 @@
 ---
 output: html_document
 ---
+
 # Question de ACT-1002 {.tabset .tabset-fade .tabset-pills}
 
 
-
-***
-Save space in your document using buttons or tabs for sub chapters. Add this code at the end of your title:
 
 ## Question
 À faire
