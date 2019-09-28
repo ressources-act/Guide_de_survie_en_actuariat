@@ -1,0 +1,24 @@
+---
+output: html_document
+---
+# Question de ACT-1002 {.tabset .tabset-fade .tabset-pills}
+
+
+
+***
+Save space in your document using buttons or tabs for sub chapters. Add this code at the end of your title:
+
+## Question
+À faire
+
+## Second
+Avec la formule de l'espérance
+$$
+E[X] = \sum_{i=0}^\infty x_i \Pr (X = x_i)
+$$
+
+Qu'on convertit en `HTML`, pour ensuite l'importer dans le fichier Shiny. Ce HTML est généré à partir du fichier `test1.Rmd`, et on l'inclut dans le document avec `includeHTML`
+content of sub-chapter
+
+## Section supplémentaires
+À supprimer si vous n'en avez pas besoin!
