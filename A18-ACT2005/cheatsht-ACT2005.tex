@@ -70,9 +70,11 @@ CV				& = \frac{\sigma}{\mu} \\
 	\begin{itemize}
 		\item[\textbf{shifted} :] d est soustrait des valeurs restantes. \\
 		On peut visualiser le déplacement de la courbe de densité à la gauche.
-		\item[\textbf{left truncated} :] Toutes valeurs inférieures à d ne sont pas observées.			\item[\textbf{left censored} :] Toutes valeurs inférieures à d sont égale à 0.
+		\item[\textbf{left truncated} :] Toutes valeurs inférieures à d ne sont pas observées.			
+		\item[\textbf{left censored} :] Toutes valeurs inférieures à d sont égale à 0.
 		\item[\textbf{right censored} :] Toutes valeurs supérieures à u sont égale à u.
 	\end{itemize}	
+	\textbf{\textit{Pour exemple}}, lorsqu'il y a une limite sur une police d'assurance les valeurs au-delà ne sont pas typiquement inscrites à leur vrai montant, mais plutôt comme la limite $u$.
 \end{itemize}
 
 
@@ -227,9 +229,7 @@ Y^L =
 0		& ,\ x  < \frac{d}{1+r} \\
 \alpha \Big( (1+r) x - d \Big)	& ,\ \frac{d}{1+r} \leq x < \frac{u}{1+r} \\
 \alpha (u-d)		& ,\ x \geq \frac{u}{1+r} \\
-\end{cases}
-\end{align*}
-\begin{align*}
+\end{cases}\\
 Y^P = 
 \begin{cases}
 \text{Non-défini}		& ,\ x  < \frac{d}{1+r} \\
@@ -245,13 +245,25 @@ Y^P =
 
 \setcounter{section}{13}
 \section{Estimation non-paramétrique des fonctions de répartition et de survie}
+
+\subsection*{Distribution empirique avec données complètes}
+
+I.C. au niveau $1 - \alpha$ de $F(x) \in \left[F_n(x) \pm z_{1 - \frac{\alpha}{2}} \sqrt{\widehat{V}(F_n(x))} \right]$
+\begin{enumerate}
+	\item[$y_j$ : ] la j-ème des $k$ valeurs unique de l'échantillon de n ($k \le n$).\\
+	$y_1 < y_2 < \dots < y_k$
+	\item[$s_j$ : ] Nombre de fois que l'observation $y_j$ est observé dans l'échantillon.\\
+	$\sum_{j = 1}^{k}s_j = n$
+	\item[$r_j$ : ] Nombre d'observations $\ge y_j$. \\
+	$\sum_{i = j}^{k}s_i = r_j$
+\end{enumerate}
+
 \begin{align*}
 F_n(x) &= \frac{1}{n} \sum\limits_{j=1}^n I_{\{ x_j \leq x\}} \\
 f_n(x) &= \frac{1}{n} \sum\limits_{j=1}^n I_{\{ x_j = x\}}  \\
  n F_n&(x)  \sim \text{bin}(n, F(x))\\
 E[F_n(x)] &= \frac{n F_n(x)}{n} = F_n(x)\\
-\widehat{Var}[F_n(x)] &= \frac{n F_n(x)(1 - F)n(x)}{n^2} \\
-       &= \frac{F_n(x)(1 - F_n(x))}{n}  \\
+\widehat{Var}[F_n(x)] &= \frac{n F_n(x)(1 - F)n(x)}{n^2} = \frac{F_n(x)(1 - F_n(x))}{n}  \\
 \widehat{Var}[S_n(x)] &= \frac{S_n(x)(1 - S_n(x))}{n} \\
 F_n(x) &= 
 \left\{
@@ -263,45 +275,89 @@ F_n(x) &=
 \right.
 \end{align*}
 
+\subsection*{Distribution empirique avec données groupées}
+\subsubsection*{Fonction OGIVE}
+% Voir fonction OGIVE du packetage actuar en R.
+\begin{itemize}
+    \item Dans certains contextes, on a $n$ données qui sont groupées en intervalles et la fonction OGIVE permet d'interpoler entre 2 points $c_{j - 1}$ et $c_j$.
+    \item On défini $n_j$ comme étant le nombre d'observations entre $c_{j - 1}$ et $c_{j}$.
+    \item Soit $x$ tel que
+    \begin{align*}
+    		c_{j - 1} \le &\ x \le c_j \\
+    		F_{n	}(c_{j - 1}) \le &\ F_{n}(x) \le F_{n}(c_{j}) 
+    \end{align*}
+    Alors 
+    \begin{align*}
+		F_{n}^{\text{OGIVE}}(x) &= \alpha F_{n}(c_{j - 1}) + (1 - \alpha) F_{n}(c_{j}) \\
+		&= \frac{c_{j} - x}{c_{j} - c_{j - 1}} F_{n}(c_{j - 1}) + \frac{x - c_{j - 1}}{c_{j} - c_{j - 1}} F_{n}(c_{j}) \\
+       	\text{où } &\ F_{n}(c_j) = \frac{\sum_{i = 1}^{j} n_{i}}{n} \\
+%       	f_n(x) &= \frac{F_{n}(c_{j}) - F_{n}(c_{j - 1})}{c_{j} - c_{j - 1}} \Leftrightarrow \frac{n_j}{n(c_{j} - c_{j - 1})} \\
+    \end{align*}
+\end{itemize}
+
+\subsection*{Estimations empirique avec données censurées à droite}
+
+On représente les données censurées avec:
+\begin{enumerate}
+	\item[$b_{i}$ : ] Nombre d'observations censurées à la droite dans l'intervalle $[y_{i}, y_{i + 1}) \ \forall i = 1, 2, \dots, k - 1$
+%	$b_{k} = r_{k} - s_{k}$
+\end{enumerate}
+De plus, on interprète les valeurs définies plus haut.
+\begin{enumerate}
+	\item[$s_j$ : ] Nombre de décès au temps $i$.
+	\item[$r_i$ : ] Le nombre \textit{\textbf{à risque}} à l'observation $y_{i}$
+	\begin{align*}
+	r_{i} &= 
+		\begin{cases}
+			n, & i = 1 \\
+			r_{i - 1} - s_{i - 1} - b_{i - 1}, & i = 2, 3, \dots, k + 1
+		\end{cases}
+		\\
+	\end{align*}
+\end{enumerate}
+
 \subsection*{Estimateur de Nelson-Aalen}
 % Formules à valider, je ne crois pas avoir pris les bonnes dans le Loss Models
-%\begin{itemize}
-%    \item L'estimateur de Nelson–Aalen est une alternative à la fonction de répartition empirique comme estimateur de la fonction de survie dans le cas de données complètes.
-%\end{itemize}
-%\begin{align*}
-%    h(x) &= -ln S(x) \\
-%    \hat{H}(x) &= 
-%    \left\{
-%	\begin{array}{ll}
-%		0,  &  x < y_1 \\
-%        \sum\limits_{i=1}^{j-1} \frac{s_i}{r_i}, &  y_{j-1} \leq x < y_j, j=2,...,k \\
-%        \sum\limits_{i=1}^{k} \frac{s_i}{r_i}, & x > y_k 
-%	\end{array}
-%\right. \\
-%\hat{S}(x) &= e^{-\hat{H}(x)} \\
-%\frac{s_i}{r_i} &= \frac{s_i/n}{r_i/n} \\
-%                &= \frac{s_i/n}{1 - (1 - F_n(y_{i-1}))} \\
-%                &= \frac{f_n(y_i)}{1 - (1 - F_n(y_{i-1}))} \\
-%E[\hat{H}(y_j)] &= H(y_j) \\
-%\widehat{Var}[\hat{H}(y_j)] &\approx \sum_{i=1}^j \frac{s_i}{r_i^2} 
-%\end{align*}
-
+\begin{itemize}
+    \item L'estimateur de Nelson–Aalen est une alternative à la fonction de répartition empirique comme estimateur de la fonction de survie dans le cas de données complètes.
+\end{itemize}
+\begin{align*}
+    h(x) &= -ln S(x) \\
+    \hat{H}(x) &= 
+    \left\{
+	\begin{array}{ll}
+		0,  &  x < y_1 \\
+        \sum\limits_{i=1}^{j-1} \frac{s_i}{r_i}, &  y_{j-1} \leq x < y_j, j=2,...,k \\
+        \sum\limits_{i=1}^{k} \frac{s_i}{r_i}, & x > y_k 
+	\end{array}
+\right. \\
+\hat{S}(x) &= e^{-\hat{H}(x)} \\
+\frac{s_i}{r_i} &= \frac{s_i/n}{r_i/n} \\
+                &= \frac{s_i/n}{1 - (1 - F_n(y_{i-1}))} \\
+                &= \frac{f_n(y_i)}{1 - (1 - F_n(y_{i-1}))} \\
+E[\hat{H}(y_j)] &= H(y_j) \\
+\widehat{Var}[\hat{H}(y_j)] &\approx \sum_{i=1}^j \frac{s_i}{r_i^2} 
+\end{align*}
 \subsection*{Estimateur de Kaplan-Meier}
 % à corriger et revoir le layout
-%\begin{align*}
-%    r_i &= \text{\# sujets sortis du groupe à ou après $y_i$} \\
-%        &= \text{\# sujets non encore entrés dans le groupe à $y_i$} \\
-%    \hat{S}(x) &=
-%    \left\{
-%	\begin{array}{ll}
-%		1,  &  0 \leq x < y_1 \\
-%        \prod\limits_{i=1}^{j-1} \frac{r_i - s_i}{r_i}, &  y_{j-1} \leq x < y_j, j=2,...,k \\
-%        \prod\limits_{i=1}^{k} \frac{r_i - s_i}{r_i}, & x > y_k \: \text{(0 si données complètes)}
-%	\end{array}
-%    \right. \\
-%    E[\hat{S}(x)] &= \frac{S(y_i)}{S(y_1)}\: \text{i.e. sans biais à $y_i$} \\
-%    \widehat{Var}[\hat{S}(y_j)] &= [\hat{S}(y_j)]^2 \sum_{i=1}^j \frac{s_i}{r_i(r_i - s_i)}\: \textbf{(Aprox. GreenWood)}
-%\end{align*}
+\begin{align*}
+    r_i &= \text{\# sujets sortis du groupe à ou après $y_i$} \\
+        &= \text{\# sujets non encore entrés dans le groupe à $y_i$} \\
+    \hat{S}(x) &=
+    \left\{
+	\begin{array}{ll}
+		1,  &  0 \leq x < y_1 \\
+        \prod\limits_{i=1}^{j-1} \frac{r_i - s_i}{r_i}, &  y_{j-1} \leq x < y_j, j=2,...,k \\
+        \prod\limits_{i=1}^{k} \frac{r_i - s_i}{r_i}, & x > y_k \: \text{(0 si données complètes)}
+	\end{array}
+    \right. \\
+    E[\hat{S}(x)] &= \frac{S(y_i)}{S(y_1)}\: \text{i.e. sans biais à $y_i$} \\
+    \widehat{Var}[\hat{S}(y_j)] &= [\hat{S}(y_j)]^2 \sum_{i=1}^j \frac{s_i}{r_i(r_i - s_i)}\: \textbf{(Aprox. GreenWood)}
+\end{align*}
+
+
+
+
 
 
 \section{Fonction génératrice cumulante}
