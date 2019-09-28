@@ -297,67 +297,54 @@ F_n(x) &=
 
 \subsection*{Estimations empirique avec données censurées à droite}
 
-On représente les données censurées avec:
 \begin{enumerate}
+	\item [] On représente les données censurées avec:
 	\item[$b_{i}$ : ] Nombre d'observations censurées à la droite dans l'intervalle $[y_{i}, y_{i + 1}) \ \forall i = 1, 2, \dots, k - 1$
 %	$b_{k} = r_{k} - s_{k}$
-\end{enumerate}
-De plus, on interprète les valeurs définies plus haut.
-\begin{enumerate}
-	\item[$s_j$ : ] Nombre de décès au temps $i$.
-	\item[$r_i$ : ] Le nombre \textit{\textbf{à risque}} à l'observation $y_{i}$
-	\begin{align*}
-	r_{i} &= 
+	\item[] De plus, on interprète les valeurs définies plus haut.
+	\item[$s_i$ : ] Nombre de décès au temps $i$.
+	\item[$r_i$ : ] Le nombre \textit{\textbf{à risque}} à l'observation $y_{i}$.
+\begin{align*}
+	r_{i} = 
 		\begin{cases}
 			n, & i = 1 \\
 			r_{i - 1} - s_{i - 1} - b_{i - 1}, & i = 2, 3, \dots, k + 1
 		\end{cases}
-		\\
-	\end{align*}
+\end{align*}
+\item[] Par la suite, on peut interpréter la fonction de survie comme une probabilité conditionelle puisque $S(t_0) = 1$.
+\begin{align*}
+	S(t) &= \frac{S(t_1)}{S(t_0)} \times \frac{S(t_2)}{S(t_1)} \times \dots \times \frac{S(t)}{S(t-1)} \\
+	&\Leftrightarrow p_{1} \times p_{2} \times \dots \times p_{t} = \prod_{j \le t} p_{j} \\
+	\text{où } p_{t} &= P(T > t | T > t - 1) \\
+	\text{et } q_{t} &= P(T < t | T > t - 1)
+\end{align*}
+	\item[] On peut donc estimer $p_{j}$ par:
+\begin{align*}
+		\hat{p}_{j} &= 1 - \hat{q}_{j} = 1 - \hat{\lambda}_{j} = 1 - \frac{S_{j}}{r_{j}} \\
+		\text{où } S_j &\sim \text{Bin}(r_j, q_j) 
+\end{align*}
+	\item[] Pour obtenir l'estimateur \textbf{Kaplan-Meier}:
+	\[
+	S_{m}(t) = \prod\limits_{j \le t} \left( 1 - \frac{S_j}{r_j} \right)
+	\]		
 \end{enumerate}
 
-\subsection*{Estimateur de Nelson-Aalen}
-% Formules à valider, je ne crois pas avoir pris les bonnes dans le Loss Models
-\begin{itemize}
-    \item L'estimateur de Nelson–Aalen est une alternative à la fonction de répartition empirique comme estimateur de la fonction de survie dans le cas de données complètes.
-\end{itemize}
+\subsection*{Estimation de la fonction de hasard cumulative \textbf{\textit{Nelson-Aalen}}}
+
+%\begin{align*}
+%	e^{-H(t)} &= S(t) \\
+%	H_{n}(t) &= -\text{ln}(S_n(t)) = \sum_{j \le t} -ln\left( 1 - \frac{S_j}{r_j} \right) 
+%\end{align*}
+
 \begin{align*}
-    h(x) &= -ln S(x) \\
-    \hat{H}(x) &= 
-    \left\{
-	\begin{array}{ll}
-		0,  &  x < y_1 \\
-        \sum\limits_{i=1}^{j-1} \frac{s_i}{r_i}, &  y_{j-1} \leq x < y_j, j=2,...,k \\
-        \sum\limits_{i=1}^{k} \frac{s_i}{r_i}, & x > y_k 
-	\end{array}
-\right. \\
-\hat{S}(x) &= e^{-\hat{H}(x)} \\
-\frac{s_i}{r_i} &= \frac{s_i/n}{r_i/n} \\
-                &= \frac{s_i/n}{1 - (1 - F_n(y_{i-1}))} \\
-                &= \frac{f_n(y_i)}{1 - (1 - F_n(y_{i-1}))} \\
-E[\hat{H}(y_j)] &= H(y_j) \\
-\widehat{Var}[\hat{H}(y_j)] &\approx \sum_{i=1}^j \frac{s_i}{r_i^2} 
+	S_j &\sim \text{Bin}(r_j, q_j) \\
+	V\big(g(\widehat{\theta})\big) &= \big(g'(\widehat{\theta}_{0})\big)^2 V(\widehat{\theta})\: \textbf{(Méthode Delta)} \\
+	V(S_n(t)) &= \big( S_n(t) \big)^2 \sum_{j \le t}\frac{q_j}{r_j p_j} \\
+	\widehat{V}[S_{n}(t)] &= \big(S_{n}(t)\big)^2 \sum_{j \le t} \frac{S_j}{r_i(r_i - S_i)}\: \textbf{(Formule de Greenwood)} \\
+	\widehat{H}(t) &= \sum_{j \le t} \left( \frac{S_{j}}{r_{j}}\right)\: \textbf{(Estimateur Nelson - Aalen)} \\    
+	V(\widehat{H}(t)) &= \sum_{j \le t} V\left( \frac{S_j}{r_j} \right) = \frac{q_j p_j}{r_j} \\
+	\widehat{V}(\widehat{H}(t)) &= \sum_{j \le t} \frac{\widehat{q}_j \widehat{p}_j}{r_j} = \frac{S_j (r_j - S_j)}{r_j^3}\: \textbf{(Formule de Klein)} \\    
 \end{align*}
-\subsection*{Estimateur de Kaplan-Meier}
-% à corriger et revoir le layout
-\begin{align*}
-    r_i &= \text{\# sujets sortis du groupe à ou après $y_i$} \\
-        &= \text{\# sujets non encore entrés dans le groupe à $y_i$} \\
-    \hat{S}(x) &=
-    \left\{
-	\begin{array}{ll}
-		1,  &  0 \leq x < y_1 \\
-        \prod\limits_{i=1}^{j-1} \frac{r_i - s_i}{r_i}, &  y_{j-1} \leq x < y_j, j=2,...,k \\
-        \prod\limits_{i=1}^{k} \frac{r_i - s_i}{r_i}, & x > y_k \: \text{(0 si données complètes)}
-	\end{array}
-    \right. \\
-    E[\hat{S}(x)] &= \frac{S(y_i)}{S(y_1)}\: \text{i.e. sans biais à $y_i$} \\
-    \widehat{Var}[\hat{S}(y_j)] &= [\hat{S}(y_j)]^2 \sum_{i=1}^j \frac{s_i}{r_i(r_i - s_i)}\: \textbf{(Aprox. GreenWood)}
-\end{align*}
-
-
-
-
 
 
 \section{Fonction génératrice cumulante}

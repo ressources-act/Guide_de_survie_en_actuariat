@@ -3,8 +3,8 @@
 \documentclass[12pt, french]{report}
 
 % Lien vers un template de préambule
-\input{preambule/preambule_utf8.tex}
-% \input{preambule/code-listing_setup.tex}
+\input{../document_principal/preambule_utf8.tex}
+%\input{/preambule/code-listing_setup.tex}
 
 % Information sur le document
 \title{Mathématiques actuarielles IARD-1 \\
@@ -74,7 +74,7 @@ Le coefficient d'asymétrie, aussi appelé \textit{skewness}, est défini par
 Soit le 3\up{e} moment standarisé. Si $S_k = 0$, alors la distribution tend vers une loi normale, telle qu'on le voit sur la figure ci-dessous : 
 
 \begin{center}
-\includegraphics[scale=0.4]{Figures/skewness_interpretation.jpg}
+\includegraphics[scale=0.4]{../MAS-I/src/skewness_interpretation.jpg}
 \end{center}
 
 \paragraph{Coefficient d'applatissement}
@@ -116,7 +116,7 @@ La v.a. $Y$ est dite \textit{censurée à droite et shifted}
 \begin{exemple}[lien entre le déductible et la limite]
 On peut faire le lien entre le déductible et la limite : 
 \begin{center}
-\includegraphics[scale=0.45]{Figures/distinction_loss-deductible-limit}
+%\includegraphics[scale=0.45]{../MAS-I/src/distinction_loss-deductible-limit}
 \end{center}
 \end{exemple}
 
@@ -527,7 +527,7 @@ F_n(t) =
 où $t \in [0, x_{(n)}]$.
 
 \begin{center}
-\includegraphics[scale=0.3]{Figures/Fct_de_repartition_empirique}
+%\includegraphics[scale=0.3]{Figures/Fct_de_repartition_empirique}
 \end{center}
 
 
@@ -550,7 +550,7 @@ Var \left( F_n(t) \right) & = \frac{1}{n^2}  n F(t) S(t) \\
 \end{enumerate}
 
 \subsection{\textit{Cumulative hazard-rate function}}
-On utilise cette fonctoin pour pouvoir réussir à estimer la fonction de densité et le \textit{hazard rate} empirique. En effet, puisque la distribution empirique est discrète, on ne peut pas dériver $F_n(x)$ pour obtenir $f_n(x)$ et $h_n(x)$. La fonction de hazard cumulative se définit par
+On utilise cette fonction pour réussir à estimer la fonction de densité et le \textit{hazard rate} empirique. En effet, puisque la distribution empirique est discrète, on ne peut pas dériver $F_n(x)$ pour obtenir $f_n(x)$ et $h_n(x)$. La fonction de hazard cumulative se définit par
 \begin{equation}
 H_X(x) = - \ln S_X(x)
 \end{equation}
