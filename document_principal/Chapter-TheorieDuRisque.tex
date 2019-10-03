@@ -1,6 +1,71 @@
 \chapter{Théorie du risque}
 
+
+\section{Modèle pour les risques et méthodes d'estimation}
+\paragraph{Introduction} 
+Dans le cours \emph{Introduction à l'actuariat II}, on a vu comment produire des réalisation $x^{(j)}$ de $x$ du modèle fréquence-sévérité, dans le cas ou $B\sim$ Gamma. Dans ce cours, on développe des technique récursive pour évaluer la convolution.
+
+\subsection{Méthode d'estimation}
+
+\paragraph{Context \#1}
+\begin{enumerate}[label=(\arabic*)]
+    \item Pour chaques contrats $(j)$, on dispose du nombre de sinistres $(n_j)$ et des montants de chaques sinistres $(y_1,...,y_{n_j})$.
+    \item On définie \[ X_j = \sum_{k=1}^{n_j} y_{j,k} \] où $X_j = 0$ si $n_j = 0$.
+    \item On pose $\underline{\theta}^N$ et $\underline{\theta}^Y$, les paramètres à estimer. On utilise la méthode du maximum de vraisemblance pour estimer ses paramètres. 
+        \begin{align*}
+            \mathcal{L}(\underline{\theta}^N,\underline{\theta}^Y) &= \prod_{j=1}^m \left\{ f_n(n_j|\underline{\theta}^n) \prod_{k=1}^{n_j} f_y(y_{j,k}|\underline{\theta}^y) \right\} \\
+            &= \left( \prod_{j=1}^m f_n(n_j|\underline{\theta}^n) \right) \left( \prod_{j=1}^m \prod_{k=1}^{n_j} f_y(y_{j,k}|\underline{\theta}^y) \indic{n_j>0} \right) \\
+            &= 
+            &= \mathcal{L}(\underline{\theta}^N)\mathcal{L}(\underline{\theta}^Y)
+        \end{align*}
+    \item Remarque:
+    \begin{itemize}
+        \item Le résultat découle de l'indépendence entre $N$ et $\underline{Y}$.
+        \item Ce résultat facilite l'estimation.
+        \item On peut estimer des paramètres avec des lois de fréquence et sévérité séparément.
+    \end{itemize}
+\end{enumerate}
+
+\paragraph{Context \#2}
+\begin{enumerate}[label=(\arabic*)]
+    \item Pour chaque contrat $(j)$, on dispose du nombre de sinistres $(n_j)$ et si le nombre de sinistre est non null, on connait le montant \textbf{total} des sinistres. On ne connait pas les montants de chaques sinistre.
+    \item On pose $\underline{\theta}^N$ et $\underline{\theta}^Y$, les paramètres à estimer. On utilise la méthode du maximum de vraisemblance pour estimer ses paramètres. 
+        \begin{align*}
+            \mathcal{L}(\underline{\theta}^N,\underline{\theta}^Y) &= \prod_{j=1}^m  f_n(n_j|\underline{\theta}^n)  f_{Y_1+...+Y_{n_j}}(x_j|\underline{\theta}^y) \indic{n_j>0} \\
+            &= \mathcal{L}(\underline{\theta}^N)\mathcal{L}(\underline{\theta}^{Y_1+...+Y_{n_j}})
+        \end{align*}
+    \item Remarque:
+    \begin{itemize}
+        \item Le résultat découle de l'indépendence entre $N$ et $\underline{Y}$.
+        \item Ce résultat facilite l'estimation.
+        \item On peut estimer des paramètres avec des lois de fréquence et sévérité séparément si on connait la loi de $Y_1+...+Y_{n_j}$.
+    \end{itemize}
+\end{enumerate}
+
+\paragraph{Context \#3}
+\begin{enumerate}[label=(\arabic*)]
+    \item Pour chaque contrat $(j)$, on connait uniquement les coûts totaux, null ou non null.
+    \item On pose $\underline{\theta}^N$ et $\underline{\theta}^Y$, les paramètres à estimer. On utilise la méthode du maximum de vraisemblance pour estimer ses paramètres. 
+    \item Possibilités \#1, modèle forfaitaire, $X_j = C \cdot \indic{I=1}$.
+        \begin{align*}
+            \mathcal{L}(\underline{\theta}^N,\underline{\theta}^Y) &= \prod_{j=1,x_j=0}^m f_I(0|\underline{\theta}^I) \prod_{j=1,x_j>0}^m f_I(1|\underline{\theta}^I) \cdot f_C(x_j|\underline{\theta}^C) 
+        \end{align*}
+    \item Possibilités \#2, modèle fréquence-sévérité. Si on connait la loi de la somme $(Y_1+...+Y_k)$. La distribution est donc mixte avec masse de probabilité à 0. Ainsi on a
+    \begin{align*}
+        f_X(0|\underline{\theta}^N,\underline{\theta}^Y) &= \prob{N=0|\underline{\theta}^N} \\
+        f_X(x_j|\underline{\theta}^N,\underline{\theta}^Y) &= \sum_{k=1}^\infty \prob{N=k|\underline{\theta}^N} f_{Y_1+...+Y_k}(x_j|\underline{\theta}^Y) \\
+        \mathcal{L}(\underline{\theta}^N,\underline{\theta}^Y) &= \prod_{j=1,x_j=0}^m \prob{N=0|\underline{\theta}^N} \prod_{j=1,x_j>0}^m f_X(x_j|\underline{\theta}^N,\underline{\theta}^Y)
+    \end{align*}
+    \item Remarque: Contrairement au deux autre context, on ne peut pas estimé séparément $\underline{\theta}^N$ et $\underline{\theta}^Y$.
+\end{enumerate}
+
 \section{Processus Stochastique}
+
+\subsection{Processus de poisson homogène}
+\begin{figure}
+    \centering
+    \includegraphics{src/TheorieDuRisque/Def-ProcessusPoissonHomogene.PNG}
+\end{figure}
 
 \subsection{Processus Homogène Composée}
 
