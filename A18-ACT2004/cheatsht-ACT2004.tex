@@ -51,12 +51,12 @@ Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte
 	d &= \frac{i}{1 + i} \\
 	v &= \frac{1}{1 + i}
 \end{align*}
-
-\subsection*{Facteur d'accumulation}
-\begin{align*}
-\sx{\angln} &= \frac{(1+i)^{n} - 1}{i} \\
-\sx**{\angln} &= \frac{(1+i)^{n} - 1}{d} \\
-\end{align*}
+%
+%\subsection*{Facteur d'accumulation}
+%\begin{align*}
+%\sx{\angln} &= \frac{(1+i)^{n} - 1}{i} \\
+%\sx**{\angln} &= \frac{(1+i)^{n} - 1}{d} \\
+%\end{align*}
 
 \subsection*{Sommations}
 \begin{align*}
@@ -127,7 +127,7 @@ C'est la seule loi avec un \textbf{support fini}.
 	X &\sim \mathrm{Exp}(\mu) \\
 	S_x(x) &= e^{-\mu x},\: x \geq 0 \\
 	T_x &\sim \mathrm{Exp}(\mu) \\
-	S_{T_x}(t) &= e^{-\mu t},\: t \geq 0 \\
+	\px[t]{x} &= e^{-\mu t},\: t \geq 0 \\
 	T_x \sim \text{Exp}(\mu) &\Rightarrow K_x \sim \text{Géo}(p = 1 - e^{-\mu}) \\
 \end{align*}
 
@@ -174,7 +174,7 @@ C'est la seule loi avec un \textbf{support fini}.
 \begin{itemize}
 \item[${[}x{]}$ : ] âge de la sélection \textit{(pas une valeur entière)}.
 \item[${[}x{]} + j$ : ] âge atteint où $j$ est le temps écoulé depuis la sélection.
-\item[\textbf{Période sélecte} $r$: ] Période de durée $r$ durant laquelle les effets de la sélection sont significatifs après laquelle:
+\item[$r$: ] \textbf{Période sélecte} de durée $r$ durant laquelle les effets de la sélection sont significatifs après laquelle:
 \begin{align*}
 	\qx{[x] + j} &= \qx{x + j} \forall j = r, r + 1, r + 2, \dots \\
 	\ell_{[x] + r + j} &= \ell_{[x]} \px[r + j]{[x]} = \ell_{[x]} \px[r]{[x]} \px[j]{x + r}
@@ -195,7 +195,7 @@ S_X(x + t) &= \frac{(c - t)}{c} \times S_X(x) + \frac{t}{c} \times S_X(x + 1),  
 \begin{align*}
 \qx[t]{x} &= \left(\frac{t}{c}\right) \qx[c]{x},  &t \in [0, c] \\
 \mu_{x + t} &= \frac{\frac{1}{c} \qx[c]{x}}{1 - \frac{t}{c} \qx[c]{x}}, &x \in \{0, c, 2c, \dots\} \\
-&\Leftrightarrow \frac{\frac{\partial}{\partial t}\qx[t]{x}}{\px[t]{x}} \\
+%&\Leftrightarrow \frac{\frac{\partial}{\partial t}\qx[t]{x}}{\px[t]{x}} \\
 \qx[y]{x + t} &= \frac{\left(\frac{y}{c}\right) \qx[c]{x}}{1 -\left(\frac{t}{c}\right) \qx[c]{x}}, &y \in [0, c - t] 
 \end{align*}
 
@@ -204,7 +204,7 @@ On note que la force de mortalité à la même formule que la \\ fonction de sur
 \textbf{Force constante (FC)}
 \begin{align*}
 S_X(x + t) &= S_X(x)^{(1 - t)} + S_X(x + 1)^t,  &t \in [0, 1] \\
-S_X(x + t) &= S_X(x)^{\frac{(1 - t)}{c}} + S_X(x + 1)^{\frac{t}{c}},  &t \in [0, c] \\
+S_X(x + t) &= S_X(x)^{\frac{(c - t)}{c}} + S_X(x + 1)^{\frac{t}{c}},  &t \in [0, c] \\
 \end{align*}
 \begin{align*}
 %\ell_{x+t} &= \ell_x^{(1-t)} \ell_{x+1}^{(t)} \\
@@ -212,25 +212,25 @@ S_X(x + t) &= S_X(x)^{\frac{(1 - t)}{c}} + S_X(x + 1)^{\frac{t}{c}},  &t \in [0,
 \qx[y]{x + t} &= 1 - (\px[c]{x})^{\frac{y}{c}}, & t \in[0, c],  y \in [0, c - t] \\
 \end{align*}
 % Tableau repris de Nicholas Langevin dans l'ancienne feuille de formules
-\textbf{Tableau résumé lorsque} $c = 1$\\
-\[
-\begin{array}{|l|c|c|c|} 
-                        \hline
-                        & \text{DUD} & \text{FC} \\
-                        \hline 
-                        \actsymb[t]{q}{x} & t \cdot q_x                 & 1 - p_x^{t}   \\
-                        \hline
-                        \actsymb[t]{p}{x} & 1 - t \cdot q_x             & p_x^{t}   \\
-                        \hline
-                        \dx[1]{x}         & t \cdot \dx[n]{x}           & \lx{x} (1 - p_x^{t})  \\
-                        \hline
-                        f_{t_x}(t)        & q_x                         & -p_x^t  \ln(p_x)   \\
-                        \hline
-                        \mu_{x+t}         & \frac{q_x}{1 - t \cdot q_x} & - \ln(p_x)   \\
-                        \hline
-\end{array}
-\]
-\\
+%\textbf{Tableau résumé lorsque} $c = 1$\\
+%\[
+%\begin{array}{|l|c|c|c|} 
+%                        \hline
+%                        & \text{DUD} & \text{FC} \\
+%                        \hline 
+%                        \actsymb[t]{q}{x} & t \cdot q_x                 & 1 - p_x^{t}   \\
+%                        \hline
+%                        \actsymb[t]{p}{x} & 1 - t \cdot q_x             & p_x^{t}   \\
+%                        \hline
+%                        \dx[1]{x}         & t \cdot \dx[n]{x}           & \lx{x} (1 - p_x^{t})  \\
+%                        \hline
+%                        f_{t_x}(t)        & q_x                         & -p_x^t  \ln(p_x)   \\
+%                        \hline
+%                        \mu_{x+t}         & \frac{q_x}{1 - t \cdot q_x} & - \ln(p_x)   \\
+%                        \hline
+%\end{array}
+%\]
+%\\
 Sous: 
 \begin{enumerate}
 	\item[\textbf{DUD} : ] $K_x \bot R_x$
@@ -305,7 +305,7 @@ Liens entre les fonctions pour $K_x$ et $T_x$:\\
 	&\stackrel{DUD}= e_x + \frac{1}{2} \\
 	V(T_x) = &V(K_x + R_x) \\
 	\stackrel{\bot}= &V(K_x) + V(R_x) \\
-	\stackrel{DUD}= &V(K_x) + \frac{1}{12} \\
+	\stackrel{DUD}= &V(K_x) + \frac{1}{12} 
 \end{align*}
 
 \subsubsection*{Variables censurées}
@@ -324,7 +324,7 @@ Espérance de vie \textbf{abrégée} temporaire \textit{n} années.
 e_{x:\angln} &= \esp{K_x \wedge n} \\
 &= \sum_{k = 0}^{n - 1} k \qx[k | ]{x} + n \ \px[n]{x} \\
 &= \sum_{k = 1}^{n} \px[k]{x}, & 0 \leq x < \omega - 1 \\
-&& n \in \{0, 1, \dots, \omega - x - 1\} 
+&& n \in \{0, 1, \dots, \omega - x - 1\}
 \end{align*}
 
 \subsubsection*{Variables tronquées}
@@ -340,7 +340,7 @@ Lien entre espérance tronquée et censurée.
 \begin{align*}
 	\eringx{x:\angln} &= \esp{T_x | T_x \leq n} \qx[n]{x} + n \ \px[n]{x} \\	
 		&= \esp{K_x | K_x \leq n} \qx[n + 1]{x} + (n + 1) \ \px[n + 1]{x} \\	
-		&\stackrel{\bot}= e_{x:\angln} + \frac{\qx[n]{x}}{2} \\
+		&\stackrel{\bot}= e_{x:\angln} + \frac{\qx[n]{x}}{2} 
 \end{align*}
 
 \subsubsection*{Formules de récurrence}
@@ -352,9 +352,10 @@ Lien entre espérance tronquée et censurée.
 \end{align*}
 
 \begin{align*}
-	e_{x + k} &= \px{x + k} (1 + e_{x + k + 1}) \\
-	\text{où } k &\in \{ (\omega - x - 2), (\omega - x - 3), \dots, 2, 1, 0  \} \\
-	\text{et } e_{\omega - 1} &= 0 \ \text{comme valeur de départ}
+	e_{x + n} &= \px{x + n} (1 + e_{x + n + 1}) \\
+			  &= e_{x + n:\angl{1}} + \px{x + n} e_{x + n + 1} 
+%	\text{où } k &\in \{ (\omega - x - 2), (\omega - x - 3), \dots, 2, 1, 0  \} \\
+%	\text{et } e_{\omega - 1} &= 0 \ \text{comme valeur de départ}
 \end{align*}
 
 \subsection{Caractéristiques de groupe}
@@ -387,58 +388,59 @@ On peut ensuite généraliser $\forall \ x \ge a$
 	\Dx[n]{x} &\sim \text{Bin}(\ell_a, \qx[x - a | n]{a}) \\
 \end{align*}
 
-$\text{Cov}( \Dx[n]{x}, \Dx[m]{y} )  =$
-\[
-	\begin{cases}
-		- \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{orange}{x + n} \le\color{blue}{ y} \\
-		\qx[y - a | x + n - y]{a} - \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{magenta}{y < x + n \le y + m} \\
-		\qx[y - a | m]{a} - \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{violet}{y + m \le x + n} \\
-	\end{cases}
-\]
-\\
+%$\text{Cov}( \Dx[n]{x}, \Dx[m]{y} )  =$
+%\[
+%	\begin{cases}
+%		- \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{orange}{x + n} \le\color{blue}{ y} \\
+%		\qx[y - a | x + n - y]{a} - \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{magenta}{y < x + n \le y + m} \\
+%		\qx[y - a | m]{a} - \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{violet}{y + m \le x + n} \\
+%	\end{cases}
+%\]
+%\\
+%
+%\begin{tikzpicture}[xscale=1.2]
+%	\draw [thick] (0,0) -- (6,0);
+%
+%	\draw (0,-.2) -- (0, .2);
+%		\draw [orange] (1.5,-.2) -- (1.5, .2); % 1er cas
+%	\draw (3,-.2) -- (3, .2);
+%		\draw [magenta] (4.5,-.2) -- (4.5, .2); % 2ème cas
+%		\draw [-] [draw=magenta, dashed, very thick] (3,0.2) -- (4.5,0.2); % 2ème cas
+%	\draw (5,-.2) -- (5, .2);
+%		\draw [violet] (6,-.2) -- (6, .2); % 3ème cas
+%		\draw [-] [draw=violet, dotted, ultra thick] (3,0.4) -- (5,0.4); % 3ème cas
+%	
+%	\node[align=left, below] at (0,-.2)%
+%	{$x$};
+%	\node[align=left, below] at (3,-.2)%
+%	{$y$};
+%	\node[align=left, below] at (5,-.2)%
+%	{$y + m$};
+%	
+%	\node[align=left, below] at (1.5,-.5) %1er cas
+%	{\color{orange}{$x + n$}};
+%	\node[align=left, below] at (4.5,-.5) %2ème cas
+%	{\color{magenta}{$x + n$}};
+%	\node[align=left, below] at (6,-.5) %3ème cas
+%	{\color{violet}{$x + n$}};
+%\end{tikzpicture}
 
-\begin{tikzpicture}[xscale=1.2]
-	\draw [thick] (0,0) -- (6,0);
+%\textbf{Raccourci} pour s'en souvenir où $\ell_a$ est le nombre inital de personnes :
+%
+%$\text{Cov}( \text{Groupe A}, \text{Groupe B} ) = $
+%\begin{align*}
+%	\ell_a \times \\
+%	\bigg( &\text{Pr}(\text{Appartenir aux groupes A et B}) \\
+%	&- \text{Pr}(\text{Appartenir au groupe A}) \\
+%	&\times \text{Pr}(\text{Appartenir au groupe B}) \bigg)
+%\end{align*}
 
-	\draw (0,-.2) -- (0, .2);
-		\draw [orange] (1.5,-.2) -- (1.5, .2); % 1er cas
-	\draw (3,-.2) -- (3, .2);
-		\draw [magenta] (4.5,-.2) -- (4.5, .2); % 2ème cas
-		\draw [-] [draw=magenta, dashed, very thick] (3,0.2) -- (4.5,0.2); % 2ème cas
-	\draw (5,-.2) -- (5, .2);
-		\draw [violet] (6,-.2) -- (6, .2); % 3ème cas
-		\draw [-] [draw=violet, dotted, ultra thick] (3,0.4) -- (5,0.4); % 3ème cas
-	
-	\node[align=left, below] at (0,-.2)%
-	{$x$};
-	\node[align=left, below] at (3,-.2)%
-	{$y$};
-	\node[align=left, below] at (5,-.2)%
-	{$y + m$};
-	
-	\node[align=left, below] at (1.5,-.5) %1er cas
-	{\color{orange}{$x + n$}};
-	\node[align=left, below] at (4.5,-.5) %2ème cas
-	{\color{magenta}{$x + n$}};
-	\node[align=left, below] at (6,-.5) %3ème cas
-	{\color{violet}{$x + n$}};
-\end{tikzpicture}
-
-\textbf{Raccourci} pour s'en souvenir où $\ell_a$ est le nombre inital de personnes :
-
-$\text{Cov}( \text{Groupe A}, \text{Groupe B} ) = $
-\begin{align*}
-	\ell_a \times \\
-	\bigg( &\text{Pr}(\text{Appartenir aux groupes A et B}) \\
-	&- \text{Pr}(\text{Appartenir au groupe A}) \\
-	&\times \text{Pr}(\text{Appartenir au groupe B}) \bigg)
-\end{align*}
-
-\subsubsection*{Lien entre $\ell_x$ et $S_X(x)$}
-
-\begin{align*}
-	\ell_x &= \ell_a S_{T_a}(x - a) = \ell_a \ \px[x - a]{a}
-\end{align*}
+$\text{Cov}( \text{A}, \text{B} ) = \esp{A \cap B} - \frac{\esp{A}\esp{B}}{\ell{a}}$
+%\subsubsection*{Lien entre $\ell_x$ et $S_X(x)$}
+%
+%\begin{align*}
+%	\ell_x &= \ell_a S_{T_a}(x - a) = \ell_a \ \px[x - a]{a}
+%\end{align*}
 
 
 \section{Contrats d'assurance-vie}
@@ -572,7 +574,7 @@ Doit trouver la surchage $\theta$ qui, lorsqu'appliqué à chacune des espéranc
 	\item[$\theta$ : ] \textbf{Surchage}
 \begin{align*}
 		\pi &= (1 + \theta) \esp{Z} \\
-		h &= (1 + \theta) \esp{S} \\
+		h &= (1 + \theta) \esp{S} 
 \end{align*}
 	\item[] \textbf{Suprime}
 	\[
@@ -589,12 +591,10 @@ $\Phi^{-1} = z_{1 - p}$
 \begin{align*}
 	z_{1 - p} &\le \frac{\sqrt{n} ( \pi - \esp{Z}}{\sigma_{Z}}\\
 	\pi &\ge \esp{Z} + z_{1 - p} \left(\frac{\sigma_{Z}}{\sqrt{n}}\right) \\
-	n &\ge \left(\frac{z_{1 - p}\sigma_{Z}}{\pi - \esp{Z}}\right) = n_{p} \\
+	n &\ge \left(\frac{z_{1 - p}\sigma_{Z}}{\pi - \esp{Z}}\right) = n_{p} 
 \end{align*} 
 
 Donc avec $h$ on résoud $h = (1 + \theta) \esp{Z}$ et applique la surprime à tous les assurés.
-
-On applique donc l'approximation normale avec la 
 
 %Si une même vie achète plusieurs contrats d'assurance vie, faut tenir compte des covariances.
 
