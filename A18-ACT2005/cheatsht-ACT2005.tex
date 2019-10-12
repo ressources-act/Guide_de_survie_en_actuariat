@@ -337,7 +337,7 @@ F_n(x) &=
 	\end{align*}
 	\item[] On peut donc estimer cette variance avec la \textbf{(Formule de Greenwood)}:
 	\begin{align*}	
-		\widehat{V}[S_{n}(t)] &= \big(S_{n}(t)\big)^2 \sum_{j \le t} \frac{S_j}{r_i(r_i - S_i)} 
+		\widehat{V}[S_{n}(t)] &= \big(S_{n}(t)\big)^2 \sum_{j \le t} \frac{S_j}{r_j(r_j - S_j)} 
 	\end{align*}
 \end{enumerate}
 
@@ -350,7 +350,7 @@ F_n(x) &=
 	\end{align*}
 	On peut ensuite déduire la fonction de survie empirique:
 	\begin{align*}
-		S_m(t) &= e^{\widehat{H}(t)}
+		S_m(t) &= e^{-\widehat{H}(t)}
 	\end{align*}	
 	La variance de la \textbf{\textit{cumulative hazard rate function}} est représentée comme suit:
 	\begin{align*}	

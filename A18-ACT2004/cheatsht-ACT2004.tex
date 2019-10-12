@@ -11,12 +11,12 @@
 \setlength{\abovedisplayshortskip}{0pt}
 \setlength{\belowdisplayshortskip}{0pt}
 
-% Créer graphiques incluant ligne de temps pour covariance (1.8)
+% Ce packetage permet de créer des graphiques très intéressantes. Voir en ligne pour avoir des générateur sans avoir à les faire sois-même (le langage est intuitif cependant). 
 \usepackage{tikz}
 
-% Créer couleur utilisée dans chapitre 2
-\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
-
+\definecolor{green_rectangle}{RGB}{131, 176, 84}
+\definecolor{red_rectangle}{RGB}{241,112,113}
+\definecolor{blue_rectangle}{RGB}{83, 84, 244}
 
 %% -----------------------------
 %% Début du document
@@ -24,9 +24,10 @@
 
 \usepackage{mathrsfs}
 
-\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+% thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} 
 
-%% Pour créer des trêmas avec des couleurs
+%% Pour créer des trêmas sur les signes de prestations avec des couleurs.
 \usepackage{stackengine}
 \newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
 %%
@@ -34,35 +35,51 @@
 \begin{document}
 
 
-% j'enlève le footnotesize temporairement, sinon je ne vois rien! GCC
+% j'enlève le footnotesize temporairement, sinon je ne vois rien! G.C.-C.
 \footnotesize % Écrire petit (peut être modifié)
-\begin{multicols*}{3} % Nombre de colonnes (peut être changé plus tard.)
+\begin{multicols*}{3} 	% Nombre de colonnes (peut être changé plus tard.)
 \section*{Rappel de Math. financière}
 \subsection*{Facteurs d'actualisation}
-Où les dénominateurs sont à être interprété en REGEX.
+Où les dénominateurs sont à être interprété en REGEX.\\
 Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte} pour une une \textcolor{cyan}{annuité due} ou le taux d'intérêt pour une \textcolor{black}{immédiate}.
 \begin{align*}
-	\cumlaut[cyan]{a}_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{1 - v^n}{(\textcolor{cyan}{d}^{\textcolor{red}{(m)}} | i^{\textcolor{red}{(m)}})} \\
-	(I^{\textcolor{blue}{(m)}}\cumlaut[cyan]{a})_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{\cumlaut[black]{a}_{\angl{n}}^{\textcolor{blue}{(m)}} - nv^n}{(\textcolor{cyan}{d}^{\textcolor{red}{(m)}} | i)} \\
+	\cumlaut[cyan]{a}_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{1 - v^n}{ (i^{\textcolor{red}{(m)}}} {\color{cyan}\left( \frac{1}{{\color{black}|}d^{\textcolor{red}{(m)}}{\color{black})}} \bigg| (1 + i) \right)}\\
+\end{align*}
+\begin{align*}
+	(I^{\textcolor{blue}{(m)}}\cumlaut[cyan]{a})_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{\cumlaut[black]{a}_{\angl{n}}^{\textcolor{blue}{(m)}} - nv^n}{(\textcolor{cyan}{d}^{\textcolor{red}{(m)}} | i)} &
 	(D^{\textcolor{blue}{(m)}}\cumlaut[cyan]{a})_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{n - a_{\angl{n}}^{\textcolor{blue}{(m)}}}{(\textcolor{cyan}{d}^{\textcolor{red}{(m)}} | i)} \\
 %	\ax{\angln}&= \frac{1 - v^t}{i} \\
 	a_{\angl{\infty}} &= \frac{1}{i} \\
-%	\ax*{\angln} &= \int_0^n v^t dt = \frac{1 - v^n}{\delta}
-	d &= \frac{i}{1 + i} \\
-	v &= \frac{1}{1 + i}
+%	\ax*{\angln} &= \int_0^n v^t dt = \frac{1 - v^n}{\delta}\\
+	d &= \frac{i}{1 + i} &
+	v &= \frac{1}{1 + i} \\
+	a(t) &= (1 + i)^{t} &
+	&= e^{\int_{0}^{t} \delta_s ds}
+	= (1 - d)^{-t}
 \end{align*}
-%
+
 %\subsection*{Facteur d'accumulation}
 %\begin{align*}
-%\sx{\angln} &= \frac{(1+i)^{n} - 1}{i} \\
-%\sx**{\angln} &= \frac{(1+i)^{n} - 1}{d} \\
+%	\cumlaut[cyan]{s}_{\angln} &= \frac{(1+i)^{n} - 1}{(\textcolor{cyan}{d}|i)}\\
+%	(I^{\textcolor{blue}{(m)}}\cumlaut[cyan]{s})_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{\cumlaut[black]{s}_{\angl{n}}^{\textcolor{blue}{(m)}} - n}{(\textcolor{cyan}{d}^{\textcolor{red}{(m)}} | i)} &
+%	(D^{\textcolor{blue}{(m)}}\cumlaut[cyan]{s})_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{n(1+i)^{n} - s_{\angl{n}}^{\textcolor{blue}{(m)}}}{(\textcolor{cyan}{d}^{\textcolor{red}{(m)}} | i)} \\
+%	(\bar{I}\bar{s})_{\angl{n}i} &= \frac{\bar{s}_{\angl{n}i} - n}{\delta} &
+%	(\bar{D}\bar{s})_{\angl{n}i} &= \frac{n e^{\delta n} - \bar{s}_{\angl{n}i}}{\delta} \\
+%	(\bar{I}\bar{a})_{\angl{n}i} &= \frac{\bar{a}_{\angl{n}i} - n e^{-\delta n}}{\delta} &
+%	(\bar{D}\bar{a})_{\angl{n}i} &= \frac{n - \bar{a}_{\angl{n}i}}{\delta} \\
+%\end{align*}	
+
+%\subsection*{Conversion de taux}
+%\begin{align*}
+%&\text{Taux d'intérêt \underline{effectif} \textit{annuel}} & & i = \left( 1 + \frac{i^{(m)}}{m} \right)^{m} - 1 \\
+%&\text{Taux d'intérêt \underline{nominal} \textit{annuel}} & & i^{(m)} = m \left( (1 + i)^{1/m} - 1 \right)
 %\end{align*}
 
 \subsection*{Sommations}
 \begin{align*}
-\sum_{k = 0}^{n}r^k &= \frac{1 - r^{k + 1}}{1 - r} \\
+\sum_{k = m}^{n} r^k &= \frac{1 - r^{n - m + 1}}{1 - r} &
 \sum_{k = 0}^{\infty}k v^k &= \frac{v}{(1 - v)^2} \\
-\sum_{k = 1}^{n}k &= \frac{n(n + 1)}{2} \\
+\sum_{k = 1}^{n}k &= \frac{n(n + 1)}{2} &
 \sum_{k = 1}^{n}k^2 &= \frac{n(n + 1)(2n + 1)}{6} \\
 \end{align*}
 
@@ -388,53 +405,53 @@ On peut ensuite généraliser $\forall \ x \ge a$
 	\Dx[n]{x} &\sim \text{Bin}(\ell_a, \qx[x - a | n]{a}) \\
 \end{align*}
 
-%$\text{Cov}( \Dx[n]{x}, \Dx[m]{y} )  =$
-%\[
-%	\begin{cases}
-%		- \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{orange}{x + n} \le\color{blue}{ y} \\
-%		\qx[y - a | x + n - y]{a} - \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{magenta}{y < x + n \le y + m} \\
-%		\qx[y - a | m]{a} - \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{violet}{y + m \le x + n} \\
-%	\end{cases}
-%\]
-%\\
-%
-%\begin{tikzpicture}[xscale=1.2]
-%	\draw [thick] (0,0) -- (6,0);
-%
-%	\draw (0,-.2) -- (0, .2);
-%		\draw [orange] (1.5,-.2) -- (1.5, .2); % 1er cas
-%	\draw (3,-.2) -- (3, .2);
-%		\draw [magenta] (4.5,-.2) -- (4.5, .2); % 2ème cas
-%		\draw [-] [draw=magenta, dashed, very thick] (3,0.2) -- (4.5,0.2); % 2ème cas
-%	\draw (5,-.2) -- (5, .2);
-%		\draw [violet] (6,-.2) -- (6, .2); % 3ème cas
-%		\draw [-] [draw=violet, dotted, ultra thick] (3,0.4) -- (5,0.4); % 3ème cas
-%	
-%	\node[align=left, below] at (0,-.2)%
-%	{$x$};
-%	\node[align=left, below] at (3,-.2)%
-%	{$y$};
-%	\node[align=left, below] at (5,-.2)%
-%	{$y + m$};
-%	
-%	\node[align=left, below] at (1.5,-.5) %1er cas
-%	{\color{orange}{$x + n$}};
-%	\node[align=left, below] at (4.5,-.5) %2ème cas
-%	{\color{magenta}{$x + n$}};
-%	\node[align=left, below] at (6,-.5) %3ème cas
-%	{\color{violet}{$x + n$}};
-%\end{tikzpicture}
+Avec les sommations on trouve:\\
+$\text{Cov}( \Dx[n]{x}, \Dx[m]{y} )  =$
+\[
+	\begin{cases}
+		- \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{orange}{x + n} \le\color{blue}{ y} \\
+		\qx[y - a | x + n - y]{a} - \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{magenta}{y < x + n \le y + m} \\
+		\qx[y - a | m]{a} - \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{violet}{y + m \le x + n} \\
+	\end{cases}
+\]
+\\
+
+\begin{tikzpicture}[xscale=1.2]
+	\draw [thick] (0,0) -- (6,0);
+
+	\draw (0,-.2) -- (0, .2);
+		\draw [orange] (1.5,-.2) -- (1.5, .2); % 1er cas
+	\draw (3,-.2) -- (3, .2);
+		\draw [magenta] (4.5,-.2) -- (4.5, .2); % 2ème cas
+		\draw [-] [draw=magenta, dashed, very thick] (3,0.2) -- (4.5,0.2); % 2ème cas
+	\draw (5,-.2) -- (5, .2);
+		\draw [violet] (6,-.2) -- (6, .2); % 3ème cas
+		\draw [-] [draw=violet, dotted, ultra thick] (3,0.4) -- (5,0.4); % 3ème cas
+	
+	\node[align=left, below] at (0,-.2)%
+	{$x$};
+	\node[align=left, below] at (3,-.2)%
+	{$y$};
+	\node[align=left, below] at (5,-.2)%
+	{$y + m$};
+	
+	\node[align=left, below] at (1.5,-.5) %1er cas
+	{\color{orange}{$x + n$}};
+	\node[align=left, below] at (4.5,-.5) %2ème cas
+	{\color{magenta}{$x + n$}};
+	\node[align=left, below] at (6,-.5) %3ème cas
+	{\color{violet}{$x + n$}};
+\end{tikzpicture}
 
 %\textbf{Raccourci} pour s'en souvenir où $\ell_a$ est le nombre inital de personnes :
 %
 %$\text{Cov}( \text{Groupe A}, \text{Groupe B} ) = $
 %\begin{align*}
-%	\ell_a \times \\
-%	\bigg( &\text{Pr}(\text{Appartenir aux groupes A et B}) \\
-%	&- \text{Pr}(\text{Appartenir au groupe A}) \\
-%	&\times \text{Pr}(\text{Appartenir au groupe B}) \bigg)
+%	&\text{E}\{\text{être dans les groupes A et B}\} \\
+%	&- \frac{\text{E}\{\text{être dans le groupe A}\} 
+%	\times \text{E}\{\text{être dans le groupe B}\}}{\ell{a}} \Bigg]
 %\end{align*}
-
+Raccourci:
 $\text{Cov}( \text{A}, \text{B} ) = \esp{A \cap B} - \frac{\esp{A}\esp{B}}{\ell{a}}$
 %\subsubsection*{Lien entre $\ell_x$ et $S_X(x)$}
 %
@@ -604,12 +621,15 @@ Lorsque $b_{t}^{j} = b_{t}, t \ge 0$, alias $b_{t} \in \{ 0, 1\}$, alors:
 \begin{align*}
 	\esp{Z^{j}}@\delta_{t} &= \esp{Z}@ j \times \delta_{t}
 \end{align*}
+Sinon on généralise:
+\begin{align*}
+	\esp{Z^{j}}@\delta_{t} &= \esp{b \times Z'^{j}}@\delta_{t} \\
+	&= b^{j} \times \esp{Z'}@ j \times \delta_{t}
+\end{align*}
+À noter que la règle est seulement appliquable aux prestations nivelées et donc n'est pas applicable aux prestations (dé)croissantes.
 
 
-
-
-
-\subsection{Durée temporaire}
+\subsection{Payable au moment du décès}
 
 \paragraph{Assurance-vie entière} On verse le capital au décès de l'assuré
 
@@ -634,7 +654,7 @@ Lorsque $b_{t}^{j} = b_{t}, t \ge 0$, alias $b_{t} \in \{ 0, 1\}$, alors:
 \begin{align*}
 \Ax{\pureendowxn}	& = \px[n]{x} v^n = \Ex[n]{x} \\
 \end{align*}
-où $\Ex[n]{x}$ est un \textbf{facteur d'actualisation actuarielle}.
+où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
 
 \paragraph{Assurance mixte} On verse le capital à l'assuré si il décède dans les $n$ prochaines années, ou si il est toujours en vie après cette période.
 \begin{align*}
@@ -660,39 +680,379 @@ où $\Ex[n]{x}$ est un \textbf{facteur d'actualisation actuarielle}.
 \Ax*[m|]{x}	& = \Ax*{x} - \Ax*{\itop{x}:\angl{m}}
 \end{align*}
 
-% Je met quelques formules de increase qui permet une rapidité dans les calculs 
-\paragraph{Assurance Vie entière croissante} On verse le capital au décès de l'assuré. Ce capital augmente chaque années.
+\subsubsection*{\textcolor{amber(sae/ece)}{Assurances à prestation variant arithmétiquement}}
+
+% Quelques formules de increase qui permet une rapidité dans les calculs (G.C.-C. ou N.L.)
+\paragraph{Assurance Vie temporaire croissante} On verse le capital au décès de l'assuré, s'il survient dans les $n$ prochaines années. 
+
+
+% Possible de générer des graphiques avec le packetage tikz. S'apprends bien mais long à faire manuellement, voir en ligne pour des générateurs de ces graphiques.
+% A.J.v.R. 11/10/2019
+
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,460.60000228881836); %set diagram left start at 0, and has height of 460.60000228881836
+
+%Shape: Rectangle [id:dp2153664891645204] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (63.06,164.97) -- (11.5,164.97) -- (11.5,204.7) -- (63.06,204.7) -- cycle ;
+%Shape: Rectangle [id:dp5225981801630806] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (164.44,85.49) -- (112.88,85.49) -- (112.88,204.36) -- (164.44,204.36) -- cycle ;
+%Shape: Rectangle [id:dp5069530248534422] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (113.88,125.23) -- (62.32,125.23) -- (62.32,204.36) -- (113.88,204.36) -- cycle ;
+%Shape: Rectangle [id:dp27824679166313815] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (216,45.75) -- (164.44,45.75) -- (164.44,204.36) -- (216,204.36) -- cycle ;
+%Straight Lines [id:da936615963108024] 
+\draw    (9.96,204.18) -- (252.16,204.18) ;
+\draw [shift={(254.16,204.18)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+%Straight Lines [id:da09653378675557245] 
+\draw    (216,204.36) -- (216,45.75) ;
+
+
+%Straight Lines [id:da46946353778662164] 
+\draw    (9.96,204.18) -- (215.81,204.53) ;
+
+
+%Straight Lines [id:da2160350807468463] 
+\draw    (63.06,164.97) -- (62.32,125.23) ;
+
+
+%Straight Lines [id:da2909730871778471] 
+\draw    (11.5,204.7) -- (11.5,164.97) ;
+
+
+%Straight Lines [id:da9752575748839756] 
+\draw    (113.88,125.23) -- (112.88,85.49) ;
+
+
+%Straight Lines [id:da2098155502707164] 
+\draw    (164.44,85.49) -- (164.44,45.75) ;
+
+
+%Straight Lines [id:da5631700682235457] 
+\draw [color={rgb, 255:red, 241; green, 112; blue, 113 }  ,draw opacity=1 ][line width=2.25]    (216.34,45.75) -- (164.44,45.75) ;
+%Straight Lines [id:da28001017635075276] 
+\draw [color={rgb, 255:red, 241; green, 112; blue, 113 }  ,draw opacity=1 ][line width=2.25]    (112.88,85.49) -- (216,85.49) ;
+%Straight Lines [id:da30632392932152186] 
+\draw [color={rgb, 255:red, 241; green, 112; blue, 113 }  ,draw opacity=1 ][line width=2.25]    (62.32,125.23) -- (216,125.05) ;
+%Straight Lines [id:da7928314458046128] 
+\draw [color={rgb, 255:red, 241; green, 112; blue, 113 }  ,draw opacity=1 ][line width=2.25]    (11.5,164.97) -- (216.75,164.79) ;
+%Straight Lines [id:da5692973763116236] 
+\draw    (9.96,204.18) -- (9.96,6.8) ;
+\draw [shift={(9.96,4.8)}, rotate = 450] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+
+% Text Node
+\draw (290,185) node  [align=left] {$\dots$};
+\draw (250,185) node  [align=left] {$\actsymb{\bar{A}}{\nthtop{1}{x}:\angln}$};
+\draw (250,145) node  [align=left] {$\actsymb[1|]{\bar{A}}{\nthtop{1}{x}:\angl{n-1}}$};
+\draw (250,105) node  [align=left] {$\actsymb[2|]{\bar{A}}{\nthtop{1}{x}:\angl{n-2}}$};
+\draw (250,70) node  [align=left] {$\vdots$};
+\end{tikzpicture}
+
+\begin{enumerate}
+	\item[] Le capital \textbf{croit chaque année}.\\
+	La prestation est de 1 \$ pour la première année, 2 \$ pour la deuxième, etc.
 
 \begin{align*}
-	\IbA*_x &= \int_0^{\omega - x} t v^t \px[t]{x} \mu_{x+t} dt \\
-		%&= \int_0^{\omega - x} \Ax*[s|]{x} ds \\ 
-	\IA*_{x} &= \int_0^{\omega - x} (1 + \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
-		&= \Ax*{x} + \Ax*[1|]{x} + \Ax*[2|]{x} + ...
-\end{align*}
-
-\paragraph{Assurance Vie temporaire croissante} On verse le capital au décès de l'assuré, s'il survient dans les $n$ prochaines années. Ce capital croit chaque années.
-
-\begin{align*}
-	\IbA*_{\termxn} &= \int_0^n t v^t \px[t]{x} \mu_{x+t} dt \\
 	\IA*_{\termxn}  &= \int_0^n (1 + \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
 		&= \actsymb{\bar{A}}{\nthtop{1}{x}:\angln} + \actsymb[1|]{\bar{A}}{\nthtop{1}{x}:\angl{n-1}} + ... + \actsymb[n-1|]{\bar{A}}{\nthtop{1}{x}:\angl1}
 \end{align*}
 
-\paragraph{Assurance vie entière croissante temporairement} On verse le capital au décès de l'assuré. Ce capital croit pendent $n$ années
+	\item[] Le capital \textbf{croît m fois par année}.\\
+	Paye une prestation de 1/m \$ dans le premier 1/m d'année, 2/m \$ dans le deuxième, etc.
 
 \begin{align*}
-	\twoletsymb{I_{\angln}}{\bar{A}}_{x}  &= \int_0^n (1 + \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
-	& + \int_n^{\omega - x} n v^t \px[t]{x} \mu_{x+t} dt \\
-		&= \Ax*{x} + \Ax*[1|]{x} + ... + \Ax*[n-1|]{x}
+	\twoletsymb{I^{(m)}}{\bar{A}}_{\nthtop{1}{x}:\angln} &= \int_0^n \frac{([t \times m] + 1)}{m} v^t \px[t]{x} \mu_{x+t} dt 
 \end{align*}
 
-\paragraph{Assurance Vie temporaire décroissante} On verse le capital au décès de l'assuré, s'il survient dans les $n$ prochaines années. Ce capital décroit chaque années.
+	\item[] Le capital \textbf{croît pendant r années}.
+\begin{align*}
+	\twoletsymb{I_{\anglr}}{\bar{A}}_{\termxn} &= \sum_{k = 0}^{r - 1} \Ax*[k|]{\termxn} \\
+%	&= \IA*_{\termxn} + r \Ax*[r|]{\nthtop{1}{x}:\angl{n-r}}
+\end{align*}
+
+	\item[] Le capital est \textbf{différé de r années}.
 
 \begin{align*}
-	\DbA*_{\termxn} &= \int_0^{\omega - x} (n - t) v^t \px[t]{x} \mu_{x+t} dt \\
+	\prescript{}{r|}{\IA*_{\termxn}} &= v^{r}\px[r]{x}\IA*_{\nthtop{1}{x} + r:\angln}
+\end{align*}
+
+	\item[] Le capital \textbf{croît continûment}.\\
+	Paye une prestation de t au momment du décès, tant qu'il se produise dans les n premières années.
+
+\begin{align*}
+	\IbA*_{\termxn} &= \int_0^n t v^t \px[t]{x} \mu_{x+t} dt \\
+	&= 	\int_0^n \prescript{}{s|}{\bar{A}_{\nthtop{1}{x}:\angl{n-s}}} ds
+\end{align*}
+
+\end{enumerate}
+
+\paragraph{Assurance Vie temporaire décroissante} On verse le capital au décès de l'assuré, s'il survient dans les $n$ prochaines années. 
+
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp8249508548173892] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (218.79,225.77) -- (274.5,225.77) -- (274.5,268.7) -- (218.79,268.7) -- cycle ;
+%Shape: Rectangle [id:dp288679577114328] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (109.26,139.9) -- (164.97,139.9) -- (164.97,268.33) -- (109.26,268.33) -- cycle ;
+%Shape: Rectangle [id:dp44620071768330805] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (163.89,182.84) -- (219.6,182.84) -- (219.6,268.33) -- (163.89,268.33) -- cycle ;
+%Shape: Rectangle [id:dp6514753834850957] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (53.55,96.97) -- (109.26,96.97) -- (109.26,268.33) -- (53.55,268.33) -- cycle ;
+%Straight Lines [id:da9129710482760682] 
+\draw    (53.96,269.18) -- (296.16,269.18) ;
+\draw [shift={(298.16,269.18)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+%Straight Lines [id:da14257233357209076] 
+\draw    (53.55,268.33) -- (53.55,96.97) ;
+
+
+%Straight Lines [id:da638927749516857] 
+\draw    (53.55,268.33) -- (274.5,268.7) ;
+
+
+%Straight Lines [id:da863275927987611] 
+\draw    (218.79,225.77) -- (219.6,182.84) ;
+
+
+%Straight Lines [id:da3684296762771002] 
+\draw    (274.5,268.7) -- (274.5,225.77) ;
+
+
+%Straight Lines [id:da15964539835120828] 
+\draw    (163.89,182.84) -- (164.97,139.9) ;
+
+
+%Straight Lines [id:da7596730836489285] 
+\draw    (109.26,139.9) -- (109.26,96.97) ;
+
+
+%Straight Lines [id:da601078444755968] 
+\draw [color={rgb, 255:red, 241; green, 112; blue, 113 }  ,draw opacity=1 ][line width=2.25]    (53.19,96.97) -- (109.26,96.97) ;
+
+
+%Straight Lines [id:da9731248181909757] 
+\draw [color={rgb, 255:red, 241; green, 112; blue, 113 }  ,draw opacity=1 ][line width=2.25]    (164.97,139.9) -- (53.55,139.9) ;
+
+
+%Straight Lines [id:da863495199913406] 
+\draw [color={rgb, 255:red, 241; green, 112; blue, 113 }  ,draw opacity=1 ][line width=2.25]    (219.6,182.84) -- (53.55,182.65) ;
+
+
+%Straight Lines [id:da5633099918008455] 
+\draw [color={rgb, 255:red, 241; green, 112; blue, 113 }  ,draw opacity=1 ][line width=2.25]    (274.5,225.77) -- (52.75,225.58) ;
+
+
+%Straight Lines [id:da9424905462587518] 
+\draw    (53.96,269.18) -- (53.96,102.4) -- (53.96,71.8) ;
+\draw [shift={(53.96,69.8)}, rotate = 450] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+
+% Text Node
+\draw (340,250) node  [align=left] {$\dots$};
+\draw (310,250) node  [align=left] {$\vdots$};
+\draw (310,205) node  [align=left] {$\bar{A}_{\nthtop{1}{x}:\angl{3}}$};
+\draw (310,160) node  [align=left] {$\bar{A}_{\nthtop{1}{x}:\angl{2}}$};
+\draw (310,115) node  [align=left] {$\bar{A}_{\nthtop{1}{x}:\angl{1}}$};
+
+\end{tikzpicture}
+
+
+\begin{enumerate}
+
+	\item[] Le capital \textbf{décroit chaque année} et donc la prestation doit nécessairement être une temporaire.\\
+	La prestation du début de la dernière année est de 1 \$, 2\$ pour le début de l'avant dernière année, etc. 
+	
+\begin{align*}
 	\DA*_{\termxn}  &= \int_0^{\omega - x} (n - \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
 		&= \actsymb{\bar{A}}{\nthtop{1}{x}:\angl1} + \actsymb{\bar{A}}{\nthtop{1}{x}:\angl2} + ... + \actsymb{\bar{A}}{\nthtop{1}{x}:\angln}
 \end{align*}
+
+	\item[] Le capital \textbf{décroît m fois par année}.\\
+	Paye une prestation de n \$ dans le premier 1/m d'année, n - 1/m \$ dans le deuxième, etc. jusqu'à 1/m \$ durant le dernier 1/m d'année.
+
+\begin{align*}
+	\twoletsymb{D^{(m)}}{\bar{A}}_{\nthtop{1}{x}:\angln} &= \int_0^n \left(n - \frac{1}{m} \times [m t] \right) v^t \px[t]{x} \mu_{x+t} dt 
+\end{align*}
+
+	\item[] Le capital est \textbf{différé de r années}.
+
+\begin{align*}
+	\prescript{}{r|}{\DA*_{\termxn}} 
+	&= \sum_{k = 1}^{n} \Ax[r|]{\nthtop{1}{x}:\angl{k}} 
+%	\\ &= v^{r}\px[r]{x}\DA*_{\nthtop{1}{x} + r:\angln}\\
+\end{align*}
+
+	\item[] Le capital \textbf{décroît continûment}.\\
+	Paye une prestation de initale n \$ pour un décès immédiat, par la suite la prestation décroît linéairement jusquà 0 \$ au bout de n années.
+
+\begin{align*}
+	\DbA*_{\termxn} &= \int_0^{n} (n - t) v^t \px[t]{x} \mu_{x+t} dt \\
+	&= \int_0^{n} \bar{A}_{\nthtop{1}{x:}{\angl{s}}} ds
+\end{align*}
+
+\end{enumerate}
+
+\paragraph{Assurance mixte}
+
+\begin{enumerate}
+	\item[] L'assurance peut être mixte peut importe qu'elle soit croissante ou décroissante.
+	\item[] L'assurance \textit{\textbf{croissante}} mixte n années, paierait n\$ en cas de survie \textit{(peu importe la fréquence de la croissance)}.
+	\item[] L'assurance \textit{\textbf{décroissante}} mixte n années, paierait 1/m\$ en cas de survie si la prestation \textbf{décroît $m$ fois par année}.
+	\item[] L'assurance \textit{\textbf{décroissante}} mixte n années, paierait 1\$ en cas de survie si la prestation \textbf{décroît à chaque année} \textit{(alias, m = 1)}.
+	\item[] L'assurance \textit{\textbf{décroissante}} mixte n années aurait une prestation de survie nulle si la prestation \textbf{décroît continûment}. Donc, en théorie une assurance décroissant continûment peut être mixte mais pas en pratique.
+	\item[] Comme pour les assurances à prestations constantes, une mixte est la combinaison d'une temporaire \textit{(avec la même (dé)croissance)} et d'un capital différé.
+\end{enumerate}
+
+\begin{align*}
+	\prescript{}{r|}{\DA*_{x:\angln}} &= \prescript{}{r|}{\DA*_{\termxn}} + \Ax{x:\nthtop{1}{\angl{n + r}}}
+\end{align*}
+
+\paragraph{Assurance Vie entière croissante} On verse le capital au décès de l'assuré. 
+
+\begin{enumerate}
+
+\item[] Le capital \textbf{croît chaque année}. \\
+La formule est équivalente à remplacer $n$ par $\omega - x$ dans les formules de l'assurance vie temporaire $n$ années.
+
+\begin{align*}
+	\IA*_{x} &= \int_0^{\omega - x} (1 + \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
+		&= \Ax*{x} + \Ax*[1|]{x} + \Ax*[2|]{x} + ...
+\end{align*}
+
+\item[] Le capital \textbf{croît continûment}. \\
+La formule est équivalente à remplacer $n$ par $\omega - x$ dans les formules de l'assurance vie temporaire $n$ années.
+
+\begin{align*}
+	\IbA*_x &= \int_0^{\omega - x} t v^t \px[t]{x} \mu_{x+t} dt \\
+		&= \int_0^{\omega - x} \Ax*[s|]{x} ds 
+\end{align*}
+
+\item[] Le capital \textbf{croit \textit{(annuellement)} pendant $n$ années}.
+
+\begin{align*}
+	\twoletsymb{I_{\angl{n}}}{\bar{A}}_{x} 
+%	&= \int_0^n (1 +  [t]) v^t \px[t]{x} \mu_{x+t} dt \\
+%	& + \int_n^{\omega - x} n v^t \px[t]{x} \mu_{x+t} dt \\
+	&= \IA*_{\termxn} + n \Ax*[n|]{x}\\
+	&= \Ax*{x} + \Ax*[1|]{x} + ... + \Ax*[n-1|]{x}
+%	\\ &= \Ax*{\nthtop{1}{x}:\angl{1}} + 2 \times \Ax*[1|]{\nthtop{1}{x}:\angl{1}} + 3 \times \Ax*[2|]{\nthtop{1}{x}:\angl{1}} + ... + n \times \Ax*[n-1|]{x}
+\end{align*}
+
+\end{enumerate}
+
+
+\paragraph{Relations} 
+
+Assurance différée et assurance (dé)croissant continûment.
+\begin{align*}
+	\IA*_{\termxn} &= \IA*_{\nthtop{1}{x}:\angl{1}}  + {\prescript{}{1}E_{x}} \left[ \IA*_{\nthtop{1}{x + 1}:\angl{n - 1}} + \bar{A}_{\nthtop{1}{x + 1}:\angl{n - 1}}\right]\\
+	\IA*_{x:\angln} &= \IA*_{\nthtop{1}{x}:\angln}  + n {\prescript{}{n}E_{x}}\\
+\twoletsymb{I_{\anglr}}{\bar{A}}_{\termxn} &= \IA*_{\nthtop{1}{x}:\anglr} + r \Ax*[r|]{\nthtop{1}{x}:\angl{n-r}}\\
+	{\prescript{}{\color{teal}{r|}}{\IA*_{\termxn}}} &= v^{r} \px[r]{x} {\IA*_{\nthtop{1}{x + r}:\angln}}\\
+\end{align*}
+\begin{align*}
+	\prescript{}{r|}{\DA*_{\termxn}} &= v^{r}\px[r]{x}\DA*_{\nthtop{1}{x} + r:\angln}\\
+	{(D^{\color{red}{(m)}}\bar{A})_{\termxn}} + (I^{\color{red}{(m)}}\bar{A})_{\termxn} &= \left(n {\color{red}{+ \frac{1}{(m)}}} \right) \bar{A}_{\termxn}\\
+	{\prescript{}{\color{teal}{r|}}{\DbA*_{\termxn}}} + \prescript{}{\color{teal}{r|}}{\IbA*_{\termxn}}  &= n \Ax[\color{teal}{r|}]{\termxn}\\		
+	{\prescript{}{\color{teal}{r|}}{\DA*_{\termxn}}} + \prescript{}{\color{teal}{r|}}{\IA*_{\termxn}}  &= (n + 1) \Ax[\color{teal}{r|}]{\termxn}\\	
+	{\prescript{}{\color{teal}{r|}}{\DA*_{\nthtop{1}{x}:\angl{n-1}}}} + \prescript{}{\color{teal}{r|}}{\IA*_{\termxn}}  &= n \Ax[\color{teal}{r|}]{\termxn}\\	
+\end{align*}
+
+\textbf{Relations croissance}
+\begin{align*}
+	\IbA*_{\termxn} &= {\color{blue_rectangle}{\IbA*_{\nthtop{1}{x}:\angl{1}}}} + v \px{x} \left[ {\color{green_rectangle}{\bar{A}_{\nthtop{1}{x + 1}:\angl{n - 1}}}} + {\color{red_rectangle}{\IbA*_{\nthtop{1}{x + 1}:\angl{n - 1}}}} \right]
+\end{align*}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da8341103379765638] 
+\draw    (56.7,202) -- (201.7,202) ;
+\draw [shift={(203.7,202)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+%Straight Lines [id:da6472587459774688] 
+\draw    (85.7,180.4) -- (85.7,202.4) ;
+
+
+%Straight Lines [id:da6574015464366993] 
+\draw    (85.7,180.4) -- (182.7,180.4) ;
+
+%Shape: Right Triangle [id:dp954195254557896] 
+\draw  [fill={rgb, 255:red, 241; green, 112; blue, 113 }  ,fill opacity=1 ] (182.7,106.4) -- (85.7,180.4) -- (182.7,180.4) -- cycle ;
+%Shape: Right Triangle [id:dp6083621732280395] 
+\draw  [fill={rgb, 255:red, 83; green, 84; blue, 244 }  ,fill opacity=1 ] (85.7,180.4) -- (56.7,202.4) -- (85.7,202.4) -- cycle ;
+%Shape: Rectangle [id:dp08630244909166351] 
+\draw  [fill={rgb, 255:red, 184; green, 233; blue, 134 }  ,fill opacity=1 ] (85.7,202) -- (182.7,202) -- (182.7,180.4) -- (85.7,180.4) -- cycle ;
+
+\end{tikzpicture}
+
+\textbf{Relations décroissance}
+\begin{align*}
+	\DbA*_{\termxn} &= {\color{green_rectangle}{(n - 1) \bar{A}_{\nthtop{1}{x}:\angl{1}}}} + {\color{blue_rectangle}{\DbA*_{\nthtop{1}{x}:\angl{1}}}} + v \px{x} {\color{red_rectangle}{\DbA*_{\nthtop{1}{x + 1}:\angl{n - 1}}}}
+\end{align*}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da8341103379765638] 
+\draw    (131.7,202.4) -- (294.7,203.39) ;
+\draw [shift={(296.7,203.4)}, rotate = 180.35] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+%Straight Lines [id:da6472587459774688] 
+\draw    (236.35,177.86) -- (236.35,202.4) ;
+
+
+%Straight Lines [id:da6574015464366993] 
+\draw    (236.35,177.86) -- (128.13,177.86) ;
+
+
+%Shape: Right Triangle [id:dp954195254557896] 
+\draw  [fill={rgb, 255:red, 241; green, 112; blue, 113 }  ,fill opacity=1 ] (128.13,95.3) -- (268.7,202.4) -- (128.13,202.4) -- cycle ;
+%Shape: Right Triangle [id:dp6083621732280395] 
+\draw  [fill={rgb, 255:red, 83; green, 84; blue, 244 }  ,fill opacity=1 ] (128.13,95.3) -- (160.48,119.84) -- (128.13,119.84) -- cycle ;
+%Shape: Rectangle [id:dp08630244909166351] 
+\draw  [fill={rgb, 255:red, 184; green, 233; blue, 134 }  ,fill opacity=1 ] (160.48,201.95) -- (128.13,201.95) -- (128.13,119.84) -- (160.48,119.84) -- cycle ;
+
+\end{tikzpicture}
+    
+\begin{align*}
+	\DA*_{\termxn} &= {\color{blue_rectangle}{n \bar{A}_{\nthtop{1}{x}:\angl{1}}}} + v \px{x} {\color{red_rectangle}{\DA*_{\nthtop{1}{x + 1}:\angl{n - 1}}}}
+\end{align*}
+
+\begin{tikzpicture}[x=0.65pt,y=0.65pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp440986871106801] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 241; green, 112; blue, 113 }  ,fill opacity=1 ] (482.45,160.75) -- (534.35,160.75) -- (534.35,200.75) -- (482.45,200.75) -- cycle ;
+%Shape: Rectangle [id:dp8956168288472683] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 241; green, 112; blue, 113 }  ,fill opacity=1 ] (380.4,80.75) -- (432.3,80.75) -- (432.3,200.4) -- (380.4,200.4) -- cycle ;
+%Shape: Rectangle [id:dp8909221598764323] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 241; green, 112; blue, 113 }  ,fill opacity=1 ] (431.3,120.75) -- (483.2,120.75) -- (483.2,200.4) -- (431.3,200.4) -- cycle ;
+%Shape: Rectangle [id:dp3313819257578299] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 83; green, 84; blue, 244 }  ,fill opacity=1 ] (328.5,40.75) -- (380.4,40.75) -- (380.4,200.4) -- (328.5,200.4) -- cycle ;
+%Straight Lines [id:da8863050344236503] 
+\draw [line width=0.75]    (328.5,200.4) -- (570.7,200.4) ;
+\draw [shift={(572.7,200.4)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\end{tikzpicture}
+
+
+\subsection{Payable à la fin de l'année du décès}
+\subsection{Payable à la fin du 1/m d'année du décès}
+\subsection{Relations entre payable au moment et celles payables à la fin de l'année du décès}
 
 \section{Contrats de rente}
 \paragraph{Rente viagère} On verse une rente à l'assuré jusqu'à son décès. 

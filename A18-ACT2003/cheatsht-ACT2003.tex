@@ -222,9 +222,10 @@ Les deux derniers graphique doivent être centrés à 0 et d'allure aléatoire.
 % \bm{•} est utilisé pour la notation matricielle, mais lorsqu'il y a des symboles mathématiques.
 \subsection*{Le modèle et ses propriétés}
 \begin{align*}
-\matr{Y}_{n \times 1} & = \matr{X}_{n \times p'} \bm{\beta}_{p' \times 1} + \bm{\varepsilon}_{n \times 1} \\
-\esp{\matr{Y}}	& = \matr{X} \bm{\beta} \quad , \variance{\matr{Y}} = \sigma^2 \matr{I}_{n \times n} \\
-Y & \overset{H_4}{\sim} \mathcal{N}_n(\matr{X} \bm{\beta}, \sigma^2 \matr{I}_{n \times n}) \\
+\matr{Y}_{n \times 1} &= \matr{X}_{n \times p'} \bm{\beta}_{p' \times 1} + \bm{\varepsilon}_{n \times 1} \\
+\esp{\matr{Y}}	&= \matr{X} \bm{\beta} \\
+\text{V}({\matr{Y}}) &= \sigma^2 \matr{I}_{n \times n} \\
+Y &\overset{H_4}{\sim} \mathcal{N}_n(\matr{X} \bm{\beta}, \sigma^2 \matr{I}_{n \times n}) 
 \end{align*}
 
 \subsection*{Paramètres du modèle}
@@ -293,18 +294,18 @@ Selon les postulats $H_1$ à $H_4$, l'estimateur
 \begin{align*}
 \mathrm{a^\top} \hat{\bm{\beta}} = \matr{a^\top (X^\top X)^{-1} X^\top Y}
 \end{align*}
-est le meilleur estimateur pour $\matr{a^\top} \bm{\beta}$
+est le meilleur estimateur pour $\matr{a^\top} \bm{\beta}$ où $\matr{a^\top} = \matr{c^\top} \bm{X} $ 
 
 (BLUE : \textit{Best linear unbiaised estimator}).
 
-\subsubsection*{I.C. pour la prévision de la valeur moyenne $\esp{\matr{Y} | \matr{X^*}}$}
+\subsubsection*{I.C. pour la prévision de la valeur moyenne $\esp{\matr{Y} | \matr{x^*}}$}
 \begin{align*}
-\left[ \matr{{X^*}^\top} \hat{\bm{\beta}} \pm t_{n-p'}\left(1 - \frac{\alpha}{2} \right) \sqrt{s^2 \matr{{X^*}^\top} (\matr{X}^\top \matr{X})^{-1}\matr{X^*}} \right]
+\left[ \matr{{x^*}^\top} \hat{\bm{\beta}} \pm t_{n-p'}\left(1 - \frac{\alpha}{2} \right) \sqrt{s^2 \matr{{x^*}^\top} (\matr{X}^\top \matr{X})^{-1}\matr{x^*}} \right]
 \end{align*}
 
-\subsubsection*{I.C. pour la valeur prédite $\hat{\matr{Y}}|\matr{X^*}$}
+\subsubsection*{I.C. pour la valeur prédite $\hat{\matr{Y}}|\matr{x^*}$}
 \begin{align*}
-\left[ \matr{{X^*}^\top} \hat{\bm{\beta}} \pm t_{n-p'}\left(1 - \frac{\alpha}{2} \right) \sqrt{s^2\left( 1 +  \matr{{X^*}^\top} (\matr{X}^\top \matr{X})^{-1}\matr{X^*}\right)} \right]
+\left[ \matr{{x^*}^\top} \hat{\bm{\beta}} \pm t_{n-p'}\left(1 - \frac{\alpha}{2} \right) \sqrt{s^2\left( 1 +  \matr{{x^*}^\top} (\matr{X}^\top \matr{X})^{-1}\matr{x^*}\right)} \right]
 \end{align*}
 
 
@@ -313,6 +314,7 @@ est le meilleur estimateur pour $\matr{a^\top} \bm{\beta}$
 \begin{itemize}
 \item On utilise le même tableau ANOVA qu'en régression linéaire simple.
 \item $SSR_{\text{régression}} = \sum_{i=1}^{p} SSR_i $, où $SSR_i$ représente le SSR individuel de la variable explicative $i$ calculé par R. On peut ensuite trouver $MSR$ et la statistique $F_{obs}$.
+\item $SSR(x)$ SSR pour le modèle incluant la variable $x$.
 \end{itemize}
 
 \subsubsection*{Test F pour la validité globale de la régression}
@@ -333,6 +335,11 @@ Si
 F_{obs} = \frac{(SSE^{(0)} - SSE^{(1)}) / \Delta dl}{SSE^{(1)} / (n-p')} \geq F_{p-k, n-p'}(1- \alpha)
 \end{align*}
 où $\Delta dl = p - k$, $SSE^{(0)}$ pour le modèle réduit ($H_0$) et $SSE^{(1)}$ pour le modèle complet ($H_1$).
+
+À noter que puisque $SST^{(0)} = SST^{(1)}$ on peut réécrire $F_{obs}$ comme :
+\[
+	F_{obs}= \frac{(SSR^{(1)} - SSR^{(0)})}{\Delta dl \  MSE^{(1)}}
+\]
 
 \subsection*{Multicollinéarité}
 \subsubsection*{Problèmes potentiels}
