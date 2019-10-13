@@ -51,12 +51,12 @@ Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte
 	d &= \frac{i}{1 + i} \\
 	v &= \frac{1}{1 + i}
 \end{align*}
-
-\subsection*{Facteur d'accumulation}
-\begin{align*}
-\sx{\angln} &= \frac{(1+i)^{n} - 1}{i} \\
-\sx**{\angln} &= \frac{(1+i)^{n} - 1}{d} \\
-\end{align*}
+%
+%\subsection*{Facteur d'accumulation}
+%\begin{align*}
+%\sx{\angln} &= \frac{(1+i)^{n} - 1}{i} \\
+%\sx**{\angln} &= \frac{(1+i)^{n} - 1}{d} \\
+%\end{align*}
 
 \subsection*{Sommations}
 \begin{align*}
@@ -127,7 +127,7 @@ C'est la seule loi avec un \textbf{support fini}.
 	X &\sim \mathrm{Exp}(\mu) \\
 	S_x(x) &= e^{-\mu x},\: x \geq 0 \\
 	T_x &\sim \mathrm{Exp}(\mu) \\
-	S_{T_x}(t) &= e^{-\mu t},\: t \geq 0 \\
+	\px[t]{x} &= e^{-\mu t},\: t \geq 0 \\
 	T_x \sim \text{Exp}(\mu) &\Rightarrow K_x \sim \text{Géo}(p = 1 - e^{-\mu}) \\
 \end{align*}
 
@@ -174,7 +174,7 @@ C'est la seule loi avec un \textbf{support fini}.
 \begin{itemize}
 \item[${[}x{]}$ : ] âge de la sélection \textit{(pas une valeur entière)}.
 \item[${[}x{]} + j$ : ] âge atteint où $j$ est le temps écoulé depuis la sélection.
-\item[\textbf{Période sélecte} $r$: ] Période de durée $r$ durant laquelle les effets de la sélection sont significatifs après laquelle:
+\item[$r$: ] \textbf{Période sélecte} de durée $r$ durant laquelle les effets de la sélection sont significatifs après laquelle:
 \begin{align*}
 	\qx{[x] + j} &= \qx{x + j} \forall j = r, r + 1, r + 2, \dots \\
 	\ell_{[x] + r + j} &= \ell_{[x]} \px[r + j]{[x]} = \ell_{[x]} \px[r]{[x]} \px[j]{x + r}
@@ -195,16 +195,18 @@ S_X(x + t) &= \frac{(c - t)}{c} \times S_X(x) + \frac{t}{c} \times S_X(x + 1),  
 \begin{align*}
 \qx[t]{x} &= \left(\frac{t}{c}\right) \qx[c]{x},  &t \in [0, c] \\
 \mu_{x + t} &= \frac{\frac{1}{c} \qx[c]{x}}{1 - \frac{t}{c} \qx[c]{x}}, &x \in \{0, c, 2c, \dots\} \\
-&\Leftrightarrow \frac{\frac{\partial}{\partial t}\qx[t]{x}}{\px[t]{x}} \\
+%&\Leftrightarrow \frac{\frac{\partial}{\partial t}\qx[t]{x}}{\px[t]{x}} \\
 \qx[y]{x + t} &= \frac{\left(\frac{y}{c}\right) \qx[c]{x}}{1 -\left(\frac{t}{c}\right) \qx[c]{x}}, &y \in [0, c - t] 
 \end{align*}
+
+On note que la force de mortalité à la même formule que la \\ fonction de survie car avec \textbf{DUD}, la force est uniformément \\ appliquée.
 
 On note que la force de mortalité à la même formule que la \\ fonction de survie car avec \textbf{DUD}, la force est uniformément \\ appliquée.
 
 \textbf{Force constante (FC)}
 \begin{align*}
 S_X(x + t) &= S_X(x)^{(1 - t)} + S_X(x + 1)^t,  &t \in [0, 1] \\
-S_X(x + t) &= S_X(x)^{\frac{(1 - t)}{c}} + S_X(x + 1)^{\frac{t}{c}},  &t \in [0, c] \\
+S_X(x + t) &= S_X(x)^{\frac{(c - t)}{c}} + S_X(x + 1)^{\frac{t}{c}},  &t \in [0, c] \\
 \end{align*}
 \begin{align*}
 %\ell_{x+t} &= \ell_x^{(1-t)} \ell_{x+1}^{(t)} \\
@@ -212,25 +214,25 @@ S_X(x + t) &= S_X(x)^{\frac{(1 - t)}{c}} + S_X(x + 1)^{\frac{t}{c}},  &t \in [0,
 \qx[y]{x + t} &= 1 - (\px[c]{x})^{\frac{y}{c}}, & t \in[0, c],  y \in [0, c - t] \\
 \end{align*}
 % Tableau repris de Nicholas Langevin dans l'ancienne feuille de formules
-\textbf{Tableau résumé lorsque} $c = 1$\\
-\[
-\begin{array}{|l|c|c|c|} 
-                        \hline
-                        & \text{DUD} & \text{FC} \\
-                        \hline 
-                        \actsymb[t]{q}{x} & t \cdot q_x                 & 1 - p_x^{t}   \\
-                        \hline
-                        \actsymb[t]{p}{x} & 1 - t \cdot q_x             & p_x^{t}   \\
-                        \hline
-                        \dx[1]{x}         & t \cdot \dx[n]{x}           & \lx{x} (1 - p_x^{t})  \\
-                        \hline
-                        f_{t_x}(t)        & q_x                         & -p_x^t  \ln(p_x)   \\
-                        \hline
-                        \mu_{x+t}         & \frac{q_x}{1 - t \cdot q_x} & - \ln(p_x)   \\
-                        \hline
-\end{array}
-\]
-\\
+%\textbf{Tableau résumé lorsque} $c = 1$\\
+%\[
+%\begin{array}{|l|c|c|c|} 
+%                        \hline
+%                        & \text{DUD} & \text{FC} \\
+%                        \hline 
+%                        \actsymb[t]{q}{x} & t \cdot q_x                 & 1 - p_x^{t}   \\
+%                        \hline
+%                        \actsymb[t]{p}{x} & 1 - t \cdot q_x             & p_x^{t}   \\
+%                        \hline
+%                        \dx[1]{x}         & t \cdot \dx[n]{x}           & \lx{x} (1 - p_x^{t})  \\
+%                        \hline
+%                        f_{t_x}(t)        & q_x                         & -p_x^t  \ln(p_x)   \\
+%                        \hline
+%                        \mu_{x+t}         & \frac{q_x}{1 - t \cdot q_x} & - \ln(p_x)   \\
+%                        \hline
+%\end{array}
+%\]
+%\\
 Sous: 
 \begin{enumerate}
 	\item[\textbf{DUD} : ] $K_x \bot R_x$
@@ -305,7 +307,7 @@ Liens entre les fonctions pour $K_x$ et $T_x$:\\
 	&\stackrel{DUD}= e_x + \frac{1}{2} \\
 	V(T_x) = &V(K_x + R_x) \\
 	\stackrel{\bot}= &V(K_x) + V(R_x) \\
-	\stackrel{DUD}= &V(K_x) + \frac{1}{12} \\
+	\stackrel{DUD}= &V(K_x) + \frac{1}{12} 
 \end{align*}
 
 \subsubsection*{Variables censurées}
@@ -324,7 +326,7 @@ Espérance de vie \textbf{abrégée} temporaire \textit{n} années.
 e_{x:\angln} &= \esp{K_x \wedge n} \\
 &= \sum_{k = 0}^{n - 1} k \qx[k | ]{x} + n \ \px[n]{x} \\
 &= \sum_{k = 1}^{n} \px[k]{x}, & 0 \leq x < \omega - 1 \\
-&& n \in \{0, 1, \dots, \omega - x - 1\} 
+&& n \in \{0, 1, \dots, \omega - x - 1\}
 \end{align*}
 
 \subsubsection*{Variables tronquées}
@@ -340,7 +342,7 @@ Lien entre espérance tronquée et censurée.
 \begin{align*}
 	\eringx{x:\angln} &= \esp{T_x | T_x \leq n} \qx[n]{x} + n \ \px[n]{x} \\	
 		&= \esp{K_x | K_x \leq n} \qx[n + 1]{x} + (n + 1) \ \px[n + 1]{x} \\	
-		&\stackrel{\bot}= e_{x:\angln} + \frac{\qx[n]{x}}{2} \\
+		&\stackrel{\bot}= e_{x:\angln} + \frac{\qx[n]{x}}{2} 
 \end{align*}
 
 \subsubsection*{Formules de récurrence}
@@ -352,9 +354,10 @@ Lien entre espérance tronquée et censurée.
 \end{align*}
 
 \begin{align*}
-	e_{x + k} &= \px{x + k} (1 + e_{x + k + 1}) \\
-	\text{où } k &\in \{ (\omega - x - 2), (\omega - x - 3), \dots, 2, 1, 0  \} \\
-	\text{et } e_{\omega - 1} &= 0 \ \text{comme valeur de départ}
+	e_{x + n} &= \px{x + n} (1 + e_{x + n + 1}) \\
+			  &= e_{x + n:\angl{1}} + \px{x + n} e_{x + n + 1} 
+%	\text{où } k &\in \{ (\omega - x - 2), (\omega - x - 3), \dots, 2, 1, 0  \} \\
+%	\text{et } e_{\omega - 1} &= 0 \ \text{comme valeur de départ}
 \end{align*}
 
 \subsection{Caractéristiques de groupe}
@@ -387,112 +390,98 @@ On peut ensuite généraliser $\forall \ x \ge a$
 	\Dx[n]{x} &\sim \text{Bin}(\ell_a, \qx[x - a | n]{a}) \\
 \end{align*}
 
-$\text{Cov}( \Dx[n]{x}, \Dx[m]{y} )  =$
-\[
-	\begin{cases}
-		- \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{orange}{x + n} \le\color{blue}{ y} \\
-		\qx[y - a | x + n - y]{a} - \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{magenta}{y < x + n \le y + m} \\
-		\qx[y - a | m]{a} - \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{violet}{y + m \le x + n} \\
-	\end{cases}
-\]
-\\
+%$\text{Cov}( \Dx[n]{x}, \Dx[m]{y} )  =$
+%\[
+%	\begin{cases}
+%		- \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{orange}{x + n} \le\color{blue}{ y} \\
+%		\qx[y - a | x + n - y]{a} - \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{magenta}{y < x + n \le y + m} \\
+%		\qx[y - a | m]{a} - \qx[x - a | n]{a} \cdot \qx[y - a | m]{a}, & \color{violet}{y + m \le x + n} \\
+%	\end{cases}
+%\]
+%\\
+%
+%\begin{tikzpicture}[xscale=1.2]
+%	\draw [thick] (0,0) -- (6,0);
+%
+%	\draw (0,-.2) -- (0, .2);
+%		\draw [orange] (1.5,-.2) -- (1.5, .2); % 1er cas
+%	\draw (3,-.2) -- (3, .2);
+%		\draw [magenta] (4.5,-.2) -- (4.5, .2); % 2ème cas
+%		\draw [-] [draw=magenta, dashed, very thick] (3,0.2) -- (4.5,0.2); % 2ème cas
+%	\draw (5,-.2) -- (5, .2);
+%		\draw [violet] (6,-.2) -- (6, .2); % 3ème cas
+%		\draw [-] [draw=violet, dotted, ultra thick] (3,0.4) -- (5,0.4); % 3ème cas
+%	
+%	\node[align=left, below] at (0,-.2)%
+%	{$x$};
+%	\node[align=left, below] at (3,-.2)%
+%	{$y$};
+%	\node[align=left, below] at (5,-.2)%
+%	{$y + m$};
+%	
+%	\node[align=left, below] at (1.5,-.5) %1er cas
+%	{\color{orange}{$x + n$}};
+%	\node[align=left, below] at (4.5,-.5) %2ème cas
+%	{\color{magenta}{$x + n$}};
+%	\node[align=left, below] at (6,-.5) %3ème cas
+%	{\color{violet}{$x + n$}};
+%\end{tikzpicture}
 
-\begin{tikzpicture}[xscale=1.2]
-	\draw [thick] (0,0) -- (6,0);
+%\textbf{Raccourci} pour s'en souvenir où $\ell_a$ est le nombre inital de personnes :
+%
+%$\text{Cov}( \text{Groupe A}, \text{Groupe B} ) = $
+%\begin{align*}
+%	\ell_a \times \\
+%	\bigg( &\text{Pr}(\text{Appartenir aux groupes A et B}) \\
+%	&- \text{Pr}(\text{Appartenir au groupe A}) \\
+%	&\times \text{Pr}(\text{Appartenir au groupe B}) \bigg)
+%\end{align*}
 
-	\draw (0,-.2) -- (0, .2);
-		\draw [orange] (1.5,-.2) -- (1.5, .2); % 1er cas
-	\draw (3,-.2) -- (3, .2);
-		\draw [magenta] (4.5,-.2) -- (4.5, .2); % 2ème cas
-		\draw [-] [draw=magenta, dashed, very thick] (3,0.2) -- (4.5,0.2); % 2ème cas
-	\draw (5,-.2) -- (5, .2);
-		\draw [violet] (6,-.2) -- (6, .2); % 3ème cas
-		\draw [-] [draw=violet, dotted, ultra thick] (3,0.4) -- (5,0.4); % 3ème cas
-	
-	\node[align=left, below] at (0,-.2)%
-	{$x$};
-	\node[align=left, below] at (3,-.2)%
-	{$y$};
-	\node[align=left, below] at (5,-.2)%
-	{$y + m$};
-	
-	\node[align=left, below] at (1.5,-.5) %1er cas
-	{\color{orange}{$x + n$}};
-	\node[align=left, below] at (4.5,-.5) %2ème cas
-	{\color{magenta}{$x + n$}};
-	\node[align=left, below] at (6,-.5) %3ème cas
-	{\color{violet}{$x + n$}};
-\end{tikzpicture}
-
-\textbf{Raccourci} pour s'en souvenir où $\ell_a$ est le nombre inital de personnes :
-
-$\text{Cov}( \text{Groupe A}, \text{Groupe B} ) = $
-\begin{align*}
-	\ell_a \times \\
-	\bigg( &\text{Pr}(\text{Appartenir aux groupes A et B}) \\
-	&- \text{Pr}(\text{Appartenir au groupe A}) \\
-	&\times \text{Pr}(\text{Appartenir au groupe B}) \bigg)
-\end{align*}
-
-\subsubsection*{Lien entre $\ell_x$ et $S_X(x)$}
-
-\begin{align*}
-	\ell_x &= \ell_a S_{T_a}(x - a) = \ell_a \ \px[x - a]{a}
-\end{align*}
+$\text{Cov}( \text{A}, \text{B} ) = \esp{A \cap B} - \frac{\esp{A}\esp{B}}{\ell{a}}$
+%\subsubsection*{Lien entre $\ell_x$ et $S_X(x)$}
+%
+%\begin{align*}
+%	\ell_x &= \ell_a S_{T_a}(x - a) = \ell_a \ \px[x - a]{a}
+%\end{align*}
 
 
 \section{Contrats d'assurance-vie}
 Le paiement est soit en continu, soit à la fin de l'année ou à la fin de la $\frac{1}{m}$ d'année.
 
-\subsubsection*{Notation}
+\subsection{Notation et introduction}
 
-${{\color{cyan}{\boxed{}}}}\text{}^{{\color{gray}{\boxed{}}}}_{{\color{brown}{\boxed{}}}}\text{}_{{\color{blue}{\boxed{}}}}^{{\color{violet}{\boxed{}}}}\prescript{}{{\color{ao(english)}{\boxed{}}}}Ax_{{\color{red}{\boxed{}}}}^{{\color{magenta}{\boxed{}}}}$
+\subsubsection*{Fonctions}
 
-\textbf{\textcolor{red}{Couverture temporaire n années}}
-\begin{itemize}
-	\item[$\Ax{\termxn}$] Cas de décès.
-	\item[$\Ax{\pureendowxn}$] Cas de survie.
-	\item[$\Ax{x:\angln}$] Les deux cas.
-	\item[$\Ax{x}$] En tout temps.
-\end{itemize}
+\begin{enumerate}
+	\item[$a(T)$: ] Facteur d'accumulation.
+	\item[$v(T)$: ] Facteur d'actualisation.
+	\[
+		v(t) = \frac{1}{a(t)}
+	\]
+	\item[$Z$ : ] v.a. de la valeur actualisée du montant payé selon les termes du contrat.
+	\[
+		Z = b(T) v(f(T))
+	\]
+	\item[$b(T)$: ] Prestation prévue en fonction de T.
+	\item[$f(T)$: ] Montant du paiement en fonction de T. \\
+	De plus, puisque $f(T)$ n'a pas d'importance lorsque $b(T) = 0$, on défini son domaine pour simplifier des interprétations plus tard.
+	\[
+		f(t) \ge T
+	\]
+	\item[$A$ : ] Pour simplifier la notation, on dénote la \textit{prime unique nette} $\esp{Z}$, alias la \textbf{valeur actuarielle actualisée}, par $\esp{Z} = A$.
+\end{enumerate}
 
-\textbf{\textcolor{brown}{Période différée}}
-\begin{itemize}
-	\item[$\prescript{}{m|}A_{x}$] Couverture débutant dans n années.
-\end{itemize}
+\subsubsection*{Prestations}
 
-\textbf{\textcolor{blue}{Type de variation de la prestation}}
-\begin{itemize}
-	\item[$A_{x}$] Constant
-	\item[$\IA{x}$] Croissant arithmétiquement
-	\item[$\DA{x}$] Décroissant arithmétiquement
-\end{itemize}
-
-\textbf{{\color{violet}{Fréquence de variation}}} \\
-
-{\color{violet}{variation m fois par année}}
-\begin{align*}
-	\ImA_{x} \text{ et } \DmA_{x} 
-\end{align*}
-{\color{violet}{\textit{(dé)}croissance continue}}
-\begin{align*}
-	\IbA_x \text{ et } \DbA_x 
-\end{align*}
-
-\textbf{{\color{ao(english)}{\textbf{Durée temporaire de la variation}}}}\\
-$\twoletsymb{I_{\angln}}{A}_{x}$ Augmentation uniquement lors des n premières années de couverture.
+\[
+{{\color{cyan}{\boxed{}}}}\text{}^{{\color{gray}{\boxed{}}}}_{{\color{brown}{\boxed{}}}}\text{}_{{\color{blue}{\boxed{}}}}^{{\color{violet}{\boxed{}}}}\prescript{}{{\color{ao(english)}{\boxed{}}}}Ax_{{\color{red}{\boxed{}}}}^{{\color{magenta}{\boxed{}}}}
+\]
 
 \textbf{{\color{cyan}{\textbf{Prestation de base}}}}
 \begin{itemize}
 	\item[$b \Ax{x}$] Si quelque chose est payable c'est b.
 	\item[$b \IA_x$] Paye b lorsqu'il y a décès à la \textbf{fin} de la \textit{première année} de couverture.
-	\item[$b \IA_x$] Paye b lorsqu'il y a décès au \textbf{début} de la \textit{dernière année} de couverture.
-\end{itemize}
-
-\textbf{{\color{magenta}{\textbf{Moment de paiement de la prestation de décès}}}}
-\begin{itemize}
-	\item[$\bar{A}_x$] Au moment du décès.
-	\item[$\Ax{x}^{(m)}$] À la fin de 1/m années du décès.
+	\item[$b \DA_x$] Paye b lorsqu'il y a décès au \textbf{début} de la \textit{dernière année} de couverture.
 \end{itemize}
 
 \textbf{{\color{gray}{\textbf{Force, ou multiple j de la, d'intérêt $\delta$}}}}
@@ -503,62 +492,124 @@ $0 \leq \delta < 1 \text{ et } j \in \mathbb{Z}_+$
 	\item[$\prescript{j}{}{A}_x$] Évaluation avec \textbf{\textit{j} fois force} d'intérêt $\delta$ \textit{(pas nécessairement constante)}.
 \end{itemize}
 
-%\subsubsection*{Principes de calcul de la prime pour un seul contrat}
-%
-%\begin{enumerate}
-%	\item[$Z$ : ] v.a. de la valeur actualisée du montant payé selon les termees du contrat.
-%\end{enumerate}
-%
-%Principes pour calculer la prime \textit{(unique)} à payer pour un contrat d'assurance:
-%\begin{enumerate}
-%	\item $\esp{Z}$ \textbf{principe d'équivalence}
-%	\item $\esp{Z} + k \sigma_Z$
-%	\item $\xi$ \textbf{quantile de} $Z$.\\
-%\end{enumerate}
-%
-%Interprétations pour un seul contrat
-%\begin{enumerate}
-%	\item En moyenne l'assureur ne fait ni gains ni pertes
-%	\item Lorsqu'il y a plusieurs contrats, le principe est équivalent au troisième mais lorsqu'il n'y en a qu'un seul alors il ne tient pas.
-%	\item Plus petite prime $\pi$ telle que $Pr(Z \ge \pi) = p$
-%\end{enumerate}
-%
-%\subsubsection*{Principes de calcul pour un portefeuille de plusieurs contrats}
-%
-%Suppose l'indépendance des différentes vies des contrat par défaut.
+\textbf{\textcolor{brown}{Période différée}}
+\begin{itemize}
+	\item[$\prescript{}{m|}A_{x}$] Couverture débutant dans n années.\\
+	\textbf{\textit{Donc}} si décède avant les m années, il n'y a pas de paiements.
+\end{itemize}
+
+\textbf{{\color{violet}{Fréquence de variation}}} \\
+{\color{violet}{variation m fois par année}}
+\begin{align*}
+	\ImA_{x} \text{ et } \DmA_{x} 
+\end{align*}
+{\color{violet}{\textit{(dé)}croissance continue}}
+\begin{align*}
+	\IbA_x \text{ et } \DbA_x 
+\end{align*}
+
+\textbf{\textcolor{blue}{Type de variation de la prestation}}
+\begin{itemize}
+	\item[$A_{x}$] Constant
+	\item[$\IA{x}$] Croissant arithmétiquement
+	\item[$\DA{x}$] Décroissant arithmétiquement
+\end{itemize}
+
+\textbf{{\color{ao(english)}{\textbf{Durée temporaire de la variation}}}}\\
+$\twoletsymb{I_{\angln}}{A}_{x}$ Augmentation uniquement lors des n premières années de couverture.
+
+\textbf{{\color{magenta}{\textbf{Moment de paiement de la prestation de décès}}}}
+\begin{itemize}
+	\item[$\bar{A}_x$] Au moment du décès.
+	\item[$\Ax{x}^{(m)}$] À la fin du 1/m année du décès.\\
+	\textit{Pour exemple}, si $m = 12$ alors c'est payable à la fin du mois de décès.
+\end{itemize}
+
+\textbf{\textcolor{red}{Couverture temporaire n années}}
+\begin{itemize}
+	\item[$\Ax{\termxn}$] Cas de décès.
+	\item[$\Ax{\pureendowxn}$] Cas de survie.
+	\item[$\Ax{x:\angln}$] Les deux cas.
+	\item[$\Ax{x}$] En tout temps.
+\end{itemize}
+
+\subsubsection*{Principes de calcul de la prime pour un seul contrat}
+
+
+Principes pour calculer la prime \textit{(unique)} à payer pour un contrat d'assurance:
+\begin{enumerate}
+	\item $\esp{Z}$ \textbf{principe d'équivalence}
+	\item $\esp{Z} + k \sigma_Z$
+	\item $\xi$ \textbf{quantile de} $Z$.\\
+\end{enumerate}
+
+Interprétations pour un seul contrat
+\begin{enumerate}
+	\item En moyenne l'assureur ne fait ni gains ni pertes
+	\item Lorsqu'il y a plusieurs contrats, le principe est équivalent au troisième mais lorsqu'il n'y en a qu'un seul alors il ne tient pas.
+	\item Plus petite prime $\pi$ telle que $Pr(Z \ge \pi) = p$
+\end{enumerate}
+
+\subsubsection*{Principes de calcul pour un portefeuille de plusieurs contrats}
+
+Généralement, on suppose les $n$ différents contrats $Z_{j}$ d'être identique et les vies à être indépendantes \textit{(i.i.d.)}.
+
+\begin{align*}	
+	S &= \sum_{j = 1}^{n} Z_j
+\end{align*}
+
+\begin{enumerate}
+	\item[1. ] Par le \textbf{principe d'équivalence}, $\esp{Z} = \pi$.
+	\item[3. ] \textbf{Principe du quantile }$Pr(S \le n \pi) \ge p$, où $p$ est la \textbf{probabilité de solvabilité}.
+\end{enumerate}
+
+Cependant, si les contrats ne sont \textbf{\textit{pas identique}}, la \textbf{prime varie }selon le contrat.
+\begin{enumerate}
+	\item[1. ] Pour chaque type de contrat le \textbf{principe d'équivalence} ne change pas, $\esp{Z} = \pi$.
+	\item[3. ] Pour le \textbf{Principe du quantile }on veut maintenant une \textbf{surchage égale} pour tous les contrats et donc le plus petite h telle que $Pr(S \le h) \ge p$.
+	\item[$h$ : ] Prime collective sous le principe du quantile.
+\end{enumerate}
+
+Doit trouver la surchage $\theta$ qui, lorsqu'appliqué à chacune des espérances individuelles, donnera la prime collective au total.
+
+\begin{enumerate}
+	\item[$\theta$ : ] \textbf{Surchage}
+\begin{align*}
+		\pi &= (1 + \theta) \esp{Z} \\
+		h &= (1 + \theta) \esp{S} 
+\end{align*}
+	\item[] \textbf{Suprime}
+	\[
+		\theta \esp{Z}
+	\]
+\end{enumerate}
+
+Puisque par défaut les $Z_{j}$ sont \textit{(iid)} on applique \textbf{l'approximation normale} avec $S \sim N(\esp{S} = n \esp{Z}, V(S) = nV(Z))$.
+
+%On peut alors obtenir le quantile de niveau $1 - \alpha$ de $S$ par le principe du quantile:
+
+$\Phi^{-1} = z_{1 - p}$
+
+\begin{align*}
+	z_{1 - p} &\le \frac{\sqrt{n} ( \pi - \esp{Z}}{\sigma_{Z}}\\
+	\pi &\ge \esp{Z} + z_{1 - p} \left(\frac{\sigma_{Z}}{\sqrt{n}}\right) \\
+	n &\ge \left(\frac{z_{1 - p}\sigma_{Z}}{\pi - \esp{Z}}\right) = n_{p} 
+\end{align*} 
+
+Donc avec $h$ on résoud $h = (1 + \theta) \esp{Z}$ et applique la surprime à tous les assurés.
+
 %Si une même vie achète plusieurs contrats d'assurance vie, faut tenir compte des covariances.
-%
-%Si contrats identiques, divise la prime totale parmis les contrats du portefeuille. 
-%Si les contrats sont différents, doit trouver la surchage $\theta$ qui, lorsqu'appliqué à chacune des espérances individuelles, donnera la prime collective au total.
-%
-%\textbf{Surchage}: Fraction de l'espérance ajouté pour égaler la prime chargée.
-%\[
-%	\pi = (1 + \theta) \times \esp{Z}
-%\]
-%
-%\textbf{Surprime}: Prime chargée en sus de l'espérance.
-%
-%En général lorsque $Z_j$ sont (iid):
-%\begin{align*}
-%	S &= \sum_{j = 1}^{n} Z_j
-%\end{align*}
-%
-%Contrats identiques:
-%\begin{enumerate}
-%	\item $\esp{Z} = \pi$
-%	\item $Pr(S \le n \pi) \ge p$
-%\end{enumerate}
-%
-%Contrats non identiques \textit{la prime varie selon le type de contrat}.:
-%\begin{enumerate}
-%	\item $\esp{Z} = \pi$ pour chaque type de contrat
-%	\item
-%	\item Plus petit h t.q. $Pr(S \le h) \ge p$ avec une \textbf{surchage }égale pour tous les contrats.
-%\end{enumerate}
-%
-%$S \sim N(\esp{S} = n \esp{Z}, V(S) = nV(Z)) $
-%
-%surchage et n
+
+\subsubsection*{Règle des moments}
+
+Lorsque $b_{t}^{j} = b_{t}, t \ge 0$, alias $b_{t} \in \{ 0, 1\}$, alors:
+\begin{align*}
+	\esp{Z^{j}}@\delta_{t} &= \esp{Z}@ j \times \delta_{t}
+\end{align*}
+
+
+
+
 
 \subsection{Durée temporaire}
 
@@ -581,11 +632,11 @@ $0 \leq \delta < 1 \text{ et } j \in \mathbb{Z}_+$
 	& = \sum_{k=0}^{n-1} v^{k+1} \px[k]{x} \qx[]{x+k} \\
 \end{flalign*}
 
-\paragraph{Assurance-vie dotation pure} On verse le capital à l'assuré si celui-ci est toujours en vie après $n$ années.
+\paragraph{Capital différé de n années} On verse le capital à l'assuré si celui-ci est toujours en vie après $n$ années.
 \begin{align*}
 \Ax{\pureendowxn}	& = \px[n]{x} v^n = \Ex[n]{x} \\
 \end{align*}
-où $\Ex[n]{x}$ est un facteur d'actualisation actuarielle.
+où $\Ex[n]{x}$ est un \textbf{facteur d'actualisation actuarielle}.
 
 \paragraph{Assurance mixte} On verse le capital à l'assuré si il décède dans les $n$ prochaines années, ou si il est toujours en vie après cette période.
 \begin{align*}
@@ -594,7 +645,7 @@ où $\Ex[n]{x}$ est un facteur d'actualisation actuarielle.
 \Ax{x:\angln}		& = \sum_{k=0}^{n-1} v^{k+1} \qx[k|]{x} + v^n \px[n]{x} \\
 \end{align*}
 
-\paragraph{Assurance différée} On verse le capital à l'assuré lors de son décès seulement si le décès survient dans plus de $m$ années \footnote{Interprétation : Une assurance-vie entière qui débute dans $m$ années.}
+\paragraph{Assurance différée de n années} On verse le capital à l'assuré lors de son décès seulement si le décès survient dans plus de $m$ années \footnote{Interprétation : Une assurance-vie entière qui débute dans $m$ années.}
 
 \begin{align*}
 \Ax*[m|]{x}	& = \int_{m}^{\omega -x} v^t \px[t]{x} \mu_{x+t} dt \\

@@ -11,7 +11,7 @@
 \def\BackgroundColor{white}
 \def\SectionColor{blue!80!white}
 \def\SubSectionColor{blue!30!black}
-\input{../../preamble-template/cheatsht-preamble.tex}
+\input{cheatsht-preamble.tex}
 
 %% -----------------------------
 %% Début du document
@@ -69,46 +69,34 @@ De plus,
 \covar{X, Y} = \esp{\covar{X, Y | Z}} + \covar{\esp{X | Z}, \esp{Y | Z}}
 \end{align*}
 
-\subsection*{Poisson composée}
-\begin{enumerate}[label=\faAngleRight]
-\item Soit $S = X_1 + ... + X_N$, où les $X_i$ sont \textit{iid}, $N \sim Pois(\lambda)$ est stochastiquement indépendant des $X_i$. Alors, on a
-\begin{align*}
-\esp{S h(S)} = \lambda \esp{X h(S+X)}
-\end{align*}
+%\subsection*{Poisson composée}
+%\begin{enumerate}[label=\faAngleRight]
+%\item Soit $S = X_1 + ... + X_N$, où les $X_i$ sont \textit{iid}, $N \sim Pois(\lambda)$ est stochastiquement indépendant des $X_i$. Alors, on a
+%\begin{align*}
+%\esp{S h(S)} = \lambda \esp{X h(S+X)}
+%\end{align*}
+%
+%\item On peut aussi trouver que
+%\begin{align*}
+%\esp{S^n} = \lambda \sum_{j=0}^{n-1} \binom{n-1}{j} \esp{S^j} \esp{X^{n-j}}
+%\end{align*}
+%\end{enumerate}
 
-\item On peut aussi trouver que
-\begin{align*}
-\esp{S^n} = \lambda \sum_{j=0}^{n-1} \binom{n-1}{j} \esp{S^j} \esp{X^{n-j}}
-\end{align*}
-\end{enumerate}
-
-\subsection*{Mesures de risque}
-\begin{enumerate}[label=\faAngleRight]
-\item Value-At-Risk ($VaR$) : représente le quantile au niveau $\kappa$ de $X$.
-\begin{align*}
-VaR_\kappa(X) = F_X^{-1}(\kappa) = \inf \{ x \geq 0 : F_X(x) \geq \kappa \}
-\end{align*}
-
-\item Tail Value-At-Risk (aussi appelée \textit{Conditional Tail Expectation})  : représente la perte moyenne de $X$, sachant qu'elle est au dessus de la valeur $VaR_\kappa(X)$.
-\begin{align*}
-TVaR_\kappa(X) & = \esp{X | X > VaR_\kappa(X)} \\
-	& = \int_{0}^{\infty} x f_{X | X > VaR_\kappa(X)}(x) dx \\
-	& = \int_{VaR_\kappa(X)}^{\infty} \frac{x f_X(x)}{\overline{F}_X(VaR_\kappa(X))} dx \\
-	& = \frac{1}{1 - \kappa} \int_{VaR_\kappa(X)}^{\infty} x f_X(x) dx \\
-\end{align*}
-\end{enumerate}
-
-
-
-
-
-
-
-
-
-
-
-
+%\subsection*{Mesures de risque}
+%\begin{enumerate}[label=\faAngleRight]
+%\item Value-At-Risk ($VaR$) : représente le quantile au niveau $\kappa$ de $X$.
+%\begin{align*}
+%VaR_\kappa(X) = F_X^{-1}(\kappa) = \inf \{ x \geq 0 : F_X(x) \geq \kappa \}
+%\end{align*}
+%
+%\item Tail Value-At-Risk (aussi appelée \textit{Conditional Tail Expectation})  : représente la perte moyenne de $X$, sachant qu'elle est au dessus de la valeur $VaR_\kappa(X)$.
+%\begin{align*}
+%TVaR_\kappa(X) & = \esp{X | X > VaR_\kappa(X)} \\
+%	& = \int_{0}^{\infty} x f_{X | X > VaR_\kappa(X)}(x) dx \\
+%	& = \int_{VaR_\kappa(X)}^{\infty} \frac{x f_X(x)}{\overline{F}_X(VaR_\kappa(X))} dx \\
+%	& = \frac{1}{1 - \kappa} \int_{VaR_\kappa(X)}^{\infty} x f_X(x) dx \\
+%\end{align*}
+%\end{enumerate}
 
 
 
@@ -122,7 +110,15 @@ Une chaîne de Markov est homogène si
 \end{align*}
 On définit la matrice des probabilités de transition
 \begin{align*}
-P = [p_{ij}]_{i \times j}  
+P &= [p_{ij}]_{i \times j} \\
+&= \left[
+\begin{matrix}
+	P_{00} & P_{01} & P_{02} & \dots \\
+	P_{10} & P_{11} & P_{12} & \dots \\
+	P_{20} & P_{21} & P_{22} & \dots \\
+	\vdots & \vdots & \vdots & \ddots \\
+\end{matrix}
+\right]
 \end{align*}
 
 \subsection*{Équation de Chapman-Kolmogorov}
@@ -159,8 +155,20 @@ p_{ik}^{(n+m)} = \sum_{r=0}^{\infty} p_{ir}^{(n)} p_{rk}^{(m)} \geq p_{ij}^{(n)}
 \subsection*{États récurrents, transcients et absorbants}
 \begin{enumerate}[label=\faAngleRight]
 \item $f_{ii}$ : probabilité de revenir éventuellement à l'état $i$ en ayant comme point de départ $i$.
-\item Si $f_{ii} = 1$, $i$ est récurrent. Si $f_{ii} < 1$, alors $i$ est transcient.
-\item Aussi, si $\sum_{n=1}^{\infty} p_{ii}^{(n)} = \infty$, alors $i$ est récurrent. Sinon, il est transcient.
+\item 
+\begin{multicols*}{2}
+\textbf{État récurrent} 
+\begin{align*}
+&	f_{ii} = 1 \\
+&	\sum_{n = 1}^{\infty} P_{ii}^{(n)} = \infty 
+\end{align*}
+\newpage
+\textbf{État transcient}
+\begin{align*}
+&	f_{ii} < 1 \\
+&	\sum_{n = 1}^{\infty} P_{ii}^{(n)} < \infty 
+\end{align*}
+\end{multicols*}
 \item Si l'état $i$ est récurrent et que $i \leftrightarrow j$, alors $j$ est récurrent aussi.
 \item $f_{ii}^{(n)}$ : probabilité de revenir à l'état $i$ pour la première fois après $n$ étapes.
 \item Une chaîne de Markov irréductible avec espace d'état fini \textbf{n'a que des états récurrents}.
@@ -198,10 +206,18 @@ avec $\pi_i = \frac{1}{\mu_{ii}}$
 \item On peut alors résoudre un système d'équations pour trouver nos $\pi_i$.
 \end{enumerate}
 
+\subsection*{Système Bonus Malus}
+
+\begin{enumerate}
+	\item[$s_{i}(k)$ : ] Le prochain état d'un assuré dans l'état $i$ ayant eu $k$ accidents.
+	\item[$a_{k}$ : ] Probabilité qu'un assuré ait $k$ accidents.
+\end{enumerate}
+
 \section{Processus de Poisson}
 Soit $N(t)$ le nombre d'évènements qui se sont produits dans l'intervalle $t$.
 
 \subsection*{Définitions}
+
 \begin{definition}[Définition 1]
 Un processus de dénombrement $\{N(t) ; t \geq 0 \}$ est dit un processus de Poisson avec $\lambda >0$ ssi
 \begin{enumerate}[label=(\arabic*)]

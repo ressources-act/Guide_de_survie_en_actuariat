@@ -48,8 +48,8 @@ Y_i | x_i & \overset{\mathbf{H}_4}{\sim} \mathcal{N} (\beta_0 + \beta_1 x_i, \si
 \rowcolor{cyan!40!white} \text{E[$\hat{\beta}_j$]} & \text{V($\hat{\beta}_j$)} & \text{Sous l'hypothèse de normalité } \\\hline
 
 	\beta_0 & 
-	\thead{\sigma^2 \left( \frac{1}{n} \frac{\bar{x}^2}{S_{xx}} \right)} & 
-	\thead{\hat{\beta}_0 \overset{H_4}{\sim} \mathcal{N} \left(\beta_0, \sigma^2 \left[ \frac{1}{n}  + \frac{\bar{x}^2}{S_{XX}} \right] \right)}
+	\thead{\sigma^2 \left( \frac{1}{n}+  \frac{\bar{x}^2}{S_{xx}} \right)} & 
+	\thead{\hat{\beta}_0 \overset{H_4}{\sim} \mathcal{N} \left(\beta_0, \sigma^2 \left[ \frac{1}{n} + \frac{\bar{x}^2}{S_{XX}} \right] \right)}
 \\\hline
 
 	\beta_1 & 
@@ -149,10 +149,10 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 \subsubsection*{Test F de Fisher pour la validité globale de la régression}
 On rejette $H_0 : \beta_1 =  \beta_2 = ... =  \beta_p = 0$ si 
 \begin{align*}
-F_{obs} = \frac{MSR}{MSE} \geq F_{n, n-p'}(1 - \alpha)
+F_{obs} &= \frac{MSR}{MSE} \geq F_{p, n-p'}(1 - \alpha) 
 \end{align*}
-où $p$ est le nombre de variables explicatives dans le modèle (régression linéaire simple, $p=1$ et $p' = p+1$).
-
+où $p$ est le nombre de variables explicatives dans le modèle (régression linéaire simple, $p=1$ et $p' = p+1$).\\
+À noter qu'on peut réécrire $F_{\text{obs}} = \frac{1 - R^{2}}{R^{2}}$
 
 
 \subsection*{Distribution d'un résidu $\varepsilon$}

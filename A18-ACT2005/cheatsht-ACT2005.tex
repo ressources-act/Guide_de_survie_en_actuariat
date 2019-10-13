@@ -291,7 +291,7 @@ F_n(x) &=
 		F_{n}^{\text{OGIVE}}(x) &= \alpha F_{n}(c_{j - 1}) + (1 - \alpha) F_{n}(c_{j}) \\
 		&= \frac{c_{j} - x}{c_{j} - c_{j - 1}} F_{n}(c_{j - 1}) + \frac{x - c_{j - 1}}{c_{j} - c_{j - 1}} F_{n}(c_{j}) \\
        	\text{où } &\ F_{n}(c_j) = \frac{\sum_{i = 1}^{j} n_{i}}{n} \\
-%       	f_n(x) &= \frac{F_{n}(c_{j}) - F_{n}(c_{j - 1})}{c_{j} - c_{j - 1}} \Leftrightarrow \frac{n_j}{n(c_{j} - c_{j - 1})} \\
+       	f_n(x) &= \frac{F_{n}(c_{j}) - F_{n}(c_{j - 1})}{c_{j} - c_{j - 1}} \Leftrightarrow \frac{n_j}{n(c_{j} - c_{j - 1})} \\
     \end{align*}
 \end{itemize}
 
@@ -327,14 +327,40 @@ F_n(x) &=
 	\[
 	S_{m}(t) = \prod\limits_{j \le t} \left( 1 - \frac{S_j}{r_j} \right)
 	\]		
+	\item[] On utilise la \textbf{méthode Delta} pour trouver la variance:
+	\[
+		V\big(g(\widehat{\theta})\big) = \big(g'(\widehat{\theta}_{0})\big)^2 V(\widehat{\theta})
+	\]
+	Pour ensuite obtenir:
+	\begin{align*}
+		V(S_n(t)) &= \big( S_n(t) \big)^2 \sum_{j \le t}\frac{q_j}{r_j p_j} 
+	\end{align*}
+	\item[] On peut donc estimer cette variance avec la \textbf{(Formule de Greenwood)}:
+	\begin{align*}	
+		\widehat{V}[S_{n}(t)] &= \big(S_{n}(t)\big)^2 \sum_{j \le t} \frac{S_j}{r_i(r_i - S_i)} 
+	\end{align*}
 \end{enumerate}
 
-\subsection*{Estimation de la fonction de hasard cumulative \textbf{\textit{Nelson-Aalen}}}
+%\subsubsection*{Estimateur \textbf{Nelson-Aalen} de la \textbf{\textit{cumulative hazard rate function}}}
 
-%\begin{align*}
-%	e^{-H(t)} &= S(t) \\
-%	H_{n}(t) &= -\text{ln}(S_n(t)) = \sum_{j \le t} -ln\left( 1 - \frac{S_j}{r_j} \right) 
-%\end{align*}
+\begin{enumerate}
+	\item[] On reprends la même notation pour trouver l'estimateur \textbf{Nelson-Aalen}:
+	\begin{align*}
+		\widehat{H}(t) &= \sum_{j \le t} \left( \frac{S_{j}}{r_{j}}\right)
+	\end{align*}
+	On peut ensuite déduire la fonction de survie empirique:
+	\begin{align*}
+		S_m(t) &= e^{\widehat{H}(t)}
+	\end{align*}	
+	La variance de la \textbf{\textit{cumulative hazard rate function}} est représentée comme suit:
+	\begin{align*}	
+		V(\widehat{H}(t)) &= \sum_{j \le t} V\left( \frac{S_j}{r_j} \right) = \frac{q_j p_j}{r_j}
+	\end{align*}
+	Ce qu'on peut ensuite estimer avec la \textbf{formule de Klein}:
+	\begin{align*}	
+		\widehat{V}(\widehat{H}(t)) &= \sum_{j \le t} \frac{\widehat{q}_j \widehat{p}_j}{r_j} = \frac{S_j (r_j - S_j)}{r_j^3}  
+	\end{align*}
+\end{enumerate}
 
 \begin{align*}
 	S_j &\sim \text{Bin}(r_j, q_j) \\
