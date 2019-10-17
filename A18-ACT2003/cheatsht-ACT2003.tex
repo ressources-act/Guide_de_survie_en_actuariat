@@ -7,6 +7,7 @@
 
 % On débute la numérotation des chapitres à 2 pour suivre les notes à Marie-Pier.
 \setcounter{section}{1}
+\usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{tcolorbox}
 \newtcolorbox{algo}[1]{colback=blue!5!white,colframe=blue!75!black,fonttitle=\bfseries,title=#1}
@@ -18,6 +19,43 @@
 
 % \small
 \begin{multicols*}{3} % Nombre de colonnes (peut être changé plus tard.)
+\section*{Rappels algèbre linéaire}
+
+\begin{align*}
+	\matr{(A + B)^{\top}} &= \matr{A}^{\top} + \matr{B}^{\top} \\
+	\matr{(AB)^{\top}} &= \matr{B}^{\top}\matr{A}^{\top} \\
+	\begin{pmatrix}
+		a	&	b	\\
+		c	&	d	\\
+	\end{pmatrix}^{\top}
+	&=
+	\frac{1}{ad - bc} 
+	\begin{pmatrix}
+		d	&	-b	\\
+		-c	&	a	\\
+	\end{pmatrix}	\\
+	\text{tr}(\matr{A}) &= \sum^{m}_{i = 1} a_{i, i} \\
+\end{align*}
+
+\begin{description}
+	\item[Rang:] Nombre de colonnes \textit{(ou lignes)} linéairement indépendantes.
+	\item[symétrique:] Lorsqu'une matrice carrée $\matr{A} = \matr{A}^{\top}$.
+	\item[Idempotente:] Lorsqu'une matrice carrée $\matr{A} = \matr{A}\matr{A}$.
+\end{description}
+
+\textbf{Dérivées} où 
+\begin{description}
+	\item $\matr{a} = (a_{1}, \dots, a_{p})^{\top}$ 
+	\item $\matr{b} = (b_{1}, \dots, b_{p})^{\top}$ 
+	\item $\matr{A}_{p \times p}$ est symétrique 
+	\item $f(\matr{b})$ est dérivable du vecteur $\matr{b}$
+\end{description}
+\begin{align*}
+	\frac{\partial}{\partial \matr{b}} \matr{b^{\top}} \matr{a} &= \matr{a}	\\
+	\frac{\partial}{\partial \matr{b}} \matr{b^{\top}} \matr{A} \matr{b} &= 2 \matr{A}\matr{b}	\\
+	\frac{\partial}{\partial \matr{b}} f(\matr{b})^{\top} \matr{A} f(\matr{b}) &= 2 \left(\frac{\partial}{\partial \matr{b}} f(\matr{b}) \right)^{\top} \matr{A} f(\matr{b})	\\
+\end{align*}
+
 \section{Régression linéaire simple}
 \subsection*{Postulats}
 \begin{enumerate}[label=$\mathbf{H}_{\arabic*}$]
@@ -92,18 +130,18 @@ où \textcolor{blue}{$p$' = 2} en régression linéaire simple.
 		H_1 &:\hat{\beta} \neq \theta_0
 	\end{aligned} &  
 	\frac{\hat{\beta} - \theta_0}{\sqrt{\widehat{V	(\hat{\beta}})}} \overset{H_1}{\sim} T_{(n - 2)}  &
-	| t_{obs} | > \left| t_{(n - 2), \frac{k}{2}} \right| \\
+	| t_{obs} | > \left| t_{(n - 2),\alpha/2} \right| \\
 \hline
 \end{tabular}
 \\
-$\therefore$ rejete $H_0$ si $| t_{obs} | > \left| t_{(n - 2), \frac{k}{2}} \right| $.
+$\therefore$ rejete $H_0$ si $| t_{obs} | > \left| t_{(n - 2), \alpha/2} \right| $.
 
 \subsection*{Intervalle de confiance}
 
 \subsubsection*{Pour les paramètres $\widehat{\beta}_0$ et $\widehat{\beta}_1$}
 \begin{align*}
-\Bigg[\widehat{\beta}_0 &\pm t_{(n - 2), \frac{k}{2}} s \sqrt{\frac{1}{n} + \frac{\bar{x}^{2}}{S_{xx}}} \Bigg] \\
-\Bigg[ \hat{\beta}_1 &\pm t_{(n - 2), \frac{k}{2}} \frac{s}{\sqrt{S_{xx}}} \Bigg]
+\Bigg[\widehat{\beta}_0 &\pm t_{(n - 2), \alpha/2} s \sqrt{\frac{1}{n} + \frac{\bar{x}^{2}}{S_{xx}}} \Bigg] \\
+\Bigg[ \hat{\beta}_1 &\pm t_{(n - 2), \alpha/2} \frac{s}{\sqrt{S_{xx}}} \Bigg]
 \end{align*}
 
 \subsection*{Prévisions}
@@ -120,14 +158,14 @@ $\therefore$ rejete $H_0$ si $| t_{obs} | > \left| t_{(n - 2), \frac{k}{2}} \rig
 \]
 
 \end{enumerate}
-$\because \esp{\epsilon} = 0  \therefore \widehat{\esp{Y | x_o }} = \widehat{Y}_o = \beta_0 + \beta_1 x_0$ 
+$\because \esp{\epsilon} = 0  \therefore \widehat{\esp{Y | x_0 }} = \widehat{Y}_0 = \widehat{\beta}_0 + \widehat{\beta}_1 x_0$ 
 
 % clear column and go to the next one
 %\vfill\null
 
 \subsubsection*{2 sources d'erreur dans nos prévisions}
 \begin{enumerate}
-	\item \textbf{Parameter risk} pour $\esp{Y | x_o }$ et $Y_0$. \\
+	\item \textbf{Parameter risk} pour $\esp{Y | x_0 }$ et $Y_0$. \\
 		\textit{alias} l'incertitude liée à l'estimation des paramètres  $\beta_0 \text{ et } \beta_1$.
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -198,10 +236,78 @@ $\because \esp{\epsilon} = 0  \therefore \widehat{\esp{Y | x_o }} = \widehat{Y}_
 
 \end{enumerate}
 
+%\vfill\null
+
 \subsubsection*{Intervalles de confiance de niveau $1 - \kappa$}
 \begin{align*}
-\esp{Y | x_o } &\in \Bigg[ \widehat{Y}_0 \pm t_{(n - 2), \frac{k}{2}} \sqrt{s^2 \bigg( \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{XX}} \bigg)} \Bigg] \\
-Y_0 &\in \Bigg[ \widehat{Y}_0 \pm t_{(n - 2), \frac{k}{2}} \sqrt{s^2 \bigg( 1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{XX}} \bigg)}\Bigg]
+\esp{Y | x_0 } &\in \Bigg[ \widehat{Y}_0 \pm t_{(n - 2), \alpha/2} \sqrt{s^2 \bigg( \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{XX}} \bigg)} \Bigg] 
+\end{align*}
+On peut voir cet I.C. ci-dessous. \\
+Plus $x^{*}$ s'éloigne de $\bar{x}$, plus l'incertitude augmente et l'I.C. est large.\\
+On voit alors que les limites de l'intervalle sont des \textit{hyperboles} centrées en $(\bar{x}, \bar{Y})$.\\
+De plus, on peut voir qu'on tient compte uniquement du \textbf{parameter risk} et non le \textbf{process risk}.
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp870397431068519] 
+\draw  (78,147.4) -- (197.66,147.4)(78,45.57) -- (78,147.4) -- cycle (190.66,142.4) -- (197.66,147.4) -- (190.66,152.4) (73,52.57) -- (78,45.57) -- (83,52.57)  ;
+%Straight Lines [id:da5049173065442072] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (87.31,126.57) -- (181.59,62.14) ;
+
+
+%Curve Lines [id:da7326433528773117] 
+\draw [line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (83.17,108.22) .. controls (100.17,106.22) and (119.17,90.22) .. (129.17,83.22) .. controls (139.17,76.22) and (161.17,61.22) .. (165.17,44.22) ;
+
+
+%Flowchart: Connector [id:dp2243219630944835] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][fill={rgb, 255:red, 65; green, 117; blue, 5 }  ,fill opacity=1 ] (133.27,93.26) .. controls (133.27,91.58) and (134.63,90.22) .. (136.31,90.22) .. controls (137.99,90.22) and (139.36,91.58) .. (139.36,93.26) .. controls (139.36,94.95) and (137.99,96.31) .. (136.31,96.31) .. controls (134.63,96.31) and (133.27,94.95) .. (133.27,93.26) -- cycle ;
+%Flowchart: Connector [id:dp9119322800971501] 
+\draw  [color={rgb, 255:red, 32; green, 0; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 32; green, 0; blue, 255 }  ,fill opacity=1 ] (92.27,121.26) .. controls (92.27,119.58) and (93.63,118.22) .. (95.31,118.22) .. controls (96.99,118.22) and (98.36,119.58) .. (98.36,121.26) .. controls (98.36,122.95) and (96.99,124.31) .. (95.31,124.31) .. controls (93.63,124.31) and (92.27,122.95) .. (92.27,121.26) -- cycle ;
+%Straight Lines [id:da06657275607687563] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (136.45,93.36) -- (136.5,145.89) ;
+
+
+%Curve Lines [id:da5650856983111632] 
+\draw [line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (103.17,139.22) .. controls (107.17,129.22) and (137.17,105.22) .. (142.17,101.22) .. controls (147.17,97.22) and (183.17,78.22) .. (197.17,77.22) ;
+
+
+%Straight Lines [id:da7326669964019019] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (78.5,93.36) -- (136.45,93.36) ;
+
+
+%Straight Lines [id:da3903502565018435] 
+\draw [color={rgb, 255:red, 32; green, 0; blue, 255 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (95.31,121.26) -- (95.31,145.89) ;
+
+
+%Straight Lines [id:da01570604577282686] 
+\draw [color={rgb, 255:red, 32; green, 0; blue, 255 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (79.5,121.26) -- (95.31,121.26) ;
+
+
+
+
+% Text Node
+\draw (137,155) node [scale=0.7,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle \overline{x}$};
+% Text Node
+\draw (70,91) node [scale=0.7,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle \overline{Y}$};
+% Text Node
+\draw (97,154) node [scale=0.8,color={rgb, 255:red, 32; green, 0; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle x^{*}$};
+% Text Node
+\draw (58,123) node [scale=0.7,color={rgb, 255:red, 32; green, 0; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle E\left[\hat{Y} |x^{*}\right]$};
+% Text Node
+\draw (204,53) node [scale=0.7,color={rgb, 255:red, 157; green, 2; blue, 21 }  ,opacity=1 ] [align=left] {$\displaystyle Y_{i}$=$\displaystyle \hat{\beta }_{0} +\hat{\beta }_{1} x_{i}$};
+% Text Node
+\draw (68,44) node [scale=0.8] [align=left] {$\displaystyle Y$};
+% Text Node
+\draw (203,155) node [scale=0.8] [align=left] {$\displaystyle x$};
+
+
+\end{tikzpicture}
+
+L'I.C. pour la prévision tient compte du \textcolor{blue}{\textbf{process risk}} \textbf{\textit{en plus}} du \textbf{parameter risk}.
+
+\begin{align*}
+Y_0 &\in \Bigg[ \widehat{Y}_0 \pm t_{(n - 2), \alpha/2} \sqrt{s^2 \bigg( {\color{blue}1} + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{XX}} \bigg)}\Bigg]
 \end{align*}
 
 \subsection*{Analyse de la variance (ANOVA)}
@@ -226,6 +332,7 @@ Où:
 \end{enumerate}  
 
 \textbf{SSR}: Quantifie la variabilité des prévisions $\widehat{Y}_i$ expliquée par le modèle car elles ne sont pas tous égales à la moyenne $\bar{Y}_i$. 
+
 \textbf{SSE}: Quantifie la variabilité des $Y_i - \widehat{Y}_i$ \textit{\textbf{pas}} expliquée par le modèle car il n'explique pas parfaitement $Y_i$.
 %\\$\esp{MSR} = \sigma^{2} + \beta_{1}^{2}S_{XX}$\\
 %$\esp{MSR} = \sigma^{2}$
@@ -558,10 +665,10 @@ Il ne devrait pas avoir de tendances discernables du nuage de points \textit{(il
 
 \end{tikzpicture}
 
-\item graphique $\hat{\varepsilon}_i | x_i$: Le graphique est l'interprétation est la même que $\hat{\varepsilon}_i | Y_i$.
+\item graphique $\hat{\varepsilon}_i | x_i$: Le graphique et l'interprétation est la même que $\hat{\varepsilon}_i | Y_i$.
 \end{itemize}
 
-
+%\vfill\null
 \subsubsection*{Homoscédasticité}
 Signifie que la variance des résidus n'est pas constante.
 Si un modèle de régression linéaire simple est approprié, les $r_{j}$ sont issus d'une distribution normale centrée réduite et devraient généralement se situer entre -3 et 3.
@@ -1070,7 +1177,7 @@ Puisque c'est difficile à tester, on peut faire la graphique des résidus en fo
 	\[g(Y) = \text{arcsin}(\sqrt{Y})\]
 \end{enumerate}
 
-\vfill\null
+%\vfill\null
 \subsection*{Prévision sous transformation}
 $\esp{g(Y)} \not = g(\esp{Y})$
 \begin{enumerate}
@@ -1216,12 +1323,12 @@ est le meilleur estimateur pour $\matr{a^\top} \bm{\beta}$ où $\matr{a^\top} = 
 
 \subsubsection*{I.C. pour la prévision de la valeur moyenne $\esp{\matr{Y} | \matr{x^*}}$}
 \begin{align*}
-\left[ \matr{{x^*}^\top} \hat{\bm{\beta}} \pm t_{n-p'}\left(1 - \frac{\alpha}{2} \right) \sqrt{s^2 \matr{{x^*}^\top} (\matr{X}^\top \matr{X})^{-1}\matr{x^*}} \right]
+\left[ \matr{{x^*}^\top} \hat{\bm{\beta}} \pm t_{(n-p'), \alpha/2} \sqrt{s^2 \matr{{x^*}^\top} (\matr{X}^\top \matr{X})^{-1}\matr{x^*}} \right]
 \end{align*}
 
 \subsubsection*{I.C. pour la valeur prédite $\hat{\matr{Y}}|\matr{x^*}$}
 \begin{align*}
-\left[ \matr{{x^*}^\top} \hat{\bm{\beta}} \pm t_{n-p'}\left(1 - \frac{\alpha}{2} \right) \sqrt{s^2\left( 1 +  \matr{{x^*}^\top} (\matr{X}^\top \matr{X})^{-1}\matr{x^*}\right)} \right]
+\left[ \matr{{x^*}^\top} \hat{\bm{\beta}} \pm t_{(n-p'), \alpha/2} \sqrt{s^2\left( {\color{blue}1} +  \matr{{x^*}^\top} (\matr{X}^\top \matr{X})^{-1}\matr{x^*}\right)} \right]
 \end{align*}
 
 
@@ -1262,19 +1369,21 @@ où:
 	F_{obs} \Leftrightarrow \frac{(SSR^{(1)} - SSR^{(0)})}{\Delta dl \  MSE^{(1)}}
 \]
 
-\subsubsection*{Régression avec variables qualitatives}
+\subsection*{Régression avec variables qualitatives}
 
-Coder sous forme d'indicatrice:
+Lorsque nous avons une variable exogène représentant des catégories, il est important de la coder sous forme d'indicatrice:
+
 \begin{align*}
 	x_{i} &= \left\{
 	\begin{matrix}
 		1, & \text{si}\dots \\
 		0, & \text{sinon}
 	\end{matrix}
-	\right.\\
+	\right.
 \end{align*}
 
-S'il y a n $\ge 2$ états, alors créer \textbf{n - 1} variables.\\
+Lorsqu'il y a n $\ge 2$ états, alors il faut créer \textbf{n - 1} variables indicatrices.\\
+C'est \textbf{n - 1} puisque le n$^{\text{ème}}$ état est représenté lorsque toutes les autres variables indicatrices sont à 0.\\
 Exemple avec 3 états \textit{(rouge, bleu, vert)}.
 \begin{align*}
 	x_{i1} &= \left\{
@@ -1304,13 +1413,14 @@ Soit une combinaison de constantes \textit{(pas toutes égales à 0} $d_{1}, \do
 \begin{description}
 	\item[Multicolinéarité \textit{exacte}] Une variable est la combinaison linéaire d'une, \textit{ou plusieurs}, autres variables.\\
 	$\sum_{j = 1}^{p}d_{j}X_{j} = 0$
-	\item[Multicolinéarité \textit{au sens large}] Lorsque ce l'est presque. Plus fréquente et difficile à détecter. \\
+	\item[Multicolinéarité \textit{au sens large}] Lorsqu'une variable est \textit{presque} la combinaison linéaire d'une, ou plusieurs, autres variables.\\
+	Plus fréquente et difficile à détecter. \\
 	$\sum_{j = 1}^{p}d_{j}X_{j} \approx 0$
 \end{description}
 
 \subsubsection*{Problèmes potentiels}
 \begin{itemize}
-\item Instabilité de $\mathrm{(X^\top X)^{-1}}$, i.e. une petite variation de $Y$ peut changer de grandes variations en $\hat{\beta}$ et $\hat{Y}$.
+\item Instabilité de $\mathrm{(X^\top X)^{-1}}$, i.e. une petite variation de $Y$ peut causer de grandes variations en $\hat{\beta}$ et $\hat{Y}$.
 \item $\hat{\beta}_i$ de signes contre-intuitif.\\
  Pour exemple, le taux de chômage avec $\hat{\beta}_i > 0$ et le taux d'emploi avec $\hat{\beta}_k < 0$.
 \item $\text{V}(\hat{\beta}_i)$ et $\text{V}(\hat{Y})$ très grandes.
@@ -1318,11 +1428,26 @@ Soit une combinaison de constantes \textit{(pas toutes égales à 0} $d_{1}, \do
 \item Conclusions erronées sur la significativité de certains paramètres, malgré une forte corrélation avec $Y$.
 \end{itemize}
 
+%\vfill\null
+
 \subsubsection*{Détection}
 \begin{itemize}
-\item Si $r_{ij}$ dans la matrice de corrélation $\matr{{X^*}^\top X^*}$ est élevée, où $\matr{X^*} = \begin{bmatrix}
-\frac{x_1 - \bar{x}_1}{s_1} & ... & \frac{x_p - \bar{x}_p}{s_p}
-\end{bmatrix}_{1 \times p}$
+\item Si $r_{ij}$ dans la matrice des coefficients de corrélation échantillonnaux $\matr{{X^*}^\top X^*}$ est élevée, où $\forall j,k \in \{1, \dots, p\}$.
+
+\begin{align*}
+\matr{X^{*\top}X^{*}} &= 
+	\begin{bmatrix}
+		1	&	r_{12}	&	\dots	&	r_{1p}	\\
+		r_{21}	&	1	&	\dots	&	r_{2p}	\\
+		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
+		r_{p1}	&	r_{p2}	&	\dots	&	1	\\		
+	\end{bmatrix}_{p \times p} \\
+\matr{X^*} &= 
+	\begin{bmatrix}
+		\frac{x_1 - \bar{x}_1}{s_1} & \dots & \frac{x_p - \bar{x}_p}{s_p}
+	\end{bmatrix}_{1 \times p} \\
+r_{jk} &= \sum_{i = 1}^{n}\frac{(x_{ji} - \bar{x}_{j})(x_{ki} - \bar{x}_{k})}{s_{j}s_{k}} 
+\end{align*}
 \item Si le facteur d'inflation de la variance ($VIF_j$) est élevé où:
 \begin{align*}
 VIF_j = \frac{1}{1 - R_j^2}
@@ -1332,7 +1457,8 @@ Pour la $j$\up{e} variable exogène ($x_j$), on mesure le niveau de dépendance 
 $R_j^2$ mesurera la proportion de la variabilité de $x_j$ expliquée par les autres variables explicatives, s'il est élevé il semblerait avoir un problème.\\
 Le nom "\textit{facteur d'inflation}" vient du fait que la variance de $\hat{\beta}_j$ s'exprime en fonction du VIF :
 \begin{align*}
-	\text{V}(\hat{\beta}_j) = \frac{\sigma^2}{(\matr{X^{*\top} \matr{X^*})_{jj}}} VIF_j
+%	\text{V}(\hat{\beta}_j) = \frac{\sigma^2}{(\matr{X^{*\top} \matr{X^*})_{jj}}} VIF_j
+	\text{V}(\hat{\beta}_j) = \frac{\sigma^2}{\sum_{i = 1}^{n}(x_{ij} - \bar{x}_{j})^{2}} VIF_j
 \end{align*}
 \end{itemize}
 
@@ -1524,12 +1650,12 @@ est minimale et qu'on pose :
 On obtient alors:
 \begin{align*}
 	\widehat{\bm{\beta}} &= \matr{(X^{\top}V^{-1}X)^{-1}X^{\top}V^{-1}Y} \\
-	\text{V}(\bm{\beta}) &= \matr{(X^{\top}V^{-1}X)^{-1}}
+	\text{V}(\widehat{\bm{\beta}}) &= \matr{(X^{\top}V^{-1}X)^{-1}}
 \end{align*}
 \\
 On peut faire le \textbf{test} $H_0 : \beta_j = \beta_{j, 0}$ avec la statistique:
 \begin{align*}
-	t &= \frac{\widehat{\beta}_{j} - \beta_{j, 0}}{\sqrt{(\matr{X^{\top}V^{-1}Y)^{-1}_{jj}}}}
+	t &= \frac{\widehat{\beta}_{j} - \beta_{j, 0}}{\sqrt{(\matr{X^{\top}V^{-1}X)^{-1}_{jj}}}}
 \end{align*}
 Et utiliser $V = V^{*}\sigma^{2}$ en estimant $\sigma^{2}$ par:
 \begin{align*}

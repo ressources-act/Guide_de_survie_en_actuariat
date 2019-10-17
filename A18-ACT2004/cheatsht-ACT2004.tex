@@ -13,6 +13,8 @@
 
 % Ce packetage permet de créer des graphiques très intéressantes. Voir en ligne pour avoir des générateur sans avoir à les faire sois-même (le langage est intuitif cependant). 
 \usepackage{tikz}
+% Packetage pour avoir le symbole du domaine des Z
+\usepackage{dsfont}
 
 \definecolor{green_rectangle}{RGB}{131, 176, 84}
 \definecolor{red_rectangle}{RGB}{241,112,113}
@@ -755,7 +757,7 @@ où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
 
 \begin{enumerate}
 	\item[] Le capital \textbf{croit chaque année}.\\
-	La prestation est de 1 \$ pour la première année, 2 \$ pour la deuxième, etc.
+	La prestation est de 1 \$ pour la première année, 2 \$ pour la deuxième, etc. jusqu'à n \$ la dernière année.
 
 \begin{align*}
 	\IA*_{\termxn}  &= \int_0^n (1 + \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
@@ -769,7 +771,7 @@ où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
 	\twoletsymb{I^{(m)}}{\bar{A}}_{\nthtop{1}{x}:\angln} &= \int_0^n \frac{([t \times m] + 1)}{m} v^t \px[t]{x} \mu_{x+t} dt 
 \end{align*}
 
-	\item[] Le capital \textbf{croît pendant r années}.
+	\item[] Le capital \textbf{croît pendant r années}.\\
 \begin{align*}
 	\twoletsymb{I_{\anglr}}{\bar{A}}_{\termxn} &= \sum_{k = 0}^{r - 1} \Ax*[k|]{\termxn} \\
 %	&= \IA*_{\termxn} + r \Ax*[r|]{\nthtop{1}{x}:\angl{n-r}}
@@ -782,7 +784,7 @@ où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
 \end{align*}
 
 	\item[] Le capital \textbf{croît continûment}.\\
-	Paye une prestation de t au momment du décès, tant qu'il se produise dans les n premières années.
+	Paye une prestation de t au moment du décès, tant qu'il se produise dans les n premières années.
 
 \begin{align*}
 	\IbA*_{\termxn} &= \int_0^n t v^t \px[t]{x} \mu_{x+t} dt \\
@@ -870,7 +872,8 @@ où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
 \begin{enumerate}
 
 	\item[] Le capital \textbf{décroit chaque année} et donc la prestation doit nécessairement être une temporaire.\\
-	La prestation du début de la dernière année est de 1 \$, 2\$ pour le début de l'avant dernière année, etc. 
+	Paye n \$ au début de la première année, n-1 \$ au début de la deuxième, etc. jusqu'à 1 \$ au début de la dernière année.\\
+	On peut le voir de l'autre sens, la prestation du début de la dernière année est de 1 \$, 2 \$ pour le début de l'avant dernière année, etc. 
 	
 \begin{align*}
 	\DA*_{\termxn}  &= \int_0^{\omega - x} (n - \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
@@ -893,7 +896,7 @@ où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
 \end{align*}
 
 	\item[] Le capital \textbf{décroît continûment}.\\
-	Paye une prestation de initale n \$ pour un décès immédiat, par la suite la prestation décroît linéairement jusquà 0 \$ au bout de n années.
+	Prévoit une prestation de n \$ pour un décès immédiat, par la suite la prestation décroît linéairement jusquà 0 \$ au bout de n années.
 
 \begin{align*}
 	\DbA*_{\termxn} &= \int_0^{n} (n - t) v^t \px[t]{x} \mu_{x+t} dt \\
@@ -922,7 +925,8 @@ où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
 \begin{enumerate}
 
 \item[] Le capital \textbf{croît chaque année}. \\
-La formule est équivalente à remplacer $n$ par $\omega - x$ dans les formules de l'assurance vie temporaire $n$ années.
+La formule est équivalente à remplacer $n$ par $\omega - x$ dans les formules de l'assurance vie temporaire $n$ années.\\ 
+Donc, 1 \$ la première, 2 \$ la deuxième, etc. jusqu'à \textbf{$\omega - x$}\$ la dernière.
 
 \begin{align*}
 	\IA*_{x} &= \int_0^{\omega - x} (1 + \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
@@ -937,7 +941,8 @@ La formule est équivalente à remplacer $n$ par $\omega - x$ dans les formules 
 		&= \int_0^{\omega - x} \Ax*[s|]{x} ds 
 \end{align*}
 
-\item[] Le capital \textbf{croit \textit{(annuellement)} pendant $n$ années}.
+\item[] Le capital \textbf{croit \textit{(annuellement)} pendant $n$ années}.\\
+Comme une vie entière sauf que la capital cesse de croître après n années et paye n\$ pour la suite.
 
 \begin{align*}
 	\twoletsymb{I_{\angl{n}}}{\bar{A}}_{x} 
@@ -953,6 +958,8 @@ La formule est équivalente à remplacer $n$ par $\omega - x$ dans les formules 
 
 \paragraph{Relations} 
 
+\textbf{\textit{à clarifier}}
+
 Assurance différée et assurance (dé)croissant continûment.
 \begin{align*}
 	\IA*_{\termxn} &= \IA*_{\nthtop{1}{x}:\angl{1}}  + {\prescript{}{1}E_{x}} \left[ \IA*_{\nthtop{1}{x + 1}:\angl{n - 1}} + \bar{A}_{\nthtop{1}{x + 1}:\angl{n - 1}}\right]\\
@@ -962,8 +969,9 @@ Assurance différée et assurance (dé)croissant continûment.
 \end{align*}
 \begin{align*}
 	\prescript{}{r|}{\DA*_{\termxn}} &= v^{r}\px[r]{x}\DA*_{\nthtop{1}{x} + r:\angln}\\
-	{(D^{\color{red}{(m)}}\bar{A})_{\termxn}} + (I^{\color{red}{(m)}}\bar{A})_{\termxn} &= \left(n {\color{red}{+ \frac{1}{(m)}}} \right) \bar{A}_{\termxn}\\
-	{\prescript{}{\color{teal}{r|}}{\DbA*_{\termxn}}} + \prescript{}{\color{teal}{r|}}{\IbA*_{\termxn}}  &= n \Ax[\color{teal}{r|}]{\termxn}\\		
+	{(D^{\color{red}{(m)}}\bar{A})_{\termxn}} + (I^{\color{red}{(m)}}\bar{A})_{\termxn} &= \left(n + \frac{1}{{\color{red}{(m)}}} \right) \bar{A}_{\termxn}\\
+	{\prescript{}{\color{teal}{r|}}{\DbA*_{\termxn}}} + \prescript{}{\color{teal}{r|}}{\IbA*_{\termxn}}  &= n \Ax*[\color{teal}{r|}]{\termxn}\\	
+	\DA*_{\nthtop{1}{x}:\angl{n-1}} + \twoletsymb{I_{\angln}}{\bar{A}}_{\nthtop{1}{x}} &= n \Ax*{\termxn}\\		
 	{\prescript{}{\color{teal}{r|}}{\DA*_{\termxn}}} + \prescript{}{\color{teal}{r|}}{\IA*_{\termxn}}  &= (n + 1) \Ax[\color{teal}{r|}]{\termxn}\\	
 	{\prescript{}{\color{teal}{r|}}{\DA*_{\nthtop{1}{x}:\angl{n-1}}}} + \prescript{}{\color{teal}{r|}}{\IA*_{\termxn}}  &= n \Ax[\color{teal}{r|}]{\termxn}\\	
 \end{align*}
@@ -1050,7 +1058,144 @@ Assurance différée et assurance (dé)croissant continûment.
 \end{tikzpicture}
 
 
+\subsubsection*{\textcolor{amber(sae/ece)}{Assurances à prestation variant exponentiellement}}
+
+La prestation de référence est celle payable en cas de décès immédiat.
+La prestation est \textbf{\textit{indexée}} continûment à force $M\tau$; généralement, $\tau < \delta$ et peut même être négatif.\\
+Exemple pour une assurance temporaire n année différée de r années $\prescript{}{r|}{\bar{A}}_{\termxn}^{\;\; \text{ind}}$.\\
+\begin{align*}
+	Z &= \prescript{\delta - \tau}{r|}{\bar{Z}}_{\termxn}\\
+	Z &= \left\{
+	\begin{matrix}
+		0	&	T < r \\
+		e^{-(\delta - \tau) T}	&	r < T < r + n \\
+		0	&	T > n + r
+	\end{matrix}
+	\right.
+\end{align*}
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Évolution du fonds}}
+
+\textbf{\textit{à compléter}}
+
+
 \subsection{Payable à la fin de l'année du décès}
+
+La prestation peut seulement changer aux anniversaires de la police (alias aux âges entiers).
+
+Plus facile à calculer et donc souvent on va calculer la prestation payable à la fin de l'année et utiliser une relation pour établir la prime d'une assurance avec prestation payable au moment du décès.
+
+De plus, l'information est souvent disponible sous format de table et donc les seuls calculs possible sont ceux des contrats payable à la fin de l'année du décès.
+
+De façon générale, l'âge à l'émission, la durée de couverture et la période différée sont entiers $x, n, r \in \mathds{Z}$
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Principe général}}
+
+\begin{description}
+	\item[Valeur actualisée :] $z_{k + 1}$
+	\item[Prestation :] $b_{k + 1}$
+	\item[Facteur d'actualisation :] $v_{k + 1}$
+\end{description}
+$\forall K \in \mathds{Z}_+$ alias $(0, 1, 2, \dots)$
+\begin{align*}
+	Z &= z_{K + 1} = b_{K + 1} v_{K + 1} \\
+	\esp{Z} &= \sum_{k = 0}^{\omega - x - 1} z_{k + 1} \, \qx[k|]{x}
+\end{align*}
+
+\textbf{Principe du quantile}: si on atteint entre 2 marches, on choisit toujours \textbf{\textit{la plus basse}}.
+
+\begin{align*}
+	\text{si } &t^{*} \not\in Z_{+}, \pi = Z|_{k = [t^{*}]} \\
+	\text{si } &t^{*} \in Z_{+}, \pi = \text{min}(Z|_{k = t^{*}}, Z|_{k = t^{*}-1})
+\end{align*}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da05705122517826289] 
+\draw [color={rgb, 255:red, 255; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 0; blue, 0 }  ,fill opacity=1 ][line width=1.5]    (122,69) -- (122,211.33) ;
+
+
+%Straight Lines [id:da7157253876257526] 
+\draw    (34.96,211.18) -- (277.16,211.18) ;
+\draw [shift={(279.16,211.18)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+%Straight Lines [id:da43893305379603675] 
+\draw    (34.96,211.18) -- (34.96,13.8) ;
+\draw [shift={(34.96,11.8)}, rotate = 450] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+%Straight Lines [id:da6053082774961389] 
+\draw [line width=2.25]    (35,39) -- (60.17,39) ;
+
+
+%Straight Lines [id:da3266616172184664] 
+\draw [line width=2.25]    (60,59) -- (85.17,59) ;
+
+
+%Straight Lines [id:da08316005605127219] 
+\draw [line width=2.25]    (85,79) -- (110.17,79) ;
+
+
+%Straight Lines [id:da8693162948369093] 
+\draw [line width=2.25]    (110,98) -- (135.17,98) ;
+
+
+%Straight Lines [id:da7722964509329895] 
+\draw [line width=2.25]    (135,119) -- (160.17,119) ;
+
+
+%Straight Lines [id:da8971636504328802] 
+\draw [line width=2.25]    (160,138) -- (185.17,138) ;
+
+
+%Straight Lines [id:da9044761394945036] 
+\draw [line width=2.25]    (185,159) -- (210.17,159) ;
+
+
+%Straight Lines [id:da30106095187771853] 
+\draw [line width=2.25]    (210,179) -- (235.17,179) ;
+
+
+%Straight Lines [id:da4451304342285469] 
+\draw [color={rgb, 255:red, 255; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 0; blue, 0 }  ,fill opacity=1 ][line width=1.5]    (30,99) -- (41.5,99) ;
+
+
+%Straight Lines [id:da5802387729046217] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 0; blue, 0 }  ,fill opacity=1 ][line width=1.5]    (185,69) -- (185,211.33) ;
+
+
+%Straight Lines [id:da5518978843947184] 
+\draw [line width=2.25]    (236,199) -- (261.17,199) ;
+
+
+%Straight Lines [id:da37536137097468636] 
+\draw [line width=2.25]    (261,211) -- (309.5,211) ;
+
+
+%Straight Lines [id:da8724540051743885] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 0; blue, 0 }  ,fill opacity=1 ][line width=1.5]    (32,159) -- (43.5,159) ;
+
+
+
+% Text Node
+\draw (26,94) node [scale=0.9,color={rgb, 255:red, 255; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle \pi $};
+% Text Node
+\draw (27,155) node [scale=0.9,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle \pi $};
+% Text Node
+\draw (122,222) node [scale=0.9,color={rgb, 255:red, 255; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle t^{*}$};
+% Text Node
+\draw (189,221) node [scale=0.9,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle t^{\star }$};
+% Text Node
+\draw (267,223) node  [align=left] {$\displaystyle T$};
+% Text Node
+\draw (24,14) node  [align=left] {$\displaystyle Z$};
+
+
+\end{tikzpicture}
+
+
 \subsection{Payable à la fin du 1/m d'année du décès}
 \subsection{Relations entre payable au moment et celles payables à la fin de l'année du décès}
 

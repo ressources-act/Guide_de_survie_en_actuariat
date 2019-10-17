@@ -6,7 +6,7 @@
 %% Bug avec les accents dans la définition des variables ici, à voir plus tard.
 
 \input{cheatsht-preamble.tex}
-
+\usepackage{tikz}
 
 % Couleur de la page
 %\pagecolor{gray!10!white}
@@ -24,12 +24,71 @@
 \section{Estimation non-paramétrique}
 \subsection*{Moments à savoir}
 \begin{align*}
-\mu_k^{\prime} 	& = \esp{X^k} \\
+\mu_k^{\prime} 	& = \esp{X^k} &
 \mu_k			& = \esp{(X-\mu)^k} \\
 CV				& = \frac{\sigma}{\mu} \\
-\gamma			& = \frac{\mu_3}{\sigma^3}  \\
-\kappa			& = \frac{\mu_4}{\sigma^4} \\
+\text{Skewness: } \gamma			& = \frac{\mu_3}{\sigma^3}  &
+\text{Kurtosis: } \kappa			& = \frac{\mu_4}{\sigma^4} \\
 \end{align*}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Curve Lines [id:da2688874623271533] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.39 ][line width=3]  [dash pattern={on 7.88pt off 4.5pt}]  (80.5,138.67) .. controls (132.5,138.67) and (117.5,43.67) .. (151.5,43.67) .. controls (185.5,43.67) and (178.5,139.67) .. (229.5,138.67) ;
+
+
+%Curve Lines [id:da9147539678395264] 
+\draw [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ][fill={rgb, 255:red, 184; green, 233; blue, 134 }  ,fill opacity=0.64 ][line width=3]    (49,139) .. controls (163.5,131.67) and (184.83,55) .. (201.5,42.67) .. controls (218.17,30.33) and (212.5,140) .. (263.5,139) ;
+
+
+%Curve Lines [id:da8124483083453555] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.6 ][line width=3]    (49,139) .. controls (87.5,139.67) and (80.17,24.33) .. (98.5,43.67) .. controls (116.83,63) and (152.5,129.67) .. (263.5,139) ;
+
+
+%Straight Lines [id:da7586443312018019] 
+\draw [line width=2.25]    (49,139) -- (263.5,139) ;
+
+
+
+%Straight Lines [id:da09355877210927566] 
+\draw [line width=2.25]    (34.17,287) -- (322.17,287) ;
+
+
+%Curve Lines [id:da18622021578279613] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=3]    (219.17,255.33) .. controls (252.17,270) and (304.17,273) .. (319.17,271.33) ;
+
+
+%Curve Lines [id:da37988280307937217] 
+\draw [color={rgb, 255:red, 0; green, 166; blue, 35 }  ,draw opacity=1 ][line width=3]    (219.17,254.33) .. controls (235.17,285) and (300.17,282) .. (318.17,282.33) ;
+
+
+%Straight Lines [id:da5412137305076621] 
+\draw [line width=2.25]    (159.17,169) -- (159.17,286) ;
+
+
+%Curve Lines [id:da11948970250620294] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=3]    (35.17,276) .. controls (61.17,276) and (106.17,272) .. (121.17,244) .. controls (136.04,220.92) and (143.5,190.67) .. (160.5,190.67) .. controls (177.5,190.67) and (185.87,234.17) .. (219.17,255.33) .. controls (249.17,279) and (309.17,277) .. (319.17,277) ;
+
+
+
+% Text Node
+\draw (151,15) node [scale=0.8,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {No Skewness\\\textit{(symmétrique)}};
+% Text Node
+\draw (252,40) node [scale=0.8,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {Negative Skewness\\\textit{ \ \ \ \ (right-modal)}};
+% Text Node
+\draw (54,40) node [scale=0.8,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0.29,0.56,0.89}{Positive Skewness}\\\textit{\textcolor[rgb]{0.29,0.56,0.89}{ \ \ \ \ (left-modal)}}};
+% Text Node
+\draw (230,206) node [scale=0.8,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle  \begin{array}{{>{\displaystyle}l}}
+\textcolor[rgb]{0.96,0.65,0.14}{k\  >3}\\
+\textcolor[rgb]{0.82,0.01,0.11}{k\ =3}\\
+\textcolor[rgb]{0.0,0.65,0.14}{k\ < 3}
+\end{array}$};
+
+\end{tikzpicture}
 
 \subsection*{3 critères pour évaluer les queues de distributions}
 
@@ -67,13 +126,13 @@ CV				& = \frac{\sigma}{\mu} \\
 	
 
 
-	\begin{itemize}
+	\begin{description}
 		\item[\textbf{shifted} :] d est soustrait des valeurs restantes. \\
 		On peut visualiser le déplacement de la courbe de densité à la gauche.
 		\item[\textbf{left truncated} :] Toutes valeurs inférieures à d ne sont pas observées.			
 		\item[\textbf{left censored} :] Toutes valeurs inférieures à d sont égale à 0.
 		\item[\textbf{right censored} :] Toutes valeurs supérieures à u sont égale à u.
-	\end{itemize}	
+	\end{description}	
 	\textbf{\textit{Pour exemple}}, lorsqu'il y a une limite sur une police d'assurance les valeurs au-delà ne sont pas typiquement inscrites à leur vrai montant, mais plutôt comme la limite $u$.
 \end{itemize}
 
