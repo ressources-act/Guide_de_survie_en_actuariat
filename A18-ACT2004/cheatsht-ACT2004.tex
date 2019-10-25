@@ -79,7 +79,7 @@ Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte
 
 \subsection*{Sommations}
 \begin{align*}
-\sum_{k = m}^{n} r^k &= \frac{1 - r^{n - m + 1}}{1 - r} &
+\sum_{k = m}^{n} r^k &= r^{m} \frac{1 - r^{n - m + 1}}{1 - r} &
 \sum_{k = 0}^{\infty}k v^k &= \frac{v}{(1 - v)^2} \\
 \sum_{k = 1}^{n}k &= \frac{n(n + 1)}{2} &
 \sum_{k = 1}^{n}k^2 &= \frac{n(n + 1)(2n + 1)}{6} \\
@@ -610,7 +610,7 @@ $\Phi^{-1} = z_{1 - p}$
 \begin{align*}
 	z_{1 - p} &\le \frac{\sqrt{n} ( \pi - \esp{Z}}{\sigma_{Z}}\\
 	\pi &\ge \esp{Z} + z_{1 - p} \left(\frac{\sigma_{Z}}{\sqrt{n}}\right) \\
-	n &\ge \left(\frac{z_{1 - p}\sigma_{Z}}{\pi - \esp{Z}}\right) = n_{p} 
+	n &\ge \left(\frac{z_{1 - p}\sigma_{Z}}{\pi - \esp{Z}}\right)^2 = n_{p} 
 \end{align*} 
 
 Donc avec $h$ on résoud $h = (1 + \theta) \esp{Z}$ et applique la surprime à tous les assurés.

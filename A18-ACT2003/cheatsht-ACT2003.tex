@@ -1679,11 +1679,12 @@ En présence de beaucoup de variable exogènes, on court le danger d'en garder t
 \subsection*{Critères de comparaison classiques}
 \begin{itemize}
 	\item Coefficient de détermination (pour mesurer la qualité globale du modèle) :
-	\[ R_2 = \frac{SSR}{SST} \]
+	\[ R^2 = \frac{SSR}{SST} \]
 	Si on ajoute une variable exogène, il est certain que $R^2$ augmentera, on utilise donc ce critère pour valider si la régression est utile pour prédire $Y$, mais pas pour critère de sélection des variables exogènes.
-	\item Coeficient de détermination ajusté:
+	\item \textbf{Coeficient de détermination ajusté}:
 	\[ R_a^2 = \frac{SSE / p}{SST / (n-1)} = \frac{MSE}{MST} \]
-	Ce critère permet de valider l'ajout de nouvelles variables exogènes. De plus, \textbf{il peut diminuer avec l'ajout de nouvelles variables}.
+	Ce critère permet de valider l'ajout de nouvelles variables exogènes.\\ 
+	De plus, \textbf{il peut diminuer avec l'ajout de nouvelles variables}.
 \end{itemize}
 Ces deux critères sont inutiles pour comparer des modèles avec des transformations différentes et pour des modèles avec/sans ordonnée à l'origine.
 
@@ -1704,17 +1705,17 @@ Ce critère maximise l'habileté du modèle a prédire de nouvelles données.
 \item Calculer la somme des carrés des erreurs de prévision $PRESS = \sum_{i=1}^n (Y_i - \hat{Y}_{i,-i})^2$
 \end{enumerate}
 \end{algo}
-	On cherche a minimiser le PRESS ou, à maximiser le \textbf{coefficient de détermination de prévision}:
+	On cherche a minimiser le \textbf{PRESS} ou, à maximiser le \textbf{coefficient de détermination de prévision}:
 	\[ R_p^2 = 1 - \frac{PRESS}{SST} = 1 - \frac{\sum_{i=1}^n (Y_i - \hat{Y}_{i,-i})^2}{\sum_{i=1}^n (Y_i - \bar{Y})^2}\]
 \subsubsection*{\textcolor{darkgreen}{Les résidus PRESS}}
 %\subsubsection*{Les résidus PRESS}
-	Il est possible de trouver la statistique PRESS sans devoir calculer $n$ régressions :
+Il est possible de trouver la statistique PRESS sans devoir calculer $n$ régressions :
 	\[ PRESS = \sum_{i=1}^n \left( \frac{\hat{\varepsilon}_i}{1 - h_{ii}} \right)^2 \]
 	Le i$^{\text{ème}}$ résidu PRESS est le i$^{\text{ème}}$ terme de la sommation. 
 	\[
 	\widehat{\varepsilon}_{i, -i} = \frac{\widehat{\varepsilon}_{i}}{1 - h_{ii}}
 	\]	
-	C'est pratique de l'observer dans le cas où qu'il n'aurait qu'un seul résidu mauvais qui biaise la sommation.
+Utile dans le cas où il n'aurait qu'un seul résidu mauvais qui biaise la sommation.
 
 \subsubsection*{\textcolor{darkgreen}{Échantillion de test et validation croisée par $k$ ensemble}}
 %\subsubsection*{Échantillion de test et validation croisée par $k$ ensemble}
@@ -1762,8 +1763,9 @@ AIC prend en compte à la fois la qualité des prédictions du modèle et sa com
 
 \subsection*{Méthode algorithmiques}
 
-\subsubsection*{Méthode d'inclusion (\textit{forward})}
+%\subsubsection*{Méthode d'inclusion (\textit{forward})}
 \begin{enumerate}
+\begin{algo}{Méthode d'inclusion forward}
 \item On commence avec le modèle le plus simple (i.e. $\hat{Y}_i = \beta_0$)
 \item On essaie d'ajouter la variable qui, en l'incluant dans le modèle, permet de réduire le plus le $SSE$ du modèle.
 \item On valide si la variable diminue de façon significative les résidus avec un test $F$, où
@@ -1775,11 +1777,13 @@ On ajoute la variable au modèle si
 F_{obs} > F_{1, n-p'}(1 - \alpha)
 \end{align*}
 \item On répète jusqu'à ce qu'aucune variable ne vaille la peine d'être ajoutée.
+\end{algo}
 \end{enumerate}
 
-
-\subsubsection*{Méthode d'exclusion (\textit{backward})}
+%\subsubsection*{Méthode d'exclusion (\textit{backward})}
 \begin{enumerate}
+\begin{algo}{Méthode d'exclusion backward}
+
 \item On débute avec le modèle complet
 \item On veut enlever la variable exogène qui, en l'excluant du modèle, permet de minimiser l'augmentation du $SSE$ de la régression.
 \item Même test $F$ qu'à l'étape 3 de la méthode \textit{forward}, sauf qu'on enlève la variable seulement si
@@ -1787,14 +1791,19 @@ F_{obs} > F_{1, n-p'}(1 - \alpha)
 F_{obs} < F_{1, n-p'}(1-\alpha)
 \end{align*}
 \item On répète jusqu'à ce qu'aucune variable ne vaille la peine d'être enlevée.
+
+\end{algo}
 \end{enumerate}
 
-
-\subsubsection*{Méthode pas à pas (\textit{step-wise})}
+%\subsubsection*{Méthode pas à pas (\textit{step-wise})}
 \begin{enumerate}
+\begin{algo}{Méthode pas à pas (step-wise)}
+
 \item On débute avec la méthode d'inclusion
 \item Après l'ajout d'une variable au modèle, on effectue la méthode d'exclusion pour les variables qui sont actuellement dans le modèle (on remet constamment le modèle en question).
+\end{algo}
 \end{enumerate}
+
 %
 %Critères par ordre dans laquelle les utiliser:
 %\begin{enumerate}
