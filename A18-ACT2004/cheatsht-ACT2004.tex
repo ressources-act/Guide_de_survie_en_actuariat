@@ -309,7 +309,7 @@ Pour obtenir celles de $T_x$ il faut poser un hypothèse pour les âges fraction
 
 \textbf{Médiane} : Solution tel que:
 	\begin{align*}
-		Pr[K_x < m] &< \frac{1}{2} \\
+		Pr[K_x < m] &< \frac{1}{2} &
 		Pr[K_x \leq m] &\geq \frac{1}{2} 
 	\end{align*}
 
@@ -319,11 +319,9 @@ Pour obtenir celles de $T_x$ il faut poser un hypothèse pour les âges fraction
 
 Liens entre les fonctions pour $K_x$ et $T_x$:\\
 \begin{align*}
-	\eringx{x} &= E[T_x] \\
-	&= E[K_x] + E[R_x] \\
+	\eringx{x} &= E[T_x] = E[K_x] + E[R_x] \\
 	&\stackrel{DUD}= e_x + \frac{1}{2} \\
-	V(T_x) = &V(K_x + R_x) \\
-	\stackrel{\bot}= &V(K_x) + V(R_x) \\
+	V(T_x) = &V(K_x + R_x) \stackrel{\bot}= V(K_x) + V(R_x) \\
 	\stackrel{DUD}= &V(K_x) + \frac{1}{12} 
 \end{align*}
 
@@ -463,7 +461,7 @@ $\text{Cov}( \text{A}, \text{B} ) = \esp{A \cap B} - \frac{\esp{A}\esp{B}}{\ell{
 
 
 \section{Contrats d'assurance-vie}
-Le paiement est soit en continu, soit à la fin de l'année ou à la fin de la $\frac{1}{m}$ d'année.
+%Le paiement est soit en continu, soit à la fin de l'année ou à la fin de la $\frac{1}{m}$ d'année.
 
 \subsection{Notation et introduction}
 
@@ -477,7 +475,7 @@ Le paiement est soit en continu, soit à la fin de l'année ou à la fin de la $
 	\]
 	\item[$Z$ : ] v.a. de la valeur actualisée du montant payé selon les termes du contrat.
 	\[
-		Z = b(T) v(f(T))
+		Z = z_t = b(T) v(f(T))
 	\]
 	\item[$b(T)$: ] Prestation prévue en fonction de T.
 	\item[$f(T)$: ] Montant du paiement en fonction de T. \\
@@ -485,7 +483,11 @@ Le paiement est soit en continu, soit à la fin de l'année ou à la fin de la $
 	\[
 		f(t) \ge T
 	\]
-	\item[$A$ : ] Pour simplifier la notation, on dénote la \textit{prime unique nette} $\esp{Z}$, alias la \textbf{valeur actuarielle actualisée}, par $\esp{Z} = A$.
+	\item[$A$ : ] Pour simplifier la notation, on dénote la \textbf{prime unique nette \textit{(PUN)}} par :
+	\begin{align*}
+		\esp{Z} &= A_{x} = \int_{0}^{\omega - x} z_t \ \px[t]{x} \mu_{x + t} dt
+	\end{align*}
+	Le nom vient du fait qu'elle n'est payée qu'une seule fois \textit{(unique)} et qu'elle ne couvre que le coût des prestations \textit{(nette)}.
 \end{enumerate}
 
 \subsubsection*{Prestations}
@@ -572,7 +574,7 @@ Interprétations pour un seul contrat
 Généralement, on suppose les $n$ différents contrats $Z_{j}$ d'être identique et les vies à être indépendantes \textit{(i.i.d.)}.
 
 \begin{align*}	
-	S &= \sum_{j = 1}^{n} Z_j
+	S &= \sum_{j = 1}^{n} Z_j 
 \end{align*}
 
 \begin{enumerate}
@@ -605,11 +607,12 @@ Puisque par défaut les $Z_{j}$ sont \textit{(iid)} on applique \textbf{l'approx
 
 %On peut alors obtenir le quantile de niveau $1 - \alpha$ de $S$ par le principe du quantile:
 
-$\Phi^{-1} = z_{1 - p}$
+$\Phi^{-1}(p) = z_{1 - p}$
 
 \begin{align*}
-	z_{1 - p} &\le \frac{\sqrt{n} ( \pi - \esp{Z}}{\sigma_{Z}}\\
-	\pi &\ge \esp{Z} + z_{1 - p} \left(\frac{\sigma_{Z}}{\sqrt{n}}\right) \\
+	z_{1 - p} &\le \frac{\sqrt{n} ( \pi - \esp{Z}}{\sigma_{Z}})\\
+	\pi &\ge \esp{Z} + z_{1 - p} \left(\frac{\sigma_{Z}}{\sqrt{n}}\right) = \pi_p &
+	\pi\$ &= \frac{\lceil 100 \pi_p \rceil}{100} \\
 	n &\ge \left(\frac{z_{1 - p}\sigma_{Z}}{\pi - \esp{Z}}\right)^2 = n_{p} 
 \end{align*} 
 
@@ -619,79 +622,181 @@ Donc avec $h$ on résoud $h = (1 + \theta) \esp{Z}$ et applique la surprime à t
 
 \subsubsection*{Règle des moments}
 
-Lorsque $b_{t}^{j} = b_{t}, t \ge 0$, alias $b_{t} \in \{ 0, 1\}$, alors:
-\begin{align*}
-	\esp{Z^{j}}@\delta_{t} &= \esp{Z}@ j \times \delta_{t}
-\end{align*}
-Sinon on généralise:
+%Lorsque $b_{t}^{j} = b_{t}, t \ge 0$, alias $b_{t} \in \{ 0, 1\}$, alors:
+%\begin{align*}
+%	\esp{Z^{j}}@\delta_{t} &= \esp{Z}@ j \times \delta_{t}
+%\end{align*}
+%Sinon on généralise:
 \begin{align*}
 	\esp{Z^{j}}@\delta_{t} &= \esp{b \times Z'^{j}}@\delta_{t} \\
 	&= b^{j} \times \esp{Z'}@ j \times \delta_{t}
 \end{align*}
-À noter que la règle est seulement appliquable aux prestations nivelées et donc n'est pas applicable aux prestations (dé)croissantes.
+Où $Z = bZ'$, donc $Z'$ est la v.a. équivalente avec une prestation unitaire.\\
+À noter que la règle est \textbf{seulement applicable} aux \textbf{prestations nivelées} et donc n'est pas applicable aux prestations variants arithmétiquement.
 
 
 \subsection{Payable au moment du décès}
 
-\paragraph{Assurance-vie entière} On verse le capital au décès de l'assuré
+Le \textit{montant} et \textit{moment du paiement} ne dépendent que du \textbf{temps écoulé depuis l'émission de la police}.\\
+De plus, toutes nos fonctions sont définies en fonction de la v.a. de la durée de vie future de l'assuré $T$.
 
-\begin{flalign*}
-\Ax*{x} & = \int_{0}^{\omega - x} v^t \px[t]{x} \mu_{x+t} dt \\
-\Ax{x}	& = \sum_{k=0}^{\omega - x - 1} v^{k+1} \qx[k|]{x} \\
-	& = \sum_{k=0}^{\omega - x - 1} v^{k+1} \px[k]{x} \qx[]{x+k} \\
-\end{flalign*}
-\begin{align*}
-\Ax{x} = v \qx[]{x} + v p_x \Ax{x+1}
-\end{align*}
+\subsubsection*{\textcolor{amber(sae/ece)}{Assurance à prestation nivelée}}
 
+\paragraph{Assurance-vie entière} 
 
-\paragraph{Assurance-vie temporaire} On verse le capital au décès de l'assuré, s'il survient dans les $n$ prochaines années.
-\begin{flalign*}
-\Ax*{\termxn}	& = \int_{0}^{n} v^t \px[t]{x} \mu_{x+t} dt \\
-\Ax{\termxn}		& = \sum_{k=0}^{n-1} v^{k+1} \qx[k|]{x} \\
-	& = \sum_{k=0}^{n-1} v^{k+1} \px[k]{x} \qx[]{x+k} \\
-\end{flalign*}
-
-\paragraph{Capital différé de n années} On verse le capital à l'assuré si celui-ci est toujours en vie après $n$ années.
-\begin{align*}
-\Ax{\pureendowxn}	& = \px[n]{x} v^n = \Ex[n]{x} \\
-\end{align*}
-où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
-
-\paragraph{Assurance mixte} On verse le capital à l'assuré si il décède dans les $n$ prochaines années, ou si il est toujours en vie après cette période.
-\begin{align*}
-\Ax*{x:\angln}	& = \int_{0}^{n} v^t \px[t]{x} \mu_{x+t} dt + v^n \px[n]{x} \\
-	& = \Ax*{\termxn} + \Ax{\pureendowxn} \\
-\Ax{x:\angln}		& = \sum_{k=0}^{n-1} v^{k+1} \qx[k|]{x} + v^n \px[n]{x} \\
-\end{align*}
-
-\paragraph{Assurance différée de n années} On verse le capital à l'assuré lors de son décès seulement si le décès survient dans plus de $m$ années \footnote{Interprétation : Une assurance-vie entière qui débute dans $m$ années.}
+Est en vigueur tant que l'assuré est en vie et verse une prestation au moment de son décès.
 
 \begin{align*}
-\Ax*[m|]{x}	& = \int_{m}^{\omega -x} v^t \px[t]{x} \mu_{x+t} dt \\
-	& = v^m \px[m]{x} \int_{0}^{\omega - x - m} v^t \px[t]{x+m} \mu_{(x+m)+t} dt \\
-	& = \Ex[m]{x} \Ax*{x+m} \\
-\Ax[m|]{x}	& = \sum_{k=m}^{\omega - x -1} v^{k+1} \qx[k|]{x} \\
-	& = \sum_{k=0}^{\omega - x - m - 1} v^{k+1+m} \qx[(k+m)|]{x} \\
-	& = v^m \px[m]{x} \sum_{k=0}^{\omega - (x+m) - 1} v^{k+1} \px[k]{x+m} \qx[]{x+m+k} \\
-	& = \Ex[m]{x} \Ax{x+m} \\
+\Ax*{x} 
+	&= \int_{0}^{\omega - x} v^t \px[t]{x} \mu_{x+t} dt 
 \end{align*}
+
+\paragraph{Assurance-vie temporaire} Si l'assuré décède dans les $n$ années suivant l'émission du contrat, paye une prestation de décès.
+\begin{align*}
+\Ax*{\termxn}	
+	&= \int_{0}^{n} v^t \px[t]{x} \mu_{x+t} dt 
+\end{align*}
+
+\paragraph{Capital différé de n années} Si l'assuré \textbf{\textit{ne décède pas}} dans les $n$ années suivant l'émission du contrat, paye une prestation de survie.\\
+À noter qu'il est aussi connu comme le \textbf{facteur d'actualisation actuariel}.
+
+\begin{align*}
+	\Ax*{\pureendowxn}	
+		&\Leftrightarrow \Ax{\pureendowxn}
+		= v^{n} \px[n]{x} 
+		= \Ex[m]{x}
+\end{align*}
+
+\paragraph{Assurance mixte} Si l'assuré \textbf{\textit{ne décède pas}} dans les $n$ annés suivant l'émission du contrat, paye une prestation de décès. S'il est toujours en vie, paye une prestation de survie.
+\begin{align*}
+\Ax*{x:\angln}	
+	&= \int_{0}^{n} v^t \px[t]{x} \mu_{x+t} dt + v^n \px[n]{x} \\
+	&= \Ax*{\termxn} + \Ax{\pureendowxn} 
+\end{align*}
+
+\paragraph{Assurance différée de m années} Si l'assuré décède \textbf{après} les $m$ année suivant l'émission du contrat, paye une prestation de décès.
+
+\begin{align*}
+\Ax*[m|]{x}	
+	&= \int_{m}^{\omega -x} v^t \px[t]{x} \mu_{x+t} dt \\
+	&= v^m \px[m]{x} \int_{0}^{\omega - x - m} v^s \px[s]{x+m} \ \mu_{(x+m)+s} \ ds \\
+	&= v^m \px[m]{x} \Ax*{x+m} = \Ex[m]{x} \Ax*{x+m} 
+\end{align*}
+
 \paragraph{Lien entre assurance différée, assurance vie entière et assurance-vie temporaire}
-
 \begin{align*}
-\Ax*[m|]{x}	& = \Ax*{x} - \Ax*{\itop{x}:\angl{m}}
+\Ax*[m|]{x}		&= \Ax*{x} - \Ax*{\itop{x}:\angl{m}} \\
 \end{align*}
 
-\subsubsection*{\textcolor{amber(sae/ece)}{Assurances à prestation variant arithmétiquement}}
+\textbf{Comparaison des différents contrats}
 
-% Quelques formules de increase qui permet une rapidité dans les calculs (G.C.-C. ou N.L.)
-\paragraph{Assurance Vie temporaire croissante} On verse le capital au décès de l'assuré, s'il survient dans les $n$ prochaines années. 
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da3016673697971952] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=3]    (137.5,150) -- (291.16,150) ;
 
 
-% Possible de générer des graphiques avec le packetage tikz. S'apprends bien mais long à faire manuellement, voir en ligne pour des générateurs de ces graphiques.
-% A.J.v.R. 11/10/2019
+%Straight Lines [id:da9102497979172233] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=3]    (134.5,154) -- (291.16,154) ;
 
 
+%Curve Lines [id:da028008484781905985] 
+\draw [line width=3]    (43.5,48) .. controls (72.5,91) and (123.5,139) .. (137.5,153) .. controls (151.5,167) and (213.5,217) .. (284.5,217) ;
+
+
+%Curve Lines [id:da10931873289685323] 
+\draw [color={rgb, 255:red, 248; green, 231; blue, 28 }  ,draw opacity=1 ][line width=3]    (139.5,150) .. controls (153.5,164) and (215.5,214) .. (286.5,214) ;
+
+
+%Straight Lines [id:da5718298750755719] 
+\draw    (42.96,225.18) -- (285.16,225.18) ;
+\draw [shift={(287.16,225.18)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+%Straight Lines [id:da3391294570889458] 
+\draw    (42.96,225.18) -- (42.96,58.4) -- (42.96,27.8) ;
+\draw [shift={(42.96,25.8)}, rotate = 450] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+%Straight Lines [id:da5827723542208845] 
+\draw [line width=1.5]    (35.5,129) -- (50.5,129) ;
+
+
+%Straight Lines [id:da9117414884275186] 
+\draw [line width=3]    (132.5,219) -- (132.5,231) ;
+
+
+%Straight Lines [id:da6911491942214352] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=3]    (41.96,227.18) -- (133.5,227.18) ;
+
+
+%Straight Lines [id:da1824669182947345] 
+\draw [color={rgb, 255:red, 248; green, 231; blue, 28 }  ,draw opacity=1 ][line width=3]    (41.96,223) -- (133.5,223) ;
+
+
+%Straight Lines [id:da7751043797180222] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=3]    (133.5,223) -- (287.16,223) ;
+
+
+%Curve Lines [id:da349665360780564] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=3]    (45.5,45) .. controls (74.5,88) and (125.5,136) .. (139.5,150) ;
+
+
+%Curve Lines [id:da308588298202902] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=3]    (41.5,51) .. controls (72.5,95) and (121.5,142) .. (135.5,155) ;
+
+
+
+% Text Node
+\draw (297,235) node  [align=left] {$\displaystyle T$};
+% Text Node
+\draw (29,22) node  [align=left] {$\displaystyle Z$};
+% Text Node
+\draw (31,53) node  [align=left] {$\displaystyle 1$};
+% Text Node
+\draw (30,125) node  [align=left] {$\displaystyle v^{n}$};
+% Text Node
+\draw (133,237) node  [align=left] {$\displaystyle n$};
+% Text Node
+\draw (31,233) node  [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (179,61) node  [align=left] {$\displaystyle  \begin{array}{{>{\displaystyle}l}}
+\text{Vie entière}\\
+\textcolor[rgb]{0.96,0.65,0.14}{\text{Temporaire}}\\
+\textcolor[rgb]{0.82,0.01,0.11}{\text{Capital différé}}\\
+\textcolor[rgb]{0.25,0.46,0.02}{\text{Mixte}}\\
+\textcolor[rgb]{0.97,0.91,0.11}{\text{Différée}}
+\end{array}$};
+
+
+\end{tikzpicture}
+
+%\textbf{Formule générale de la fonction de répartition}
+
+%\begin{align*}
+%	F_{\bar{Z}_x}(z) &= \left\{
+%		\begin{matrix}
+%			0	&	z < 0 \\
+%			0	&	0 \le z < v^{\omega - x} \\
+%			\px[-\frac{1}{\delta}ln(z)]{x}	&	v^{\omega - x}  \le z < 1 \\
+%			1 	&	z \ge 1 \\
+%		\end{matrix}	\right.
+%\end{align*}
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Assurance à prestation variant arithmétiquement}}
+
+\paragraph{Assurance Vie temporaire croissante} 
+
+
+\begin{enumerate}
+	\item[] Le capital \textbf{croit annuellement}.\\
+	La prestation est de 1 \$ dans la première année, 2 \$ dans la deuxième, etc. jusqu'à n \$ dans la $n^{\text{ème}}$ année.
+
+\begin{align*}
+	\IA*_{\termxn}  &= \int_0^n (1 + \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
+		&= \actsymb{\bar{A}}{\nthtop{1}{x}:\angln} + \actsymb[1|]{\bar{A}}{\nthtop{1}{x}:\angl{n-1}} + ... + \actsymb[n-1|]{\bar{A}}{\nthtop{1}{x}:\angl1}
+\end{align*}
+
+\end{enumerate}
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -756,46 +861,56 @@ où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
 \end{tikzpicture}
 
 \begin{enumerate}
-	\item[] Le capital \textbf{croit chaque année}.\\
-	La prestation est de 1 \$ pour la première année, 2 \$ pour la deuxième, etc. jusqu'à n \$ la dernière année.
 
+	\item[] Le capital \textbf{croît \textit{(annuellement)} pendant r années}.\\
 \begin{align*}
-	\IA*_{\termxn}  &= \int_0^n (1 + \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
-		&= \actsymb{\bar{A}}{\nthtop{1}{x}:\angln} + \actsymb[1|]{\bar{A}}{\nthtop{1}{x}:\angl{n-1}} + ... + \actsymb[n-1|]{\bar{A}}{\nthtop{1}{x}:\angl1}
+	\twoletsymb{I_{\anglr}}{\bar{A}}_{\termxn} 
+		&= \sum_{k = 0}^{r - 1} \Ax*[k|]{\nthtop{1}{x}:\angl{n-k}} 
+%	\\ 	&= \IA*_{\termxn} + r \Ax*[r|]{\nthtop{1}{x}:\angl{n-r}}
 \end{align*}
 
 	\item[] Le capital \textbf{croît m fois par année}.\\
 	Paye une prestation de 1/m \$ dans le premier 1/m d'année, 2/m \$ dans le deuxième, etc.
 
 \begin{align*}
-	\twoletsymb{I^{(m)}}{\bar{A}}_{\nthtop{1}{x}:\angln} &= \int_0^n \frac{([t \times m] + 1)}{m} v^t \px[t]{x} \mu_{x+t} dt 
+	\twoletsymb{I^{(m)}}{\bar{A}}_{\nthtop{1}{x}:\angln} 
+	&= \int_0^n \frac{([t \times m] + 1)}{m} v^t \px[t]{x} \mu_{x+t} dt 
 \end{align*}
 
-	\item[] Le capital \textbf{croît pendant r années}.\\
-\begin{align*}
-	\twoletsymb{I_{\anglr}}{\bar{A}}_{\termxn} &= \sum_{k = 0}^{r - 1} \Ax*[k|]{\termxn} \\
-%	&= \IA*_{\termxn} + r \Ax*[r|]{\nthtop{1}{x}:\angl{n-r}}
-\end{align*}
 
 	\item[] Le capital est \textbf{différé de r années}.
 
 \begin{align*}
-	\prescript{}{r|}{\IA*_{\termxn}} &= v^{r}\px[r]{x}\IA*_{\nthtop{1}{x} + r:\angln}
+	\prescript{}{r|}{\IA*_{\termxn}} 
+	&= v^{r}\px[r]{x}\IA*_{\nthtop{1}{x} + r:\angln}
 \end{align*}
 
 	\item[] Le capital \textbf{croît continûment}.\\
 	Paye une prestation de t au moment du décès, tant qu'il se produise dans les n premières années.
 
 \begin{align*}
-	\IbA*_{\termxn} &= \int_0^n t v^t \px[t]{x} \mu_{x+t} dt \\
+	\IbA*_{\termxn} 
+	&=  \int_0^n t v^t \px[t]{x} \mu_{x+t} dt \\
 	&= 	\int_0^n \prescript{}{s|}{\bar{A}_{\nthtop{1}{x}:\angl{n-s}}} ds
 \end{align*}
 
 \end{enumerate}
 
-\paragraph{Assurance Vie temporaire décroissante} On verse le capital au décès de l'assuré, s'il survient dans les $n$ prochaines années. 
+\paragraph{Assurance Vie temporaire décroissante} 
 
 
+\begin{enumerate}
+
+	\item[] Le capital \textbf{décroit chaque année} et donc la prestation doit nécessairement être une temporaire.\\
+	Paye n \$ au début de la première année, n-1 \$ au début de la deuxième, etc. jusqu'à 1 \$ au début de la dernière année.\\
+	On peut le voir de l'autre sens, la prestation du début de la dernière année est de 1 \$, 2 \$ au début de l'avant dernière année, etc. 
+	
+\begin{align*}
+	\DA*_{\termxn}  &= \int_0^{\omega - x} (n - \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
+		&= \actsymb{\bar{A}}{\nthtop{1}{x}:\angl1} + \actsymb{\bar{A}}{\nthtop{1}{x}:\angl2} + ... + \actsymb{\bar{A}}{\nthtop{1}{x}:\angln}
+\end{align*}
+
+\end{enumerate}
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -869,16 +984,8 @@ où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
 \end{tikzpicture}
 
 
-\begin{enumerate}
 
-	\item[] Le capital \textbf{décroit chaque année} et donc la prestation doit nécessairement être une temporaire.\\
-	Paye n \$ au début de la première année, n-1 \$ au début de la deuxième, etc. jusqu'à 1 \$ au début de la dernière année.\\
-	On peut le voir de l'autre sens, la prestation du début de la dernière année est de 1 \$, 2 \$ pour le début de l'avant dernière année, etc. 
-	
-\begin{align*}
-	\DA*_{\termxn}  &= \int_0^{\omega - x} (n - \lfloor t \rfloor) v^t \px[t]{x} \mu_{x+t} dt \\
-		&= \actsymb{\bar{A}}{\nthtop{1}{x}:\angl1} + \actsymb{\bar{A}}{\nthtop{1}{x}:\angl2} + ... + \actsymb{\bar{A}}{\nthtop{1}{x}:\angln}
-\end{align*}
+\begin{enumerate}
 
 	\item[] Le capital \textbf{décroît m fois par année}.\\
 	Paye une prestation de n \$ dans le premier 1/m d'année, n - 1/m \$ dans le deuxième, etc. jusqu'à 1/m \$ durant le dernier 1/m d'année.
@@ -910,6 +1017,9 @@ où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
 \begin{enumerate}
 	\item[] L'assurance peut être mixte peut importe qu'elle soit croissante ou décroissante.
 	\item[] L'assurance \textit{\textbf{croissante}} mixte n années, paierait n\$ en cas de survie \textit{(peu importe la fréquence de la croissance)}.
+	\begin{align*}
+		\IA*_{x:\angln} &= \IA*_{\nthtop{1}{x}:\angln}  + n {\prescript{}{n}E_{x}} 
+	\end{align*}
 	\item[] L'assurance \textit{\textbf{décroissante}} mixte n années, paierait 1/m\$ en cas de survie si la prestation \textbf{décroît $m$ fois par année}.
 	\item[] L'assurance \textit{\textbf{décroissante}} mixte n années, paierait 1\$ en cas de survie si la prestation \textbf{décroît à chaque année} \textit{(alias, m = 1)}.
 	\item[] L'assurance \textit{\textbf{décroissante}} mixte n années aurait une prestation de survie nulle si la prestation \textbf{décroît continûment}. Donc, en théorie une assurance décroissant continûment peut être mixte mais pas en pratique.
@@ -920,7 +1030,7 @@ où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
 	\prescript{}{r|}{\DA*_{x:\angln}} &= \prescript{}{r|}{\DA*_{\termxn}} + \Ax{x:\nthtop{1}{\angl{n + r}}}
 \end{align*}
 
-\paragraph{Assurance Vie entière croissante} On verse le capital au décès de l'assuré. 
+\paragraph{Assurance Vie entière croissante}
 
 \begin{enumerate}
 
@@ -958,21 +1068,17 @@ Comme une vie entière sauf que la capital cesse de croître après n années et
 
 \paragraph{Relations} 
 
-\textbf{\textit{à clarifier}}
-
-Assurance différée et assurance (dé)croissant continûment.
 \begin{align*}
-	\IA*_{\termxn} &= \IA*_{\nthtop{1}{x}:\angl{1}}  + {\prescript{}{1}E_{x}} \left[ \IA*_{\nthtop{1}{x + 1}:\angl{n - 1}} + \bar{A}_{\nthtop{1}{x + 1}:\angl{n - 1}}\right]\\
-	\IA*_{x:\angln} &= \IA*_{\nthtop{1}{x}:\angln}  + n {\prescript{}{n}E_{x}}\\
+%	\IA*_{\termxn} &= \IA*_{\nthtop{1}{x}:\angl{1}}  + {\prescript{}{1}E_{x}} \left[ \IA*_{\nthtop{1}{x + 1}:\angl{n - 1}} + \bar{A}_{\nthtop{1}{x + 1}:\angl{n - 1}}\right]\\
 \twoletsymb{I_{\anglr}}{\bar{A}}_{\termxn} &= \IA*_{\nthtop{1}{x}:\anglr} + r \Ax*[r|]{\nthtop{1}{x}:\angl{n-r}}\\
 	{\prescript{}{\color{teal}{r|}}{\IA*_{\termxn}}} &= v^{r} \px[r]{x} {\IA*_{\nthtop{1}{x + r}:\angln}}\\
+	{\prescript{}{\color{teal}{r|}}{\DA*_{\termxn}}} &= v^{r}\px[r]{x}\DA*_{\nthtop{1}{x} + r:\angln}\\
 \end{align*}
 \begin{align*}
-	\prescript{}{r|}{\DA*_{\termxn}} &= v^{r}\px[r]{x}\DA*_{\nthtop{1}{x} + r:\angln}\\
 	{(D^{\color{red}{(m)}}\bar{A})_{\termxn}} + (I^{\color{red}{(m)}}\bar{A})_{\termxn} &= \left(n + \frac{1}{{\color{red}{(m)}}} \right) \bar{A}_{\termxn}\\
 	{\prescript{}{\color{teal}{r|}}{\DbA*_{\termxn}}} + \prescript{}{\color{teal}{r|}}{\IbA*_{\termxn}}  &= n \Ax*[\color{teal}{r|}]{\termxn}\\	
 	\DA*_{\nthtop{1}{x}:\angl{n-1}} + \twoletsymb{I_{\angln}}{\bar{A}}_{\nthtop{1}{x}} &= n \Ax*{\termxn}\\		
-	{\prescript{}{\color{teal}{r|}}{\DA*_{\termxn}}} + \prescript{}{\color{teal}{r|}}{\IA*_{\termxn}}  &= (n + 1) \Ax[\color{teal}{r|}]{\termxn}\\	
+%	{\prescript{}{\color{teal}{r|}}{\DA*_{\termxn}}} + \prescript{}{\color{teal}{r|}}{\IA*_{\termxn}}  &= (n + 1) \Ax[\color{teal}{r|}]{\termxn}\\	
 	{\prescript{}{\color{teal}{r|}}{\DA*_{\nthtop{1}{x}:\angl{n-1}}}} + \prescript{}{\color{teal}{r|}}{\IA*_{\termxn}}  &= n \Ax[\color{teal}{r|}]{\termxn}\\	
 \end{align*}
 
@@ -1010,8 +1116,6 @@ Assurance différée et assurance (dé)croissant continûment.
 \begin{align*}
 	\DbA*_{\termxn} &= {\color{green_rectangle}{(n - 1) \bar{A}_{\nthtop{1}{x}:\angl{1}}}} + {\color{blue_rectangle}{\DbA*_{\nthtop{1}{x}:\angl{1}}}} + v \px{x} {\color{red_rectangle}{\DbA*_{\nthtop{1}{x + 1}:\angl{n - 1}}}}
 \end{align*}
-
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
@@ -1058,10 +1162,10 @@ Assurance différée et assurance (dé)croissant continûment.
 \end{tikzpicture}
 
 
-\subsubsection*{\textcolor{amber(sae/ece)}{Assurances à prestation variant exponentiellement}}
+\subsubsection*{\textcolor{amber(sae/ece)}{Assurance à prestation variant exponentiellement}}
 
 La prestation de référence est celle payable en cas de décès immédiat.
-La prestation est \textbf{\textit{indexée}} continûment à force $M\tau$; généralement, $\tau < \delta$ et peut même être négatif.\\
+La prestation est \textbf{\textit{indexée}} continûment à force $\tau$; généralement, $\tau < \delta$ et peut même être négatif.\\
 Exemple pour une assurance temporaire n année différée de r années $\prescript{}{r|}{\bar{A}}_{\termxn}^{\;\; \text{ind}}$.\\
 \begin{align*}
 	Z &= \prescript{\delta - \tau}{r|}{\bar{Z}}_{\termxn}\\
@@ -1076,18 +1180,54 @@ Exemple pour une assurance temporaire n année différée de r années $\prescri
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Évolution du fonds}}
 
-\textbf{\textit{à compléter}}
+\begin{enumerate}
+\item[] Fonds initialement constitué des primes reçues pour $n$ contrats.
+\begin{align*}
+	F_{0} &= n \pi
+\end{align*}
+\item[\textbf{Augmente}] \textit{(croit)} avec le taux de rendement réalisé sur les placements.
+\item[\textbf{Diminue}] \textit{(décroit)} chaque fois qu'une prestation est payable.
+\item[$F_{t}$] : valeur du fonds à $t$ \textit{(après le paiement de prestations payables au temps t s'il y a lieu)}.
+\end{enumerate}
 
+Soit $t_1 < t_2 < \dots < t_n$ les \textbf{moments de décès} \textit{(en ordre croissant)}. 
+
+Soit $\delta_s, \ s > 0$ la force d'intérêt réalisée à $s$.
+
+Tant que des prestations de décès sont payables:
+%\begin{align*}
+%	F_{t_1^{-}} &= F_{0} \; e^{\int_0^{t_1} \delta_s ds} \\
+%	F_{t_1^{+}} &= F_{t_1^{-}} - b(t_1)
+%\end{align*}
+\begin{align*}
+	F_{t_j^{-}} &= F_{t_{j-1}^{+}} \; e^{\int_{t_{j-1}}^{t_j} \delta_s ds} \\
+	F_{t_j^{+}} &= F_{t_j^{-}} - b(t_j)
+\end{align*}
+
+Si le contrat se termine à $r$ 
+\begin{enumerate}
+	\item[\textbf{sans}] prestation de survie.
+	\begin{align*}
+	F_{r} &= F_{t_{k}^{+}} \; e^{\int_{t_{k}}^{r} \delta_s ds} \\
+	\text{où } t_k &= \max \{t_j | t_j < r\} 
+	\end{align*}
+	\item[\textbf{avec}] prestation de survie
+	\begin{align*}
+	F_{r} &= F_{t_{k}^{+}} \; e^{\int_{t_{k}}^{r} \delta_s ds} - b^{\star}(r)(n - k) \\
+	\text{où } t_k &= \max \{t_j | t_j < r\}  \\
+	\text{et } b^{\star}(r) &= \text{prestation de survie}  
+	\end{align*}
+\end{enumerate}
 
 \subsection{Payable à la fin de l'année du décès}
 
 La prestation peut seulement changer aux anniversaires de la police (alias aux âges entiers).
 
-Plus facile à calculer et donc souvent on va calculer la prestation payable à la fin de l'année et utiliser une relation pour établir la prime d'une assurance avec prestation payable au moment du décès.
+%Plus facile à calculer et donc souvent on va calculer la prestation payable à la fin de l'année et utiliser une relation pour établir la prime d'une assurance avec prestation payable au moment du décès.
 
-De plus, l'information est souvent disponible sous format de table et donc les seuls calculs possible sont ceux des contrats payable à la fin de l'année du décès.
+L'information est souvent disponible sous format de table et donc les seuls calculs possible sont ceux des contrats payable à la fin de l'année du décès.
 
-De façon générale, l'âge à l'émission, la durée de couverture et la période différée sont entiers $x, n, r \in \mathds{Z}$
+De façon générale, l'âge à l'émission, la durée de couverture et la période différée sont entiers $x, n, r \in \mathds{Z}$.
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Principe général}}
 
@@ -1095,10 +1235,11 @@ De façon générale, l'âge à l'émission, la durée de couverture et la péri
 	\item[Valeur actualisée :] $z_{k + 1}$
 	\item[Prestation :] $b_{k + 1}$
 	\item[Facteur d'actualisation :] $v_{k + 1}$
+	\item[] $f(T) = [T + 1]$
 \end{description}
 $\forall K \in \mathds{Z}_+$ alias $(0, 1, 2, \dots)$
 \begin{align*}
-	Z &= z_{K + 1} = b_{K + 1} v_{K + 1} \\
+	Z 		&= z_{K + 1} = b_{K + 1} v_{K + 1} \\
 	\esp{Z} &= \sum_{k = 0}^{\omega - x - 1} z_{k + 1} \, \qx[k|]{x}
 \end{align*}
 
@@ -1195,6 +1336,80 @@ $\forall K \in \mathds{Z}_+$ alias $(0, 1, 2, \dots)$
 
 \end{tikzpicture}
 
+\begin{center}
+\begin{tabular}{| c c |}
+\hline
+	au moins	&	$\geq$	\\
+	au plus	&	$\leq$	\\
+	moins de	&	$<$	\\
+	plus de	&	$>$	\\
+\hline
+\end{tabular}
+\end{center}
+	
+\subsubsection*{\textcolor{amber(sae/ece)}{Assurance à prestation nivelée}}
+
+La règle des moments s'applique.
+
+\paragraph{Assurance-vie entière} 
+
+\begin{align*}
+\Ax{x}	&= \sum_{k=0}^{\omega - x - 1} v^{k+1} \qx[k|]{x} \\
+		&= \sum_{k=0}^{\omega - x - 1} v^{k+1} \px[k]{x} \qx[]{x+k} 
+\end{align*}
+
+\begin{align*}
+\Ax{x} = v \qx[]{x} + v p_x \Ax{x+1}
+\end{align*}
+
+\paragraph{Assurance-vie temporaire}
+
+\begin{align*}
+\Ax{\termxn}		&= \sum_{k=0}^{n-1} v^{k+1} \qx[k|]{x}			\\
+				&= \sum_{k=0}^{n-1} v^{k+1} \px[k]{x} \qx[]{x+k} \\
+\Ax[m|]{\termxn}	&= \sum_{k=m}^{m - n -1} v^{k + 1} \qx[k|]{x} 	
+\end{align*}
+
+\paragraph{Capital différé de n années}
+
+\begin{align*}
+\Ax{\pureendowxn}	& = \px[n]{x} v^n = \Ex[n]{x} 
+\end{align*}
+où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
+
+
+\paragraph{Assurance mixte}
+
+\begin{align*}
+\Ax[{\color{teal}{r|}}]{x:\angln}
+	&= \sum_{k=0}^{{\color{teal}{r} + }n-1} v^{k+1} \qx[k|]{x} + v^{{\color{teal}{r} +}n} \px[n]{x}
+\end{align*}
+
+\paragraph{Assurance différée de m années}
+
+\begin{align*}
+\Ax[m|]{x}	
+	&= \sum_{k=m}^{\omega - x -1} v^{k+1} \qx[k|]{x} \\
+	&= \sum_{k=0}^{\omega - x - m - 1} v^{k+1+m} \qx[(k+m)|]{x} \\
+	&= v^m \px[m]{x} \sum_{k=0}^{\omega - (x+m) - 1} v^{k+1} \px[k]{x+m} \qx[]{x+m+k} \\
+	&= \Ex[m]{x} \Ax{x+m} 
+\end{align*}
+
+\paragraph{Liens}
+
+\begin{align*}
+	\Ax{x} &= v \qx{x} + v \px{x} \Ax{x + 1} & \Ax{w - 1} = v \\
+	\Ax{x} &= \Ax{\termxn} + v^n \px[n]{x} \Ax{x+n} \\
+	\Ax{\nthtop{\color{teal}1}{x}:\angln} &= v \qx{x} + v \px{x} \Ax{\nthtop{\color{teal}1}{x + 1}:\angl{n-1}} & \Ax{\nthtop{\color{teal}1}{x + n - 1}:\angl{1}} = v {\color{teal}\qx{x + n - 1}} \\
+	\Ax{\nthtop{\color{teal}1}{x}:\angln} &= \Ax{\nthtop{1}{x}:\angl{r}} + v^r \px[r]{x} \Ax{\nthtop{\color{teal}1}{x + r}:\angl{n - r}} \\
+	\Ax{x:\nthtop{1}{\angln}} &= v^r \px[r]{x} \Ax{{x + r}:\nthtop{1}{\angl{n - r}}}
+\end{align*}
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Assurance à prestation variant arithmétiquement}}
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Assurance à prestation variant exponentiellement}}
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Évolution du fonds}}
 
 \subsection{Payable à la fin du 1/m d'année du décès}
 \subsection{Relations entre payable au moment et celles payables à la fin de l'année du décès}
