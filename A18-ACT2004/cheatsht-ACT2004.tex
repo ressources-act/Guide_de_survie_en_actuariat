@@ -57,10 +57,13 @@ Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte
 	v &= \frac{1}{1 + i} \\
 	a(t) &= (1 + i)^{t} &
 	&= e^{\int_{0}^{t} \delta_s ds}
-	= (1 - d)^{-t}
+	= (1 - d)^{-t} 
 \end{align*}
-
-%\subsection*{Facteur d'accumulation}
+\begin{align*}
+	i &= \left( 1 + \frac{i^{(m)}}{m} \right)^{m} - 1 
+\end{align*}
+%
+%%\subsection*{Facteur d'accumulation}
 %\begin{align*}
 %	\cumlaut[cyan]{s}_{\angln} &= \frac{(1+i)^{n} - 1}{(\textcolor{cyan}{d}|i)}\\
 %	(I^{\textcolor{blue}{(m)}}\cumlaut[cyan]{s})_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{\cumlaut[black]{s}_{\angl{n}}^{\textcolor{blue}{(m)}} - n}{(\textcolor{cyan}{d}^{\textcolor{red}{(m)}} | i)} &
@@ -70,8 +73,8 @@ Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte
 %	(\bar{I}\bar{a})_{\angl{n}i} &= \frac{\bar{a}_{\angl{n}i} - n e^{-\delta n}}{\delta} &
 %	(\bar{D}\bar{a})_{\angl{n}i} &= \frac{n - \bar{a}_{\angl{n}i}}{\delta} \\
 %\end{align*}	
-
-%\subsection*{Conversion de taux}
+%
+%%\subsection*{Conversion de taux}
 %\begin{align*}
 %&\text{Taux d'intérêt \underline{effectif} \textit{annuel}} & & i = \left( 1 + \frac{i^{(m)}}{m} \right)^{m} - 1 \\
 %&\text{Taux d'intérêt \underline{nominal} \textit{annuel}} & & i^{(m)} = m \left( (1 + i)^{1/m} - 1 \right)
@@ -786,7 +789,6 @@ Est en vigueur tant que l'assuré est en vie et verse une prestation au moment d
 
 \paragraph{Assurance Vie temporaire croissante} 
 
-
 \begin{enumerate}
 	\item[] Le capital \textbf{croit annuellement}.\\
 	La prestation est de 1 \$ dans la première année, 2 \$ dans la deuxième, etc. jusqu'à n \$ dans la $n^{\text{ème}}$ année.
@@ -1354,29 +1356,15 @@ La règle des moments s'applique.
 \paragraph{Assurance-vie entière} 
 
 \begin{align*}
-\Ax{x}	&= \sum_{k=0}^{\omega - x - 1} v^{k+1} \qx[k|]{x} \\
-		&= \sum_{k=0}^{\omega - x - 1} v^{k+1} \px[k]{x} \qx[]{x+k} 
-\end{align*}
-
-\begin{align*}
-\Ax{x} = v \qx[]{x} + v p_x \Ax{x+1}
+\Ax{x}	&= \sum_{k=0}^{\omega - x - 1} v^{k+1} \qx[k|]{x} 
 \end{align*}
 
 \paragraph{Assurance-vie temporaire}
 
 \begin{align*}
 \Ax{\termxn}		&= \sum_{k=0}^{n-1} v^{k+1} \qx[k|]{x}			\\
-				&= \sum_{k=0}^{n-1} v^{k+1} \px[k]{x} \qx[]{x+k} \\
 \Ax[m|]{\termxn}	&= \sum_{k=m}^{m - n -1} v^{k + 1} \qx[k|]{x} 	
 \end{align*}
-
-\paragraph{Capital différé de n années}
-
-\begin{align*}
-\Ax{\pureendowxn}	& = \px[n]{x} v^n = \Ex[n]{x} 
-\end{align*}
-où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
-
 
 \paragraph{Assurance mixte}
 
@@ -1407,12 +1395,260 @@ où $\Ex[n]{x}$ est le \textbf{facteur d'actualisation actuarielle}.
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Assurance à prestation variant arithmétiquement}}
 
+Puisque la prestation est payable à la fin de l'année du décès, le changement ne se fera qu'une fois par année.
+Donc, la (dé)croissance est par défaut annuelle.
+
+%\begin{align*}
+%	\prescript{}{\color{teal}r|}{\twoletsymb{I_{\angl{\color{red_rectangle}m}}}{Z}_{\nthtop{\color{blue}1}{x}:\angln}} &=	 \left\{
+%			\begin{matrix}
+%				{\color{teal}0}	&	{\color{teal}k = 0, 1, \dots, r - 1} \\			
+%				(k + 1 {\color{teal}- r}) v^{K + 1}	&	k = {\color{teal}r}, {\color{teal}r + } 1, \dots, {\color{teal}r +} m - 1 \\
+%				{\color{red_rectangle}mv^{K + 1}}	&	{\color{red_rectangle}k = }{\color{teal}r + } {\color{red_rectangle}m,  }{\color{teal}r +}{\color{red_rectangle} m + 1, \dots, }{\color{teal}r +}{\color{red_rectangle} n - 1 }\\
+%				(0|{\color{blue}mv^{{\color{teal}r +}n}})	&	k = {\color{teal}r + } n,  {\color{teal}r +} n + 1, \dots \\
+%			\end{matrix}	
+%		\right.
+%\end{align*}
+
+\begin{align*}
+	\esp{\prescript{}{\color{teal}r|}{\twoletsymb{I_{\angl{\color{red_rectangle}m}}}{Z}_{\nthtop{\color{blue}1}{x}:\angln}}} = 
+	&\sum\limits_{ k = {\color{teal}r }}^{{\color{teal} r + }{\color{red_rectangle}m - 1}} ( k + 1 {\color{teal}- r} ) v^{k + 1} \qx[k|]{x}  \\
+	+ &\sum_{ k = {\color{teal}r} {\color{red_rectangle} + m}}^{ {\color{teal} r +} n - 1 } {\color{red_rectangle}mv^{k + 1}} \qx[k|]{x}  \\
+	+ &({\color{blue}0}|mv^{{\color{teal}r +}n} \px[ {\color{teal}r} +n ]{x})
+\end{align*}
+
+\begin{align*}
+	\esp{\prescript{}{\color{teal}r|}{\twoletsymb{D}{Z}_{\nthtop{\color{blue}1}{x}:\angln}}} = 
+	&\sum\limits_{ k = {\color{teal}r }}^{{\color{teal} r + }n - 1} ( n {\color{teal} + r} - k ) v^{k + 1} \qx[k|]{x}  \\
+	+ &({\color{blue}0}|v^{{\color{teal}r +}n} \px[ {\color{teal}r} +n ]{x})
+\end{align*}
+
+\textbf{Relations de récurrence}
+
+\begin{align*}
+	\DA{\termxn} + \IA{\termxn} &= (n + 1) \Ax{\termxn} \\
+	\prescript{}{r|}{\twoletsymb{I_{\angl{m}}}{A}_{\nthtop{1}{x}:\angln}} 
+	&= \sum_{j = 0}^{m - 1} \Ax[j + r|]{\nthtop{1}{x}:\angl{n - j}} \\
+	\prescript{}{r|}{\twoletsymb{D}{A}_{\nthtop{1}{x}:\angln}} 
+	&= \sum_{k = 1}^{n} \Ax[r|]{\nthtop{1}{x}:\angl{k}} + v^{r + n} \px[r + n]{x} \\
+\end{align*}
+\begin{align*}
+\prescript{}{r|}{\twoletsymb{I_{\angl{m}}}{A}_{\nthtop{1}{x}:\angln}} 
+	= v^r \px[r]{x} 
+	&\Bigg\{
+		\IA{\nthtop{1}{x + r}:\angl{s}} \\
+		&\quad + v^r \px[s]{x + r} 
+		\bigg[
+			\twoletsymb{I_{\angl{m - s}}}{A}_{\nthtop{1}{x + r + s}:\angl{n - s}} \\
+		&\quad +  s \Ax{\nthtop{1}{x + r + s}:\angl{n - s}}
+		\bigg]
+	\Bigg\} \\
+	\prescript{}{r|}{\twoletsymb{D}{A}_{\nthtop{1}{x}:\angln}} 
+	= v^r \px[r]{x} 
+	&\Bigg\{
+		\DA{\nthtop{1}{x}:\angl{m}} \\
+		& + (n - m) \Ax{\nthtop{1}{x}:\angl{m}} \\
+		& + v^m \px[m]{x + r} \DA{\nthtop{1}{x + r + s}:\angl{n - s}}
+	\Bigg\}
+\end{align*}
+
 \subsubsection*{\textcolor{amber(sae/ece)}{Assurance à prestation variant exponentiellement}}
+
+Suppose que la prestation payable en cas de décès $= b$ et qu'elle est ensuite indexée au taux d'inflation.
+
+\paragraph{Différée $r$ années temporaire $n$ années}
+
+\begin{align*}
+	\esp{\prescript{}{\color{teal}r|}Z_{\nthtop{\color{blue}1}{x}:\angln}} = 
+	&\sum\limits_{ k = {\color{teal}r }}^{{\color{teal} r + }n - 1} b (1 + \text{inf})^{k - {\color{teal}r }} v^{k + 1} \qx[k|]{x}  \\
+	+ &({\color{blue}0}|b (1 + \text{inf})^{n - 1}v^{{\color{teal}r +}n} \px[ {\color{teal}r} +n ]{x})
+\end{align*}
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Évolution du fonds}}
 
+\begin{enumerate}
+	\item[$F_0$] Valeur du fonds initial avec l'achat par $\ell_x$ personnes.
+	\item[$\ell_x$] Nombre de personnes ayant initialement acheté au fonds.
+	\begin{align*}
+		F_0 &= \ell_x \pi 
+	\end{align*}
+	\item[$F_k^{(\text{att}|\text{obs})}$] Valeur du fonds (attendu | observée) à la \textbf{fin} de la $k^{\text{ème}}$ année.
+	\item[$r_k$] Taux de rendement réalisé lors de la $k^{\text{ème}}$
+	\item[$i$] Taux de rendement espéré de la prime. 
+	\item[$d_{x + k - 1}^{(\text{att}|\text{obs})} $] Nombre de décès (attendus | observés) lors de la $k^{\text{ème}}$ année.
+\end{enumerate}
+
+\begin{align*}
+	F_o^{\text{obs}} = F_o^{\text{att}} = \ell_x \pi 
+\end{align*}
+
+Tant qu'il y a couverture:
+\begin{description}
+
+\item[En cas de décès]
+	\begin{align*}
+		F_{k + 1}^{\text{att}} &= F_{k}^{\text{att}}(1 + i) - b_{k + 1}^{\text{décès}} \; d_{x + k}^{\text{att}} \\
+		F_{k + 1}^{\text{obs}} &= F_{k}^{\text{obs}}(1 + r_{k + 1}) - b_{k + 1}^{\text{décès}} \; d_{x + k}^{\text{obs}} \\
+	\end{align*}
+\item[En cas de prestation de survie] à $n$
+	\begin{align*}
+		F_{n}^{\text{att}} &= F_{n - 1}^{\text{att}}(1 + i) - b_{n}^{\text{décès}} \; d_{x + n - 1}^{\text{att}} - b_{n}^{\text{survie}} \; \ell_{x + n}^{\text{att}} \\
+		F_{n}^{\text{obs}} &= F_{n - 1}^{\text{obs}}(1 + r_{n}) - b_{n}^{\text{décès}} \; d_{x + n - 1}^{\text{obs}} - b_{n}^{\text{survie}} \; \ell_{x + n}^{\text{obs}}
+	\end{align*}
+\end{description}
+
 \subsection{Payable à la fin du 1/m d'année du décès}
+
+%\subsubsection*{\textcolor{amber(sae/ece)}{Principe général}}
+
+\begin{align*}
+	K &= 0, 1, \dots, \omega - x - 1 \\
+	J &= 0, 1, \dots, m - 1 \\
+	H^{(m)}_x &= [m T_x]
+\end{align*}
+Où $h$ est une réalisation de $H^{(m)}_x$. \\
+Par exemple, dans une année où $m = 4$ entre $K = 10$ et $K = 11$, $H^{(4)}_x \in \{40, 41, 42, 43\}$.
+
+\begin{align*}
+	Z 		&= b_{K + \frac{J + 1}{m}} v_{K + \frac{J + 1}{m}} 
+\end{align*}
+
+\begin{align*}
+	\text{Pr}(K = k, J = j) 
+	&= \qx[k + \frac{j}{m} | \frac{1}{m}]{x} \\
+	&\stackrel{De Moivre}= \frac{1}{m(\omega - x)} \\
+	&\stackrel{Exponentielle}= e^{-\mu(k + \frac{1}{m})}(1 - e^{-\mu(\frac{1}{m})})
+\end{align*}
+
+\begin{align*}
+\Ax[\color{teal}r|]{\nthtop{\color{blue}1}{x}:\angln}^{\:\; (m)} &=
+	\sum_{h = {\color{teal}r}m}^{m({\color{teal}r} + n) - 1} v^{\frac{k + 1}{m}} \qx[\frac{h}{m} | \frac{1}{m}]{x} + (\textcolor{blue}{0} | v^{{\color{teal}r + }n} \px[{\color{teal}r + }n]{x})
+\end{align*}
+
+
 \subsection{Relations entre payable au moment et celles payables à la fin de l'année du décès}
+
+Si:
+\begin{enumerate}
+	\item Force constante.
+	\item Prestation de décès seulement.
+	\item Variation de prestation tout au plus aux anniversaires de police.
+\end{enumerate}
+
+\begin{align*} 
+	\Ax*{x} &\stackrel{DUD}= \frac{i}{\delta} \Ax{x} &
+	\Ax{x}^{(m)} &\stackrel{DUD}= \frac{i}{i^{(m)}} \Ax{x} \\
+\end{align*}
+
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Circle [id:dp09874593439383172] 
+\draw  [fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (3.83,56.58) .. controls (3.83,54.28) and (5.7,52.42) .. (8,52.42) .. controls (10.3,52.42) and (12.17,54.28) .. (12.17,56.58) .. controls (12.17,58.88) and (10.3,60.75) .. (8,60.75) .. controls (5.7,60.75) and (3.83,58.88) .. (3.83,56.58) -- cycle ;
+%Shape: Circle [id:dp8464736171323644] 
+\draw  [fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (89.37,56.58) .. controls (89.37,54.28) and (91.24,52.42) .. (93.54,52.42) .. controls (95.84,52.42) and (97.71,54.28) .. (97.71,56.58) .. controls (97.71,58.88) and (95.84,60.75) .. (93.54,60.75) .. controls (91.24,60.75) and (89.37,58.88) .. (89.37,56.58) -- cycle ;
+%Shape: Circle [id:dp8191649989489314] 
+\draw  [fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (135.5,56.58) .. controls (135.5,54.28) and (137.37,52.42) .. (139.67,52.42) .. controls (141.97,52.42) and (143.83,54.28) .. (143.83,56.58) .. controls (143.83,58.88) and (141.97,60.75) .. (139.67,60.75) .. controls (137.37,60.75) and (135.5,58.88) .. (135.5,56.58) -- cycle ;
+%Shape: Circle [id:dp4883813206110459] 
+\draw  [fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (47.42,56.58) .. controls (47.42,54.28) and (49.28,52.42) .. (51.58,52.42) .. controls (53.88,52.42) and (55.75,54.28) .. (55.75,56.58) .. controls (55.75,58.88) and (53.88,60.75) .. (51.58,60.75) .. controls (49.28,60.75) and (47.42,58.88) .. (47.42,56.58) -- cycle ;
+%Straight Lines [id:da4802306696118501] 
+\draw    (3.83,98.58) -- (51.58,98.58) -- (143.83,98.58) ;
+
+
+%Shape: Circle [id:dp8193095728214319] 
+\draw  [fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (3.83,98.58) .. controls (3.83,96.28) and (5.7,94.42) .. (8,94.42) .. controls (10.3,94.42) and (12.17,96.28) .. (12.17,98.58) .. controls (12.17,100.88) and (10.3,102.75) .. (8,102.75) .. controls (5.7,102.75) and (3.83,100.88) .. (3.83,98.58) -- cycle ;
+%Shape: Circle [id:dp28106342849366883] 
+\draw  [fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (89.37,98.58) .. controls (89.37,96.28) and (91.24,94.42) .. (93.54,94.42) .. controls (95.84,94.42) and (97.71,96.28) .. (97.71,98.58) .. controls (97.71,100.88) and (95.84,102.75) .. (93.54,102.75) .. controls (91.24,102.75) and (89.37,100.88) .. (89.37,98.58) -- cycle ;
+%Shape: Circle [id:dp590785861685541] 
+\draw  [fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (135.5,98.58) .. controls (135.5,96.28) and (137.37,94.42) .. (139.67,94.42) .. controls (141.97,94.42) and (143.83,96.28) .. (143.83,98.58) .. controls (143.83,100.88) and (141.97,102.75) .. (139.67,102.75) .. controls (137.37,102.75) and (135.5,100.88) .. (135.5,98.58) -- cycle ;
+%Shape: Circle [id:dp32421153885949106] 
+\draw  [fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (47.42,98.58) .. controls (47.42,96.28) and (49.28,94.42) .. (51.58,94.42) .. controls (53.88,94.42) and (55.75,96.28) .. (55.75,98.58) .. controls (55.75,100.88) and (53.88,102.75) .. (51.58,102.75) .. controls (49.28,102.75) and (47.42,100.88) .. (47.42,98.58) -- cycle ;
+%Straight Lines [id:da7524598861990481] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (117.42,51.33) -- (117.42,61.58) ;
+
+
+%Straight Lines [id:da4620382655827757] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (117.42,92.33) -- (117.42,102.58) ;
+
+
+%Curve Lines [id:da7042096865740792] 
+\draw    (117.42,101.67) .. controls (113.58,130.74) and (15.54,131.32) .. (8.33,104.43) ;
+\draw [shift={(8,102.75)}, rotate = 443.02] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+%Curve Lines [id:da5752952477375306] 
+\draw    (118.5,25) .. controls (102.66,20.05) and (22.95,7.1) .. (8.42,51.07) ;
+\draw [shift={(8,52.42)}, rotate = 286.3] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+%Curve Lines [id:da38446191206015734] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (117.42,61.58) .. controls (124.22,74.46) and (128.18,73.14) .. (138.36,62.17) ;
+\draw [shift={(139.67,60.75)}, rotate = 492.35] [fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=0.75]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+%Curve Lines [id:da47560590920991563] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (139.67,52.42) .. controls (141.5,38.67) and (139.5,30.67) .. (118.5,25) ;
+\draw [shift={(118.5,25)}, rotate = 375.1] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+
+%Shape: Rectangle [id:dp6553128643132535] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][dash pattern={on 1.69pt off 2.76pt}][line width=1.5]  (112,16) -- (150.5,16) -- (150.5,74.67) -- (112,74.67) -- cycle ;
+
+% Text Node
+\draw (24,15) node [scale=0.8]  {$\frac{i}{\delta } A_{x}$};
+% Text Node
+\draw (131,117) node [scale=0.8]  {$\overline{A}_{x}$};
+
+
+\end{tikzpicture}
+
+Généralisation
+\begin{align*} 
+	\Ax*{\termxn} &\stackrel{DUD}= \frac{i}{\delta} \Ax{\termxn} &
+	\Ax*{x:\angln} &\stackrel{DUD}= \frac{i}{\delta} \Ax{\termxn} + \Ax{x:\nthtop{1}{\angln}} 
+\end{align*}
+
+Cas de croissance
+\begin{align*} 
+\twoletsymb{{\color{purple}\bar{I}}}{\bar{A}}_{x}
+	&\stackrel{DUD}= \frac{i}{\delta} \left[\twoletsymb{I}{A}_x {\color{purple} - \bigg( \frac{1}{d} - \frac{1}{\delta} \bigg) \Ax{x}} \right] \\
+\twoletsymb{I^{{\color{orange}(m)}}}{A}_{x}^{(m)}
+	&\stackrel{DUD}= \frac{i}{i^{(m)}} \left[\twoletsymb{I}{A}_x {\color{orange} - \bigg( \frac{1}{d} - \frac{1}{d^{(m)}} \bigg) \Ax{x}} \right] \\
+\end{align*}
+
+Généralisation avec multiple de la force d'intérêt
+\begin{align*} 
+	\prescript{j}{}{\Ax*{x}} &\stackrel{DUD}= \frac{e^{j\delta} - 1}{j \delta} \prescript{j}{}{\Ax{x}} &
+	 \prescript{j}{}{\Ax{x}}^{(m)} &\stackrel{DUD}=  \frac{e^{j\delta} - 1}{m(e^{\frac{j\delta}{m}} - 1)} \prescript{j}{}{\Ax{x}} 
+\end{align*}
+
+\paragraph{Approximations}
+
+\begin{align*} 
+	\Ax*{x} &\approx (1 + i)^{\frac{1}{2}} \Ax{x}	&
+	\Ax{x}^{(m)} &\approx (1 + i)^{\frac{m - 1}{2m}} \Ax{x}
+\end{align*}
+
+\begin{align*} 
+	\twoletsymb{D}{\bar{A}}_{\nthtop{1}{x}:\angln} 
+		&\approx (1 + i)^{\frac{1}{2}} \twoletsymb{D}{A}_{\nthtop{1}{x}:\angln}		&
+	\Ax*{x:\angln} 
+		&\approx (1 + i)^{\frac{1}{2}} \Ax{\termxn} + \Ax{x:\nthtop{1}{\angln}}  \\
+\end{align*}
+
+\begin{align*}
+	\twoletsymb{\bar{D}}{\bar{A}}_{\nthtop{1}{x}:\angln} 
+		&\approx (1 + i)^{\frac{1}{2}} 
+		\left[
+			\twoletsymb{D}{A}_{\nthtop{1}{x}:\angln}	-
+			\frac{1}{2}	\Ax{\nthtop{1}{x}:\angln}
+		\right] \\
+	\twoletsymb{I_{\angln}^{(m)}}{\bar{A}}_{x} 
+		&\approx (1 + i)^{\frac{1}{2}} 
+		\left[
+			\twoletsymb{I_{\angln}}{A}_{x}	-
+			\frac{m - 1}{2m}	\Ax{\nthtop{1}{x}:\angln}
+		\right]
+\end{align*}
 
 \section{Contrats de rente}
 \paragraph{Rente viagère} On verse une rente à l'assuré jusqu'à son décès. 

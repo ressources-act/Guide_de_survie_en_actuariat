@@ -4,7 +4,8 @@
 %% -----------------------------
 \input{cheatsht-preamble.tex}
 \newcolumntype{g}{>{\columncolor{green!40!white}}m{1.2cm}}
-
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\definecolor{darkpastelpurple}{rgb}{0.59, 0.44, 0.84}
 % On débute la numérotation des chapitres à 2 pour suivre les notes à Marie-Pier.
 \setcounter{section}{1}
 \usepackage{graphicx}
@@ -1815,28 +1816,130 @@ F_{obs} < F_{1, n-p'}(1-\alpha)
 %	\item $R^{2}$
 %\end{enumerate}
 
+\subsection*{Graphique des variables ajoutées}
+
+
+
 \subsection*{Régression Ridge}
-\begin{itemize}
-\item Les coefficients de la régularisation sont réduits (\emph{shrinked}) car on applique une pénalité sur leur taille totale avec la norme $\ell_2 = \sqrt{\sum_{i=1}^{p} \beta_j^2}$
-\item On veut minimiser l'équation suivante : 
-\[R^{Ridge}(\beta) = \sum_{i=1}^{n} \left( Y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x^{ij} \right)^2 + \lambda \sum_{j=1}^{p} \beta_j^2  \]
+
+Deux normes sont utilisées en régression, les normes L2 \textit{(régression Ridge)} et L1 \textit{(régression Lasso)}. 
+\begin{align*}
+\norm{\bm{\beta}}_2 &= \sqrt{\sum_{j = 1}^{p} \beta_{j}^{2}} &
+\norm{\bm{\beta}}_1 &= \sum_{j = 1}^{p} \left|\beta_{j} \right|
+\end{align*}
+
+La \textbf{régression Ridge} est habituellement utilisée lorsque nous avons une variance très élevée avec l'estimateur BLUE.
+
+Souvent, ceci est lorsqu'il y a beaucoup de variables explicatives qui sont \textbf{possiblement corrélés}.
+
+La méthode consiste à minimiser l'estimateur en acceptant un certain biais \textit{(budget total)} $t$.
+
+Donc, à minimiser la variance de l'estimateur sous la contrainte que $\norm{\bm{\beta}}_2 = \sqrt{\sum_{j = 1}^{p} \beta_{j}^{2}} \le t$.
+
+Cette condition représente un cercle dont on prends \textcolor{red}{le point le plus près} de \textcolor{darkpastelpurple}{l'estimateur OLS $\widehat\beta$}; c'est-à-dire, qu'on prends le point qui est \textit{on the "\textbf{\color{red}ridge}" of the circle}.
+
+Les lignes \textcolor{orange}{oranges} représentent différentes valeurs possible que peuvent prendre $\widehat\beta$.s
+
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,219.79999923706055); %set diagram left start at 0, and has height of 219.79999923706055
+
+%Shape: Axis 2D [id:dp8001321750733121] 
+\draw  (12,82) -- (169.5,82)(90.5,2) -- (90.5,159.5) (162.5,77) -- (169.5,82) -- (162.5,87) (85.5,9) -- (90.5,2) -- (95.5,9)  ;
+%Shape: Circle [id:dp06156224627946494] 
+\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.66 ] (55,82) .. controls (55,62.39) and (70.89,46.5) .. (90.5,46.5) .. controls (110.11,46.5) and (126,62.39) .. (126,82) .. controls (126,101.61) and (110.11,117.5) .. (90.5,117.5) .. controls (70.89,117.5) and (55,101.61) .. (55,82) -- cycle ;
+%Straight Lines [id:da4393370978295319] 
+\draw [line width=2.25]    (126,76) -- (126,88) ;
+
+
+%Shape: Circle [id:dp07216861586445678] 
+\draw  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ][line width=3]  (137,35) .. controls (137,34.45) and (137.45,34) .. (138,34) .. controls (138.55,34) and (139,34.45) .. (139,35) .. controls (139,35.55) and (138.55,36) .. (138,36) .. controls (137.45,36) and (137,35.55) .. (137,35) -- cycle ;
+%Shape: Ellipse [id:dp9690307834415508] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (116.36,46.77) .. controls (113.03,40.6) and (121.1,29.78) .. (134.39,22.62) .. controls (147.67,15.45) and (161.14,14.65) .. (164.47,20.82) .. controls (167.8,27) and (159.73,37.81) .. (146.45,44.97) .. controls (133.16,52.14) and (119.69,52.94) .. (116.36,46.77) -- cycle ;
+%Shape: Ellipse [id:dp42215493996948195] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (107.99,49.88) .. controls (103.85,42.22) and (116.18,27.55) .. (135.51,17.12) .. controls (154.85,6.69) and (173.88,4.45) .. (178.01,12.12) .. controls (182.15,19.78) and (169.82,34.45) .. (150.49,44.88) .. controls (131.15,55.31) and (112.12,57.55) .. (107.99,49.88) -- cycle ;
+%Shape: Circle [id:dp9217179943038853] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=3]  (106.99,50.88) .. controls (106.99,50.33) and (107.44,49.88) .. (107.99,49.88) .. controls (108.54,49.88) and (108.99,50.33) .. (108.99,50.88) .. controls (108.99,51.44) and (108.54,51.88) .. (107.99,51.88) .. controls (107.44,51.88) and (106.99,51.44) .. (106.99,50.88) -- cycle ;
+
+% Text Node
+\draw (132,87) node [scale=0.8] [align=left] {$\displaystyle t$};
+% Text Node
+\draw (155,34) node [scale=0.7,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ]  {$\widehat{\beta}^{OLS}$};
+% Text Node
+\draw (111,63) node [scale=0.7,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$\widehat{\beta}^{RIDGE}$};
+% Text Node
+\draw (174,89) node [scale=0.7]  {$\beta _{0}$};
+% Text Node
+\draw (74,12) node [scale=0.7]  {$\beta _{1}$};
+
+
+\end{tikzpicture}
+
+
+On veut minimiser l'équation suivante : 
+\begin{align*}
+S^{R}(\beta) &= \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij} \right)^2 + \lambda \sum_{j=1}^{p} \beta_j^2  
+\end{align*}
 Et on trouve que
-\[\hat{\bm{\beta}}^{Ridge} = \left( \matr{X}^\top Y + \lambda \matr{I}_{p \times p} \right)^{-1}  \matr{X}^\top \matr{Y}  \]
-\item Cette méthode est très utile \textbf{Lorsqu'il y a beaucoup de variables explicatives}. On choisit la valeur optimale pour le coefficient de régularisation $\lambda$ avec une validation croisée.
-\item Si la valeur de $\lambda$ augmente, le modèle perd en flexibilité et donc la variance des estimateurs diminue. Par contre, le biais augmente.
-\item Le modèle de régression Ridge est plus difficile à interpréter, car plusieurs coefficients des paramètres peuvent être près de 0.
-\end{itemize}
+\[\hat{\bm{\beta}}^{R} = \left( \matr{X}^\top \matr{X} + \lambda \matr{I}_p \right)^{-1}  \matr{X}^\top \matr{Y}  \]
+
+On choisit la valeur optimale pour le coefficient de régularisation $\lambda$ avec une validation croisée.
+
 
 \subsection*{Régression Lasso (\emph{Least Absolute Shrinkage and Selection Operator})}
-\begin{itemize}
-\item Très similaire à la régression Ridge, sauf qu'on utilise la norme $\ell_1$ pour appliquer une contrainte à l'équation à minimiser : 
-$\ell_1 = \sum_{j=1}^{p} | \beta_j | $
 
-\item L'équation à minimiser est donc
-\[S^{Lasso}(\bm{\beta})  = \sum_{i=1}^{n} \left( Y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij} \right)^2 + \lambda \sum_{j=1}^{p} | \beta_j | \]
+La \textbf{régression Lasso} est habituellement utilisée pour la sélection de variables.
 
-\item La différence avec Ridge est que les paramètres peuvent être égaux à zéro \textbf{(il y a donc une sélection des variables)}.
-\end{itemize}
+Souvent, notre estimateur va tomber sur un des coins du diamant, ce qui implique qu'un paramètre serait à 0. 
+
+Donc, nous pouvons mettre à 0 des paramètres contrairement à la régression \textbf{Ridge} où les paramètres peuvent être près de 0 mais très rarement égale à 0.
+
+La méthode minimise la variance de l'estimateur sous la contrainte que $\norm{\bm{\beta}}_1 = \sum_{j = 1}^{p} \left|\beta_{j} \right| \le t$.
+
+Cette condition représente le diamant de l'image dont on prends \textcolor{red}{le point le plus près} de \textcolor{darkpastelpurple}{l'estimateur OLS $\widehat\beta$}.  
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,219.79999923706055); %set diagram left start at 0, and has height of 219.79999923706055
+
+%Shape: Axis 2D [id:dp8001321750733121] 
+\draw  (12,82) -- (169.5,82)(90.5,2) -- (90.5,159.5) (162.5,77) -- (169.5,82) -- (162.5,87) (85.5,9) -- (90.5,2) -- (95.5,9)  ;
+%Straight Lines [id:da4393370978295319] 
+\draw [line width=2.25]    (126,76) -- (126,88) ;
+
+
+%Shape: Circle [id:dp07216861586445678] 
+\draw  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ][line width=3]  (154,66) .. controls (154,65.45) and (154.45,65) .. (155,65) .. controls (155.55,65) and (156,65.45) .. (156,66) .. controls (156,66.55) and (155.55,67) .. (155,67) .. controls (154.45,67) and (154,66.55) .. (154,66) -- cycle ;
+%Shape: Ellipse [id:dp9690307834415508] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (133.36,77.77) .. controls (130.03,71.6) and (138.1,60.78) .. (151.39,53.62) .. controls (164.67,46.45) and (178.14,45.65) .. (181.47,51.82) .. controls (184.8,58) and (176.73,68.81) .. (163.45,75.97) .. controls (150.16,83.14) and (136.69,83.94) .. (133.36,77.77) -- cycle ;
+%Shape: Ellipse [id:dp42215493996948195] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (124.99,80.88) .. controls (120.85,73.22) and (133.18,58.55) .. (152.51,48.12) .. controls (171.85,37.69) and (190.88,35.45) .. (195.01,43.12) .. controls (199.15,50.78) and (186.82,65.45) .. (167.49,75.88) .. controls (148.15,86.31) and (129.12,88.55) .. (124.99,80.88) -- cycle ;
+%Shape: Circle [id:dp9217179943038853] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=3]  (125.5,82) .. controls (125.5,81.45) and (125.95,81) .. (126.5,81) .. controls (127.05,81) and (127.5,81.45) .. (127.5,82) .. controls (127.5,82.55) and (127.05,83) .. (126.5,83) .. controls (125.95,83) and (125.5,82.55) .. (125.5,82) -- cycle ;
+%Shape: Diamond [id:dp9831296262573708] 
+\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.61 ] (90.5,47) -- (125.5,82) -- (90.5,117) -- (55.5,82) -- cycle ;
+
+% Text Node
+\draw (132,87) node [scale=0.8] [align=left] {$\displaystyle t$};
+% Text Node
+\draw (172,65) node [scale=0.7,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ]  {$\widehat{\beta}^{OLS}$};
+% Text Node
+\draw (117,81) node [scale=0.7,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$\widehat{\beta}^{L}$};
+% Text Node
+\draw (174,89) node [scale=0.7]  {$\beta _{0}$};
+% Text Node
+\draw (74,12) node [scale=0.7]  {$\beta _{1}$};
+
+\end{tikzpicture}
+
+
+On veut minimiser l'équation suivante:
+\begin{align*}
+S^{L}(\bm{\beta}) &= 
+	\sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij} \right)^2 
+	+ \lambda \sum_{j=1}^{p} | \beta_j | 
+\end{align*}
+
+À noter qu'un méthode plus efficace que Ridge et Lasso est de minimiser sous la contrainte que $\sum_{j = 1}^{p} \bm{1}_{\{ \beta_j \neq 0 \}} \le t$.
 
 
 
