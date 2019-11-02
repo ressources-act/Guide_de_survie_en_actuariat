@@ -8,3 +8,4 @@
 *.fdb_latexmk
 *.DS_Store
 *synctex.gz
+.DS_Store
