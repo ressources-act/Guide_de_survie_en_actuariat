@@ -6,7 +6,9 @@
 %% Bug avec les accents dans la définition des variables ici, à voir plus tard.
 
 \input{cheatsht-preamble.tex}
-
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\newtcolorbox{formula}[1]{colback=green!5!white,colframe=green!75!black,fonttitle=\bfseries,title=#1}
 
 % Couleur de la page
 %\pagecolor{gray!10!white}
@@ -24,12 +26,71 @@
 \section{Estimation non-paramétrique}
 \subsection*{Moments à savoir}
 \begin{align*}
-\mu_k^{\prime} 	& = \esp{X^k} \\
+\mu_k^{\prime} 	& = \esp{X^k} &
 \mu_k			& = \esp{(X-\mu)^k} \\
 CV				& = \frac{\sigma}{\mu} \\
-\gamma			& = \frac{\mu_3}{\sigma^3}  \\
-\kappa			& = \frac{\mu_4}{\sigma^4} \\
+\text{Skewness: } \gamma			& = \frac{\mu_3}{\sigma^3}  &
+\text{Kurtosis: } \kappa			& = \frac{\mu_4}{\sigma^4} \\
 \end{align*}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Curve Lines [id:da2688874623271533] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.39 ][line width=3]  [dash pattern={on 7.88pt off 4.5pt}]  (80.5,138.67) .. controls (132.5,138.67) and (117.5,43.67) .. (151.5,43.67) .. controls (185.5,43.67) and (178.5,139.67) .. (229.5,138.67) ;
+
+
+%Curve Lines [id:da9147539678395264] 
+\draw [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ][fill={rgb, 255:red, 184; green, 233; blue, 134 }  ,fill opacity=0.64 ][line width=3]    (49,139) .. controls (163.5,131.67) and (184.83,55) .. (201.5,42.67) .. controls (218.17,30.33) and (212.5,140) .. (263.5,139) ;
+
+
+%Curve Lines [id:da8124483083453555] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.6 ][line width=3]    (49,139) .. controls (87.5,139.67) and (80.17,24.33) .. (98.5,43.67) .. controls (116.83,63) and (152.5,129.67) .. (263.5,139) ;
+
+
+%Straight Lines [id:da7586443312018019] 
+\draw [line width=2.25]    (49,139) -- (263.5,139) ;
+
+
+
+%Straight Lines [id:da09355877210927566] 
+\draw [line width=2.25]    (34.17,287) -- (322.17,287) ;
+
+
+%Curve Lines [id:da18622021578279613] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=3]    (219.17,255.33) .. controls (252.17,270) and (304.17,273) .. (319.17,271.33) ;
+
+
+%Curve Lines [id:da37988280307937217] 
+\draw [color={rgb, 255:red, 0; green, 166; blue, 35 }  ,draw opacity=1 ][line width=3]    (219.17,254.33) .. controls (235.17,285) and (300.17,282) .. (318.17,282.33) ;
+
+
+%Straight Lines [id:da5412137305076621] 
+\draw [line width=2.25]    (159.17,169) -- (159.17,286) ;
+
+
+%Curve Lines [id:da11948970250620294] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=3]    (35.17,276) .. controls (61.17,276) and (106.17,272) .. (121.17,244) .. controls (136.04,220.92) and (143.5,190.67) .. (160.5,190.67) .. controls (177.5,190.67) and (185.87,234.17) .. (219.17,255.33) .. controls (249.17,279) and (309.17,277) .. (319.17,277) ;
+
+
+
+% Text Node
+\draw (151,15) node [scale=0.8,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {No Skewness\\\textit{(symmétrique)}};
+% Text Node
+\draw (252,40) node [scale=0.8,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {Negative Skewness\\\textit{ \ \ \ \ (right-modal)}};
+% Text Node
+\draw (54,40) node [scale=0.8,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0.29,0.56,0.89}{Positive Skewness}\\\textit{\textcolor[rgb]{0.29,0.56,0.89}{ \ \ \ \ (left-modal)}}};
+% Text Node
+\draw (230,206) node [scale=0.8,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle  \begin{array}{{>{\displaystyle}l}}
+\textcolor[rgb]{0.96,0.65,0.14}{k\  >3}\\
+\textcolor[rgb]{0.82,0.01,0.11}{k\ =3}\\
+\textcolor[rgb]{0.0,0.65,0.14}{k\ < 3}
+\end{array}$};
+
+\end{tikzpicture}
 
 \subsection*{3 critères pour évaluer les queues de distributions}
 
@@ -67,13 +128,13 @@ CV				& = \frac{\sigma}{\mu} \\
 	
 
 
-	\begin{itemize}
+	\begin{description}
 		\item[\textbf{shifted} :] d est soustrait des valeurs restantes. \\
 		On peut visualiser le déplacement de la courbe de densité à la gauche.
 		\item[\textbf{left truncated} :] Toutes valeurs inférieures à d ne sont pas observées.			
 		\item[\textbf{left censored} :] Toutes valeurs inférieures à d sont égale à 0.
 		\item[\textbf{right censored} :] Toutes valeurs supérieures à u sont égale à u.
-	\end{itemize}	
+	\end{description}	
 	\textbf{\textit{Pour exemple}}, lorsqu'il y a une limite sur une police d'assurance les valeurs au-delà ne sont pas typiquement inscrites à leur vrai montant, mais plutôt comme la limite $u$.
 \end{itemize}
 
@@ -117,46 +178,49 @@ CV				& = \frac{\sigma}{\mu} \\
 
 \setcounter{section}{7}
 \section{Fréquence et sévérité avec modifications aux contrats}
-\subsection*{Déductible ordinaire}
 
-\subsubsection*{L'assureur paye tout montant en excédent du montant d.}
+\subsubsection*{Déductible ordinaire}
+
+\paragraph{L'assureur paye tout montant en excédent du montant d.}
 %\setlength{\abovedisplayskip}{-20pt}
 %\setlength{\belowdisplayskip}{20pt}
 \begin{align*}
-Y^L &= (X-d)_+ = 
+Y^{(L\textcolor{blue}{|P)}}_{(O)} &= (X-d)_+ = 
 	\begin{cases}
-		0		& , X \leq d \\
+		(0 {\color{blue}{| \text{non-défini})}}		& , X \leq d \\
 		X - d	& , X > d \\
-	\end{cases} \\
-Y^P &= (X-d)_+ = 
-	\begin{cases}
-		\text{Non-défini}	& , X \leq d \\
-		X - d				& , X > d \\
-	\end{cases}
+	\end{cases} 
+%	\\
+%Y^P &= (X-d)_+ = 
+%	\begin{cases}
+%		\text{Non-défini}	& , X \leq d \\
+%		X - d				& , X > d \\
+%	\end{cases}
 \end{align*}
 
-\subsection*{Déductible franchise}
-\subsubsection*{L'assureur paye l'entièreté des coûts pour toute perte qui surpasse le montant d.\\ \textit{Pour éviter les petites réclamations}}
+\subsubsection*{Déductible franchise}
+\paragraph{L'assureur paye l'entièreté des coûts pour toute perte qui surpasse le montant d.\\ \textit{Pour éviter les petites réclamations}}
 \begin{align*}
-Y^L &= (X-d)_+ = 
+Y^{(L\textcolor{blue}{|P)}}_{\color{red}{(F)}} &= (X-d)_+ = 
 	\begin{cases}
-		0		& , X \leq d \\
+		(0 {\color{blue}{| \text{non-défini})}}		& , X \leq d \\
 		X		& , X > d \\
-	\end{cases} \\
-Y^P &= (X-d)_+ = 
-	\begin{cases}
-		\text{Non-défini}	& , X \leq d \\
-		X 					& , X > d \\
-	\end{cases}
+	\end{cases} 
+%	\\
+%Y^P &= (X-d)_+ = 
+%	\begin{cases}
+%		\text{Non-défini}	& , X \leq d \\
+%		X 					& , X > d \\
+%	\end{cases}
 \end{align*}
 
 \subsubsection*{Moments}
 \begin{align*}
 E[Y_{(O\textcolor{red}{|F)}}^{(L\textcolor{blue}{|P)}}] &= \frac{E[X] - E[X \wedge d] + \textcolor{red}{d S_X(d)} }{\textcolor{blue}{S_X(d)}} \\
 \end{align*}
-Où (L|P) et (O|F) est à être interprété en REGEX. \\
-C'est soit per loss (L) ou \textcolor{blue}{per payment (P)} \\
-C'est soit un déductible ordinaire (O) ou \textcolor{red}{avec franchise (F)}.
+%Où (L|P) et (O|F) est à être interprété en REGEX. \\
+%C'est soit per loss (L) ou \textcolor{blue}{per payment (P)} \\
+%C'est soit un déductible ordinaire (O) ou \textcolor{red}{avec franchise (F)}.
 De plus, on note que:
 \begin{align*}
 E[Y_{(O)}^{(\textcolor{blue}{P)}}] &= e_X(d) \\
@@ -165,10 +229,10 @@ E[Y_{(O)}^{(L)}] &= \pi_X(d)
 
 \subsubsection*{Fonctions}
 \begin{align*}
-f_{Y^{(L\textcolor{blue}{|P)}}_{(O)}} &= \frac{f_X(y+d)}{\textcolor{blue}{S_X(d)}} \\
-S_{Y^{(L\textcolor{blue}{|P)}}_{(O)}} &= \frac{S_X(y+d)}{\textcolor{blue}{S_X(d)}} \\
+f_{Y^{(L\textcolor{blue}{|P)}}_{(O)}} &= \frac{f_X(y+d)}{\textcolor{blue}{S_X(d)}} &
+h_{Y^{(L\textcolor{blue}{|P)}}_{(O)}} &= h_X(y+d) \\
+S_{Y^{(L\textcolor{blue}{|P)}}_{(O)}} &= \frac{S_X(y+d)}{\textcolor{blue}{S_X(d)}} &
 F_{Y^{(L\textcolor{blue}{|P)}}_{(O)}} &= \frac{F_X(y+d) \textcolor{blue}{- F_X(d)}}{\textcolor{blue}{S_X(d)}} \\
-h_{Y^{(Y|P)}_{(O)}} &= h_X(y+d) \\
 \end{align*}
 
 
@@ -177,7 +241,7 @@ h_{Y^{(Y|P)}_{(O)}} &= h_X(y+d) \\
 Le LER nous donne le pourcentage de perte qu'on ne paie pas grâce au déductible
 \begin{align*}
 	LER 	 &= \frac{\esp{X} - \esp{(X-u)_+}}{\esp{X}} \\
-	     &= \frac{\esp{X \wedge u}}{\esp{X}} \\
+	     &= \frac{\esp{X \wedge u}}{\esp{X}} 
 \end{align*}
 Soit $X^I = (1 + r) X$
 \begin{align*}
@@ -211,7 +275,7 @@ F_Y(y) &=
 				F_X(y), & y \leq u \\
 				1, & y > u
 			\end{array}
-		\right. \\
+		\right. 
 \end{align*}
 
 \subsection*{Coassurance}
@@ -221,26 +285,27 @@ Si la coassurance est la seule modification, alors nous obtenons $Y = \alpha X$.
 \textit{L'impact sur les fonctions est le même qu'avec de l'inflation}.
 
 \subsection*{Formule récapitulative}
-\subsubsection*{Lorsque les 4 items sont présent (déductible \textit{ordinaire}, limite, inflation et coassurance.}
+\paragraph{Lorsque les 4 items sont présent (déductible \textit{ordinaire}, limite, inflation et coassurance.}
 
 \begin{align*}
-Y^L = 
+Y^{(L\textcolor{blue}{|P)}}_{(O)} &= 
 \begin{cases}
-0		& ,\ x  < \frac{d}{1+r} \\
+(0 {\color{blue}{| \text{Non-défini})}}		& ,\ x  < \frac{d}{1+r} \\
 \alpha \Big( (1+r) x - d \Big)	& ,\ \frac{d}{1+r} \leq x < \frac{u}{1+r} \\
-\alpha (u-d)		& ,\ x \geq \frac{u}{1+r} \\
-\end{cases}\\
-Y^P = 
-\begin{cases}
-\text{Non-défini}		& ,\ x  < \frac{d}{1+r} \\
-\alpha \Big( (1+r) x - d \Big)	& ,\ \frac{d}{1+r} \leq x < \frac{u}{1+r} \\
-\alpha (u-d)		& ,\ x \geq \frac{u}{1+r} \\
+\alpha (u-d)		& ,\ x \geq \frac{u}{1+r} 
+\\
 \end{cases}
-\end{align*}
-
-\begin{align*}
-\esp{Y^L} &= \alpha (1+r) \left( \esp{X \wedge \frac{u}{1+r}} - \esp{X \wedge \frac{d}{1+r}}   \right) \\
-\esp{Y^P} &= \frac{\esp{Y^L}}{S_X \left( \frac{d}{1+r} \right)}
+\\
+%Y^P = 
+%\begin{cases}
+%\text{Non-défini}		& ,\ x  < \frac{d}{1+r} \\
+%\alpha \Big( (1+r) x - d \Big)	& ,\ \frac{d}{1+r} \leq x < \frac{u}{1+r} \\
+%\alpha (u-d)		& ,\ x \geq \frac{u}{1+r} 
+%\\
+%\end{cases}
+\esp{Y^{(L\textcolor{blue}{|P)}}_{(O)}} &= \frac{\alpha (1+r) \left( \esp{X \wedge \frac{u}{1+r}} - \esp{X \wedge \frac{d}{1+r}}   \right)}{{\color{blue}{S_X \left( \frac{d}{1+r} \right)}}} 
+%\\
+%\esp{Y^P} &= \frac{\esp{Y^L}}{S_X \left( \frac{d}{1+r} \right)}
 \end{align*}
 
 \setcounter{section}{13}
@@ -262,17 +327,22 @@ I.C. au niveau $1 - \alpha$ de $F(x) \in \left[F_n(x) \pm z_{1 - \frac{\alpha}{2
 F_n(x) &= \frac{1}{n} \sum\limits_{j=1}^n I_{\{ x_j \leq x\}} \\
 f_n(x) &= \frac{1}{n} \sum\limits_{j=1}^n I_{\{ x_j = x\}}  \\
  n F_n&(x)  \sim \text{bin}(n, F(x))\\
-E[F_n(x)] &= \frac{n F_n(x)}{n} = F_n(x)\\
-\widehat{Var}[F_n(x)] &= \frac{n F_n(x)(1 - F)n(x)}{n^2} = \frac{F_n(x)(1 - F_n(x))}{n}  \\
-\widehat{Var}[S_n(x)] &= \frac{S_n(x)(1 - S_n(x))}{n} \\
+E[F_n(x)] &
+%		= \frac{n F_n(x)}{n} \\
+		= F_n(x)\\
+\widehat{Var}[F_n(x)] &
+%= \frac{n F_n(x)(1 - F)n(x)}{n^2} 
+= \frac{F_n(x)(1 - F_n(x))}{n}  \\
+%\widehat{Var}[S_n(x)] &= \frac{S_n(x)(1 - S_n(x))}{n} \\
 F_n(x) &= 
 \left\{
 	\begin{array}{ll}
 		0,  &  x < y_1 \\
-        1 - \frac{r_j}{n}, &  y_{j-1} \leq x < y_j, j=2,...,k \\
+        1 - \frac{r_j}{n}, &  y_{j-1} \leq x < y_j \\
         1, & x > y_k 
 	\end{array}
-\right.
+\right. \\
+&&\forall j=2,...,k
 \end{align*}
 
 \subsection*{Distribution empirique avec données groupées}
@@ -311,67 +381,85 @@ F_n(x) &=
 			r_{i - 1} - s_{i - 1} - b_{i - 1}, & i = 2, 3, \dots, k + 1
 		\end{cases}
 \end{align*}
-\item[] Par la suite, on peut interpréter la fonction de survie comme une probabilité conditionelle puisque $S(t_0) = 1$.
+\end{enumerate}
+
+%\item[] Par la suite, on peut interpréter la fonction de survie comme une probabilité conditionnelle puisque $S(t_0) = 1$.
+On peut interpréter la fonction de survie comme une \textbf{probabilité conditionnelle}.
 \begin{align*}
 	S(t) &= \frac{S(t_1)}{S(t_0)} \times \frac{S(t_2)}{S(t_1)} \times \dots \times \frac{S(t)}{S(t-1)} \\
 	&\Leftrightarrow p_{1} \times p_{2} \times \dots \times p_{t} = \prod_{j \le t} p_{j} \\
 	\text{où } p_{t} &= P(T > t | T > t - 1) \\
-	\text{et } q_{t} &= P(T < t | T > t - 1)
+%	\text{et } q_{t} &= P(T < t | T > t - 1)
 \end{align*}
-	\item[] On peut donc estimer $p_{j}$ par:
+
+On peut donc estimer $p_{j}$ par:
 \begin{align*}
-		\hat{p}_{j} &= 1 - \hat{q}_{j} = 1 - \hat{\lambda}_{j} = 1 - \frac{S_{j}}{r_{j}} \\
+		\hat{p}_{j} &=
+%		 1 - \hat{q}_{j} = 1 - \hat{\lambda}_{j} = 
+		 1 - \frac{S_{j}}{r_{j}} \\
 		\text{où } S_j &\sim \text{Bin}(r_j, q_j) 
 \end{align*}
-	\item[] Pour obtenir l'estimateur \textbf{Kaplan-Meier}:
-	\[
-	S_{m}(t) = \prod\limits_{j \le t} \left( 1 - \frac{S_j}{r_j} \right)
-	\]		
-	\item[] On utilise la \textbf{méthode Delta} pour trouver la variance:
-	\[
-		V\big(g(\widehat{\theta})\big) = \big(g'(\widehat{\theta}_{0})\big)^2 V(\widehat{\theta})
-	\]
-	Pour ensuite obtenir:
-	\begin{align*}
-		V(S_n(t)) &= \big( S_n(t) \big)^2 \sum_{j \le t}\frac{q_j}{r_j p_j} 
-	\end{align*}
-	\item[] On peut donc estimer cette variance avec la \textbf{(Formule de Greenwood)}:
+
+Ceci correspond donc à l'estimateur de \textbf{Kaplan-Meier}:
+\begin{formula}{Estimateur Kaplan-Meier de la fonction de survie empirique}
+\begin{align*}
+	S_{m}(t) &= \prod\limits_{j \le t} \left( 1 - \frac{S_j}{r_j} \right) \\		
+\end{align*}
+\end{formula}
+%
+%Pour trouver la variance, nous utilisons la \textbf{méthode Delta} :
+%	\[
+%		V\big(g(\widehat{\theta})\big) = \big(g'(\widehat{\theta}_{0})\big)^2 V(\widehat{\theta})
+%	\]
+%Pour ensuite obtenir:
+%	\begin{align*}
+%		V(S_n(t)) &= \big( S_n(t) \big)^2 \sum_{j \le t}\frac{q_j}{r_j p_j} 
+%	\end{align*}
+
+La \textbf{Formule de Greenwood} estime la variance de la fonction de survie \textbf{Kaplan-Meier}:
+\begin{formula}{Formule de Greenwood}
 	\begin{align*}	
-		\widehat{V}[S_{n}(t)] &= \big(S_{n}(t)\big)^2 \sum_{j \le t} \frac{S_j}{r_i(r_i - S_i)} 
+		\widehat{V}\big(S_{m}(t)\big) &= \big(S_{m}(t)\big)^2 \sum_{j \le t} \frac{S_j}{r_j(r_j - S_j)} 
 	\end{align*}
-\end{enumerate}
+\end{formula}
+%\end{enumerate}
 
 %\subsubsection*{Estimateur \textbf{Nelson-Aalen} de la \textbf{\textit{cumulative hazard rate function}}}
 
-\begin{enumerate}
-	\item[] On reprends la même notation pour trouver l'estimateur \textbf{Nelson-Aalen}:
-	\begin{align*}
-		\widehat{H}(t) &= \sum_{j \le t} \left( \frac{S_{j}}{r_{j}}\right)
-	\end{align*}
-	On peut ensuite déduire la fonction de survie empirique:
-	\begin{align*}
-		S_m(t) &= e^{\widehat{H}(t)}
-	\end{align*}	
-	La variance de la \textbf{\textit{cumulative hazard rate function}} est représentée comme suit:
-	\begin{align*}	
-		V(\widehat{H}(t)) &= \sum_{j \le t} V\left( \frac{S_j}{r_j} \right) = \frac{q_j p_j}{r_j}
-	\end{align*}
-	Ce qu'on peut ensuite estimer avec la \textbf{formule de Klein}:
-	\begin{align*}	
-		\widehat{V}(\widehat{H}(t)) &= \sum_{j \le t} \frac{\widehat{q}_j \widehat{p}_j}{r_j} = \frac{S_j (r_j - S_j)}{r_j^3}  
-	\end{align*}
-\end{enumerate}
 
+La \textbf{\textit{cumulative hazard rate function}} est estimée par l'estimateur \textbf{Nelson-\AA alen}:
+\begin{formula}{Estimateur Nelson-\AA alen du cumulative hazard rate function}
 \begin{align*}
-	S_j &\sim \text{Bin}(r_j, q_j) \\
-	V\big(g(\widehat{\theta})\big) &= \big(g'(\widehat{\theta}_{0})\big)^2 V(\widehat{\theta})\: \textbf{(Méthode Delta)} \\
-	V(S_n(t)) &= \big( S_n(t) \big)^2 \sum_{j \le t}\frac{q_j}{r_j p_j} \\
-	\widehat{V}[S_{n}(t)] &= \big(S_{n}(t)\big)^2 \sum_{j \le t} \frac{S_j}{r_i(r_i - S_i)}\: \textbf{(Formule de Greenwood)} \\
-	\widehat{H}(t) &= \sum_{j \le t} \left( \frac{S_{j}}{r_{j}}\right)\: \textbf{(Estimateur Nelson - Aalen)} \\    
-	V(\widehat{H}(t)) &= \sum_{j \le t} V\left( \frac{S_j}{r_j} \right) = \frac{q_j p_j}{r_j} \\
-	\widehat{V}(\widehat{H}(t)) &= \sum_{j \le t} \frac{\widehat{q}_j \widehat{p}_j}{r_j} = \frac{S_j (r_j - S_j)}{r_j^3}\: \textbf{(Formule de Klein)} \\    
+	\widehat{H}(t) &= 
+	\sum_{j \le t}  \frac{S_{j}}{r_{j}}	
 \end{align*}
+\end{formula}
+L'estimateur de la fonction de survie peut ensuite être déduit:
+\begin{align*}
+		\widehat{S}(t) &= 
+		e^{-\widehat{H}(t)}
+\end{align*}	
+%La variance de la \textbf{\textit{cumulative hazard rate function}} est représentée comme suit:
+%	\begin{align*}	
+%		V(\widehat{H}(t)) &= \sum_{j \le t} V\left( \frac{S_j}{r_j} \right) = \frac{q_j p_j}{r_j}
+%	\end{align*}
+La variance de l'estimateur Nelson-\AA alen est estimée par la \textbf{formule de Klein}:
+\begin{formula}{Formule de Klein}
+\begin{align*}	
+		\widehat{V}\big(\widehat{H}(t)\big) &= 
+%		\sum_{j \le t} \frac{\widehat{q}_j \widehat{p}_j}{r_j} =
+		\sum_{j \le t} \frac{S_j (r_j - S_j)}{r_j^3}  
+	\end{align*}
+\end{formula}
 
+\begin{formula}{Intervalles de confiance}
+\begin{align*}
+	H(t) &\in \left[ \widehat{H}(t) \pm z_{\alpha/2} \sqrt{\widehat{\text{V}}(\widehat{H}(t))} \right] \\	
+	S(t) &\in \left[ S_m(t) \pm z_{\alpha/2} \sqrt{\widehat{\text{V}}\big(S_m(t)\big)} \right] \\
+\end{align*}
+\end{formula}
+
+\textbf{Méthode d'efron}: Poser que $S_m(y) = 0$ $\forall y \ge y_{\text{max}}$.
 
 \section{Fonction génératrice cumulante}
 Soit la fonction génératrice des moments $M_X(t)$, telle que

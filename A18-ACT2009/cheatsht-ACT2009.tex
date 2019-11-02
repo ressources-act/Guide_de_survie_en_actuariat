@@ -19,7 +19,7 @@
 \begin{document}
 
 \small
-\begin{multicols*}{3} % Nombre de colonnes (peut être changé plus tard.)
+\begin{multicols*}{2} % Nombre de colonnes (peut être changé plus tard.)
 \section{Probabilités conditionnelles}
 \begin{enumerate}[label=\faAngleRight]
 \item Rappel théorème de Bayes : 
@@ -44,8 +44,10 @@
 
 \item L'espérance conditionnelle : 
 \begin{align*}
-\esp{X_1} 	& = \esp{\esp{X_1 | X_2}} = \sum_{x_2 = 0}^{\infty} \esp{X_1 | X_2} \prob{X_2 = x_2} \\
-\esp{X_1}	& = \esp{\esp{X_1 | X_2}} = \int_{-\infty}^{\infty} \esp{X_1 | X_2} f_{X_2}(x_2) d x_2 \\
+\esp{X_1} 	& = \esp{\esp{X_1 | X_2}} \\
+			& = \sum_{x_2 = 0}^{\infty} \esp{X_1 | X_2} \prob{X_2 = x_2} \\
+\esp{X_1}	& = \esp{\esp{X_1 | X_2}} \\
+			& = \int_{-\infty}^{\infty} \esp{X_1 | X_2} f_{X_2}(x_2) d x_2 \\
 \end{align*}
 
 \item La variance conditionnelle : 
@@ -67,6 +69,12 @@ Var(X_1) = \esp{Var(X_1 | X_2, X_3)}  + \mathrm{Var} \left( \esp{X_1 | X_2, X_3}
 De plus,
 \begin{align*}
 \covar{X, Y} = \esp{\covar{X, Y | Z}} + \covar{\esp{X | Z}, \esp{Y | Z}}
+\end{align*}
+
+
+Soit $N$, le nombre d'essais indépendants jusqu'à avoir un même résultat k fois consécutivement avec m possibilités équiprobables.
+\begin{align*}
+	\esp{N} &= \frac{1 - m^{k}}{1 - m} \\
 \end{align*}
 
 %\subsection*{Poisson composée}
@@ -98,6 +106,78 @@ De plus,
 %\end{align*}
 %\end{enumerate}
 
+\vfill\null
+
+\section{Processus Stochastiques}
+
+\subsection*{Définition}
+\begin{description}
+	\item[Domaine]: Valeurs possible du processus à un temps quelconque t. \\
+	Exemple: Température est dans un certain intervalle, $\Omega \in [-50, 50]$.
+	\item[Filtration]: Information connue au temps t.\\
+	Exemple: Température dépend de la température passée, peu probable qu'il neige s'il faisait 35 hier.
+	\item[Probabilités]: Probabilité des événements possibles.\\
+	Exemple: Température possède certaines probabilités, 70\% de plus demain, 40\% dans 2 jours, etc.
+\end{description}
+
+Dénoté par $\{X(t), t \in T\}$.
+Si l'ensemble est:
+\begin{description}
+	\item[fini ou dénombrable]: Processus est dit d'être \textbf{en temps discret}.
+	\item[infini ou non-dénombrable]: Processus est dit d'être \textbf{en temps continu}.
+\end{description}
+
+Si l'ensemble des valeurs possibles de $X(t)$ est:
+\begin{description}
+	\item[fini ou \textit{infini} dénombrable]: Processus est dit d'avoir un espace d'état \textbf{discret}
+	\item[infini ou non-dénombrable]: Processus est dit d'avoir un espace d'état \textbf{continu}
+\end{description}
+
+\subsection*{Fonctions}
+
+Fonction de répartition d'ordre $k$ du processus $\{X(t), t \in T\}$.
+	\begin{align*}
+		F(x_{1}, \dots, x_{k} \ ; \ t_{1}, \dots, t_{k}) &= \text{Pr}(X(t_{1}) \le x_{1}, \dots, X(t_{k}) \le x_{k})
+	\end{align*}
+	
+Fonction de densité d'ordre $k$ du processus $\{X(t), t \in T\}$.
+	\begin{align*}
+		f(x_{1}, \dots, x_{k} \ ; \ t_{1}, \dots, t_{k}) &= \frac{\partial^{k}}{\partial_{x_{1}} \dots \partial_{x_{k}}} F(x_{1}, \dots, x_{k} \ ; \ t_{1}, \dots, t_{k})
+	\end{align*}
+
+Fonction de probabilité de masse d'ordre $k$ du processus $\{X(t), t \in T\}$.
+	\begin{align*}
+		\text{p}(x_{1}, \dots, x_{k} \ ; \ t_{1}, \dots, t_{k}) &= \text{Pr}(X(t_{1}) = x_{1}, \dots, X(t_{k}) = x_{k})
+	\end{align*}
+	
+\subsection*{Moments}
+
+Moyenne à l'instant $t$, alias moment d'ordre $t$.
+\begin{align*}
+	m_{x}(t) &= \esp{X(t)}
+\end{align*}
+
+Auto-covariance en $\{t_{1}, t_{2} \}$.
+\begin{align*}
+	\text{Cov}(X(t_{1}), X(t_{2})) &= \esp{X(t_{1}),X(t_{2})} - m_{x}(t_{1}) m_{x}(t_{2})
+\end{align*}
+
+Auto-corrélation en $\{t, t - 1 \}$.
+\begin{align*}
+	\rho_{\text{auto}}(X(t)) &= \frac{\text{Cov}(X(t), X(t - 1))}{\sqrt{\text{V}(X(t))\text{V}(X(t - 1))}} \\
+	&\overset{\text{stationnaire}}=  \frac{\text{Cov}(X(t), X(t - 1))}{\text{V}(X(t))}
+\end{align*}
+
+\subsection*{Propriétés}
+
+Les accroissement sont:
+\begin{description}
+	\item[Indépendants] si les v.a. $X(t_{4}) - X(t_{3})$ et $X(t_{2}) - X(t_{1})$ sont \textbf{indépendants} $\forall	t_{1} \le t_{2} \le t_{3} \le t_{4}$.
+	\item[Stationnaires] si les v.a. $X(t_{2} + s) - X(t_{1} + s)$ et $X(t_{2}) - X(t_{1})$ possèdent la même fonction de répartition $\forall	s$.
+	\begin{align*}
+		F(x_{1}, \dots, x_{n} \ ; \ t_{1}, \dots, t_{n}) &= F(x_{1}, \dots, x_{n} \ ; \ t_{1} + s, \dots, t_{n} + s)
+	\end{align*}
+\end{description}
 
 
 
