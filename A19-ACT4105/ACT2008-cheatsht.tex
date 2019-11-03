@@ -1,0 +1,56 @@
+\documentclass[10pt, french]{article}
+
+% Fichier préambule contenant la configuration pour la feuille aide-mémoire
+\input{cheatsht-preamble.tex}
+
+\setlength{\abovedisplayskip}{-15pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+
+\begin{document}
+% \footnotesize % Écrire petit (peut être modifié)
+\begin{multicols*}{3} % Permet d'écrire dans plusieurs colonnes l'entièreté du document
+% -------------------------------------------------------------
+% Introduction
+\section{Introduction}
+\subsection{Définitions}
+
+\section{Principes et bonnes pratiques de la CAS}
+
+
+\section{Données pour tarification}
+
+\section{Base d'exposition}
+
+
+\section{Primes}
+
+\section{Sinistres et frais de règlement}
+
+\section{Autres frais et profit}
+
+\section{\textit{Trending procedure best practice}}
+
+\section{Indiqué global}
+
+\subsection{Méthode de la prime pure}
+\begin{equation}
+P_{I} = \frac{\left( \frac{L + E_L}{X} \right) + F}{1 - V - Q_T}
+\end{equation}
+où $P_I$ est le taux indiqué\footnote{C'est la prime qui devrait être chargée afin que l'assureur respecte ses obligations et rencontre ses objectifs de profit $Q_T$.}, $F$ le ratio de frais fixe, $V$ le ratio de frais variable et $Q_T$ la provision pour profit de l'assureur.
+
+\subsection{Méthode du taux de sinistre}
+Le facteur de changement d'indiqué de taux est défini par
+\begin{equation}
+\frac{\left( \frac{L + E_L}{P_C} \right)}{1 - V - Q_T}
+\end{equation}
+Où $P_C$ est la prime au taux courant (\textit{current premium})
+
+
+
+% -------------------------------------------------------------
+% Fin de la feuille aide-mémoire
+\end{multicols*}
+\end{document}
