@@ -34,12 +34,15 @@
 % thin space, limits underneath in displays
 %
 \DeclareMathOperator*{\argmax}{arg\,max} 
+%
+% Redefine authors
+%
+\def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin et Alec James van Rassel}
 
 %% -----------------------------
 %% Début du document
 %% -----------------------------
 \begin{document}
-
 
 \footnotesize % Écrire petit (peut être modifié)
 \begin{multicols*}{3} 	% Nombre de colonnes (peut être changé plus tard.)
@@ -48,36 +51,64 @@
 Où les dénominateurs sont à être interprété en REGEX.\\
 Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte} pour une une \textcolor{cyan}{annuité due} ou le taux d'intérêt pour une \textcolor{black}{immédiate}.
 \begin{align*}
-	\cumlaut[cyan]{a}_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{1 - v^n}{ (i^{\textcolor{red}{(m)}}} {\color{cyan}\left( \frac{1}{{\color{black}|}d^{\textcolor{red}{(m)}}{\color{black})}} \bigg| (1 + i) \right)}\\
+	a(t) 
+		&= 	(1 + i)^{t} 
+		= 	(1 - d)^{-t}	&
+	v(t) 
+		&= 	(1 + i)^{-t} 
+		= 	(1 - d)^{t}	 \\
+	&= 	e^{-\int_{0}^{t} \delta_s ds} % va avec a(t)
 \end{align*}
+
 \begin{align*}
-	(I^{\textcolor{blue}{(m)}}\cumlaut[cyan]{a})_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{\cumlaut[black]{a}_{\angl{n}}^{\textcolor{blue}{(m)}} - nv^n}{(\textcolor{cyan}{d}^{\textcolor{red}{(m)}} | i)} &
-	(D^{\textcolor{blue}{(m)}}\cumlaut[cyan]{a})_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{n - a_{\angl{n}}^{\textcolor{blue}{(m)}}}{(\textcolor{cyan}{d}^{\textcolor{red}{(m)}} | i)} \\
-%	\ax{\angln}&= \frac{1 - v^t}{i} \\
-	a_{\angl{\infty}} &= \frac{1}{i} \\
-%	\ax*{\angln} &= \int_0^n v^t dt = \frac{1 - v^n}{\delta}\\
-	d &= \frac{i}{1 + i} &
-	v &= \frac{1}{1 + i} \\
-	a(t) &= (1 + i)^{t} &
-	&= e^{\int_{0}^{t} \delta_s ds}
-	= (1 - d)^{-t} 
+	i 	&= \left( 1 + \frac{i^{(m)}}{m} \right)^{m} - 1 &
+	d	&= 	\frac{i}{1 + i} &
+	i^{R}
+		&=	\frac{i - r}{1 + r}
 \end{align*}
+
 \begin{align*}
-	i &= \left( 1 + \frac{i^{(m)}}{m} \right)^{m} - 1 
+	\cumlaut[cyan]{a}_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{1 - v^n}{ (i^{\textcolor{red}{(m)}}{\color{black}|}{\color{cyan}d}^{\textcolor{red}{(m)}}{\color{black})}}	&
+	\cumlaut[cyan]{s}_{\angln}^{\textcolor{red}{(m)}} 
+		&=	\frac{(1+i)^{n} - 1}{(i^{\textcolor{red}{(m)}} | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})}	\\
+	\cumlaut[cyan]{a}_{\angl{\infty}} 
+		&= \frac{1}{(i|\textcolor{cyan}{d})}
 \end{align*}
-%
-%%\subsection*{Facteur d'accumulation}
+
+%Rentes actualisées croissantes arithmétiquements
+\begin{align*}
+	(I^{\textcolor{blue}{(m)}}\cumlaut[cyan]{a})_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{\cumlaut[black]{a}_{\angl{n}}^{\textcolor{blue}{(m)}} - nv^n}{(i | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})} &
+	(D^{\textcolor{blue}{(m)}}\cumlaut[cyan]{a})_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{n - a_{\angl{n}}^{\textcolor{blue}{(m)}}}{(i | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})}
+\end{align*}
+
+%Rentes accumulées croissantes arithmétiquements
+\begin{align*}
+	(I^{\textcolor{blue}{(m)}}\cumlaut[cyan]{s})_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{\cumlaut[black]{s}_{\angl{n}}^{\textcolor{blue}{(m)}} - n}{(i | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})} &
+	(D^{\textcolor{blue}{(m)}}\cumlaut[cyan]{s})_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{n(1+i)^{n} - s_{\angl{n}}^{\textcolor{blue}{(m)}}}{(i | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})} 
+\end{align*}
+
+%Rentes continues
 %\begin{align*}
-%	\cumlaut[cyan]{s}_{\angln} &= \frac{(1+i)^{n} - 1}{(\textcolor{cyan}{d}|i)}\\
-%	(I^{\textcolor{blue}{(m)}}\cumlaut[cyan]{s})_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{\cumlaut[black]{s}_{\angl{n}}^{\textcolor{blue}{(m)}} - n}{(\textcolor{cyan}{d}^{\textcolor{red}{(m)}} | i)} &
-%	(D^{\textcolor{blue}{(m)}}\cumlaut[cyan]{s})_{\angl{n}}^{\textcolor{red}{(m)}} &= \frac{n(1+i)^{n} - s_{\angl{n}}^{\textcolor{blue}{(m)}}}{(\textcolor{cyan}{d}^{\textcolor{red}{(m)}} | i)} \\
 %	(\bar{I}\bar{s})_{\angl{n}i} &= \frac{\bar{s}_{\angl{n}i} - n}{\delta} &
 %	(\bar{D}\bar{s})_{\angl{n}i} &= \frac{n e^{\delta n} - \bar{s}_{\angl{n}i}}{\delta} \\
 %	(\bar{I}\bar{a})_{\angl{n}i} &= \frac{\bar{a}_{\angl{n}i} - n e^{-\delta n}}{\delta} &
-%	(\bar{D}\bar{a})_{\angl{n}i} &= \frac{n - \bar{a}_{\angl{n}i}}{\delta} \\
+%	(\bar{D}\bar{a})_{\angl{n}i} &= \frac{n - \bar{a}_{\angl{n}i}}{\delta} 
 %\end{align*}	
-%
-%%\subsection*{Conversion de taux}
+
+%Rentes avec croissance géométrique
+%\begin{align*}
+%	\cumlaut[cyan]{a}_{\angl{n}i^{R}}
+%		&=	\frac{1 - (1 + i^{R})^{-n}}{\left( \frac{i^{R}}{1 + i^{R}} \right)} {\color{cyan}\frac{1}{1 + r}	}	&
+%	{s}_{\angln i^{R}}
+%		&=	\frac{(1+i)^{n} - (1 + r)^{n}}{i - r}
+%\end{align*}
+
+%\subsection*{Conversion de taux}
 %\begin{align*}
 %&\text{Taux d'intérêt \underline{effectif} \textit{annuel}} & & i = \left( 1 + \frac{i^{(m)}}{m} \right)^{m} - 1 \\
 %&\text{Taux d'intérêt \underline{nominal} \textit{annuel}} & & i^{(m)} = m \left( (1 + i)^{1/m} - 1 \right)
@@ -121,8 +152,8 @@ Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte
 \[R_x \in [0, 1) \]
 
 \item[$J^{(m)}_x$ : ] Nombre de m-ème d'années vécus durant l'année du décès.
-\[J^{(m)}_x \in \{0, 1, 2, \dots, m - 1) \]
 \[J^{(m)}_x= [m R_x] \]
+\[J^{(m)}_x \in \{0, 1, 2, \dots, m - 1) \]
 
 \item[$H^{(m)}_x$ : ] Durée de vie résiduelle d'un individu d'âge $x$ exprimé en m-ème années.
 \[H^{(m)}_x= [m T_x] \]
@@ -135,34 +166,56 @@ Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte
 \subsubsection*{Loi de Moivre}
 Pas très réaliste car assume une chance \textbf{uniforme} de mourir n'importe quand alors qu'en réalité une personne agée de 90 ans a des plus grandes chances de mourir qu'un jeune de 30 ans.
  
-C'est la seule loi avec un \textbf{support fini}.
+C'est la seule loi avec un \textbf{support fini}. 
+
+\begin{center}
+$T_x \sim	\text{Unif}(0, \omega - x)$
 
 \begin{align*}
-	X &\sim \text{Unif}(0, \omega) \\
-	S_X(x) &= 1 - \frac{x}{\omega},\: 0 \leq x \leq \omega \\
-	\mu_x &= \frac{1}{\omega - x}, \: 0 \leq x \leq \omega \\
-	T_x &\sim \text{Unif}(0, \omega - x) \\
-	S_{T_x}(t) &= 1 - \frac{t}{\omega - x},\: 0 \leq t \leq \omega - x \\
-%	K_x &\sim \text{Unif}\textit{ Discrète}(0, \omega - x - 1) \\
-%	S_{K_x}(t) &= 1 - \frac{[t] + 1}{\omega - x},\: 0 \leq t \leq \omega - x - 1 \\
+%	X &\sim \text{Unif}(0, \omega) \\
+%	S_X(x) 
+%		&= 	1 - \frac{x}{\omega} \\
+	\px[t]{x} 
+		&= 	1 - \frac{t}{\omega - x} &
+	\mu_x 
+		&=	\frac{1}{\omega - x}	&
+	\qx[k |]{x} 
+		&=	\frac{1}{\omega - x}
+\end{align*}
+\end{center}
+
+\textbf{Généralisation}:
+
+\begin{align*}
+	\px[t]{x} 
+		&= \left( 1 - \frac{t}{\omega - x} \right)^{\alpha} &
+	\mu_x &=	\frac{\alpha}{\omega - x}	&
+	\eringx{x}	&=	\frac{\omega - x}{\alpha + 1}
 \end{align*}
 
 \subsubsection*{Loi Exponentielle}
+
+\begin{center}
 \begin{align*}
-	X &\sim \mathrm{Exp}(\mu) \\
-	S_x(x) &= e^{-\mu x},\: x \geq 0 \\
-	T_x &\sim \mathrm{Exp}(\mu) \\
-	\px[t]{x} &= e^{-\mu t},\: t \geq 0 \\
-	T_x \sim \text{Exp}(\mu) &\Rightarrow K_x \sim \text{Géo}(p = 1 - e^{-\mu}) \\
+	T_x 			&\sim 	\mathrm{Exp}(\mu) &
+	\px[t]{x} 	&= 		e^{-\mu t}	
 \end{align*}
+\begin{align*}
+	T_x \sim \text{Exp}(\mu) &\Rightarrow K_x \sim \text{Géo}(p = 1 - e^{-\mu}) 
+\end{align*}
+\end{center}
 
 \subsubsection*{Loi de Makeham}
 \begin{align*}
 	X &\sim \text{Makeham}(A, B, c) \\
 	A &: \text{risque d'accident} \\
-	Bc^x &: \text{risque  lié au vieillissement} \\
-	\mu_x &= A + B c^x,\: x \geq 0 \\
-	\px[t]{x} &= e^{-At - \frac{B c^x}{ln(c)}(c^t - 1)},\: t \geq 0 \\
+	Bc^x &: \text{risque  lié au vieillissement} 
+\end{align*}
+\begin{align*}
+	\mu_x &= A + B c^x &
+%	,\: x \geq 0 \\
+	\px[t]{x} &= e^{-At - \frac{B c^x}{ln(c)}(c^t - 1)}
+%	,\: t \geq 0 
 \end{align*}
 	
 \subsubsection*{Loi de Gompertz}
@@ -172,9 +225,11 @@ C'est la seule loi avec un \textbf{support fini}.
 
 \subsubsection*{Loi de Weibull}
 \begin{align*}
-	X &\sim \text{Wei}(k, n) \\
-	\mu_x &= k x^n,\; x \geq 0 \\
-	\px[t]{x} &= e^{-\frac{k}{n + 1}[(x + t)^{n + 1} - x^{n + 1}]},\: t \geq 0 
+	X &\sim \text{Weibull}(k, n) \\
+	\mu_x &= k x^n	&
+%	,\; x \geq 0 \\
+	\px[t]{x} &= e^{-\frac{k}{n + 1}[(x + t)^{n + 1} - x^{n + 1}]}
+%	,\: t \geq 0 
 \end{align*}
 
 
@@ -618,7 +673,7 @@ Puisque par défaut les $Z_{j}$ sont \textit{(iid)} on applique \textbf{l'approx
 $\Phi^{-1}(p) = z_{1 - p}$
 
 \begin{align*}
-	z_{1 - p} &\le \frac{\sqrt{n} ( \pi - \esp{Z}}{\sigma_{Z}})\\
+	z_{1 - p} &\le \frac{\sqrt{n} ( \pi - \esp{Z})}{\sigma_{Z}}\\
 	\pi &\ge \esp{Z} + z_{1 - p} \left(\frac{\sigma_{Z}}{\sqrt{n}}\right) = \pi_p &
 	\pi\$ &= \frac{\lceil 100 \pi_p \rceil}{100} \\
 	n &\ge \left(\frac{z_{1 - p}\sigma_{Z}}{\pi - \esp{Z}}\right)^2 = n_{p} 
@@ -1534,14 +1589,16 @@ Par exemple, dans une année où $m = 4$ entre $K = 10$ et $K = 11$, $H^{(4)}_x 
 
 Si:
 \begin{enumerate}
-	\item Force constante.
-	\item Prestation de décès seulement.
-	\item Variation de prestation tout au plus aux anniversaires de police.
+	\item La force d'intérêt est constante.
+	\[v_t = v^t\]
+	\item Il y a seulement une prestation de décès.
+	\item Le plus souvent que la prestation peut varier est aux anniversaires de police; alias, elle est constant sur une période.
+	\[b_t = b_{[t] + 1}\]
 \end{enumerate}
 
 \begin{align*} 
 	\Ax*{x} &\stackrel{DUD}= \frac{i}{\delta} \Ax{x} &
-	\Ax{x}^{(m)} &\stackrel{DUD}= \frac{i}{i^{(m)}} \Ax{x} \\
+	\Ax{x}^{(m)} &\stackrel{DUD}= \frac{i}{i^{(m)}} \Ax{x} 
 \end{align*}
 
 
@@ -1617,7 +1674,7 @@ Cas de croissance
 \twoletsymb{{\color{purple}\bar{I}}}{\bar{A}}_{x}
 	&\stackrel{DUD}= \frac{i}{\delta} \left[\twoletsymb{I}{A}_x {\color{purple} - \bigg( \frac{1}{d} - \frac{1}{\delta} \bigg) \Ax{x}} \right] \\
 \twoletsymb{I^{{\color{orange}(m)}}}{A}_{x}^{(m)}
-	&\stackrel{DUD}= \frac{i}{i^{(m)}} \left[\twoletsymb{I}{A}_x {\color{orange} - \bigg( \frac{1}{d} - \frac{1}{d^{(m)}} \bigg) \Ax{x}} \right] \\
+	&\stackrel{DUD}= \frac{i}{i^{(m)}} \left[\twoletsymb{I}{A}_x {\color{orange} - \bigg( \frac{1}{d} - \frac{1}{d^{(m)}} \bigg) \Ax{x}} \right] 
 \end{align*}
 
 Généralisation avec multiple de la force d'intérêt
@@ -1637,7 +1694,7 @@ Généralisation avec multiple de la force d'intérêt
 	\twoletsymb{D}{\bar{A}}_{\nthtop{1}{x}:\angln} 
 		&\approx (1 + i)^{\frac{1}{2}} \twoletsymb{D}{A}_{\nthtop{1}{x}:\angln}		&
 	\Ax*{x:\angln} 
-		&\approx (1 + i)^{\frac{1}{2}} \Ax{\termxn} + \Ax{x:\nthtop{1}{\angln}}  \\
+		&\approx (1 + i)^{\frac{1}{2}} \Ax{\termxn} + \Ax{x:\nthtop{1}{\angln}}  
 \end{align*}
 
 \begin{align*}
@@ -1658,34 +1715,39 @@ Généralisation avec multiple de la force d'intérêt
 \section{Contrats de rente}
 \paragraph{Rente viagère} On verse une rente à l'assuré jusqu'à son décès. 
 \begin{align*}
-Y	&  = \ax*{\angl{T_{x}}} = \frac{1-v^{T_x}}{\delta} = \frac{1 -\overline{Z}_x}{\delta} \\
-\ax*{x} & = \int_{0}^{\infty}  \ax*{\angl{T_{x}}}  \px[t]{x} \mu_{x+t} dt \\
-	& = \int_{0}^{\infty} v^t \px[t]{x} dt \\
+\overline{Y}_{x}	&  = \ax*{\angl{T_{x}}} = \frac{1-v^{T_x}}{\delta} = \frac{1 -\overline{Z}_x}{\delta} \\
+\ax*{x} 
+	& = \int_{0}^{\omega - x}  \ax*{\angl{T_{x}}}  \px[t]{x} \mu_{x+t} dt \\
+	& = \int_{0}^{\omega - x} v^t \px[t]{x} dt \\
 	& = \frac{1 - \Ax*{x}}{\delta} \\
-\variance{Y}	& = \variance{\frac{1- v^{T_x}}{\delta}} =  \frac{\Ax*[][2]{x} - \Ax*{x}^2}{\delta^2} \\
+\variance{Y}	& = \variance{\frac{1- v^{T_x}}{\delta}} =  \frac{\Ax*[][2]{x} - \Ax*{x}^2}{\delta^2} 
 \end{align*}
 
 \paragraph{Rente temporaire $n$ années} Ce contrat de rentes prévoit payer une rente à l'assuré s'il est en vie, au maximum $n$ années.
 \begin{align*}
-Y & = \begin{cases}
+\overline{Y}_{x:\angln} & = \begin{cases}
 \ax*{\angl{T_x}}	& , T_x < n \\
 \ax*{\angln}			& , T_x \geq n \\
-\end{cases} = \frac{1  - \overline{Z}_{x:\angln}}{\delta} \\
-\ax*{x:\angln}	& = \int_{0}^{n} \ax*{\angl{t}} \  \px[t]{x} \  \mu_{x+t} dt \\
+\end{cases} 
+= \frac{1  - \overline{Z}_{x:\angln}}{\delta} \\
+\ax*{x:\angln}	
+	& = \int_{0}^{n} \ax*{\angl{t}} \  \px[t]{x} \  \mu_{x+t} dt + \ax*{\angln} \ \px[n]{x} \\
 	& = \int_{0}^{n} v^t \px[t]{x} dt \\
 	& = \frac{1 - \Ax*{x:\angln}}{\delta} \\
-\variance{Y}	& = \frac{\Ax*[][2]{x:\angln} - \Ax*{x:\angln}^2}{\delta^2} \\	
+\variance{\overline{Y}_{x:\angln}}	& = \frac{\Ax*[][2]{x:\angln} - \Ax*{x:\angln}^2}{\delta^2} 
  \end{align*}
 
 \paragraph{Rente viagère différée $m$ années} C'est un contrat de rente viagère, qui débute dans $m$ années (si $(x)$ est en vie).
 \begin{align*}
-Y & = \begin{cases}
-0											& T_x	 < 	 m	\\
-v^m \ax*{\angl{T_x - m}}	& T_x 	\geq m	\\
-\end{cases} = \frac{\overline{Z}_{20:\itop{\angl{10}}} - \prescript{}{m|}{\overline{Z}}_{20}}{\delta} \\ 
-\ax*[m|]{x}	& = \int_{m}^{\infty} \ax*{t-m} \px[t]{x} \mu_{x+t} dt \\
+\prescript{}{m|}{\overline{Y}}_{x} & = \begin{cases}
+0						& T_x	 	\leq 	 	m	\\
+v^m \ax*{\angl{T_x - m}}	& T_x 	 	>			m	\\
+\end{cases} 
+= \frac{\overline{Z}_{x:\itop{\angl{m}}} - \prescript{}{m|}{\overline{Z}}_{x}}{\delta} \\ 
+\ax*[m|]{x}	
+	& = \int_{m}^{\omega - x} \ax*{\angl{t - m}} \px[t]{x} \mu_{x+t} dt \\
 	& = \Ex[m]{x} \ax*{x+m} \\
-	& = \ax*{x} - \ax*{x:\angl{m}} \\
+	& = \ax*{x} - \ax*{x:\angl{m}} 
 \end{align*}
 
 \paragraph{Rente garantie (certaine) $n$ années} Le contrat prévoit une rente minimale de $n$ années, pouvant se prolonger jusqu'au décès de l'assuré.
@@ -1694,7 +1756,8 @@ Y & = \begin{cases}
 \ax*{\angln}	& = T_x < n \\
 \ax*{\angl{T_x}}	& = T_x \geq n \\
 \end{cases} = \overline{Y}_{x:\angln} + \prescript{}{n|}{Y}_x \\
-\ax*{\joint{x:\angln}}	& =\ax*{\angln} \cdot \qx[n]{x} + \int_{n}^{\infty} \ax*{\angl{t}} \px[t]{x} \mu_{x+t} dt \\
+\ax*{\joint{x:\angln}}	
+	& =\ax*{\angln} \cdot \qx[n]{x} + \int_{n}^{\infty} \ax*{\angl{t}} \px[t]{x} \mu_{x+t} dt \\
 	& = \ax*{\angln} + \ax*[n|]{x} \\
 \end{align*}
 
