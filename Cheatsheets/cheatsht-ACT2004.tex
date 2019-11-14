@@ -239,12 +239,12 @@ $T_x \sim	\text{Unif}(0, \omega - x)$
 \item[$\ell_x$ : ] Nombre d'invidu de la cohorte ayant survécu jusqu'à l'âge $x$.
 \item[$\prescript{}{n}d_{x}$ : ] Nombre de décès entre l'âge $x$ et $x+n$.
 
-\[\ell{x} = \sum_{y = x}^{\omega - 1} \dx{y}\]
-
-
-\[\qx[t]{x} = \frac{\ell_x - \ell_{x+t}}{\ell_x}\]
-\[\px[t]{x} = \frac{\ell_{x+t}}{\ell_x} \]
-\[\qx[t|u]{x} = \frac{\dx[u]{x+t}}{\ell_x}\]
+\begin{align*}
+\ell{x} = \sum_{y = x}^{\omega - 1} \dx{y} \\
+\qx[t]{x} = \frac{\ell_x - \ell_{x+t}}{\ell_x} &
+\px[t]{x} = \frac{\ell_{x+t}}{\ell_x} \\
+\qx[t|u]{x} = \frac{\dx[u]{x+t}}{\ell_x}
+\end{align*}
 
 
 \end{itemize}
@@ -1713,6 +1713,9 @@ Généralisation avec multiple de la force d'intérêt
 \end{align*}
 
 \section{Contrats de rente}
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Rentes nivelées}}
+
 \paragraph{Rente viagère} On verse une rente à l'assuré jusqu'à son décès. 
 \begin{align*}
 \overline{Y}_{x}	&  = \ax*{\angl{T_{x}}} = \frac{1-v^{T_x}}{\delta} = \frac{1 -\overline{Z}_x}{\delta} \\
@@ -1753,13 +1756,43 @@ v^m \ax*{\angl{T_x - m}}	& T_x 	 	>			m	\\
 \paragraph{Rente garantie (certaine) $n$ années} Le contrat prévoit une rente minimale de $n$ années, pouvant se prolonger jusqu'au décès de l'assuré.
 \begin{align*}
 Y & = \begin{cases}
-\ax*{\angln}	& = T_x < n \\
-\ax*{\angl{T_x}}	& = T_x \geq n \\
+\ax*{\angln}	& T_x < n \\
+\ax*{\angl{T_x}}	& T_x \geq n \\
 \end{cases} = \overline{Y}_{x:\angln} + \prescript{}{n|}{Y}_x \\
 \ax*{\joint{x:\angln}}	
 	& =\ax*{\angln} \cdot \qx[n]{x} + \int_{n}^{\infty} \ax*{\angl{t}} \px[t]{x} \mu_{x+t} dt \\
 	& = \ax*{\angln} + \ax*[n|]{x} \\
 \end{align*}
+
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Rentes variant arithmétiquement}}
+
+\paragraph{Rente viagère croissant annuellement} 
+
+\paragraph{Rente temporaire $n$ années croissant annuellement} 
+
+\paragraph{Rente viagère croissant annuellement pendant $n$ années} 
+
+\paragraph{Rente temporaire $n$ années décroissant annuellement} 
+
+
+\paragraph{Rente viagère croissant continûment} 
+
+\paragraph{Rente temporaire $n$ années croissant continûment} 
+
+\paragraph{Rente viagère croissant continûment pendant $n$ années} 
+
+\paragraph{Rente temporaire $n$ années décroissant continûment} 
+
+
+\paragraph*{liens entre rentes croissantes et décroissantes}
+
+
+
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Rentes variant exponentiellement}}
+
+
 
 \section{Primes nivelées}
 \subsection{Notation et définitions}
