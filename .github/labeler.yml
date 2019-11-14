@@ -1,5 +1,5 @@
 ## Voir https://github.com/actions/labeler pour une explication de l'action labeler
-# Add 'test' label to any change to *.spec.js files within the source dir
+# Libellées pour les modifications aux feuilles de formules
 ACT-2003:
   - Cheatsheets/cheatsht-ACT2003.tex
 ACT-2004:
@@ -8,3 +8,30 @@ ACT-2005:
   - Cheatsheets/cheatsht-ACT2005.tex
 ACT-2009:
   - Cheatsheets/cheatsht-ACT2009.tex
+
+# Libellées pour les modifications aux dossiers des cours
+ACT-1001: 
+  - A17-ACT1001
+ACT-1002: 
+  - A17-ACT1002
+ACT-1003: 
+  - A17-ACT1003
+IFT-1902: 
+  - A17-IFT1902
+
+ACT-2005: 
+  - A18-ACT2005
+ACT-2000: 
+  - H18-ACT2000
+ACT-2000: 
+  - H18-ACT2000
+ACT-2001: 
+  - H18-ACT2001
+ACT-2002: 
+  - H18-ACT2002
+ACT-2011: 
+  - H19-ACT2011
+
+# Libellées pour les modifications aux dossier principal
+Document principal: 
+  - document_principal
