@@ -1,3 +1,4 @@
+## Voir https://github.com/actions/labeler pour une explication de l'action labeler
 # Add 'test' label to any change to *.spec.js files within the source dir
 ACT-2003:
   - Cheatsheets/cheatsht-ACT2003.tex
