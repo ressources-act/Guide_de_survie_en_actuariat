@@ -1,0 +1,9 @@
+# Add 'test' label to any change to *.spec.js files within the source dir
+ACT-2003:
+  - Cheatsheets/cheatsht-ACT2003.tex
+ACT-2004:
+  - Cheatsheets/cheatsht-ACT2004.tex
+ACT-2005:
+  - Cheatsheets/cheatsht-ACT2005.tex
+ACT-2009:
+  - Cheatsheets/cheatsht-ACT2009.tex
