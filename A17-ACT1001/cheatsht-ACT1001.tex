@@ -1,0 +1,221 @@
+% Template pour faire aide-mémoire
+\documentclass[10pt, french]{article}
+
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{../Cheatsheets/cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Mathématiques Financières}
+\def\sigle{ACT-1001}
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
+\def\SectionColor{burntorange}
+\def\SubSectionColor{burntsienna}
+\def\SubSubSection{burntsienna}
+%% -----------------------------
+%% Colour setup for prestations
+%%	Ajoute couleurs sur les trêmas des signes de prestations
+%% -----------------------------
+\usepackage{stackengine}
+\newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
+%
+% Save more space than default
+%
+\setlength{\abovedisplayskip}{-15pt}
+%
+%	Extra math symbols
+%
+\usepackage{mathrsfs}
+%
+% thin space, limits underneath in displays
+%
+\DeclareMathOperator*{\argmax}{arg\,max} 
+%
+% Redefine authors
+%
+\def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin et Alec James van Rassel}
+
+%% -----------------------------
+%% 	Colour setup for sections
+%% -----------------------------
+\def\SectionColor{cobalt}
+\def\SubSectionColor{azure(colorwheel)}
+\def\SubSubSection{azure(colorwheel)}
+%% -----------------------------
+
+%% -----------------------------
+%% Color definitions
+%% -----------------------------
+\definecolor{indigo(web)}{rgb}{0.29, 0.0, 0.51}
+\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\auteur{Alec James van Rassel}
+%%
+%% Matrix notation variable (bold style)
+%%
+\newcommand\cololine[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+\newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+
+\begin{document}
+
+\begin{multicols*}{3}
+
+\section*{Compléments de mathématiques}
+
+\subsection*{Sommations}
+\begin{align*}
+\sum_{k = m}^{n} r^k &= r^{m} \frac{1 - r^{n - m + 1}}{1 - r} &
+\sum_{k = 0}^{\infty}k v^k &= \frac{v}{(1 - v)^2} \\
+\sum_{k = 1}^{n}k^{\textcolor{teal}{3}} &= \textcolor{teal}{\bigg(}\frac{n(n + 1)}{2}\textcolor{teal}{\bigg)^{2}} &
+\sum_{k = 1}^{n}k^2 &= \frac{n(n + 1)(2n + 1)}{6} \\
+\end{align*}
+
+\section*{Mathématiques financières}
+
+\subsection*{Intérêt simple}
+\begin{align*}
+	a(t)
+		&=	1 + it &
+	v(t)
+		&=	\frac{1}{1 + it} \\
+	\text{Prix}
+		&=	100 \left( 1 - \frac{it}{365} \right)^{-1}
+\end{align*}
+
+\subsection*{facteurs d'actualisation et d'accumulation}
+% [t] tells LaTex to place minipage at the top of the page
+\begin{minipage}[t]{.5\linewidth}
+\begin{align*}
+	a(t) 
+		&= 	(1 + i)^{t} 		\\
+		&= 	(1 - d)^{-t}	\\
+		&= 	e^{\int_{0}^{t} \delta_s ds} 
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{.5\linewidth}
+	\begin{align*}
+	v(t) 
+		&=	(1 + i)^{-t}		\\
+		&=	(1 - d)^{t}	 	\\
+		&= 	e^{-\int_{0}^{t} \delta_s ds} 
+\end{align*}
+\end{minipage}
+
+\subsection*{Conversion de taux}
+\begin{align*}
+%	i 	&= \left( 1 + \frac{i^{(m)}}{m} \right)^{m} - 1 &
+	d	&= 	\frac{i}{1 + i} &
+	i^{\mathrm{R}}
+		&=	\frac{i - r}{1 + r}
+\end{align*}
+
+%\subsection*{Conversion de taux}
+\begin{align*}
+&\text{Taux d'intérêt \underline{effectif} \textit{annuel}} & & i = \left( 1 + \frac{i^{(m)}}{m} \right)^{m} - 1 \\
+&\text{Taux d'intérêt \underline{nominal} \textit{annuel}} & & i^{(m)} = m \left( (1 + i)^{1/m} - 1 \right)
+\end{align*}
+
+\subsection*{Rentes constantes}
+
+\begin{align*}
+	\cumlaut[cyan]{a}_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{1 - v^n}{ (i^{\textcolor{red}{(m)}}{\color{black}|}{\color{cyan}d}^{\textcolor{red}{(m)}}{\color{black})}}	&
+	\cumlaut[cyan]{s}_{\angln}^{\textcolor{red}{(m)}} 
+		&=	\frac{(1+i)^{n} - 1}{(i^{\textcolor{red}{(m)}} | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})}	\\
+	\cumlaut[cyan]{a}_{\angl{\infty}} 
+		&= \frac{1}{(i|\textcolor{cyan}{d})}
+\end{align*}
+
+\subsection*{Rentes continues}
+\begin{align*}
+	(\colbar{indigo(web)}{I}\colbar{indigo(web)}{s})_{\angl{n}i} &= \frac{\colbar{indigo(web)}{s}_{\angl{n}i} - n}{\textcolor{indigo(web)}{\delta}} &
+	(\colbar{indigo(web)}{D}\colbar{indigo(web)}{s})_{\angl{n}i} &= \frac{n v^{n} - \colbar{indigo(web)}{s}_{\angl{n}i}}{\textcolor{indigo(web)}{\delta}} \\
+	(\colbar{indigo(web)}{I}\colbar{indigo(web)}{a})_{\angl{n}i} &= \frac{\colbar{indigo(web)}{a}_{\angl{n}i} - n v^{n}}{\textcolor{indigo(web)}{\delta}} &
+	(\colbar{indigo(web)}{D}\colbar{indigo(web)}{a})_{\angl{n}i} &= \frac{n - \colbar{indigo(web)}{a}_{\angl{n}i}}{\textcolor{indigo(web)}{\delta}} 
+\end{align*}	
+
+\subsection*{Rentes (dé)croissantes annuellement}
+\begin{align*}
+	(I^{\textcolor{blue}{(m)}}\cumlaut[cyan]{a})_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{\cumlaut[black]{a}_{\angl{n}}^{\textcolor{blue}{(m)}} - nv^n}{(i | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})} &
+	(D^{\textcolor{blue}{(m)}}\cumlaut[cyan]{a})_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{n - a_{\angl{n}}^{\textcolor{blue}{(m)}}}{(i | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})}
+\end{align*}
+
+%Rentes accumulées croissantes arithmétiquements
+\begin{align*}
+	(I^{\textcolor{blue}{(m)}}\cumlaut[cyan]{s})_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{\cumlaut[black]{s}_{\angl{n}}^{\textcolor{blue}{(m)}} - n}{(i | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})} &
+	(D^{\textcolor{blue}{(m)}}\cumlaut[cyan]{s})_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{n(1+i)^{n} - s_{\angl{n}}^{\textcolor{blue}{(m)}}}{(i | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})} 
+\end{align*}
+
+\subsection*{Rentes croissantes continûment}
+\begin{align*}
+	(I\cumlaut[cyan]{a})_{\angl{\infty}} 
+		&= \frac{1}{d(\textcolor{black}{i}|\textcolor{cyan}{d})}
+\end{align*}
+
+Paiement en continu, valeurs accumulée et actualisée
+\begin{align*}
+		(\colbar{indigo(web)}{I}\colbar{indigo(web)}{s})_{\angl{n}\delta_{s}, h(t)} &= \int_{0}^{n} h(t) \mathrm{e}^{\int_{t}^{n}\delta_{s}ds}dt 	\\
+	(\colbar{indigo(web)}{I}\colbar{indigo(web)}{a})_{\angl{n}\delta_{s}, h(t)} &= \int_{0}^{n} h(t) \mathrm{e}^{-\int_{0}^{t} \delta_{s}ds}dt	
+\end{align*}
+
+\subsection*{Rentes avec croissance géométrique}
+\begin{align*}
+	\cumlaut[cyan]{a}_{\angl{n}i^{\mathrm{R}}}
+%		&=	\frac{1 - (1 + i^{\mathrm{R}})^{-n}}{\left( \frac{i^{\mathrm{R}}}{1 + i^{\mathrm{R}}} \right)} {\color{cyan}\frac{1}{1 + r}	}	
+		&=	\frac{1 - \left[\frac{1 + r}{1 + i}\right]^{n}}{i - r} \textcolor{cyan}{(1 + i)}
+		&
+	\cumlaut[cyan]{s}_{\angln i^{\mathrm{R}}}
+%		&=	\frac{(1+i)^{n} - (1 + r)^{n}}{i - r}
+		&=	\frac{(1+i)^{n} - (1 + r)^{n}}{i - r} \textcolor{cyan}{(1 + i)}
+\end{align*}
+
+\subsection*{T-Bills}
+
+\begin{align*}
+	\textrm{Prix}	
+	&=	100 \left( 1 - \frac{dt}{360} \right)^{t}
+\end{align*}
+
+\subsection*{Obligations}
+
+Formule de base
+
+\begin{enumerate}
+	\item[\text{P}] Prix de l'obligation 
+	\item[\text{F}] Valeur nominale de l'obligation \textit{(face value)}
+	\item[$r$] Taux de coupon par période de paiement \textit{(coupon rate)}
+	\item[$i$] Taux d'intérêt par période de paiement \textit{(interest rate)}
+	\begin{enumerate}
+		\item[$Fr$] Montant par paiement.
+	\end{enumerate}
+	\item[\text{C}] Valeur de remboursement de l'obligation \textit{(redemption value)}
+\end{enumerate}
+
+\begin{align*}
+	\text{P}
+		&=	\text{F} r \ax{\angln i} + \text{C} v^{n} \\
+		&=	\text{C} + (\text{F} r - \text{C} i) \ax{\angln i} +  v^{n} 
+\end{align*}
+
+\subsubsection*{Amortissement d'obligations}
+
+Book value
+\begin{align*}
+	\text{BV}_{t}
+		&=	(\text{F}r - \text{C}) \ax[n - t]{j} + \text{C}
+\end{align*}
+
+\end{multicols*}
+
+\end{document}

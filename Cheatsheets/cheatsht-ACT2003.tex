@@ -1951,117 +1951,219 @@ S^{L}(\bm{\beta}) &=
 
 À noter qu'un méthode plus efficace que Ridge et Lasso est de minimiser sous la contrainte que $\sum_{j = 1}^{p} \bm{1}_{\{ \beta_j \neq 0 \}} \le t$.
 
-
+\vfill\null
 
 \section{Modèles linéaires généralisés (GLM)}
-\subsection*{Famille exponentielle linéaire}
-\subsubsection*{Définition}
-Une loi de probabilité fait partie de la famille exponentielle linéaire si
-\begin{enumerate}[label=\faAngleRight]
-\item On peut exprimer la fonction de densité (ou masse) de probabilité comme
-\[f(y ; \theta, \phi) =   \exp \left( \frac{y \theta - b(\theta)}{a(\phi)} + c(y ; \phi)    \right)  \] 
-où $\theta$ est le paramètre canonique et $\phi$ est le paramètre de dispersion.
 
-\item la fonction $c$ ne dépend pas du paramètre $\theta$.
-\item Le support de $Y$ ne dépend pas des paramètres $\theta$ ou $\phi$.
+\subsection*{Famille exponentielle linéaire}
+
+\subsubsection*{Définition}
+
+Une loi de probabilité fait partie de la famille exponentielle linéaire si:
+
+\begin{enumerate}[label=\faAngleRight]
+	\item	Sa fonction de densité \textit{(ou de masse)} de probabilité peut être exprimée comme:
+\begin{formula}{Densité de la famille exponentielle}
+	\[
+		f(y ; \theta, \phi) 
+			= 	\exp \left( \frac{y \theta - b(\theta)}{a(\phi)} + c(y ; \phi) \right)  
+	\]
+\end{formula}
+	où
+	\begin{enumerate}
+		\item[$\theta$:] paramètre canonique
+		\item[$\phi$:] paramètre de dispersion
+	\end{enumerate}
+	\item	La fonction $c$ ne dépend pas du paramètre $\theta$.
+	
+	\item 	Le support de $Y$ ne dépend pas de $\theta$ puisqu'il ne peut pas varier.
+	
+	\item[\textbf{note}: ] Si $\phi$ est \textbf{\textit{inconnu}}, alors le modèle fait partie de la \textbf{famille exponentielle \textit{de dispersion}} et le support de $Y$ ne peut pas dépendre de $\phi$.
+	
+	\item[\textbf{note}: ]
+		Si chaque donnée à un $\phi_i$ différent, on réécrit la fonction de dispersion comme $\alpha_i = \phi/\omega_i \; \forall i \in \{1, \dots, n \}$. 
+		
+		Ceci est la \textbf{famille exponentielle \textit{pondérée}}.
 \end{enumerate}
 
 \subsubsection*{Propriétés}
-Soit $\mu = \dot{b}(\theta) = \derivee{\theta} b(\theta)$ et $V(\mu) = \ddot{b}(\theta) = \frac{\partial^2}{\partial \theta^2} b(\theta)$. Alors, si $Y$ fait partie de la famille exponentielle linéaire, on peut exprimer l'espérance et la variance comme
+
+Soit $\mu = \dot{b}(\theta) = \derivee{\theta} b(\theta)$ et $V(\mu) = \ddot{b}(\theta) = \frac{\partial^2}{\partial \theta^2} b(\theta)$. 
+Alors, si $Y$ fait partie de la famille exponentielle linéaire, on peut exprimer l'espérance et la variance comme
 \begin{align*}
-\esp{Y}	& = \dot{b}(\theta) = \mu \\
-\variance{Y}	& = a(\phi) \ddot{b}(\theta) = a(\phi) V(\mu) \\
+\esp{Y}	
+	&=	\dot{b}(\theta) 
+	=	\mu 	\\
+\text{V}(Y)	
+	&=	a(\phi) \ddot{b}(\theta) 
+	= 	a(\phi) V(\mu)	
 \end{align*}
 
 \subsubsection*{Lemme de la Log-vraisemblance}
-Soit $\ell(\theta, \phi ; Y) = \mathrm{L}(\theta, \phi ; Y)$ la log-vraisemblance. Alors,
-\[\esp{\derivee{\theta} \ell(\theta, \phi ; Y)} = 0\]
-et
-\[\esp{\left( \derivee{\theta}  \ell(\theta, \phi ; Y \right)^2} = - \esp{\frac{\partial^2}{\partial \theta^2} \ell(\theta, \phi ; Y)}\]
 
-\subsection*{Fonction de lien}
-Soit $\eta = \matr{X} \boldsymbol{\beta}$. La fonction de lien est la transformation qu'on applique à $\eta$ afin de limiter le support de $Y$.
-\begin{description}
-\item[Lien log] $\eta = \ln \mu \leftrightarrow \mu = e^{\eta}$
-\item[Lien logistique] $\eta = \ln \left( \frac{\mu}{1 - \mu} \right) \leftrightarrow \mu = \frac{e^{\eta}}{1 + e^{\eta}}$
+Soit $\ell(\theta, \phi ; y) = \ln f(y ; \theta, \phi)  = \frac{y \theta - b(\theta)}{a(\phi)} + c(y ; \phi)$. 
 
-\item[Lien probit] $\eta = \Phi^{-1}(\mu) \leftrightarrow \mu = \Phi(\eta)$
-
-\item[Lien log-log complémentaire] $\eta = \ln ( - \ln (1 - \mu)) \leftrightarrow \mu = 1 - e^{-e^{\eta}}$
-
-\item[Lien canonique] $\eta = \theta$ 
-\end{description}
-
-\subsection*{Estimation des paramètres}
-\begin{enumerate}[label=\faAngleRight]
-\item On estime $\hat{\beta}$ avec la méthode du maximum de vraisemblance (EMV ou \emph{MLE} en anglais)
-
-\item L'EMV est cohérent, i.e.
-\[\hat{\bm{\beta}} \underset{n \to \infty}{\longrightarrow} \bm{\beta} \]
-
-\item L'estimateur a une normalité asymptotique, i.e. lorsque $n \to \infty$,
-\[  \hat{\bm{\beta}} \sim \mathcal{N} \left( \bm{\beta}, \frac{\mathcal{I}(\bm{\beta})^{-1}}{n} \right)    \]
-où $\mathcal{I}(\bm{\beta})_{(p' \times p')}$ est la matrice d'information de Fisher : 
+Alors, sous certains conditions de régularité,
 \begin{align*}
-\mathcal{I}(\bm{\beta}) & = \esp{\dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n) \dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)^{\top} } \\
-	& = - \esp{\ddot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)} \\
+	\esp{\derivee{\theta} \ell(\theta, \phi ; Y)} 
+		&=	0 
 \end{align*}
 
-\item On peut estimer la matrice d'information  de Fisher avec \textbf{l'information observée} :
-\[\mathcal{I}(\hat{\bm{\beta}}) = - \sum_{i=1}^{n} \frac{\partial^2}{\partial \bm{\beta}^2} \ell(\bm{\beta} ; Y_i)  \eval_{\hat{\bm{\beta}}} \]
+Et l'information de Fisher peut être réécrite comme:
+\begin{align*}
+	\esp{\left( \derivee{\theta} \ell(\theta, \phi ; Y \right)^2} 
+		&=	-\esp{\frac{\partial^2}{\partial \theta^2} \ell(\theta, \phi ; Y)}
+\end{align*}
+
+\begin{enumerate}
+	\item[\textbf{note}: ] Ces résultats sont utilisés pour obtenir les formules de la variance et l'espérance.
+
+\end{enumerate}
+
+\subsection*{Fonctions de lien}
+
+Le but est de relier l'espérance de $Y$ aux variables exogènes au lieu de $Y$ elle-même; soit :
+\begin{enumerate}
+	\item[$\matr{x}_{1 \times p'}$: ] une ligne de la matrice d'incidence; et
+	\item[$\bm{\beta}_{p' \times 1}$: ] paramètre sur lequel $\esp{Y | \matr{x}}$ dépend.
+\end{enumerate}
+
+Alors, 
+\begin{align*}
+	\esp{Y | \matr{x}} 
+		= \mu(\matr{x}; \bm{\beta}) 
+		= \mu(\matr{x}\bm{\beta}) 
+		= \mu(\eta)
+\end{align*}
+
+où $\eta$ est le \textbf{prédicteur linéaire}: 
+\begin{align*}
+	\eta 
+		&=	\matr{x} \boldsymbol{\beta}	
+		=	\beta_0 + \sum_{j = 1}^{p} x_{j} \beta_{j}	
+\end{align*}
+
+En \textit{régression linéaire}, $\mu(\matr{x}; \bm{\beta}) = \eta$ sans contraintes sur les valeurs que peut prendre $\mu$.
+
+En \textit{régression linéaire \textbf{généralisée}}, certaines variables réponses ont des contraintes \textit{(e.g.  Bernoulli où $0 \leq \pi \leq 1$)}.
+
+La \textbf{fonction de lien} est donc la transformation appliquée à $\eta$ afin de restreindre le support de $\mu$.
+\begin{align*}
+	g(\mu_i) 
+		&= \eta_i	&	\text{ou} & 
+	&\mu_i
+		&= g^{-1}(\eta_i)
+\end{align*}
+
+\begin{center}
+\begin{tabular}{| p{2cm} | l l |}
+\hline
+	\textbf{Lien}			&	$\eta$ &	$\mu$	\\\hline
+	identité		&	$\eta = \mu$	 &	$\mu = \eta$	  	\\
+	logit	&	$\eta = \ln \left( \frac{\mu}{1 - \mu} \right)$	&	$\mu = \frac{e^{\eta}}{1 + e^{\eta}}$	\\
+	probit		&	$\eta = \Phi^{-1}(\mu)$	&	$\mu = \Phi(\eta)$	\\
+	log-log complémentaire &	$\eta = \ln ( - \ln (1 - \mu))$	&	$\mu = 1 - e^{-e^{\eta}}$	\\
+	log			&	$\eta = \ln \mu$	&	$\mu = e^{\eta}$	\\
+	inverse			&	$\eta = 1/\mu$	&	$\mu = 1/\eta$	\\
+	canonique	&	$\eta = \theta$	&	 	\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection*{Estimation des paramètres}
+
+\begin{enumerate}[label=\faAngleRight]
+	\item	Estimer $\hat{\beta}$ avec la méthode de l'\textbf{EMV} \textit{(\textbf{MLE})}.
+	
+	\item	L'EMV est convergent
+	\[\hat{\bm{\beta}} \underset{n \to \infty}{\longrightarrow} \bm{\beta} \]
+	
+	\item	L'estimateur est \textbf{asymptotiquement normale}; lorsque $n \to \infty$,
+	\[  \hat{\bm{\beta}} \sim \mathcal{N} \left( \bm{\beta}, \frac{\mathcal{I}(\bm{\beta})^{-1}}{n} \right)    \]
+	où $\mathcal{I}(\bm{\beta})_{(p' \times p')}$ est la matrice d'information de Fisher : 
+	\begin{align*}
+		\mathcal{I}(\bm{\beta}) 
+			&= \esp{\dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n) \dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)^{\top} } \\
+			&= - \esp{\ddot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)} \\
+	\end{align*}
+	
+	\item	On peut estimer la matrice d'information de Fisher avec \textbf{l'information observée} :
+	\[
+		\mathcal{I}(\hat{\bm{\beta}}) 
+			= -\sum_{i=1}^{n} \frac{\partial^2}{\partial \bm{\beta}^2} \ell(\bm{\beta} ; Y_i)  \eval_{\hat{\bm{\beta}}} 
+	\]
 \end{enumerate}
 
 \subsubsection*{Algorithme de Newton-Raphson}
-L'objectif est de trouver $\hat{\bm{\beta}}$ qui maximise $\ell(\hat{\bm{\beta}})$, ce qui revient à trouver $\dot{\ell}(\hat{\bm{\beta}}) = 0$. On utilise l'approximation de Taylor de premier ordre dans l'algorithme : 
+
+L'objectif est de trouver $\hat{\bm{\beta}}$ qui maximise $\ell(\hat{\bm{\beta}})$, ce qui revient à trouver $\dot{\ell}(\hat{\bm{\beta}}) = 0$. 
+On utilise l'approximation de Taylor de premier ordre dans l'algorithme : 
 \begin{enumerate}[label = (\arabic*)]
-\item Choisir des valeurs de départ pour le vecteur $\hat{\bm{\beta}}^{H_0}$
-\item Pour $k = 1, 2, ...$
-\begin{enumerate}[label = (2.\arabic*)]
-	\item $\hat{\bm{\beta}}^{(k)} = \hat{\bm{\beta}}^{(k-1)} +  \left \{ - \ddot{\ell}(\hat{\bm{\beta}})^{(k-1)} \right \}^{-1} \dot{\ell}(\hat{\bm{\beta}})^{(k-1)}$
-	\item Si $|\dot{\ell}(\hat{\bm{\beta}})^{(k)}| < \varepsilon $, on converge vers les paramètres optimaux pour le modèle et on arrète.
-	\item Répéter les étapes (2.1) et (2.2) jusqu'à une convergence.
+	\item	Choisir des valeurs de départ pour le vecteur $\hat{\bm{\beta}}^{H_0}$
+	\item	Pour $k = 1, 2, ...$
+	\begin{enumerate}[label = (2.\arabic*)]
+		\item	$\hat{\bm{\beta}}^{(k)} = \hat{\bm{\beta}}^{(k-1)} +  \left \{ - \ddot{\ell}(\hat{\bm{\beta}})^{(k-1)} \right \}^{-1} \dot{\ell}(\hat{\bm{\beta}})^{(k-1)}$
+		\item	Si $|\dot{\ell}(\hat{\bm{\beta}})^{(k)}| < \varepsilon $, on converge vers les paramètres optimaux pour le modèle et on arrète.
+		\item	Répéter les étapes (2.1) et (2.2) jusqu'à une convergence.
 \end{enumerate}
 \end{enumerate}
 
 \subsubsection*{Méthode du score de Fisher}
+
 Cette méthode est la même que l'algorithme de Newton-Raphson, à l'exception qu'on remplace $\ddot{\ell}(\hat{\bm{\beta}})$ par $- \esp{\ddot{\ell}(\hat{\bm{\beta}})}$ à l'étape (2.1)
 
 \subsubsection*{Construction d'IC sur les paramètres}
+
 \begin{itemize}
-\item Lorsqu'on prédit des données, on peut aussi créer un I.C de confiance pour le prédicteur linéaire $\eta_i$. Par les propriétés du maximum de vraisemblance, quand $n \to \infty$, on a que $\hat{\bm{\beta}}$ est asymptotiquement normal. Alors, puisque $\eta$ est une combinaison linéaire de v.a. \emph{approximativement} normales, alors
-\[\eta_i \approx \mathcal{N} \left( \eta_i,  \widehat{\mathrm{Var}}(\hat{\eta_i})   \right) \]
-
-\item Et on a que (dans le cas simple où le modèle est $\beta_0 + \beta_1 x_{i1}$),
-\begin{align*}
-\variance{\hat{\eta}_i}	& = \variance{\hat{\beta}_0 + \hat{\beta}_1 x_{i1}} \\
-& = \variance{\hat{\beta}_0} + x_{i1}^2 \variance{\hat{\beta}_1}  \\
-& + 2 x _{i1}  \covar{\hat{\beta}_0, \hat{\beta}_1}
-\end{align*}
-
-\item Dans le cas multivarié, on a
-\begin{align*}
-\variance{\hat{\eta}_i}	 & = \matr{X}^{\top} \mathcal{I}(\hat{\bm{\beta}})^{-1} \matr{X}
-\end{align*}
-
-\item L'intervalle de confiance  pour $\eta_i$ est
-\[\hat{\eta}_i  \pm z_{1- \alpha/2} \sqrt{\widehat{\mathrm{Var}}(\hat{\eta_i})} \]
-
-\item Un intervalle de confiance (non-centré) pour $\mu_i$, en utilisant la fonction de lien inverse $g^{-1}(\eta)$ serait
-\[ \mu_i \in \left [ g^{-1} \left( \hat{\eta}_i^{(L)}\right),  g^{-1} \left( \hat{\eta}_i^{(U)} \right)      \right]   \]
-
-\item En utilisant la méthode Delta, on obtient un I.C qui est centré pour $\mu_i$, on a
-\[\mu_i \in z_{1 - \frac{\alpha}{2}} \sqrt{\widehat{\mathrm{Var}}(\hat{\mu}_i)}  \]
-où
-\begin{align*}
-\variance{\hat{\mu}_i}	& = \left( \derivee{\eta_i} g^{-1}(\eta_i) \eval_{\eta_i = \hat{\eta}_I} \right)^2 \variance{\hat{\eta}_i}
-\end{align*}
+	\item	Lorsqu'on prédit des données, on peut aussi créer un I.C de confiance pour le prédicteur linéaire $\eta_i$. 
+			Par les propriétés du maximum de vraisemblance, quand $n \to \infty$, on a que $\hat{\bm{\beta}}$ est asymptotiquement normal. 
+			Donc, puisque $\eta$ est une combinaison linéaire de v.a. \emph{approximativement} normales, alors
+		\[
+			\eta_i \approx \mathcal{N} \left( \eta_i,  \widehat{\mathrm{Var}}(\hat{\eta_i}) \right) 
+		\]
+	
+	\item	Et on a que (dans le cas simple où le modèle est $\beta_0 + \beta_1 x_{i1}$),
+	\begin{align*}
+		\variance{\hat{\eta}_i}	
+		&= \variance{\hat{\beta}_0 + \hat{\beta}_1 x_{i1}} \\
+		&= \variance{\hat{\beta}_0} + x_{i1}^2 \variance{\hat{\beta}_1}  \\
+		&+ 2 x _{i1}  \covar{\hat{\beta}_0, \hat{\beta}_1}
+	\end{align*}
+	
+	\item	Dans le cas multivarié, on a
+	\begin{align*}
+		\variance{\hat{\eta}_i}	 
+			&= \matr{X}^{\top} \mathcal{I} (\hat{\bm{\beta}})^{-1} \matr{X}
+	\end{align*}
+	
+	\item	L'intervalle de confiance  pour $\eta_i$ est
+	\[
+		\hat{\eta}_i \pm z_{1- \alpha/2} \sqrt{\widehat{\mathrm{Var}}(\hat{\eta_i})} 
+	\]
+	
+	\item 	Un intervalle de confiance (non-centré) pour $\mu_i$, en utilisant la fonction de lien inverse $g^{-1}(\eta)$ serait
+	\[ 
+		\mu_i \in \left [ g^{-1} \left( \hat{\eta}_i^{(L)}\right),  g^{-1} \left( \hat{\eta}_i^{(U)} \right)      \right]   
+	\]
+	
+	\item En utilisant la méthode Delta, on obtient un I.C qui est centré pour $\mu_i$, on a
+	\[
+		\mu_i \in z_{1 - \frac{\alpha}{2}} \sqrt{\widehat{\mathrm{Var}}(\hat{\mu}_i)}  
+	\]
+	où
+	\begin{align*}
+	\variance{\hat{\mu}_i}	
+		&= \left( \derivee{\eta_i} g^{-1}(\eta_i) \eval_{\eta_i 
+		= \hat{\eta}_I} \right)^2 \variance{\hat{\eta}_i}
+	\end{align*}
 \end{itemize}
 
-
-
 \subsection*{Statistique de Wald}
+
 Test d'hypothèse pour tester $H_0 : \beta_j = 0$, $H_1 : \beta_j \neq 0$. On a que
-\[Z = \frac{\beta_j}{\sqrt{\widehat{\mathrm{Var}}(\hat{\beta}_j)}} \sim \mathcal{N}(0,1) \]
+	\[
+		Z = \frac{\beta_j}{\sqrt{\widehat{\mathrm{Var}}(\hat{\beta}_j)}} \sim \mathcal{N}(0,1) 
+	\]
 On rejète donc $H_0$ si $Z > z_{1 - \frac{\alpha}{2}}$.
 
 \paragraph{Note} On obtient $\widehat{\mathrm{Var}}(\hat{\beta}_j)$ sur les éléments de la diagonale de $\{ \mathcal{I}(\hat{\beta}) \}^{-1} / n$.
@@ -2073,52 +2175,73 @@ On teste $H_0 : \beta \in \beta_0$ et $H_1 : \beta \in \beta_1$, où $\beta_1$ e
 $\lambda(y)$ sera assurément plus petit que 1 (il y a moins de variables explicatives). Mais on veut tester si $\lambda(y)$ est plus petit qu'une certaine valeur critique.
 
 \begin{enumerate}[label=\faAngleRight]
-\item Si \emph{$H_0$ spécifie tous les paramètres du modèle}, on a
-\[-2 \ln \lambda(y) \sim \chi_{p'}^2 \quad , \text{Sous $H_0$}\]
-\item Si \emph{$H_0$ spécifie partiellement les paramètres du modèle}, on a
-\[-2 \ln \lambda(y) \sim \chi_{k_2 - k_1}^2 \quad , \text{Sous $H_0$}\]
-où $k_1$ est le nombre de paramètres non-spécifiés dans $H_0$ et $k_2$ le nombre de paramètres non-spécifiés dans $H_1$.
-\item Avec le TRV, on peut seulement comparer des modèles qui sont liés ($\hat{\beta}^{(H_0)}$ doit être un sous-ensemble de $\hat{\beta}$).
+	\item	Si \emph{$H_0$ spécifie tous les paramètres du modèle}, on a
+	\[
+		-2 \ln \lambda(y) \sim \chi_{p'}^2 \quad , \text{Sous $H_0$}
+	\]
+	\item 	Si \emph{$H_0$ spécifie partiellement les paramètres du modèle}, on a
+	\[
+		-2 \ln \lambda(y) \sim \chi_{k_2 - k_1}^2 \quad , \text{Sous $H_0$}
+	\]
+	où $k_1$ est le nombre de paramètres non-spécifiés dans $H_0$ et $k_2$ le nombre de paramètres non-spécifiés dans $H_1$.
+	\item 	Avec le TRV, on peut seulement comparer des modèles qui sont liés ($\hat{\beta}^{(H_0)}$ doit être un sous-ensemble de $\hat{\beta}$).
 \end{enumerate}
 
 \subsection*{Adéquation du modèle}
 
 \subsubsection*{Statistiques $\chi^2$ de Pearson}
+
 On peut valider l'adéquation du modèle avec la statistique $X^2$, où
-\[  X^2 = \sum_{i=1}^{n} \left( \frac{y_i -  \hat{\mu}_i}{\sqrt{V(\hat{\mu}_i)}} \right)^2   \sim \chi_{n-p'}^2 \]
+\[  
+	X^2 = \sum_{i=1}^{n} \left( \frac{y_i -  \hat{\mu}_i}{\sqrt{V(\hat{\mu}_i)}} \right)^2   \sim \chi_{n-p'}^2 
+\]
 Avec $X^2 \leq \chi_{n-p', 1 - \frac{\alpha}{2}}^2$ si le modèle est adéquat. Si $\phi$ est inconnu, on peut l'estimer avec $\hat{\phi} = \frac{X^2}{n-p'}$
 
 \subsubsection*{Déviance}
+
 On a
-\[2(\ell(\tilde{\theta}) - \ell(\hat{\theta}))  \sim \chi_{n-p'}^2 \]
+\[
+	2(\ell(\tilde{\theta}) - \ell(\hat{\theta})) 
+		\sim \chi_{n-p'}^2 
+\]
 avec $\bar{\theta}$ est le modèle nul, $\hat{\theta}$ le modèle à l'étude et $\tilde{\theta}$ le modèle complet, où $\hat{\mu}_i = y_i$. Cette expression représente la déviance $D(y ; \hat{\mu})$ : 
 \begin{align*}
-2(\ell(\tilde{\theta}) - \ell(\hat{\theta}))	& = 2 \sum_{i=1}^{n} \frac{w_i}{\phi} (y_i \tilde{\theta} - b(\tilde{\theta}) - y_i \hat{\theta} + b(\hat{\theta})) \\
-&= 2 \sum_{i=1}^{n} \frac{w_i}{\phi} y_i (\tilde{\theta} - \hat{\theta}) - (b(\tilde{\theta} - b(\hat{\theta})) \\
-& = \frac{D(y ; \hat{\mu})}{\phi}
+	2(\ell(\tilde{\theta}) - \ell(\hat{\theta}))	
+		&=	2 \sum_{i=1}^{n} \frac{w_i}{\phi} (y_i \tilde{\theta} - b(\tilde{\theta}) - y_i \hat{\theta} + b(\hat{\theta})) \\
+		&=	2 \sum_{i=1}^{n} \frac{w_i}{\phi} y_i (\tilde{\theta} - \hat{\theta}) - (b(\tilde{\theta} - b(\hat{\theta})) \\
+		&= 	\frac{D(y ; \hat{\mu})}{\phi}
 \end{align*}
+
 Si $\phi$ est inconnu, on peut l'estimer avec $\hat{\phi} = \frac{D(y ; \hat{\mu})}{n-p'}$
 
 \subsection*{Comparaison de modèles}
+
 Les critères classiques AIC et BIC peuvent être utilisés pour comparer des modèles. On peut aussi faire une analyse de la déviance
 
 \subsubsection*{Analyse de la déviance}
+
 \label{sssec:analyse_deviance}
-On compare le modèle $A$ et le modèle $B$ (où $A$ est une simplification de $B$). Le modèle $A$ sera une bonne simplification de $B$ si
-\[\frac{D(y ; \hat{\mu}_A) - D(y ; \hat{\mu}_B)}{\phi}  \sim \chi_{p_B - p_A}^2  \]
-Il est certain que la déviance va augmenter en diminuant le nombre de paramètres. On veut valider si la déviance augmente \emph{significativement} au point de ne pas pouvoir simplifier $B$. On rejète $H_0$ que $A$ est une bonne simplification de $B$ si la différence est déviance réduite est supérieure à $\chi_{p_B - p_A, 1 - \frac{\alpha}{2}}^2$
+
+On compare le modèle $A$ et le modèle $B$ (où $A$ est une simplification de $B$). 
+Le modèle $A$ sera une bonne simplification de $B$ si
+\[
+	\frac{D(y ; \hat{\mu}_A) - D(y ; \hat{\mu}_B)}{\phi}  \sim \chi_{p_B - p_A}^2  
+\]
+Il est certain que la déviance va augmenter en diminuant le nombre de paramètres. 
+On veut valider si la déviance augmente \emph{significativement} au point de ne pas pouvoir simplifier $B$. 
+On rejète $H_0$ que $A$ est une bonne simplification de $B$ si la différence est déviance réduite est supérieure à $\chi_{p_B - p_A, 1 - \frac{\alpha}{2}}^2$.
 
 
 \subsection*{Analyse des résidus}
 
 \subsubsection*{Résidus de Pearson}
+
 \begin{align*}
-r_{P_i} = \frac{y_i - \hat{\mu}_i}{\sqrt{V(\hat{\mu})_i}}
+	r_{P_i} 
+		=	\frac{y_i - \hat{\mu}_i}{\sqrt{V(\hat{\mu})_i}}
 \end{align*}
-Aussi,  les résidus d'Anscombe et les résidus de la déviance.
 
-
-
+Aussi, les résidus d'Anscombe et les résidus de la déviance.
 
 
 
