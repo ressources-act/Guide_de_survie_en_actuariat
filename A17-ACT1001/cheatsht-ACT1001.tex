@@ -65,7 +65,7 @@
 
 \begin{document}
 
-\begin{multicols*}{3}
+\begin{multicols*}{2}
 
 \section*{Compléments de mathématiques}
 
@@ -216,6 +216,142 @@ Book value
 		&=	(\text{F}r - \text{C}) \ax[n - t]{j} + \text{C}
 \end{align*}
 
+\section*{Analyse probabiliste des risques actuariels}
+
+\subsubsection*{Théorème du binôme}
+\begin{align*}
+	(x + y)^{n}
+		&=	\sum_{k = 0}^{n} \binom{n}{k} x^{k} y^{n - k}, \; \forall n \in \mathds{N}	
+\end{align*}
+
+%\subsubsection*{Coefficient multinomial}
+%
+%\begin{align*}
+%	\binom{n}{n_{1}, \dots, n_{r}}
+%		&=	\frac{n!}{n_{1}!\dots n_{r}!}
+%\end{align*}
+\subsubsection*{Théorème multinomial}
+\begin{align*}
+	(x_1 + \dots + x_r)^{n}
+		&=	\sum_{\substack{(n_1, \dots, n_r): \\ n_1 + \dots + n_r = n}} \binom{n}{n_{1}, \dots, n_{r}} x_{1}^{n_{1}} \dots x_{r}^{n_{r}}	\\
+\end{align*}
+
+Relations factoriels
+
+\begin{align*}
+	\binom{n}{k}
+		&=	\binom{n}{n - k}		\\
+\end{align*}
+
+Règle de Pascal
+\begin{align*}
+	\binom{n}{k} + \binom{n}{k + 1}
+		&=	\binom{n + 1}{k + 1}		\\
+\end{align*}
+
+Triangle de Pascal
+
+\begin{minipage}{0.4\linewidth}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Square [id:dp6941490808398538] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (192.5,0.33) -- (222,0.33) -- (222,29.83) -- (192.5,29.83) -- cycle ;
+
+%Shape: Square [id:dp5483734211163716] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (177.5,30.33) -- (207,30.33) -- (207,59.83) -- (177.5,59.83) -- cycle ;
+
+%Shape: Square [id:dp6113568187175975] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (207.5,30.33) -- (237,30.33) -- (237,59.83) -- (207.5,59.83) -- cycle ;
+
+%Shape: Square [id:dp18321491615395535] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (162.5,60.33) -- (192,60.33) -- (192,89.83) -- (162.5,89.83) -- cycle ;
+
+%Shape: Square [id:dp5935951134760318] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (192.5,60.33) -- (222,60.33) -- (222,89.83) -- (192.5,89.83) -- cycle ;
+%Shape: Square [id:dp15135091580108684] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (222.5,60.33) -- (252,60.33) -- (252,89.83) -- (222.5,89.83) -- cycle ;
+
+%Shape: Square [id:dp6959691378679023] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (147.5,90.33) -- (177,90.33) -- (177,119.83) -- (147.5,119.83) -- cycle ;
+
+%Shape: Square [id:dp3401786459744438] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (177.5,90.33) -- (207,90.33) -- (207,119.83) -- (177.5,119.83) -- cycle ;
+%Shape: Square [id:dp054113641995666484] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (207.5,90.33) -- (237,90.33) -- (237,119.83) -- (207.5,119.83) -- cycle ;
+%Shape: Square [id:dp11590999892335718] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (237.5,90.33) -- (267,90.33) -- (267,119.83) -- (237.5,119.83) -- cycle ;
+
+%Shape: Square [id:dp23803207337642562] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (132.5,120.33) -- (162,120.33) -- (162,149.83) -- (132.5,149.83) -- cycle ;
+
+%Shape: Square [id:dp5531375567623269] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (162.5,120.33) -- (192,120.33) -- (192,149.83) -- (162.5,149.83) -- cycle ;
+%Shape: Square [id:dp4320593415188343] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (192.5,120.33) -- (222,120.33) -- (222,149.83) -- (192.5,149.83) -- cycle ;
+%Shape: Square [id:dp02227383517383874] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (222.5,120.33) -- (252,120.33) -- (252,149.83) -- (222.5,149.83) -- cycle ;
+%Shape: Square [id:dp7593605515111705] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (252.5,120.33) -- (282,120.33) -- (282,149.83) -- (252.5,149.83) -- cycle ;
+
+%Straight Lines [id:da6208300176170172] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (165.17,112.33) -- (175.08,127.65) ;
+\draw [shift={(176.17,129.33)}, rotate = 237.09] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.75]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+%Straight Lines [id:da8782482964882432] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (189.17,113.33) -- (177.43,127.78) ;
+\draw [shift={(176.17,129.33)}, rotate = 309.09000000000003] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.75]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+
+% Text Node
+\draw (207.25,15.08) node  [align=left] {1};
+% Text Node
+\draw (192.25,45.08) node  [align=left] {1};
+% Text Node
+\draw (222.25,45.08) node  [align=left] {1};
+% Text Node
+\draw (207.25,75.08) node  [align=left] {2};
+% Text Node
+\draw (177.25,75.08) node  [align=left] {1};
+% Text Node
+\draw (237.25,75.08) node  [align=left] {1};
+% Text Node
+\draw (193.25,105.08) node  [align=left] {3};
+% Text Node
+\draw (162.25,105.08) node  [align=left] {1};
+% Text Node
+\draw (252.25,105.08) node  [align=left] {1};
+% Text Node
+\draw (222.25,105.08) node  [align=left] {3};
+% Text Node
+\draw (177.25,135.08) node  [align=left] {4};
+% Text Node
+\draw (207.25,135.08) node  [align=left] {6};
+% Text Node
+\draw (147.25,135.08) node  [align=left] {1};
+% Text Node
+\draw (267.25,135.08) node  [align=left] {1};
+% Text Node
+\draw (237.25,135.08) node  [align=left] {4};
+
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.6\linewidth}
+
+\begin{itemize}
+	\item	Triangle des coefficients binomiaux
+	\item 	Chaque nombre est la somme des 2 nombres directement au-dessus.
+\end{itemize}
+
+\begin{align*}
+	\binom{n}{k}
+		&=	\binom{n - 1}{k - 1} + \binom{n - 1}{k}		\\
+\end{align*}
+\end{minipage}
+
 \end{multicols*}
+
 
 \end{document}
