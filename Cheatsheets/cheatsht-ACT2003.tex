@@ -1,4 +1,4 @@
-\documentclass[10pt, french]{article}
+	\documentclass[10pt, french]{article}
 %% -----------------------------
 %% Préambule
 %% -----------------------------
@@ -2190,16 +2190,37 @@ Si $\textrm{H}_0$ spécifie
 
 \textbf{Note: }Avec le \textbf{TRV}, on peut seulement comparer des modèles qui sont \textbf{emboités}. C'est-à-dire, que tous les paramètres sous $\textrm{H}_0$ doivent être inclus sous $\textrm{H}_1$.
 
-\subsubsection*{Construction d'IC sur les paramètres}
+\subsubsection*{Intervalles de confiances}
 
-%\begin{itemize}
-%	\item	Lorsqu'on prédit des données, on peut aussi créer un I.C de confiance pour le prédicteur linéaire $\eta_i$. 
-%			Par les propriétés du maximum de vraisemblance, quand $n \to \infty$, on a que $\hat{\bm{\beta}}$ est asymptotiquement normal. 
-%			Donc, puisque $\eta$ est une combinaison linéaire de v.a. \emph{approximativement} normales, alors
+\begin{itemize}
+	\item	Le \textbf{pivot approximatif} permet d'obtenir un IC approximatif sur un paramètre $\beta_{j}$ où $j = 0, \dots, p$:
+	\begin{equation*}
+		\frac{\hat{\beta}_{j} - \beta_{j}}{\sqrt{\widehat{\text{V}(\hat{\beta}_{j})}}}
+		\underset{n \rightarrow \infty}{\approx} \mathcal{N}(0, 1)
+	\end{equation*}
+	Donc, les estimateurs $\bm{\hat{\beta}}$ sont asymptotiquement normalement distribués.
+	\item	Puisque le prédicteur linéaire $\hat{\eta} = \bm{x}\bm{\hat{\beta}}$ est une combinaison linéaire de ces estimateurs, on peut également y trouver un IC approximatif.
+	
+	De plus, on peut déduire un IC approximatif \textit{\textbf{pas} centré autour de la prévision} pour $\mu(\eta)$ si la fonction de lien est monotone.
+	
+	Pour en avoir un centré autour de la prévision, il faut faut définir le pivot approximatif avec la méthode Delta.
+	
+	\begin{formula}{Méthode Delta}
+	Soit la suite de v.a. $X_{1}, \dots, X_{n}$ telle que
+	\begin{equation*}
+		\sqrt{n}(X_{n} - \theta) \rightsquigarrow \mathcal{N}(0, \sigma^{2})
+	\end{equation*}
+	Alors, pour toute fonction $\psi$ dérivable et telle que $\psi'(\theta) \neq 0$:
+	\begin{equation*}
+		\sqrt{n}(\psi(X_{n}) - \psi(\theta)) \rightsquigarrow \mathcal{N}(0, \left\{\psi(\theta)\right\}^{2})
+	\end{equation*}
+	\end{formula}
+
+%	\item	Donc, puisque $\eta$ est une combinaison linéaire de v.a. \emph{approximativement} normales, alors
 %		\[
 %			\eta_i \approx \mathcal{N} \left( \eta_i,  \widehat{\mathrm{Var}}(\hat{\eta_i}) \right) 
 %		\]
-%	
+	
 %	\item	Et on a que (dans le cas simple où le modèle est $\beta_0 + \beta_1 x_{i1}$),
 %	\begin{align*}
 %		\variance{\hat{\eta}_i}	
@@ -2207,13 +2228,13 @@ Si $\textrm{H}_0$ spécifie
 %		&= \variance{\hat{\beta}_0} + x_{i1}^2 \variance{\hat{\beta}_1}  \\
 %		&+ 2 x _{i1}  \covar{\hat{\beta}_0, \hat{\beta}_1}
 %	\end{align*}
-%	
+	
 %	\item	Dans le cas multivarié, on a
 %	\begin{align*}
 %		\variance{\hat{\eta}_i}	 
 %			&= \matr{X}^{\top} \mathcal{I} (\hat{\bm{\beta}})^{-1} \matr{X}
 %	\end{align*}
-%	
+	
 %	\item	L'intervalle de confiance  pour $\eta_i$ est
 %	\[
 %		\hat{\eta}_i \pm z_{1- \alpha/2} \sqrt{\widehat{\mathrm{Var}}(\hat{\eta_i})} 
@@ -2234,66 +2255,123 @@ Si $\textrm{H}_0$ spécifie
 %		&= \left( \derivee{\eta_i} g^{-1}(\eta_i) \eval_{\eta_i 
 %		= \hat{\eta}_I} \right)^2 \variance{\hat{\eta}_i}
 %	\end{align*}
-%\end{itemize}
+\end{itemize}
 
 \subsection*{Adéquation du modèle}
-
-\subsubsection*{Statistiques $\chi^2$ de Pearson}
-
-On peut valider l'adéquation du modèle avec la statistique $X^2$, où
-\[  
-	X^2 = \sum_{i=1}^{n} \left( \frac{y_i -  \hat{\mu}_i}{\sqrt{V(\hat{\mu}_i)}} \right)^2   \sim \chi_{n-p'}^2 
-\]
-Avec $X^2 \leq \chi_{n-p', 1 - \frac{\alpha}{2}}^2$ si le modèle est adéquat. Si $\phi$ est inconnu, on peut l'estimer avec $\hat{\phi} = \frac{X^2}{n-p'}$
+\subsubsection*{Statistique $X^2$ de Pearson}
+\begin{equation*}
+	X^2 
+	= 	\sum_{i = 1}^{n} \left( \frac{y_i -  \hat{\mu}_i}{\sqrt{\text{V}(\hat{\mu}_i)}} \right)^2   
+	\underset{\text{n grand}}{\approx} \chi_{n-p'}^2 
+\end{equation*}
+Où $X^2 \leq \chi_{n-p', 1 - \frac{\alpha}{2}}^2$ si le modèle est adéquat.\\
+Si $\phi$ est inconnu, on peut l'estimer avec $\hat{\phi} = \frac{X^2}{n-p'}$.
 
 \subsubsection*{Déviance}
 
-On a
-\[
-	2(\ell(\tilde{\theta}) - \ell(\hat{\theta})) 
-		\sim \chi_{n-p'}^2 
-\]
-avec $\bar{\theta}$ est le modèle nul, $\hat{\theta}$ le modèle à l'étude et $\tilde{\theta}$ le modèle complet, où $\hat{\mu}_i = y_i$. Cette expression représente la déviance $D(y ; \hat{\mu})$ : 
-\begin{align*}
-	2(\ell(\tilde{\theta}) - \ell(\hat{\theta}))	
-		&=	2 \sum_{i=1}^{n} \frac{w_i}{\phi} (y_i \tilde{\theta} - b(\tilde{\theta}) - y_i \hat{\theta} + b(\hat{\theta})) \\
-		&=	2 \sum_{i=1}^{n} \frac{w_i}{\phi} y_i (\tilde{\theta} - \hat{\theta}) - (b(\tilde{\theta} - b(\hat{\theta})) \\
-		&= 	\frac{D(y ; \hat{\mu})}{\phi}
-\end{align*}
+\textbf{Types de modèles} où $i = 1, \dots, n$:
+\begin{description}
+	\item[nul: ] Il n'y a pas de relation entre $Y_{i}$ et $x_{i}$, et les observations sont identiquement distribuées:
+	\begin{align*}
+		\hat{\mu}_{i} &= \hat{\mu}_{0}	&
+		\theta &= \bar{\theta}_{n \times 1}
+	\end{align*}
+	\item[complet: ] Chaque prévision est exactement égale à la donnée:
+	\begin{align*}
+		\hat{\mu}_{i} &= y_{i}	&
+		\theta &= \tilde{\theta}_{n \times 1}
+	\end{align*}
+	\item[avec une fonction de lien: ] où $g^{-1}$ est l'inverse de la fonction de lien.
+	\begin{align*}
+		\hat{\mu}_{i} &= g^{-1}(\bm{x}_{i}\hat{\beta})	&
+		\theta &= \hat{\theta}_{n \times 1}
+	\end{align*}
+\end{description}
 
-Si $\phi$ est inconnu, on peut l'estimer avec $\hat{\phi} = \frac{D(y ; \hat{\mu})}{n-p'}$
+\textbf{Déviance}: Différence de l'ajustement entre le modèle complet et le modèle choisi.
+	\begin{align*}
+		D(y; \hat{\mu}) 
+		&= 	2 \big(\ell(\tilde{\theta}) - \ell(\hat{\theta})\big) \\
+		&= 	2 \sum_{i = 1}^{n} \omega_{i} \bigg( y_{i} (\tilde{\theta} - \hat{\theta}) - [b(\tilde{\theta}) - b(\hat{\theta})] \bigg)
+	\end{align*}
+	
+\textbf{Déviance \textit{réduite}}:
+	\begin{equation*}
+		D(y; \hat{\mu})^{*} = \frac{D(y; \hat{\mu})}{\phi}
+	\end{equation*}
+
+Selon le \textbf{TRV}, $2 \big(\ell(\tilde{\theta}) - \ell(\hat{\theta})\big) \sim\chi^{2}_{n - p'}$ si le modèle de $\hat{\theta}$ est adéquat
+
+De plus, $\text{E}\left[\frac{D(y; \hat{\mu})}{\phi}\right] \approx n - p'$; alors si $\phi$ est inconnu, on peut l'estimer par $\hat{\phi} = \frac{D(y ; \hat{\mu})}{n - p'}$.
 
 \subsection*{Comparaison de modèles}
 
-Les critères classiques AIC et BIC peuvent être utilisés pour comparer des modèles. On peut aussi faire une analyse de la déviance
+Les \textbf{critères classiques} \textbf{AIC} et \textbf{BIC} peuvent être utilisés pour comparer des modèles.
 
 \subsubsection*{Analyse de la déviance}
 
 \label{sssec:analyse_deviance}
 
-On compare le modèle $A$ et le modèle $B$ (où $A$ est une simplification de $B$). 
-Le modèle $A$ sera une bonne simplification de $B$ si
-\[
-	\frac{D(y ; \hat{\mu}_A) - D(y ; \hat{\mu}_B)}{\phi}  \sim \chi_{p_B - p_A}^2  
-\]
-Il est certain que la déviance va augmenter en diminuant le nombre de paramètres. 
-On veut valider si la déviance augmente \emph{significativement} au point de ne pas pouvoir simplifier $B$. 
-On rejète $H_0$ que $A$ est une bonne simplification de $B$ si la différence est déviance réduite est supérieure à $\chi_{p_B - p_A, 1 - \frac{\alpha}{2}}^2$.
+Lorsque $\phi$ est connu, et que les deux modèles $m_{\text{A}}$ et $m_{\text{B}}$ sont emboités ($p_{\text{B}} > p_{\text{A}}$), alors si $m_{\text{A}}$ est une bonne simplification du $m_{\text{B}}$:
+\begin{equation*}
+	\frac{D(y ; \hat{\mu}_A) - D(y ; \hat{\mu}_B)}{\phi} 
+		= 		2\big(\ell(\hat{\theta}_{\text{B}}) - \ell(\hat{\theta}_{\text{A}})\big)
+		\sim 	\chi_{p_{\text{B}} - p_{\text{A}}}^2  
+\end{equation*}
 
+\begin{itemize}
+	\item 	Il est certain que la déviance va augmenter en diminuant le nombre de paramètres. 
+	\item 	On veut valider si la déviance augmente \emph{significativement} au point de ne pas pouvoir simplifier $m_{\text{B}}$. 
+	\item	On rejète $\text{H}_0$ que $m_{\text{A}}$ est une bonne simplification de $m_{\text{B}}$ si la différence de la déviance réduite est supérieure à $\chi_{p_B - p_A, 1 - \frac{\alpha}{2}}^2$.
+\end{itemize}
 
 \subsection*{Analyse des résidus}
 
-\subsubsection*{Résidus de Pearson}
+3 types de résidus pour vérifier l'ajustement d'un GLM:
 
+\subsubsection*{Résidus de Pearson}
+Si l'ajustement est adéquat, ils ont une moyenne de 0 et une variance constante; cependant, la distribution des résidus peut être asymétrique.
 \begin{align*}
 	r_{P_i} 
-		=	\frac{y_i - \hat{\mu}_i}{\sqrt{V(\hat{\mu})_i}}
+		&=	\frac{y_i - \hat{\mu}_i}{\sqrt{V(\hat{\mu})_i}} 
 \end{align*}
 
-Aussi, les résidus d'Anscombe et les résidus de la déviance.
+\subsubsection*{Résidus d'Anscombe}
+On applique une transformation $A(Y)$ à $Y$ afin de minimiser l'asymétrie de la distribution de $A(Y)$ (alors, on veut qu'elle soit approximativement normale).
+\begin{align*}
+	A(t)	
+		&=	\int_{-\infty}^{t} \text{V}^{1/3}(s) ds
+\end{align*}
 
+Cette transformation donne alors un résidu de:
+\begin{align*}
+	r_{A_i} 
+		&=	\frac{A(y_{i}) - A(\hat{\mu}_{i})}{\dot{A}(\hat{\mu}_{i}) \sqrt{\text{V}(\hat{\mu}_{i})}}
+\end{align*}
 
-
+\subsubsection*{Résidus de déviance}
+Lorsque la déviance est définie comme:
+\begin{equation*}
+	D(y; \hat{\theta}) = \sum_{i = 1}^{n} d_{i}
+\end{equation*}
+La contribution de la donnée $i$ dans la déviance est:
+\begin{equation*}
+	d_{i} =	2 \omega_{i}(y_{i}(\tilde{\theta}_{i} - \hat{\theta}_{i}) - [b(\tilde{\theta}_{i}) - b(\hat{\theta}_{i})])
+\end{equation*}
+Le résidu est alors:
+\begin{equation*}
+	r_{D_i} =	\text{signe}(y_{i} - \hat{\mu}_{i}) \sqrt{d_{i}}
+\end{equation*}
+où
+\begin{align*}
+	\text{signe}(t)
+		&=	\left\{
+				\begin{matrix}
+					1,	&	t > 0\\
+					-1,	&	t < 0
+				\end{matrix}
+			\right. 
+\end{align*}
 
 % --- DÉBUT CHAPITRE 6 : MODÉLISATION DE DONNÉES DE COMPTAGE
 \section{Modélisation de données de comptage}
