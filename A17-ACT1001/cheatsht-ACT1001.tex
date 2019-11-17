@@ -34,10 +34,6 @@
 % thin space, limits underneath in displays
 %
 \DeclareMathOperator*{\argmax}{arg\,max} 
-%
-% Redefine authors
-%
-\def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin et Alec James van Rassel}
 
 %% -----------------------------
 %% 	Colour setup for sections
@@ -65,7 +61,7 @@
 
 \begin{document}
 
-\begin{multicols*}{3}
+\begin{multicols*}{2}
 
 \section*{Compléments de mathématiques}
 
@@ -76,6 +72,27 @@
 \sum_{k = 1}^{n}k^{\textcolor{teal}{3}} &= \textcolor{teal}{\bigg(}\frac{n(n + 1)}{2}\textcolor{teal}{\bigg)^{2}} &
 \sum_{k = 1}^{n}k^2 &= \frac{n(n + 1)(2n + 1)}{6} \\
 \end{align*}
+
+\subsection*{Estimation Taylor}
+\begin{align*}
+	f(x) 
+		&=	\sum_{n = 0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x - x_0)^{n} \\
+		&\approx f(x_0) + f'(x_0) (x - x_0)
+\end{align*}
+
+\subsection*{Théorème de Leibnitz}
+
+Soit: 
+\begin{itemize}
+	\item 	une fonction $f(x, \alpha)$ continue sur $[a, b]$ et
+	\item des fonctions (dérivables) de $\alpha$, $u(\alpha)$ et $v(\alpha)$, prenant valeur dans $[a, b]$.
+\end{itemize}
+Alors,
+
+\begin{equation*}
+	\deriv{\alpha} \int_{u(\alpha)}^{v(\alpha)} f(x, \alpha) dx = 
+	\int_{u(\alpha)}^{v(\alpha)} \deriv{\alpha}  f(x, \alpha) dx + f(v(\alpha), \alpha) \deriv{\alpha} v(\alpha) - f(u(\alpha), \alpha) \deriv{\alpha} u(\alpha)
+\end{equation*}
 
 \section*{Mathématiques financières}
 
@@ -216,6 +233,211 @@ Book value
 		&=	(\text{F}r - \text{C}) \ax[n - t]{j} + \text{C}
 \end{align*}
 
+\section*{Analyse probabiliste des risques actuariels}
+
+\subsection*{Théorèmes probabilistes}
+
+\textbf{Théorème du binôme}
+\begin{align*}
+	(x + y)^{n}
+		&=	\sum_{k = 0}^{n} \binom{n}{k} x^{k} y^{n - k}, \; \forall n \in \mathds{N}	\\
+\end{align*}
+
+%\subsubsection*{Coefficient multinomial}
+%
+%\begin{align*}
+%	\binom{n}{n_{1}, \dots, n_{r}}
+%		&=	\frac{n!}{n_{1}!\dots n_{r}!}
+%\end{align*}
+
+\textbf{Théorème multinomial}
+\begin{align*}
+	(x_1 + \dots + x_r)^{n}
+		&=	\sum_{\substack{(n_1, \dots, n_r): \\ n_1 + \dots + n_r = n}} \binom{n}{n_{1}, \dots, n_{r}} x_{1}^{n_{1}} \dots x_{r}^{n_{r}}	s
+\end{align*}
+
+\begin{minipage}[ht]{0.5\linewidth}
+\textbf{Relations factoriels}
+
+\begin{equation*}
+	\binom{n}{k}
+		=	\binom{n}{n - k}		
+\end{equation*}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\textbf{Règle de Pascal}
+
+\begin{equation*}
+	\binom{n}{k} + \binom{n}{k + 1}
+		=	\binom{n + 1}{k + 1}		
+\end{equation*}
+\end{minipage}
+\
+
+\textbf{Triangle de Pascal}
+
+\begin{minipage}{0.4\linewidth}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Square [id:dp6941490808398538] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (192.5,0.33) -- (222,0.33) -- (222,29.83) -- (192.5,29.83) -- cycle ;
+
+%Shape: Square [id:dp5483734211163716] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (177.5,30.33) -- (207,30.33) -- (207,59.83) -- (177.5,59.83) -- cycle ;
+
+%Shape: Square [id:dp6113568187175975] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (207.5,30.33) -- (237,30.33) -- (237,59.83) -- (207.5,59.83) -- cycle ;
+
+%Shape: Square [id:dp18321491615395535] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (162.5,60.33) -- (192,60.33) -- (192,89.83) -- (162.5,89.83) -- cycle ;
+
+%Shape: Square [id:dp5935951134760318] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (192.5,60.33) -- (222,60.33) -- (222,89.83) -- (192.5,89.83) -- cycle ;
+%Shape: Square [id:dp15135091580108684] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (222.5,60.33) -- (252,60.33) -- (252,89.83) -- (222.5,89.83) -- cycle ;
+
+%Shape: Square [id:dp6959691378679023] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (147.5,90.33) -- (177,90.33) -- (177,119.83) -- (147.5,119.83) -- cycle ;
+
+%Shape: Square [id:dp3401786459744438] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (177.5,90.33) -- (207,90.33) -- (207,119.83) -- (177.5,119.83) -- cycle ;
+%Shape: Square [id:dp054113641995666484] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (207.5,90.33) -- (237,90.33) -- (237,119.83) -- (207.5,119.83) -- cycle ;
+%Shape: Square [id:dp11590999892335718] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (237.5,90.33) -- (267,90.33) -- (267,119.83) -- (237.5,119.83) -- cycle ;
+
+%Shape: Square [id:dp23803207337642562] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (132.5,120.33) -- (162,120.33) -- (162,149.83) -- (132.5,149.83) -- cycle ;
+
+%Shape: Square [id:dp5531375567623269] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (162.5,120.33) -- (192,120.33) -- (192,149.83) -- (162.5,149.83) -- cycle ;
+%Shape: Square [id:dp4320593415188343] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (192.5,120.33) -- (222,120.33) -- (222,149.83) -- (192.5,149.83) -- cycle ;
+%Shape: Square [id:dp02227383517383874] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (222.5,120.33) -- (252,120.33) -- (252,149.83) -- (222.5,149.83) -- cycle ;
+%Shape: Square [id:dp7593605515111705] 
+\draw  [color={rgb, 255:red, 31; green, 31; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 137; green, 169; blue, 247 }  ,fill opacity=1 ] (252.5,120.33) -- (282,120.33) -- (282,149.83) -- (252.5,149.83) -- cycle ;
+
+%Straight Lines [id:da6208300176170172] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (165.17,112.33) -- (175.08,127.65) ;
+\draw [shift={(176.17,129.33)}, rotate = 237.09] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.75]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+%Straight Lines [id:da8782482964882432] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (189.17,113.33) -- (177.43,127.78) ;
+\draw [shift={(176.17,129.33)}, rotate = 309.09000000000003] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.75]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+
+% Text Node
+\draw (207.25,15.08) node  [align=left] {1};
+% Text Node
+\draw (192.25,45.08) node  [align=left] {1};
+% Text Node
+\draw (222.25,45.08) node  [align=left] {1};
+% Text Node
+\draw (207.25,75.08) node  [align=left] {2};
+% Text Node
+\draw (177.25,75.08) node  [align=left] {1};
+% Text Node
+\draw (237.25,75.08) node  [align=left] {1};
+% Text Node
+\draw (193.25,105.08) node  [align=left] {3};
+% Text Node
+\draw (162.25,105.08) node  [align=left] {1};
+% Text Node
+\draw (252.25,105.08) node  [align=left] {1};
+% Text Node
+\draw (222.25,105.08) node  [align=left] {3};
+% Text Node
+\draw (177.25,135.08) node  [align=left] {4};
+% Text Node
+\draw (207.25,135.08) node  [align=left] {6};
+% Text Node
+\draw (147.25,135.08) node  [align=left] {1};
+% Text Node
+\draw (267.25,135.08) node  [align=left] {1};
+% Text Node
+\draw (237.25,135.08) node  [align=left] {4};
+
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.6\linewidth}
+
+\begin{itemize}
+	\item	Triangle des coefficients binomiaux
+	\item 	Chaque nombre est la somme des 2 nombres directement au-dessus.
+\end{itemize}
+
+\begin{align*}
+	\binom{n}{k}
+		&=	\binom{n - 1}{k - 1} + \binom{n - 1}{k}		\\
+\end{align*}
+\end{minipage}
+
+\subsection*{Moments}
+
+\begin{tabular}{| l | l |}
+\hline
+	Moment d'ordre $n$ \textit{(autour de l'origine)}.	&	$\text{E}[X^{n}] = \underset{i}{\sum} x_{i}^{n} \Pr(X = x_{i})$	\\
+	Moment \textbf{\textit{centré}} d'ordre $n$.	&	$\text{E}[(X - \text{E}[X])^{n}] = \underset{i}{\sum} (x_{i} - \text{E}[X])^{n} \Pr(X = x_{i})$	\\
+	Moment \textbf{\textit{réduit}} d'ordre $n$.&	$\text{E}\left[\left(\frac{X}{\sqrt{\text{V}(X)}}\right)^{n}\right] = \underset{i}{\sum} \left(\frac{x_{i}}{\sqrt{\text{V}(X)}}\right)^{n} \Pr(X = x_{i})$	\\
+	Moment \textbf{\textit{centré-réduit}} d'ordre $n$.	&	$\text{E}\left[\left(\frac{X - \text{E}[X]}{\sqrt{\text{V}(X)}}\right)^{n}\right] = \underset{i}{\sum} \left(\frac{x_{i} - \text{E}[X]}{\sqrt{\text{V}(X)}}\right)^{n} \Pr(X = x_{i})$	\\
+	Coefficient d'asymétrie \textit{(\textbf{Skewness})} 	&	$\gamma_{X} = \text{E}\left[\left(\frac{X - \text{E}[X]}{\sqrt{\text{V}(X)}}\right)^{3}\right]$	\\
+	Coefficient d'aplatissement \textit{\textbf{(Kurtosis)}} 	&	$\kappa_{X} = \text{E}\left[\left(\frac{X - \text{E}[X]}{\sqrt{\text{V}(X)}}\right)^{4}\right]$	\\
+	Fonction stop-loss 	&	$\pi_{X}(d) = \text{E}\left[\max(X - d; 0)\right]$	\\
+	Fonction d'excès-moyen 	&	$\pi_{X}(d) = \text{E}\left[X - d | X > d\right]$	\\	\hline
+\end{tabular}
+
+\textbf{Conditionnels}
+\begin{align*}
+	\text{E}[X]	&=	\text{E}_{Y}[\text{E}[X|Y]]	&
+	\text{V}(X)	&=	\text{E}_{Y}[\text{V}(X|Y)] + \text{V}_{Y}(\text{E}[X|Y])
+\end{align*}
+
+\begin{align*}
+	\text{Cov}(X, Y)	
+		&=	\text{E}[XY] - \text{E}[X] \text{E}[Y]	
+\end{align*}
+
+\begin{enumerate}
+	\item $\text{Cov}(X, Y) = \text{Cov}(Y, X)$
+	\item $\text{Cov}(X, X) = \text{V}(X)$
+	\item $\text{Cov}(X, Y) \overset{\bot}{=} 0$
+	\item $\text{Cov}(c, X) = 0$
+	\item $\text{Cov}(cX, Y) = c\text{Cov}(X, Y)$
+	\item $\text{Cov}(\sum_{i = 1}^{n}\alpha_{i} X_{i}, \sum_{j = 1}^{m}\beta_{j} Y_{j}) = \sum_{i = 1}^{n}\sum_{j = 1}^{m}\alpha_{i}\beta_{j}  \text{Cov}(X_{i}, Y_{j})$
+\end{enumerate}
+
+\begin{align*}
+	\text{V}(\sum_{i = 1}^{n}\alpha_{i} X_{i}) 
+		&= \sum_{i = 1}^{n}\sum_{j = 1}^{m}\alpha_{i}^{2}\text{V}(X_{i}) + 2 \underset{i < j}{\sum\sum} \alpha_{i}\alpha_{j} \text{Cov}(X_{i}, X_{j})	\\
+	\rho_{\textrm{P}}(X, Y)
+		&=	\frac{\text{Cov}(X, Y)}{\sigma_{X}\sigma_{Y}}
+\end{align*}
+
+\subsubsection*{Convolution}
+\begin{align*}
+	f_{X + Y}(s)	
+		&=	\int_{-\infty}^{\infty} f_{X}(s - y) f_{Y}(y) dy	
+\end{align*}
+
+\subsection*{Lois multivariées}
+	
+\textbf{Loi multinomiale}
+\begin{align*}
+	\Pr(X_{1} = x_{1}, \dots, X_{r} = x_{r})
+		&=	\binom{n}{x_{1}, \dots, x_{r}} p_{1}^{x_{1}} \dots p_{r}^{x_{r}}
+\end{align*}
+
+\textbf{Loi normale multivariée}
+\begin{align*}
+	f_{\matr{X}}(\matr{x}) 
+		&= 	\frac{1}{(2 \pi)^{\frac{n}{2}} \sqrt{\text{det}(\bm{\Sigma})}} \e{\shortminus \frac{1}{2} (\matr{x} - \bm{\mu})^{\top} \bm{\Sigma}^{-1}(\bm{x} - \bm{\mu})}
+\end{align*}
+
 \end{multicols*}
+
 
 \end{document}
