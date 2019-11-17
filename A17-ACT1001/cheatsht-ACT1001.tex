@@ -34,10 +34,6 @@
 % thin space, limits underneath in displays
 %
 \DeclareMathOperator*{\argmax}{arg\,max} 
-%
-% Redefine authors
-%
-\def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin et Alec James van Rassel}
 
 %% -----------------------------
 %% 	Colour setup for sections
@@ -76,6 +72,27 @@
 \sum_{k = 1}^{n}k^{\textcolor{teal}{3}} &= \textcolor{teal}{\bigg(}\frac{n(n + 1)}{2}\textcolor{teal}{\bigg)^{2}} &
 \sum_{k = 1}^{n}k^2 &= \frac{n(n + 1)(2n + 1)}{6} \\
 \end{align*}
+
+\subsection*{Estimation Taylor}
+\begin{align*}
+	f(x) 
+		&=	\sum_{n = 0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x - x_0)^{n} \\
+		&\approx f(x_0) + f'(x_0) (x - x_0)
+\end{align*}
+
+\subsection*{Théorème de Leibnitz}
+
+Soit: 
+\begin{itemize}
+	\item 	une fonction $f(x, \alpha)$ continue sur $[a, b]$ et
+	\item des fonctions (dérivables) de $\alpha$, $u(\alpha)$ et $v(\alpha)$, prenant valeur dans $[a, b]$.
+\end{itemize}
+Alors,
+
+\begin{equation*}
+	\deriv{\alpha} \int_{u(\alpha)}^{v(\alpha)} f(x, \alpha) dx = 
+	\int_{u(\alpha)}^{v(\alpha)} \deriv{\alpha}  f(x, \alpha) dx + f(v(\alpha), \alpha) \deriv{\alpha} v(\alpha) - f(u(\alpha), \alpha) \deriv{\alpha} u(\alpha)
+\end{equation*}
 
 \section*{Mathématiques financières}
 
@@ -218,10 +235,12 @@ Book value
 
 \section*{Analyse probabiliste des risques actuariels}
 
-\subsubsection*{Théorème du binôme}
+\subsection*{Théorèmes probabilistes}
+
+\textbf{Théorème du binôme}
 \begin{align*}
 	(x + y)^{n}
-		&=	\sum_{k = 0}^{n} \binom{n}{k} x^{k} y^{n - k}, \; \forall n \in \mathds{N}	
+		&=	\sum_{k = 0}^{n} \binom{n}{k} x^{k} y^{n - k}, \; \forall n \in \mathds{N}	\\
 \end{align*}
 
 %\subsubsection*{Coefficient multinomial}
@@ -230,26 +249,32 @@ Book value
 %	\binom{n}{n_{1}, \dots, n_{r}}
 %		&=	\frac{n!}{n_{1}!\dots n_{r}!}
 %\end{align*}
-\subsubsection*{Théorème multinomial}
+
+\textbf{Théorème multinomial}
 \begin{align*}
 	(x_1 + \dots + x_r)^{n}
-		&=	\sum_{\substack{(n_1, \dots, n_r): \\ n_1 + \dots + n_r = n}} \binom{n}{n_{1}, \dots, n_{r}} x_{1}^{n_{1}} \dots x_{r}^{n_{r}}	\\
+		&=	\sum_{\substack{(n_1, \dots, n_r): \\ n_1 + \dots + n_r = n}} \binom{n}{n_{1}, \dots, n_{r}} x_{1}^{n_{1}} \dots x_{r}^{n_{r}}	s
 \end{align*}
 
-Relations factoriels
+\begin{minipage}[ht]{0.5\linewidth}
+\textbf{Relations factoriels}
 
-\begin{align*}
+\begin{equation*}
 	\binom{n}{k}
-		&=	\binom{n}{n - k}		\\
-\end{align*}
+		=	\binom{n}{n - k}		
+\end{equation*}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\textbf{Règle de Pascal}
 
-Règle de Pascal
-\begin{align*}
+\begin{equation*}
 	\binom{n}{k} + \binom{n}{k + 1}
-		&=	\binom{n + 1}{k + 1}		\\
-\end{align*}
+		=	\binom{n + 1}{k + 1}		
+\end{equation*}
+\end{minipage}
+\
 
-Triangle de Pascal
+\textbf{Triangle de Pascal}
 
 \begin{minipage}{0.4\linewidth}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -350,6 +375,67 @@ Triangle de Pascal
 		&=	\binom{n - 1}{k - 1} + \binom{n - 1}{k}		\\
 \end{align*}
 \end{minipage}
+
+\subsection*{Moments}
+
+\begin{tabular}{| l | l |}
+\hline
+	Moment d'ordre $n$ \textit{(autour de l'origine)}.	&	$\text{E}[X^{n}] = \underset{i}{\sum} x_{i}^{n} \Pr(X = x_{i})$	\\
+	Moment \textbf{\textit{centré}} d'ordre $n$.	&	$\text{E}[(X - \text{E}[X])^{n}] = \underset{i}{\sum} (x_{i} - \text{E}[X])^{n} \Pr(X = x_{i})$	\\
+	Moment \textbf{\textit{réduit}} d'ordre $n$.&	$\text{E}\left[\left(\frac{X}{\sqrt{\text{V}(X)}}\right)^{n}\right] = \underset{i}{\sum} \left(\frac{x_{i}}{\sqrt{\text{V}(X)}}\right)^{n} \Pr(X = x_{i})$	\\
+	Moment \textbf{\textit{centré-réduit}} d'ordre $n$.	&	$\text{E}\left[\left(\frac{X - \text{E}[X]}{\sqrt{\text{V}(X)}}\right)^{n}\right] = \underset{i}{\sum} \left(\frac{x_{i} - \text{E}[X]}{\sqrt{\text{V}(X)}}\right)^{n} \Pr(X = x_{i})$	\\
+	Coefficient d'asymétrie \textit{(\textbf{Skewness})} 	&	$\gamma_{X} = \text{E}\left[\left(\frac{X - \text{E}[X]}{\sqrt{\text{V}(X)}}\right)^{3}\right]$	\\
+	Coefficient d'aplatissement \textit{\textbf{(Kurtosis)}} 	&	$\kappa_{X} = \text{E}\left[\left(\frac{X - \text{E}[X]}{\sqrt{\text{V}(X)}}\right)^{4}\right]$	\\
+	Fonction stop-loss 	&	$\pi_{X}(d) = \text{E}\left[\max(X - d; 0)\right]$	\\
+	Fonction d'excès-moyen 	&	$\pi_{X}(d) = \text{E}\left[X - d | X > d\right]$	\\	\hline
+\end{tabular}
+
+\textbf{Conditionnels}
+\begin{align*}
+	\text{E}[X]	&=	\text{E}_{Y}[\text{E}[X|Y]]	&
+	\text{V}(X)	&=	\text{E}_{Y}[\text{V}(X|Y)] + \text{V}_{Y}(\text{E}[X|Y])
+\end{align*}
+
+\begin{align*}
+	\text{Cov}(X, Y)	
+		&=	\text{E}[XY] - \text{E}[X] \text{E}[Y]	
+\end{align*}
+
+\begin{enumerate}
+	\item $\text{Cov}(X, Y) = \text{Cov}(Y, X)$
+	\item $\text{Cov}(X, X) = \text{V}(X)$
+	\item $\text{Cov}(X, Y) \overset{\bot}{=} 0$
+	\item $\text{Cov}(c, X) = 0$
+	\item $\text{Cov}(cX, Y) = c\text{Cov}(X, Y)$
+	\item $\text{Cov}(\sum_{i = 1}^{n}\alpha_{i} X_{i}, \sum_{j = 1}^{m}\beta_{j} Y_{j}) = \sum_{i = 1}^{n}\sum_{j = 1}^{m}\alpha_{i}\beta_{j}  \text{Cov}(X_{i}, Y_{j})$
+\end{enumerate}
+
+\begin{align*}
+	\text{V}(\sum_{i = 1}^{n}\alpha_{i} X_{i}) 
+		&= \sum_{i = 1}^{n}\sum_{j = 1}^{m}\alpha_{i}^{2}\text{V}(X_{i}) + 2 \underset{i < j}{\sum\sum} \alpha_{i}\alpha_{j} \text{Cov}(X_{i}, X_{j})	\\
+	\rho_{\textrm{P}}(X, Y)
+		&=	\frac{\text{Cov}(X, Y)}{\sigma_{X}\sigma_{Y}}
+\end{align*}
+
+\subsubsection*{Convolution}
+\begin{align*}
+	f_{X + Y}(s)	
+		&=	\int_{-\infty}^{\infty} f_{X}(s - y) f_{Y}(y) dy	
+\end{align*}
+
+\subsection*{Lois multivariées}
+	
+\textbf{Loi multinomiale}
+\begin{align*}
+	\Pr(X_{1} = x_{1}, \dots, X_{r} = x_{r})
+		&=	\binom{n}{x_{1}, \dots, x_{r}} p_{1}^{x_{1}} \dots p_{r}^{x_{r}}
+\end{align*}
+
+\textbf{Loi normale multivariée}
+\begin{align*}
+	f_{\matr{X}}(\matr{x}) 
+		&= 	\frac{1}{(2 \pi)^{\frac{n}{2}} \sqrt{\text{det}(\bm{\Sigma})}} \e{\shortminus \frac{1}{2} (\matr{x} - \bm{\mu})^{\top} \bm{\Sigma}^{-1}(\bm{x} - \bm{\mu})}
+\end{align*}
 
 \end{multicols*}
 

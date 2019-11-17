@@ -2075,117 +2075,166 @@ La \textbf{fonction de lien} est donc la transformation appliquée à $\eta$ afi
 \begin{enumerate}[label=\faAngleRight]
 	\item	Estimer $\hat{\beta}$ avec la méthode de l'\textbf{EMV} \textit{(\textbf{MLE})}.
 	
-	\item	L'EMV est convergent
-	\[\hat{\bm{\beta}} \underset{n \to \infty}{\longrightarrow} \bm{\beta} \]
+	\item	L'EMV est \textbf{convergent},
+	\[
+		\hat{\bm{\beta}} \underset{n \to \infty}{\longrightarrow} \bm{\beta} 
+	\]
 	
-	\item	L'estimateur est \textbf{asymptotiquement normale}; lorsque $n \to \infty$,
-	\[  \hat{\bm{\beta}} \sim \mathcal{N} \left( \bm{\beta}, \frac{\mathcal{I}(\bm{\beta})^{-1}}{n} \right)    \]
-	où $\mathcal{I}(\bm{\beta})_{(p' \times p')}$ est la matrice d'information de Fisher : 
+	\item	L'estimateur est \textbf{asymptotiquement normale},
+	\[  
+		\hat{\bm{\beta}} \underset{n \to \infty}{\sim} \mathcal{N} \left( \bm{\beta}, \frac{\mathcal{I}(\bm{\beta})^{-1}}{n} \right)   
+	\]
+	où $\mathcal{I}(\bm{\beta})_{p' \times p'}$ est la matrice d'information Fisher : 
 	\begin{align*}
 		\mathcal{I}(\bm{\beta}) 
-			&= \esp{\dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n) \dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)^{\top} } \\
-			&= - \esp{\ddot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)} \\
+			&=	\esp{\dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n) \dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)^{\top} } \\
+			&\Leftrightarrow 	-\esp{\ddot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)} 
 	\end{align*}
 	
-	\item	On peut estimer la matrice d'information de Fisher avec \textbf{l'information observée} :
-	\[
-		\mathcal{I}(\hat{\bm{\beta}}) 
-			= -\sum_{i=1}^{n} \frac{\partial^2}{\partial \bm{\beta}^2} \ell(\bm{\beta} ; Y_i)  \eval_{\hat{\bm{\beta}}} 
-	\]
+	\item	On peut estimer la matrice d'information de Fisher avec \textbf{l'information observée} lorsque $\beta$ est inconnu:
 \end{enumerate}
+\begin{align*}
+	\mathcal{I}(\hat{\bm{\beta}}) 
+		&=	-\sum_{i = 1}^{n} \deriv{\bm{\beta}} \ell(\bm{\beta} ; y_i) \left\{\deriv{\bm{\beta}}\dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)\right\}^{\top} \eval_{\hat{\bm{\beta}}} \\
+		&\Leftrightarrow		-\sum_{i = 1}^{n} \deriv[2]{\bm{\beta}} \ell(\bm{\beta} ; y_i)  \eval_{\hat{\bm{\beta}}} 
+	\end{align*}
 
 \subsubsection*{Algorithme de Newton-Raphson}
+Afin d'évaluer $\hat{\bm{\beta}}$, on utilise l'approximation de Taylor du premier ordre avec cet algorithme itératif:
 
-L'objectif est de trouver $\hat{\bm{\beta}}$ qui maximise $\ell(\hat{\bm{\beta}})$, ce qui revient à trouver $\dot{\ell}(\hat{\bm{\beta}}) = 0$. 
-On utilise l'approximation de Taylor de premier ordre dans l'algorithme : 
+\begin{algo}{Newton Raphson}
 \begin{enumerate}[label = (\arabic*)]
 	\item	Choisir des valeurs de départ pour le vecteur $\hat{\bm{\beta}}^{H_0}$
 	\item	Pour $k = 1, 2, ...$
 	\begin{enumerate}[label = (2.\arabic*)]
-		\item	$\hat{\bm{\beta}}^{(k)} = \hat{\bm{\beta}}^{(k-1)} +  \left \{ - \ddot{\ell}(\hat{\bm{\beta}})^{(k-1)} \right \}^{-1} \dot{\ell}(\hat{\bm{\beta}})^{(k-1)}$
+		\item	
+		\begin{equation*}
+		\hat{\bm{\beta}}^{(k)} 
+			= 	\hat{\bm{\beta}}^{(k-1)} +  
+				\left \{ - \ddot{\ell}(\hat{\bm{\beta}})^{(k-1)} \right \}^{-1} 
+				\dot{\ell}(\hat{\bm{\beta}})^{(k-1)}
+		\end{equation*}
 		\item	Si $|\dot{\ell}(\hat{\bm{\beta}})^{(k)}| < \varepsilon $, on converge vers les paramètres optimaux pour le modèle et on arrète.
 		\item	Répéter les étapes (2.1) et (2.2) jusqu'à une convergence.
 \end{enumerate}
 \end{enumerate}
+\end{algo}
 
 \subsubsection*{Méthode du score de Fisher}
 
-Cette méthode est la même que l'algorithme de Newton-Raphson, à l'exception qu'on remplace $\ddot{\ell}(\hat{\bm{\beta}})$ par $- \esp{\ddot{\ell}(\hat{\bm{\beta}})}$ à l'étape (2.1)
+Cette variante de l'algorithme de Newton-Raphson remplace $\shortminus\ddot{\ell}(\bm{\beta})$ par son espérance $\shortminus\esp{\ddot{\ell}(\bm{\beta})} = \mathcal{I}(\bm{\beta})$ à l'étape (2.1); l'information de Fisher $\mathcal{I}(\bm{\beta})$ doit alors être approximée.
+
+La distinction est que l'algorithme de Newton-Raphson est basé sur la \textbf{matrice d'information observée} $\shortminus\ddot{\ell}(\bm{\beta})$ alors que l'algorithme de Fisher-Scoring est basé sur la \textbf{matrice d'information \textit{attendue}} Fisher $\esp{\shortminus\ddot{\ell}(\bm{\beta})}$.
+
+Ceci veut alors dire que si le lien canonique est utilisé alors les deux méthodes sont équivalents.
+
+\subsection*{Tests d'hypothèses}
+
+La principale différence dans les tests d'hypothèses pour les GLMs est que les données ne sont pas nécessairement normales, mais font plutôt parti de la famille exponentielle. Alors, on ne peut pas utiliser la distribution Student.
+
+\subsubsection*{Statistique de Wald}
+
+Pour tester :
+\begin{align*}
+	&\textrm{H}_{0}: \beta_{j} = 0 &
+	\text{ vs } &
+	&\textrm{H}_{1}: \beta_{j} \neq 0 
+\end{align*} 
+
+On teste la statistique:
+\begin{align*}
+	Z 
+	&= 	\frac{\hat{\beta}_j}{\sqrt{\widehat{\text{V}(\hat{\beta}_j)}}} \underset{\substack{\textrm{H}_0 \\ n \text{ grand} }}{\approx} \mathcal{N}(0,1) 
+\end{align*}
+On rejète donc $H_0$ si $Z > z_{1 - \frac{\alpha}{2}}$.
+
+\textbf{Note: } On obtient $\widehat{\text{V}(\hat{\beta}_j)}$ sur les éléments de la diagonale de $\{ \mathcal{I}(\hat{\beta}) \}^{-1} / n$.
+
+\subsubsection*{Test du rapport de vraisemblance}
+
+Pour tester :
+\begin{align*}
+	&\textrm{H}_{0}: \bm{\beta} \in \textrm{B}_{0} &
+	\text{ vs } &
+	&\textrm{H}_{1}: \bm{\beta} \in \textrm{B}_{0}^{\textrm{C}} 
+\end{align*} 
+où $\textrm{B}_{0} \subset \mathds{R}^{p'}$ est un sous-espace de l'espace des paramètres.
+
+On teste la statistique:
+\begin{align*}
+	\lambda(y) 
+	&= 	 \frac{\sup_{\bm{\beta} \in \textrm{B}_{0}}\mathcal{L}_n\left(\bm{\beta}\right)}{\sup_{\bm{\beta} \in \mathds{R}^{p'}}\mathcal{L}_n(\bm{\beta})} 
+	= 	 \frac{\mathcal{L}_n\left(\bm{\hat{\beta}}^{(H_0)} \right)}{\mathcal{L}_n(\bm{\hat{\beta}})} 
+\end{align*}
+
+À noter que $\lambda(y) \leq 1$ toujours puisque, sous $\textrm{H}_0$, il y a moins de variables explicatives. 
+
+On rejete l'hypothèse nulle $\textrm{H}_0$ lorsque $\lambda(y) \leq \text{valeur critique}$.
+
+Si $\textrm{H}_0$ spécifie
+\begin{enumerate}[label=\faAngleRight]
+	\item	\textbf{\textit{tous}} les paramètres du modèle, on a:
+	\[
+		\shortminus 2 \ln \lambda(Y) \underset{\textrm{H}_0}{\approx} \chi_{p'}^2
+	\]
+	\item 	\textbf{\textit{partiellement}} les paramètres du modèle, on a:
+	\[
+		\shortminus 2 \ln \lambda(Y) \underset{\textrm{H}_0}{\approx} \chi_{k_2 - k_1}^2
+	\]
+	où 
+	\begin{enumerate}
+	\item[$k_1$: ] Nombre de paramètres non-spécifiés dans $H_0$;
+	\item[$k_2$: ] Nombre de paramètres non-spécifiés dans $H_1$ ($k_2 > k_1$).
+	\end{enumerate}
+\end{enumerate}
+
+\textbf{Note: }Avec le \textbf{TRV}, on peut seulement comparer des modèles qui sont \textbf{emboités}. C'est-à-dire, que tous les paramètres sous $\textrm{H}_0$ doivent être inclus sous $\textrm{H}_1$.
 
 \subsubsection*{Construction d'IC sur les paramètres}
 
-\begin{itemize}
-	\item	Lorsqu'on prédit des données, on peut aussi créer un I.C de confiance pour le prédicteur linéaire $\eta_i$. 
-			Par les propriétés du maximum de vraisemblance, quand $n \to \infty$, on a que $\hat{\bm{\beta}}$ est asymptotiquement normal. 
-			Donc, puisque $\eta$ est une combinaison linéaire de v.a. \emph{approximativement} normales, alors
-		\[
-			\eta_i \approx \mathcal{N} \left( \eta_i,  \widehat{\mathrm{Var}}(\hat{\eta_i}) \right) 
-		\]
-	
-	\item	Et on a que (dans le cas simple où le modèle est $\beta_0 + \beta_1 x_{i1}$),
-	\begin{align*}
-		\variance{\hat{\eta}_i}	
-		&= \variance{\hat{\beta}_0 + \hat{\beta}_1 x_{i1}} \\
-		&= \variance{\hat{\beta}_0} + x_{i1}^2 \variance{\hat{\beta}_1}  \\
-		&+ 2 x _{i1}  \covar{\hat{\beta}_0, \hat{\beta}_1}
-	\end{align*}
-	
-	\item	Dans le cas multivarié, on a
-	\begin{align*}
-		\variance{\hat{\eta}_i}	 
-			&= \matr{X}^{\top} \mathcal{I} (\hat{\bm{\beta}})^{-1} \matr{X}
-	\end{align*}
-	
-	\item	L'intervalle de confiance  pour $\eta_i$ est
-	\[
-		\hat{\eta}_i \pm z_{1- \alpha/2} \sqrt{\widehat{\mathrm{Var}}(\hat{\eta_i})} 
-	\]
-	
-	\item 	Un intervalle de confiance (non-centré) pour $\mu_i$, en utilisant la fonction de lien inverse $g^{-1}(\eta)$ serait
-	\[ 
-		\mu_i \in \left [ g^{-1} \left( \hat{\eta}_i^{(L)}\right),  g^{-1} \left( \hat{\eta}_i^{(U)} \right)      \right]   
-	\]
-	
-	\item En utilisant la méthode Delta, on obtient un I.C qui est centré pour $\mu_i$, on a
-	\[
-		\mu_i \in z_{1 - \frac{\alpha}{2}} \sqrt{\widehat{\mathrm{Var}}(\hat{\mu}_i)}  
-	\]
-	où
-	\begin{align*}
-	\variance{\hat{\mu}_i}	
-		&= \left( \derivee{\eta_i} g^{-1}(\eta_i) \eval_{\eta_i 
-		= \hat{\eta}_I} \right)^2 \variance{\hat{\eta}_i}
-	\end{align*}
-\end{itemize}
-
-\subsection*{Statistique de Wald}
-
-Test d'hypothèse pour tester $H_0 : \beta_j = 0$, $H_1 : \beta_j \neq 0$. On a que
-	\[
-		Z = \frac{\beta_j}{\sqrt{\widehat{\mathrm{Var}}(\hat{\beta}_j)}} \sim \mathcal{N}(0,1) 
-	\]
-On rejète donc $H_0$ si $Z > z_{1 - \frac{\alpha}{2}}$.
-
-\paragraph{Note} On obtient $\widehat{\mathrm{Var}}(\hat{\beta}_j)$ sur les éléments de la diagonale de $\{ \mathcal{I}(\hat{\beta}) \}^{-1} / n$.
-
-\subsection*{Test du rapport de vraisemblance}
-%% On pourrait peut-être synthétiser mieux cette section ...
-On teste $H_0 : \beta \in \beta_0$ et $H_1 : \beta \in \beta_1$, où $\beta_1$ est le complément de l'espace $\beta_0$, qui est une sélection réduite des variables explicatives disponibles. On teste
-\[\lambda(y) = \frac{\mathrm{L}\left(\hat{\beta}^{(H_0)} \right)}{\mathrm{L}(\hat{\beta})}   \]
-$\lambda(y)$ sera assurément plus petit que 1 (il y a moins de variables explicatives). Mais on veut tester si $\lambda(y)$ est plus petit qu'une certaine valeur critique.
-
-\begin{enumerate}[label=\faAngleRight]
-	\item	Si \emph{$H_0$ spécifie tous les paramètres du modèle}, on a
-	\[
-		-2 \ln \lambda(y) \sim \chi_{p'}^2 \quad , \text{Sous $H_0$}
-	\]
-	\item 	Si \emph{$H_0$ spécifie partiellement les paramètres du modèle}, on a
-	\[
-		-2 \ln \lambda(y) \sim \chi_{k_2 - k_1}^2 \quad , \text{Sous $H_0$}
-	\]
-	où $k_1$ est le nombre de paramètres non-spécifiés dans $H_0$ et $k_2$ le nombre de paramètres non-spécifiés dans $H_1$.
-	\item 	Avec le TRV, on peut seulement comparer des modèles qui sont liés ($\hat{\beta}^{(H_0)}$ doit être un sous-ensemble de $\hat{\beta}$).
-\end{enumerate}
+%\begin{itemize}
+%	\item	Lorsqu'on prédit des données, on peut aussi créer un I.C de confiance pour le prédicteur linéaire $\eta_i$. 
+%			Par les propriétés du maximum de vraisemblance, quand $n \to \infty$, on a que $\hat{\bm{\beta}}$ est asymptotiquement normal. 
+%			Donc, puisque $\eta$ est une combinaison linéaire de v.a. \emph{approximativement} normales, alors
+%		\[
+%			\eta_i \approx \mathcal{N} \left( \eta_i,  \widehat{\mathrm{Var}}(\hat{\eta_i}) \right) 
+%		\]
+%	
+%	\item	Et on a que (dans le cas simple où le modèle est $\beta_0 + \beta_1 x_{i1}$),
+%	\begin{align*}
+%		\variance{\hat{\eta}_i}	
+%		&= \variance{\hat{\beta}_0 + \hat{\beta}_1 x_{i1}} \\
+%		&= \variance{\hat{\beta}_0} + x_{i1}^2 \variance{\hat{\beta}_1}  \\
+%		&+ 2 x _{i1}  \covar{\hat{\beta}_0, \hat{\beta}_1}
+%	\end{align*}
+%	
+%	\item	Dans le cas multivarié, on a
+%	\begin{align*}
+%		\variance{\hat{\eta}_i}	 
+%			&= \matr{X}^{\top} \mathcal{I} (\hat{\bm{\beta}})^{-1} \matr{X}
+%	\end{align*}
+%	
+%	\item	L'intervalle de confiance  pour $\eta_i$ est
+%	\[
+%		\hat{\eta}_i \pm z_{1- \alpha/2} \sqrt{\widehat{\mathrm{Var}}(\hat{\eta_i})} 
+%	\]
+%	
+%	\item 	Un intervalle de confiance (non-centré) pour $\mu_i$, en utilisant la fonction de lien inverse $g^{-1}(\eta)$ serait
+%	\[ 
+%		\mu_i \in \left [ g^{-1} \left( \hat{\eta}_i^{(L)}\right),  g^{-1} \left( \hat{\eta}_i^{(U)} \right)      \right]   
+%	\]
+%	
+%	\item En utilisant la méthode Delta, on obtient un I.C qui est centré pour $\mu_i$, on a
+%	\[
+%		\mu_i \in z_{1 - \frac{\alpha}{2}} \sqrt{\widehat{\mathrm{Var}}(\hat{\mu}_i)}  
+%	\]
+%	où
+%	\begin{align*}
+%	\variance{\hat{\mu}_i}	
+%		&= \left( \derivee{\eta_i} g^{-1}(\eta_i) \eval_{\eta_i 
+%		= \hat{\eta}_I} \right)^2 \variance{\hat{\eta}_i}
+%	\end{align*}
+%\end{itemize}
 
 \subsection*{Adéquation du modèle}
 
