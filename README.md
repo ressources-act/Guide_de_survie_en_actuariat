@@ -13,9 +13,9 @@ Contenu non adapter à la structure du document principal.
 
 ### 01_DocumentPrincipal
 Environement de compilation du document principal. Pour créer un nouvelle section, suivre les règles suivantes:
-- **Chapter-<nomDuChapitre>.tex** : Chapitre portant sur une matière précise.
-- **Appendix-<nomDeAppendix>.tex** : Ajout pouvant être utile dans plusieurs matière/chapitre.
-- **Main-<nomDuDocument>.tex** : Fichier servant à la construction du document principal.
+- **Chapter-\<nomDuChapitre\>.tex** : Chapitre portant sur une matière précise.
+- **Appendix-\<nomDeAppendix\>.tex** : Ajout pouvant être utile dans plusieurs matière/chapitre.
+- **Main-\<nomDuDocument\>.tex** : Fichier servant à la construction du document principal.
 - **src/\<nomDuChapitre>** : Dosier contenants touts les img/.R/etc utilisé dans la section en question.
 ### 02_Cheatsheets
 Environement de compilation des cheatsheets. **Important**, toutes les cheatsheets doivent utiliser le même préambule (**cheatsht-preamble-general.tex**).
