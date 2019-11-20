@@ -18,8 +18,8 @@ Environement de compilation du document principal. Pour créer un nouvelle secti
 - **Main-<nomDuDocument>.tex** : Fichier servant à la construction du document principal.
 - **src/\<nomDuChapitre>** : Dosier contenants touts les img/.R/etc utilisé dans la section en question.
 ### 02_Cheatsheets
-Environement de compilation des cheatsheets. **Important**, toutes les cheatsheets doivent utiliser le même préambule (**cheatsht-preamble-general.tex**.
-- **cheatsht-ACT<XXXX>.tex** : Code source de la cheatsheets concernant le cours ACT-<XXXX>.
+Environement de compilation des cheatsheets. **Important**, toutes les cheatsheets doivent utiliser le même préambule (**cheatsht-preamble-general.tex**).
+- **cheatsht-ACT\<XXXX\>.tex** : Code source de la cheatsheets concernant le cours ACT-\<XXXX\>.
 
 ### 03_Docs
 Autres document d'aide ou reletif au répertoire git.
