@@ -1,0 +1,138 @@
+\documentclass[10pt, french]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Redefine from template
+%% -----------------------------
+\def\auteur{Gabriel Crépeault-Cauchon}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Théorie du risque}
+\def\sigle{ACT-3000}
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
+\def\SectionColor{darkpastelpurple}
+\def\SubSectionColor{darkpastelpurple}
+\def\SubSubSection{darkpastelpurple}
+
+% 
+% Débute numérotation des sections  à 1
+% 
+\setcounter{section}{0}
+
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+
+\begin{multicols*}{2} 
+\section{Distribution multivariées}
+\subsection{Classes de Fréchet}
+Soit $F_1, \dots, F_n$ des fonction de répartition univariées et $F_{\matr{x}} = F_{X_1, \dots, X_n}$ la fonction de répartition du vecteur $\matr{X}$.
+
+On définit la classe de Fréchet $CF(F_1, \dots, F_n)$ par l'ensemble des fonctions de répartition $F_{\matr{X}}$ dont les marginales sont $F_1, \dots, F_n$.
+
+\subsubsection{Bornes d'une classe de Fréchet}
+Si $F_{\matr{X}} \in CF(F_1, \dots, F_n)$, alors
+\begin{align*}
+W(x_1, \dots, x_n) \leq F_{\matr{X}}(x_1, \dots, x_n) \leq M(x_1, \dots, x_n)
+\end{align*}
+où
+\begin{align*}
+W(x_1, \dots, x_n)	& = \max \left (\sum_{i=1}^{n} F_i(x_i) - (n-1) ; 0 \right ) \\
+M(x_1, \dots, x_n)	& = \min \left ( F_1(x_1), \dots, F_n(x_n) \right) \\
+\end{align*}
+
+\hl{Preuve des bornes à savoir!}
+
+
+\subsection{Comonotonicité}
+Les composantes de $\matr{X}$ sont dites comonotones si $X_i = F_{X_i}(U)$, $i = 1, \dots, n$ et $U \sim U(0,1)$.
+
+\subsubsection{Algorithme}
+\begin{enumerate}
+\item Simuler $U^{(j)}$ de la v.a. $U \sim U(0,1)$
+\item Calculer $X_i^{(j)} = F_{X_i}(U^{(j)})$, $i = 1, \dots, n$
+\end{enumerate}
+
+\begin{definition}[variable comonotone et la borne supérieure de Fréchet]
+Le vecteur $\matr{X}$ a des composantes comonotones ssi
+\begin{align*}
+F_{\matr{X}(x_1, \dots, x_n)} = M(x_1, \dots, x_n)
+\end{align*}
+\hl{Preuve à savoir}
+\end{definition}
+
+\begin{definition}[Additivité des $VaR$ et $TVaR$]
+On définit $S = \sum_{i=1}^{n} X_i = \sum_{i=1}^{n} F_{X_i}(U) = \varphi(U)$, où $\varphi$ est une fonction croissante pour $y \in (0,1)$. Alors, on a
+\begin{align*}
+VaR_{\kappa}(S) & = \sum_{i=1}^{n} VaR_{\kappa}(X_i) \\
+TVaR_{\kappa}(S) & = \sum_{i=1}^{n} TVaR_{\kappa}(X_i)
+\end{align*}
+\hl{Preuve à savoir}
+\end{definition}
+
+
+\subsection{Antimonotonicité}
+Un couple de v.a.\footnote{L'antimonotonicité est seulement définie pour $n=2$.} $\matr{X} = (X_1, X_2)$ dont les composantes sont définies par $X_1 = F_{X_1}(U)$ et $X_2 = F_{X_2}(1-U)$ est antimonotone par définition.
+
+\subsubsection{Algorithme}
+\begin{enumerate}
+\item Simuler $U_{(j)}$ de la v.a. $U \sim U(0,1)$
+\item Calculer $X_1^{(j)} = F_{X_1}(U^{(j)})$ et $X_2^{(j)} = F_{X_2}(1 - U^{(j)})$
+\end{enumerate}
+
+\begin{definition}[variable antimonotone et la borne inférieure de Fréchet]
+Le vecteur $\matr{X} = (X_1, X_2)$ a des composantes antimonotone ssi
+\begin{align*}
+F_{\matr{X}(x_1,x_2)} = W(x_1, x_2)
+\end{align*}
+\hl{Preuve à savoir}
+\end{definition}
+
+\subsection{Loi de Poisson bivariée Teicher}
+\begin{itemize}
+\item Couple de v.a. $(M_1, M_2)$ dont les marginales sont $Pois(\lambda_1)$ $Pois(\lambda_2)$
+\item paramètre de dépendance $\alpha_0$ avec $0 \leq \alpha_0 \leq \min(\lambda_1, \lambda_2)$
+\item $\alpha_1 = \lambda - \alpha_0$ et $\alpha_2 = \lambda_2 - \alpha_0$
+\item On définit les v.a. $M_1$ et $M_2$ telles que (avec $K_i \sim Pois(\alpha_i)$)
+\begin{align*}
+M_1 = K_1 + K_0 \text{ et } M_2 = K_2 + K_0
+\end{align*}
+avec $M_i \sim Pois(\lambda_i)$
+\end{itemize}
+
+\subsubsection{Fonction de masse de probabilité (fmp)}
+
+\begin{align*}
+f_{M_1, M_2}(m_1, m_2) = e^{-\lambda_i - \lambda_2 + \alpha_0} \sum_{j=0}^{\min(m_1, m2)} \frac{\alpha_0^{j}}{j!} \frac{(\lambda_1 - \alpha_0)^{m_1 - j}}{(m_1 - j)!} \frac{(\lambda_2 - \alpha_0)^{m_2 - j}}{(m_2 - j)!}
+\end{align*}
+
+
+
+\hl{Preuve à savoir}
+
+\subsubsection{Fonction génératrice des probabilités (fgp)}
+\begin{align*}
+P_{M_1, M_2}(t_1, t_2) = e^{(\lambda_1 - \alpha_0)(t_1 -1)} e^{(\lambda_2 - \alpha_0)(t_2 - 1)} e^{\alpha_0(t_1 t_2 - 1)}
+\end{align*}
+\hl{Preuve à savoir}
+
+\paragraph{Covariance de $M_1$ et $M_2$} $\covar{M_1, M_2} = \variance{K_0} = \alpha_0$
+\hl{Preuve à savoir}
+
+\subsubsection{Connaître la loi de $N = M_1 + M_2$}
+\red{À terminer}
+
+
+
+
+\end{multicols*}
+%% -----------------------------
+%% Fin du document
+%% -----------------------------
+\end{document}
