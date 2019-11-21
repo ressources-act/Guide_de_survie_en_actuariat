@@ -1,0 +1,157 @@
+% 1.5 taux d'escompte effectif et nominal
+intérêt $\approx$ prime
+
+escompte (\emph{discount}) $\approx$ rabais
+\p
+\underline{Mise en contexte}
+$j$ : taux d'intérêt par période
+
+\blue{Si on a $C$ au début, on a $C+Cj$ une période plus tard.}
+\p
+$C_j$ : intérêt payé après une période
+\n
+$K$ : taux d'escompte par période
+\p
+\red{Si on a $C$ à la fin, on a $C-Ck$ une période plus tôt.}
+\n
+Donc,
+\n
+\begin{tabular}{lll}
+Début 	&			& Fin 				\\
+\blue{$C$}	& $\rightarrow$	& \blue{$C(1+j)$}		\\
+\red{$C(1-k)$}	& $\rightarrow$	& \red{$C$} 		\\	
+\end{tabular}
+
+\subsection{Taux d'escompte effectif annuel}
+\fcolorbox{black}{orange}{Notation}	%fonction fcolorbox{couleur bordure}{couleur 							intérieur}{TEXTE À METTRE DANS LA 								BOÎTE}
+: $d$
+{\remarque le taux d'escompte est composé et constant}
+\n
+Définition : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+d= \frac{A(1)-A(0)}{A(1)}
+\end{empheq}
+\underline{Note} : la seule différence avec la formule de $i$ est le dénominateur, qui est $A(1)$ pour $d$.
+\p
+Généralisation...
+\begin{gather*}
+d_t = \frac{A(1)-A(0)}{A(1)} = 1 - \frac{A(t-1)}{A(t)}
+\end{gather*}
+
+\subsection{Lien entre $d$ et $i$}
+\begin{gather*}
+A(0) = A(1)\left(\frac{1}{1+i}\right) = A(1)(1-d) \\
+\Rightarrow \frac{1}{1+i} = 1 - d = v \text{(facteur d'actualisation)} \\
+\Rightarrow d = 1 - v \egal d = 1 - \frac{1}{1+i} = \frac{(1+i) - 1}{1+i} = \frac{i}{1+i} \\
+\end{gather*}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+d = \frac{i}{1+i}
+\end{empheq}
+\n
+Aussi,
+\begin{gather*}
+\frac{1}{1+i} = 1 - d \egal 1+ i = \frac{1}{1-d} \\
+\Rightarrow i = \frac{1}{1-d} - 1 \egal i =  \frac{1 - (1-d)}{1-d} = \frac{d}{1-d}
+\end{gather*}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+i = \frac{d}{1-d}
+\end{empheq}
+\n
+Les formules du facteur d'accumulation et d'actualisation : 
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+v(t) = (1-d)^t
+\end{empheq}
+et
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+a(t) = (1-d)^{-t}
+\end{empheq}
+
+\subsubsection{Exemples}
+\begin{gather*}
+i = 7\% , d = \frac{0,07}{1-0,07} = 0,06542 \\
+d = 10\% ,  i  = \frac{0,10}{1- 0,10} =  0,11
+\end{gather*}
+
+\subsection{Escompte simple et Bons du Trésor américain}
+
+\subsubsection{Escompte simple}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+v(t) = 1 - dt 
+\end{empheq}
+où $t \ge 0$ et $t < \frac{1}{d}$
+\n
+\underline{Exemple}
+\n
+On veut 60\$ dans 6 mois, $d_{simple} = 40\%$, combien faut-il aujourd'hui?
+\begin{gather*}
+60 \cdot v(0,5) = 60(1- (0,40 \cdot 1/2)) = 60 \cdot 0,8 = 48\$
+\end{gather*}
+
+\subsubsection{Bons du Trésor américains}
+Ce qu'il faut savoir : 
+\begin{itemize}
+	\item{Escompte simple}
+	\item{l'échance est un multiple de 7 jours}
+	\item{prix fixé par 100\$ à l'échéance}
+	\item{\hl{année de 360 jours}}
+\end{itemize}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+Prix = 100\left(1 - \frac{dt}{360}\right)
+\end{empheq}
+\n
+\underline{Exemple 1.11 du livre}
+\n
+échéance de 28 jours : 
+\begin{gather*}
+Prix = 100\left(1 - 0,0005 \cdot \frac{28}{360} \right) = 99,99611
+\end{gather*}
+\n
+échéance de 364 jours : 
+\begin{gather*}
+Prix = 100\left(1 - 0,0026 \cdot \frac{2364}{360} \right) = 99,737111
+\end{gather*}
+
+\subsection{Taux d'escompte nominal annuel}
+\p
+$\rightarrow$ composé $m$ fois / année.
+\p
+\fcolorbox{black}{orange}{Notation} : $d^{(m)}$
+\p
+Taux $d^{(m)}$ : nominal annuel composé $m$ fois/an
+\p
+\hl{$\Rightarrow$ Taux d'escompte $\frac{d^{(m)}}{m}$ effectif par $\frac{1}{m}$ d'année.}
+\begin{gather*}
+1-d = \left (1 - \frac{d^{(m)}}{m} \right )^m \\
+\end{gather*}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+d = 1 - \left (1 - \frac{d^{(m)}}{m} \right )^m
+\end{empheq}
+Aussi,
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+d^{(m)} = m(1 - (1-d)^{1/m})
+\end{empheq}
+\n
+\subsubsection{Exemple}
+Si le taux d'escompte annuel composé deux fois l'an est 4\%($d^{(2)} = 0,04$), calculez les taux suivants : 
+\n
+a) Taux d'escompte effectif annuel
+\begin{gather*}
+\left( 1- \frac{d^{(2)}}{2} \right)^2 = \left( 1- \frac{d^{(1)}}{1} \right)^1 \\
+\left( 1- \frac{0,04}{2} \right)^2 = 1- d \\
+d = 1 - (1 - 0,02)^2 = 0,0396
+\end{gather*}
+
+b) Taux d'intérêt effectif annuel
+\begin{gather*}
+d = 0,0396 \egal i = \frac{d}{1-d} = \frac{0,0396}{1-0,0396} = 0,04123282
+\end{gather*}
+
+c) Taux d'intérêt annuel composé deux fois l'an
+\begin{gather*}
+i = 0,041233 \text{et on cherche à savoir $i^{(2)}$.} \\
+\left( 1 + \frac{i^{(2)}}{2} \right)^2 = \left( 1 + \frac{i^{(m)}}{1} \right)^1 \egal \left( 1 + \frac{i^{(2)}}{2} \right)^2 = 1 + 0,041233 \\
+i^{(2)} = 2 \cdot \left[ (1+ 0,041233)^{1/2} - 1 \right] = 0,040816327
+\end{gather*}
+
+\textbf{Remarque : } Tous ces taux sont équivalents, ont le même ordre de grandeur et respectent l'ordre croissant vu en classe.

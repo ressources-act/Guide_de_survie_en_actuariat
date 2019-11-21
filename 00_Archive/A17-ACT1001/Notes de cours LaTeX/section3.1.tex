@@ -1,0 +1,161 @@
+% section 3.1
+Notation à respecter : $\left\{
+\begin{tabular}{ll}
+$t$		& tout de suite après un paiement. \\
+		& $t$ est mesuré en période. \\
+$OB_t$	& solde à $t$ (\emph{outstanding balance}). \\
+$K_t$	& versement à $t$ (\emph{payment}). \\
+$I_t$	& intérêts courus/payés à $t$ (\emph{interest due}). \\
+$PR_t$	& Capital remboursé à $t$ (\emph{principal repaid}). \\
+$j_t$	& taux effectif par période de $(t-1)$ à $t$. \\
+$L$		& montant emprunté (\emph{loan}). \\
+\end{tabular}
+\right.$
+\underline{Quelques éléments importants : }
+\begin{displaymath}
+\begin{aligned}
+OB_0	& = L \\
+OB_n		& = 0\$ \\ 
+OB_t		& = OB_{t-1} - PR_t \\
+\\
+K_t		& = \underbrace{I_t}_{\text{intérêts}} + \underbrace{PR_t}_{\text{capital remboursé}} \\
+\\
+I_t		& = OB_{t-1} \cdot j_t \\
+\end{aligned}
+\end{displaymath}
+
+\subsection{Méthode générale de l'amortissement}
+On fait d'abord l'hypothèse que $j_t = j \forall\ t$.
+\begin{align*}
+L 	& = \sum_{t=1}^n K_t \darkgreen{(1+j)^{-t}} \\
+	& = \sum_{t=1}^n K_t \darkgreen{v^t} \\
+\end{align*}
+
+\subsection{Tableau d'amortissement}
+\begin{displaymath}
+\begin{array}{| l | l | l | l | l | l |}
+\hline
+\rowcolor{lightgray} t	&\quad j_t	&\quad K_t	&\quad I_t					& \quad PR_t	& \quad OB_t	\\
+\hline
+0	& \quad-	&\quad -		& \quad -					& \quad -		& \quad L		\\
+\hline
+1	&\quad 	&\quad K_1	& \quad OB_0 \cdot j_1		& \quad K_1 - I_1		& \quad OB_0 - PR_1		\\
+\hline
+2	&\quad 	&\quad K_2	&\quad OB_1 \cdot j_2		& \quad K_2 - I_2		& \quad OB_1 - PR_2		\\
+\hline
+...	&\quad 	&\quad		& \quad & \quad		& \quad		\\
+\hline
+n-1	&\quad 	&\quad K_{n-1}	& \quad OB_{n-2} \cdot j_{n-1}	&\quad K_{n-1} - I_{n-1}		&\quad OB_{n-1}		\\
+\hline
+n	& \quad	&\quad K_n	&\quad OB_{n-1} \cdot j_{n}	& \quad OB_{n-1}		& \quad 0		\\
+\hline
+\end{array}
+\end{displaymath}
+
+\begin{align*}
+K_T 	& = \sum_{t=1}^n K_t & \Rightarrow \text{montant qu'on a réellement payé pour notre emprunt} \\
+I_T	& = \sum_{t=1}^n I_t & \Rightarrow \text{montant total payé en intérêt} \\
+PR_T	& = K_T - I_T \\
+	& = L	 = OB_0 \\
+\end{align*}
+
+\subsubsection*{Exemple}
+Note : c'est exactement la démarche qu'il faudra utiiliser à l'examen pour les tableaux d'amortissement.
+
+avec $i= 5\%$.
+
+\begin{center}	% image tableau
+	\includegraphics[width = 14cm, height = 3cm]{illustrations/exemple1_tabamort.png}
+\end{center}
+
+\subsection{Forme rétrospective}
+Méthode qui consiste à accumuler le montant initial du prêt et d'y soustraire la valeur accumulée des paiements passés faits.
+
+avec $j$ qui varie : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+OB_t = L \prod_{s=1}^t (1+j_s) - \sum_{u=1}^t K_u (1+j_s)
+\end{empheq}
+
+avec $j$ constant : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+OB_t = L (1+j)^t - \sum_{u=1}^t K_u (1+j_s)^{t-u}
+\end{empheq}
+
+\subsubsection*{Exemple}
+avec $i = 5\%$
+\begin{align*}
+OB_3	& = 1000(1,05)^3 - 150 \sum_{u=1}^3 (1,05)^{3-u} \\
+		& = 1000(1,05)^3 - 150 \sx{\angl{3} 5\%} \\
+		& = 1000(1,05)^3 - 150\left( \frac{(1,05)^3 - 1}{0,05} \right) \\
+		& = 684,75\$ \\
+\end{align*}
+
+\subsection{Forme prospective du solde}
+On actualise tous les paiements restants au prêt.
+\p
+avec $j$ qui varie : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+OB_t = \sum_{u = t+1}^n K_u \prod_{s = t+1}^n (1+j_s)^{-1}
+\end{empheq}
+
+avec $j$ constant : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+OB_t = \sum_{u = t+1}^n K_u (1+j)^{-(u+t)}
+\end{empheq}
+
+\subsection{Propriétés avec additionnelles de l'amortissement}
+\subsubsection{Taux d'intérêt non constant}
+Exemple : 
+\begin{center}
+	\includegraphics[width = 14cm, height = 3cm]{illustrations/tableau_interest_vary.png}
+\end{center}
+
+On aurait pu résoudre de façon rétrospective,
+
+\begin{align*}
+OB_3	& = 1000(1,05)(1,06)(1,03) - 150(1,06)(1,03) - 150(1,06)(1,03) - 150(1,03) - 150 \\
+		& = 678,12\$
+\end{align*}
+
+\subsubsection{Capitalisation de l'intérêt}
+Si le paiement $K_4$ est plus petit que les intérêts à payer pour la période $I_t$, l'intérêt se capitalise et $OB_t > OB_{t-1}$.
+
+\subsubsection*{Exemple avec $i = 5\%$}
+\begin{center}
+	\includegraphics[width = 14cm, height = 3cm]{illustrations/tableau_capitalisation.png}
+\end{center}
+
+\subsubsection{Amortissement avec capital remboursé constant}
+\fbox{\bcattention{ $PR_1 = PR_2 = ... = PR_n$}}
+
+
+\begin{align*}
+PR_T	 = L \Rightarrow PR_t = \frac{1}{n} L \\
+OB_t	 = (n-t)\frac{L}{n} = \frac{n-t}{n} L = (1 - \frac{t}{n}) L \\
+I_t = OB_{t-1} j_t  = \frac{n-1+1}{n} L \cdot j_t \\
+K_t = \frac{L}{n} + \frac{n-t+1}{n} L \cdot j_t \\
+\end{align*}
+
+\subsubsection*{Exemple avec $i = 5\%$}
+\begin{center}
+	\includegraphics[width = 14cm, height = 3cm]{illustrations/rembcapital_constant.png}
+\end{center}
+
+Remarque : $1000 = 312,50 \ax{\angl{4} 5\%} - 12,50(Ia)_{\angl{4} 5\%}$
+
+\subsubsection{Intérêts seulement avec remboursement du Capital à la fin.}
+\label{sec:3.1.5.4}
+\fbox{\bcattention $PR_1 = PR_2 = ... = PR{n-1} = 0$ et $PR_n = L$}
+
+Donc,
+\begin{align*}
+OB_0 = OB_1 = ... = OB_{n-1} = L \\
+K_t = I_t = (OB_{t-1} j_t) = L j_t \quad, t = 1,2,...,n-1 \\
+K_n = L j_n + L = L(1+j_n) \\
+\end{align*}
+
+\subsubsection*{Exemple avec $i = 5\%$}
+\begin{center}
+	\includegraphics[width = 14cm, height = 3cm]{illustrations/remb_capital_fin.png}
+\end{center}
+% fin section 3.1

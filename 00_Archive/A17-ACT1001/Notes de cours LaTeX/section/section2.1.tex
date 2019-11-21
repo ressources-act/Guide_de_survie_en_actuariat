@@ -1,0 +1,266 @@
+% SECTION 2.1	
+	\begin{center}
+	\includegraphics[width = 14cm, height = 2cm]{illustrations/image_rentes.png}
+	\end{center}
+\setcounter{secnumdepth}{3} % pour mettre une profondeur de plus à la numérotation des sections
+\subsection{Valeur accumulée d'une rente}
+
+\subsubsection*{2.1.1.0 ... au moment du dernier versement}
+
+Supposons : 
+\begin{tabular}{ll}
+$k$	& par période			\\
+$t$	& est mesuré en période	\\
+$n$	& nombre de versements	\\
+$j$	& taux effectif par période	\\
+\end{tabular}
+
+\begin{gather*}
+\text{Valeur accumulée } = k(1+j)^{n-1} + k(1+j)^{n-2} + ... + k(1+j) + k \\
+= k \sum_{m=0}^{n-1} (1+j)^m = k \left( \frac{(1+j)^n - 1}{j} \right) \\
+= k \cdot S_{\angln j} \\
+\end{gather*}
+% pour faire le symbole actuariel "angle", on load le package actuarialangle et on utilise la commande \angl{} . Il existe aussi quelques raccourcis tel que \angln \anglr et \anglk !
+
+\subsubsection*{Remarques sur la notation}
+$S_{\angl{1}j} = 1$
+\n
+$S_{\angln 1\%} = n$
+\n
+$S_{\angln j} > n$ (si $j>0$)
+
+% SECTION CALCULATRICE À COMPLÉTER PLUS TARD
+\subsection*{Fonctionnement de la BA II Plus}
+\hl{Section calculatrice, à compléter plus tard}
+% FIN SECTION CALCULATRICE
+
+\subsubsection{..quelques temps après le dernier prélèvement}
+
+Plus précisément, $r$ périodes après le dernier versement. Dans ce cas particulier, on fait : 
+
+\begin{gather*}
+k \cdot S_{\angln j} (1+j)^r \\
+= \frac{k(1+j)^n - 1}{j} (1+j)^r = k \left( \frac{(1+j)^{n+r} - (1+j)^r}{j} \right) \\
+= k \left( \frac{[(1+j)^{n+r} - 1 ] - [(1+j)^r - 1]}{j} \right) \\
+= k(S_{\angl{n+r}  j} - S_{\angln})
+\end{gather*}
+\hl{dessin à insérer plus tard}
+\n
+Note : on peut décomposer une série de versements en plusieurs séries!
+
+\subsubsection{... avec deux taux d'intérêt}
+$j_1$ en vigueur jusqu'à $t=m$ 
+
+$j_2$ par la suite
+
+$n+r$ versements
+
+\hl{dessin à insérer plus tard}
+
+\begin{displaymath}
+k \cdot s_{\angln j_1} + k \cdot s_{\angl{r} j_2}
+\end{displaymath}
+
+\paragraph{Exemple 2.4}
+Fait avec la calculatrice BA II Plus
+\n
+\begin{align*}
+68 	\fbox{N} 	\\
+0.75 \fbox{I/Y} 	\\
+0 	\fbox{PV}	\\
+30	\fbox{PMT}\\
+\fbox{CPT} \fbox{FV} & = -2 648.50 \\
+& \fbox{+/-} \fbox{PV} \\
+& 72 \fbox{N} \\
+& 0.625 \fbox{I/Y} \\
+& \fbox{CPT} \fbox{FV} = -6 862.22677 \\
+\end{align*}
+
+\emph{Thinking de la calculatrice BA : }
+\begin{displaymath}
+\fbox{PV} \left( 1 + \frac{\fbox{I/Y}}{100} \right)^{\fbox{N}} + \fbox{PMT} \cdot s_{\angl{\fbox{N}} \fbox{I/Y} \%} + \fbox{FV} = 0
+\end{displaymath}
+
+Donc les signes +/- sont très important!
+
+\subsubsection*{Remarques}
+
+$j$ de $s_{\angln j}$ est un taux effectif ($ \frac{i{(m)}}{m}$) par période de $n$.
+
+\subsubsection*{... avec un versement non constant}
+
+On a un versement de \red{$P\$$} de $t=1$ à $t=n$
+
+Et un versement de \darkgreen{$Q\$$} de $t=n+1$ à $t=n+k$.
+\n
+Quelle sera la valeur accumulée à $t=n+k$?
+\begin{center}
+	\includegraphics[width = 12cm, height = 4cm]{illustrations/un_versement_non_constant.png}
+\end{center}	
+
+\paragraph{1\up{ère} approche}
+\begin{displaymath}
+P \cdot s_{\angln j} (1+j)^k + Q \cdot s_{\anglk j}
+\end{displaymath}
+
+\paragraph{2\up{e} approche}
+\begin{displaymath}
+P \cdot s_{\angl{n+k} j} + (Q-P) \cdot s_{\anglk j}
+\end{displaymath}
+
+\subsubsection*{Exemple 2.5}
+\begin{displaymath}
+\begin{array}{lllll}
+P = 50\$	& Q = 75\$	& n = 10	& k=14	& j=1\% \\
+\end{array}
+\end{displaymath}
+Solutions possibles : 
+
+\begin{displaymath}
+\begin{array}{lll}
+50 s_{\angl{10} 1\%} (1,01)^{14} & +		& 75 s_{\angl{14} 1\%} \\
+50 s_{\angl{24} 1\%} (1,01)^{14} & +		& (75-50) s_{\angl{14} 1\%} \\
+\end{array}
+\end{displaymath}
+
+{\remarque il est question de valeur accumulée dès qu'on évalue la rente \textbf{au moment du dernier versement ou plus tard.}}
+
+\subsection{Valeur actualisée d'une rente...}
+\red{\st{valeur présente}} $\rightarrow$ c'est un anglicisme.
+
+Valeur actualisée = \emph{present value}
+
+{\remarque il est question de valeur actualisée dès qu'on évalue la rente au moment du premier versement ou plus tôt.}
+
+\subsubsection*{... de versements constants \underline{une période avant le 1\up{er} versement.}}
+Supposons $P\$$ par période (en fin de période) de $t=1$ à $t=n$, évalué avec un taux efectif de $j$ par période.
+
+\begin{center}
+	\includegraphics[width = 12cm, height = 3cm]{illustrations/versements_constants_va.png}
+\end{center}
+
+\begin{align*}
+P(1+j)^{-1} + P(1+j)^{-2} + ... + P(1+j)^{-n} & = P \sum_{m=1}^n (1+j)^{-m} \\
+& = P(1+j)^{-1} \left( \frac{1- (1+j)^{-n}}{1 - (1+j)^{-1}} \right) \\
+& = P \left(\frac{1 - (1+j)^{-n}}{j}\right) \\
+& = P a_{\angln j} \\
+\end{align*} 
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+a_{\angln j} = \frac{1 - (1+j)^{-n}}{j}
+\end{empheq}
+
+ Note : $j$ est un taux effectif par période. Une période dure le temps entre 2 versements consécutifs.
+ 
+ \subsubsection*{Remarque sur la calculatrice BA II Plus}
+ \hl{section à compléter plus tard, voir guide calculatrice.}
+ 
+ {\remarque 
+ \begin{displaymath}
+ \begin{array}{ll}
+ a_{\angl{1} j} = \frac{1}{(1+j)} \\
+  a_{\angln 0\%} = n		&   a_{\angln j} < n \text{(si $j >0\%$)} \\
+  \end{array}
+  \end{displaymath}
+ }
+
+\subsubsection{Quelques temps avant le 1\up{er} versement.}
+Supposons le premier de $n$ versements à $t=k+1$. On cherche la valeur à $t = 0$.
+\begin{center}
+	\includegraphics[width = 12cm, height = 3cm]{illustrations/avant_premierversement.png}
+\end{center}
+\begin{gather*}
+P a_{\angl{n+k} j} - P a_{\anglk j} = P a_{\angln j} (1+j)^{-k} \\
+\text{ou} \\
+P a_{\anglk j} = P a_{\angl{n+k} j} - P a_{\angln j} (1+j)^{-k}
+\end{gather*}
+
+\subsubsection*{2.1.2.2a ... avec des taux d'intérêts non constants}
+On a des versements de $P\$$ à $t=1,2,...,n+k$. 
+
+Il y a deux taux : 
+\n $j_1$ de $t=0$ à $t=n$ \n $j_2$ de $t=n$ à $t=n+k$.
+
+On veut trouver la valeur actualisée à $t=0$ de tous les \emph{cashflows} : 
+
+\begin{center}
+	\includegraphics[width = 10cm, height = 5cm]{illustrations/taux_interet_variable_va.png}
+\end{center}
+
+\begin{gather*}
+A(0) = P a_{\anglk j_2} (1+j_1)^{-n} + P a_{\angln j_1}
+\end{gather*}
+
+\subsubsection*{2.1.2.2b ... avec un versement non constant}
+Dans le cas d'un taux constant $j$, mais avec des versements de $P\$$ à $t=1,2,...,n$ et versements de $Q\$$ à $t=n+1,n+2,...,n+k$
+\p
+C'est presque la même chose qu'avec la valeur accumulée!
+
+\begin{gather*}
+A(0) = Q a_{\anglk j} (1+j)^{-n} + P a_{\angln j} \\
+\text{ou} \\
+A(0) = Q a_{\angl{n+k} j} + (P-Q) a_{\angln j} \\
+\end{gather*}
+
+\subsubsection*{Exemple 2.9 du livre}
+\begin{displaymath}
+	\begin{array}{llllll}
+A(0) = 10000	& \underline{P}	& \underline{pour...}& & \vline année 	& \vline j/mois \\
+			& x			& t=1,2,...,12 & & \vline 1			& \vline 0,5\% \\
+			& x+ 25		& t=13,14, ..., 24 & & \vline 2 		& \vline 0,75\% \\
+			& x+50		& t=25,26,...,36	 & & \vline 3		& \vline 1\% \\
+	\end{array}
+\end{displaymath}	
+
+\hl{dessin à insérer ici plus tard}
+
+
+\begin{align*}
+10000	& = 50 a_{\angl{12} 1\%} (1,0075)^{-12} (1,0050)^{-12} + 25 a_{\angl{12} 0,75\%} (1,0050)^{-12} \\
+		& + x(a_{\angl{12} 0,5\%} + a_{\angl{12} 0,75\%}(1,0050)^{-12} + a_{\angl{12} 1\%}(1,0075)^{-12}(1,0050)^{-12})\\
+		& = 50(9,692) + 25(10,771) + x(11,619 + 10,771 + 9,692) \\
+x		& = 288,21\$ \\
+\end{align*}
+
+\subsubsection{Lien entre $a_{\angln j}$ et $s_{\angln j}$}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+a_{\angln j} = s_{\angln j} (1+j)^{-n}
+\end{empheq}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+s_{\angln j} = a_{\angln j} (1+j)^{n}
+\end{empheq}
+
+\subsubsection{évaluation de rentes perpétuelles (\emph{perpetuity})}
+Si $n \to \infty$, c'est une rente perpétuelle (\st{perpétuité}).
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+P a_{\angl{\infty} j} = p \left( \frac{1 - (1+k)^{-\infty}}{j} \right) = \frac{P}{j}
+\end{empheq}
+
+
+\bcattention
+une rente de fin de période \emph{différée} de $k$ périodes fait son premier versement à $t=k+1$.
+
+\subsection{Rentes de fin ou de début de période}
+Distinction importante à faire avec les termes en anglais : 
+\n fin $\rightarrow$ \emph{immediate} \n début $\rightarrow$ \emph{due}
+
+\p
+Pour les rentes de fin de période, les $n$ versements sont à $t=1,2,3,...,$.
+\p
+Pour les rentes de début de période, les $n$ versements sont plutôt à $t=0,1,2,...,n-1$.
+\p
+Dans les 2 cas, on doit quand même calculer la valeur actualisée à $A(0)$ et la valeur accumulée à $A(n)$. Cela implique qu'on doit accumuler d'une période pour revenir au bon moment d'évaluation.
+\p
+Le symbole utilisée pour représenter la valeur actualisée une rente de début de période est $\ax**{\angln j}$ et $\sx**{\angln j}$ pour la valeur accumulée.
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+P \ax**{\angln j} = P a_{\angln j}(1+j)^{n}
+\end{empheq}
+et
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+P \sx**{\angln j} = P s_{\angln j}(1+j)^{n}
+\end{empheq}
+
+% Fin de la section 2.1 (certaines parties à compléter, mais le principal y est).

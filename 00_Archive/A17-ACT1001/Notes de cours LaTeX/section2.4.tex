@@ -1,0 +1,117 @@
+% section 2.4 math fin
+\subsubsection{Taux de rendement et taux de réinvestissement}
+Taux de rendement (\emph{yield rate}) : $y$
+
+Taux de réinvestissement (\emph{reinvestment rate}) : $j$
+
+Taux de rendement interne : $i$
+
+Si investissement initial à $t=0 : L$
+
+Valeur finale $t=n : M$
+
+$L(1+y)^n = M$
+
+\paragraph{Exemple p.137}
+Carole prête 10 000 à Caroline au taux annuel de $5\%$ pour 10 ans ($i = 5\%)$. Le taux de réinvestissement est à $3\%$. Trouver le taux de rendement si Caroline...
+
+\begin{enumerate}
+\item rembourse en versements annuels égaux
+\begin{gather*}
+X\ax{\angl{10} 5\%}	 = 10000 = L \\
+M = X\sx{\angl{10} 3\%} \\
+L(1+\blue{y})^{10} = M \egal y = 4,030736\% \\
+\end{gather*}
+
+\item rembourse seulement les intérêts et rembourse le capital à la fin
+\begin{gather*}
+P_1 =P_2 = ... = P_9 = 10000(0,05) = 500 \\
+P_{10} = 10 000 + 500 = 10 500 \\
+M = 500\sx{\angl{10} 3\%} + 10 000 \\
+L(1+\blue{y})^{10} = M \egal y = 4,635301\% \\
+\end{gather*}
+
+\item Rembourse tout dans 10 ans
+\begin{gather*}
+P_1 = P_2 = P_9 = 0 \\
+P_{10} = 10000(1,05)^{10} \\
+M = 10 000(1,05)^{10} \\
+L(1+\blue{y})^{10} = M \egal y = 5\% \footnotemark[1] \\
+\end{gather*}
+\end{enumerate}
+\footnotetext[1]{Le taux de rendement interne est égal au taux de rendement demandé sur le prêt car il n'y a pas eu de réinvestissement!}
+
+\paragraph{Exemple 2.26}
+On fait un investissement de $100\$$ à la fin de chaque mois. L'intérêt mensuel est crédité au taux de $0,5\%$ et réinvesti au taux de $1\%$ dans un compte secondaire. Quelle est la valeur accumulée après $n$ mois?
+
+versements dans le compte principal : $100n$
+
+versements dans le compte secondaire : 
+\begin{displaymath}
+\begin{aligned}
+P_1	& & = 0	&\quad P_2 & = 100 \cdot 0,005 & = 0,50 \\
+P_3	&= 200 \cdot 0,005 & = 1	& \quad P_4 & = 300 \cdot 0,005 & = 1,50 \\
+... \\
+P_n	& =(n-1) \cdot 0,005 & = 0,50(n-1) \\
+\end{aligned}
+\end{displaymath}
+
+Donc, la valeur accumulée dans le compte secondaire à $t=n$ est $0,50(Is)_{\angl{n-1} 1\%}$
+
+Donc,
+\begin{gather*}
+M = 100n + 0,50(Is)_{\angl{n-1} 1\%} = 100\sx{\angln y}
+\end{gather*}
+
+On peut ensuite prendre la BA II Plus pour trouver le taux $y$.
+
+\subsection{Valeur comptable et valeur marchande}
+On actualise tous les versements futurs (on ne tient pas compte des versements passés en utilisant...
+\begin{description}
+\item[valeur comptable]{taux en vigueur à l'achat}
+\item[valeur marchande]{taux en vigueur au moment du calcul}
+\end{description}
+
+
+\subsection{Méthode de l'amortissement à intérêt composé}
+Anglais : \emph{Sinking fund valuation}
+\p
+On veut trouver le prix $P$ à payer pour une série de versements afin de réaliser le taux de rendement interne $y$. On connaît $i$.
+\p
+On présume que
+\begin{enumerate}
+\item retrait de $Py$(paiement des intérêts) chaque année et réinvestissement du reste du versement.
+\item On récupère $P$ à la fin (grâce au réinvestissement dans un autre compte)
+\end{enumerate}
+\p
+On veut une rente de $n$ versements de $k\$$ de fin d'année. Avec quoi on récupère $P$?
+\begin{align*}
+(K-Py)\sx{\angln j} & = P \\
+P	& = \frac{k\sx{\angln j}}{1 + y\sx{\angln j}}
+\end{align*}
+On sait aussi que la valeur actualisée de tout l'argent
+\begin{align*}
+P = K\ax{\angln i}
+\end{align*}
+
+\paragraph{Exemple}
+
+$k = 1000 \quad n = 10 \quad y = 8\% \quad j = 5\% \quad P = ? \quad i = ? $
+
+Réponses : 
+
+$P = 6269,412650$ et $ i = 9,534416\%$
+
+{\remarque il peut arriver que ce que les versements ne soient pas constants... mais ce qui est retiré pour mettre dans le \emph{sinking fund} est constant.}
+
+Alors,
+\begin{align*}
+\sum_{t=1}^n(K_t - Py)(1+j)^{n-t} = P \\
+\end{align*}
+
+et
+
+\begin{align*}
+\sum_{t=1}^n K_t(1+j)^{n-t} = P(1+y\sx{\angln j}) \\
+\end{align*}
+% fin section 2.4

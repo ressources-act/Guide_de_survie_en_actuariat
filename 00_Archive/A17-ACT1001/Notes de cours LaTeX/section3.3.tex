@@ -1,0 +1,136 @@
+% SECTION 3.3
+\label{sec:3.3}
+$L$ : montant emprunté
+\n
+$J_1$ : taux demandé par le prêteur
+\n
+$j_2$ : taux fonds d'amortissement
+\n
+$n$ : nombre de versements
+
+
+\bclampe \textbf{Contexte :} si on contracte un emprunt $L$ à un taux d'intérêt donné (exemple $5\%$), mais qu'on est capable d'obtenir un placement $F$ pour la même période de temps avec un taux d'intérêt supérieur (exemple $6\%$), on a \emph{intérêt} à payer seulement les intérêts pour le prêt $L$ et déposer le reste du paiement prévu dans l'autre compte $F$. De cette façon, on va accumuler le montant emprunté plus rapidement et on va payer moins d'intérêts ($I_T$).
+\p
+Lorsque le taux d'intérêt du fonds d'amortissement est plus bas que le taux d'intérêt du prêt, ça semble illogique... mais dans le contexte d'un obligation (sera vue au chapitre 4), on reçoit des coupons qui doivent être réinvestis dans un compte quelconque. On essaie donc d'avoir le meilleur taux disponible. Encore là, on pourrait dire \emph{pourquoi ne pas faire un remboursement anticipé? Comme ça on va sauver des frais d'intérêt!} Mais il est plutôt rare que les obligations peuvent être modifiée, surtout en ce qui a trait au coupon.
+\p
+$OB_t^L \quad K_t^L \quad I_t^L \quad PR_t^L \Rightarrow$ représente la relation avec le prêteur, soit tout ce qui concerne l'endroit où on a contracté le prêt. Les différents éléments du tableau d'amortissement peuvent être calculés de la même façon qu'à la section \ref{sec:3.1.5.4}.
+\p
+Pour ce qui est du compte $F$ (\emph{sinking fund}) : 
+
+Les paiements qu'on fait au fonds sont calculés ainsi : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+K_1^F = K_2^F = ... = K_{n-1}^F = \frac{L}{\sx{\angln j_2}}
+\end{empheq}
+\begin{proof}
+ \textbf{Objectif} : les dépôts égaux faits dans le compte (\emph{fond d'amortissement}) produisent une valeur accumulée $L$.
+ \p
+Supposons que $K$ représente le dépôt périodique : on veut donc $L = k \sx{\angln j_2} \egal k = \frac{L}{\sx{\angln j_2}}$.
+\end{proof}
+
+Les paiements sont tous égaux, sauf le dernier (qui est négatif car on doit rembourser au prêteur le Capital). Car après le dernier dépôt, on retire $L$ du compte pour rembourser le Capital au prêteur. Et en même temps, on paye aussi les intérêts courus comme d'habitude.
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+K_n^F = \frac{L}{\sx{\angln j_2}} - L
+\end{empheq}
+
+\begin{equation*}
+\underbrace{OB_0^F = 0}_{\text{ Car on ne doit rien au \emph{sinking fund}.}}
+\end{equation*}
+
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+OB_t^F = \frac{-L}{\sx{\angln j_2}} \sx{\angl{t} j_2} \quad \text{pour } t = 1,2,...,n-1
+\end{empheq}
+\begin{proof}
+On sait que $OB_0^F = 0$
+\p
+Alors, de façon prospective on peut dire que
+\begin{align*}
+OB_t^F	& = 0(1+j_2)^t - \frac{L}{\sx{\angln j_2}} \sx{\angl{t} j_2} \\
+		& = \frac{-L}{\sx{\angln j_2}} \sx{\angl{t} j_2}
+\end{align*}
+\end{proof}
+
+
+\begin{equation*}
+K_t = K_t^F + K_t^L
+\end{equation*}
+
+\begin{equation*}
+OB_t = OB_t^F + OB_t^L
+\end{equation*}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+PR_t^F = \frac{L}{\sx{\angln j_2}} \left(1+j_2 \right)^{t-1}
+\end{empheq}
+\begin{proof}
+\begin{align*}
+PR_t^F	& = OB_{t-1}^F - OB_t^F \\
+		& = \frac{-L}{\sx{\angln j_2}} (\sx{\angl{t-1} j_2} - \sx{\angl{t} j_2}) \\
+		& = \frac{-L}{\sx{\angln j_2}} \left( \frac{(1+j_2)^{t-1} - 1}{j_2} - \frac{(1+j_2)^{t} - 1}{j_2} \right) \\
+		& = \frac{-L}{\sx{\angln j_2}} \left( \frac{(1+j_2)^{t-1} - (1+j_2)^t}{j_2} \right) \\
+		& = \frac{-L}{\sx{\angln j_2}}(1+j_2)^{t-1} \left(\frac{\cancel{1} - (\cancel{1}+\cancel{j_2})}{\cancel{j_2}} \right) \\
+		& = \frac{-L}{\sx{\angln j_2}}(1+j_2)^{t-1} (-1) \\
+		& = \frac{L}{\sx{\angln j_2}}(1+j_2)^{t-1}
+\end{align*}
+\end{proof}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+PR_n^F = \frac{L}{\sx{\angln j_2}} (1+j_2)^{n-1} - L
+\end{empheq}
+\begin{proof}
+On peut dire que
+\begin{equation*}
+PR_n^F = OB_{n-1}^F - \cancel{OB_n^F} = OB_{n-1}^F
+\end{equation*}
+Alors, prospectivement : 
+\begin{align*}
+PR_n^F	& = OB_{n-1}^F - OB_n^F
+		& = \frac{-L}{\sx{\angln j_2}} \sx{\angl{n-1} j_2} \\
+		& \text{prospectivement} \\
+		& = \frac{L}{\sx{\angln j_2}} (/+ j_2)^{n-1} - L \\
+\end{align*}
+\end{proof}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+I_t^F = \frac{-L}{\sx{\angln j_2}} \left[ (1+j_2)^{t-1} -1 \right]
+\end{empheq}
+\begin{proof}
+\begin{align*}
+I_t^F		& = OB_{t-1}^F j_2 \\
+		& = \frac{-L}{\sx{\angln j_2}} \sx{\angl{t-1} j_2} j_2 \\
+		& = \frac{-L}{\sx{\angln j_2}} \left( \frac{(1+j_2)^{t-1} - 1}{\cancel{j_2}} \right) \cancel{j_2} \\
+		& = \frac{-L}{\sx{\angln j_2}} \left[ (1+j_2)^{t-1} -1 \right] \\
+\end{align*}
+\end{proof}
+\p
+Au total,
+
+\p
+\begin{displaymath}		% début tableau synthèse
+\begin{array}{|c | c | c|}
+\hline
+\rowcolor{green} \multicolumn{3}{c}{ \text{Tableau synthèse des 2 comptes}} \\
+\hline	\hline
+\rowcolor{lightgray} \text{éléments} & \text{Relation avec prêteur ($L$)}	& \text{Fonds d'amortissement ($F$)} \\
+\hline
+OB_0	& OB_0^L = L	& OB_0^F = 0 \\
+\hline
+OB_t		& OB_t^L = L 	& OB_t^F  \\
+\hline
+OB_n		& OB_n^L = 0 	& OB_n^F = 0\\
+\hline
+K_t		& K_t^L = L j_1	& K_t^F = \frac{L}{\sx{\angln j_2}} \\
+\hline
+K_n		& K_n^L = L j_1 + L	& K_n^F = \frac{L}{\sx{\angln j_2}} - L \\
+\hline
+I_t		& I_t^L = L j_1	& I_t^F = \frac{-L}{\sx{\angln j_2}} \left[ (1+j_2)^{t-1} -1 \right] \\
+\hline
+PR_t		& PR_t^L = 0	& PR_t^F = \frac{L}{\sx{\angln j_2}} (1+j_2)^{t-1} \\
+\hline
+PR_n		& PR_n^L = L	& PR_n^F = \frac{L}{\sx{\angln j_2}} (1+j_2)^{n-1} - L \\
+\hline
+\end{array}
+\end{displaymath} 		% fin tableau synthèse
+
+% fin chapitre 3

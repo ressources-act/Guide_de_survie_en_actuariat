@@ -1,0 +1,248 @@
+% début section 4.1
+\underline{Caractéristiques}
+\begin{enumerate}[label=\checked]
+\item valeur nominale $F$ (\emph{face amount})
+\item Taux de coupon $r$ (\emph{coupon rate})
+\item Date d'échéance $T$ (\emph{maturity date})
+\item valeur de remboursement $C$ (\emph{redemption value})
+
+\bcattention Important!
+\item Par défaut $\quad F = C$
+\item taux de coupon de type $r^{(2)}$ (payable semi-annuellement)
+\item premier coupon dans 6 mois
+\item dernier coupon à l'échéance
+\end{enumerate}
+\p
+Dans le cas des obligations, la taux de rendement interne est appelé le \textbf{taux de rendement à l'échéance}. (\emph{YTM = yield to maturity}).
+
+\subsection{Prix d'une obligation à une date de coupon}
+\fbox{\bcbombe évaluation tout de suite APRÈS le versement du coupon.}
+\p
+$r$ = taux de coupon par période de coupon
+\begin{equation}
+r = \frac{r^{(2)}}{2}
+\end{equation}
+
+$n$ : nombre de coupons
+\begin{equation}
+n = 2T
+\end{equation}
+
+$Fr$ : montant de chaque coupon (même si $F \ne C$)
+
+$j$ : taux d'évaluation par période de coupons
+\begin{equation}
+j = \frac{y^{(2)}}{2}
+\end{equation}
+Le prix de l'obligation est la valeur actualisée des coupons qui seront versés en plus de la valeur nominale $C$.
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+P = Fr \ax{\angln j} + C v^n
+\end{empheq}
+En manipulant la formule un peu, on obtient : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+P = (Fr - Cj) \ax{\angln j} + C
+\end{empheq}
+ 
+\bcattention Par défaut, $F = 100$, les prix sont indiqués à 3 décimales et les taux $r^{(2)}$ et $y^{(2)}$ sont indiqués à décimales en $\%$.
+ 
+ 
+ 
+ \subsection{Obligations achetées ou vendues au dessus ou au dessous du pair}
+ \begin{tabular}{| c | c | c | c |}
+ \hline
+\rowcolor{green} Lorsque...	& équivalent & l'obligation est transigée...	& (\emph{terme anglais}) \\
+ \hline
+$P > C$	& $ Fr > Cj$	& au \textbf{dessus du pair} 	& \emph{at a premium} \\
+\hline
+$P = C$	& $ Fr = Cj$	&  \textbf{au pair} 			& \emph{at par} \\
+\hline
+$P < C$	& $ Fr < Cj$	& au \textbf{dessous du pair} 	& \emph{at a discount} \\
+\hline
+\end{tabular}
+
+\subsection{Prix d'une obligation entre 2 coupons}
+Définitions : 
+\begin{tabular}{l l}
+$P_0$ 	& prix lors du dernier coupon (il vient d'être versé) \\
+$P_1$ 	& prix après le versement du prochain coupon \\
+$t$ 	& temps écoulé (en période de coupons) depuis le dernier coupon \\
+$P_t$ 	& prix d'une obligation entre 2 coupons au temps $t$ \\
+\end{tabular}
+\begin{displaymath}
+t = \frac{\text{nombre de jours depuis le dernier coupon}}{\text{nombre jours entre le dernier coupon et le prochain coupon}}
+\end{displaymath}
+On peut trouver le prix de l'obligation avec la méthode rétrospective : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+P_t = P_0(1+j)^t
+\end{empheq}
+Ou avec la méthode prospective : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+P_t = (P_1 + Fr)(1+j)^{-(1-t)}
+\end{empheq}
+l'exposant est $-(1-t)$ car on actualise seulement la fraction de période de coupon manquante pour obtenir notre $P_t$ désiré.
+
+\begin{center}
+	\includegraphics[width = 8cm, height = 6cm]{illustrations/prix_journaux.png}
+\end{center}
+
+\p
+Toutefois, $P_t$ n'est pas le prix qu'on trouverait sur des sites de données financières... Quel est le \emph{prix du marché}?
+\paragraph{Prix du marché}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+\text{Prix}_t = P_t - t \times Fr
+\end{empheq}
+
+\subsection{Valeur comptable d'une obligation}
+\bcattention On calcule la valeur d'une obligation seulement avec les coupons \underline{futurs} et la valeur de remboursement.
+
+\bcattention \textbf{pour la valeur comptable}, on prends le taux d'évaluation qui était en vigueur \underline{lors de l'achat} de l'obligation.
+
+\subsection{Trouver le taux de rendement à l'échéance (RAE) d'une obligation}
+Un peu de vocabulaire : 
+\n
+Cours acheteur (\emph{Bid}) $\Rightarrow$ cours le plus bas auquel on veut vendre
+\n
+Cours vendeur (\emph{Ask}) $\Rightarrow$ cours le plus haut auquel on veut acheter
+
+\p
+En réalité, on négocie $P$ afin d'obtenir le taux $j$ désiré!
+\p
+\paragraph{Taux de rendement tout de suite après un coupon : }
+\begin{equation*}
+P = Fr \ax{\angln j} + Cv^n
+\end{equation*}
+
+\paragraph{Taux de rendement entre 2 coupons} il faut procéder avec la BA-II Plus.
+
+
+\second \touche{9} pour accéder à l'utilitaire BOND
+\p
+Lorsqu'on est prêt à enregistrer notre valeur, on appuie sur \touche{ENTER}. On navigue ensuite au travers des différentes options ci-dessous avec les touches \touche{$\downarrow$}.
+
+\begin{tabular}{| l | l | l |}
+\hline
+\rowcolor{cyan}Option & signification	& format d'entrée \\
+\hline \hline
+SDT 	& date d'achat	& mm.jjaa\\
+\hline
+CPN & montant de coupon annuel	& \\
+\hline
+RDT & date d'échéance	&mm.jjaa \\
+\hline
+RV & valeur de remb. $C$	& \\
+\hline
+ACT & \red{ne pas modifier!}	& \\
+\hline
+2/Y & nombre de coupons versés/an	& \\
+\hline
+YLD & taux RAE $y^{(2)}$	&mm.jjaa \\
+\hline
+PRI & prix du marché $\text{Prix}_t$	&mm.jjaa \\
+\hline
+AI & à ajouter au prix pour avoir $P_t$	&mm.jjaa \\
+\hline
+\end{tabular}
+\n
+On a seulement qu'à faire \touche{CPT} sur la variable qu'il faut faire calculer. Dans notre cas, cet utilitaire nous intéresse pour son calcul du \emph{yield} entre 2 périodes de coupon! autrement, on peut le calculer plus rapidement avec la méthode analytique.
+
+\subsubsection*{Exemple 4.3 de Broverman}
+\begin{enumerate}[label=\alph*)]
+\item
+\begin{tabular}{lll}
+SDT		& 1.1510 \\
+CPN		& 8 \\
+RDT		& 1.1530 \\
+RV		& 100 \\
+PRI		& 70.400 \\
+YLD		& \touche{CPT}	& $\rightarrow 11.9129647 (\%)$
+\end{tabular}
+\p	% pour créer un espace entre a) et b)
+\item % b)
+\begin{enumerate}[label=(\roman*)]
+\item % i)
+\begin{tabular}{lll}
+SDT		& 1.1515 \\
+PRI		& 112.225 \\
+YLD		& \touche{CPT}	& $\rightarrow 6.695830543 (\%)$
+\end{tabular}
+\p
+\item % ii)
+\begin{tabular}{lll}
+SDT		& 1.1510 \\
+RDT		& 1.1515 \\
+RV		& 112.225 \\
+PRI		& 70.40 \\
+YLD		& \touche{CPT}	& $\rightarrow 18.99983616 (\%)$
+\end{tabular}
+\p
+\item  Ce numéro ne se fait pas avec l'utilitaire : on le fait avec les touches de la calculatrice, ou de façon analytique.
+\n
+\second \touche{CPT} Pour sortir de l'utilitaire
+
+\begin{tabular}{lll} % iii)
+N		& 10 \\
+I/Y		& 3 \\
+PV		& 0 \\
+PMT		& -4 \\
+FV		& \touche{CPT}	& $\rightarrow 45.85551725$
+\end{tabular}
+\p
+\end{enumerate} % fin b) de l'exemple
+
+\item \second \touche{CPT} pour retourner dans l'utilitaire
+
+\begin{tabular}{lll} % iii)
+SDT		& 4.0115 \\
+RDT		& 1.1430 \\
+RV		& 100 \\
+PRI		& 112.225 \\
+YLD		& \touche{CPT}	& $\rightarrow 6.684204681 (\%)$ \\
+AI		& 1.679558011
+\end{tabular}
+\end{enumerate} % fin exemple 4.3 Broverman
+ 
+\subsection{Amortissement d'une obligation}
+
+Un peu comme à la section \ref{sec:3.3}, on peut amortir une obligation : 
+
+\begin{equation}
+K_t = Fr	\quad \text{pour } t = 1,2,...,n-1
+\end{equation}
+
+\begin{equation}
+K_n = Fr + C
+\end{equation}
+
+\begin{equation}
+OB_0 = P
+\end{equation}
+
+\begin{equation}
+OB_t = \underbrace{BV_t}_{\text{book value}} = (Fr - C) \ax{\angl{n-t} j} +  C
+\end{equation}
+
+\begin{equation}
+I_t = OB_{t-1} j = (Fr - Cj)(1- v^{n-t+1}) + Cj
+\end{equation}
+
+\begin{equation}
+Pr_t = Fr - I_t = (Fr - Cj)v^{n-t+1}
+\end{equation}
+
+\begin{equation}
+PR_n = (Fr - Cj)(1- v^{n-t+1}) + C
+\end{equation}
+
+\subsubsection*{Remarque}
+Si $P>C \rightarrow PR_t > 0$ et on se constitue un \hl{amortissement de la prime} (\emph{the amount for amortization of premium}) égale à $P - C$
+\begin{center}	% table 4.3A de Broverman 5th edition
+	\includegraphics[width = 13cm, height = 7cm]{illustrations/table_4-3-a.png}
+\end{center}
+
+Si $ P < C \rightarrow Pr_t < 0$ et on se constitue une \hl{accumulation de l'escompte} (\emph{the amount for amortization of discount}) égale à $C - P$
+\begin{center}	% table 4.3C de Broverman 5th edition
+	\includegraphics[width = 13cm, height = 7cm]{illustrations/table_4-3-c.png}
+\end{center}
+
+
+% fin section 4.1
