@@ -2333,14 +2333,14 @@ Lorsque $\phi$ est connu, et que les deux modèles $m_{\text{A}}$ et $m_{\text{B
 Si l'ajustement est adéquat, ils ont une moyenne de 0 et une variance constante; cependant, la distribution des résidus peut être asymétrique.
 \begin{align*}
 	r_{P_i} 
-		&=	\frac{y_i - \hat{\mu}_i}{\sqrt{V(\hat{\mu})_i}} 
+		&=	\frac{y_i - \hat{\mu}_i}{\sqrt{V(\hat{\mu}_i)}} 
 \end{align*}
 
 \subsubsection*{Résidus d'Anscombe}
 On applique une transformation $A(Y)$ à $Y$ afin de minimiser l'asymétrie de la distribution de $A(Y)$ (alors, on veut qu'elle soit approximativement normale).
 \begin{align*}
 	A(t)	
-		&=	\int_{-\infty}^{t} \text{V}^{1/3}(s) ds
+		&=	\int_{-\infty}^{t} \text{V}^{-1/3}(s) ds
 \end{align*}
 
 Cette transformation donne alors un résidu de:
