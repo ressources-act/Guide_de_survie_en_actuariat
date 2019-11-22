@@ -1,5 +1,6 @@
-%% Aide-mémoire
-\documentclass[french, landscape]{article}
+% Template pour faire aide-mémoire
+\documentclass[10pt, french]{article}
+
 %% -----------------------------
 %% Préambule
 %% -----------------------------
@@ -9,8 +10,16 @@
 %% -----------------------------
 \def\cours{Mathématiques actuarielles IARD1}
 \def\sigle{ACT-2005}
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
 \def\SectionColor{red!80!white}
 \def\SubSectionColor{red!30!black}
+%\def\SubSubSection{burntsienna}
+%
+% Redefine authors
+%
+\def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin et Alec James van Rassel}
 %% -----------------------------
 %% Début du document
 %% -----------------------------
@@ -544,7 +553,7 @@ Si $\theta_0$ est un paramètre adéquat pour le modèle réduit, alors la stati
 \[2 \left( \ell(\theta) - \ell(\theta_0) \right) \leq  \chi_{dl_1 - dl_0, 1-\alpha}^2\]
 On trouvera une équation du genre $g(\theta) \leq 0$, où $g$ sera une fonction avec deux racines définies, qui correspondent aux bornes de l'intervalle de confiance pour les valeurs de $\hat{\theta}_0$ : 
 \begin{center}
-\includegraphics[scale=0.07]{src/ACT-2005/Q13-57_visualisation.png}
+\includegraphics[scale=0.07]{src/Q13-57_visualisation.png}
 \end{center}
 
 \section{Sélection de modèles}

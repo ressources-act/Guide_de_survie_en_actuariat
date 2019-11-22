@@ -164,7 +164,7 @@ Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte
 
 \subsection{Lois de mortalité}
 \subsubsection*{Loi de Moivre}
-Pas très réaliste car assume une chance \textbf{uniforme} de mourir n'importe quand alors qu'en réalité une personne agée de 90 ans a des plus grandes chances de mourir qu'un jeune de 30 ans.
+Pas très réaliste car assume une chance \textbf{uniforme} de mourir n'importe quand alors qu'en réalité une personne âgée de 90 ans a des plus grandes chances de mourir qu'un jeune de 30 ans.
  
 C'est la seule loi avec un \textbf{support fini}. 
 
@@ -236,7 +236,7 @@ $T_x \sim	\text{Unif}(0, \omega - x)$
 \subsection{Tables de mortalité}
 \begin{itemize}
 \item[$\ell_0$ : ] Nombre d'individus initial dans une cohorte.
-\item[$\ell_x$ : ] Nombre d'invidu de la cohorte ayant survécu jusqu'à l'âge $x$.
+\item[$\ell_x$ : ] Nombre d'individus de la cohorte ayant survécu jusqu'à l'âge $x$.
 \item[$\prescript{}{n}d_{x}$ : ] Nombre de décès entre l'âge $x$ et $x+n$.
 
 \begin{align*}
@@ -648,11 +648,11 @@ Généralement, on suppose les $n$ différents contrats $Z_{j}$ d'être identiqu
 Cependant, si les contrats ne sont \textbf{\textit{pas identique}}, la \textbf{prime varie }selon le contrat.
 \begin{enumerate}
 	\item[1. ] Pour chaque type de contrat le \textbf{principe d'équivalence} ne change pas, $\esp{Z} = \pi$.
-	\item[3. ] Pour le \textbf{Principe du quantile }on veut maintenant une \textbf{surchage égale} pour tous les contrats et donc le plus petite h telle que $Pr(S \le h) \ge p$.
+	\item[3. ] Pour le \textbf{Principe du quantile }on veut maintenant une \textbf{surcharge égale} pour tous les contrats et donc le plus petite h telle que $Pr(S \le h) \ge p$.
 	\item[$h$ : ] Prime collective sous le principe du quantile.
 \end{enumerate}
 
-Doit trouver la surchage $\theta$ qui, lorsqu'appliqué à chacune des espérances individuelles, donnera la prime collective au total.
+Doit trouver la surcharge $\theta$ qui, lorsque appliqué à chacune des espérances individuelles, donnera la prime collective au total.
 
 \begin{enumerate}
 	\item[$\theta$ : ] \textbf{Surchage}
@@ -660,7 +660,7 @@ Doit trouver la surchage $\theta$ qui, lorsqu'appliqué à chacune des espéranc
 		\pi &= (1 + \theta) \esp{Z} \\
 		h &= (1 + \theta) \esp{S} 
 \end{align*}
-	\item[] \textbf{Suprime}
+	\item[] \textbf{Surprime}
 	\[
 		\theta \esp{Z}
 	\]
@@ -1065,7 +1065,7 @@ Est en vigueur tant que l'assuré est en vie et verse une prestation au moment d
 \end{align*}
 
 	\item[] Le capital \textbf{décroît continûment}.\\
-	Prévoit une prestation de n \$ pour un décès immédiat, par la suite la prestation décroît linéairement jusquà 0 \$ au bout de n années.
+	Prévoit une prestation de n \$ pour un décès immédiat, par la suite la prestation décroît linéairement jusqu'à 0 \$ au bout de n années.
 
 \begin{align*}
 	\DbA*_{\termxn} &= \int_0^{n} (n - t) v^t \px[t]{x} \mu_{x+t} dt \\
@@ -1796,13 +1796,13 @@ Y & = \begin{cases}
 
 \section{Primes nivelées}
 \subsection{Notation et définitions}
-On définit $L$ comme la perte à l'émission d'un contrat pour l'assureur. Dans ce chapitre, le paiement de la PUN s'étalle sur une période de temps, et est conditionnel  à la survie de l'assuré. Dans le cas d'une assurance-vie,
+On définit $L$ comme la perte à l'émission d'un contrat pour l'assureur. Dans ce chapitre, le paiement de la PUN s'étale sur une période de temps, et est conditionnel  à la survie de l'assuré. Dans le cas d'une assurance-vie,
 \[L = Z - Y\]
 où $Z$ est la valeur présente actuarielle est prestations à payer et $Y$ la valeur présente actuarielle des primes à recevoir. De même, pour les rentes,
 \[L = Y_1 - Y_2\]
 où $Y_1$ représente la valeur présente actuarielle des prestations de rente à payer et $Y_2$ la valeur présente actuarielle des primes à recevoir. \\
 
-On définit la prime nette nivellée $\pi$ selon 3 principes. 
+On définit la prime nette nivelée $\pi$ selon 3 principes. 
 
 \subsection{Principe d'équivalence (PE)}
 Sous le principe d'équivalence, $\pi^{PE}$ est la solution de
