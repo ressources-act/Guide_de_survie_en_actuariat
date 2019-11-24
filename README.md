@@ -53,9 +53,16 @@ Installer [GitHub Desktop]([https://desktop.github.com/](https://desktop.github.
 
 ![Capture d’écran, le 2019-11-10 à 16.03.14.png](https://i.loli.net/2019/11/11/uijd5Og1JrZMXp6.png)
 
-2. Une fois le projet cloné, créer une nouvelle branche.![Capture d’écran, le 2019-11-10 à 15.58.40.png](https://i.loli.net/2019/11/11/ebfHPW5jnhClcmS.png)
+2. Une fois le projet cloné, créer une nouvelle branche.
 
-3. Nommer la branche `<PRÉNOM>-MODIFS`![Capture d’écran, le 2019-11-10 à 15.58.53.png](https://i.loli.net/2019/11/11/hioePf4s6maGWcp.png)
+<p align="center">
+  <img src="https://i.loli.net/2019/11/11/ebfHPW5jnhClcmS.png" height="600">
+</p>
+
+3. Nommer la branche `<PRÉNOM>-MODIFS`
+<p align="center">
+  <img src="https://i.loli.net/2019/11/11/hioePf4s6maGWcp.png" height="350">
+</p>
 
 4. Publier votre branche!
    
