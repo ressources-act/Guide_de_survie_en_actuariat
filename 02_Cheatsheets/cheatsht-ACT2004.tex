@@ -1714,16 +1714,20 @@ Généralisation avec multiple de la force d'intérêt
 
 \section{Contrats de rente}
 
+\subsection*{Rentes continues}
+
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes nivelées}}
 
 \paragraph{Rente viagère} On verse une rente à l'assuré jusqu'à son décès. 
 \begin{align*}
 \overline{Y}_{x}	&  = \ax*{\angl{T_{x}}} = \frac{1-v^{T_x}}{\delta} = \frac{1 -\overline{Z}_x}{\delta} \\
 \ax*{x} 
-	& = \int_{0}^{\omega - x}  \ax*{\angl{T_{x}}}  \px[t]{x} \mu_{x+t} dt \\
+	& = \int_{0}^{\omega - x}  \ax*{\angl{t}}  \px[t]{x} \mu_{x+t} dt \\
 	& = \int_{0}^{\omega - x} v^t \px[t]{x} dt \\
 	& = \frac{1 - \Ax*{x}}{\delta} \\
-\variance{Y}	& = \variance{\frac{1- v^{T_x}}{\delta}} =  \frac{\Ax*[][2]{x} - \Ax*{x}^2}{\delta^2} 
+\variance{Y}	 
+	&=	\frac{\Ax*[][2]{x} - \Ax*{x}^2}{\delta^2} 
+	=	\frac{2}{\delta} (\ax*{x} - \prescript{2}{}{\ax*{x}}) - \ax*{x}^2
 \end{align*}
 
 \paragraph{Rente temporaire $n$ années} Ce contrat de rentes prévoit payer une rente à l'assuré s'il est en vie, au maximum $n$ années.
@@ -1737,8 +1741,10 @@ Généralisation avec multiple de la force d'intérêt
 	& = \int_{0}^{n} \ax*{\angl{t}} \  \px[t]{x} \  \mu_{x+t} dt + \ax*{\angln} \ \px[n]{x} \\
 	& = \int_{0}^{n} v^t \px[t]{x} dt \\
 	& = \frac{1 - \Ax*{x:\angln}}{\delta} \\
-\variance{\overline{Y}_{x:\angln}}	& = \frac{\Ax*[][2]{x:\angln} - \Ax*{x:\angln}^2}{\delta^2} 
- \end{align*}
+\variance{\overline{Y}_{x:\angln}}	
+	& = 	\frac{\Ax*[][2]{x:\angln} - \Ax*{x:\angln}^2}{\delta^2} 
+	=	\frac{2}{\delta} (\ax*{x:\angln} - \prescript{2}{}{\ax*{x:\angln}}) - \ax*{x:\angln}^2
+\end{align*}
 
 \paragraph{Rente viagère différée $m$ années} C'est un contrat de rente viagère, qui débute dans $m$ années (si $(x)$ est en vie).
 \begin{align*}
@@ -1749,9 +1755,10 @@ v^m \ax*{\angl{T_x - m}}	& T_x 	 	>			m	\\
 = \frac{\overline{Z}_{x:\itop{\angl{m}}} - \prescript{}{m|}{\overline{Z}}_{x}}{\delta} \\ 
 \ax*[m|]{x}	
 	& = \int_{m}^{\omega - x} \ax*{\angl{t - m}} \px[t]{x} \mu_{x+t} dt \\
-	& = \Ex[m]{x} \ax*{x+m} \\
-	& = \ax*{x} - \ax*{x:\angl{m}} 
+	& = \Ex[m]{x} \ax*{x+m} 
+	 = \ax*{x} - \ax*{x:\angl{m}} 
 \end{align*}
+On note que $\prescript{}{m|}{\overline{Y}}_{x} = \overline{Y}_{x} - \overline{Y}_{x:\angl{m}}$
 
 \paragraph{Rente garantie (certaine) $n$ années} Le contrat prévoit une rente minimale de $n$ années, pouvant se prolonger jusqu'au décès de l'assuré.
 \begin{align*}
@@ -1761,37 +1768,217 @@ Y & = \begin{cases}
 \end{cases} = \overline{Y}_{x:\angln} + \prescript{}{n|}{Y}_x \\
 \ax*{\joint{x:\angln}}	
 	& =\ax*{\angln} \cdot \qx[n]{x} + \int_{n}^{\infty} \ax*{\angl{t}} \px[t]{x} \mu_{x+t} dt \\
-	& = \ax*{\angln} + \ax*[n|]{x} \\
+	& = \ax*{\angln} + \ax*[n|]{x} 
 \end{align*}
 
+\paragraph{Valeur actuarielle accumulée}
+
+\begin{align*}
+	\bar{s}_{x:\angln}
+	&=	\frac{\ax*{x:\angln}}{\prescript{}{n}{E}_{x}}
+\end{align*}
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes variant arithmétiquement}}
 
-\paragraph{Rente viagère croissant annuellement} 
+\paragraph{Rentes variant annuellement}
 
-\paragraph{Rente temporaire $n$ années croissant annuellement} 
+Limitons à les exprimer comme une somme de rentes dont le taux de paiement est constant.
 
-\paragraph{Rente viagère croissant annuellement pendant $n$ années} 
+\textbf{Croissante}
 
-\paragraph{Rente temporaire $n$ années décroissant annuellement} 
+\begin{align*}
+	\actsymb[\textcolor{teal}{r|}]{(I_{\angl{\textcolor{indigo(web)}{m}}}\bar{a})}{x:\angl{\textcolor{cobalt}{n}}}	
+	&=	\int_{\min(T, \textcolor{teal}{r})}^{\min(T, \textcolor{teal}{r} + \textcolor{cobalt}{n})} \min(\textcolor{indigo(web)}{m}, [u + 1 - \textcolor{teal}{r}]) \e{-\delta u} du	\\
+	\text{E}[\actsymb[\textcolor{teal}{r|}]{(I_{\angl{\textcolor{indigo(web)}{m}}}\bar{a})}{x:\angl{\textcolor{cobalt}{n}}}]
+	&=	\sum_{k = 0}^{\textcolor{indigo(web)}{m} - 1} \ax*[\textcolor{teal}{r} + k|]{x:\angl{\textcolor{cobalt}{n} - k}}
+\end{align*}
 
+\textbf{Décroissante}
 
-\paragraph{Rente viagère croissant continûment} 
+\begin{align*}
+	\actsymb[\textcolor{teal}{r|}]{(I_{\angl{\textcolor{indigo(web)}{m}}}\bar{a})}{x:\angl{\textcolor{cobalt}{n}}}	
+	&=	\int_{\min(T, \textcolor{teal}{r})}^{\min(T, \textcolor{teal}{r} + \textcolor{cobalt}{n})} \min(\textcolor{indigo(web)}{m}, [u + 1 - \textcolor{teal}{r}]) \e{-\delta u} du	\\
+	\text{E}[\actsymb[\textcolor{teal}{r|}]{(I_{\angl{\textcolor{indigo(web)}{m}}}\bar{a})}{x:\angl{\textcolor{cobalt}{n}}}]
+	&=	\sum_{k = 0}^{\textcolor{indigo(web)}{m} - 1} \ax*[\textcolor{teal}{r} + k|]{x:\angl{\textcolor{cobalt}{n} - k}}
+\end{align*}
 
-\paragraph{Rente temporaire $n$ années croissant continûment} 
+\paragraph{Rentes variant continûment}
 
-\paragraph{Rente viagère croissant continûment pendant $n$ années} 
+\textbf{Croissante}
 
-\paragraph{Rente temporaire $n$ années décroissant continûment} 
-
-
-\paragraph*{liens entre rentes croissantes et décroissantes}
-
-
+\textbf{Décroissante}
+%
+%\paragraph{Rente viagère croissant annuellement} 
+%
+%
+%\paragraph{Rente temporaire $n$ années croissant annuellement} 
+%
+%\paragraph{Rente viagère croissant annuellement pendant $n$ années} 
+%
+%\paragraph{Rente temporaire $n$ années décroissant annuellement} 
+%
+%
+%\paragraph{Rente viagère croissant continûment} 
+%
+%\paragraph{Rente temporaire $n$ années croissant continûment} 
+%
+%\paragraph{Rente viagère croissant continûment pendant $n$ années} 
+%
+%\paragraph{Rente temporaire $n$ années décroissant continûment} 
+%
+%
+%\paragraph*{liens entre rentes croissantes et décroissantes}
+%
 
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes variant exponentiellement}}
 
+
+\subsection*{Rentes discrètes}
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Rentes nivelées}}
+
+\paragraph{Rente viagère}
+Pour $K = 0, 1, 2,\dots$ on obtient:
+
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Début de période
+\end{center}
+\begin{align*}
+	\ddot{Y}_{x}
+	&=	\ddot{a}_{\angl{K + 1}}\\
+	&=	\frac{1}{d} \left[ 1 - Z_{x} \right]	\\
+	\text{E}[\ddot{Y}_{x}]	
+	&=	\ddot{a}_{x}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} \ddot{a}_{\angl{k + 1}} \ \px[k]{x} \ \qx{x + k}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} v^{k} \ \px[k]{x}	
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Fin de période
+\end{center}
+\begin{align*}
+	Y_{x}
+	&=	\ax{\angl{K}}
+%	, \quad		K = 0, 1, 2,\dots	
+\\
+	&=	\frac{1}{i} \left[ 1 - (1 + i) Z_{x} \right]	\\
+	\text{E}[Y_{x}]	
+	&=	\ax{x}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} \ax{k} \ \px[k]{x} \ \qx{x + k}	\\
+	&=	\sum_{k = 1}^{\omega - x - 1} v^{k} \ \px[k]{x}
+\end{align*}
+\end{minipage}
+
+On note que:
+\begin{align*}
+	\text{Var}(\ddot{Y}_{x\textcolor{cobalt}{:\angln}})
+	&=	\frac{1}{d^{2}}(\actsymb[][2]{A}{x\textcolor{cobalt}{:\angln}} - \Ax{x\textcolor{cobalt}{:\angln}}^{2})
+	=	\text{Var}(Y_{x})	\\
+	&=	\frac{2}{d}(\ddot{a}_{x\textcolor{cobalt}{:\angln}} - \actsymb[][2]{\ddot{a}}{x\textcolor{cobalt}{:\angln}}) + \actsymb[][2]{\ddot{a}}{x\textcolor{cobalt}{:\angln}} - (\ddot{a}_{x\textcolor{cobalt}{:\angln}})^{2}
+\end{align*}
+
+Relation entre début et fin de période :
+\begin{align*}
+	Y_{x}	
+	&=	\ax{\angl{K}}	
+	\Leftrightarrow	\ddot{a}_{\angl{K + 1}} - 1 
+	=	\ddot{Y}_{x} - 1 	\\
+	\Rightarrow \ax{x} 
+	&= \ddot{a}_{x} - 1
+\end{align*}
+
+Relation de récurrence:
+\begin{align*}
+	\ax{x} 
+	&= v \px{x}	+	v \px{x}	 \ax{x + 1}	\\
+	&= v \px{x}\ddot{a}_{x + 1}	
+\end{align*}
+
+\paragraph{Rente temporaire $n$ années}
+
+Pour une temporaire on ajoute une limite jusqu'où sommer:\\
+
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Début de période
+\end{center}
+\begin{align*}
+\ddot{Y}_{x:\angln} 
+	&= 	\begin{cases}
+			\ddot{a}_{\angl{K + 1}}	& , K = 0, 1, \dots, n - 1 \\
+			\ddot{a}_{\angln}		& , K = n, n + 1, \dots \\
+		\end{cases} \\
+	&=	\frac{1}{i} \left[ 1 - (1 + i) Z_{x} \right]	\\
+	\ddot{a}_{x:\angln}	
+	&=	\sum_{k = 0}^{n - 1} \ddot{a}_{\angl{k + 1}} \ \px[k]{x} \ \qx{x + k}	+	\ddot{a}_{\angln} \px[n]{x}	\\
+	&=	\sum_{k = 1}^{n - 1} v^{k} \px[k]{x}
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Fin de période
+\end{center}
+todo
+\end{minipage}
+
+
+\textbf{De fin de période}
+
+\paragraph{Rente garantie $n$ années}
+assd
+
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Début de période
+\end{center}
+\begin{align*}
+\ddot{Y}_{\overline{x:\angln}} 
+	&= 	\begin{cases}
+			\ddot{a}_{\angln}			& , K = 0, 1, \dots, n - 1 \\
+			\ddot{a}_{\angl{K + 1}}		& , K = n, n + 1, \dots \\
+		\end{cases} \\
+	\ddot{a}_{\overline{x:\angln}}	
+	&=	\ddot{a}_{\angln} \qx[n]{x} + \sum_{k = n}^{\omega - x - 1} \ddot{a}_{\angl{k + 1}} \ \px[k]{x} \ \qx{x + k}	\\
+	&=	\sum_{k = 0}^{n - 1} v^{k} + \sum_{k = n}^{\omega - x - 1} v^{k} \px[k]{x}	\\
+	&=	\ddot{a}_{\angln} + \prescript{}{n|}{\ddot{a}_{x}}
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Fin de période
+\end{center}
+\end{minipage}
+
+De plus:
+\begin{equation}
+	\text{E}[\ddot{Y}_{\overline{x:\angln}}^{2}]	
+	=	\frac{2}{d} \left(\ddot{a}_{\overline{x:\angln}} - \prescript{2}{}{\ddot{a}_{\overline{x:\angln}}}\right) + \prescript{2}{}{\ddot{a}_{\overline{x:\angln}}}
+\end{equation}
+
+\paragraph{Rente différée $n$ années}
+
+\textbf{De début de période}
+
+\textbf{De fin de période}
+
+\paragraph{Valeur actuarielle accumulée}
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Rentes à paiement variant arithmétiquement}}
+
+% "voir notes" selon les diapos...
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Rentes variant exponentiellement}}
+
+\subsection*{Rentes payables m fois l'an}
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Rente viagère de début de période}}
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Rente viagère de fin de période}}
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Autres rentes payables m fois l'an}}
 
 
 \section{Primes nivelées}

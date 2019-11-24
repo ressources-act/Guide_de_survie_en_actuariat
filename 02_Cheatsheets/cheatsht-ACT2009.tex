@@ -1,6 +1,5 @@
-% Template pour faire aide-mémoire
-\documentclass[10pt, french]{article}
-
+%% Aide-mémoire
+\documentclass[10pt, french, landscape]{article}
 %% -----------------------------
 %% Préambule
 %% -----------------------------
@@ -8,17 +7,10 @@
 %% -----------------------------
 %% Variable definition
 %% -----------------------------
-\def\cours{Processus Stochastiques	}
+\def\cours{Processus Stochastiques}
 \def\sigle{ACT-2009}
-%% -----------------------------
-%% Colour setup for sections
-%% -----------------------------
 \def\SectionColor{blue!80!white}
 \def\SubSectionColor{blue!30!black}
-%
-% Redefine authors
-%
-\def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin et Alec James van Rassel}
 %% -----------------------------
 %% Début du document
 %% -----------------------------
@@ -347,6 +339,26 @@ S_n = \sum_{i=1}^{n} T_i
 \item Si $N(t) \geq n$, alors nécessairement $S_n \leq t$.
 \end{enumerate}
 
+\subsection*{Évènements de 2 processus différents}
+
+Probabilité que $n$ évènements d'un processus se produisent avant $m$ évènements d'un autre.
+
+Il y a plusieurs interprétations possible.
+
+Rendu au $n + m - 1$ème évènement au total, il y en a au moins $n$ qui proviennent du 1er type.
+
+\begin{align*}
+	\Pr(S_{n}^{1} < S_{m}^{2}) 
+	&=	\sum_{k = n}^{n + m - 1} \binom{n + m - 1}{k} \left( \frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}\right)^{k} \left( \frac{\lambda_{2}}{\lambda_{1} + \lambda_{2}}\right)^{n + m - 1 + k}
+\end{align*}
+
+Rendu au $n$ème évènement du 1er type, j'en ai au plus $m - 1$ du 2ème type.
+
+\begin{align*}
+	\Pr(S_{n}^{1} < S_{m}^{2}) 
+	&=	\sum_{k = 0}^{m - 1} \binom{n + k - 1}{k} \left( \frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}\right)^{n} \left( \frac{\lambda_{2}}{\lambda_{1} + \lambda_{2}}\right)^{k}
+\end{align*}
+
 \subsection*{Processus de Poisson avec évènements de type I et II}
 \begin{enumerate}[label=\faAngleRight]
 \item Soit un Processus de Poisson $\{N(t) ; t \geq 0 \}$ où il peut y avoir un évènement de type I avec probabilité $p$ ou un de type II avec probabilité $q$.
@@ -375,6 +387,9 @@ U_{(1)}, ..., U_{(n)} \sim U(0,t)
 \end{itemize}
 
 \subsection*{Processus de Poisson non-homogène}
+
+On a que les accroissements ne sont plus stationnaires, les évènements sont plus susceptibles d'arriver à certains moments que d'autres.
+
 \begin{definition}[Définition]
 Un processus de dénombrement $\{ N(t) ; t \geq 0 \}$ est dit être un processus de Poisson non-homogène avec fonction d'intensité $\lambda(t)$ si
 \begin{enumerate}[label=(\arabic*)]
@@ -398,11 +413,18 @@ Si $S_n$ désigne le temps d'occurence du $n$\up{e} évènement, alors
 \subsubsection*{Proposition 3}
 Si $T_n = S_{n} - S_{n-1}$, alors on a, pour $n \geq 2$,
 \[f_{T_n}(t) = \frac{1}{(n-2)!} \int_{0}^{\infty} \lambda(s) \lambda(t+s) m(s)^{n-2} e^{-m(t+s)} ds \]
+
 \subsection*{Processus de Poisson composé}
 \begin{definition}[Définition]
 Un processus stochastique $\{ N(t) ; t \geq 0  \}$ est dit être un processus de Poisson composé s'il peut être représenté comme suit : 
 \[X(t) = \sum_{i=1}^{N(t)} Y_i\]
 où $\{ N(t) ; t \geq 0  \}$ est un Processus de Poisson avec paramètre $\lambda > 0$ et $\{ Y_i ; i \in \naturels \}$ est une suite de v.a. \emph{iid} indépendantes de $N(t)$.
+
+De plus:
+\begin{align*}
+	\text{E}[X(t)]	&=	\lambda t \text{E}[Y_1]	&
+	\text{Var}[X(t)]	&=	\lambda t \text{E}[Y_1^{2}]
+\end{align*}
 \end{definition}
 
 \subsubsection*{Proposition 1}
@@ -431,7 +453,7 @@ De plus, on a $\Gamma(\alpha) = (\alpha-1)!$ et $\Gamma(\alpha) = (\alpha - 1) \
 \begin{enumerate}[label=(\arabic*)]
 \item Un processus de Poisson conditionnel a des accroissements stationnaires (i.e. l'accroissement ne dépend pas d'où on est, mais plutôt de l'intervalle de temps) ; 
 \item Mais le processus de Poisson conditionnel n'a pas nécessairement des accroissements indépendants ;
-\item Identité Poisson-Gamma : si on a $\Lambda \sim \Gamma(m, \theta)$, alors\footnote{Être capable de faire cette démonstration pour l'examen}
+\item Identité Poisson-Gamma : si on a $\Lambda \sim \Gamma(m, \theta)$, alors
 \[N(t) \sim NB\left(r = m, p = \frac{\theta}{\theta + t} \right) \]
 
 \item L'espérance et la variance d'un processus de Poisson conditionnel sont définies par
@@ -453,12 +475,17 @@ F_{\Lambda | N(t)}(x | n)	& = \frac{\prob{\Lambda \leq x | N(t) = n}}{\prob{N(t)
 \end{enumerate}
 
 \section{Processus de renouvellement}
+
+Un processus de renouvellement est un processus de comptage t.q. le temps entre le $(n - 1)$ et $n^{\text{ème}}$ événement a une distribution $F$ indépendamment du moment où le $(n-1)^{\text{ème}}$ évènement arrive. Donc, puisque c'est la même distribution $F$ pour tous les évènements, lorsqu'un évènement se produit on dit qu'un \textbf{\textit{renouvellement}} s'est produit.
+
+On peut donc voir qu'avec les processus de Poisson on se concentre plus sur le dénombrement alors qu'avec les processus de renouvellement ce sont le temps entre évènements qui est d'intérêt.
+
 \subsection*{Définitions générales}
 \begin{itemize}
 \item $T_n$ : intervalle de temps entre le $(n-1)$\up{e} et le $n$\up{e} renouvellement ;
 \item $S_n = \sum_{i=1}^{n} T_i$ : le temps d'occurence du $n$\up{e} renouvellement. On va souvent noter $S_{N(t)}$, avec $N(t)$ comme temps d'arrêt du processus\footnote{$N(t)$ est le temps d'arrêt dans le sens où on cesse le processus de dénombrement lorsqu'on atteint $N(t)$.} ;
-
-\item $\mu = \esp{T_i}$ : temps moyen d'attente entre 2 renouvellements ;
+\item $F(0) = \Pr(T = 0) < 1$ pour éviter que le processus reste \textit{pris} à 0;
+\item $\mu = \esp{T_n} > 0$ : temps moyen d'attente entre 2 renouvellements où $n \geq 1$ ;
 \end{itemize}
 
 \subsection*{Distribution de $N(t)$}
@@ -471,7 +498,7 @@ Dans le cas où $T \sim Erlang(m, \lambda)$, alors
 
 \subsection*{Fonction de renouvellement}
 La fonction de renouvellement est le nombre moyen d'occurences dans l'intervalle $[0,t]$  :
-\[m(t) = \esp{N(t)} = \sum_{n=1}^{\infty} F_T^{\ast(n)}(t)  \]
+\[m(t) = \esp{N(t)} = \sum_{n=1}^{\infty} F_T^{\ast(n)}(t)  = \sum_{n=1}^{\infty} S_{N(t)}(t)  \]
 
 \subsubsection*{Solution de l'équation de renouvellement}
 $m(t)$ satisfait \emph{l'équation de renouvellement}, soit
