@@ -1,0 +1,55 @@
+\subsection{Les 3 formes explicites de la $TVaR$	}
+\label{sec:preuve}
+
+Pour la $TVaR$, il y a 3 preuves à bien connaître : 
+\begin{equation*}
+TVaR_\kappa(X) = \frac{1}{1 - \kappa} \pi_X(VaR_\kappa(X)) + VaR_\kappa(X)
+\end{equation*}
+
+
+\begin{proof}
+\label{preuve:tvar_stoploss}
+\begin{align*}
+TvaR_\kappa(X)  & = \frac{1}{1 - \kappa} \int_\kappa^1 VaR_u(X) du \\
+    & = \frac{1}{1 - \kappa} \int_\kappa^1 (VaR_u(X) - VaR_\kappa(X) + VaR_\kappa(X)) du \\
+    & = \frac{1}{1 - \kappa} \int_\kappa^1 (\underbrace{VaR_u(X)}_{\substack{\text{fonction} \\ \text{quantile}}} - VaR_\kappa(X)) du + \underbrace{\int_\kappa^1 VaR_\kappa(X) du}_{\text{intégration d'une constante}} \\
+    & = \frac{1}{1 - \kappa} \int_\kappa^1 (F_X^{-1}(u) - VaR_\kappa(X)) \underbrace{f_U(u)}_{U \backsim Unif(0,1)} du  \\
+    & + \frac{1}{\cancel{1 - \kappa}} VaR_\kappa(X) (\cancel{1 - \kappa}) \\
+    & = \frac{1}{1 - \kappa} E[\max(\underbrace{F_X^{-1}(U)}_{F_X^{-1} \backsim X} - VaR_\kappa(X);0)] + VaR_\kappa(X) \\
+    & = \frac{1}{1 - \kappa} E[\max(X - VaR_\kappa(X) ; 0)] + VaR_\kappa(X) \\
+    & = \frac{1}{1 - \kappa} \pi_X(VaR_\kappa(X)) + VaR_\kappa(X) \\
+\end{align*}
+\end{proof}
+
+à partir de la preuve ci-dessus, on peut démontrer celle-ci : 
+$$
+TVaR_\kappa(X) = \frac{E[X \times 1_{\{X > VaR_\kappa(X) \}}] + VaR_\kappa(X)(F_X(VaR_\kappa(X)) - \kappa)}{1-\kappa} 
+$$
+
+\begin{proof}
+\begin{align*}
+TVaR_\kappa(X)  & = \frac{1}{1 - \kappa} \pi_X(VaR_\kappa(X)) + VaR_\kappa(X) \\
+    & = \frac{1}{1 - \kappa} E[\max(X - VaR_\kappa(X); 0)] + VaR_\kappa(X) \\
+    & = \frac{1}{1 - \kappa} E[(X - VaR_\kappa(X)) \times 1_{\{X > VaR_\kappa(X) \}}] + VaR_\kappa(X) \\
+    & = \frac{1}{1 - \kappa} E[X \times 1_{\{X > VaR_\kappa(X) \}}] - \frac{1}{1 - \kappa} E[VaR_\kappa(X) \times \underbrace{1_{\{X > VaR_\kappa(X) \}}}_{= S_X(VaR_\kappa(X))}] \\
+    & + VaR_\kappa(X) \\
+    & = \frac{1}{1 - \kappa} E[X \times 1_{\{X > VaR_\kappa(X) \}}] - \frac{1}{1 - \kappa} VaR_\kappa(X)(1 - F_X(VaR_\kappa(X))) \\
+    & + \frac{1 - \kappa}{1 - \kappa}VaR_\kappa(X) \\
+    & = \frac{E[X \times 1_{\{X > VaR_\kappa(X) \}}] + VaR_\kappa(X)(-1 + F_X(VaR_\kappa(X)) + 1 - \kappa)}{1 - \kappa}  \\
+    & = \frac{E[X \times 1_{\{X > VaR_\kappa(X) \}}] + VaR_\kappa(X)(F_X(VaR_\kappa(X)) - \kappa)}{1 - \kappa}  \\
+\end{align*}
+\end{proof}
+
+Une dernière preuve fortement utilisée pour la $TVaR$, qui découle directement de la dernière : 
+\begin{align*}
+TVaR_\kappa(X) = \frac{E[X \times 1_{\{X > VaR_\kappa(X) \}}]}{1 - \kappa}  \\
+\end{align*}
+
+
+\begin{proof}
+Étant donné que cette formule ne fonctionne seulement que pour une v.a. continue, elle est très facile à prouver : 
+\begin{align*}
+\text{si $X$ est continue}, \quad \forall x, F_X(VaR_\kappa(X))) = \kappa \\
+\end{align*}
+Alors, on peut enlever la partie de droite de l'équation.
+\end{proof}
