@@ -81,9 +81,15 @@ Vous pouvez maintenant effectuer des modifications!
 
 Lorsque vous avez cette erreur, c'est qu'il y a un conflit; n'ayez pas peur, Visual Studio Code permet de la gérer visuellement.
 
-1. Ouvrir avec Visual Studio Code![Capture d’écran, le 2019-11-10 à 16.18.22.png](https://i.loli.net/2019/11/11/oIdG9C76rLNkFOX.png)
+1. Ouvrir avec Visual Studio Code 
+<p align="center">
+  <img src="https://i.loli.net/2019/11/11/oIdG9C76rLNkFOX.png" height="300">
+</p>
 
-2. Défiler jusqu'à ce que vous trouvez une partie du code ressemblant à ceci:![Capture d’écran, le 2019-11-10 à 16.18.30.png](https://i.loli.net/2019/11/11/KLjIWykF71hT8RQ.png)
+2. Défiler jusqu'à ce que vous trouvez une partie du code ressemblant à ceci:
+<p align="center">
+  <img src="https://i.loli.net/2019/11/11/KLjIWykF71hT8RQ.png">
+</p>
    
    Suffit de choisir quelle modification conserver!
    
@@ -93,7 +99,9 @@ Lorsque vous avez cette erreur, c'est qu'il y a un conflit; n'ayez pas peur, Vis
    
    On peut donc faire le `commit` et faire un push de nos modifications.
    
-   ![Capture d’écran, le 2019-11-10 à 16.18.39.png](https://i.loli.net/2019/11/11/KvAR23y7FmWDQq6.png)
+<p align="center">
+  <img src="https://i.loli.net/2019/11/11/KvAR23y7FmWDQq6.png" height="300">
+</p>
 
 4. Vous pouvez maintenant faire un `push` de vos modifications
 
