@@ -1840,6 +1840,7 @@ Limitons à les exprimer comme une somme de rentes dont le taux de paiement est 
 
 \paragraph{Rente viagère}
 Pour $K = 0, 1, 2,\dots$ on obtient:
+\setlength{\mathindent}{-1cm}
 
 \begin{minipage}[t]{0.5\columnwidth}
 \begin{center}
@@ -1906,12 +1907,12 @@ Pour une temporaire on ajoute une limite jusqu'où sommer:\\
 Début de période
 \end{center}
 \begin{align*}
-\ddot{Y}_{x:\angln} 
+	\ddot{Y}_{x:\angln} 
 	&= 	\begin{cases}
 			\ddot{a}_{\angl{K + 1}}	& , K = 0, 1, \dots, n - 1 \\
 			\ddot{a}_{\angln}		& , K = n, n + 1, \dots \\
 		\end{cases} \\
-	&=	\frac{1}{i} \left[ 1 - (1 + i) Z_{x} \right]	\\
+	&=	\frac{1}{d} \left[ 1 - Z_{x:\angln} \right]	\\
 	\ddot{a}_{x:\angln}	
 	&=	\sum_{k = 0}^{n - 1} \ddot{a}_{\angl{k + 1}} \ \px[k]{x} \ \qx{x + k}	+	\ddot{a}_{\angln} \px[n]{x}	\\
 	&=	\sum_{k = 1}^{n - 1} v^{k} \px[k]{x}
@@ -1921,15 +1922,32 @@ Début de période
 \begin{center}
 Fin de période
 \end{center}
-todo
+\begin{align*}
+	Y_{x:\angln} 
+	&= 	\begin{cases}
+			a_{\angl{K}}	& , K = 0, 1, \dots, n - 1 \\
+			a_{\angln}	& , K = n, n + 1, \dots \\
+		\end{cases} \\
+	&=	\frac{1}{i}\left[ 1 - (1 + i) Z_{x:\angl{n + 1}}\right] 	\\
+	a_{x:\angln}	
+	&=	\sum_{k = 0}^{n - 1} a_{\angl{k}} \ \px[k]{x} \ \qx{x + k}	+	a_{\angln} \px[n]{x}	\\
+	&=	\sum_{k = 1}^{n} v^{k} \px[k]{x}
+\end{align*}	
 \end{minipage}
+\setlength{\mathindent}{1cm}
 
-
-\textbf{De fin de période}
+Et:
+\begin{align*}
+	\prescript{}{n|}{\ddot{a}_{x}}
+	&=	\ddot{a}_{x} - \ddot{a}_{x:\angln}	&
+	a_{x:\angln}
+	&=	\ddot{a}_{x:\angln} - 1 + \Ex[n]{x}
+\end{align*}
 
 \paragraph{Rente garantie $n$ années}
-assd
+On obtient:
 
+\setlength{\mathindent}{-1cm}
 \begin{minipage}[t]{0.5\columnwidth}
 \begin{center}
 Début de période
@@ -1951,12 +1969,14 @@ Début de période
 Fin de période
 \end{center}
 \end{minipage}
+\setlength{\mathindent}{1cm}
 
 De plus:
-\begin{equation}
+\begin{align*}
 	\text{E}[\ddot{Y}_{\overline{x:\angln}}^{2}]	
-	=	\frac{2}{d} \left(\ddot{a}_{\overline{x:\angln}} - \prescript{2}{}{\ddot{a}_{\overline{x:\angln}}}\right) + \prescript{2}{}{\ddot{a}_{\overline{x:\angln}}}
-\end{equation}
+	&=	\frac{2}{d} \left(\ddot{a}_{\overline{x:\angln}} - \prescript{2}{}{\ddot{a}_{\overline{x:\angln}}}\right) + \prescript{2}{}{\ddot{a}_{\overline{x:\angln}}}
+\end{align*}
+
 
 \paragraph{Rente différée $n$ années}
 
@@ -1968,9 +1988,166 @@ De plus:
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes à paiement variant arithmétiquement}}
 
-% "voir notes" selon les diapos...
+\textbf{Rente viagère croissante}
+\begin{align*}
+	\cumlaut[cyan]{Y}
+	&=	(I\cumlaut[cyan]{a})_{\angl{K \textcolor{cyan}{+ 1}}}, K = 0, 1, 2, \dots	\\
+\end{align*}
+
+\setlength{\mathindent}{-1cm}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Début de période
+\end{center}
+\begin{align*}
+	\text{E}[\ddot{Y}]
+	&=	(I\ddot{a})_{x}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} (I\ddot{a})_{\angl{K + 1}} \qx[k|]{x}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} (k + 1) v^{k} \px[k]{x}
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Fin de période
+\end{center}
+\begin{align*}
+	\text{E}[\ddot{Y}]
+	&=	(Ia)_{x}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} (Ia)_{\angl{K}} \qx[k|]{x}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} k v^{k} \px[k]{x}
+\end{align*}
+\end{minipage}
+\setlength{\mathindent}{1cm}
+
+De plus:
+\begin{align*}
+	(Ia)_{x}
+	&=	(I\ddot{a})_{x}	-	\ddot{a}_{x}
+\end{align*}
+
+\textbf{Rente temporaire $n$ années croissante}
+on obtient:
+\begin{align*}
+	\cumlaut[cyan]{Y}
+	&= 	\begin{cases}
+			(I\cumlaut[cyan]{a})_{\angl{K \textcolor{cyan}{+ 1}}}	& , K = 0, 1, \dots, n - 1 \\
+			(I\cumlaut[cyan]{a})_{\angln}			& , K = n, n + 1 \\
+		\end{cases} 	\\
+\end{align*}
+
+\setlength{\mathindent}{-1cm}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Début de période
+\end{center}
+\begin{align*}
+	\text{E}[\ddot{Y}]
+	&=	(I\ddot{a})_{x:\angln}	\\
+	&=	\sum_{k = 0}^{n - 1} (I\ddot{a})_{\angl{k}} \qx[k|]{x} + (I\ddot{a})_{\angln} \px[n]{x}	\\
+	&=	\sum_{k = 0}^{n - 1} (k + 1) v^{k} \px[k]{x}
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Fin de période
+\end{center}
+\begin{align*}
+	\text{E}[\ddot{Y}]
+	&=	(Ia)_{x:\angln}	\\
+	&=	\sum_{k = 0}^{n - 1} (Ia)_{\angl{k}} \qx[k|]{x} + (Ia)_{\angln} \px[n]{x}	\\
+	&=	\sum_{k = 0}^{n - 1} k v^{k} \px[k]{x}
+\end{align*}
+\end{minipage}
+\setlength{\mathindent}{1cm}
+
+Relations
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,112.33332824707031); %set diagram left start at 0, and has height of 112.33332824707031
+
+%Shape: Rectangle [id:dp23743660277011203] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 233; blue, 123 }  ,fill opacity=0.42 ] (73.5,19.67) -- (91.5,19.67) -- (91.5,30.67) -- (73.5,30.67) -- cycle ;
+%Shape: Rectangle [id:dp3879051271909024] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 233; blue, 123 }  ,fill opacity=0.42 ] (100.5,14.67) -- (125.5,14.67) -- (125.5,33.67) -- (100.5,33.67) -- cycle ;
+%Shape: Rectangle [id:dp03448573840663194] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 233; blue, 123 }  ,fill opacity=0.47 ] (149.5,9.67) -- (318.5,9.67) -- (318.5,59.67) -- (149.5,59.67) -- cycle ;
+
+
+% Text Node
+\draw (234,34.67) node  [align=left] {{\scriptsize le dernier paiement est omis}\\{\scriptsize  et donc on l'actualise les n années }\\{\scriptsize avec la probabilité des survire }};
+% Text Node
+\draw (76,22) node  [align=left] {$\displaystyle \ddot{a}_{x:n} =\ddot{a}_{x:n-1} +\prescript{}{n}{} E_{x}$};
+
+
+\end{tikzpicture}
+
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,112.33332824707031); %set diagram left start at 0, and has height of 112.33332824707031
+
+%Shape: Rectangle [id:dp3858902931241821] orange v block increasing
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.62 ] (125.5,43.67) -- (135.5,43.67) -- (135.5,56.67) -- (125.5,56.67) -- cycle ;
+%Shape: Rectangle [id:dp7465530530217059] green px block
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=0.47 ] (135.5,45.67) -- (146.5,45.67) -- (146.5,55.67) -- (135.5,55.67) -- cycle ;
+%Shape: Rectangle [id:dp8495101049962321] 1st greenx + 1 block
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=0.62 ] (165.5,49.67) -- (185.5,49.67) -- (185.5,60.67) -- (165.5,60.67) -- cycle ;
+%Shape: Rectangle [id:dp36994320892995547] 1st  orange  n - 1 block
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.47 ] (186,49.67) -- (200,49.67) -- (200,60.67) -- (186,60.67) -- cycle ;
+%Shape: Rectangle [id:dp1898439661348572]  2nd green + 1 block
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=0.62 ] (220.5,49.67) -- (238.5,49.67) -- (238.5,60.67) -- (220.5,60.67) -- cycle ;
+%Shape: Rectangle [id:dp03149696608438113] 2nd orange   n - 1 block
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.47 ] (240.5,49.67) -- (255.5,49.67) -- (255.5,61.67) -- (240.5,61.67) -- cycle ;
+
+%Shape: Rectangle [id:dp7775719352783113] increasing purple block 1
+\draw  [draw opacity=0][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=0.6 ] (101.5,43.67) -- (110.5,43.67) -- (110.5,59.67) -- (101.5,59.67) -- cycle ;
+%Shape: Rectangle [id:dp9965093175636532]  purple block text
+\draw  [draw opacity=0][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=0.6 ] (58.5,24.67) -- (124.5,24.67) -- (124.5,38.67) -- (58.5,38.67) -- cycle ;
+%Shape: Rectangle [id:dp0964386040865417]  normal purple block
+\draw  [draw opacity=0][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=0.6 ] (90.5,88.67) -- (99.5,88.67) -- (99.5,106.67) -- (90.5,106.67) -- cycle ;
+
+%Shape: Rectangle [id:dp9797760376103071]  green block
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=0.47 ] (170.5,68.67) -- (277.5,68.67) -- (277.5,84.67) -- (170.5,84.67) -- cycle ;
+%Shape: Rectangle [id:dp6380779624845654] orange
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.62 ] (26.5,67.67) -- (158.5,67.67) -- (158.5,84.67) -- (26.5,84.67) -- cycle ;
+
+%Shape: Rectangle [id:dp4496942612775052]  greeen px 2nd line
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=0.47 ] (123.5,91.67) -- (134.5,91.67) -- (134.5,107.67) -- (123.5,107.67) -- cycle ;
+%Shape: Rectangle [id:dp9907023414007512] orange block v 2nd line
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.36 ] (123.5,107.67) -- (117.5,107.67) -- (117.5,91.67) -- (123.5,91.67) -- cycle ;
+%Shape: Rectangle [id:dp8016901331617778] green  x + 1
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=0.36 ] (154.5,105.67) -- (140.5,105.67) -- (140.5,96.67) -- (154.5,96.67) -- cycle ;
+%Shape: Rectangle [id:dp21968758506467512] orangen - 1
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.47 ] (157.5,96.67) -- (171.5,96.67) -- (171.5,105.67) -- (157.5,105.67) -- cycle ;
+
+
+% Text Node
+\draw (118,98) node  [align=left] {$\displaystyle \ddot{a}_{x:\angl{n}} =1\ +\ vp_{x}\ddot{a}_{x+1:\angl{n-1}}$};
+% Text Node
+\draw (90,31) node  [align=left] {{\scriptsize 1er paiement}};
+% Text Node
+\draw (92.5,76.17) node  [align=left] {{\scriptsize actualiser l'année de moins}};
+% Text Node
+\draw (224,76) node  [align=left] {{\fontfamily{helvet}\selectfont {\scriptsize survire l'année de plus}}};
+% Text Node
+\draw (159,51) node  [align=left] {$\displaystyle ( I\ddot{a})_{x:\angl{n}} = 1\ +\ vp_{x}$ $\displaystyle [( I\ddot{a})_{x+1:\angl{n - 1}} +\ddot{a}_{x+1:\angl{n-1}}]$};
+
+
+\end{tikzpicture}
+
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes variant exponentiellement}}
+
+\begin{align*}
+	\prescript{}{m|}{\ddot{Y}}^{inf}_{x:\angln}
+	&=	\sum_{k = m}^{\min(K, m + n -1)} (1 + inf)^{k - m} v^{k}, K = 0, 1, 2 \dots	\\
+\end{align*}
+
 
 \subsection*{Rentes payables m fois l'an}
 
