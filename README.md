@@ -6,23 +6,37 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 - [cre, aut] Gabriel Crépeault-Cauchon [:octocat:](https://github.com/gabrielcrepeault)
 - [aut] Alec James van Rassel [:octocat:](https://github.com/alec42)
 
+## Table des matières
+
+- [Structure du répertoire](#structure)
+- [Contribuer via la ligne de commande](#command-line-contrib)
+- [Contribuer via Github Desktop](#github-desktop-contrib)
+- [Rédaction d'un Pull Request](#pull-request)
+- [Contenu du répertoire](#contents)
+
+
+
+<a name="structure"/>
+
 ## Structure
 ### 00_Archive
-Contenu non adapter à la structure du document principal.
+Contenu non adapté à la structure du document principal.
 > **Aucun pull request ne devrait ajouter du contenu à ce répertoire**
 
 ### 01_DocumentPrincipal
-Environement de compilation du document principal. Pour créer un nouvelle section, suivre les règles suivantes:
+Environnement de compilation du document principal. Pour créer un nouvelle section, suivre les règles suivantes:
 - **Chapter-\<nomDuChapitre\>.tex** : Chapitre portant sur une matière précise.
-- **Appendix-\<nomDeAppendix\>.tex** : Ajout pouvant être utile dans plusieurs matière/chapitre.
+- **Appendix-\<nomDeAppendix\>.tex** : Ajout pouvant être utile dans plusieurs matières/chapitres.
 - **Main-\<nomDuDocument\>.tex** : Fichier servant à la construction du document principal.
-- **src/\<nomDuChapitre>** : Dosier contenants touts les img/.R/etc utilisé dans la section en question.
+- **src/\<nomDuChapitre>** : Dossier contenant tous les img/.R/etc utilisé dans la section en question.
 ### 02_Cheatsheets
-Environement de compilation des cheatsheets. **Important**, toutes les cheatsheets doivent utiliser le même préambule (**cheatsht-preamble-general.tex**).
+Environnement de compilation des cheatsheets. **Important**, toutes les cheatsheets doivent utiliser le même préambule (**cheatsht-preamble-general.tex**).
 - **cheatsht-ACT\<XXXX\>.tex** : Code source de la cheatsheets concernant le cours ACT-\<XXXX\>.
 
 ### 03_Docs
 Autres document d'aide ou reletif au répertoire git.
+
+<a name="command-line-contrib"/>
 
 ## Contribuer avec la ligne de commande
 
@@ -32,16 +46,18 @@ Autres document d'aide ou reletif au répertoire git.
 git clone https://github.com/<YourUserName>/Guide_de_survie_en_actuariat.git
 git checkout -b <NomDeLaBranche>
 ```
-3) Effectuer vos modification, stage and commit.
+3) Effectuer les modification, stage and commit.
 ```
 git add -A
 git commit -m "<DescriptionDuChangement>"
 ```
-4) Publier vos changement.
+4) Publier les changements.
 ```
 git push origin <NomDeLaBranche>
 ```
-5) Ouvrer un pull request sur la page officiel du répertoire
+5) Ouvrir un pull request sur la page officiel du répertoire
+
+<a name="github-desktop-contrib"/>
 
 ## Contribuer avec GitHub Desktop 
 
@@ -112,7 +128,9 @@ Lorsque vous avez cette erreur, c'est qu'il y a un conflit; n'ayez pas peur, Vis
 
 4. Vous pouvez maintenant faire un `push` de vos modifications
 
-### Rédiger un `Pull Request` sur Github
+<a name="pull-request"/>
+
+## Rédiger un `Pull Request` sur Github
 
 - On rédige notre `pull request` directement sur le site du serveur du dépôt. 
   
@@ -129,6 +147,8 @@ Lorsque vous avez cette erreur, c'est qu'il y a un conflit; n'ayez pas peur, Vis
 ![Capture d’écran, le 2019-11-10 à 16.14.06.png](https://i.loli.net/2019/11/11/VmtDfUHkaGx472j.png)
 
 ![Capture d’écran, le 2019-11-10 à 16.13.46.png](https://i.loli.net/2019/11/11/ckqhBKLXgfN5EJI.png)
+
+<a name="contents"/>
 
 ## Contents
 > TODO
