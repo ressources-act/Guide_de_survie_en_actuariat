@@ -2203,7 +2203,7 @@ Si $\textrm{H}_0$ spécifie
 	
 	De plus, on peut déduire un IC approximatif \textit{\textbf{pas} centré autour de la prévision} pour $\mu(\eta)$ si la fonction de lien est monotone.
 	
-	Pour en avoir un centré autour de la prévision, il faut faut définir le pivot approximatif avec la méthode Delta.
+	Pour en avoir un centré autour de la prévision, il faut faut définir le pivot approximatif avec la méthode de Delta \textit{(basé sur l'expansion Taylor)}.
 	
 	\begin{formula}{Méthode Delta}
 	Soit la suite de v.a. $X_{1}, \dots, X_{n}$ telle que
@@ -2215,6 +2215,7 @@ Si $\textrm{H}_0$ spécifie
 		\sqrt{n}(\psi(X_{n}) - \psi(\theta)) \rightsquigarrow \mathcal{N}(0, \left\{\psi(\theta)\right\}^{2})
 	\end{equation*}
 	\end{formula}
+
 
 %	\item	Donc, puisque $\eta$ est une combinaison linéaire de v.a. \emph{approximativement} normales, alors
 %		\[
@@ -2300,7 +2301,16 @@ Si $\phi$ est inconnu, on peut l'estimer avec $\hat{\phi} = \frac{X^2}{n-p'}$.
 		D(y; \hat{\mu})^{*} = \frac{D(y; \hat{\mu})}{\phi}
 	\end{equation*}
 
-Selon le \textbf{TRV}, $2 \big(\ell(\tilde{\theta}) - \ell(\hat{\theta})\big) \sim\chi^{2}_{n - p'}$ si le modèle de $\hat{\theta}$ est adéquat
+Selon le \textbf{TRV}, 
+\begin{equation*}
+	2 	\big(\ell(\tilde{\theta}) - \ell(\hat{\theta})\big) 
+\Leftrightarrow 
+	2	\ln \left(\frac{\mathcal{L}_n(\bm{\tilde{\beta}})}{\mathcal{L}_n(\bm{\hat{\beta}})}\right)
+\Leftrightarrow 
+	\ln \left(\frac{\mathcal{L}_n(\bm{\tilde{\beta}})}{\mathcal{L}_n(\bm{\hat{\beta}})}\right	)^{2}
+	\sim	\chi^{2}_{n - p'}
+\end{equation*}
+ si le modèle de $\hat{\theta}$ est adéquat	
 
 De plus, $\text{E}\left[\frac{D(y; \hat{\mu})}{\phi}\right] \approx n - p'$; alors si $\phi$ est inconnu, on peut l'estimer par $\hat{\phi} = \frac{D(y ; \hat{\mu})}{n - p'}$.
 
@@ -2331,10 +2341,12 @@ Lorsque $\phi$ est connu, et que les deux modèles $m_{\text{A}}$ et $m_{\text{B
 
 \subsubsection*{Résidus de Pearson}
 Si l'ajustement est adéquat, ils ont une moyenne de 0 et une variance constante; cependant, la distribution des résidus peut être asymétrique.
+\begin{formula}{Résidus de Pearson}
 \begin{align*}
 	r_{P_i} 
 		&=	\frac{y_i - \hat{\mu}_i}{\sqrt{V(\hat{\mu}_i)}} 
 \end{align*}
+\end{formula}
 
 \subsubsection*{Résidus d'Anscombe}
 On applique une transformation $A(Y)$ à $Y$ afin de minimiser l'asymétrie de la distribution de $A(Y)$ (alors, on veut qu'elle soit approximativement normale).
@@ -2344,10 +2356,12 @@ On applique une transformation $A(Y)$ à $Y$ afin de minimiser l'asymétrie de l
 \end{align*}
 
 Cette transformation donne alors un résidu de:
+\begin{formula}{Résidus d'Anscombe}
 \begin{align*}
 	r_{A_i} 
 		&=	\frac{A(y_{i}) - A(\hat{\mu}_{i})}{\dot{A}(\hat{\mu}_{i}) \sqrt{\text{V}(\hat{\mu}_{i})}}
 \end{align*}
+\end{formula}
 
 \subsubsection*{Résidus de déviance}
 Lorsque la déviance est définie comme:
@@ -2359,9 +2373,11 @@ La contribution de la donnée $i$ dans la déviance est:
 	d_{i} =	2 \omega_{i}(y_{i}(\tilde{\theta}_{i} - \hat{\theta}_{i}) - [b(\tilde{\theta}_{i}) - b(\hat{\theta}_{i})])
 \end{equation*}
 Le résidu est alors:
+\begin{formula}{Résidus de déviance}
 \begin{equation*}
 	r_{D_i} =	\text{signe}(y_{i} - \hat{\mu}_{i}) \sqrt{d_{i}}
 \end{equation*}
+\end{formula}
 où
 \begin{align*}
 	\text{signe}(t)
@@ -2372,6 +2388,13 @@ où
 				\end{matrix}
 			\right. 
 \end{align*}
+
+\textbf{Note: } On ajoute le signe à la définition puisque la racine carrée sortira uniquement des résultats positifs alors que pour être utile à une analyse, ils ne peuvent pas tous être positifs.
+
+\subsection*{Régularisation}
+
+On peut également ajouter une pénalité de type Ridge ou Lasso \textit{(sélection de variables)} comme en modèles linéaires.
+
 
 % --- DÉBUT CHAPITRE 6 : MODÉLISATION DE DONNÉES DE COMPTAGE
 \section{Modélisation de données de comptage}

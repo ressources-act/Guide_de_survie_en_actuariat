@@ -467,6 +467,87 @@ La variance de l'estimateur Nelson-\AA alen est estimée par la \textbf{formule 
 
 \textbf{Méthode d'efron}: Poser que $S_m(y) = 0$ $\forall y \ge y_{\text{max}}$.
 
+\setcounter{section}{5}
+
+\section{Création de nouvelles lois}
+
+\begin{algo}{Multiplication par une constante}
+Ceci équivaut à appliquer l'inflation uniformément pour tous les niveaux de pertes et est donc un \textbf{changement d'échelle}.
+
+Soit $Y = \theta X$, alors:
+
+\begin{align*}
+	F_Y(y)
+	&=	\Pr(Y \leq y)	
+	=	\Pr(\theta X \leq y)	\\
+	&=	\Pr\left(X \leq \frac{y}{\theta}\right)	
+	=	F_X\left(\frac{y}{\theta}\right)	\\
+\Rightarrow	f_Y(y)
+	&=	\frac{1}{\theta} f_X\left(\frac{y}{\theta}\right)
+\end{align*}
+
+On déduit donc que le paramètre $\theta > 0$ est un \textit{paramètre d'échelle} pour la variable aléatoire $Y$.
+
+\end{algo}
+
+\begin{algo}{Élévation à une puissance}
+
+Soit la variable aléatoire de pertes $X$ et $Y = X^{\frac{1}{\tau}}$, alors:
+
+\begin{align*}
+	F_Y(y)
+	&=	\Pr(Y \leq y)	
+	=	\Pr(X^{\frac{1}{\tau}} \leq y)	\\
+	&=	\Pr\left(X \leq y^{\tau}\right)	
+	=	F_X\left(y^{\tau}\right)	\\
+\Rightarrow	f_Y(y)
+	&=	\shortminus \tau y^{\tau - 1} f_X\left(y^{\tau}\right)
+\end{align*}
+
+Et on note la terminologie suivante:
+
+\begin{tabular}{|l | l |}
+\hline
+	$\tau > 0$	&	$Y$ est une \textit{\textbf{transformation}} de $X$	\\
+	$\tau = -1$	&	$Y$ est \textit{\textbf{l'inverse}} de $X$	\\
+	$\tau < 0$	&	$Y$ est une \textit{\textbf{transformation inverse}} de $X$	\\	\hline
+\end{tabular}
+
+\end{algo}
+
+\begin{algo}{Exponentielle}
+
+Soit la variable aléatoire de pertes $X$ et $Y = \te{X}$, alors:
+
+\begin{align*}
+	F_Y(y)
+	&=	\Pr(Y \leq y)	
+	=	\Pr(\e{X} \leq y)	\\
+	&=	\Pr\left(X \leq \ln y \right)	
+	=	F_X\left(\ln y \right)	\\
+\Rightarrow	f_Y(y)
+	&=	\frac{1}{y} f_X\left(\ln y \right), y > 0
+\end{align*}
+
+On dit donc que $Y$ est la \textit{log-loi} où $\ln Y = X$ est la loi.
+
+\end{algo}
+
+\begin{algo}{Mélange}
+
+\end{algo}
+
+% pas couvert dans le cours mais dans l'exam apparament
+%\begin{algo}{Raccordement de distributions (splicing)}
+%
+%\end{algo}
+
+%\begin{algo}{Frailty models}
+%
+%\end{algo}
+
+\setcounter{section}{14}
+
 \section{Fonction génératrice cumulante}
 Soit la fonction génératrice des moments $M_X(t)$, telle que
 \[M_X(t) = \esp{e^{tX}}\]
