@@ -133,6 +133,15 @@
 	fonttitle = \bfseries,title=#1
 }
 %%
+%% Coloured box "rappel" pour rappel de formules
+%%
+\newtcolorbox{rappel}[ 1 ]
+{
+	colback = ashgrey,
+	colframe = arsenic,
+	fonttitle = \bfseries,title=#1
+}
+%%
 %% Coloured box "formula" for formulas
 %%
 \newtcolorbox{formula}[ 1 ]
@@ -176,6 +185,9 @@
 \definecolor{blue_rectangle}{RGB}{83, 84, 244}		% ACT-2004
 \definecolor{amethyst}{rgb}{0.6, 0.4, 0.8}
 \definecolor{amethyst-light}{rgb}{0.6, 0.4, 0.8}
+\definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}			% dark grey-black-ish
+\definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}			% light green-beige-ish gray
+
 
 %
 % Useful shortcuts for coloured text
