@@ -30,6 +30,19 @@
 \begin{document}
 
 \begin{multicols*}{2} 
+
+\section{Rappels d'intro 2}
+\subsection{Mesures de risques}
+Voir les preuves de TVaR en annexe. Il est pratique de se rappeler des 3 formes de la TVaR.
+
+\paragraph{Value-at-risk}
+$VaR_{\kappa}(X) = F_{X}^{-1}(\kappa)$. De plus, pour $\varphi$ une fonction strictement croissante, on a que
+\begin{align*}
+VaR_{\kappa}(\varphi(X)) = \varphi \left ( VaR_{\kappa}(X) \right )
+\end{align*}
+
+
+
 \section{Distribution multivariées}
 \subsection{Classes de Fréchet}
 Soit $F_1, \dots, F_n$ des fonction de répartition univariées et $F_{\matr{x}} = F_{X_1, \dots, X_n}$ la fonction de répartition du vecteur $\matr{X}$.
@@ -157,6 +170,21 @@ M_{X_1, X_2}(t_1, t_2) & = (1 +\theta) \left ( \frac{\beta_1}{\beta_1 - t_1} \ri
 \begin{align*}
 f_{X_1, X_2}(x_1, x_2) = \frac{\partial^2}{\partial x_1 \partial x_2} F_{X_1, X_2}(x_1, x_2)
 \end{align*}
+
+
+
+\section{Problématiques d'un rapport du BSIF}
+Un extrait d'un rapport du BSIF \footnote{Étude d'impact quantitative No4 du BSIF, 2012.}  présente \textbf{plusieurs incohérences}, notamment : 
+
+\begin{itemize}
+\item La corrélation est la formule ou la méthode utilisée dans le présent document pour mesurer l'association entre des variables ; 
+\item L'intervalle de confiance est de -1  à 1
+\item Une corrélation de 1 (corrélation positive parfaite) sous-entend que l'augmentation d'une variable donnée équivaudra à la hausse d'une autre variable ;
+\item Une corrélation de -1 (corrélation négative parfaite) sous-entend que l'augmentation d'une variable donnée se traduira par une baisse correspondante d'une autre variable
+\item Une corrélation zéro sous-entend l'absence de relation, ou indépendance, entre deux variables.
+\end{itemize}
+
+
 
 
 % Annexe dans la cheatsheet
