@@ -130,6 +130,35 @@ P_{M_1, M_2}(t_1, t_2) = e^{(\lambda_1 - \alpha_0)(t_1 -1)} e^{(\lambda_2 - \alp
 
 
 
+
+\subsection{Loi exponentielle bivariée EFGM}
+\paragraph{fonction de répartition}
+La fonction de répartition est
+\begin{align*}
+F_{X_1, X_2}(x_1, x_2)	& = (1 - e^{-\beta_1 x_1})(1- e^{-\beta_2 x_2}) \\
+& + \theta (1 - e^{-\beta_1 x_1})(1 - e^{-\beta_2 x_2}) e^{-\beta_1 x_1} e^{-\beta_2 x_2}
+\end{align*}
+
+\paragraph{fgm}
+Il \hl{faut savoir prouver} que la fgm est
+\begin{align*}
+M_{X_1, X_2}(t_1, t_2) & = (1 +\theta) \left ( \frac{\beta_1}{\beta_1 - t_1} \right  )  \left ( \frac{\beta_2}{\beta_2 - t_2} \right  ) \\
+& - \theta \left ( \frac{2 \beta_1}{2 \beta_1 - t_1} \right  )  \left ( \frac{\beta_2}{\beta_2 - t_2} \right  ) - \theta \left ( \frac{\beta_1}{\beta_1 - t_1} \right  )  \left ( \frac{2 \beta_2}{2 \beta_2 - t_2} \right  ) \\
+& + \theta \left ( \frac{2 \beta_1}{2 \beta_1 - t_1} \right  )  \left ( \frac{2 \beta_2}{2 \beta_2 - t_2} \right  )
+\end{align*}
+
+\paragraph{Coefficient de corrélation}
+\hl{Il faut savoir prouver que} la coefficient de corrélation est
+\begin{align*}
+\rho_P(X_1, X_2) = \frac{\theta}{4}
+\end{align*}
+
+\paragraph{Fonction de densité} On peut obtenir la fonction de densité de la loi exponentielle bivariée en dérivant 2 fois
+\begin{align*}
+f_{X_1, X_2}(x_1, x_2) = \frac{\partial^2}{\partial x_1 \partial x_2} F_{X_1, X_2}(x_1, x_2)
+\end{align*}
+
+
 % Annexe dans la cheatsheet
 \newpage
 \section{Annexe}
