@@ -99,6 +99,34 @@
      sharp corners,
      pad at break*=0mm,
      IfValueTF={#1}{title={#1}, fonttitle=\bfseries}{title=Note, fonttitle=\bfseries}}
+%%
+%% Coloured box "theo-ann" pour théorèmes de l'annexe
+%%
+\newtcolorbox{theo-ann}[ 1 ]
+{
+	colback = ashgrey,
+	colframe = arsenic,
+	fonttitle = \bfseries,title=#1
+}
+%%
+%% Coloured box "preuve-ann" pour preuves dans l'annexe
+%%
+\newtcolorbox{preuve-ann}[ 1 ]
+{
+	colback = carolinablue,
+	colframe = celestialblue,
+	fonttitle = \bfseries,title=#1
+}
+%%
+%% Coloured box "crit-ann" pour critères de la preuve dans l'annexe
+%%
+\newtcolorbox{crit-ann}[ 1 ]
+{
+	colback = classicrose,
+	colframe = crimsonglory,
+	fonttitle = \bfseries,title=#1
+}
+
 
 %% -----------------------------
 %% Graphics and pictures
@@ -140,6 +168,12 @@
 \definecolor{blue_rectangle}{RGB}{83, 84, 244}		% ACT-2004
 \definecolor{amethyst}{rgb}{0.6, 0.4, 0.8}
 \definecolor{amethyst-light}{rgb}{0.6, 0.4, 0.8}
+\definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}			% dark grey-black-ish
+\definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}			% light green-beige-ish gray
+\definecolor{celestialblue}{rgb}{0.29, 0.59, 0.82}	%	darker baby royal pastel blue
+\definecolor{carolinablue}{rgb}{0.6, 0.78, 0.89}		%	light baby blue-pastel ish
+\definecolor{classicrose}{rgb}{0.98, 0.8, 0.91}		%	very light pastel red
+\definecolor{crimsonglory}{rgb}{0.75, 0.0, 0.2}		%	dark wine red
 
 %% -----------------------------
 %% Mathematics table
