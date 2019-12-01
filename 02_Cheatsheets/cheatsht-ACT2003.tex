@@ -2400,40 +2400,77 @@ On peut également ajouter une pénalité de type Ridge ou Lasso \textit{(sélec
 \section{Modélisation de données de comptage}
 
 \subsection*{Terme \emph{offset}}
-On veut souvent modéliser le taux  de réclamation, cela se fait avec un terme \emph{offset} $t_i$ qui représente l'exposition au risque (i.e. le nombre d'années qu'on a assuré la personne) : 
+Puisque les durées de contrats diffèrent entre assurés le nombre de réclamations perd sa signifiance si elle n’est pas prise en compte. 
+	
+Afin de ne pas exclure des données et biaiser les estimations, on modélise plutôt l'espérance du \textbf{\textit{taux} de réclamation} $\text{E}\left[\frac{Y_{i}}{\textcolor{cobalt}{t_{i}}}\right]$ (modèle avec \textcolor{cobalt}{\textbf{offset}}).
+
+Alors, \textcolor{cobalt}{le terme offset $t_{i}$} inclut une variation systématique \textit{(le temps assuré)} indépendante des variables explicatives dans la prévision de l'espérance $\text{E}\left[Y_{i}\right]$.
+
+\textit{Par exemple} pour une Poisson avec le lien canonique $\eta_{i} = \ln \mu_{i}$:
 \begin{align*}
-\ln \left( \frac{\mu_i}{t_i} \right) & = \bm{x}_i \bm{\beta} \\
-\ln (\mu_i) & = \bm{x}_i \bm{\beta} + \ln (t_i) \\
-\mu_i & = t_i e^{\eta_i}
+	\ln \left( \frac{\mu_i}{t_i} \right) 
+	&= 	\bm{x}_i \bm{\beta} 	&
+%	\\
+&\Rightarrow	&
+	\ln (\mu_i) 
+	&= 	\bm{x}_i \bm{\beta} + 
+		\textcolor{cobalt}{\overset{\text{terme offset}}{\overbrace{\ln (t_i) }}}
+%	\\
+%	\mu_i 
+%	&= 	t_i \e{\eta_i}
 \end{align*}
-le terme \emph{offset} peut être vu comme une variable explicative additionnelle (où le coefficient est toujours 1)
 
 \subsection*{Notation pour les interactions}
-Lorsqu'on utilise des variables catégoriques qui ont plusieurs niveaux, on peut utiliser une notation abbrégée. Prenons un modèle quelquonque \verb=A * B= avec la variable \verb=A= qui a I = 3 niveaux et \verb=B= qui a J = 2 niveaux. Alors, on aurait
+Lorsqu'on utilise des variables catégorielles qui ont plusieurs niveaux, on peut utiliser une notation abrégée. 
+
+Prenons un modèle quelconque \verb=A * B= avec la variable \verb=A= qui a $I = 3$ niveaux et \verb=B= qui a $J = 2$ niveaux.
+
+Alors, on a:
 \begin{align*}
-\ln (\mu_{i,j}) = \alpha + \beta_i^A + \beta_j^B + \gamma_{i,j} \quad i = 1,2,3 \text{ et } j = 1,2
+	\ln (\mu_{i,j}) 
+	&= 	\alpha 	+ \beta_i^{A} 	+	\beta_j^B 	+	\gamma_{i,j} 
+			\quad i = 1, 2, 3 \text{ et } j = 1, 2
 \end{align*}
-0ù on impose les contraintes telles que $\beta_1^A = \beta_1^B = 0$ et $\gamma_{1,j} = \gamma_{j,1} = 0$. 
+où on impose les contraintes d'identification tel que $\beta_1^A = \beta_1^B = 0$ et $\gamma_{1,j} = \gamma_{j,1} = 0$. 
 
 \subsection*{Approximation de la Binomiale par une Poisson}
-Si la variable qu'on veut modéliser obéit à une $Bin(m, \pi)$ avec $m$ grand et $\pi$ petit, alors on peut l'approximer avec une loi de Poisson en prenant le modèle
-\[\ln(\mu_i) = \ln(m_i) + \ln(\pi_i) \]
-où $\ln(m_i)$ est un terme \emph{offset}
+Soit $Y \sim \text{Bin}(m, \pi)$ avec $m$ très grand et $\pi$ près de 0.
+Alors, la loi ressemble à une $\text{Poisson}(\lambda = m \pi)$.
+
+On peut donc approximer la binomiale avec la poisson avec le modèle:
+\begin{align*}
+	\ln(\mu_i) 
+	&= 	\overset{\eta_{i} = x_{i}\bm{\beta}}{\overbrace{\ln(\pi_i)}} + 
+				`\textcolor{cobalt}{\overset{\text{offset}}{\overbrace{\ln(m_i)}}}
+\end{align*}
 
 \subsection*{Tableau de contingence}
 Lorsque toutes les variables sont des catégorielles, on peut créer un tableau de contingence, où on veut modéliser le nombre dans chaque case avec un GLM Poisson. \\
 
-On a 3 modèles dans les tableaux de contingence (illustré avec des modèles simples qui ont les variables explicatives \verb=A=, \verb=B= et \verb=C= avec J,K et L niveaux  : 
-\begin{enumerate}[label=\faAngleRight]
-\item Modèle d'indépendance : $A + B + C$
+On fait une classification croisée d'un échantillon de taille $n$ d'une \textit{multinomiale}; s'il avait 2 catégories, la $\Pr\left\{\text{d'une cellule}\right\} = \pi_{ij}$.
+\setlength{\mathindent}{-1.5cm}
+\begin{rappel}{\textbf{Rappel}: Loi multinomiale}
+\begin{align*}
+	\Pr(X_{1} = x_{1}, \dots, X_{r} = x_{r})
+		&=	\binom{n}{x_{1}, \dots, x_{r}} p_{1}^{x_{1}} \dots p_{r}^{x_{r}}
+\end{align*}
+\end{rappel}
+\setlength{\mathindent}{1cm}
 
-\item Modèle d'indépendance partielle (celui qu'on veut tester) : 
-\[A + B * C\]
+Il y a 3 modèles de tableaux de contingence (illustré avec des modèles simples qui ont les variables explicatives \verb=A=, \verb=B= et \verb=C= avec J, K et L niveaux): 
 
-\item Modèle d'indépendance conditionnelle (aussi appelé le \emph{modèle saturé}\footnote{Ce modèle est celui qui prédit le mieux, mais n'est d'aucune utilité car il a autant de paramètres qu'on a d'observations. On essaie donc de voir si le modèle d'indépendance partielle est une bonne simplification.} : 
-\[A * B * C\]
-\end{enumerate}
-On peut alors tester l'indépendance de certaines variables en faisant une \textbf{Analyse de la déviance} (\autoref{sssec:analyse_deviance}).
+\begin{tabular}{|l|l|}
+\hline
+\rowcolor[HTML]{21650A} 
+\multicolumn{1}{|c|}{\cellcolor[HTML]{21650A}{\color[HTML]{FFFFFF} \textbf{Modèle}}} & \multicolumn{1}{c|}{\cellcolor[HTML]{21650A}{\color[HTML]{FFFFFF} \textbf{Équation}}} \\ \hline
+\rowcolor[HTML]{B8F0A5} 
+d'indépendance                                                                       & A + B + C                                                                             \\ \hline
+\rowcolor[HTML]{B8F0A5} 
+d'indépendance partielle                                                             & A + B * C                                                                             \\ \hline
+\rowcolor[HTML]{B8F0A5} 
+d'indépendance conditionnelle (\textbf{saturé})                                      & A * B * C                                                                             \\ \hline
+\end{tabular}
+où le modèle d'indépendance partielle est celui qu'on veut tester en faisant une \textbf{Analyse de la déviance} (\autoref{sssec:analyse_deviance}).
 
 
 \subsection*{Cote}
@@ -2442,17 +2479,49 @@ La cote de $A$ est définie par
 
 
 \subsection*{Sousdispersion et susdispersion}
-Avec le modèle Poisson, on suppose que $\esp{Y_i |x_i} = \variance{Y_i | x_i}$. Toutefois, les données peuvent être \textbf{sous-dispersées} si
-\[  \esp{Y_i |x_i} > \variance{Y_i | x_i} \]
-On détecte aussi la sous-dispersion si $D(y ; \hat{\mu}) / dl < 0.6$ ou $X^2 < 0.6$. On peut régler les problèmes de sous-dispersion en utilisant une distribution binomiale. Les données peuvent être \textbf{surdispersées} si
-\[ \esp{Y_i |x_i} < \variance{Y_i | x_i}  \]
-On le détecte lorsque $D(y ; \hat{\mu}) / dl > 1.7$ ou $X^2 > 1.7$
+Sous le modèle Poisson on suppose que $\esp{Y_i |x_i} = \variance{Y_i | x_i}$. 
+Toutefois, les données peuvent être \textbf{sous-dispersées} si
+\begin{align*}
+	\esp{Y_i |x_i} 
+	&> 	\variance{Y_i | x_i} 
+\end{align*}
+On détecte aussi la sous-dispersion si 
+\begin{align*}
+	\frac{D(y ; \hat{\mu})}{dl} &< 0.6 	&
+	&\text{ou} 	&
+	X^2 &< 0.6	
+\end{align*}
+On peut régler les problèmes de sous-dispersion en utilisant une distribution binomiale ou la loi de Poisson \textbf{gonflée à 0}. 
 
+Les données peuvent être \textbf{surdispersées} si
+\begin{align*}
+	\esp{Y_i |x_i} 
+	&< 	\variance{Y_i | x_i}  
+\end{align*}
+On le détecte aussi lorsque
+\begin{align*}
+	\frac{D(y ; \hat{\mu})}{dl} &> 1.7 	&
+	&\text{ou} 	&
+	X^2 &> 1.7	
+\end{align*}
+Dans ce cas le modèle de Poisson n'est pas adéquat.
+	
 \subsection*{Binomiale négative}
-Lorsque les données sont surdispersées, on peut utiliser la distribution binomiale négative dans notre modélisation. Soit $Y | Z = z \sim Pois(\mu z)$ et $Z \sim \Gamma(\theta_z, \theta_z)$, alors $\esp{Y} = \mu$ et $\variance{Y} = \mu + \frac{\mu^2}{\theta_z}$ et on a que $Y \sim BinNeg(\mu, \theta_z)$ telle que
-\[f_Y(y) = \frac{\Gamma(\theta_z + y)}{\Gamma(\theta_z) y!} \left( \frac{\mu}{\mu + \theta_z} \right)^{y} \left( \frac{\theta_z}{\mu + \theta_z} \right)^{\theta_z}  \]
-Lorsque $\theta_z \to \infty$, on retombe sur le modèle Poisson. On peut faire un TRV pour valider si le modèle Poisson est une bonne simplification du modèle binomiale négative : 
-\[ \prob{ 2\Big(\ell^{Pois}(\bm{\hat{\beta}}) - \ell^{NB}(\bm{\hat{\beta}}) \Big) > x} = \frac{1}{2} \prob{\chi_{(1)}^2 > x} \] 
+Lorsque les données sont surdispersées, on peut utiliser la distribution binomiale négative dans la modélisation. 
+
+Soit $(Y | Z = z) \sim Pois(\mu z)$ et $Z \sim \Gamma(\theta_z, \theta_z)$, alors $\esp{Y} = \mu$ et $\variance{Y} = \mu + \frac{\mu^2}{\theta_z}$ et on a que $Y \sim BinNeg(\mu, \theta_z)$ tel que:
+\[
+	f_Y(y) 
+	= 	\frac{\Gamma(\theta_z + y)}{\Gamma(\theta_z) y!} 
+			\left( \frac{\mu}{\mu + \theta_z} \right)^{y} 
+			\left( \frac{\theta_z}{\mu + \theta_z} \right)^{\theta_z}  
+\]
+Lorsque $\theta_z \to \infty$, on retombe sur le modèle Poisson. 
+On peut faire un TRV pour valider si le modèle Poisson est une bonne simplification du modèle binomiale négative : 
+\[ 
+	\prob{ 2\Big(\ell^{Pois}(\bm{\hat{\beta}}) - \ell^{BN}(\bm{\hat{\beta}}) \Big) > x} 
+	= 	\frac{1}{2} \prob{\chi_{(1)}^2 > x} 
+\] 
 
 \subsection*{Modèle Poisson gonflée à zéro}
 Lorsqu'on a une masse de probabilité à zéro plus importante à 0, on peut utiliser la loi de Poisson \emph{gonflée à zéro}, en modélisant à la fois la probabilité $\pi_i$ que la fréquence soit égale à zéro (avec un modèle binomial logistique) et $\lambda_i$ la fréquence avec un modèle Poisson avec fonction de lien log.

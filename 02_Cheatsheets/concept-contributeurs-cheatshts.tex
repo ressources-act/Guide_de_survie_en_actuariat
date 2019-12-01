@@ -1,0 +1,110 @@
+\documentclass[10pt, french]{article}
+%\input{cheatsht-preamble-general.tex}
+\usepackage[landscape, hmargin=1cm, vmargin=1.7cm]{geometry}
+\usepackage{multicol}
+
+
+\usepackage{tikz}
+\usepackage{xcolor}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}		
+\definecolor{burntsienna}{rgb}{0.91, 0.45, 0.32}		
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}	
+\definecolor{amber2}{rgb}{1.0, 0.90, 0.0}	
+\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}	% nice light blue-ish
+\definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
+
+
+%% -----------------------------
+%% tcolorbox configuration
+%% -----------------------------
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{xparse}
+\tcbuselibrary{breakable}
+
+%%
+%% Coloured box "vie" for vie contributors box
+%%
+\newtcolorbox{vie}[ 1 ]
+{
+	colback = amber2,
+	colframe = amber,
+	fonttitle = \bfseries,
+	title = {#1},
+	valign = center
+}
+%%
+%% Coloured box "modeles" for modèles contributors box
+%%
+\newtcolorbox{modeles}[ 1 ]
+{
+	colback = green!50!white,
+	colframe = green!20!black,
+	fonttitle = \bfseries,
+	title = {#1},
+	valign = center
+}
+%%
+%% Coloured box "IARD" for IARD contributors box
+%%
+\newtcolorbox{IARD}[ 1 ]
+{
+	colback = red!60!white,
+	colframe = red!30!black,
+	fonttitle = \bfseries,
+	title = {#1},
+	valign = center
+}
+%%
+%% Coloured box "1XXX" for 1XXX contributors box
+%%
+\newtcolorbox{1XXX}[ 1 ]
+{
+	colback = azure(colorwheel),
+	colframe = cobalt,
+	fonttitle = \bfseries,
+	title = {#1},
+	valign = center
+}
+
+\begin{document}
+
+\center % Center everything on the page
+
+\textsc{\LARGE Feuilles de formules}\\[0.5cm]
+\textsc{\Large Contributeurs}\\[0.5cm] 
+
+\begin{multicols*}{3}
+
+\begin{vie}{ACT-2004\: Math. actuarielles vie 1}
+\begin{description}
+	\item[cre., aut.] Nicholas Langevin
+	\item[cre., aut.] Gabriel Crépeault-Cauchon 
+	\item[aut.] Alec James van Rassel
+\end{description}
+\end{vie}
+
+\begin{modeles}{ACT-2003\: Modèles linéaires en actuariat}
+\begin{description}
+	\item[cre., aut.] Nicholas Langevin
+	\item[cre., aut.] Gabriel Crépeault-Cauchon 
+	\item[aut.] Alec James van Rassel
+\end{description}
+\end{modeles}
+
+\begin{IARD}{ACT-2005\: Math. actuarielles IARD 1}
+\begin{description}
+	\item[cre., aut.] Nicholas Langevin
+	\item[cre., aut.] Gabriel Crépeault-Cauchon 
+	\item[aut.] Alec James van Rassel
+\end{description}
+\end{IARD}
+
+\begin{1XXX}{ACT-1XXX\: Cours de première année}
+\begin{description}
+	\item[cre., aut.] Alec James van Rassel
+\end{description}
+\end{1XXX}
+
+\end{multicols*}
+
+\end{document}

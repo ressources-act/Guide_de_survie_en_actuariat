@@ -474,3 +474,39 @@ Si on développe la transformée de Laplace :
 	& = \laplace_Z(t) \\ 
 \end{align*}
 \end{proof}
+
+\section{Équation de Wald}
+\label{preuve:wald_eqn}
+
+\begin{crit-ann}{Critères}
+\begin{enumerate}
+	\item	Soit $T_{1}, T_{2}, T_{3}, \dots$ une suite de variables aléatoires (iid) avec espérance fini $\mu < \infty$.
+	\item	Soit la variable aléatoire $N$
+	\begin{enumerate}
+		\item	Prenant valeur uniquement dans les entiers positifs $n \in \mathcal{N}$;
+		\item	Indépendante de la série $T_{1}, T_{2}, T_{3}, \dots$ (donc la réalisation ou pas de l'événement $\{N \geq n\}$ est indépendante du temps auquel elle y a lieu);
+		\item Avec espérance fini $\text{E}[N] < \infty$. 
+	\end{enumerate}
+\end{enumerate}
+\end{crit-ann}
+\begin{theo-ann}{Équation de Wald}
+\begin{equation*}
+%	\text{E}\left[ \sum_{n = 1}^{N} T_{n} \right]
+	\text{E}\left[ S_{N} \right]	
+	=	\mu \text{E}[N]
+\end{equation*}
+\end{theo-ann}
+\begin{preuve-ann}{Preuve}
+\begin{align*}
+	\text{E}\left[ S_{N} \right]
+	&=	\text{E}\left[ T_{1} + \dots + T_{N} \right]	
+	\Leftrightarrow	\text{E}\left[ \sum_{n = 1}^{N} T_{n} \right]	\\
+	&=	\text{E}\left[ \sum_{n \geq 1} T_{n} \times \bm{1}_{\{N(t) \geq n \}} \right]	\\
+	&=	\sum_{n \geq 1} \text{E}\left[ T_{n} \times \bm{1}_{\{N(t) \geq n \}} \right]	\\
+	&=	\sum_{n \geq 1} \text{E}\left[ T_{n}\right] \text{E}\left[\bm{1}_{\{N(t) \geq n \}} \right]	\\
+	&=	\sum_{n \geq 1} \text{E}\left[ T_{n}\right] \text{Pr}\left(N(t) \geq n \right)	\\
+	&\overset{i.d.}{=}	\mu \sum_{n \geq 1} \text{Pr}\left(N(t) \geq n \right)	\\
+	&\Leftrightarrow 	\mu \sum_{n \geq 1} n \text{Pr}\left(N(t) = n \right)	\\
+	&= 	\mu \text{E}[N]	
+\end{align*}
+\end{preuve-ann}
