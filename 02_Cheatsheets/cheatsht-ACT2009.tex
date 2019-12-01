@@ -547,6 +547,14 @@ et
 De plus, selon l'équation de Wald\footnote{l'équation de Wald se base sur le concept que $S_n = \sum_{i=1}^{N(t)} T_i$, très semblable au modèle fréquence-sévérité.},
 \[\esp{S_{N(t) + 1}} = \esp{T}(m(t) + 1)\]
 
+\subsection*{Variables}
+
+\begin{enumerate}
+	\item[Âge:]	$A(t) = t - S_{N(t)}$, temps à $t$ depuis le dernier renouvellement.
+	\item[Temps de vie résiduel:]	$Y(t) = S_{N(t) + 1} - t$, temps à $t$ jusqu'au prochain renouvellement.
+	\item[Temps de vie total:]	$V(t) = S_{N(t) + 1} - S_{N(t)} = A(t) + Y(t)$
+\end{enumerate}
+
 \subsection*{Key renewal theorem}
 \[\lim_{t \to \infty} \int_{0}^{t} h(t-x) d m(x) = \frac{1}{\esp{T}} \int_{0}^{\infty} h(x) dx \]
 
