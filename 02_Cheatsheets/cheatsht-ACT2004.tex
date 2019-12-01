@@ -1714,6 +1714,15 @@ Généralisation avec multiple de la force d'intérêt
 
 \section{Contrats de rente}
 
+\begin{formula}{Double force}
+\begin{align*}
+	\prescript{2}{}{i}
+	&=	2 i + i^{2}		&
+	\prescript{2}{}{d}
+	&=	2 d - d^{2}
+\end{align*}
+\end{formula}
+
 \subsection*{Rentes continues}
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes nivelées}}
@@ -1874,12 +1883,14 @@ Fin de période
 \end{minipage}
 
 On note que:
+\begin{formula}{Variance rente}
 \begin{align*}
 	\text{Var}(\ddot{Y}_{x\textcolor{cobalt}{:\angln}})
 	&=	\frac{1}{d^{2}}(\actsymb[][2]{A}{x\textcolor{cobalt}{:\angln}} - \Ax{x\textcolor{cobalt}{:\angln}}^{2})
 	=	\text{Var}(Y_{x})	\\
 	&=	\frac{2}{d}(\ddot{a}_{x\textcolor{cobalt}{:\angln}} - \actsymb[][2]{\ddot{a}}{x\textcolor{cobalt}{:\angln}}) + \actsymb[][2]{\ddot{a}}{x\textcolor{cobalt}{:\angln}} - (\ddot{a}_{x\textcolor{cobalt}{:\angln}})^{2}
 \end{align*}
+\end{formula}
 
 Relation entre début et fin de période :
 \begin{align*}
@@ -1892,15 +1903,33 @@ Relation entre début et fin de période :
 \end{align*}
 
 Relation de récurrence:
+
+\begin{minipage}{0.5\columnwidth}
 \begin{align*}
 	\ax{x} 
 	&= v \px{x}	+	v \px{x}	 \ax{x + 1}	\\
 	&= v \px{x}\ddot{a}_{x + 1}	
 \end{align*}
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+\begin{align*}
+	\ddot{a}_{x} 
+	&= \ddot{a}_{x:\angln}	+	\Ex[n]{x}	 \ax{x + n}	\\
+\end{align*}
+\end{minipage}
+
 
 \paragraph{Rente temporaire $n$ années}
 
 Pour une temporaire on ajoute une limite jusqu'où sommer:\\
+on obtient:
+\begin{align*}
+	\cumlaut[cyan]{Y}_{x:\angln} 
+	&= 	\begin{cases}
+			\cumlaut[cyan]{a}_{\angl{K \textcolor{cyan}{+ 1}}}	& , K = 0, 1, \dots, n - 1 \\
+			\cumlaut[cyan]{a}_{\angln}			& , K = n, n + 1 \\
+		\end{cases} 	\\
+\end{align*}
 
 \begin{minipage}[t]{0.5\columnwidth}
 \begin{center}
@@ -1908,10 +1937,10 @@ Début de période
 \end{center}
 \begin{align*}
 	\ddot{Y}_{x:\angln} 
-	&= 	\begin{cases}
-			\ddot{a}_{\angl{K + 1}}	& , K = 0, 1, \dots, n - 1 \\
-			\ddot{a}_{\angln}		& , K = n, n + 1, \dots \\
-		\end{cases} \\
+%	&= 	\begin{cases}
+%			\ddot{a}_{\angl{K + 1}}	& , K = 0, 1, \dots, n - 1 \\
+%			\ddot{a}_{\angln}		& , K = n, n + 1, \dots \\
+%		\end{cases} \\
 	&=	\frac{1}{d} \left[ 1 - Z_{x:\angln} \right]	\\
 	\ddot{a}_{x:\angln}	
 	&=	\sum_{k = 0}^{n - 1} \ddot{a}_{\angl{k + 1}} \ \px[k]{x} \ \qx{x + k}	+	\ddot{a}_{\angln} \px[n]{x}	\\
@@ -1924,10 +1953,10 @@ Fin de période
 \end{center}
 \begin{align*}
 	Y_{x:\angln} 
-	&= 	\begin{cases}
-			a_{\angl{K}}	& , K = 0, 1, \dots, n - 1 \\
-			a_{\angln}	& , K = n, n + 1, \dots \\
-		\end{cases} \\
+%	&= 	\begin{cases}
+%			a_{\angl{K}}	& , K = 0, 1, \dots, n - 1 \\
+%			a_{\angln}	& , K = n, n + 1, \dots \\
+%		\end{cases} \\
 	&=	\frac{1}{i}\left[ 1 - (1 + i) Z_{x:\angl{n + 1}}\right] 	\\
 	a_{x:\angln}	
 	&=	\sum_{k = 0}^{n - 1} a_{\angl{k}} \ \px[k]{x} \ \qx{x + k}	+	a_{\angln} \px[n]{x}	\\
@@ -1946,6 +1975,13 @@ Et:
 
 \paragraph{Rente garantie $n$ années}
 On obtient:
+\begin{align*}
+	\cumlaut[cyan]{Y}_{\overline{x:\angln}} 
+	&= 	\begin{cases}
+			\cumlaut[cyan]{a}_{\angln}	& , K = 0, 1, \dots, n - 1 \\
+			\cumlaut[cyan]{a}_{\angl{K \textcolor{cyan}{+ 1}}}			& , K = n, n + 1 \\
+		\end{cases} 	\\
+\end{align*}
 
 \setlength{\mathindent}{-1cm}
 \begin{minipage}[t]{0.5\columnwidth}
@@ -1953,39 +1989,89 @@ On obtient:
 Début de période
 \end{center}
 \begin{align*}
-\ddot{Y}_{\overline{x:\angln}} 
-	&= 	\begin{cases}
-			\ddot{a}_{\angln}			& , K = 0, 1, \dots, n - 1 \\
-			\ddot{a}_{\angl{K + 1}}		& , K = n, n + 1, \dots \\
-		\end{cases} \\
 	\ddot{a}_{\overline{x:\angln}}	
-	&=	\ddot{a}_{\angln} \qx[n]{x} + \sum_{k = n}^{\omega - x - 1} \ddot{a}_{\angl{k + 1}} \ \px[k]{x} \ \qx{x + k}	\\
+	&=	\ddot{a}_{\angln} \qx[n]{x} + \sum_{k = n}^{\omega - x - 1} \ddot{a}_{\angl{k + 1}}  \px[k]{x}  \qx{x + k}	\\
 	&=	\sum_{k = 0}^{n - 1} v^{k} + \sum_{k = n}^{\omega - x - 1} v^{k} \px[k]{x}	\\
-	&=	\ddot{a}_{\angln} + \prescript{}{n|}{\ddot{a}_{x}}
 \end{align*}
 \end{minipage}
 \begin{minipage}[t]{0.5\columnwidth}
 \begin{center}
 Fin de période
 \end{center}
+\begin{align*}
+	a_{\overline{x:\angln}}	
+	&=	a_{\angln} \qx[n]{x} + \sum_{k = n}^{\omega - x - 1} a_{\angl{k}}  \px[k]{x}  \qx{x + k}	\\
+	&=	\sum_{k = 1}^{n} v^{k} + \sum_{k = n + 1}^{\omega - x - 1} v^{k} \px[k]{x}	\\
+\end{align*}
 \end{minipage}
 \setlength{\mathindent}{1cm}
 
 De plus:
 \begin{align*}
 	\text{E}[\ddot{Y}_{\overline{x:\angln}}^{2}]	
-	&=	\frac{2}{d} \left(\ddot{a}_{\overline{x:\angln}} - \prescript{2}{}{\ddot{a}_{\overline{x:\angln}}}\right) + \prescript{2}{}{\ddot{a}_{\overline{x:\angln}}}
+	&=	\frac{2}{d} \left(\ddot{a}_{\overline{x:\angln}} - \prescript{2}{}{\ddot{a}_{\overline{x:\angln}}}\right) + \prescript{2}{}{\ddot{a}_{\overline{x:\angln}}}	\\
+	\cumlaut[cyan]{a}_{\overline{x:\angln}}			
+	&=	\cumlaut[cyan]{a}_{\angln} + \prescript{}{n|}{\cumlaut[cyan]{a}_{x}}
 \end{align*}
 
 
 \paragraph{Rente différée $n$ années}
 
-\textbf{De début de période}
+on obtient:
+\begin{align*}
+	\prescript{}{n|}{\cumlaut[cyan]{Y}}_{x} 
+	&= 	\begin{cases}
+			0	& , K = 0, 1, \dots, n - 1 \\
+			v^{n} \cumlaut[cyan]{a}_{\angl{K \textcolor{cyan}{+ 1} - n}}			& , K = n, n + 1 \\
+		\end{cases} 	\\
+\end{align*}
 
-\textbf{De fin de période}
+\setlength{\mathindent}{-1cm}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Début de période
+\end{center}
+\begin{align*}
+	\prescript{}{n|}{\ddot{Y}}_{x}
+	&=	\frac{1}{d} \left[ Z_{x:\nthtop{1}{\angln}} - \prescript{}{n|}{Z_{x}} \right]	\\
+	\prescript{}{n|}{\ddot{a}}_{x}	
+	&=	\sum_{k = n}^{\omega - x - 1} v^{n} \ddot{a}_{\angl{k + 1 - n}} \ \px[k]{x} \ \qx{x + k}	\\
+	&=	\sum_{k = n}^{\omega - x - 1} v^{k} \px[k]{x}
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Fin de période
+\end{center}
+\begin{align*}
+	\prescript{}{n|}{Y}_{x}
+	&=	\frac{1}{d} \left[ Z_{x:\nthtop{1}{\angl{n + 1}}} - \prescript{}{n + 1|}{Z_{x}} \right]	\\
+	\prescript{}{n|}{a}_{x}
+	&=	\sum_{k = n}^{\omega - x - 1} v^{n} a_{\angl{k - n}} \ \px[k]{x} \ \qx{x + k}	\\
+	&=	\sum_{k = n + 1}^{\omega - x - 1} v^{k} \px[k]{x}
+\end{align*}	
+\end{minipage}
+\setlength{\mathindent}{1cm}
+
+De plus:
+\begin{align*}
+	\prescript{}{n|}{\ddot{a}}_{x}
+	&=	\Ex[n]{x} \ddot{a}_{x + n}	
+	=	\ddot{a}_{x} - \ddot{a}_{x:\angln}	\\
+	&=	v \px{x} \prescript{}{n - 1|}{\ddot{a}}_{x + 1}	\\
+	\prescript{}{n|}{a}_{x}
+	&=	\prescript{}{n + 1|}{\ddot{a}}_{x}
+	=	\prescript{}{n|}{\ddot{a}}_{x} - \Ex[n]{x}
+\end{align*}
 
 \paragraph{Valeur actuarielle accumulée}
 
+On obtient:
+\begin{align*}
+	\cumlaut[cyan]{s}_{x:\angln}
+	&=	\frac{\cumlaut[cyan]{a}_{x:\angln}}{\Ex[n]{x}}	
+\end{align*}
+	
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes à paiement variant arithmétiquement}}
 
 \textbf{Rente viagère croissante}
@@ -2145,7 +2231,7 @@ Relations
 
 \begin{align*}
 	\prescript{}{m|}{\ddot{Y}}^{inf}_{x:\angln}
-	&=	\sum_{k = m}^{\min(K, m + n -1)} (1 + inf)^{k - m} v^{k}, K = 0, 1, 2 \dots	\\
+	&=	\sum_{k = m}^{\min(K, m + n -1)} (1 + inf)^{k - m} v^{k}, K = 0, 1, 2 \dots	
 \end{align*}
 
 
