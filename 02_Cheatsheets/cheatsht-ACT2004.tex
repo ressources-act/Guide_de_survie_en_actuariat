@@ -50,16 +50,24 @@
 \subsection*{Facteurs d'actualisation}
 Où les dénominateurs sont à être interprété en REGEX.\\
 Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte} pour une une \textcolor{cyan}{annuité due} ou le taux d'intérêt pour une \textcolor{black}{immédiate}.
+
+\setlength{\mathindent}{-1cm}
+\begin{minipage}{0.5\columnwidth}
 \begin{align*}
 	a(t) 
 		&= 	(1 + i)^{t} 
-		= 	(1 - d)^{-t}	&
+		= 	(1 - d)^{-t}		\\
+	&= 	e^{\int_{0}^{t} \delta_s ds} % va avec a(t)	
+\end{align*}
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+\begin{align*}
 	v(t) 
 		&= 	(1 + i)^{-t} 
 		= 	(1 - d)^{t}	 \\
-	&= 	e^{-\int_{0}^{t} \delta_s ds} % va avec a(t)
+	&= 	e^{-\int_{0}^{t} \delta_s ds} % va avec a(t)	
 \end{align*}
-
+\end{minipage}
 \begin{align*}
 	i 	&= \left( 1 + \frac{i^{(m)}}{m} \right)^{m} - 1 &
 	d	&= 	\frac{i}{1 + i} &
@@ -113,6 +121,8 @@ Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte
 %&\text{Taux d'intérêt \underline{effectif} \textit{annuel}} & & i = \left( 1 + \frac{i^{(m)}}{m} \right)^{m} - 1 \\
 %&\text{Taux d'intérêt \underline{nominal} \textit{annuel}} & & i^{(m)} = m \left( (1 + i)^{1/m} - 1 \right)
 %\end{align*}
+
+\setlength{\mathindent}{1cm}
 
 \subsection*{Sommations}
 \begin{align*}
@@ -1714,6 +1724,8 @@ Généralisation avec multiple de la force d'intérêt
 
 \section{Contrats de rente}
 
+On note que pour les contrats de rente, chaque paiement est conditionnel à la survie du rentier jusqu'au moment du paiement \textit{(à moins de se trouver dans une période garantie)}.
+
 \begin{formula}{Double force}
 \begin{align*}
 	\prescript{2}{}{i}
@@ -1723,7 +1735,8 @@ Généralisation avec multiple de la force d'intérêt
 \end{align*}
 \end{formula}
 
-\subsection*{Rentes continues}
+\setcounter{subsection}{1}
+\subsection{Rentes continues}
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes nivelées}}
 
@@ -1843,7 +1856,7 @@ Limitons à les exprimer comme une somme de rentes dont le taux de paiement est 
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes variant exponentiellement}}
 
 
-\subsection*{Rentes discrètes}
+\subsection{Rentes discrètes}
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes nivelées}}
 
@@ -2165,7 +2178,7 @@ Relations
 % Text Node
 \draw (234,34.67) node  [align=left] {{\scriptsize le dernier paiement est omis}\\{\scriptsize  et donc on l'actualise les n années }\\{\scriptsize avec la probabilité des survire }};
 % Text Node
-\draw (76,22) node  [align=left] {$\displaystyle \ddot{a}_{x:n} =\ddot{a}_{x:n-1} +\prescript{}{n}{} E_{x}$};
+\draw (76,22) node  [align=left] {$\displaystyle \ddot{a}_{x:\angln} =\ddot{a}_{x:\angl{n-1}} + \prescript{}{n}{E}_{x}$};
 
 
 \end{tikzpicture}
@@ -2235,11 +2248,104 @@ Relations
 \end{align*}
 
 
-\subsection*{Rentes payables m fois l'an}
+\subsection{Rentes payables m fois l'an}
 
-\subsubsection*{\textcolor{amber(sae/ece)}{Rente viagère de début de période}}
+\paragraph{Rente viagère}
+on obtient:
+\begin{align*}
+	\ddot{Y}_{x}^{(m)} 
+	&= 	\sum_{h = 0}^{m K + J^{(m)}} \frac{1}{m} v^{\frac{h}{m}}	\\
+	&= 	\ddot{a}^{(m)}_{\angl{K + \frac{J^{(m)} + 1}{m}}}	\\
+	&=	\frac{1}{d^{(m)}} \left[ 1 - v^{K + \frac{J^{(m)} + 1}{m}} \right]	\\
+	&=	\frac{1}{d^{(m)}} \left( 1 - Z_{x}^{(m)} \right)			&K = 0, 1, 2, \dots	\\
+	&\	&J^{(m)} = 0, 1, \dots, m - 1
+\end{align*}
 
-\subsubsection*{\textcolor{amber(sae/ece)}{Rente viagère de fin de période}}
+avec ${Y}_{x}^{(m)} = \ddot{Y}_{x}^{(m)} - \frac{1}{m}$.
+
+De plus:
+\begin{align*}
+	\ddot{Y}_{x}^{(m)} = \ddot{a}_{x}^{(m)}
+	&= 	\sum_{k = 0}^{\omega -x - 1}\sum_{j = 0}^{m - 1} \ddot{a}^{(m)}_{\angl{k + \frac{j + 1}{m}}} \ \qx[k + \frac{j}{m}	| \frac{1}{m}]{x}\\
+	&\Leftrightarrow 	\sum_{h = 0}^{m (\omega - x) - 1} \ddot{a}^{(m)}_{\angl{\frac{h + 1}{m}}} \ \qx[\frac{h}{m}	| \frac{1}{m}]{x}\\
+	&= 	\sum_{k = 0}^{\omega -x - 1}\sum_{j = 0}^{m - 1} \frac{1}{m} v^{k + \frac{j}{m}} \px[k + \frac{j}{m}]{x}	\\
+	&\Leftrightarrow 	\sum_{h = 0}^{m (\omega - x) - 1} \frac{1}{m} v^{\frac{h}{m}} \px[\frac{h}{m}]{x}
+\end{align*}
+
+et:
+\begin{align*}
+	\text{Var}(\ddot{Y}_{x}^{\textcolor{red}{(m)}})
+	&=	\frac{2}{d^{\textcolor{red}{(m)}}}
+		(\ddot{a}_{x}^{\textcolor{red}{(m)}} - \prescript{2}{}{\ddot{a}}_{x}^{\textcolor{red}{(m)}}) + 
+		\prescript{2}{}{\ddot{a}}_{x}^{\textcolor{red}{(m)}} - 
+		(\ddot{a}_{x}^{\textcolor{red}{(m)}})^{2}
+\end{align*}
+
+\subsubsection*{Hypothèse DUD}
+
+\begin{align*}
+	\ddot{a}_{x}^{(m)}
+	&=	\alpha(m)\ddot{a}_{x}	-	\beta(m)		\\
+	\ddot{a}_{x\textcolor{cobalt}{:\angln}}^{(m)}
+	&=	\alpha(m)\ddot{a}_{x\textcolor{cobalt}{:\angln}}	-	\beta(m)\textcolor{cobalt}{(1 - \Ex[n]{x})}		\\
+	\prescript{}{\textcolor{amethyst}{n|}}{\ddot{a}}_{x}^{(m)}
+	&=	\alpha(m)\prescript{}{\textcolor{amethyst}{n|}}{\ddot{a}}_{x}	-	\beta(m)\textcolor{amethyst}{\Ex[n]{x}}		\\
+	\ddot{a}_{\textcolor{azure(colorwheel)}{\overline{x:\angln}}}^{(m)}
+	&=	\alpha(m)\ddot{a}_{\textcolor{azure(colorwheel)}{\overline{x:\angln}}}	-	\beta(m)\textcolor{azure(colorwheel)}{(1 - v^{n} + \Ex[n]{x})}		
+\end{align*}
+\begin{align*}
+	\alpha(m)	
+	&=	\frac{id}{i^{(m)}d^{(m)}}	&
+	\beta(m)	
+	&=	\frac{i - i^{(m)}}{i^{(m)}d^{(m)}}
+\end{align*}
+
+\subsubsection*{Hypothèse traditionnelle}
+
+Le seul changement de DUD sont les formules pour le $\alpha(m)$ et $\beta(m)$, le reste de l'équation reste pareille. \\
+La différence est que l'hypothèse traditionnelle suppose la linéarité du \textbf{facteur d'actualisation actuarielle} $\Ex[n]{x}$ au lieu de uniquement supposer la linéarité de la \textit{mortalité} $\px[t]{x}$.
+
+Pour $x = 0, 1, 2, \dots$ et $0 \le t \le 1$
+\begin{align*}
+	\Ex[t]{x}
+	&=	(1 - t) + t \Ex[1]{x}	
+\end{align*}
+
+Et donc, pour le cas d'une rente viagère, on trouve:
+\begin{align*}
+	\ddot{a}_{x}^{(m)}
+	&= 	\sum_{k = 0}^{\omega -x - 1}\sum_{j = 0}^{m - 1} \frac{1}{m} \Ex[k + \frac{j}{m}]{x}	\\
+	&= 	\sum_{k = 0}^{\omega -x - 1} \frac{1}{m} \Ex[k]{x}	\times \sum_{j = 0}^{m - 1} \Ex[\frac{j}{m}]{x + k} \\
+	&=	\ddot{a}_{x} - \frac{m - 1}{2m}	
+\end{align*}
+
+Où les nouveaux paramètres sont:
+\begin{align*}
+	\alpha(m)
+	&=	1	&
+	\beta(m)
+	&=	\frac{m - 1}{2m}	\\
+\end{align*}
+
+Une équation utile pour les rentes de fin de période est 
+\begin{align*}
+	\gamma(m) 
+	&=	\alpha(m) - \beta(m) - \frac{1}{m}	\\
+	&\overset{DUD}{=} \frac{d^{(m)} - d}{i^{(m)} d^{(m)}}	\\
+	&\overset{Trad.}{=} \frac{m - 1}{2m}	
+\end{align*}
+Il suffit de remplacer $-\beta(m)$ par $+\gamma(m)$ pour obtenir les formules des rentes en fin de période.
+
+
+\subsubsection*{Approximation de Woolhouse}
+
+\begin{align*}
+	\ddot{a}_{x}^{(m)}
+	&\approx	\ddot{a}_{x} - \frac{m - 1}{2m} \textcolor{arsenic}{- \frac{m^{2} - 1}{12m^{2}} (\delta + \mu_{x})}	\\
+	\mu_{x}
+	&\approx		-	\frac{1}{2} \left( \ln \px{x - 1} + \ln \px{x} \right)
+\end{align*}
+
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Autres rentes payables m fois l'an}}
 
