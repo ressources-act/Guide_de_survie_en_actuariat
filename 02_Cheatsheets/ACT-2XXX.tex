@@ -97,6 +97,16 @@ Par la suite, nous pouvons définir \textbf{l'efficacité} d'un estimateur comme
 
 Si ce ratio est de 1 $\text{eff}(\theta) = 1$, alors l'estimateur est \textbf{efficace}.
 
+Nous pouvons aussi généraliser cette formulation pour obtenir l'efficacité relative d'un estimateur contre un autre:
+\begin{algo}{Efficacité relative}
+Soit les estimateurs non-biaisés $\hat\theta_{n}$ et $\tilde\theta_{n}$, l'efficacité de $\hat\theta_{n}$ relatif à $\tilde\theta_{n}$ est:
+\begin{align*}
+	\text{eff}(\hat\theta_{n}, \tilde\theta_{n})
+	&=	\frac{\text{Var}(\hat\theta_{n})}{\text{Var}(\tilde\theta_{n})}	
+\end{align*}
+\end{algo}
+Si $\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) < 1$ alors $\hat\theta_{n}$ est mieux et vice-versa.
+
 Nous pouvons également évaluer si un estimateur est cohérent, ou converge, avec des très grands échantillons; un estimateur $\hat\theta$ est \textbf{consistent} \textit{(angl.)} si la probabilité qu'il diffère de la vraie valeur du paramètre $\theta$ par une erreur $\epsilon$ près de 0 tends vers 0 alors que la taille de l'échantillon $n$ tends vers l'infini:
 \begin{algo}{Convergence (\textbf{consistency}) d'un estimateur}
 \begin{align*}
@@ -338,10 +348,78 @@ et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qu
 %		Élaboration sur le MVUE
 %		Comment le construire
 
-%%	Statistiques d'ordre
 %%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
 %		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
 
+\subsection*{Statistiques d'ordre}
+
+Soit un échantillon aléatoire de taille $n$.
+Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.
+Les crochets sont utilisés pour distinguer la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.
+
+Nous sommes habituellement intéressés au minimum $X_{(1)}$ et le maximum $X_{(n)}$.
+
+\setlength{\mathindent}{-0.75cm}
+\begin{minipage}{0.5\columnwidth}
+\begin{algo}{Minimum}
+\begin{align*}
+	X_{(1)}
+	&=	\min(X_{1}, \dots, X_{n})	\\
+	f_{X_{(1)}}(x)
+	&=	n f_{X}(x) \big( S_{X}(x) \big)^{n - 1}	\\
+	S_{X_{(1)}}(x)
+	&=	\prod_{i = 1}^{n} \Pr(X_{i} > x)
+\end{align*}
+\end{algo}
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+\begin{algo}{Maximum}
+\begin{align*}
+	X_{(n)}
+	&=	\max(X_{1}, \dots, X_{n})	\\
+	f_{X_{(n)}}(x)
+	&=	n f_{X}(x) \big( F_{X}(x) \big)^{n - 1}	\\
+	F_{X_{(n)}}(x)
+	&=	\prod_{i = 1}^{n} \Pr(X_{i} \le x)
+\end{align*}
+\end{algo}
+\end{minipage}
+\setlength{\mathindent}{1cm}
+
+De façon plus général, on défini:
+\begin{algo}{$k^{\text{e}}$ statistique d'ordre}
+\begin{align*}
+%	X_{(k)}
+	f_{X_{(k)}}(x)
+	&=	\frac{n!}{\textcolor{teal}{(k - 1)!} \textcolor{cobalt}{1!} \textcolor{cyan}{(n - k)!}} \textcolor{teal}{\underset{\text{observations } < \ k}{\underbrace{\big[ F_{X}(x) \big]^{k - 1}}}} \textcolor{cobalt}{\overset{\text{observation } = \ k}{\overbrace{f_{X}(x)}}} \textcolor{cyan}{\underset{\text{observations } > \ k}{\underbrace{\big[ S_{X}(x) \big]^{n - k}}}} \\
+	F_{X_{(k)}}(x)
+	&=	\underset{\text{Probabilité qu'au moins } k \text{ des } n \text{ observations } X_{k} \text{ sont } \le \ x}{\underbrace{\sum_{i = 1}^{n} \binom{n}{i} [F_{X}(x)]^{j} [1 - F_{X}(x)]^{n - j}}}
+\end{align*}
+\end{algo}
+
+Nous pouvons également définir quelques autres statistiques d'intérêt :
+
+\begin{description}
+	\item[$R = X_{(n)} - X_{(1)}$: ] Amplitude échantillonnale, ou \textbf{l'étendu} (Range), est la différence entre le minimum et le maximum d'un échantillon.
+	\item[$M = \frac{X_{(n)} + X_{(1)}}{2}$: ] \textbf{mi-étendu} (Midrange), est la moyenne entre le minimum et le maximum d'un échantillon.
+\end{description}
+
+De plus, nous pouvons définir la \textbf{médiane} en terme de statistiques d'ordre:
+\begin{align*}
+	\text{Med}
+	&=	\left\{
+		\begin{matrix}
+			X_{((n + 1)/2)},		&	\text{si n est impair}	\\
+			\frac{X_{(n/2)} + X_{(n/2 + 1)}}{2},	&	\text{si n est pair}	\\
+		\end{matrix}
+	\right.
+\end{align*}
+
+Finalement, on défini la distribution conjointe du minimum et du maximum $\forall x < y$:
+\begin{align*}
+	f_{X_{(1)}, X_{(n)}}(x, y)
+	&=	n (n - 1) [F_{X}(y) - F_{X}(x)]^{n - 2} f_{X}(x) f_{X}(y)
+\end{align*}
 
 \end{multicols*}
 
