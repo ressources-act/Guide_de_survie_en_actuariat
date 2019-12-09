@@ -616,15 +616,15 @@ Soit le \guillemotleft \textbf{smoothed empirical estimate} \guillemotright d'un
 \begin{algo}{\guillemotleft smoothed empirical estimate \guillemotright}
 On utilise les statistiques d'ordre de l'échantillon $x_{(1)} \le x_{(2)} \le \dots \le x_{(n)}$ pour l'interpolation suivant:
 \begin{align*}
-	\hat\pi_{g}
+	\hat\pi_{\kappa}
 	&=	(1 - h)x_{(j)} + h x_{(j + 1)}, \quad \text{ où }	
 \end{align*}
 \begin{align*}
 	j
-	&=	\lfloor (n + 1) g \rfloor	&
+	&=	\lfloor (n + 1) \kappa \rfloor	&
 	&\text{ et }	&
 	h
-	&=	(n + 1) g - j
+	&=	(n + 1) \kappa - j
 \end{align*}
 \end{algo}
 
@@ -662,14 +662,16 @@ Pour faire le lien avec la définition précédente, dans le cas où $A_{j}$ est
 
 \begin{algo}{Données modifiées}
 Pour le cas de données groupées, les observations $c_{0} < c_{1} < \dots < c_{k}$ contiennent $n_{j}$ observations par intervalle $(c_{j - 1}, c_{j}]$.
-Dans le cas des données censurées, on la traite comme une donnée groupée dont l'intervalle va jusqu'à l'infini et on remplace alors la fonction de densité par celle de survie.
+
+Dans le cas des données censurées, on multiplie les fonctions de densité pour les données non-censurées et on remplace la densité pour la fonction de survie pour les données censurées; soit $n_{NC}$ le nombre de données non-censurées et $n_{C}$ le nombre censurées tel que $n = n_{NC} + n_{C}$.
+
 La fonction de vraisemblance est donc:
 \setlength{\mathindent}{-1cm}
 \begin{align*}
 	\mathcal{L}(\theta; x)
-	&=	\prod_{j = 1}^{n}	\left[ F(c_{j}|\theta) - F(c_{j-1}|\theta)\right]^{n_{j}},	\;	\text{données groupées}	\\
-	&=	\prod_{j = 1}^{n}	S(x_{i} ; \theta),	\;	\text{données censurées}	\\
-	&=	\prod_{j = 1}^{n}	\frac{f(x_{i}; \theta)}{S(x_{i} ; \theta)},	\;	\text{données tronquées}
+	&=	\prod_{j = 1}^{n}	\left[ F(c_{j}|\theta) - F(c_{j-1}|\theta)\right]^{n_{j}},	\;	\text{groupé}	\\
+	&=	\left(\prod_{j = 1}^{n_{NC}}f(x_{i}; \theta) \right)	\left(\prod_{j = n_{NC} + 1}^{n} S(x_{i} ; \theta) \right),	\;	\text{censuré}	\\
+	&=	\prod_{j = 1}^{n}	\frac{f(x_{i}; \theta)}{S(d ; \theta)},	\;	\text{tronqué}
 \end{align*}
 \setlength{\mathindent}{1cm}
 \end{algo}
