@@ -1,0 +1,39 @@
+% ACT-4105
+% Classification multivariée
+\section{Classification multivariée}
+
+\subsection{Défaillance des méthodes de classification traditionnelles}
+\begin{itemize}
+\item La méthode de la PP ne considère pas la corrélation entre les variables dans les unités d'exposition
+\item La méthode du taux de sinistre / PP ajustée ne tiennent compte que \underline{partiellement} de la distribution du portefeuille.
+\end{itemize}
+
+\subsection{Bénéfice des méthodes de classification multivariées}
+\begin{enumerate}
+\item Considèrent toutes les variables simultanément et ajustement automatiquement pour la corrélation entre les variables.
+\item Tentent de capturer les effets systématiques (signal) et non les effets non-systématiques (bruit)
+\item Produisent des modèles diagnostics
+\item Permettent d'inclure une considération pour les interactions entre 2 variables
+\end{enumerate}
+
+\subsection{Modèles linéaires généralisés (GLM)}
+
+\subsubsection{Tests de diagnostic}
+\begin{itemize}
+\item Calcul de l'écart-type
+\item Consistance dans les résultats d'une année à l'autre
+\item Holdout : comparer le résultats espéré prédit vs résultat sur Holdout
+\item Test statistique (Chi-Squared) :
+\begin{itemize}
+	\item $H_0$ : le modèle actuel (sans la variable) est adéquat
+	\item Selon la valeur de la \textit{p-value} : 
+	\begin{align*}
+\text{Décision} = 
+\begin{cases}
+\text{p-value} < 0.05 & , \text{Rejète } H_0 \\
+0.05 \leq \text{p-value} \leq 0.30 & \text{On ne peut rien conclure} \\
+\text{p-value} > 0.30 & , \text{On ne rejète pas } H_0 \\
+\end{cases}
+\end{align*}
+\end{itemize}
+\end{itemize}
