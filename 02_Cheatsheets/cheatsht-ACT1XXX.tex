@@ -104,6 +104,11 @@ Alors,
 	\item[$\mathds{R} \backslash \mathds{Q}$]: Irrational numbers; for example $\pi, \mathrm{e}, \sqrt{3}$.
 \end{itemize}
 
+\subsection*{Fonction impaire}
+
+Une fonction est impaire \textit{(odd)} lorsque $f(-x) = -f(x)$.\\
+Par exemple, $\sin(-x) = -\sin(x)$.
+
 \section*{Mathématiques financières}
 
 \subsection*{Intérêt simple}
@@ -150,7 +155,7 @@ Alors,
 &\text{Taux d'intérêt \underline{nominal} \textit{annuel}} & 
 	& i^{(m)} = m \left( (1 + i)^{1/m} - 1 \right)	\\
 &\text{Taux d'escompte \underline{nominal} \textit{annuel}} & 
-	& d^{(m)} = m \left( 1 - (1 - d)^{-1/m} \right)
+	& d^{(m)} = m \left( 1 - (1 - d)^{1/m} \right)
 \end{align*}
 
 \subsection*{Rentes constantes}
@@ -403,6 +408,9 @@ Book value
 	Fonction stop-loss 	&	$\pi_{X}(d) = \text{E}\left[\max(X - d; 0)\right]$	\\
 	Fonction d'excès-moyen 	&	$\pi_{X}(d) = \text{E}\left[X - d | X > d\right]$	\\	\hline
 \end{tabular}
+
+\textbf{Note: } Il est intéressant de savoir que les moments impairs d'une loi normal avec moyenne nulle sont nuls.
+Ceci est la normal avec une moyenne nulle est parfaitement symétrique tel que $f(-x) = -f(x)$; pour plus de détails, voir \href{https://www.youtube.com/watch?v=V4CjFT0k-_E}{ce vidéo YouTube}.
 
 \textbf{Conditionnels}
 \begin{align*}
