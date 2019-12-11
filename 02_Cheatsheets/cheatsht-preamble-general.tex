@@ -124,6 +124,17 @@
 	after title = {\large \hfill \faBook}
 }
 %%
+%% Coloured box "definition2" for definitions
+%%
+\DeclareTColorBox{definitionNOHFILL}{ o }				% #1 parameter
+{
+	colframe=blue!60!green,colback=blue!5!white, % color of the box
+	breakable, 
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	after title = {\large \faBook}
+}
+%%
 %% Coloured box "algo" for algorithms
 %%
 \newtcolorbox{algo}[ 1 ]
@@ -150,6 +161,15 @@
 	colframe = green!70!black,
 	fonttitle = \bfseries,title=#1
 }
+%%
+%% Coloured box "formula" for formulas
+%%
+\newtcolorbox{examplebox}[ 1 ]
+{
+	colback = lightmauve,
+	colframe = antiquefuchsia,
+	fonttitle = \bfseries,title=#1
+}
 
 %% -----------------------------
 %% Graphics and pictures
@@ -171,6 +191,8 @@
 %
 %	Colour definitions
 %
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}	%	pastel dark purple ish
 \definecolor{indigo(web)}{rgb}{0.29, 0.0, 0.51}	% purple-ish
 \definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}	% nice light blue-ish
 \definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}

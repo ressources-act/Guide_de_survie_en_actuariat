@@ -1855,6 +1855,19 @@ Limitons à les exprimer comme une somme de rentes dont le taux de paiement est 
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes variant exponentiellement}}
 
+\begin{align*}
+	\prescript{}{m |}{\bar{Y}}^{\text{indexée}}_{x:\angln}
+	&=	
+	\left\{
+	\begin{matrix}
+		0,	&	T \le m \\
+		\e{-\tau m} \e{-(\delta - \tau)m} \ax*{\angl{T - m}\delta - \tau},	&	m < T \le m + n \\
+		\e{-\tau m} \e{-(\delta - \tau)m} \ax*{\angl{n}\delta - \tau},	&	T > m + n
+	\end{matrix}
+	\right.	\\
+	\text{E}[\prescript{}{m |}{\bar{Y}}^{\text{indexée}}_{x:\angln}]
+	&=	\e{-\tau m} \cdot \prescript{\delta - \tau}{m|}{\bar{a}}_{x:\angln}
+\end{align*}
 
 \subsection{Rentes discrètes}
 
@@ -1957,7 +1970,7 @@ Début de période
 	&=	\frac{1}{d} \left[ 1 - Z_{x:\angln} \right]	\\
 	\ddot{a}_{x:\angln}	
 	&=	\sum_{k = 0}^{n - 1} \ddot{a}_{\angl{k + 1}} \ \px[k]{x} \ \qx{x + k}	+	\ddot{a}_{\angln} \px[n]{x}	\\
-	&=	\sum_{k = 1}^{n - 1} v^{k} \px[k]{x}
+	&=	\sum_{k = 0}^{n - 1} v^{k} \px[k]{x}
 \end{align*}
 \end{minipage}
 \begin{minipage}[t]{0.5\columnwidth}

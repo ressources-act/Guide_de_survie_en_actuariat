@@ -104,6 +104,11 @@ Alors,
 	\item[$\mathds{R} \backslash \mathds{Q}$]: Irrational numbers; for example $\pi, \mathrm{e}, \sqrt{3}$.
 \end{itemize}
 
+\subsection*{Fonction impaire}
+
+Une fonction est impaire \textit{(odd)} lorsque $f(-x) = -f(x)$.\\
+Par exemple, $\sin(-x) = -\sin(x)$.
+
 \section*{Mathématiques financières}
 
 \subsection*{Intérêt simple}
@@ -150,7 +155,7 @@ Alors,
 &\text{Taux d'intérêt \underline{nominal} \textit{annuel}} & 
 	& i^{(m)} = m \left( (1 + i)^{1/m} - 1 \right)	\\
 &\text{Taux d'escompte \underline{nominal} \textit{annuel}} & 
-	& d^{(m)} = m \left( 1 - (1 - d)^{-1/m} \right)
+	& d^{(m)} = m \left( 1 - (1 - d)^{1/m} \right)
 \end{align*}
 
 \subsection*{Rentes constantes}
@@ -404,6 +409,9 @@ Book value
 	Fonction d'excès-moyen 	&	$\pi_{X}(d) = \text{E}\left[X - d | X > d\right]$	\\	\hline
 \end{tabular}
 
+\textbf{Note: } Il est intéressant de savoir que les moments impairs d'une loi normal avec moyenne nulle sont nuls.
+Ceci est la normal avec une moyenne nulle est parfaitement symétrique tel que $f(-x) = -f(x)$; pour plus de détails, voir \href{https://www.youtube.com/watch?v=V4CjFT0k-_E}{ce vidéo YouTube}.
+
 \textbf{Conditionnels}
 \begin{align*}
 	\text{E}[X]	&=	\text{E}_{Y}[\text{E}[X|Y]]	&
@@ -437,6 +445,21 @@ Book value
 		&=	\int_{-\infty}^{\infty} f_{X}(s - y) f_{Y}(y) dy	
 \end{align*}
 
+\subsection*{Variable aléatoire}
+
+Soit X une variable aléatoire.
+
+Soit la fonction
+
+\begin{tabular}{| l | c | l |}
+\hline
+	de densité	&	$f_{X}(x) = \Pr(X = x)$	&	 Density Function	\\
+	de masse de probabilité	&	$f_{X}(x) \neq \Pr(X = x)$	&	Probability Mass Function (PMF)	\\
+	de répartition	&	$F_{X}(x) = \Pr(X \le x)$	&	Cumulative Density Function (CDF)\\
+	de survie	&	$S_{X}(x) = \Pr(X > x)$	&	Survival Function (CDF)\\\hline	
+\end{tabular}
+$F_{X}(x)$
+
 \subsection*{Lois multivariées}
 	
 \begin{rappel}{Loi multinomiale}
@@ -452,6 +475,53 @@ Book value
 		&= 	\frac{1}{(2 \pi)^{\frac{n}{2}} \sqrt{\text{det}(\bm{\Sigma})}} \e{\shortminus \frac{1}{2} (\matr{x} - \bm{\mu})^{\top} \bm{\Sigma}^{-1}(\bm{x} - \bm{\mu})}
 \end{align*}
 \end{rappel}
+
+\subsection*{Théorèmes limites}
+
+\begin{algo}{Inégalité de Markov}
+Soit la variable aléatoire (non-négative) $X$.\\
+Alors $\forall a > 0$ on a:
+\begin{align*}
+	\Pr(X \ge a) 
+	&\le 	\frac{\text{E}[X]}{a}
+\end{align*}
+\end{algo}
+
+\begin{algo}{Inégalité de Tchebychev}
+Soit la variable aléatoire $X$ avec $\mu, \sigma^{2} < \infty$.\\
+Alors $\forall k > 0$ on a:
+\begin{align*}
+	\Pr\left( \left|X - \mu\right| \ge k \sigma\right)
+	&\le 	\frac{1}{k^{2}}	&
+	&\text{ou}	&
+	\Pr\left( \left|X - \mu\right| \ge k^{*}\right)
+	&\le 	\frac{\sigma^{2}}{(k^{*})^{2}}	\\
+\end{align*}
+\end{algo}
+
+\begin{algo}{Loi (faible) des grands nombres (WLLN)}
+Soit la suite de variables aléatoires (iid) $X_{1}, \dots, X_{n}$ tel que $\forall i = 1, \dots, n$ $\text{E}[X_{i}] = \mu$ et $\text{Var}[X_{i}] = \sigma^{2} > 0$.\\
+Alors $\forall\epsilon > 0$ où $\bar{X}_{n} = \frac{X_{1} + \dots + X_{n}}{n}$:
+\begin{align*} 
+	\underset{n \rightarrow \infty}{\lim} \Pr\left( \left| \bar{X}_{n} -\mu \right| \ge \epsilon \right) 
+	&\rightarrow		0	&
+	&\Leftrightarrow	&
+	\bar{X}_{n} \overset{\mathds{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} \mu
+\end{align*}
+où $\mathds{P}$ représente la convergence en probablité.
+\end{algo}
+
+\begin{algo}{Théorème central limite (CLT)}
+Soit la suite de variables aléatoires (iid) $X_{1}, \dots, X_{n}$ tel que $\forall i = 1, \dots, n$ $\text{E}[X_{i}] = \mu$ et $\text{Var}[X_{i}] = \sigma^{2} > 0$.\\
+Alors pour $S_{n} = \sum_{i = 1}^{n} X_{i}$ :
+\begin{align*} 
+	\underset{n \rightarrow \infty}{\lim} \Pr\left( \frac{S_{n} - \text{E}[S_{n}]}{\sqrt{\text{Var}(S_{n})}} \le z \right) 
+	&=	\Phi(z)
+	&\Leftrightarrow	&
+	\frac{S_{n} - \text{E}[S_{n}]}{\sqrt{\text{Var}(S_{n})}} \overset{\mathcal{L}}{\longrightarrow} \mathcal{N}(0, 1)
+\end{align*}
+où $\mathcal{L}$ représente la convergence en distribution ("law").
+\end{algo}
 
 \end{multicols*}
 
