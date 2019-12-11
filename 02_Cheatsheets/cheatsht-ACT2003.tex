@@ -17,6 +17,10 @@
 %% Definition of LaTex math commands
 %% -----------------------------
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%
+% Redefine authors
+%
+\def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin et Alec James van Rassel}
 
 % 
 % Débute numérotation des chapitres à 2 pour suivre les notes de Marie-Piere.
@@ -1950,6 +1954,9 @@ S^{L}(\bm{\beta}) &=
 \end{align*}
 
 À noter qu'un méthode plus efficace que Ridge et Lasso est de minimiser sous la contrainte que $\sum_{j = 1}^{p} \bm{1}_{\{ \beta_j \neq 0 \}} \le t$.
+
+Afin de bien saisir la différence en méthode de Ridge et Lasso, il est suggéré de faire l'exercice 4.2. 
+On obtient que Ridge modifie l'échelle des prévisions alors que Lasso va modifier de la prévision une pénalité avec une addition ou soustraction.
 
 \vfill\null
 
