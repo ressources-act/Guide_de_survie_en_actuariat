@@ -790,6 +790,125 @@ On trouvera une équation du genre $g(\theta) \leq 0$, où $g$ sera une fonction
 	\includegraphics[scale = 0.07]{src/Q13-57_visualisation.png}
 \end{center}
 
+\subsection*{Méthode de Delta multivariée}
+
+\begin{definitionNOHFILL}[Méthode de Delta multivariée]
+Soit la variable aléatoire multivariée de \textbf{dimension $k$} et de \textbf{taille d'échantillon $n$} $\bm{X_{n}} = [X_{1n}, \dots, X_{kn}]^{\top}$.
+
+On pose:
+\begin{enumerate}
+	\item	$\bm{X_{n}}$ est asymptotiquement normale \textit{(multivariée)} de 
+	\item	moyenne $\bm\theta$ et
+	\item	matrice de covariance $\frac{\bm\Sigma}{n}$,
+\end{enumerate}
+où les paramètres $\bm\theta$ et $\bm\Sigma$ ne dépendent pas de la taille d'échantillon $n$. 
+
+On note que puisque $\bm{X_{n}}$ est asymptotiquement normale, ils deviennent les paramètres de la normale multivariée.
+\\
+\hrule\hrulefill
+
+Soit la fonction $\bm{G_{n}} = g(X_{1n}, \dots, X_{kn})$.
+
+On pose:
+\begin{enumerate}
+	\item	$\bm{G_{n}}$ est également asymptotiquement normale \textit{(\textbf{pas} multivariée)} mais de 
+	\item	moyenne g($\bm\theta$) et
+	\item	\textbf{\textit{variance}} $\frac{\bm{A}^{\top}\bm\Sigma\bm{A}}{n}$,
+\end{enumerate}
+où $\bm{A}$ est le gradient (c.-à-d., le vecteur des k premières dérivées) de $g(\bm\theta)$ évalué aux vrais paramètres $\bm\theta$ de $\bm{X_{n}}$; $\bm{A} = \left[\deriv{\theta_{1}}g, \dots, \deriv{\theta_{k}}g\right]^{\top} \bigg|_{\bm\theta}$.
+\\
+\hrule\hrulefill
+
+Alors, on obtient:
+\begin{formula}{Variance estimée méthode de Delta multivariée}
+\begin{align*}
+	\widehat{\text{Var}}(\hat{\bm\theta})
+	&=	\frac{\hat{\bm{A}}^{\top} \hat{\bm\Sigma} \hat{\bm{A}}}{n}
+\end{align*}
+\end{formula}
+\end{definitionNOHFILL}
+
+\begin{examplebox}{Exemple avec une lognormale}
+Puisque ce concept est très théorique et difficile à conceptualiser, nous jugeons pertinent d'inclure un exemple.
+\\\hrulefill
+
+On veut l'estimateur de la moyenne d'une distribution log-normale où:
+\begin{equation*}
+	\text{E}[X]	=	\e{\mu + \sigma^{2}/2}	=	g(\mu, \sigma)	=	g(\bm\theta)	\\
+\end{equation*}
+On peut trouver (\textit{pas démontré ici}) que les EMV sont:
+\begin{align*}
+	\hat{\mu}
+	&=	\frac{1}{n} \sum_{i = 1}^{n} \ln x_{i}	&
+	\hat{\sigma}
+	&=	\frac{1}{n} \sum_{i = 1}^{n} (\ln x_{i} - \hat{\mu})^{2}	\\
+\end{align*}
+Donc, l'EMV de $g(\mu, \sigma)$ est:
+\begin{equation*}
+	g(\hat{\mu}, \hat{\sigma})	=	\e{\hat{\mu} + \hat{\sigma}^{2}/2}	=	g(\hat{\bm\theta})	\\
+\end{equation*}
+De plus, on peut trouver \textit{(encore, pas montré ici)} que la matrice de covariance est:
+\begin{align*}
+	\frac{\bm\Sigma}{n}
+	=	\frac{1}{\bm{I}(\mu, \sigma)}	
+	&=	\begin{bmatrix}
+			\frac{\sigma^{2}}{n}	&	0						\\
+			0					&	\frac{2\sigma^{4}}{n}	\\
+		\end{bmatrix}
+\end{align*}
+où $\bm{I}$ est l'information de Fisher.
+
+De plus:
+\begin{align*}
+	\bm{A}
+	&=
+	\begin{bmatrix}
+		\deriv{\mu}g(\mu, \sigma)	\\
+		\deriv{\sigma}g(\mu, \sigma)	\\
+	\end{bmatrix}
+	\Leftrightarrow
+	\begin{bmatrix}
+		\deriv{\theta_{1}}g(\bm\theta)	\\
+		\deriv{\theta_{2}}g(\bm\theta)	\\
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		\e{{\mu} + {\sigma}^{2}/2}	\\
+		\sigma\e{{\mu} + {\sigma}^{2}/2}	\\
+	\end{bmatrix}
+\end{align*}
+\setlength{\mathindent}{-1.5cm}
+
+Finalement, on obtient:
+\begin{align*}
+	\text{E}[g(\hat{\mu}, \hat{\sigma})]	
+	&=	\text{E}[g(\hat{\bm\theta})]
+	&\underset{n \rightarrow \infty}{=}	\e{\mu + {\sigma}^{2}/2}	\\
+	\text{Var}[g(\hat{\mu}, \hat{\sigma})]	
+	&=	\text{Var}[g(\hat{\bm\theta})]	\\
+	&\underset{n \rightarrow \infty}{=}	\hat{\bm{A}}^{\top} \frac{\hat{\bm{\Sigma}}}{n} \hat{\bm{A}}	\\
+	&=	\Bigg[
+	\begin{bmatrix}
+		\e{\hat{\mu} + \hat{\sigma}^{2}/2}	\\
+		\sigma\e{\hat{\mu} + \hat{\sigma}^{2}/2}	\\
+	\end{bmatrix}^{\top} 
+	\begin{bmatrix}
+		\frac{\hat\sigma^{2}}{n}	&	0						\\
+		0					&	\frac{2\hat\sigma^{4}}{n}	\\
+	\end{bmatrix}
+	\begin{bmatrix}
+		\e{\hat{\mu} + \hat{\sigma}^{2}/2}	\\
+		\sigma\e{\hat{\mu} + \hat{\sigma}^{2}/2}	\\
+	\end{bmatrix} 
+		\Bigg] _{\bm{\theta}}	\\
+	&=	\e{2\mu + \sigma^{2}} \left( \frac{\sigma^{2}}{n} + \frac{\sigma^{4}}{2n} \right)
+\end{align*}
+\end{examplebox}
+
+\setlength{\mathindent}{1cm}
+
+
+
 \subsection*{Critères de sélection}
 Pour choisir entre plusieurs modèles, on peut, entre autres, se baser sur les critères suivants : 
 \begin{enumerate}
@@ -818,9 +937,9 @@ La difficulté repose justement à déterminer une distribution a priori convain
 Une distribution pour laquelle les probabilités (ou fonction de densité) sont non-négatives et dont leur somme (ou intégral) est infini.
 \end{definition}
 
-\begin{definition}[Distribution du modèle]
+\begin{definitionNOHFILL}[Distribution du modèle]
 Dénoté $f_{\bm{X} | \Theta}(\bm{x} | \theta)$, elle est la distribution de probabilité des données tel que collecté étant donné une valeur précise de $\theta$ 
-\end{definition}
+\end{definitionNOHFILL}
 
 \begin{rappel}{Rappel distribution conjointe et marginale}
 Fonction conjointe:
@@ -835,8 +954,7 @@ Fonction marginale de $\bm{x}$:
 \end{equation*}
 \end{rappel}
 
-
-\begin{definition}[Distribution \emph{a posteriori}]
+\begin{definitionNOHFILL}[Distribution \emph{a posteriori}]
 Dénoté $\pi_{\Theta | \bm{X}}(\theta | \bm{x})$, elle représente la distribution de probabilité des paramètres conditionnelle aux données observées. 
 La distribution \emph{a posteriori} nous permet donc de savoir avec quelle probabilité (non-nulle) les paramètre $\bm\theta$ peuvent prendre certaine valeurs spécifiques sachant qu'on a observé certains $x$: 
 \begin{equation}
@@ -847,10 +965,10 @@ La distribution \emph{a posteriori} nous permet donc de savoir avec quelle proba
 \end{equation}
 
 L'idée est de remplacer les différentes distributions dans l'\autoref{eq:dist_posteriori}, et en déduire une distribution avec une paramétrisation différente\footnote{Souvent, la distribution \emph{a posteriori} aura la même distribution que celle \emph{a priori}, mais avec des paramètres différents.}.
-\end{definition}
+\end{definitionNOHFILL}
 
 De plus, on défini la distribution pour les nouvelles observations:
-\begin{definition}[Distribution prédictive du modèle]
+\begin{definitionNOHFILL}[Distribution prédictive du modèle]
 Dénoté $f_{Y | \bm{X}}(y | \bm{x})$, elle est la distribution de probabilité d'une nouvelle observation $y$ étant étant donné les données $\bm{x}$.
 
 La fonction de densité d'une nouvelle observation étant donné la valeur du paramètre.
@@ -859,7 +977,7 @@ La fonction de densité d'une nouvelle observation étant donné la valeur du pa
 	=	\int f_{Y|\Theta}(y | \theta) \pi_{\Theta | \bm{X}}(\theta | \bm{x}) d\theta
 \end{equation*}
 
-\end{definition}
+\end{definitionNOHFILL}
 
 
 \paragraph{L'estimateur Bayésien} L'estimateur Bayésien est défini comme l'espérance du paramètre $\theta$, sachant la distribution de $X$. 
