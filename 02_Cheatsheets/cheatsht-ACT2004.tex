@@ -2364,12 +2364,47 @@ Il suffit de remplacer $-\beta(m)$ par $+\gamma(m)$ pour obtenir les formules de
 
 
 \section{Primes nivelées}
+
+\setcounter{subsection}{5}
+\subsection{Retour de primes}
+
+\begin{itemize}
+\item	Certains contrats vont prévoir un remboursement des cotisations (accumulées au taux $j$) en cas du décès du détenteur de police pendant la période différée.\\
+		La logique est que, par exemple, le détenteur peut se sentir lésé s'il paye ses cotisations pendant une période différée et décède avant de recevoir de primes; c'est actuariellement juste, mais ça semble être injuste.
+\item 	Soit la v.a. \textit{(de la valeur actualisée)} du retour de primes $W$:
+\begin{align*}
+	W 
+	&=	\begin{cases}
+			v^{K + 1}_{i} \sx**{\angl{K + 1}j} 	& 	K = 0, 1, ..., n - 1 \\
+			0	&	K = n, n + 1, \dots	\\
+		\end{cases}
+\end{align*}
+où $j < i$. Si $j = i$, alors la première ligne se simplifie à $\ax**{\angl{K + 1}j}$ et si $j = 0$ alors elle se simplifie à $(K + 1) v_{i}^{K + 1}$.
+\item 	Aussi, on trouve que
+\[
+	\text{E}[W] 
+	= 	\sum_{k=0}^{n - 1} v_i^{k+1} \sx**{\angl{k+1} j} \qx[k|]{x} 
+	= 	\frac{1 + j}{j} \left( {A}_{\nthtop{1}{x}:\angln i^{*}} - A_{\nthtop{1}{x}:\angln}\right)
+\]
+où $i^{*} = \frac{i - j}{1 + j}$
+\item	La variable aléatoire de perte à l'émission devient:
+	\begin{equation*}
+	L(\pi) = Z - \pi Y + \pi W
+	\end{equation*}\\
+		Sous le principe d'équivalence, on obtient:
+	\begin{equation*}
+	\pi = \frac{\text{E}[Z]}{\text{E}[Y] - \text{E}[W]}
+	\end{equation*}
+\end{itemize}
+
+\setcounter{subsection}{0}
 \subsection{Notation et définitions}
-On définit $L$ comme la perte à l'émission d'un contrat pour l'assureur. Dans ce chapitre, le paiement de la PUN s'étale sur une période de temps, et est conditionnel  à la survie de l'assuré. Dans le cas d'une assurance-vie,
-\[L = Z - Y\]
-où $Z$ est la valeur présente actuarielle est prestations à payer et $Y$ la valeur présente actuarielle des primes à recevoir. De même, pour les rentes,
-\[L = Y_1 - Y_2\]
-où $Y_1$ représente la valeur présente actuarielle des prestations de rente à payer et $Y_2$ la valeur présente actuarielle des primes à recevoir. \\
+On définit $L$ comme la perte à l'émission d'un contrat pour l'assureur. Dans ce chapitre, le paiement de la PUN s'étale sur une période de temps, et est conditionnel à la survie de l'assuré. 
+On défini $L$ comme étant $L = Z - Y$ \textit{\textbf{mais}} ces derniers n'ont pas nécessairement la même signification qu'avant:
+\begin{itemize}
+	\item[$Z$:] La v.a. qui sous-tend le contrat d'assurance \textbf{\textit{OU}} de rente acheté par l'individu.
+	\item[$Y$:] La v.a. qui sous-tend l'engament de l'assuré à verser des primes.
+\end{itemize}
 
 On définit la prime nette nivelée $\pi$ selon 3 principes. 
 
@@ -2411,22 +2446,26 @@ Où $Z \sim N(0,1)$ et $\Phi$ la fonction de répartition de $Z$. Le défi se tr
 & = \variance{Z}  + \variance{Y} - 2 \left( \esp{ZY} - \esp{Z} \esp{Y} \right) \\
 \end{align*}
 
-\subsection{Retour de primes}
-\begin{itemize}
-\item Certains contrats (surtout rentes différée) vont prévoir un remboursement partiel ($\alpha$) ou total des cotisations (accumulées au taux $j < i$)\footnote{Le taux $i$ est le taux préférentiel de l'assureur, tandis que le taux $j$ est le taux offert à l'assuré pour l'accumulation de ses cotisations dans sa clause de retour de primes.} en cas de décès de l'assuré pendant la période différée.
-\item On introduit la v.a. $W$, qui représente la valeur présente actuarielle d'un retour de prime, telle que
-\begin{align*}
-W = 
-\begin{cases}
-\alpha \pi v_i^{K_x + 1} \sx**{\angl{K_x + 1}j} & K_x = 0, 1, ..., n-1 \\
-0	& K_x = n, n+1, ... \\
-\end{cases}
-\end{align*}
-Alors,
-\[L = Y_1 - Y_2 + W\]
-\item Aussi, on trouve que
-\[\esp{W} = \sum_{k=0}^{n - 1} \alpha \pi v_i^{k+1} \sx**{\angl{k+1} j} \qx[k|]{x} = \alpha \pi \psi\]
-\end{itemize}
+%\subsection{Retour de primes}
+%%%% version A2018 %%%%
+%\begin{itemize}
+%\item Certains contrats vont prévoir un remboursement partiel ($\alpha$) ou total des cotisations (accumulées au taux $j < i$)\footnote{Le taux $i$ est le taux préférentiel de l'assureur, tandis que le taux $j$ est le taux offert à l'assuré pour l'accumulation de ses cotisations dans sa clause de retour de primes.} en cas de décès de l'assuré pendant la période différée.
+%\item On introduit la v.a. $W$, qui représente la valeur présente actuarielle d'un retour de prime, telle que
+%\begin{align*}
+%W = 
+%\begin{cases}
+%\alpha \pi v_i^{K_x + 1} \sx**{\angl{K_x + 1}j} & K_x = 0, 1, ..., n-1 \\
+%0	& K_x = n, n+1, ... \\
+%\end{cases}
+%\end{align*}
+%Alors,
+%\[L = Y_1 - Y_2 + W\]
+%\item Aussi, on trouve que
+%\[\esp{W} = \sum_{k=0}^{n - 1} \alpha \pi v_i^{k+1} \sx**{\angl{k+1} j} \qx[k|]{x} = \alpha \pi \psi\]
+%\end{itemize}
+%%%% ------------ %%%%
+
+
 
 \subsection{Primes brutes}
 \begin{itemize}
