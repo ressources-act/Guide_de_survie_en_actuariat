@@ -562,7 +562,7 @@ On dit donc que $Y$ est la \textit{log-loi} où $\ln Y = X$ est la loi.
 Soit la fonction génératrice des moments $M_X(t)$, telle que
 \[M_X(t) = \esp{e^{tX}}\]
 Alors, la fonction génératrice cumulante $K_X(t)$ est définie comme
-\[K(t) = \derivee{t} \ln M_X(t)\]
+\[K(t) = \ln M_X(t)\]
 De plus, la fonction génératrice cumulante a les propriétés suivantes : 
 \begin{align*}
 K'(t) \eval_{t = 0} & =   \esp{X} \\
@@ -754,13 +754,37 @@ On valide alors l'adéquation d'un modèle avec $p$ variables explicatives et $n
 	&= 	\frac{\sum_{j = 1}^{k} n(\hat{p}_j - p_{nj})^2 }{\hat{p}_j} 
 	\sim	\chi^{2}_{k - p - 1}
 \end{align*}
-\end{algo}
-
 où 
 \begin{enumerate}
 	\item[$\hat{p}_j$:]	Probabilité (selon le modèle) d'observer une valeur dans la $j^{e}$ classe.
 	\item[$p_{nj}$:]	Proportion empirique des observations dans la $i^{e}$ classe.
 \end{enumerate}
+\end{algo}
+
+
+On peut récrire ce test sous la forme suivante:
+\begin{algo}{Test d'adéquation du Khi-Carré (autre forme)}
+On pose 
+\begin{itemize}
+	\item	$n_{j}$ est le nombre de données dans le groupe $(c_{j - 1}, c_{j}]$,
+	\item	$j \in \{1, \dots, k \}$,
+	\item	$k$ est le nombre de groupes et
+	\item	$\sum_{j = 1}^{k}n_{j} = n$.
+\end{itemize}
+
+La statistique de test est donc:
+\begin{align*}
+	Q 
+	&= 	\frac{\sum_{j = 1}^{k} (E_j - n_{j})^2 }{E_j} 
+\end{align*}
+où
+\begin{itemize}
+	\item	Asymptotiquement, $Q \sim	\chi^{2}_{k - p - 1}$ et 
+	\item	$p$ est le nombre de paramètres estimés,
+	\item	$E_{j} = n [F(c_{j}; \hat{\bm\theta}) - F(c_{j - 1}; \hat{\bm\theta})]$.
+\end{itemize}
+On rejète $H_{0}$ si $Q > \chi_{k - p - 1, \alpha}^{2}$.
+\end{algo}
 
 On peut également effectuer le test LRT pour valider l'adéquation du modèle.
 
@@ -791,7 +815,6 @@ On trouvera une équation du genre $g(\theta) \leq 0$, où $g$ sera une fonction
 \end{center}
 
 \subsection*{Méthode de Delta multivariée}
-
 \begin{definitionNOHFILL}[Méthode de Delta multivariée]
 Soit la variable aléatoire multivariée de \textbf{dimension $k$} et de \textbf{taille d'échantillon $n$} $\bm{X_{n}} = [X_{1n}, \dots, X_{kn}]^{\top}$.
 
@@ -883,7 +906,9 @@ Finalement, on obtient:
 \begin{align*}
 	\text{E}[g(\hat{\mu}, \hat{\sigma})]	
 	&=	\text{E}[g(\hat{\bm\theta})]
-	&\underset{n \rightarrow \infty}{=}	\e{\mu + {\sigma}^{2}/2}	\\
+	\underset{n \rightarrow \infty}{=}	\e{\mu + {\sigma}^{2}/2}	
+\end{align*}
+\begin{align*}
 	\text{Var}[g(\hat{\mu}, \hat{\sigma})]	
 	&=	\text{Var}[g(\hat{\bm\theta})]	\\
 	&\underset{n \rightarrow \infty}{=}	\hat{\bm{A}}^{\top} \frac{\hat{\bm{\Sigma}}}{n} \hat{\bm{A}}	\\
@@ -910,7 +935,17 @@ Finalement, on obtient:
 
 
 \subsection*{Critères de sélection}
-Pour choisir entre plusieurs modèles, on peut, entre autres, se baser sur les critères suivants : 
+
+Le livre introduit 2 concepts:
+\begin{description}
+	\item[Parsimony:] À moins d'évidence considérable au contraire, le modèle le plus simple est toujours préféré.
+	\item	Si on essaye assez de modèles, éventuellement un va sembler être bien ajusté même s'il ne l'est pas. 
+	Il est donc essentiel de restreindre le nombre de modèles possibles.
+\end{description}
+
+De plus, le livre affirme qu'il y a deux méthodes de sélection de modèle; par jugement et par valeur de test.
+
+Pour choisir entre plusieurs modèles selon une valeur, on peut, entre autres, se baser sur les critères suivants : 
 \begin{enumerate}
 \item la plus \textbf{faible valeur} pour le test \textbf{Kolmogorov-Smirnov} ; 
 \item la plus \textbf{faible valeur} pour le test \textbf{Anderson-Darling} ;
@@ -918,6 +953,27 @@ Pour choisir entre plusieurs modèles, on peut, entre autres, se baser sur les c
 \item la plus \textbf{haute valeur} pour la \textbf{\emph{p-value} du test Goodness-of-fit} ; 
 \item la plus \textbf{haute valeur} pour la \textbf{fonction de vraisemblance à son maximum}.
 \end{enumerate}
+
+Le problème avec tous ces test (sauf la p-value du khi-carré) est qu'ils ne respectent pas le principe de \textit{parsimony}. 
+Le modèle le plus complexe sera toujours préférable puisqu'il aura un meilleur ajustement pour les données.
+La distinction avec la p-value du test du khi-carré est que le nombre de paramètres est pris en compte dans l'obtention du seuil.
+
+Ceci est d'ailleurs d'où provient les tests d'AIC et de BIC. L'AIC pénalise les différents modèles selon le nombre de paramètres, le BIC les pénalisent proportionnellement au nombre d'observation.
+
+\subsubsection*{Critère d'information d'Akaike (AIC) et critère Bayésien de Schwarz (BIC)}
+On obtient alors que pour $n$ observation et un modèle avec $p$ paramètres:
+\begin{itemize}
+\item[AIC:] Ce critère est le plus utilisé dans la pratique et permet d'évaluer la qualité de l'ajustement d'un modèle. 
+	\[ 
+		AIC = - \ell + 2 p
+	\]
+L'AIC prend en compte à la fois la qualité des prédictions du modèle et sa complexité.
+\item[BIC:] BIC est similaire à l'AIC, mais la pénalité des paramètres dépend de la taille de l'échantillon.
+	\[ 
+		BIC = \ell - \frac{p}{2} \ln n
+	\]
+\item On cherche donc à minimiser ces 2 critères.
+\end{itemize}
 
 \setcounter{section}{12}
 \section{Estimation bayésienne}
