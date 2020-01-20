@@ -1,0 +1,113 @@
+\documentclass[10pt, french]{article}
+%\input{cheatsht-preamble-general.tex}
+\usepackage[landscape, hmargin=1cm, vmargin=1.7cm]{geometry}
+
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+%% -----------------------------
+%% Footer and header customization
+%% -----------------------------
+\fancyhead{} 	% Reset
+\fancyhead[C]{\LARGE Bases de processus aléatoire}
+\fancyhead[R]{\auteur}
+%\def\cours{Analyse probabiliste des risques actuariels}
+%\def\sigle{ACT-1002}
+\fancyfoot{}		% Reset
+\fancyfoot[R]{\thepage ~de~ \pageref{LastPage}}
+
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
+\def\SectionColor{green!50!black}
+\def\SubSectionColor{green!20!black}
+%% -----------------------------
+%% Definition of LaTex math commands
+%% -----------------------------
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%
+% Redefine authors
+%
+\def\auteur{Alec James van Rassel}
+
+\definecolor{burgundy}{rgb}{0.5, 0.0, 0.13}
+
+\begin{document}
+
+\center % Center everything on the page
+
+%\textsc{\LARGE Base de processus aléatoire}\\[0.5cm]
+%\textsc{\Large ACT-1002: Analyse probabiliste des risques actuarielles}\\[0.5cm] 
+
+\begin{multicols*}{3}
+
+\begin{rappel}{Domaine et définition}
+\begin{description}
+	\item[Random Process:]	Famille de variable aléatoires $\{X_{t}: t \in T\}$ qui associe un espace d'états $\Omega$ à un ensemble $S$.
+	\begin{enumerate}
+		\item[$\Omega$: ] L'espace d'états $\Omega$ est composé des événements possible de la variable aléatoire $X$.
+		\item[] Par exemple, lorsqu'on lance une pièce de monnaie $\Omega = \{\textsf{Face}, \texttt{Pile} \}$.
+		\item[$S$: ] L'ensemble $S$ est l'ensemble des probabilités des événements dans $\Omega$.
+		\item[] Par exemple, lorsqu'on lance une pièce de monnaie $S = \{\frac{1}{2}, \frac{1}{2} \}$.
+	\end{enumerate}
+\end{description}
+\begin{description}
+	\item[iid: ]	Les variables aléatoire $X_{t}$ doivent être indépendantes et identiquement distribuées. Ceci est dénoté par \textit{\textbf{i.i.d.}}.				
+	\begin{description}
+		\item[indépendant: ] Si $X_{t}$ est une variable aléatoire \textit{iid} alors, pour 2 variables aléatoire $X_{i}$ et $X_{j}$, où $i, j \in T$, le résultat de $X_{i}$ n'a aucun impact sur le résultat de $X_{j}$ pour tout $t \in T$.
+		\item[identiquement distribué: ] L'ensemble $S$ est l'ensemble des probabilités des événements dans $\Omega$.
+	\end{description}
+	\item[Probabilité de $X_{t}$: ]	La probabilité d'un événement $X_{t}$ est dénoté $\Pr(X_{t})$. 
+	Ces probabilité forment l'ensemble $S$.
+	\begin{description}
+		\item[Propriété: ] $\sum_{i = -\infty}^{\infty} \Pr(X_{i}) = 1$
+	\end{description}
+	\item[Types de variables aléatoire: ]	Il y a 2 types de variables aléatoire, les distributions \textit{discrètes} et \textit{continues}.
+		\begin{description}
+		\item[Discrète: ]	Si l'ensemble $S$ est dénombrable, c'est-à-dire que $S= \{s\}$, alors la variable aléatoire $X$ est dite \textbf{discrète}.
+		\item[Continue: ]	Si l'ensemble $S$ n'est pas dénombrable alors la variable aléatoire $X$ est dite \textbf{continue}.
+	\end{description}
+\end{description}
+\end{rappel}
+
+\begin{probch3}{Probabilité conditionnelle}
+\begin{description}
+	\item[Conditionnel:]	La probabilité que $A$ arrive \textit{sachant} que $B$ est arrivé est: 
+	\begin{align*}
+		\Pr(A | B) 
+		&= 	\frac{\Pr(A \cap B)}{\Pr(B)}	
+	\end{align*}
+	où la probabilité que $B$ arrive est non-nulle, $\Pr(B) > 0$.
+	\item[Indépendant:]	Les événements $A$ et $B$ sont indépendant si:
+	\begin{equation*}
+		\Pr(A \cap B) = \Pr(A) \cdot \Pr(B)
+	\end{equation*}
+\end{description}
+Avec la première définition de la probabilité conditionnelle, on peut trouver ces résultats:
+\begin{description}
+	\item[relation probabilité conditionnelle: ]	La probabilité que l'événement $E_{2}$ ai lieu sachant que l'événement $E_{1}$ à déjà eu lieu est équivalent à la probabilité que l'événement $E_{1}$ ai lieu sachant que $E_{2}$ à \textit{déjà} eu lieu multiplié par la probabilité que l'événement $E_{2}$ ai lieu peu importe $E_{1}$. \\
+	Le tout est encore pondéré par la probabilité que l'événement $E_{1}$ ai lieu peu importe si $E_{2}$ y a.
+	\begin{align*}
+		\Pr(E_{2} | E_{1})
+		&= 	\frac{\Pr(E_{2} \cap E_{1})}{\Pr(E_{1})}		\\
+		&=	\frac{\Pr(E_{1} | E_{2}) \Pr(E_{2})}{\Pr(E_{1})}		
+	\end{align*}
+	\item[Loi des probabilités totale: ]	Les probabilités liées à la variable aléatoire $E$ lorsqu'elles sont conditionnelles à la variable aléatoire discrète $F$ est dénoté comme suit:
+	\begin{align*}
+		\Pr(E)	&=	\sum_{i = 1}^{n} \Pr(E | F_{i}) \Pr(F_{i})
+	\end{align*}
+	\item[Formule de Bayes: ]	On combine les deux résultats précédent:
+	\begin{align*}
+		\Pr(F_{i} | E)
+		&=	\frac{\Pr(E | F_{i})}{\sum_{i = 1}^{n} \Pr(E | F_{i}) \Pr(F_{i})}
+	\end{align*}
+\end{description}
+\end{probch3}
+
+\end{multicols*}
+
+\end{document}

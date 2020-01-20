@@ -68,54 +68,97 @@ Le type principal d'\textit{estimateur par intervalle} est \textit{l'intervalle 
 
 \subsubsection*{Estimation ponctuelle}
 
-Lorsque nous avons un estimateur $\hat\theta$ pour un paramètre inconnu $\theta$ on espère que, \textbf{en moyenne}, ses erreurs de prévision vont s'annuler.
-On peut alors trouver $\text{E}\hat\theta | \theta]$, soit l'espérance de l'estimateur sachant que $\theta$ est la vraie valeur du paramètre.
-Par la suite, on calcule son \textbf{biais} $\text{B}(\hat\theta)$ dans la prévision du paramètre:
+Lorsque nous avons un estimateur $\hat\theta$ pour un paramètre inconnu $\theta$ on espère que, \textbf{en moyenne}, ses erreurs de prévision seront nulles. 
+On peut alors trouver $\text{E}[\hat\theta | \theta]$; soit, l'espérance de l'estimateur lorsque $\theta$ est la vraie valeur du paramètre.
+Par la suite, on calcule son \textbf{biais} $\text{B}(\hat\theta)$ dans la prévision de cette vraie valeur du paramètre:
 \begin{algo}{Biais d'un estimateur}
 \begin{align*}
 	\text{B}(\hat\theta) 
-	&= 	\text{E}\hat\theta | \theta] - \theta
+	&= 	\text{E}[\hat\theta | \theta] - \theta
 \end{align*}
 \end{algo}
 
-Cependant, le bais n'indique pas la variabilité de l'estimateur $\hat\theta$ dans sa prévision.
-Nous définissons alors la \textbf{borne inférieur Cramèr-Rao} de la variance de l'estimateur $\text{Var}(\hat{\theta})$ avec \textbf{l'information de Fisher} $I(\theta)$:
-\begin{algo}{Borne inférieur Cramèr-Rao}
+Cependant, le biais n'indique pas la variabilité de l'estimateur $\hat\theta$ dans sa prévision. Ceci est plutôt calculé avec la variance de l'estimateur $\text{Var}(\hat{\theta})$. 
+Nous pouvons alors définir la \hyperlink{cramer-rao}{\textbf{borne inférieure de Cramèr-Rao}} de la variance de l'estimateur $\text{Var}(\hat{\theta})$ avec \textbf{la matrice d'information de Fisher} $I(\theta)$:
+
+\begin{algo}{\hypertarget{cramer-rao}{Borne inférieure Cramèr-Rao}}
 \begin{align*}
 	\text{Var}(\hat{\theta}) \ge \frac{1}{n\text{E}\left[\Big(\deriv{\theta}\ln f(x ; \theta)\Big)^{2}\right]}, \quad \text{où } I(\theta) = \text{E}\left[\Big(\deriv{\theta}\ln f(x ; \theta)\Big)^{2}\right]
 \end{align*}
 \end{algo}
 
-Par la suite, nous pouvons définir \textbf{l'efficacité} d'un estimateur comme étant le ratio de la borne Cramèr-Rao sur la variance de l'estimateur:
+Cette borne est rarement comprise et sur la base de \hyperlink{https://www.youtube.com/watch?v=igQIsYAlKlY}{ce vidéo} et \hyperlink{https://www.youtube.com/watch?v=i0JiSddCXMM}{ce vidéo} je me lance dans l'explication de l'intuition derrière cette borne. Si vous ne comprenez pas, allez les regarder puisqu'elle va régulièrement réapparaître plus tard dans le bac.
+
+Premièrement, on définit l'utilité des deux premières dérivées:
+\begin{description}
+	\item[$\deriv{\theta} \mathcal{L}(\theta)$]: Représente le \og rate of change \fg{} \textit{(angl.)} de la fonction.
+	\item[$\frac{\partial^{2}}{\partial\theta^{2}} \mathcal{L}(\theta)$]: Représente la concavité de la fonction; on peut y penser comme sa \og curve \fg{}.
+\end{description}
+
+On sait que la dérivée sera de 0 au point $\hat\theta^{\texttt{EMV}}$, mais juste passé ce point elle sera négative! On ajoute alors un négatif pour évaluer la décroissance pareillement à l'augmentation de la dérivée. Le twist est que beaucoup de fonctions peuvent avoir le même point où elles sont maximisées, mais avoir l'air complètement différents. 
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp33309643030277414] 
+\draw  (48,169.8) -- (292.17,169.8)(72.42,51) -- (72.42,183) (285.17,164.8) -- (292.17,169.8) -- (285.17,174.8) (67.42,58) -- (72.42,51) -- (77.42,58)  ;
+%Shape: Wave [id:dp761793702798415] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (282.17,170) .. controls (264.07,170) and (248.47,137.57) .. (232.17,103.5) .. controls (215.86,69.43) and (200.26,37) .. (182.17,37) .. controls (164.07,37) and (148.47,69.43) .. (132.17,103.5) .. controls (116.77,135.67) and (102,166.38) .. (85.17,169.7) ;
+%Shape: Wave [id:dp8411747217824341] 
+\draw  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] (193.17,169) .. controls (191.18,169) and (189.46,132.67) .. (187.67,94.5) .. controls (185.87,56.33) and (184.16,20) .. (182.17,20) .. controls (180.18,20) and (178.46,56.33) .. (176.67,94.5) .. controls (174.87,132.67) and (173.16,169) .. (171.17,169) ;
+
+% Text Node
+\draw (183,184) node  [font=\small] [align=left] {$\displaystyle \widehat{\theta ^{\text{MLE}}}$};
+% Text Node
+\draw (296,157) node  [font=\footnotesize] [align=left] {$\displaystyle \theta $};
+% Text Node
+\draw (66,40) node  [font=\footnotesize] [align=left] {$\displaystyle \mathcal{L}( y;\ \theta )$};
+
+
+\end{tikzpicture}
+
+Clairement, la courbe \textcolor{purple}{en mauve} aura plus de points près de $\hat{\theta}^{\text{EMV}}$ que la courbe en \textcolor{orange}{orange}. On évalue cette différence avec la deuxième dérivée, soit la concavité ou \og curve \fg{}. Ce faisant, la deuxième dérivée permet d'être plus certain d'avoir le bon estimateur. Il est alors logique que la variance ne puisse pas être moins que l'estimateur du maximum de vraisemblance évalué au point où la concavité est maximisée. 
+
+Finalement, on veut comprendre pourquoi $1/\text{\og curve \fg{}}$ et non juste $\text{\og curve \fg{}}$. On déduit que plus la concavité est élevée, alors plus la variance sera faible. Il aura forcément moins de points près de $\hat\theta^{\text{EMV}}$ et donc:
+\begin{equation*}
+	\text{Var}(\hat\theta^{\text{EMV}}) \overset{\text{dépend}}{\sim} \frac{1}{\text{\og curve \fg{}}}
+\end{equation*}
+On observe alors que la limite lorsque la \og curve \fg{} tend vers l'infini implique une variance nulle. On dit donc que la distribution de l'estimateur est "asymptotiquement normale" tel que $\hat\theta^{\text{EMV}} \overset{a.s.}{\rightarrow} \mathcal{N}\Big(\theta, \big(\bm{I}(\theta)\big)^{-1}\Big)$ où a.s. veut dire \hyperlink{asympto}{asymptotiquement}.
+
+Il s'ensuit alors que \textbf{l'efficacité d'un estimateur} est le ratio de la borne Cramèr-Rao sur la variance de l'estimateur:
 \begin{algo}{Efficacité d'un estimateur}
 \begin{align*}
 	\text{eff}(\theta)
 	&=	\frac{\text{Var}(\hat{\theta})^{\text{Rao}}}{\text{Var}(\hat{\theta})} 
-	=	\frac{1}{n\text{Var}(\hat{\theta})\text{E}\left[\Big(\deriv{\theta}\ln f(x ; \theta)\Big)^{2}\right]}
+	=	\frac{1}{n\text{E}\left[\Big(\deriv{\theta}\ln f(x ; \theta)\Big)^{2}\right]\text{Var}(\hat{\theta})}
 \end{align*}
 \end{algo}
 
-Si ce ratio est de 1 $\text{eff}(\theta) = 1$, alors l'estimateur est \textbf{efficace}.
+Si ce ratio est de 1, $\text{eff}(\theta) = 1$, alors l'estimateur est à la borne. On dit qu'il est un estimateur \og \textbf{efficient} \fg{} \textit{(angl.)}. Du fait, parmi les estimateurs sans biais il doit être celui avec la \textbf{variance minimale}; on dit que l'estimateur est le \og \textbf{Minimum Variance Unbiased Estimator (MVUE)} \fg{} \textit{(angl.)}. 
 
-Nous pouvons aussi généraliser cette formulation pour obtenir l'efficacité relative d'un estimateur contre un autre:
+De plus, on peut généraliser cette formulation pour obtenir l'efficacité relative d'un estimateur comparativement à un autre:
 \begin{algo}{Efficacité relative}
-Soit les estimateurs non-biaisés $\hat\theta_{n}$ et $\tilde\theta_{n}$, l'efficacité de $\hat\theta_{n}$ relatif à $\tilde\theta_{n}$ est:
+Soit les estimateurs non biaisés $\hat\theta_{n}$ et $\tilde\theta_{n}$, l'efficacité de $\hat\theta_{n}$ relativement à $\tilde\theta_{n}$ est:
 \begin{align*}
 	\text{eff}(\hat\theta_{n}, \tilde\theta_{n})
 	&=	\frac{\text{Var}(\hat\theta_{n})}{\text{Var}(\tilde\theta_{n})}	
 \end{align*}
 \end{algo}
-Si $\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) < 1$ alors $\hat\theta_{n}$ est mieux et vice-versa.
+Si $\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) < 1$ alors $\hat\theta_{n}$ est plus efficace et vice-versa.
 
-Nous pouvons également évaluer si un estimateur est cohérent, ou converge, avec des très grands échantillons; un estimateur $\hat\theta$ est \textbf{consistent} \textit{(angl.)} si la probabilité qu'il diffère de la vraie valeur du paramètre $\theta$ par une erreur $\epsilon$ près de 0 tends vers 0 alors que la taille de l'échantillon $n$ tends vers l'infini:
+Nous pouvons également évaluer si un estimateur est cohérent, ou converge, avec des très grands échantillons; un estimateur $\hat\theta$ est \textbf{consistent} \textit{(angl.)} si la probabilité qu'il diffère de la vraie valeur du paramètre $\theta$ par une erreur $\epsilon$ près de 0 tend vers 0 alors que la taille de l'échantillon $n$ tend vers l'infini:
 \begin{algo}{Convergence (\textbf{consistency}) d'un estimateur}
 \begin{align*}
 	\underset{n \rightarrow \infty}{\lim} \Pr(\big| \hat\theta - \theta \big| > \epsilon) = 0, \quad \epsilon > 0
 \end{align*}
 \end{algo}
 
-Ce critère peut être rencontré lorsque l'estimateur $\hat\theta$ est \textbf{asymptotiquement sans biais} \textbf{\textit{et}} que la \textbf{variance de l'estimateur} tend vers 0.
-En premier temps, on définit ce qu'est un estimateur asymptotiquement sans biais:
+Ce critère peut être rencontré lorsque l'estimateur $\hat\theta$ est \hypertarget{asympto}{\textbf{asymptotiquement sans biais}} \textbf{\textit{et}} que la \textbf{variance de l'estimateur} tend vers 0. D'ailleurs, nous avons déjà raisonné ceci avec \hyperlink{cramer-rao}{la borne inférieure Cramèr-Rao}.
+
+
+On définit proprement ce qu'est un estimateur \textbf{asymptotiquement sans biais}:
 \begin{algo}{Estimateur asymptotiquement sans biais}
 \begin{align*}
 	\underset{n \rightarrow \infty}{\lim} \text{B}(\hat\theta) &= 0
@@ -138,13 +181,13 @@ Nous définissons alors l'\textbf{Erreur Quadratique Moyenne} (EQM), ou \textbf{
 \end{align*}
 \end{algo}
 
-En combinant tout ces critères, le meilleur estimateur est alors l'estimateur \textbf{sans biais} ayant la \textbf{plus petite variance} possible parmi tous les estimateurs \textit{sans biais} possible; c'est-à-dire, le \textbf{Uniformly Minimum Variance Unbiased Estimator \textit{(UMVUE)}}.
+En combinant tous ces critères, le meilleur estimateur est alors l'estimateur \textbf{sans biais} ayant la \textbf{plus petite variance} possible parmi tous les estimateurs \textit{sans biais} possible; c'est-à-dire, le \textbf{Uniformly Minimum Variance Unbiased Estimator \textit{(UMVUE)}}.
 
 \subsubsection*{Estimation par intervalles}
 
 Un type d'estimateur par intervalle est l'\textbf{intervalle de confiance}:
 \begin{algo}{Intervalle de confiance}
-Soit le paramètre à estimer $\theta$, alors nous sommes confiant à un niveau de 100$(1 - \alpha)$\% qu'il est contenu entre $(L, U)$. 
+Soit le paramètre à estimer $\theta$, alors nous sommes confiants à un niveau de 100$(1 - \alpha)$\% qu'il est contenu entre $(L, U)$. 
 
 De façon équivalente, nous sommes confiant à un seuil de $\alpha$\% qu'il est contenu entre $(L, U)$: 
 \begin{equation*}
@@ -155,7 +198,7 @@ Nous pouvons alors dire que $\Pr(L \le \theta \le U) \ge (1 - \alpha)$ pour tout
 
 Par exemple, dans le cas d'une population avec distribution normale et moyenne $\mu$ inconnue, on a la moyenne échantillonnale $\bar{x}$ (qui est l'estimateur \textit{MVUE}).
 \begin{formula}{Intervalle de confiance sur la moyenne \textit{(distribution normale)}} 
-Nous sommes confiant à un niveau de 100$(1 - \alpha)$\% que :
+Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
 	\mu \in \left[ \bar{x} - z_{\alpha/2} \frac{\sigma}{\sqrt{n}}, \bar{x} + z_{\alpha/2} \frac{\sigma}{\sqrt{n}}\right].
 \end{equation*}
@@ -167,26 +210,26 @@ Nous sommes confiant à un niveau de 100$(1 - \alpha)$\% que :
 
 \subsection*{Construction d'estimateurs}
 
-Dans la section précédente on évalue les méthodes pour évaluer la \textbf{qualité} de l'estimateur. 
-Cependant, comment qu'on obtient des estimateurs pour les évaluer?
+Dans la section précédente, on évalue les méthodes pour évaluer la \textbf{qualité} de l'estimateur. 
+Cependant, comment obtenons-nous des estimateurs pour les évaluer?
 
 Plusieurs méthodes existent pour établir des estimateurs, de plus plusieurs méthodes existent pour estimer des paramètres.
 La méthode vu dans le cadre du cours de statistique est la \textbf{méthode fréquentiste}, le cours de mathématiques IARD 1 (ACT-2005) présente \textbf{l'estimation Bayésienne}.
 
-Avant de le faire nous présentons quelques concepts:
+Avant de le faire, nous présentons quelques concepts:
 \begin{description}
-	\item[échantillon aléatoire:] Échantillon d'observations indépendante provenant de la même distribution paramétrique (identiquement distribué); c'est-à-dire, un échantillon \textbf{(iid)}.
+	\item[échantillon aléatoire:] Échantillon d'observations indépendantes provenant de la même distribution paramétrique (identiquement distribué); c'est-à-dire, un échantillon \textbf{(iid)}.
 	\item[k-ème moment centré à 0:]  $\mu_{k}' = \text{E}[X^{k}]$.
 	\item[$100g^{\text{ème}}$ pourcentile:]  $\pi_{g}(\theta) = F^{-1}_{\theta}(g)$.
 \end{description}
 
 Les deux premiers estimateurs ci-dessous sont les plus faciles à obtenir, mais sont aussi les moins performants puisqu'ils n'utilisent que quelques traits des données au lieu de l'entièreté des données comme la troisième méthode.
 
-Cette distinction devient particulièrement importante dans le cas d'une distribution avec une queue lourde à la droite (Pareto, Weibull, etc.) où il devient davantage essentiel de connaître les valeurs extrêmes pour bien estimer le paramètre de forme ($\alpha$ pour une Pareto).
+Cette distinction devient particulièrement importante dans le cas d'une distribution avec une queue lourde à la droite (Pareto, Weibull, etc.) où il devient plus essentiel de connaître les valeurs extrêmes pour bien estimer le paramètre de forme ($\alpha$ pour une Pareto).
 
 Un autre désavantage est que les deux premières méthodes nécessitent que les données proviennent toutes de la même distribution, autrement les moments et quantiles ne seraient pas clairs.
 
-Finalement, sous les deux premières méthodes la décision de quels moments et pourcentiles à utiliser est arbitraire.
+Finalement, sous les deux premières méthodes la décision de quels moments et percentiles à utiliser est arbitraire.
 
 \subsubsection*{Méthode des moments (MoM)}
 
@@ -198,7 +241,7 @@ L'estimation de $\theta$ est alors toute solution des $p$ équations:
 \end{equation*}
 \end{algo}
 
-La raison pour cet estimateur est que la distribution empirique aura les même $p$ premiers moments centrés à 0 que la distribution paramétrique.
+La raison pour cet estimateur est que la distribution empirique aura les mêmes $p$ premiers moments centrés à 0 que la distribution paramétrique.
 
 \subsubsection*{Méthode du \guillemotleft Percentile Matching \guillemotright}
 
@@ -211,12 +254,12 @@ L'estimation de $\theta$ est alors toute solution des $p$ équations:
 \end{equation*}
 \end{algo}
 
-La raison pour cet estimateur est que le modèle produit aura $p$ pourcentiles qui vont \guillemotleft matcher \guillemotright les données.
+La raison pour cet estimateur est que le modèle produit aura $p$ percentiles qui vont \guillemotleft matcher \guillemotright les données.
 
-Il peut arriver que les pourcentiles de distributions ne soient pas unique, par exemple dans le cas de données discrètes lorsque le quantile recherché peut tomber entre 2 \emph{marches} de la fonction empirique, ou mal-définis.
-Il est alors utile de définir une méthode d'interpolation des quantiles (bien qu'il n'en n'existe pas une officielle définitive).
+Il peut arriver que les percentiles de distributions ne soient pas uniques, par exemple dans le cas de données discrètes lorsque le quantile recherché peut tomber entre 2 \emph{marches} de la fonction empirique, ou mal-définis.
+Il est alors utile de définir une méthode d'interpolation des quantiles (bien qu'il n'en existe pas une d'officielle).
 
-Soit le \guillemotleft \textbf{smoothed empirical estimate} \guillemotright d'un pourcentile:
+Soit le \guillemotleft \textbf{smoothed empirical estimate} \guillemotright d'un percentile:
 
 \begin{algo}{Smoothed empirical estimate}
 On utilise les statistiques d'ordre de l'échantillon $x_{(1)} \le x_{(2)} \le \dots \le x_{(n)}$ pour l'interpolation suivant:
@@ -386,7 +429,7 @@ Nous sommes habituellement intéressés au minimum $X_{(1)}$ et le maximum $X_{(
 \end{minipage}
 \setlength{\mathindent}{1cm}
 
-De façon plus général, on défini:
+De façon plus générale, on défini:
 \begin{algo}{$k^{\text{e}}$ statistique d'ordre}
 \begin{align*}
 %	X_{(k)}
@@ -400,11 +443,11 @@ De façon plus général, on défini:
 Nous pouvons également définir quelques autres statistiques d'intérêt :
 
 \begin{description}
-	\item[$R = X_{(n)} - X_{(1)}$: ] Amplitude échantillonnale, ou \textbf{l'étendu} (Range), est la différence entre le minimum et le maximum d'un échantillon.
-	\item[$M = \frac{X_{(n)} + X_{(1)}}{2}$: ] \textbf{mi-étendu} (Midrange), est la moyenne entre le minimum et le maximum d'un échantillon.
+	\item[$R = X_{(n)} - X_{(1)}$: ] Amplitude échantillonnale, où \textbf{l'étendue} (Range) est la différence entre le minimum et le maximum d'un échantillon.
+	\item[$M = \frac{X_{(n)} + X_{(1)}}{2}$: ] \textbf{mi-étendue} (Midrange), est la moyenne entre le minimum et le maximum d'un échantillon.
 \end{description}
 
-De plus, nous pouvons définir la \textbf{médiane} en terme de statistiques d'ordre:
+De plus, nous pouvons définir la \textbf{médiane} en termes de statistiques d'ordre:
 \begin{align*}
 	\text{Med}
 	&=	\left\{
@@ -415,7 +458,7 @@ De plus, nous pouvons définir la \textbf{médiane} en terme de statistiques d'o
 	\right.
 \end{align*}
 
-Finalement, on défini la distribution conjointe du minimum et du maximum $\forall x < y$:
+Finalement, on définit la distribution conjointe du minimum et du maximum $\forall x < y$:
 \begin{align*}
 	f_{X_{(1)}, X_{(n)}}(x, y)
 	&=	n (n - 1) [F_{X}(y) - F_{X}(x)]^{n - 2} f_{X}(x) f_{X}(y)
