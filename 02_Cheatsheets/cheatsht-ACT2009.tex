@@ -632,6 +632,39 @@ f_{S_k | N(t)}(x | n) = f_{S_k}(x) \frac{\prob{N(t-x) = n-k}}{\prob{N(t) = n}}
 où $m(t)$ est la fonction de renouvellement du processus de renouvellement $\{ N(t) ; t \geq 0 \}$.
 \end{itemize}
 
+\subsection*{Renewal Reward Processes}
+
+Soit:
+\begin{itemize}
+	\item	$\{N(t), t \ge 0\}$ un processus de renouvellement avec
+	\item	$X_{n}$ le temps inter-arrivées.
+\end{itemize}
+On suppose qu'à chaque renouvellement, nous recevons une 
+\begin{itemize}
+	\item	$R_{n}$ \textit{reward} que nous supposons être iid;
+\end{itemize}
+Cependant, il est possible, voir probable, que la reward $R_{n}$ dépend de la longueur de l'intervalle $X_{n}$.
+
+Tout comme 
+\begin{itemize}
+	\item	pour $X_{n}$ on défini $S_{N(t)} = \sum_{n = 1}^{N(t)}$, 
+	\item	on défini le total earned reward à, ou avant, le temps t $R(t) = \sum_{n = 1}^{N(t)} R_{n}$.
+\end{itemize}
+
+De plus on pose $\text{E}[R] = \text{E}[R_{n}]$ et $\text{E}[X] = \text{E}[X_{n}]$.
+
+On obtient alors que 
+\begin{definition}[Définition]
+\begin{align*}
+	\underset{t \rightarrow \infty}{\lim} \frac{R(t)}{t}	
+	&=	\underset{t \rightarrow \infty}{\lim} \frac{\text{E}[R(t)]}{t}	&
+	&=	\frac{\text{E}[R]}{\text{E}[X]}	&
+	&=	\frac{\text{E}[\text{reward during a cycle}]}{\text{E}[\text{length of a cycle}]}
+\end{align*}
+\end{definition}
+
+
+
 \section{Mouvement Brownien}
 \subsection*{Définitions}
 \begin{definition}[Définition générale]
@@ -649,8 +682,6 @@ Considérons un mouvement Brownien standard. Alors, $\forall 0 < t_1 < t_2 < ...
 \begin{align*}
 f_{X_1(t_1), ..., X_n(t_n)}(x_1, ..., x_n) = \frac{e^{-\frac{1}{2} \left(\frac{x_1^2}{t_1} + \frac{(x_2 - x_1)^2}{t_2 - t_1} + ... + \frac{(x_n - x_{n-1})^2}{t_n - t_{n-1}} \right)}}{(2 \pi)^{\frac{n}{2}} (t_1 (t_2 - t_2) ... (t_n - t_{n-1}))^{\frac{1}{2}}} 
 \end{align*}
-
-\vfill{3cm}
 
 \subsubsection*{Proposition 2}
 Considérons un mouvement Brownien standard. Alors, $\forall 0 < s < t$, $X(s) | X(t)$ obéit à une loi normale, tel que

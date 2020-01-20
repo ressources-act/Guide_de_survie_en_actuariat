@@ -141,7 +141,9 @@
 {
 	colback = blue!5!white,
 	colframe = blue!75!black,
-	fonttitle = \bfseries,title=#1
+	fonttitle = \bfseries,
+	title=#1,
+	breakable
 }
 %%
 %% Coloured box "rappel" pour rappel de formules
@@ -150,6 +152,15 @@
 {
 	colback = ashgrey,
 	colframe = arsenic,
+	fonttitle = \bfseries,title=#1
+}
+%%
+%% Coloured box "probch3" pour formules relatives au 3ème chapitre de prob
+%%
+\newtcolorbox{probch3}[ 1 ]
+{
+	colback = ruddypink,
+	colframe = burgundy,
 	fonttitle = \bfseries,title=#1
 }
 %%
@@ -162,7 +173,7 @@
 	fonttitle = \bfseries,title=#1
 }
 %%
-%% Coloured box "formula" for formulas
+%% Coloured box "examplebox" for formulas
 %%
 \newtcolorbox{examplebox}[ 1 ]
 {
@@ -191,6 +202,8 @@
 %
 %	Colour definitions
 %
+\definecolor{ruddypink}{rgb}{0.88, 0.56, 0.59}
+\definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}		
 \definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
 \definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}	%	pastel dark purple ish
 \definecolor{indigo(web)}{rgb}{0.29, 0.0, 0.51}	% purple-ish
@@ -209,7 +222,9 @@
 \definecolor{amethyst-light}{rgb}{0.6, 0.4, 0.8}
 \definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}			% dark grey-black-ish
 \definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}			% light green-beige-ish gray
-
+\definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
+\definecolor{brickred}{rgb}{0.8, 0.25, 0.33}
+\definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}
 
 %
 % Useful shortcuts for coloured text
