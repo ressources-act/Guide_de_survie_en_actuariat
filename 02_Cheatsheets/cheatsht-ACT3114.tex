@@ -1,0 +1,274 @@
+\documentclass[10pt, french]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Redefine from template
+%% -----------------------------
+\def\auteur{First Last}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Apprentissage statistique en actuariat}
+\def\sigle{ACT-3114}
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
+\def\SectionColor{green!50!black}
+\def\SubSectionColor{green!20!black}
+\def\SubSubSection{burntsienna}
+%
+% Redefine authors
+%
+\def\auteur{Alec James van Rassel}
+
+
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+
+\begin{multicols*}{3} 
+
+\setcounter{section}{1}
+\section{Données manquantes}
+
+Le chapitre utilise la \textbf{mise en contexte} suivante:
+\begin{itemize}
+	\item	Il y a une réclamation pour un accident d'auto en Ontario;
+	\item	Le contrat d'assurance couvre les frais médicaux;
+	\item	On désire calculer la probabilité de paiement (variable réponse) en fonction de:
+		\begin{enumerate}
+		\item	La gravité de l'accident (variable explicative);
+		\item[]	3 niveaux: mineur-majeur-catastrophique;
+		\item	La souffrance du réclamant;
+		\item[]	Échelle de 1 (peu) à 5 (beaucoup);
+		\end{enumerate}
+\end{itemize}
+
+\textbf{Problèmes} de modélisation:
+\begin{itemize}
+	\item	Comment analyser les données malgré les valeurs manquantes?
+	\item	Quels enjeux ou problèmes devrait-on considérer dans la modélisation?
+\end{itemize}
+
+\subsection*{Terminologie}
+
+\begin{definition}[Notation]
+\begin{itemize}
+	\item[$Y_{ij}$:] Valeur de la variable explicative $j$ pour l'observation $i$ où	$j \in \left\{ 1, \dots, p \right\}$ et $i \in \{1, \dots, n\}$;
+	\item[$\matr{Y}_{n \times p}$:] Matrice contenant les données \textbf{complètes};
+	\item[]	$\matr{Y}$ est partitionné en deux, $\matr{Y} = \left\{ \matr{Y}_{obs}, \matr{Y}_{mis} \right\}$
+		\begin{itemize}
+		\item[$\matr{Y}_{obs}$:] matrice avec les données ayant toutes les valeurs observées;
+		\item[$\matr{Y}_{mis}$:] matrice avec les données comportant des valeurs manquantes;
+		\end{itemize}
+	\item[$\matr{R}_{n \times p}$:]	\textbf{Matrice de réponse} des variables indicatrices $R_{ij} = \matr{1}_{\{Y_{ij} \text{ observé}\}}$;
+	\item[$\theta$:] \textbf{Paramètre de nuisance}
+\end{itemize}
+\end{definition}
+
+\subsubsection*{Mécanisme de non-réponse}
+La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
+
+\textbf{Types de données manquantes}:
+\begin{enumerate}
+	\item	\textbf{MCAR}: Missing Completely at Random;
+		\begin{itemize}
+		\item	Le patron de non-réponse (pattern of missing values) est indépendant des données $\matr{Y}$;
+		\item	Il s'ensuit que la probabilité de réponse $f(R | \matr{Y}, \theta)$ ne dépend pas des données complètes $\matr{Y}$:
+			\begin{align*}
+			f(R | \matr{Y}, \theta) &= f(R | \theta) \\
+			\end{align*}
+%		\item	Pour example
+		\begin{examplebox}{Exemple avec un $\theta$ de 10\%}
+		On perd $10\%$ des valeurs mesurées alors, $\forall i \in \{1, \dots, n\}, j \in \{1, \dots, p\}$, la distribution du mécanisme de non-réponse:
+			\begin{align*}
+			R_{ij} 
+			&\sim 	\text{Bernoulli}(\theta =  10\%)
+			\end{align*}
+		\end{examplebox}
+		\item	Tester la différence de moyennes:
+		\end{itemize}	
+		\setlength{\mathindent}{-2cm}
+			\begin{align*}
+			\mathcal{H}_{0}:
+			&\left\{ p_{\text{Cat, mis}} - p_{\text{Cat, obs}} = 0 \right\} 
+			\text{et}	\\
+			&\left\{ p_{\text{Maj, mis}} - p_{\text{Maj, obs}} = 0 \right\}
+			\end{align*}
+		\setlength{\mathindent}{1cm}
+		\begin{itemize}
+		\item[]	Est équivalent à tester: 
+		\end{itemize}	
+		\setlength{\mathindent}{-2cm}
+			\begin{align*}
+			\mathcal{H}_{0}
+			&:	\text{les données sont MCAR}
+			\end{align*}
+		\setlength{\mathindent}{1cm}
+		\begin{itemize}
+		\item[]	avec un test du khi-carré de Pearson;
+		\end{itemize}	
+\end{enumerate}
+\begin{enumerate}
+	\setcounter{enumi}{1}
+	\item	\textbf{MAR}: Missing at Random;
+		\begin{itemize}
+		\item	La probabilité de réponse $f(R | Y, \theta)$ dépend seulement de variables qui ont été observées dans le jeu de données $\matr{Y}_{\text{obs}}$:
+			\begin{align*}
+			f(R | \matr{Y}, \theta) &= f(R | \matr{Y}_{\text{obs}}, \theta) \\
+			\end{align*}
+		\item	Exemple de patients d'un hôpital: les données sont MAR lorsque la probabilité de non-réponse ne dépend pas de la qualité de vie sachant l'âge;
+		\end{itemize}
+	\item	\textbf{NMAR}: Not Missing at Random;
+		\begin{itemize}
+		\item	Le patron de non-réponse pour $\matr{Y}$ est relié à sa valeur et les variables observées;
+		\item[]	Ce même si ont conditionne sur les valeurs observées;
+		\item	La probabilité de réponse $f(R | \matr{Y}, \theta)$ dépend également de $\matr{Y}_{\text{mis}}$ et ne peut pas être simplifiée;
+		\item	Pour exemple, les patients malades ne répondent pas aux sondages en plus des patients plus jeunes et donc la probabilité de réponse dépend de la qualité de vie;
+		\item	Pour exemple, la probabilité de réponse dépend d'une autre variable non observée;
+		\end{itemize}
+\end{enumerate}
+
+%\textbf{Schéma} (page 18)
+
+\subsection*{Visualisation et détection}
+\begin{algo}{Traiter les données manquantes}
+\begin{enumerate}
+	\item	Détectez, visualisez et documentez les données manquantes;
+	\item	Identifier le patron de non-réponse;
+	\item[]	Pour exemple, voici quelques patrons de non-réponse pour quelques variables:
+
+	\includegraphics[scale=0.3]{src/ACT-3114/patrons-non-repoonse-exemples.png}
+	\item	Comparer les distributions des autres variables selon la valeur des variables indicatrices $R_{1j}, \dots, R_{nj}$;
+\end{enumerate}
+\end{algo}
+
+\subsection*{Identification des types de non-réponse}
+\begin{itemize}
+	\item	Pour les variables continues, on fait un \textbf{test $t$ sur les différences de moyenne} au lieu du khi-carré de Pearson comme pour MCAR;
+	\item	Problème de comparaisons multiples;
+	\item	Le test MCAR de Little est peu utile, mais peut adresser le problème de comparaisons multiple avec un hypothèse testant toutes les variables;
+\end{itemize}
+
+\subsection*{Traitement des données manquantes}
+
+En continuant la mise en contexte, on suppose qu'on veut estimer le vecteur $\matr{\beta}$ des coefficients de la régression logistique pour prédire la probabilité de paiement;
+Une question valide est si les options pour le traitement des données manquantes dépendent du \textbf{type} de non-réponse
+
+\textbf{Options} de traitement:
+\begin{enumerate}
+	\item	Utiliser seulement les \textbf{cas complets} \textit{(complete-case analysis)};
+		\begin{itemize}
+		\item	L'option par défaut pour les fonctions :
+			\begin{center}
+			\texttt{lm, glm, na.rm, na.omit}
+			\end{center}
+		\item	\textbf{Impact}:
+			\begin{itemize}
+			\item[$\color{red}\downarrow$]	taille de l'échantillon	\\
+			\item[$\color{blue}\uparrow$]	variance des estimateurs	\\
+			\item[$\color{red}\downarrow$]	puissance des tests	\\
+			\end{itemize}
+		\item	Uniquement valide sous \textcolor{ao(english)}{MCAR};
+		\end{itemize}
+	\item	Utiliser seulement les \textbf{cas disponibles} \textit{(available-case analysis)};
+		\begin{itemize}
+		\item	Utilise uniquement les données observées pour l'analyse;
+		\item	Rarement applicable;
+		\item	$\color{red}\downarrow$ la taille de l'échantillon \textbf{moins} qu'en utilisant d'uniquement les cas complets;
+		\item	\textcolor{ao(english)}{Sans biais} \textbf{uniquement} sous \textcolor{ao(english)}{MCAR};
+		\end{itemize}
+	\item	\textbf{Imputation} simple par la \textbf{moyenne ou} la \textbf{médiane}
+		\begin{itemize}
+		\item	Substitue les \texttt{NA} par la moyenne ou médiane de la variable;
+		\item	\textbf{Impact}:
+			\begin{itemize}
+			\item[$\color{red}\downarrow$]	variabilité de la variable	\\
+			\item[$\color{red}\downarrow$]	corrélation de la variable avec les autres	\\
+			\end{itemize}
+		\item	Même sous MCAR, les données sont \textbf{sévèrement} \og distorted \fg{};
+		\end{itemize}
+	\item	Imputation simple par une régression;
+		\begin{itemize}
+		\item	Substitue les \texttt{NA} par la prévision d'une régression de la variable sur les autres avec les cas complets;
+		\item	Si plusieurs variables ont des donnés manquantes, leurs patrons doivent être traités séparément;
+		\item	L'inter \textbf{corrélation} des variables est \textbf{conservée}, mais est \textcolor{blue}{\textbf{surestimée}} (même si MCAR);
+		\item	La variance est \textcolor{red}{\textbf{sous-estimée}}, mais \textbf{moins} qu'avec l'imputation par la moyenne;
+%%%	-------------------------------
+%%%	NOTE:
+%%%	+	See if I can change the format for this to be arrows like the rest once 
+%%%		I have a better understanding of whether I should make a distinction 
+%%%		between "sous-estimé" and "diminution";
+%%%	-------------------------------
+		\end{itemize}
+	\item	Imputation stochastique par une régression;
+		\begin{itemize}
+		\item	Ajoute un terme d'erreur $\varepsilon$ (normalement distribué) à la prévision de la régression;
+%%%	-------------------------------
+%%%	NOTE:
+%%%	+	Je ne comprends pas ce que ça veut dire "dans un patron";
+%%%	+	Pensais que patron c'était une pattern alors comment plusieurs variables pourraient être manquantes dans un patron?
+%%%	-------------------------------
+		\item	\textit{Si plusieurs variables sont manquantes dans un patron, les erreurs sont corrélées}
+		\item	Corrige les biais pour la méthode d'imputation par la régression (sous-estimation de la variance et surestimation de l'inter corrélation des variables);
+%%%	-------------------------------
+%%%	NOTE:
+%%%	+	Je ne comprends pas ce qu'on veut dire par "dans les calculs";
+%%%	+	En tenir compte implique faire quoi?
+%%%	+	Faire un ajustement en calculant le biais?
+%%%	-------------------------------
+		\item	La variance des paramètres est \textcolor{red}{\textbf{sous-estimée}}, \textit{sauf si on en tient compte dans les calculs};
+		\item	Fonctions \texttt{R} utiles du paquetage \texttt{mice}:
+			\begin{center}
+			\texttt{mice.impute.norm.nob(), mice.impute.norm()}
+			\end{center}
+		\end{itemize}
+	\item	Imputation simple \textit{hot-deck};
+		\begin{itemize}
+		\item	Substitue les valeurs \texttt{NA} d'une observation par les valeurs observées d'une autre observation choisie aléatoirement;;
+		\item	Habituellement, cette observation fait parmi d'un sous-ensemble d'observations \textit{proches} (pensez au $K$-NN, clustering, etc.);
+		\item	Souvent utilisée pour les sondages;
+%%%	-------------------------------
+%%%	NOTE:
+%%%	+	Pourquoi ça ne les altère pas?
+%%%	+	Puisqu'il aurait seulement le patron par observation et donc elle ne serait aucunement reliée à une autre observation?
+%%%	-------------------------------
+		\item	N'altère par les distributions univariées
+		\item	$\color{red}\downarrow$	l'inter corrélation des variables;
+		\item	Biais des estimations des coefficients $\matr{\beta}$ de régression;
+		\end{itemize}
+	\item	Imputation \textbf{multiple};
+		\begin{itemize}
+		\item	Répète l'imputation stochastique et agrège les résultats;
+%%%	-------------------------------
+%%%	NOTE:
+%%%	+	Est-ce que "non biaisée" est vraiment équivalent à "estime correctement"?
+%%%	+	Je pose que oui;
+%%%	-------------------------------
+		\item	Ce faisant, la variabilité additionnelle dût à l'imputation des valeurs manquante est adressée et la variance des estimateurs est \textit{non biaisée};
+		\end{itemize}
+\end{enumerate}
+
+Autres méthodes:
+\begin{itemize}
+	\item	MLE avec données manquantes;
+	\item	Algorithme EM (expectation-maximisation)
+	\item	Inférence bayésienne;
+\end{itemize}
+
+\subsection*{Conseils}
+\begin{itemize}
+	\item	Conserver un script pour le traitement de données manquantes et ne \textbf{pas hard-coder};
+	\item	\textit{Utiliser une méthode d'imputation qui respecte le format de la variable;}
+	\item	Plus la proportion de non-réponses est élevée, plus l'impact sur l'analyse sera important;
+	\item	S'il y a plusieurs patrons de non-réponse différents, l'ordre dans lequel les données sont imputées est important;
+\end{itemize}
+
+\end{multicols*}
+%% -----------------------------
+%% Fin du document
+%% -----------------------------
+\end{document}

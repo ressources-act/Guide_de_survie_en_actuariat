@@ -24,107 +24,169 @@
 % \footnotesize % Écrire petit (peut être modifié)
 \begin{multicols*}{2} % Permet d'écrire dans plusieurs colonnes l'entièreté du document
 % -------------------------------------------------------------
-\section{Rappels généraux}
-\subsection*{Mathématiques financières}
-\[v = \frac{1}{1+i} = 1 - d = e^{-\delta t}\]
-conversion : 
-\[   \left(1 - \frac{d^{(m)}}{m} \right)^m = 1  - d  \]
-\[\left(1 + \frac{i^{(m)}}{m} \right)^m = 1  +i\]
-\[ \ax{\angln} = \frac{1 - v^n}{i}, \ax**{\angln} = \frac{1 - v^n}{d}, \ax*{\angln} = \frac{1 - v^n}{\delta}  \]
-\[\ax{\angln}[(m)] = \frac{1 - v^n}{i^{(m)}} , \ax**{\angln}[(m)] = \frac{1 - v^n}{d^{(m)}}   \]
-
-\subsection*{Modèles de survie}
-\begin{itemize}
-\item $T_x$ : durée de vie de $(x)$
-\item $K_x =  \lfloor T_x \rfloor$
-\item $\px[t]{x}[] = \prob{T_x > t} = e^{- \int_{0}^{t} \mu_{x+s} ds}$
-\item $\qx[t]{x}[] = 1 - \px[t]{x}[] = \prob{T_x \leq t}$
-\item $\px[t + u]{x}[] = \px[t]{x}[] \cdot \px[u]{x+t}[]$
-\item $\qx[t|u]{x}[] = \px[t]{x}[] \cdot \qx[u]{x+t}[]$
-\end{itemize}
-
-\subsection*{Loi de mortalité}
-\paragraph{Force constante}
-$\mu_x = \mu$, $\px[t]{x}[] = e^{-\mu t}$
-
-\paragraph{Uniforme (DeMoivre)}
-\begin{itemize}
-\item  $\mu_u = \frac{1}{\omega - x}$, avec $0 \leq x \leq \omega$
-\item $\px[t]{x}[] = \frac{\omega - x - t}{\omega - x}$
-\end{itemize}
-
-\subsection*{DUD}
-\begin{itemize}
-\item $\qx[]{x+h}[] = h \cdot \qx[]{x}[]$
-\item $\Ax*{x} = \frac{i}{\delta} \Ax{x}$
-\end{itemize}
-
-
-
-\subsection*{Contrat d'assurance}
-\paragraph{Assurance entière}
-Cas discret : 
-\[\Ax{x} = \sum_{k=0}^{\infty} b_k v^{k+1} \qx[k|]{x}[]\]
-Cas continu : 
-\[\Ax*{x} = \int_{0}^{\infty} v^t \px[t]{x}[] \mu_{x+t} dt  \]
-
-\paragraph{Assurance dotation pure (\emph{pure endowment)}}
-\[\Ax{\endowxn} = \Ax{\termxn} + \Ax{\pureendowxn}\]
-où $\Ax{\pureendowxn} = \Ex[n]{x} = v^n \px[n]{x}[]$
-
-\paragraph{Assurance temporaire $n$ année}
-\[\Ax{\termxn} = \Ax{x} - \Ax[n|]{x} \]
-où $\Ax[n|]{x}  = \Ex[n]{x} \Ax{x+n}$ (i.e. une assurance différée)
-
-\paragraph{Assurance différée}
-\[\Ax[m|][]{x}[] = \Ex[m]{x} \Ax[][]{x+m}[]\]
-\[\Ax[m|][2]{x}[] = v^{m} \Ex[m]{x} \Ax[][]{x+m}[]\]
-
-\paragraph{Assurance payable $m$ fois l'an}
-\[\Ax{x}[(m)] = \sum_{k=0}^{\infty} v^{\frac{(k+1)}{m}} \qx[\frac{k}{m} | \frac{1}{m}]{x}[] \]
-
-
-\subsection*{Contrat de rente}
-\paragraph{Rente entière} Cas discret : 
-\[\ax**{x} = \sum_{k=0}^{\infty} v^{k} \px[k]{x}[]  \]
-
-Cas continu : 
-\[\ax*{x} = \int_{0}^{\infty}  v^t \px[t]{x}[] dt \]
-
-\paragraph{Rente temporaire}
-\[\ax**{\endowxn} = \frac{1 - \Ax{x:\angln}}{d} \leftrightarrow \Ax{\endowxn} =1 - d \ax**{\endowxn}\]
-
-Raccourci : 
-\[\ax{\endowxn} = \ax{x} - \Ex[n]{x} \ax{x+n}  \]
-
-
-
-
-\subsection*{Principe d'équivalence}
-$\pi$, lorsque calculée sous le principe d'équivalence, est la solution de
-\[\esp{Z} = \esp{Y}\]
-où $Z$ est la valeur présente des prestations futures et $Y$ la valeur présente des primes futures à recevoir.
-
-\subsection*{Formule de Woolhouse}
-\[\ax**{x}[(m)] \approx \ax**{x} - \frac{m-1}{2m} - \frac{m^2 -1}{12m^2} (\delta + \mu_x)  \]
-\[\ax**{\endowxn}[(m)] \approx  \ax**{\endowxn} - \frac{m-1}{2m}(1  -v^n \px[n]{x}[]) - \frac{m^2 -1}{12m^2} \Big( \delta + \mu_x - v^n \px[n]{x}[](\delta + \mu_{x+n}) \Big)  \]
-\[\ax*{\endowxn} = \lim_{m \to \infty}  \ax**{\endowxn}[(m)] \approx  \ax**{\endowxn} - \frac{1}{2} (1  -v^n \px[n]{x}[]) - \frac{1}{12} \Big( \delta + \mu_x - v^n \px[n]{x}[](\delta + \mu_{x+n}) \Big)  \]
-
+%\section{Rappels généraux}
+%\subsection*{Mathématiques financières}
+%\[v = \frac{1}{1+i} = 1 - d = e^{-\delta t}\]
+%conversion : 
+%\[   \left(1 - \frac{d^{(m)}}{m} \right)^m = 1  - d  \]
+%\[\left(1 + \frac{i^{(m)}}{m} \right)^m = 1  +i\]
+%\[ \ax{\angln} = \frac{1 - v^n}{i}, \ax**{\angln} = \frac{1 - v^n}{d}, \ax*{\angln} = \frac{1 - v^n}{\delta}  \]
+%\[\ax{\angln}[(m)] = \frac{1 - v^n}{i^{(m)}} , \ax**{\angln}[(m)] = \frac{1 - v^n}{d^{(m)}}   \]
+%
+%\subsection*{Modèles de survie}
+%\begin{itemize}
+%\item $T_x$ : durée de vie de $(x)$
+%\item $K_x =  \lfloor T_x \rfloor$
+%\item $\px[t]{x}[] = \prob{T_x > t} = e^{- \int_{0}^{t} \mu_{x+s} ds}$
+%\item $\qx[t]{x}[] = 1 - \px[t]{x}[] = \prob{T_x \leq t}$
+%\item $\px[t + u]{x}[] = \px[t]{x}[] \cdot \px[u]{x+t}[]$
+%\item $\qx[t|u]{x}[] = \px[t]{x}[] \cdot \qx[u]{x+t}[]$
+%\end{itemize}
+%
+%\subsection*{Loi de mortalité}
+%\paragraph{Force constante}
+%$\mu_x = \mu$, $\px[t]{x}[] = e^{-\mu t}$
+%
+%\paragraph{Uniforme (DeMoivre)}
+%\begin{itemize}
+%\item  $\mu_u = \frac{1}{\omega - x}$, avec $0 \leq x \leq \omega$
+%\item $\px[t]{x}[] = \frac{\omega - x - t}{\omega - x}$
+%\end{itemize}
+%
+%\subsection*{DUD}
+%\begin{itemize}
+%\item $\qx[]{x+h}[] = h \cdot \qx[]{x}[]$
+%\item $\Ax*{x} = \frac{i}{\delta} \Ax{x}$
+%\end{itemize}
+%
+%
+%
+%\subsection*{Contrat d'assurance}
+%\paragraph{Assurance entière}
+%Cas discret : 
+%\[\Ax{x} = \sum_{k=0}^{\infty} b_k v^{k+1} \qx[k|]{x}[]\]
+%Cas continu : 
+%\[\Ax*{x} = \int_{0}^{\infty} v^t \px[t]{x}[] \mu_{x+t} dt  \]
+%
+%\paragraph{Assurance dotation pure (\emph{pure endowment)}}
+%\[\Ax{\endowxn} = \Ax{\termxn} + \Ax{\pureendowxn}\]
+%où $\Ax{\pureendowxn} = \Ex[n]{x} = v^n \px[n]{x}[]$
+%
+%\paragraph{Assurance temporaire $n$ année}
+%\[\Ax{\termxn} = \Ax{x} - \Ax[n|]{x} \]
+%où $\Ax[n|]{x}  = \Ex[n]{x} \Ax{x+n}$ (i.e. une assurance différée)
+%
+%\paragraph{Assurance différée}
+%\[\Ax[m|][]{x}[] = \Ex[m]{x} \Ax[][]{x+m}[]\]
+%\[\Ax[m|][2]{x}[] = v^{m} \Ex[m]{x} \Ax[][]{x+m}[]\]
+%
+%\paragraph{Assurance payable $m$ fois l'an}
+%\[\Ax{x}[(m)] = \sum_{k=0}^{\infty} v^{\frac{(k+1)}{m}} \qx[\frac{k}{m} | \frac{1}{m}]{x}[] \]
+%
+%
+%\subsection*{Contrat de rente}
+%\paragraph{Rente entière} Cas discret : 
+%\[\ax**{x} = \sum_{k=0}^{\infty} v^{k} \px[k]{x}[]  \]
+%
+%Cas continu : 
+%\[\ax*{x} = \int_{0}^{\infty}  v^t \px[t]{x}[] dt \]
+%
+%\paragraph{Rente temporaire}
+%\[\ax**{\endowxn} = \frac{1 - \Ax{x:\angln}}{d} \leftrightarrow \Ax{\endowxn} =1 - d \ax**{\endowxn}\]
+%
+%Raccourci : 
+%\[\ax{\endowxn} = \ax{x} - \Ex[n]{x} \ax{x+n}  \]
+%
+%
+%
+%
+%\subsection*{Principe d'équivalence}
+%$\pi$, lorsque calculée sous le principe d'équivalence, est la solution de
+%\[\esp{Z} = \esp{Y}\]
+%où $Z$ est la valeur présente des prestations futures et $Y$ la valeur présente des primes futures à recevoir.
+%
+%\subsection*{Formule de Woolhouse}
+%\[\ax**{x}[(m)] \approx \ax**{x} - \frac{m-1}{2m} - \frac{m^2 -1}{12m^2} (\delta + \mu_x)  \]
+%\[\ax**{\endowxn}[(m)] \approx  \ax**{\endowxn} - \frac{m-1}{2m}(1  -v^n \px[n]{x}[]) - \frac{m^2 -1}{12m^2} \Big( \delta + \mu_x - v^n \px[n]{x}[](\delta + \mu_{x+n}) \Big)  \]
+%\[\ax*{\endowxn} = \lim_{m \to \infty}  \ax**{\endowxn}[(m)] \approx  \ax**{\endowxn} - \frac{1}{2} (1  -v^n \px[n]{x}[]) - \frac{1}{12} \Big( \delta + \mu_x - v^n \px[n]{x}[](\delta + \mu_{x+n}) \Big)  \]
+%
 
 
 \section{Calcul de réserve}
-\paragraph{Perte prospective}
-\begin{align*}
-\actsymb[t]{L}{} & = \{ \actsymb[t]{L}{} | T_x > t \} \\
-& = VP_{@t}(\text{Prest.}) - VP_{@t}(\text{Primes}) \\
-& = Z - Y
-\end{align*}
 
-\paragraph{Réserve au temps $t$}
-Selon la méthode prospective,
-\[\actsymb[t]{V}{} = \esp{\actsymb[t]{L}{}} = \esp{Z} - \esp{Y}\]
-Selon la méthode rétrospective,
-\[\actsymb[t]{V}{} = \frac{\text{VPA}_{@t}(\text{$\pi$ reçues avant $h$}) - \text{VPA}_{@t}(\text{Prest. à payer avant $h$})}{g}\]
+\subsection*{Notation}
+\begin{itemize}
+	\item[] 	$\actsymb[t]{L}{}$: Perte prospective de l'assuré au temps $t$;
+		\begin{itemize}
+		\item	Le symbole représente la perte pour un assuré d'âge $x$ à partir du temps $t$ et peut donc être réécrit comme:
+			\begin{align*}
+			\actsymb[t]{L}{}	
+			&=	\{ \actsymb[t]{L}{} | T_{x} > t \}
+			\end{align*}
+		\end{itemize}
+	\item[]	$\actsymb[t]{V}{}$: Réserve de l'assureur au temps $t$;
+		\begin{itemize}
+		\item	Le symbole représente la réserve pour un contrat d'assurance d'un assuré d'âge $x$ à partir du temps $t$ et peut donc être réécrit comme:
+			\begin{align*}
+			\actsymb[t]{V}{}	
+			&=	\text{E}[\{ \actsymb[t]{L}{} | T_{x} \ge t \}]
+			\end{align*}
+		\end{itemize}
+	\item[]	$VP_{@t}$: La valeur présente au temps $t$;
+	\item[]	$VPA_{@t}$: La valeur présente actuarielle au temps $t$;
+		\begin{align*}
+		VPA_{@t}	
+		&=	\text{E}[VP_{@t}]
+		\end{align*}
+\end{itemize}
+
+\subsection*{Calcul de réserves}
+
+\paragraph{Perte prospective:} la perte prospective, $\actsymb[t]{L}{}$, actualise les transactions qui vont arriver dans le futur:
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	\actsymb[t]{L}{} 
+%	&= 	\{ \actsymb[t]{L}{} | T_x > t \} 	\\
+	&= 	VP_{@t}(\text{prestations à payer}) - VP_{@t}(\text{primes à reçevoir}) \textcolor{ao(english)}{+ VP_{@t}(\text{frais à payer})} 	
+%	&= 	Z - Y
+\end{align*}
+\setlength{\mathindent}{1cm}
+\textcolor{ao(english)}{S'il y a des frais pour les contrats, il suffit de l'ajouter à la perte.}
+
+\textbf{Relation:} $\{T_{x} - t | T_{x} > t\} \overset{d}{=} T_{x + t}$ où $\overset{d}{=}$ veut dire égale en distribution.
+
+\paragraph{Réserve:} La réserve, $\actsymb[t]{V}{}$, est l'espérance du montant que l'assureur devra payer dans le futur---alias, l'espérance de la perte. Il y a donc plusieurs façons de calculer ces réserves mais on utilise surtout la méthode prospective.
+
+Selon la méthode \textbf{prospective},
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	\actsymb[t]{V}{} 
+	&= 	\esp{\actsymb[t]{L}{}} \\
+	&= 	VPA_{@t}(\text{prestations à payer}) - VPA_{@t}(\text{primes à reçevoir}) \\ 
+	&\quad \textcolor{ao(english)}{+ VPA_{@t}(\text{frais à payer})} 	
+%	= \esp{Z} - \esp{Y}
+\end{align*}
+\setlength{\mathindent}{1cm}
+
+%%%	--------------------------
+%%%	Pas vu dans à l'hiver 2020
+%%%
+%Selon la méthode \textbf{rétrospective},
+%\setlength{\mathindent}{-1cm} 
+%\begin{align*}
+%	\actsymb[t]{V}{} 
+%	&= 	\frac{\text{VPA}_{@t}(\text{primes ($\pi$) reçues avant $h$}) - \text{VPA}_{@t}(\text{prestations payables avant $h$})}{g}		
+%\end{align*}
+%\setlength{\mathindent}{1cm}
+%%%	--------------------------
+
+\paragraph{Remarque:} Pour des primes \textbf{nivelées} établies selon le principe d'équivalence du portefeuille, on pose $\actsymb[0]{V}{} = 0$. Donc:
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	VPA_{@t}(\text{primes à reçevoir})
+	=	VPA_{@t}(\text{prestations à payer}) \textcolor{ao(english)}{+ VPA_{@t}(\text{frais à payer})} 
+\end{align*}
+\setlength{\mathindent}{1cm}
 
 \paragraph{Relation récursive pour les réserves (discrètes)}
 Formule générale\footnote{Si les frais ne sont pas applicables pour le problème, simplement poser $G_h = E_h = 0$.} : 
