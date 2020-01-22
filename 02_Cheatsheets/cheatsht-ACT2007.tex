@@ -140,6 +140,11 @@
 		\end{align*}
 \end{itemize}
 
+\subsection*{Termes}
+\begin{description}
+	\item[endowment:] Mixte;
+\end{description}
+
 \subsection*{Calcul de réserves}
 
 \paragraph{Perte prospective:} la perte prospective, $\actsymb[t]{L}{}$, actualise les transactions qui vont arriver dans le futur:
@@ -189,13 +194,26 @@ Selon la méthode \textbf{prospective},
 \setlength{\mathindent}{1cm}
 
 \paragraph{Relation récursive pour les réserves (discrètes)}
+
+\begin{align*}
+	\textcolor{burntorange}{(\actsymb[k]{V}{} + P)}\textcolor{burntsienna}{(1 + i)}
+	&=	\textcolor{amethyst}{\qx{x + k} b_{x + k}} + \textcolor{ao(english)}{\px{x + k} \actsymb[x + k]{V}{}}
+\end{align*}
+On ajoute \textcolor{burntorange}{la prime $P$ à la réserve $\actsymb[k]{V}{}$ au temps $k$} et \textcolor{burntsienna}{accumule pour un an}. Ceci est équivalent à soit \textcolor{amethyst}{décéder à l'âge $x + k$ et payer la prestation en cas de décès $b_{x + k}$} ou \textcolor{ao(english)}{survive et ajouter à la réserve $\actsymb[x + k]{V}{}$ au temps $x + k$}.
+
 Formule générale\footnote{Si les frais ne sont pas applicables pour le problème, simplement poser $G_h = E_h = 0$.} : 
-\[\actsymb[h+1]{V}{} = \frac{(\actsymb[h]{V}{} + G_h - e_h)(1+i) - (b_{h+1} - E_{h+1}) \qx[]{x+h}[]}{\px[]{x+h}[]}\]
+\begin{align*}
+	\actsymb[h+1]{V}{} 
+	&= 	\frac{(\actsymb[h]{V}{} + G_h - e_h)(1+i) - (b_{h+1} - E_{h+1}) \qx[]{x+h}[]}{\px[]{x+h}[]}
+\end{align*}
 où $G_h$ est la prime à recevoir à $t=h$, $e_h$ les frais relié à la collecte de la prime et $E_h$ les frais reliés aux paiement de la prestation.
 
 \paragraph{Formules alternatives pour Contrat d'assurance-vie entière (si $\pi^{PE}$)}
 \begin{align*}
-\actsymb[h]{V}{} & = M \Ax{x+h} - \pi \ax**{x+h} = M \left( 1 - \frac{\ax**{x+h}}{\ax**{x}} \right) = M \left( \frac{\Ax{x+h} - \Ax{x}}{1 - \Ax{x}} \right)
+\actsymb[h]{V}{} 
+	&= 	M \Ax{x+h} - \pi \ax**{x+h} 
+	= 	M \left( 1 - \frac{\ax**{x+h}}{\ax**{x}} \right) 
+	= 	M \left( \frac{\Ax{x+h} - \Ax{x}}{1 - \Ax{x}} \right)
 \end{align*}
  Remarque : ces formules fonctionnent aussi dans le cas d'un contrat d'assurance-vie entière continu.
  
