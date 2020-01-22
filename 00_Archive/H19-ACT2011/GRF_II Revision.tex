@@ -10,8 +10,10 @@
 \def\BackgroundColor{white}
 \def\SectionColor{teal!90!black}
 \def\SubSectionColor{teal!45!black}
-\input{preamble/cheatsht-preamble.tex}
+\input{../../02_Cheatsheets/cheatsht-preamble-general.tex}
 \title{GRF-II \\ Document d'étude}
+\def\cours{GRF-II}
+\def\sigle{ACT-2011}
 \author{Nicholas Langevin}
 %% -----------------------------
 %% Début du document
@@ -25,9 +27,63 @@
 \begin{multicols*}{2} % Nombre de colonnes (peut être changé plus tard.)
 
 \section{Introduction aux produits dérivés}
-\paragraph{Produits dérivés} Contrat entre 2 parties qui fixe les flux financiers futurs sur ceux de \underline{l'actif sous-jacent} $S$, c'est-à-dire que sa valeur dépend de l'actif S.
+\begin{definition}[Produits dérivés]
+%Contrat entre 2 parties qui fixe les flux financiers futurs sur ceux de \underline{l'actif sous-jacent} $S$, c'est-à-dire que sa valeur dépend de l'actif S.
+Titre financier dont sa valeur est déterminée par le prix de quelque chose d'autre, soit l'\textbf{actif sous-jacent} du produit dérivé.
 
-\subsection*{Étapes d'une transaction}
+Tout comme un couteau n'est pas dangereux de soi, les produits dérivés ne le sont pas non plus. Cependant, on peut heurter quelqu'un avec un couteau tout comme on peu couper des patates. Les produits dérivés sont en fait des \textbf{outils de gestion du risque} qui deviennent utile lorsque le risque du sous-jacent augmente.
+
+\begin{rappel_enhanced}[Origine]
+Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a causé de l'hyperinflation dans plusieurs pays) pour plutôt laisser le libre-marché fixer la valeur des devise de chaque pays.
+\end{rappel_enhanced}
+
+\begin{formula}{Exemples de produits dérivés}
+\begin{itemize}
+	\item	Contrat à terme standardisé (\textbf{futures});
+	\item	Contrat à terme de gré-à-gré (\textbf{forwards});
+	\item[]	\textit{Gré}: acceptation, ou consentement;
+	\item	Option d'achat (\textbf{call});
+	\item	Option de vente (\textbf{put});
+	\item	Les \textbf{swaps};
+\end{itemize}
+\end{formula} 
+
+\begin{formula}{Exemples de sous-jacent aux produits dérivés}
+\begin{multicols*}{2}
+\begin{itemize}
+	\item	Action;
+	\item	Indice boursier;
+	\item	Devise;
+	\item	Climat;
+	\item	Prix d'une marchandise;
+\end{itemize}
+\end{multicols*}
+\end{formula} 
+
+\begin{conceptgen}{Utilité}
+\begin{itemize}[leftmargin = *]
+	\item 	Gestion des risques (\textbf{hedging});
+	\item[]	Pour exemple, un avion peut se procurer une option d'achat pour contrer le risque d'une augmentation du prix du pétrole;
+	\item[]	On dit qu'elle \og \textit{hedge} \fg{} contre le prix du pétrole.
+	\item 	\textbf{Spéculation};
+	\item[]	Pour exemple, un investisseur croît que le prix d'une action va augmenter et se procure une option d'achat;
+	\item 	\textbf{Réduction} des \textbf{frais} de \textbf{transaction}: Faire le même profit qu'en transigeant des actions sans réellement les transiger;
+	\item 	\textbf{Arbitrage} réglementaire: Éliminer le risque de posséder un actif en retenant ses privilèges;
+	\item[]	Pour exemple, un investisseur élimine le risque d'une action avec une option de vente tout en conservant ses droits de vote;
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Parties prenantes}
+\begin{description}
+	\item[End-users:]	Participants au contrat du produit dérivé;
+	\item[Market-makers:]	Intermédiaire visant à faire un profit de la transaction entre end-users
+	\item[Economic observers:]	Observateurs du marché analysant et régulant les activités des market-makers et end-users;
+\end{description}
+\end{conceptgen}
+\end{definition}
+
+\subsection*{Transactions}
+\begin{algo}{Étapes d'une transaction}
 \begin{enumerate}
 	\item 	L'acheteur et le vendeur se trouvent;
 	\item 	On définit les obligations de chaque partie, on dit que la transaction est \og \textbf{cleared} \fg{};
@@ -38,7 +94,8 @@
 		\end{itemize}	
 	\item 	La transaction a lieu et les obligations sont remplies par chaque partie, on dit que la transaction est \og \textit{settled} \fg{};
 	\item 	Les registres de propriétés sont mis à jour.
-\end{enumerate}
+\end{enumerate}	
+\end{algo}
 
 \paragraph{Transaction gré-à-gré} transaction sans intermédiaire ou à l'extérieur de la bourse. Plusieurs raisons peuvent justifier ce type de transaction  :
 \begin{itemize}
@@ -46,19 +103,21 @@
 \item On peut combiner (sur une même transaction) plusieurs micro-transaction et plusieurs types d'actifs.
 \end{itemize}
 
-\paragraph{Valeur notionelle} \hl{définition exacte à valider}
-
-\paragraph{Origine des marchés de produits dérivés} Après 1971, le président Nixon a vouli défaire le standard de l'or (qui a causé de l'hyperinflation dans plusieurs pays) pour plutôt laisser le libre-marché fixer la valeur des devise de chaque pays.
+\begin{conceptgen}{Mesures de taille et d'activité d'un marché}
+\begin{description}
+	\item[Volume total des transactions:] Nombre total de titres transigés pendant une période;
+	\item[Valeur marchande:] $\text{nombre d'actions} \ \times \ \text{prix par action (\$)}$;
+	\item[Valeur notionnelle:] Valeur de l'actif sous-jacent du produit dérivé;
+	\item[Position ouverte:] Nombre de contrats encore en vigueur du produit dérivé;
+%%%	-----
+%%%	NOTE:
+%%%	+	Du produit dérivé? 
+%%%	+	Pas certain si c'est adéquat de définir de cette façon---i.e. restreinte au produit dérivé;
+%%%	-----
+\end{description}
+\end{conceptgen}
 
 \paragraph{Rôle des marchés financiers} Partage du risque et diversification des risques.
-
-\paragraph{Utilité des produits dérivés}
-\begin{itemize}
-\item Gestion des risques
-\item Spéculation
-\item Réduction des frais de transaction
-\item Arbitrage réglementaire
-\end{itemize}
 
 \paragraph{Bid-Ask Spread} Correspond à la marge que le teneur de marché (\textit{market maker}) conserve. En l'absence d'arbitrage, on aura $Ask - Bid > 0$
 \begin{description}
@@ -81,13 +140,102 @@
 \item[Risque de rareté] Si il est difficile de trouver un acheteur et un vendeur pour le sous-jacent (pas beaucoup de transactions signifie beaucoup de négociations et de variation dans les prix)
 \end{description}
 
-\paragraph{Contrats saisonnales}
-\begin{description}
-	\item[cooling degree-day futures contracts:] Pour la rigueur de l'hiver (un froid anormalement élevé);
-	\item[heating degree-day futures contracts:] Pour la rigueur de l'été (une chaleur anormalement élevée);
-\end{description}
+%%%	-----
+%%	Pas assez pertinent pour l'inclure
+%%	Contrats ayant une protection pour chaque degrés en sur(sous) de 18 degrés celsius;
+%\paragraph{Contrats saisonnales}
+%\begin{description}
+%	\item[cooling degree-day futures contracts:] Pour la rigueur de l'hiver (un froid anormalement élevé);
+%	\item[heating degree-day futures contracts:] Pour la rigueur de l'été (une chaleur anormalement élevée);
+%\end{description}
+%%%	-----
 
 \section{Introduction aux Forwards et aux options}
+
+\begin{definition}[Contrat à terme]
+Contrat selon lequel: 
+\begin{itemize}
+	\item	\textit{deux} partis s'\textbf{engagent} d'\textbf{échanger}---un à \textit{acheter} et l'autre à \textit{vendre};
+	\item	une \textit{certaine} \textbf{quantité} d'un \textit{certain} \textbf{bien}---l'actif sous-jacent;	
+	\item	à un \textit{certain} \textbf{prix};
+	\item	à un \textit{certain} \textbf{endroit} à une \textit{certaine} \textbf{date}---date d'échéance, $T$;
+\end{itemize}
+
+L'engagement est au départ à $t = 0$.
+
+\begin{distributions}[Notation de prix]
+\begin{multicols*}{2}
+\begin{itemize}
+	\item[$S_{t}$:] \textbf{Prix du sous-jacent} à $t$;
+	\item[$S_{0}$:] \textbf{Prix au comptant};
+	\item[$F_{0, T}$:]	est le \textbf{prix à terme};
+	\item[$F_{0, 0}$:]	est nul;
+\end{itemize}
+\end{multicols*}
+La notation $F_{0, T}$ vient de \og future \fg{} ou \og forward \fg{}.
+Le prix au comptant représente le paiement pour la livraison immédiate à $t = 0$.
+\end{distributions}
+\end{definition}
+
+%%%	----
+%%%	turn into a table with long and short
+%%%	----
+\paragraph{Positions}: Dans le cas de contrats à terme, les positions sont plus spécifiques:
+\begin{description}
+	\item[longue:]	Personne qui s'engage à \textbf{acheter};
+	\item[courte:]	Personne qui s'engage à \textbf{vendre};
+\end{description}
+\begin{distributions}[Valeurs des positions]
+\begin{multicols*}{2}
+\begin{description}
+	\item[longue:]	$S_{T} - F_{0, T}$;
+	\item[courte:]	$F_{0, T} - S_{T}$;
+\end{description}
+\end{multicols*}
+\end{distributions}
+
+\begin{definition}[Option d'achat]
+Contrat qui: 
+\begin{itemize}
+	\item	\textit{permet} \textbf{(optionnel)} à son \textit{détenteur} d'\textbf{acheter};
+	\item	une \textit{certaine} \textbf{quantité} d'un \textit{certain} \textbf{bien}---l'actif sous-jacent;	
+	\item	à un \textit{certain} \textbf{prix}---prix d'exercice $K$;
+	\item	à un \textit{certain} \textbf{endroit} à, ou d'ici, une \textit{certaine} \textbf{date}---date d'échéance, $T$;
+\end{itemize}
+
+\paragraph{Exercice (levée):} Décision d'utiliser l'option d'achat;
+
+\begin{conceptgen}{Types d'exercices}
+\begin{description}
+	\item[Européen:]		\textbf{À} $T$;
+	\item[Américain:]	\textbf{N'importe quand} d'ici $T$;
+	\item[Bermudien:]	À \textbf{quelques dates} d'ici $T$;
+\end{description}
+En réalité, la \textit{majorité sont américain}  et donc nous effectuons uniquement des calculs avec ce type.
+\end{conceptgen}
+
+%\textbf{Notation de prix}:
+%\begin{multicols*}{2}
+%\begin{itemize}
+%	\item[$C_{t}$:] 
+%	\item[$C_{0}$:] 
+%\end{itemize}
+%\end{multicols*}
+\end{definition}
+
+%%%	----
+%%%	turn into a table with long and short
+%%%	----
+\paragraph{Positions}: Dans le cas d'option d'achat, les positions sont:
+\begin{description}
+	\item[longue:]	Acheteur, ou \textbf{Détenteur}, de l'action;
+	\item[courte:]	\textbf{Vendeur} de l'action;
+\end{description}
+
+\begin{definition}[Option de vente]
+Contrat qui \textit{permet} à son \textit{détenteur} de \textbf{vendre} au lieu d'acheter.
+\end{definition}
+
 Pour chaque stratégie qu'on voit dans le cours, on peut calculer
 \begin{description}
 \item[Premium] Il s'agit des cashflow à $t=0$ (si positif, il s'agît d'un coût ; si négatif, il s'agît d'une \textit{compensation}).

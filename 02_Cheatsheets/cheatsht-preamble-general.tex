@@ -108,7 +108,7 @@
 %% -----------------------------
 %% tcolorbox configuration
 %% -----------------------------
-\usepackage{tcolorbox}
+\usepackage[most]{tcolorbox}
 \tcbuselibrary{xparse}
 \tcbuselibrary{breakable}
 
@@ -146,13 +146,15 @@
 	breakable
 }
 %%
-%% Coloured box "rappel" pour rappel de formules
+%% Coloured box "conceptgen" for points adding to a concept's deifintion
 %%
-\newtcolorbox{rappel}[ 1 ]
+\newtcolorbox{conceptgen}[ 1 ]
 {
-	colback = ashgrey,
-	colframe = arsenic,
-	fonttitle = \bfseries,title=#1
+	colback = beaublue,
+	colframe = airforceblue,
+	breakable,
+	fonttitle = \bfseries,
+	title=#1,
 }
 %%
 %% Coloured box "probch3" pour formules relatives au 3ème chapitre de prob
@@ -170,7 +172,8 @@
 {
 	colback = green!5!white,
 	colframe = green!70!black,
-	fonttitle = \bfseries,title=#1
+	fonttitle = \bfseries,title=#1,
+	breakable
 }
 %%
 %% Coloured box "examplebox" for formulas
@@ -180,6 +183,50 @@
 	colback = lightmauve,
 	colframe = antiquefuchsia,
 	fonttitle = \bfseries,title=#1
+}
+%%
+%% Coloured box "rappel" pour rappel de formules
+%%
+\newtcolorbox{rappel}[ 1 ]
+{
+	colback = ashgrey,
+	colframe = arsenic,
+	fonttitle = \bfseries,title=#1
+}
+%%
+%% Coloured box "rappel" pour rappel de formules
+%%
+\DeclareTColorBox{rappel_enhanced}{ o }
+{
+	enhanced,
+	title = #1,
+	colback=ashgrey, % color of the box
+%	colframe=blue(pigment),
+%	colframe=arsenic,	
+	colbacktitle=arsenic,
+	fonttitle = \bfseries,
+	boxed title style={size=small,colframe=arsenic} ,
+	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
+}
+%%
+%% Coloured box "notation" for notation and terminology
+%%
+\DeclareTColorBox{distributions}{ o }			% #1 parameter
+{
+	enhanced,
+	title = #1,
+	colback=ashgrey, % color of the box
+%	colframe=blue(pigment),
+	colframe=arsenic,	
+	colbacktitle=aurometalsaurus,
+	fonttitle = \bfseries,
+	boxed title style={size=small,colframe=arsenic} ,
+	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
+%	left=0pt,
+%  	right=0pt,
+%    box align=center,
+%    ams align*
+%  	top=-10pt
 }
 
 %% -----------------------------
@@ -202,6 +249,11 @@
 %
 %	Colour definitions
 %
+\definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
+\definecolor{blue(pigment)}{rgb}{0.2, 0.2, 0.6}
+\definecolor{bluebell}{rgb}{0.64, 0.64, 0.82}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{beaublue}{rgb}{0.74, 0.83, 0.9}
 \definecolor{ruddypink}{rgb}{0.88, 0.56, 0.59}
 \definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}		
 \definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
