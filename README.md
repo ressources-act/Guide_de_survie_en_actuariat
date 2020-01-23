@@ -86,23 +86,23 @@ Installer [GitHub Desktop]([https://desktop.github.com/](https://desktop.github.
 
 __Noter__ que le projet est maintenant un "fork" du projet original
 <p align="center">
-  <img src="https://i.imgur.com/epr5Age.png" height="600">
+  <img src="https://i.imgur.com/epr5Age.png" height="350">
 </p>
 
 2. "*Open in Desktop*" pour cloner le projet à votre l'ordinateur
 
 <p align="center">
-  <img src="https://i.imgur.com/5vuhlQk.png" height="600">
+  <img src="https://i.imgur.com/5vuhlQk.png" height="350">
 </p>
 
 <p align="center">
-  <img src="https://i.imgur.com/D57iBL8.png" height="600">
+  <img src="https://i.imgur.com/D57iBL8.png" height="350">
 </p>
 
 3. Une fois le projet cloné, créer une nouvelle branche.
 
 <p align="center">
-  <img src="https://i.loli.net/2019/11/11/ebfHPW5jnhClcmS.png" height="600">
+  <img src="https://i.loli.net/2019/11/11/ebfHPW5jnhClcmS.png" height="350">
 </p>
 
 4. Nommer la branche `<PRÉNOM>-MODIFS`
@@ -131,30 +131,32 @@ Vous pouvez maintenant effectuer des modifications!
 
 2. `push`!![Capture d’écran, le 2019-11-10 à 16.00.56.png](https://i.loli.net/2019/11/11/YZzXkhtgvArMQSe.png)
 
-3. Pour merge au document principal, naviguer au déoôt original (donc pas votre fource, mais le vrai dépôt) et naviguer à l'onglet "Pull Requests"
+3. Pour fusionner au document principal, naviguer au dépôt original (donc pas votre fourche, mais le vrai dépôt) et naviguer à l'onglet "Pull Requests"
 
 <p align="center">
-  <img src="https://i.imgur.com/Qq9uetd.png" height="600">
+  <img src="https://i.imgur.com/Qq9uetd.png" height="350">
 </p>
 
 4. Sélectionner "New Pull Request"
 
 <p align="center">
-  <img src="https://i.imgur.com/mXrYT6r.png" height="600">
+  <img src="https://i.imgur.com/mXrYT6r.png" height="350">
 </p>
 
 5. Sélectionner l'option "comparer across forks"
 
 <p align="center">
-  <img src="https://i.imgur.com/hHUdNBH.png" height="600">
+  <img src="https://i.imgur.com/hHUdNBH.png" height="350">
 </p>
 
 6. Sélectionner votre branche comme branche à fusionner au dépôt ("head repository")
 
 
 <p align="center">
-  <img src="https://i.imgur.com/PG4ruUy.png" height="600">
+  <img src="https://i.imgur.com/PG4ruUy.png" height="350">
 </p>
+
+7. Sélectionner "Create Pull Request"
 
 ### Gérer les conflits
 
