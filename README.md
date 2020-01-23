@@ -39,12 +39,12 @@ Environnement de compilation du document principal. Pour créer un nouvelle sect
   
   ### 02_Cheatsheets
   
-  Environnement de compilation des cheatsheets. **Important**, toutes les cheatsheets doivent utiliser le même préambule (**cheatsht-preamble-general.tex**).
-- **cheatsht-ACT\<XXXX\>.tex** : Code source de la cheatsheets concernant le cours ACT-\<XXXX\>.
+  Environnement de compilation des feuilles de formules. **Important**, elles doivent tous utiliser le même préambule (**cheatsht-preamble-general.tex**).
+- **cheatsht-ACT\<XXXX\>.tex** : Code source de la feuille de formule concernant le cours ACT-\<XXXX\>.
 
 ### 03_Docs
 
-Autres document d'aide ou reletif au répertoire git.
+Autres documents d'aide.
 
 <a name="command-line-contrib"/>
 
@@ -78,23 +78,40 @@ Installer [GitHub Desktop]([https://desktop.github.com/](https://desktop.github.
 
 ### Workflow
 
-1. "*Open in Desktop*" pour cloner le projet à votre l'ordinateur
+1. Créer une fourche du répertoire:
 
-![Capture d’écran, le 2019-11-10 à 16.03.14.png](https://i.loli.net/2019/11/11/uijd5Og1JrZMXp6.png)
+<p align="center">
+  <img src="https://i.imgur.com/UAz5wSs.png" height="600">
+</p>
 
-2. Une fois le projet cloné, créer une nouvelle branche.
+__Noter__ que le projet est maintenant un "fork" du projet original
+<p align="center">
+  <img src="https://i.imgur.com/epr5Age.png" height="600">
+</p>
+
+2. "*Open in Desktop*" pour cloner le projet à votre l'ordinateur
+
+<p align="center">
+  <img src="https://i.imgur.com/5vuhlQk.png" height="600">
+</p>
+
+<p align="center">
+  <img src="https://i.imgur.com/D57iBL8.png" height="600">
+</p>
+
+3. Une fois le projet cloné, créer une nouvelle branche.
 
 <p align="center">
   <img src="https://i.loli.net/2019/11/11/ebfHPW5jnhClcmS.png" height="600">
 </p>
 
-3. Nommer la branche `<PRÉNOM>-MODIFS`
+4. Nommer la branche `<PRÉNOM>-MODIFS`
    
    <p align="center">
    <img src="https://i.loli.net/2019/11/11/hioePf4s6maGWcp.png" height="350">
    </p>
 
-4. Publier votre branche!
+5. Publier votre branche!
    
    ![Capture d’écran, le 2019-11-10 à 16.17.40.png](https://i.loli.net/2019/11/11/cobXThj13pQyJFM.png)
 
@@ -113,6 +130,31 @@ Vous pouvez maintenant effectuer des modifications!
    ![Capture d’écran, le 2019-11-10 à 16.00.16.png](https://i.loli.net/2019/11/11/9Bhj6flXxk42eJr.png)
 
 2. `push`!![Capture d’écran, le 2019-11-10 à 16.00.56.png](https://i.loli.net/2019/11/11/YZzXkhtgvArMQSe.png)
+
+3. Pour merge au document principal, naviguer au déoôt original (donc pas votre fource, mais le vrai dépôt) et naviguer à l'onglet "Pull Requests"
+
+<p align="center">
+  <img src="https://i.imgur.com/Qq9uetd.png" height="600">
+</p>
+
+4. Sélectionner "New Pull Request"
+
+<p align="center">
+  <img src="https://i.imgur.com/mXrYT6r.png" height="600">
+</p>
+
+5. Sélectionner l'option "comparer across forks"
+
+<p align="center">
+  <img src="https://i.imgur.com/hHUdNBH.png" height="600">
+</p>
+
+6. Sélectionner votre branche comme branche à fusionner au dépôt ("head repository")
+
+
+<p align="center">
+  <img src="https://i.imgur.com/PG4ruUy.png" height="600">
+</p>
 
 ### Gérer les conflits
 
