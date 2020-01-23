@@ -1,6 +1,6 @@
 %% Aide-mémoire
 \documentclass[10pt, french]{article}
-\input{../../02_Cheatsheets/cheatsht-preamble-general.tex}
+\input{cheatsht-preamble-general.tex}
 %% -----------------------------
 %% Préambule
 %% -----------------------------
@@ -544,7 +544,7 @@ K					& , S_T \leq K \\
 S_T				& , S_T > K \\
 \end{cases}
 \]
-\input{tikz/floor}
+\input{src/ACT-2011/floor}
 
 \subsection*{Cap}
 On vend à découvert $S$ en se protégant contre une hausse trop importante du sous-jacent (car il faudra éventuellement le racheter!). \textbf{Position courte}.
@@ -556,7 +556,7 @@ On vend à découvert $S$ en se protégant contre une hausse trop importante du 
 - K				& , S_T > K \\
 \end{cases}
 \]
-\input{tikz/cap}
+\input{src/ACT-2011/cap}
 
 \subsection*{Bull Spread}
 Combinaison de 2 Call (ou 2 Put) pour spéculer sur un marché haussier. Avec $K_1 < K_2$, on a
@@ -582,7 +582,7 @@ K_2 - S_T				& , K_1 < S_T \leq K_2 \\
 \end{cases}
 \]
 
-\input{tikz/bull_spread}
+\input{src/ACT-2011/bull_spread}
 
 
 \subsection*{Bear Spread}
@@ -612,7 +612,7 @@ K_2 - S_T 				& , K_1 < S_T \leq K_2 \\
 0								& , S_T > K_2 \\
 \end{cases}
 \end{align*}
-\input{tikz/bear_spread}
+\input{src/ACT-2011/bear_spread}
 
 \subsection*{Ratio Spread}
 Cette stratégie est une combinaison un peu sur mesure (on ne peut pas nécessairement dire si elle est longue ou courte). On achète $n$ options d'achat à un prix d'exercice $K_1$ et on en vend $m$ à un prix d'exercice $K_2$.\footnote{On peut faire cette stratégie avec des options de vente aussi.}
@@ -632,7 +632,7 @@ Premium				& = C(K_1, T) - C(K_2, T) \\
 							&  + P(K_2, T) - P(K_1,T) >  0 \\
 Payoff					& = K_2 - K_1  \ , \forall S_T \\
 \end{align*}
-\input{tikz/box_spread}
+\input{src/ACT-2011/box_spread}
 
 
 \subsection*{Collar}
@@ -647,7 +647,7 @@ K_1 - S_T			& , S_T \leq K_1 \\
 K_2 - S_T			& , S_T > K_2 \\
 \end{cases}
 \end{align*}
-\input{tikz/collar}
+\input{src/ACT-2011/collar}
 
 
 \subsection*{Stock Covered by Collar}
@@ -666,7 +666,7 @@ S_T					& , K_1 < S_T \leq K_2 \\
 K_2 					& , S_T > K_2 \\
 \end{cases}
 \end{align*}
-\input{tikz/stock_covered_collar}
+\input{src/ACT-2011/stock_covered_collar}
 
 
 \subsection*{Straddle}
@@ -680,7 +680,7 @@ K - S_T				& , S_T \leq K \\
 S_T - K				& , S_T > K \\
 \end{cases}
 \end{align*}
-\input{tikz/straddle}
+\input{src/ACT-2011/straddle}
 
 \subsection*{Strangle}
 Même genre de stratégie que le strangle, on spécule sur la volatilité du sous-jacent à l'extérieur de l'intervalle $[K_1, K_2]$ : 
@@ -694,7 +694,7 @@ K_1 - S_T			& , S_T \leq K_1 \\
 S_T - K_2 		& , S_T > K_2 \\
 \end{cases}
 \end{align*}
-\input{tikz/strangle}
+\input{src/ACT-2011/strangle}
 
 
 \subsection*{Butterfly Spread (BFS)}
@@ -715,7 +715,7 @@ K_2 - K_3			& , S_T > K_3 \\
 \end{align*}
 \paragraph{Note} De façon générale (plusieurs combinaisons sont possibles), on a 
 \[BFS = Bull(K_1, K_2) + Bear(K_2, K_3) \]
-\input{tikz/butterfly_spread}
+\input{src/ACT-2011/butterfly_spread}
 
 \paragraph{Asymetric Butterfly Spread} 
 \begin{itemize}
