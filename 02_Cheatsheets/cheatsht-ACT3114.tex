@@ -23,7 +23,9 @@
 %
 \def\auteur{Alec James van Rassel}
 
-
+%	"to-do" list
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
 %% -----------------------------
 %% Début du document
 %% -----------------------------
@@ -31,7 +33,51 @@
 
 \begin{multicols*}{3} 
 
-\setcounter{section}{1}
+\section{Préparation de données}
+
+\begin{algo}{Étapes du nettoyage de données}
+Cette liste n'est pas séquentielle, il est surtout important de \textit{tout} le faire.
+\begin{todolist}[leftmargin = *]
+	\item	\textbf{Comprendre} la structure des données;
+		\begin{itemize}
+		\item	dimensions, types de variables, \texttt{str} et \texttt{summary}.
+		\end{itemize}
+	\item	\textbf{Visualiser} les données;
+		\begin{itemize}
+		\item	\texttt{head}, \texttt{summary} et graphiques exploratoires.
+		\end{itemize}
+	\item	\textbf{Mettre en forme \textit{(format)}} les données;
+		\begin{itemize}
+		\item	Chaque ligne est une observation;
+		\item	Chaque colonne est une variable;
+		\item	Supprimer les doublons;
+		\end{itemize}
+	\item	Vérifier et corriger les \textbf{types} de variables;
+		\begin{itemize}
+		\item	booléens, entiers, numériques, facteurs, chaines de caractères, dates, etc.
+		\end{itemize}
+	\item	\textbf{Manipuler} les \textbf{chaines} de caractères;
+		\begin{itemize}
+		\item	Corriger les typos;
+		\item	Changer la casse avec \texttt{tolower};
+		\item	Extraire des informations avec les expressions régulières.
+		\end{itemize}
+	\item	Identifier les \textbf{données aberrantes};
+		\begin{itemize}
+		\item	Mettre \texttt{NA} et gérer plus tard.
+		\end{itemize}
+	\item	\textbf{Détecter} les \textbf{erreurs} flagrantes ou les changements structurels dans les donnéesl
+		\begin{itemize}
+		\item	Prendre compte des réformes;
+		\item	Constater les structures importantes.
+		\end{itemize}
+	\item	\textbf{Augmenter} les données à l'aide d'autres sources;
+		\begin{itemize}
+		\item	optionnel.
+		\end{itemize}
+\end{todolist}
+\end{algo}
+
 \section{Données manquantes}
 
 Le chapitre utilise la \textbf{mise en contexte} suivante:
