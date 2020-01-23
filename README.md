@@ -86,23 +86,23 @@ Installer [GitHub Desktop]([https://desktop.github.com/](https://desktop.github.
 
 __Noter__ que le projet est maintenant un "fork" du projet original
 <p align="center">
-  <img src="https://i.imgur.com/epr5Age.png" height="350">
+  <img src="https://i.imgur.com/epr5Age.png" width="900">
 </p>
 
 2. "*Open in Desktop*" pour cloner le projet à votre l'ordinateur
 
 <p align="center">
-  <img src="https://i.imgur.com/5vuhlQk.png" height="350">
+  <img src="https://i.imgur.com/5vuhlQk.png" width="900">
 </p>
 
 <p align="center">
-  <img src="https://i.imgur.com/D57iBL8.png" height="350">
+  <img src="https://i.imgur.com/D57iBL8.png" width="900">
 </p>
 
 3. Une fois le projet cloné, créer une nouvelle branche.
 
 <p align="center">
-  <img src="https://i.loli.net/2019/11/11/ebfHPW5jnhClcmS.png" height="350">
+  <img src="https://i.loli.net/2019/11/11/ebfHPW5jnhClcmS.png" height="600">
 </p>
 
 4. Nommer la branche `<PRÉNOM>-MODIFS`
@@ -140,20 +140,20 @@ Vous pouvez maintenant effectuer des modifications!
 4. Sélectionner "New Pull Request"
 
 <p align="center">
-  <img src="https://i.imgur.com/mXrYT6r.png" height="350">
+  <img src="https://i.imgur.com/mXrYT6r.png" width="900">
 </p>
 
 5. Sélectionner l'option "comparer across forks"
 
 <p align="center">
-  <img src="https://i.imgur.com/hHUdNBH.png" height="350">
+  <img src="https://i.imgur.com/hHUdNBH.png" width="900">
 </p>
 
 6. Sélectionner votre branche comme branche à fusionner au dépôt ("head repository")
 
 
 <p align="center">
-  <img src="https://i.imgur.com/PG4ruUy.png" height="350">
+  <img src="https://i.imgur.com/PG4ruUy.png" width="900">
 </p>
 
 7. Sélectionner "Create Pull Request"
