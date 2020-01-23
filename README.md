@@ -1,7 +1,9 @@
 # Guide de survie en actuariat
-Ce projet à pour but de créer un document contenant toutes les feuilles de formules utiles au bac en actuariat. Toutes les contributions sont les bienvenues.
 
-## Contributeurs 
+Ce projet a pour but de créer un document contenant toutes les feuilles de formules utiles au bac en actuariat. Toutes les contributions sont les bienvenues.
+
+## Contributeurs
+
 - [cre, aut] Nicholas Langevin [:octocat:](https://github.com/NicholasLangevin)
 - [cre, aut] Gabriel Crépeault-Cauchon [:octocat:](https://github.com/gabrielcrepeault)
 - [aut] Alec James van Rassel [:octocat:](https://github.com/alec42)
@@ -14,26 +16,32 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 - [Rédaction d'un Pull Request](#pull-request)
 - [Contenu du répertoire](#contents)
 
-
-
 <a name="structure"/>
 
 ## Structure
+
 ### 00_Archive
+
 Contenu non adapté à la structure du document principal.
+
 > **Aucun pull request ne devrait ajouter du contenu à ce répertoire**
 
 ### 01_DocumentPrincipal
+
 Environnement de compilation du document principal. Pour créer un nouvelle section, suivre les règles suivantes:
+
 - **Chapter-\<nomDuChapitre\>.tex** : Chapitre portant sur une matière précise.
 - **Appendix-\<nomDeAppendix\>.tex** : Ajout pouvant être utile dans plusieurs matières/chapitres.
 - **Main-\<nomDuDocument\>.tex** : Fichier servant à la construction du document principal.
 - **src/\<nomDuChapitre>** : Dossier contenant tous les img/.R/etc utilisé dans la section en question.
-### 02_Cheatsheets
-Environnement de compilation des cheatsheets. **Important**, toutes les cheatsheets doivent utiliser le même préambule (**cheatsht-preamble-general.tex**).
+  
+  ### 02_Cheatsheets
+  
+  Environnement de compilation des cheatsheets. **Important**, toutes les cheatsheets doivent utiliser le même préambule (**cheatsht-preamble-general.tex**).
 - **cheatsht-ACT\<XXXX\>.tex** : Code source de la cheatsheets concernant le cours ACT-\<XXXX\>.
 
 ### 03_Docs
+
 Autres document d'aide ou reletif au répertoire git.
 
 <a name="command-line-contrib"/>
@@ -42,24 +50,27 @@ Autres document d'aide ou reletif au répertoire git.
 
 1) Forker le repertoire sur votre compte github
 2) Cloner le répertoire sur votre machine personnelle et créer une branche de travail.
-```
-git clone https://github.com/<YourUserName>/Guide_de_survie_en_actuariat.git
-git checkout -b <NomDeLaBranche>
-```
+   
+   ```
+   git clone https://github.com/<YourUserName>/Guide_de_survie_en_actuariat.git
+   git checkout -b <NomDeLaBranche>
+   ```
 3) Effectuer les modification, stage and commit.
-```
-git add -A
-git commit -m "<DescriptionDuChangement>"
-```
+   
+   ```
+   git add -A
+   git commit -m "<DescriptionDuChangement>"
+   ```
 4) Publier les changements.
-```
-git push origin <NomDeLaBranche>
-```
+   
+   ```
+   git push origin <NomDeLaBranche>
+   ```
 5) Ouvrir un pull request sur la page officiel du répertoire
 
 <a name="github-desktop-contrib"/>
 
-## Contribuer avec GitHub Desktop 
+## Contribuer avec GitHub Desktop
 
 Installer [GitHub Desktop]([https://desktop.github.com/](https://desktop.github.com/) pour la gestion de Git et [Visual Studio Code]([https://code.visualstudio.com/](https://code.visualstudio.com/) pour la gestion de conflits.
 
@@ -76,9 +87,10 @@ Installer [GitHub Desktop]([https://desktop.github.com/](https://desktop.github.
 </p>
 
 3. Nommer la branche `<PRÉNOM>-MODIFS`
-<p align="center">
-  <img src="https://i.loli.net/2019/11/11/hioePf4s6maGWcp.png" height="350">
-</p>
+   
+   <p align="center">
+   <img src="https://i.loli.net/2019/11/11/hioePf4s6maGWcp.png" height="350">
+   </p>
 
 4. Publier votre branche!
    
@@ -105,14 +117,16 @@ Vous pouvez maintenant effectuer des modifications!
 Lorsque vous avez cette erreur, c'est qu'il y a un conflit; n'ayez pas peur, Visual Studio Code permet de la gérer visuellement.
 
 1. Ouvrir avec Visual Studio Code 
-<p align="center">
-  <img src="https://i.loli.net/2019/11/11/oIdG9C76rLNkFOX.png" height="300">
-</p>
+   
+   <p align="center">
+   <img src="https://i.loli.net/2019/11/11/oIdG9C76rLNkFOX.png" height="300">
+   </p>
 
 2. Défiler jusqu'à ce que vous trouvez une partie du code ressemblant à ceci:
-<p align="center">
-  <img src="https://i.loli.net/2019/11/11/KLjIWykF71hT8RQ.png">
-</p>
+   
+   <p align="center">
+   <img src="https://i.loli.net/2019/11/11/KLjIWykF71hT8RQ.png">
+   </p>
    
    Suffit de choisir quelle modification conserver!
    
@@ -121,7 +135,7 @@ Lorsque vous avez cette erreur, c'est qu'il y a un conflit; n'ayez pas peur, Vis
 3. Le message suivant va apparaître. 
    
    On peut donc faire le `commit` et faire un push de nos modifications.
-   
+
 <p align="center">
   <img src="https://i.loli.net/2019/11/11/KvAR23y7FmWDQq6.png" height="300">
 </p>
@@ -151,4 +165,5 @@ Lorsque vous avez cette erreur, c'est qu'il y a un conflit; n'ayez pas peur, Vis
 <a name="contents"/>
 
 ## Contents
+
 > TODO
