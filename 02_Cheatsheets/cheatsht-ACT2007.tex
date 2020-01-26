@@ -20,97 +20,7 @@
 %% Début du document
 %% -----------------------------
 \begin{document}
-% j'enlève le footnotesize temporairement, sinon je ne vois rien! GCC
-% \footnotesize % Écrire petit (peut être modifié)
-\begin{multicols*}{2} % Permet d'écrire dans plusieurs colonnes l'entièreté du document
-% -------------------------------------------------------------
-%\section{Rappels généraux}
-%\subsection*{Mathématiques financières}
-%\[v = \frac{1}{1+i} = 1 - d = e^{-\delta t}\]
-%conversion : 
-%\[   \left(1 - \frac{d^{(m)}}{m} \right)^m = 1  - d  \]
-%\[\left(1 + \frac{i^{(m)}}{m} \right)^m = 1  +i\]
-%\[ \ax{\angln} = \frac{1 - v^n}{i}, \ax**{\angln} = \frac{1 - v^n}{d}, \ax*{\angln} = \frac{1 - v^n}{\delta}  \]
-%\[\ax{\angln}[(m)] = \frac{1 - v^n}{i^{(m)}} , \ax**{\angln}[(m)] = \frac{1 - v^n}{d^{(m)}}   \]
-%
-%\subsection*{Modèles de survie}
-%\begin{itemize}
-%\item $T_x$ : durée de vie de $(x)$
-%\item $K_x =  \lfloor T_x \rfloor$
-%\item $\px[t]{x}[] = \prob{T_x > t} = e^{- \int_{0}^{t} \mu_{x+s} ds}$
-%\item $\qx[t]{x}[] = 1 - \px[t]{x}[] = \prob{T_x \leq t}$
-%\item $\px[t + u]{x}[] = \px[t]{x}[] \cdot \px[u]{x+t}[]$
-%\item $\qx[t|u]{x}[] = \px[t]{x}[] \cdot \qx[u]{x+t}[]$
-%\end{itemize}
-%
-%\subsection*{Loi de mortalité}
-%\paragraph{Force constante}
-%$\mu_x = \mu$, $\px[t]{x}[] = e^{-\mu t}$
-%
-%\paragraph{Uniforme (DeMoivre)}
-%\begin{itemize}
-%\item  $\mu_u = \frac{1}{\omega - x}$, avec $0 \leq x \leq \omega$
-%\item $\px[t]{x}[] = \frac{\omega - x - t}{\omega - x}$
-%\end{itemize}
-%
-%\subsection*{DUD}
-%\begin{itemize}
-%\item $\qx[]{x+h}[] = h \cdot \qx[]{x}[]$
-%\item $\Ax*{x} = \frac{i}{\delta} \Ax{x}$
-%\end{itemize}
-%
-%
-%
-%\subsection*{Contrat d'assurance}
-%\paragraph{Assurance entière}
-%Cas discret : 
-%\[\Ax{x} = \sum_{k=0}^{\infty} b_k v^{k+1} \qx[k|]{x}[]\]
-%Cas continu : 
-%\[\Ax*{x} = \int_{0}^{\infty} v^t \px[t]{x}[] \mu_{x+t} dt  \]
-%
-%\paragraph{Assurance dotation pure (\emph{pure endowment)}}
-%\[\Ax{\endowxn} = \Ax{\termxn} + \Ax{\pureendowxn}\]
-%où $\Ax{\pureendowxn} = \Ex[n]{x} = v^n \px[n]{x}[]$
-%
-%\paragraph{Assurance temporaire $n$ année}
-%\[\Ax{\termxn} = \Ax{x} - \Ax[n|]{x} \]
-%où $\Ax[n|]{x}  = \Ex[n]{x} \Ax{x+n}$ (i.e. une assurance différée)
-%
-%\paragraph{Assurance différée}
-%\[\Ax[m|][]{x}[] = \Ex[m]{x} \Ax[][]{x+m}[]\]
-%\[\Ax[m|][2]{x}[] = v^{m} \Ex[m]{x} \Ax[][]{x+m}[]\]
-%
-%\paragraph{Assurance payable $m$ fois l'an}
-%\[\Ax{x}[(m)] = \sum_{k=0}^{\infty} v^{\frac{(k+1)}{m}} \qx[\frac{k}{m} | \frac{1}{m}]{x}[] \]
-%
-%
-%\subsection*{Contrat de rente}
-%\paragraph{Rente entière} Cas discret : 
-%\[\ax**{x} = \sum_{k=0}^{\infty} v^{k} \px[k]{x}[]  \]
-%
-%Cas continu : 
-%\[\ax*{x} = \int_{0}^{\infty}  v^t \px[t]{x}[] dt \]
-%
-%\paragraph{Rente temporaire}
-%\[\ax**{\endowxn} = \frac{1 - \Ax{x:\angln}}{d} \leftrightarrow \Ax{\endowxn} =1 - d \ax**{\endowxn}\]
-%
-%Raccourci : 
-%\[\ax{\endowxn} = \ax{x} - \Ex[n]{x} \ax{x+n}  \]
-%
-%
-%
-%
-%\subsection*{Principe d'équivalence}
-%$\pi$, lorsque calculée sous le principe d'équivalence, est la solution de
-%\[\esp{Z} = \esp{Y}\]
-%où $Z$ est la valeur présente des prestations futures et $Y$ la valeur présente des primes futures à recevoir.
-%
-%\subsection*{Formule de Woolhouse}
-%\[\ax**{x}[(m)] \approx \ax**{x} - \frac{m-1}{2m} - \frac{m^2 -1}{12m^2} (\delta + \mu_x)  \]
-%\[\ax**{\endowxn}[(m)] \approx  \ax**{\endowxn} - \frac{m-1}{2m}(1  -v^n \px[n]{x}[]) - \frac{m^2 -1}{12m^2} \Big( \delta + \mu_x - v^n \px[n]{x}[](\delta + \mu_{x+n}) \Big)  \]
-%\[\ax*{\endowxn} = \lim_{m \to \infty}  \ax**{\endowxn}[(m)] \approx  \ax**{\endowxn} - \frac{1}{2} (1  -v^n \px[n]{x}[]) - \frac{1}{12} \Big( \delta + \mu_x - v^n \px[n]{x}[](\delta + \mu_{x+n}) \Big)  \]
-%
-
+\begin{multicols*}{2} 
 
 \section{Calcul de réserve}
 
@@ -196,17 +106,17 @@ Selon la méthode \textbf{prospective},
 \paragraph{Relation récursive pour les réserves (discrètes)}
 
 \begin{align*}
-	\textcolor{burntorange}{(\actsymb[k]{V}{} + P)}\textcolor{burntsienna}{(1 + i)}
-	&=	\textcolor{amethyst}{\qx{x + k} b_{x + k}} + \textcolor{ao(english)}{\px{x + k} \actsymb[x + k]{V}{}}
+	\textcolor{burntorange}{(\actsymb[h]{V}{} + \pi_{h})}\textcolor{burntsienna}{(1 + i)}
+	&=	\textcolor{amethyst}{\qx{x + h} b_{h + 1}} + \textcolor{ao(english)}{\px{x + h} \actsymb[h + 1]{V}{}}
 \end{align*}
-On ajoute \textcolor{burntorange}{la prime $P$ à la réserve $\actsymb[k]{V}{}$ au temps $k$} et \textcolor{burntsienna}{accumule pour un an}. Ceci est équivalent à soit \textcolor{amethyst}{décéder à l'âge $x + k$ et payer la prestation en cas de décès $b_{x + k}$} ou \textcolor{ao(english)}{survive et ajouter à la réserve $\actsymb[x + k]{V}{}$ au temps $x + k$}.
+On ajoute \textcolor{burntorange}{la prime $P$ à la réserve $\actsymb[h]{V}{}$ au temps $h$} et \textcolor{burntsienna}{accumule pour un an}. Ceci est équivalent à soit \textcolor{amethyst}{décéder à l'âge $x + h$ et payer la prestation en cas de décès $b_{h + 1}$} ou \textcolor{ao(english)}{survive et ajouter à la réserve $\actsymb[h + 1]{V}{}$ au temps $x + h$}.
 
 Formule générale\footnote{Si les frais ne sont pas applicables pour le problème, simplement poser $G_h = E_h = 0$.} : 
 \begin{align*}
 	\actsymb[h+1]{V}{} 
 	&= 	\frac{(\actsymb[h]{V}{} + G_h - e_h)(1+i) - (b_{h+1} - E_{h+1}) \qx[]{x+h}[]}{\px[]{x+h}[]}
 \end{align*}
-où $G_h$ est la prime à recevoir à $t=h$, $e_h$ les frais relié à la collecte de la prime et $E_h$ les frais reliés aux paiement de la prestation.
+où $G_h$ est la prime \textit{(gross premium)} à recevoir à $t = h$, $e_h$ les frais relié à la collecte de la prime \textit{(per premium expenses)} et $E_h$ les frais reliés aux paiement de la prestation \textit{(settlement expenses)}.
 
 \paragraph{Formules alternatives pour Contrat d'assurance-vie entière (si $\pi^{PE}$)}
 \begin{align*}

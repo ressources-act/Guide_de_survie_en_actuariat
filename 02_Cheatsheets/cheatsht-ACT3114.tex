@@ -115,6 +115,35 @@ Le chapitre utilise la \textbf{mise en contexte} suivante:
 \end{itemize}
 \end{definition}
 
+\begin{examplebox}{Exemple de notation}
+\begin{align*}
+	\bm{Y}	
+	&=	\begin{bmatrix}
+		2	&	3	\\
+		8	&	6	\\
+		3	&	12	
+		\end{bmatrix}	\\
+	\bm{Y}_{obs}
+	&=	\begin{bmatrix}
+		2	&	.	\\
+		8	&	6	\\
+		.	&	.
+		\end{bmatrix}	&
+	\bm{Y}_{mis}
+	&=	\begin{bmatrix}
+		.	&	3	\\
+		.	&	.	\\
+		3	&	12	
+		\end{bmatrix}	\\
+	\bm{R}
+	&=	\begin{bmatrix}
+		1	&	0	\\
+		1	&	1	\\
+		0	&	0	
+		\end{bmatrix}	
+\end{align*}
+\end{examplebox}
+
 \subsubsection*{Mécanisme de non-réponse}
 La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
 
@@ -132,7 +161,7 @@ La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
 		On perd $10\%$ des valeurs mesurées alors, $\forall i \in \{1, \dots, n\}, j \in \{1, \dots, p\}$, la distribution du mécanisme de non-réponse:
 			\begin{align*}
 			R_{ij} 
-			&\sim 	\text{Bernoulli}(\theta =  10\%)
+			&\sim 	\text{Bernoulli}(p = 1 - \theta =  90\%)
 			\end{align*}
 		\end{examplebox}
 		\item	Tester la différence de moyennes:
@@ -162,7 +191,7 @@ La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
 	\setcounter{enumi}{1}
 	\item	\textbf{MAR}: Missing at Random;
 		\begin{itemize}
-		\item	La probabilité de réponse $f(R | Y, \theta)$ dépend seulement de variables qui ont été observées dans le jeu de données $\matr{Y}_{\text{obs}}$:
+		\item	La probabilité de réponse $f(R | \bm{Y}1616, \theta)$ dépend seulement des variables qui ont été observées dans le jeu de données $\matr{Y}_{\text{obs}}$:
 			\begin{align*}
 			f(R | \matr{Y}, \theta) &= f(R | \matr{Y}_{\text{obs}}, \theta) \\
 			\end{align*}
@@ -215,6 +244,7 @@ Une question valide est si les options pour le traitement des données manquante
 		\item	\textbf{Impact}:
 			\begin{itemize}
 			\item[$\color{red}\downarrow$]	taille de l'échantillon	\\
+			\item[$\color{red}\downarrow$]	taille de la corrélation des variables	\\
 			\item[$\color{blue}\uparrow$]	variance des estimateurs	\\
 			\item[$\color{red}\downarrow$]	puissance des tests	\\
 			\end{itemize}
