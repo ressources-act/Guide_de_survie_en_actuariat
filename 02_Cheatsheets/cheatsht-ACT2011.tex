@@ -1,6 +1,8 @@
 %% Aide-mémoire
 \documentclass[10pt, french]{article}
 \input{cheatsht-preamble-general.tex}
+\usepackage{array, multirow}
+\usepackage{booktabs}
 %% -----------------------------
 %% Préambule
 %% -----------------------------
@@ -13,8 +15,6 @@
 %% -----------------------------
 %% Début du document
 %% -----------------------------
-\usepackage{array, multirow}
-\usepackage{booktabs}
 
 \begin{document}
 
@@ -78,7 +78,20 @@ Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a cau
 \end{definitionNOHFILL}
 
 \subsection*{Transactions}
-\begin{algo}{Étapes d'une transaction}
+
+\begin{definitionNOHFILL}[Transaction gré-à-gré] 
+Transaction sans intermédiaire ou à l'extérieur de la bourse. 
+
+\begin{conceptgen}{Raisons pour ce type de transaction}
+\begin{itemize}
+\item Ce sont souvent de grosses transaction. On peut donc économiser sur les frais de transaction.
+\item On peut combiner (sur une même transaction) plusieurs micro-transaction et plusieurs types d'actifs.
+\end{itemize}
+\end{conceptgen}
+\end{definitionNOHFILL}
+
+
+\begin{algo2}[Étapes d'une transaction]
 \begin{enumerate}
 	\item 	L'acheteur et le vendeur se trouvent;
 	\item 	On définit les obligations de chaque partie, on dit que la transaction est \og \textbf{cleared} \fg{};
@@ -90,22 +103,12 @@ Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a cau
 	\item 	La transaction a lieu et les obligations sont remplies par chaque partie, on dit que la transaction est \og \textit{settled} \fg{};
 	\item 	Les registres de propriétés sont mis à jour.
 \end{enumerate}	
-\end{algo}
+\end{algo2}
 
-\begin{definitionNOHFILL}[Transaction gré-à-gré] 
-Transaction sans intermédiaire ou à l'extérieur de la bourse. 
+\begin{definitionNOHFILL}[Vente à découvert \og \textit{(short-sell)} \fg{}] 
+Lorsqu'on croit que le prix d'une action va baisser, on peut faire un profit quand même.
 
-\begin{conceptgen}{Raisons pour ce type de transaction}
-\begin{itemize}
-\item Ce sont souvent de grosses transaction. On peut donc économiser sur les frais de transaction.
-\item On peut combiner (sur une même transaction) plusieurs micro-transaction et plusieurs types d'actifs.
-\end{itemize}
-\end{conceptgen}
-
-\end{definitionNOHFILL}
-
-\begin{definitionNOHFILL}[Vente à découvert] 
-\begin{algo}{Étapes d'une vente à découvert}
+\begin{algo2}[Étapes d'une vente à découvert]
 \begin{multicols*}{2}
 \begin{enumerate}[leftmargin = *]
 	\item[]	Au début:\\
@@ -116,34 +119,79 @@ Transaction sans intermédiaire ou à l'extérieur de la bourse.
 	\item	Remboursement du titre
 \end{enumerate}	
 \end{multicols*}
-\end{algo}
+\end{algo2}
+
+\begin{formula}{Exemple de vente à découvert}
+\begin{itemize}
+	\item	Mon ami James possède 5 actions d'Apple ayant chacune une valeur de 5\$;
+	\item	Je lui emprunte ses 5 actions et lui promets d'y retourner;
+	\item	Immédiatement, je revends ses actions sur le marché des actions;
+		\begin{itemize}
+		\item	Je ne suis pas inquiété, je suis certain que le prix va baisser;
+		\item	Ce faisant, je suis certain que je serai capable de racheter ses actions plus tard à un prix plus faible.
+		\end{itemize}
+	\item	Après une certaine période de temps, j'achète 5 actions au nouveau prix et j’y retourne.
+\end{itemize}
+\end{formula}
 
 \begin{conceptgen}{Raisons pour une vente à découvert}
-\begin{multicols*}{3}
 \begin{itemize}
-	\item	Spéculation;
-	\item	Financement;
-	\item	Couverture.
+	\item	\textbf{Spéculation}: Un investisseur tire profit d'une baisse de prix;
+	\item	\textbf{Financement}: Une vente à découvert est une façon d'emprunter de l'argent;
+	\item	\textbf{Couverture} (hedging): Un investisseur peut éliminer le risque d'une position longue sur une action avec une vente à découvert.
 \end{itemize}
-\end{multicols*}
 \end{conceptgen}
 
 \begin{conceptgen}{Type de risques}
 \begin{description}
-	\item[Risque de défaut] Risque de ne pas être payé. Ce risque peut être réduit avec un dépôt initial en garantie ou une marge de sécurité.
-	\item[Risque de rareté] Si il est difficile de trouver un acheteur et un vendeur pour le sous-jacent (pas beaucoup de transactions signifie beaucoup de négociations et de variation dans les prix)
+	\item[Risque de défaut (de crédit)] Risque de ne pas être payé;
+		\begin{itemize}
+		\item	Ce risque peut être réduit avec un dépôt initial en garantie ou une marge de sécurité;
+		\item	\og \textit{credit risk} \fg{}.
+		\end{itemize}	
+	\item[Risque de rareté] Si il est difficile de trouver un acheteur et un vendeur pour le sous-jacent (pas beaucoup de transactions signifie beaucoup de négociations et de variation dans les prix).
+\end{description}
+\end{conceptgen}
+
+\begin{conceptgen}{Frais}
+investisseur: short-seller
+prêteur: Détenteur des actions dont l'investisseur a emprunté;
+\begin{description}
+	\item[\og \textit{short-sale \textbf{proceeds}} \fg{}]	Le recettes de la vente sont conservés comme collatéral au cas où que l'investisseur ne retourne pas les actions;
+		\begin{itemize}
+		\item	Soit le prêteur, ou un parti tierce, va conserver les revenus de la vente à découvert jusqu'au retour des actions;
+		\item	À ce moment, elles seront retournées à l'investisseur.
+		\end{itemize}
+	\item[\og \textit{a \textbf{haircut}} \fg{}]	Marge de sécurité pour couvrir le risque que le prix des actions augmente trop pour que l'investisseur ait la capacité financière des retourner, le prêteur exige un \og dépôt \fg{} additionnel;
+		\begin{itemize}
+		\item	Comme les recettes de la vente, cette marge de sécurité sera retournée au prêteur.
+		\end{itemize}
+	\item[\og \textit{Interest} \fg{}]	Il est naturel que le prêteur exige un retour sur la vente à découvert également;
+		\begin{itemize}
+		\item	Dans le marché des actions, l'intérêt accumulé sur le collatéral est le \og \textit{short rebate} \fg{};
+		\item	Dans le marché des obligations, c'est le \textbf{taux de mise en pension} (\og \textit{repo rebate} \fg{});
+		\item	Ces taux sont habituellement \textit{plus faible que} ceux du \textit{marché} et sont fondés sur l'offre et la demande.
+		\end{itemize}
+	\item[\og \textit{Dividends} \fg{}]	Il est possible que des dividendes sont payables lors du prêt;
+		\begin{itemize}
+		\item	Puisque le détenteur de l'action sera celui à qui l'investisseur à vendu les actions, l'investisseur et le prêteur ne vont pas les recevoir;
+		\item	Du point de vue du prêteur, les dividendes sont des paiements en espèce qu'il aura reçu s'il n'avait pas prêté l'action;
+		\item	Ce faisant, l'investisseur va payer ces dividendes au prêteur s'il y en a;
+		\item	Ce paiement ce nomme le \textbf{taux de location} (\og \textit{lease rate} \fg{}) de l'actif.
+		\end{itemize}
 \end{description}
 \end{conceptgen}
 
 \end{definitionNOHFILL}
 
-
 \begin{conceptgen}{Mesures de taille et d'activité d'un marché}
 \begin{description}
 	\item[Volume total des transactions:] Nombre total de titres transigés pendant une période;
 	\item[Valeur marchande:] $\text{nombre d'actions} \ \times \ \text{prix par action (\$)}$;
+	\item[]	\og \textit{Market value} \fg{}.
 	\item[Valeur notionnelle:] Valeur de l'actif sous-jacent du produit dérivé;
 	\item[Position ouverte:] Nombre de contrats encore en vigueur du produit dérivé;
+	\item[]	\og \textit{Open interest} \fg{}.
 %%%	-----
 %%%	NOTE:
 %%%	+	Du produit dérivé? 
@@ -152,7 +200,7 @@ Transaction sans intermédiaire ou à l'extérieur de la bourse.
 \end{description}
 \end{conceptgen}
 
-\paragraph{Rôle des marchés financiers} Partage du risque et diversification des risques.
+\textbf{Rôle des marchés financiers}: Partage du risque et diversification des risques.
 
 \begin{definitionNOHFILL}[Bid-Ask Spread]
 Écart entre le prix de vente (\textbf{ask}) et d'achat (\textbf{bid}). Ceci correspond à la \textbf{marge de profit} que le teneur de marché (\textit{market maker}) conserve. 
@@ -162,24 +210,31 @@ En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
 \begin{description}
 	\item[Ask:] Prix le plus \textit{élevé} auquel un investisseur est prêt à payer pour le sous-jacent;
 	\item	Lorsque le teneur de marché vend une action à un investisseur, il \textit{ask} le prix plus élevé;
+	\item	\og \textit{ask price} \fg{} se traduit au \textbf{cours vendeur} représentant l'idée de regarder les prix auxquels se transigent l'actif;
 	\item[Bid:] Prix le plus \textit{faible} auquel un investisseur est prêt à vendre le sous-jacent
+	\item	\og \textit{bid price} \fg{} se traduit au \textbf{cours acheteur};
 	\item	Lorsque le teneur de marché achète une action d'un investisseur, il \textit{bid} le prix plus faible;
 \end{description}
+
 \end{conceptgen}
+
 \end{definitionNOHFILL}
 
 \begin{distributions}[Terminologie des marchés]
 \begin{description}
-	\item[Ordre au marché (market order):]	On achète et vend selon les prix Bid Ask actuels.
-	\item[Ordre limite (limit order):] 	On achète le sous-jacent si $Ask < k$ ou on vend le sous-jacent si $Bid > k$.
-	\item[Ordre de vente stop (stop loss):]	On veut limiter sa perte si un sous-jacent perd énormément de valeur. Donc, on va vendre le sous-jacent si $Bid \leq k$.
-	\item[Longue] On se considère en position longue sur le sous-jacent si notre stratégie nous permet de bénéficier d'une \textcolor{ao(english)}{hausse} du sous-jacent.
-	\item[Courte] On se considère en position longue sur le sous-jacent si notre stratégie nous permet de bénéficier d'une \red{baisse} du sous-jacent.
+	\item[Ordre au cours du marché:]	On achète et vend selon les prix Bid Ask actuels;
+	\item[]	\og \textit{Market order} \fg{}.
+	\item[Ordre à cours limité:] 	On achète le sous-jacent si $Ask < k$ ou on vend le sous-jacent si $Bid > k$.
+	\item[]	\og \textit{Limit order} \fg{}.
+	\item[Ordre de vente stop:]	On veut limiter sa perte si un sous-jacent perd énormément de valeur. Donc, on va vendre le sous-jacent si $Bid \leq k$.
+	\item[]	\og \textit{Stop-loss order} \fg{}.
+	\item[Longue] On se considère en position longue \textbf{par rapport au sous-jacent} si notre stratégie nous permet de bénéficier d'une \textcolor{ao(english)}{hausse} du sous-jacent.
+	\item[Courte] On se considère en position longue \textbf{par rapport au sous-jacent} si notre stratégie nous permet de bénéficier d'une \red{baisse} du sous-jacent.
 \end{description}
 \end{distributions}
 
 %%%	-----
-%%	Pas assez pertinent pour l'inclure
+%%	Pas assez pertinent pour l'inclure (AJVR-26/01/2020)
 %%	Contrats ayant une protection pour chaque degrés en sur(sous) de 18 degrés celsius;
 %\paragraph{Contrats saisonnales}
 %\begin{description}
@@ -188,41 +243,276 @@ En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
 %\end{description}
 %%%	-----
 
-\vfill\null
+\section{Introduction aux Forwards et aux options}
+
+\begin{distributions}[Terminologie]
+\begin{description}
+	\item[Premium:] Flux financiers à $t = 0$;
+	\item	Prix de l'option / prime;
+	\item	Si \textcolor{blue}{positif}, il s'agît d'un \textbf{coût} ;
+	\item	Si \textcolor{red}{négatif}, il s'agît d'une \textbf{compensation}.
+	\item[Valeur à l'échéance $T$:]	Les flux de trésorie au temps $t = T$;
+	\item	\og \textit{payoff} \fg{}.
+	\item[Profit\footnote{\textbf{V}aleure \textbf{A}ccumulée au taux sans risque.}] 
+		= (valeur à l'échéance) - (valeur accumulée du coût inital) \\
+		= $VA$(flux monétaires)\footnote{Pour exemple acheter une voiture et la revendre 10 ans plus tard---(prix de revente à dans 10 ans) - (valeur accumulée du coût d'achat inital à 0 au courant des 10 dernières années).}
+	\begin{align*}
+%	&=	\begin{cases}
+%			\text{Payoff} - VA(\text{Premium})&	\text{si position longue}	\\
+%			\text{Payoff} + VA(\text{Premium})	&	\text{si position courte}
+%		\end{cases} \\
+	\end{align*}
+	\tcbline
+	\item[$r_f$:] taux d'intérêt sans risque (effectif annuel).
+	\item[$r$:] force d'intérêt sans risque (annuelle). 
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Obligation zéro coupon]
+
+\begin{minipage}{0.6\columnwidth}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp5760713807677853] 
+\draw  (68,203.33) -- (263.17,203.33)(95.17,121.33) -- (95.17,285.17) (256.17,198.33) -- (263.17,203.33) -- (256.17,208.33) (90.17,128.33) -- (95.17,121.33) -- (100.17,128.33)  ;
+%Straight Lines [id:da14694919423796993] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (95.5,246.33) -- (259.5,246.33) ;
+
+
+%Straight Lines [id:da006960924907699395] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (95.25,166.08) -- (259.5,166.08) ;
+
+
+%Shape: Rectangle [id:dp6904794669628107] 
+\draw   (48,51.33) -- (294.17,51.33) -- (294.17,290) -- (48,290) -- cycle ;
+%Shape: Rectangle [id:dp19849032343228457] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (48,51.33) -- (294.17,51.33) -- (294.17,80.13) -- (48,80.13) -- cycle ;
+%Straight Lines [id:da7331693440860174] 
+\draw [color={rgb, 255:red, 215; green, 172; blue, 249 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (102.5,203.33) -- (262.5,203.33) ;
+
+
+%Straight Lines [id:da37881158739253507] 
+\draw [color={rgb, 255:red, 249; green, 208; blue, 145 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (95.5,203.33) -- (260.33,203.33) ;
+
+
+%Shape: Rectangle [id:dp7574038380258179] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (137,82.33) -- (292.17,82.33) -- (292.17,115.33) -- (137,115.33) -- cycle ;
+%Straight Lines [id:da663902422463923] 
+\draw [color={rgb, 255:red, 215; green, 172; blue, 249 }  ,draw opacity=1 ][line width=3.75]  [dash pattern={on 9pt off 4.5pt}]  (141.17,91.33) -- (206.17,91.33) ;
+
+
+%Straight Lines [id:da012272169443842351] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=1 ][line width=3.75]    (141.17,106.33) -- (206.17,106.33) ;
+
+
+% Text Node
+\draw (275,248) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (75,166) node   [align=left] {$\displaystyle F_{0,\ T}$};
+% Text Node
+\draw (72,245) node   [align=left] {$\displaystyle -F_{0,\ T}$};
+% Text Node
+\draw (99,100) node  [font=\small,rotate=-358.99] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (162,228) node   [align=left] {$\displaystyle F_{0,\ T}$};
+% Text Node
+\draw (171.08,65.73) node   [align=left] {Obligation zéro coupon};
+% Text Node
+\draw (255,260) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {courte};
+% Text Node
+\draw (258,151) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {longue};
+% Text Node
+\draw (251,106) node  [font=\small] [align=left] {valeur à $\displaystyle T$};
+% Text Node
+\draw (240,91) node  [font=\small] [align=left] {profit};
+
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.4\columnwidth}
+La position 
+\begin{itemize}[leftmargin = *]
+	\item[]	\textbf{longue}:	Équivaut à un dépôt;
+	\item[]	\textbf{courte}:	Équivaut à un emprunt.
+\end{itemize}
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c |}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{Valeur à l'échéance}}	\\\specialrule{0.1em}{0em}{0.0em} 
+$F_{0, T}$	\\\hline
+\hline\rowcolor{airforceblue} \textcolor{white}{\textbf{Profit}} \\\specialrule{0.1em}{0em}{0.0em} 
+$F_{0, T} - (F_{0, T} - \textrm{e}^{-rT}) \textrm{e}^{rT}$	\\\hline
+\end{tabular}
+\end{center}
+\end{minipage}
+
+Le profit sera donc toujours nul.
+
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Contrat à terme (de gré à gré) \og \textit{forward contract} \fg{}]
+Contrat selon lequel: 
+\begin{itemize}
+	\item	\textit{deux} partis s'\textbf{engagent} d'\textbf{échanger}---un à \textit{acheter} et l'autre à \textit{vendre};
+	\item	une \textit{certaine} \textbf{quantité} d'un \textit{certain} \textbf{bien}---l'actif sous-jacent $S$;	
+	\item	à un \textit{certain} \textbf{prix}---prix à terme $F_{0, T}$;
+	\item	à un \textit{certain} \textbf{endroit} à une \textit{certaine} \textbf{date}---date d'échéance, $T$;
+\end{itemize}
+
+L'engagement est au départ à $t = 0$ mais aucune transaction y a lieu. Ce faisant, le profit sera égale à la valeur à l'échéance puisqu'il n'a pas de flux financiers à 0 à accumuler. L'achat \textbf{ferme} en revanche, implique l'\textit{achat} et la livraison de l'actif au départ à $t = 0$. Donc:
+\begin{center}
+\begin{tabular}{|	>{\columncolor{airforceblue}}c	| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{Valeur à l'échéance}}	&	\textcolor{white}{\textbf{Profit}}		\\\specialrule{0.1em}{0em}{0.0em} 
+Achat ferme		&	$S_{T}$	&	$S_{T} - S_{0} \textrm{e}^{rT}$	\\\hline
+Contrat à terme (achat) &	$S_{T} - F_{0, T}$	&	$S_{T} - F_{0, T}$	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{distributions}[Notation de prix]
+%\begin{multicols*}{2}
+\begin{itemize}
+	\item[$S_{t}$:] \textbf{Valeur} de l'actif \textbf{s}ous-jacent à $t$;
+	\item[$S_{0}$:] \textbf{Prix au comptant};
+	\item	Le prix au comptant représente le paiement pour la livraison immédiate à $t = 0$;
+	\item	\og \textit{(spot price)} \fg{}.
+	\item[$F_{0, T}$:]	est le \textbf{prix à terme};
+	\item	$F_{0, T} = S_{0} \textrm{e}^{r (T - 0)}$
+	\item[$F_{0, 0}$:]	est nul;
+	\item	La notation $F_{0, T}$ vient de \og future \fg{} ou \og forward \fg{}.
+\end{itemize}
+%\end{multicols*}
+\end{distributions}
+
+\begin{formula}{Exemple de bateau}
+\begin{itemize}
+	\item	Je veux acheter un \textit{(quantité)} bateau \textit{(bien)}, mais il est inconvénient pour moi de le recevoir maintenant;
+	\item	En lieu, puisque je veux l'acheter maintenant, je signe une entente \textit{(engagement)} pour l'acheter;
+	\item	La seule différence entre l'acheter aujourd'hui \textit{(au prix au comptant $S_{0}$)} et l'acheter lorsque la neige fond \textit{(au prix à terme $F_{0, T}$)} est l'accumulation d'intérêt;
+	\item	Puisqu'on suppose tout les deux d'êtres fiables et sans risque, le prix est accumulé au taux sans risque ($r$) et le prix payable rendu à l'été ($T$) sera $F_{0, T} = S_{0} \textrm{e}^{r (T - 0)}$;
+	\item[]	Si le taux sans risque est un \textbf{taux} \textbf{plutôt} qu'une \textit{force} d'intérêt, on obtient $F_{0, T} = S_{0} (1 + r_f)^{T}$.
+\end{itemize}
+\end{formula}
+\end{definitionNOHFILL}
+
+%%%%		-------
+%%%%		Pas dans le cadre du cours, mais pour IFM (AJVR-01/26/2020)
+%\begin{conceptgen}{4 façons d'acheter une action}
+%\begin{tabular}{|>{\columncolor{airforceblue}}c	|	>{\columncolor{beaublue}}c	|	>{\columncolor{beaublue}}c	|	c	|}
+%\hline
+%\rowcolor{blue(matcha)}
+%	Contrat	&	\shortstack{Moment de\\ paiement}	&	\shortstack{Moment de\\ d'achat}	&	Paiement	\\\hline
+%	\textcolor{white}{\textbf{Outright purchase}}	&	0	&	0	&	$S_{0}$	\\\hline
+%	\textcolor{white}{\textbf{Forward contract}}		&	$T$	&	$T$	&	$F_{0, T}$	\\\hline
+%	\textcolor{white}{\textbf{Prepaid forward contract}}	&	0	&	$T$	&	$F_{0, T}^{P}$	\\\hline
+%	\textcolor{white}{\textbf{Fully leveraged purchase}}	&	$T$	&	0	&	$S_{0}\textrm{e}^{rT}$	\\\hline
+%\end{tabular}
+%\begin{description}
+%	\item[Fully leveraged purchase:]	Emprunte de l'argent pour acheter l'actif maintenant ($t = 0$) et rembourse l'argent au temps $T$;
+%	\item[Prepaid forward contract:]	Paye au début ($t = 0$) au prix $P$ au lieu de plus tard, mais on reçoit quand même l'actif plus tard.
+%\end{description}
+%Ce faisant, on s'attend que $F_{0, T} = F_{0, T}^{P} \textrm{e}^{rT}$.
+%\end{conceptgen}
+%%%%		-------
+
+\begin{definitionNOHFILL}[Exercice (levée)]
+Décision d'\textit{exercer} l'option d'achat ou de vente.
+
+\begin{distributions}[Notation]
+\begin{itemize}
+	\item[$K$:]	\textbf{Prix d'exercice} \textit{(\textbf{strike price})};
+\end{itemize}
+\end{distributions}
+
+\begin{conceptgen}{Types d'exercices}
+\begin{description}
+	\item[\textbf{\underline{E}}uropéen:]		\textbf{Au moment} d'\textbf{\underline{e}}xpiration de l'option $T$;
+	\item[\textbf{\underline{A}}méricain:]	\textbf{N'importe quand} (\textbf{\underline{a}}ny moment) d'ici $T$;
+	\item[\textbf{\underline{B}}ermudien:]	À \textbf{quelques périodes} (\textbf{\underline{b}}ounded periods) d'ici $T$;
+\end{description}
+En réalité, la \textit{majorité sont américain}  et donc nous effectuons uniquement des calculs avec ce type.
+\end{conceptgen}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Option d'achat]
+Contrat qui: 
+\begin{itemize}
+	\item	\textit{permet} \textbf{(optionnel)} à son \textit{détenteur} d'\textbf{acheter};
+	\item	une \textit{certaine} \textbf{quantité} d'un \textit{certain} \textbf{bien}---l'actif sous-jacent;	
+	\item	à un \textit{certain} \textbf{prix}---prix d'exercice $K$;
+	\item	à un \textit{certain} \textbf{endroit} à, ou d'ici, une \textit{certaine} \textbf{date}---date d'échéance, $T$;
+\end{itemize}
+
+\begin{distributions}[Notation]
+\begin{itemize}
+	\item[$C_{0}$:]	\textbf{Prix} de l'option d'achat (européenne);
+	\item[$C(K)$:]	Prix de l'option d'achat avec un prix d'exercice de $K$.
+\end{itemize}
+\end{distributions}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Option de vente]
+Contrat qui \textit{permet} à son \textit{détenteur} de \textbf{vendre} au lieu d'acheter.
+
+\begin{distributions}[Notation]
+\begin{itemize}
+	\item[$P_{0}$:]	\textbf{Prix} de l'option de vente;
+	\item[$P(K)$:]	Prix de l'option de vente avec un prix d'exercice de $K$.
+\end{itemize}
+\end{distributions}
+
+%%%	------	
+%%%	Commencé à convertir le tableau pour être du même format que la boite de l'obligation;
+%%%	Pense pas par contre que ce sera aussi beau donc je laisse tel quel;
+%\begin{minipage}{0.6\columnwidth}
+%
+%\end{minipage}
+%\begin{minipage}{0.4\columnwidth}
+%La position 
+%\begin{center}
+%\begin{tabular}{|	>{\columncolor{airforceblue}}m{1.2cm}	| >{\columncolor{beaublue}}r |}
+%\hline\rowcolor{airforceblue} 
+%\textcolor{white}{\textbf{Position}}	&	\textcolor{white}{\textbf{Valeur à l'échéance}}	\\\specialrule{0.1em}{0em}{0.0em} 
+%\textcolor{white}{Longue}	&	$\max\{0, K - S_{T}\}$	\\\hline
+%\textcolor{white}{Courte}	&	$\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, K - S_{T}\}$	\\\hline
+%\hline\rowcolor{airforceblue} 
+%\textcolor{white}{\textbf{Position}}	&\textcolor{white}{\textbf{Profit}} \\\specialrule{0.1em}{0em}{0.0em} 
+%\textcolor{white}{Longue}	&	$\max\{0, K - S_{T}\} - AV(\text{primes})$	\\\hline
+%\textcolor{white}{Courte}	&	$\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, K - S_{T}\} + AV(\text{primes})$	\\\hline
+%\end{tabular}
+%\end{center}
+%\end{minipage}
+%%%	------	
+\end{definitionNOHFILL}
+
+Pour bien comprendre les définitions de profit au tableau ci-dessous, ne pas oublier que $C_{0}$ représente le prix, ou \og \textit{premium} \fg{}, payé par l'acheteur d'une option et donc qu'il est naturel de le soustraire de sa valeur à l'échéance. Le vendeur de l'option tant qu'a lui a reçu ce paiement et on y additionne la valeur accumulée en lieu.
+
+Il s'ensuit donc que la ligne de profit pour la position longue est moins élevée, car on y soustrait la valeur accumulée du prix alors que celle de la position courte est plus élevée.
 
 \end{multicols*}
+\newpage
+
 \begin{center}
-\begin{tabular}{|l	c	c	c|}
+\begin{tabular}{|b{1cm}		b{2.25cm}	|	c	|	m{1.6cm}		|	m{4.5cm}		|	c|	c	|}
 \hline
 \rowcolor{blue(matcha)}
-	Degré de parité	&	\textit{Moneyness}	&	Option d'achat	&	Option de vente	\\\hline
-	au cours			&	At-the-money		&	$S_{T} = K$	&	$S_{T} = K$	\\
-	dans le cours	&	In-the-money 	&	$S_{T} > K$	&	$S_{T} < K$	\\
-	hors du cours	&	Out-of-the-money	&	$S_{T} < K$	&	$S_{T} > K$	\\\specialrule{.10em}{.0em}{0.5em} 
-\end{tabular}
-
-\begin{tabular}{|b{1cm}		b{2.25cm}	|	c	|	m{1.6cm}		|	m{4.5cm}		|	c|}
-\hline
-\rowcolor{blue(matcha)}
-	Autre	&	Contrat	&	Position	&	Rôle	& Stratégie	&	Valeur à $T$	 (payoff	)	\\\hline
-
+	Autre	&	Contrat	&	Position	&	Rôle	& Stratégie	&	Valeur à $T$	 (payoff	)	&	Profit	\\\hline
 \multicolumn{2}{|c|}{\multirow{2}{*}{Contrat à terme}}
 		&	\textcolor{amethyst}{Longue}	&	obligation d'\textcolor{amethyst}{acheter}		&	garantie / fixer le prix d'\textcolor{amethyst}{achat}	du sous-jacent		&   $S_{T} - F_{0, T}$\\\cline{3-6}
 	\multicolumn{2}{|c|}{}
 		&	\textcolor{burntsienna}{Courte}	&	obligation de \textcolor{burntsienna}{vendre}		&	garantie / fixer le prix de \textcolor{burntsienna}{vente} du sous-jacent		&   $\textcolor{burntsienna}{\boldsymbol{-}}(S_{T} - F_{0, T})$\\\specialrule{.10em}{.2em}{0.5em} 
+%
 \multirow{4}{*}{Option}
 		&	\multirow{2}{*}{d'achat (call)}
-			&	\textcolor{amethyst}{Longue}	&	\textcolor{amethyst}{droit} d'acheter				&	\textcolor{amethyst}{achat} d'assurance contre un prix sous-jacent élevé	&   $\max\{0, S_{T} - K\}$\\\cline{3-6}
+			&	\textcolor{amethyst}{Longue}	&	\textcolor{amethyst}{droit} d'acheter				&	\textcolor{amethyst}{achat} d'assurance contre un prix sous-jacent élevé	&   $\max\{0, S_{T} - K\}$	&	$\max\{0, S_{T} - K\} - C_{0} \textrm{e}^{rT}$\\\cline{3-7}
 	\multicolumn{2}{|c|}{}
-			&	\textcolor{burntsienna}{Courte}	&	\textcolor{burntsienna}{obligation} de vendre		&	\textcolor{burntsienna}{vente} d'assurance contre un prix sous-jacent élevé	&   $\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, S_{T} - K\}$\\\cline{3-6}
+			&	\textcolor{burntsienna}{Courte}	&	\textcolor{burntsienna}{obligation} de vendre		&	\textcolor{burntsienna}{vente} d'assurance contre un prix sous-jacent élevé	&   $\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, S_{T} - K\}$	&	$\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, S_{T} - K\} \textcolor{burntsienna}{\boldsymbol{+}} C_{0} \textrm{e}^{rT}$\\\cline{3-7}
 		&	\multirow{2}{*}{de vente (put)}
-			&	\textcolor{amethyst}{Longue}	&	\textcolor{amethyst}{droit} \newline de vendre	&	\textcolor{amethyst}{achat} d'assurance contre un prix sous-jacent faible	&   $\max\{0, K - S_{T}\}$\\\cline{3-6}
+			&	\textcolor{amethyst}{Longue}	&	\textcolor{amethyst}{droit} \newline de vendre	&	\textcolor{amethyst}{achat} d'assurance contre un prix sous-jacent faible	&   $\max\{0, K - S_{T}\}$	&	$\max\{0, K - S_{T}\} - P_{0} \textrm{e}^{rT}$\\\cline{3-7}
 	\multicolumn{2}{|c|}{}
-			&	\textcolor{burntsienna}{Courte}	&	\textcolor{burntsienna}{obligation} d'acheter			&	\textcolor{burntsienna}{vente} d'assurance contre un prix sous-jacent faible	&   $\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, K - S_{T}\}$\\\specialrule{.10em}{.0em}{0.5em} 
+			&	\textcolor{burntsienna}{Courte}	&	\textcolor{burntsienna}{obligation} d'acheter			&	\textcolor{burntsienna}{vente} d'assurance contre un prix sous-jacent faible	&   $\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, K - S_{T}\}$	&	$\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, K - S_{T}\} \textcolor{burntsienna}{\boldsymbol{+}} P_{0} \textrm{e}^{rT}$\\\specialrule{.10em}{.0em}{0.5em} 
 \end{tabular}
-\end{center}
-
-
+\end{center}%
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -401,137 +691,39 @@ En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
 % Text Node
 \draw (721,26) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {position courte};
 
-
 \end{tikzpicture}
+
+\end{center}
+\begin{center}
+\begin{tabular}{|l	c	c	c|}
+\hline
+\rowcolor{blue(matcha)}
+	Degré de parité	&	\og	\textit{Moneyness} \fg{}	&	Option d'achat	&	Option de vente	\\\hline
+	au cours			&	\og	\textit{At-the-money} \fg{}		&	$S_{T} = K$	&	$S_{T} = K$	\\
+	dans le cours	&	\og	\textit{In-the-money} \fg{} 	&	$S_{T} > K$	&	$S_{T} < K$	\\
+	hors du cours	&	\og	\textit{Out-of-the-money} \fg{}	&	$S_{T} < K$	&	$S_{T} > K$	\\\specialrule{.10em}{.0em}{0.5em} 
+\end{tabular}
 \end{center}
 
 \newpage
 \begin{multicols*}{2}
 
-\section{Introduction aux Forwards et aux options}
+%%%	------------------------------
+%%%	PAS ENCORE VU%
+%\paragraph{Achat ferme et emprunt} On utilise parfois la lettre $S$ pour désigner dans stratégie l'action de faire un achat ferme (i.e. acheter et se faire livrer le sous-jacent à $t=0$) et $B$ pour désigner un dépôt/emprunt (qu'on exprime comme une obligation zéro-coupon).
 
-\begin{distributions}[Terminologie]
-\begin{description}
-	\item[Premium] Flux financiers à $t = 0$;
-	\item	Si \textcolor{blue}{positif}, il s'agît d'un \textbf{coût} ;
-	\item	Si \textcolor{red}{négatif}, il s'agît d'une \textbf{compensation}.
-	\item[Valeur à l'échéance $T$ (payoff):]	Les flux de trésorie au temps $t = T$;
-	\item[Profit\footnote{\textbf{V}aleure \textbf{A}ccumulée au taux sans risque.}	] 
-	\begin{align*}
-	&=	\begin{cases}
-			\text{Payoff} - VA(\text{Premium})&	\text{si position longue}	\\
-			\text{Payoff} + VA(\text{Premium})	&	\text{si position courte}
-		\end{cases} \\
-	&\Leftrightarrow		VA(\text{flux de trésorie})
-	\end{align*}
-	\tcbline
-	\item[$r_f$:] taux sans risque. 
-	\item[]	Peut être exprimé comme une force d'intérêt $r$ continue ou comme un taux d'intérêt $r_{f}$.
-\end{description}
-\end{distributions}
+%\paragraph{Quelques définitions}
+%\begin{description}
+%\item[$F_{0,T}^{P}$] Prix d'un forward prépayé, i.e. on débourse $F_{0,T}^{P}$ à $t=0$ et on reçoit le sous-jacent à $t  = T$, alors
+%\[F_{0,T}^{P} = F_{0,T} (1 + r_f)^{-T}\]
+%\end{description}
 
-\begin{definitionNOHFILL}[Contrat à terme]
-Contrat selon lequel: 
-\begin{itemize}
-	\item	\textit{deux} partis s'\textbf{engagent} d'\textbf{échanger}---un à \textit{acheter} et l'autre à \textit{vendre};
-	\item	une \textit{certaine} \textbf{quantité} d'un \textit{certain} \textbf{bien}---l'actif sous-jacent $S$;	
-	\item	à un \textit{certain} \textbf{prix}---prix à terme $F_{0, T}$;
-	\item	à un \textit{certain} \textbf{endroit} à une \textit{certaine} \textbf{date}---date d'échéance, $T$;
-\end{itemize}
-
-L'engagement est au départ à $t = 0$.
-
-\begin{distributions}[Notation de prix]
-%\begin{multicols*}{2}
-\begin{itemize}
-	\item[$S_{t}$:] \textbf{Prix du sous-jacent} à $t$ \textit{(\textbf{spot price})};
-	\item[$S_{0}$:] \textbf{Prix au comptant};
-	\item	Le prix au comptant représente le paiement pour la livraison immédiate à $t = 0$.
-	\item[$F_{0, T}$:]	est le \textbf{prix à terme};
-	\item	$F_{0, T} = S_{0} \textrm{e}^{r (T - 0)}$
-	\item[$F_{0, 0}$:]	est nul;
-	\item	La notation $F_{0, T}$ vient de \og future \fg{} ou \og forward \fg{}.
-\end{itemize}
-%\end{multicols*}
-\end{distributions}
-
-\begin{formula}{Exemple de bateau}
-\begin{itemize}
-	\item	Je veux acheter un \textit{(quantité)} bateau \textit{(bien)} mais ça m'est inconvénient de l'avoir maintenant;
-	\item	En lieu, puisque je veux l'acheter maintenant, je signe une entente \textit{(engagement)} pour l'acheter;
-	\item	La seule différence entre l'acheter aujourd'hui \textit{(au prix au comptant $S_{0}$)} et l'acheter lorsque la neige fond \textit{(au prix à terme $F_{0, T}$)} est l'accumulation d'intérêt;
-	\item	Puisqu'on suppose tout les deux d'êtres fiables et sans risque, le prix est accumulé au taux sans risque ($r$) et le prix payable rendu à l'été ($T$) sera $F_{0, T} = S_{0} \textrm{e}^{r (T - 0)}$;
-\end{itemize}
-\end{formula}
-\end{definitionNOHFILL}
-
-\begin{definitionNOHFILL}[Exercice (levée)]
-Décision d'\textit{exercer} l'option d'achat ou de vente.
-
-\begin{distributions}[Notation]
-\begin{itemize}
-	\item[$K$:]	\textbf{Prix d'exercice} \textit{(\textbf{strike price})};
-\end{itemize}
-\end{distributions}
-
-\begin{conceptgen}{Types d'exercices}
-\begin{description}
-	\item[\textbf{\underline{E}}uropéen:]		\textbf{Au moment} d'\textbf{\underline{e}}xpiration de l'option $T$;
-	\item[\textbf{\underline{A}}méricain:]	\textbf{N'importe quand} (\textbf{\underline{a}}ny moment) d'ici $T$;
-	\item[\textbf{\underline{B}}ermudien:]	À \textbf{quelques périodes} (\textbf{\underline{b}}ounded periods) d'ici $T$;
-\end{description}
-En réalité, la \textit{majorité sont américain}  et donc nous effectuons uniquement des calculs avec ce type.
-\end{conceptgen}
-\end{definitionNOHFILL}
-
-\begin{definitionNOHFILL}[Option d'achat]
-Contrat qui: 
-\begin{itemize}
-	\item	\textit{permet} \textbf{(optionnel)} à son \textit{détenteur} d'\textbf{acheter};
-	\item	une \textit{certaine} \textbf{quantité} d'un \textit{certain} \textbf{bien}---l'actif sous-jacent;	
-	\item	à un \textit{certain} \textbf{prix}---prix d'exercice $K$;
-	\item	à un \textit{certain} \textbf{endroit} à, ou d'ici, une \textit{certaine} \textbf{date}---date d'échéance, $T$;
-\end{itemize}
-
-%\textbf{Notation de prix}:
-%\begin{multicols*}{2}
-%\begin{itemize}
-%	\item[$C_{t}$:] 
-%	\item[$C_{0}$:] 
-%\end{itemize}
-%\end{multicols*}
-\end{definitionNOHFILL}
-
-\begin{definitionNOHFILL}[Option de vente]
-Contrat qui \textit{permet} à son \textit{détenteur} de \textbf{vendre} au lieu d'acheter.
-\end{definitionNOHFILL}
-
-
-\paragraph{Quelques définitions}
-\begin{description}
-\item[$F_{0,T}$] Prix \textit{forward} du sous-jacent au temps $T$, qu'on définit comme
-\[F_{0,T} = S_0 (1 + r_f)^{T}\]
-\item[$F_{0,T}^{P}$] Prix d'un forward prépayé, i.e. on débourse $F_{0,T}^{P}$ à $t=0$ et on reçoit le sous-jacent à $t  = T$, alors
-\[F_{0,T}^{P} = F_{0,T} (1 + r_f)^{-T}\]
-\end{description}
-
-\paragraph{Achat ferme et emprunt} On utilise parfois la lettre $S$ pour désigner dans stratégie l'action de faire un achat ferme (i.e. acheter et se faire livrer le sous-jacent à $t=0$) et $B$ pour désigner un dépôt/emprunt (qu'on exprime comme une obligation zéro-coupon).
-
-
-\subsection*{$Call(K,T)$}
-Contrat qui \textit{permet} au détenteur de se procurer $S$ au prix $K$ à l'échéance $T$. \textbf{position longue dans le sous-jacent}
-\[Premium = C(K,T) \]
-
-\subsection*{$Put(K,T)$}
-Contrat qui \textit{permet} au détenteur de vendre $S$ au prix $K$ à l'échéance $T$. \textbf{position courte dans le sous-jacent}
-\[Premium = P(K,T)\]
-
-\subsection*{Forward synthétique}
-On peut créer un Forward synthétique 2 de façon (en combinant d'autres transactions) : 
-\[Forward = Stock - Bond \]
-\[Forward = Call(K,T) - Put(K,T) \]
-Ces deux égalités définissent la \emph{Put-Call Parity} vu un peu plus loin.
-
+%\subsection*{Forward synthétique}
+%On peut créer un Forward synthétique 2 de façon (en combinant d'autres transactions) : 
+%\[Forward = Stock - Bond \]
+%\[Forward = Call(K,T) - Put(K,T) \]
+%Ces deux égalités définissent la \emph{Put-Call Parity} vu un peu plus loin.
+%%%	------------------------------
 
 \section{Stratégie de couverture}
 \subsection*{Floor}
