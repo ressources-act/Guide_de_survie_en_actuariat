@@ -109,14 +109,27 @@ Selon la méthode \textbf{prospective},
 	\textcolor{burntorange}{(\actsymb[h]{V}{} + \pi_{h})}\textcolor{burntsienna}{(1 + i)}
 	&=	\textcolor{amethyst}{\qx{x + h} b_{h + 1}} + \textcolor{ao(english)}{\px{x + h} \actsymb[h + 1]{V}{}}
 \end{align*}
-On ajoute \textcolor{burntorange}{la prime $P$ à la réserve $\actsymb[h]{V}{}$ au temps $h$} et \textcolor{burntsienna}{accumule pour un an}. Ceci est équivalent à soit \textcolor{amethyst}{décéder à l'âge $x + h$ et payer la prestation en cas de décès $b_{h + 1}$} ou \textcolor{ao(english)}{survive et ajouter à la réserve $\actsymb[h + 1]{V}{}$ au temps $x + h$}.
+On ajoute \textcolor{burntorange}{la prime $P$ à la réserve $\actsymb[h]{V}{}$ au temps $h$} et \textcolor{burntsienna}{accumule pour un an}. \\
+Ceci est équivalent à soit \textcolor{amethyst}{décéder à l'âge $x + h$ et payer la prestation en cas de décès $b_{h + 1}$} ou \textcolor{ao(english)}{survive et ajouter à la réserve $\actsymb[h + 1]{V}{}$ au temps $x + h$}.
 
-Formule générale\footnote{Si les frais ne sont pas applicables pour le problème, simplement poser $G_h = E_h = 0$.} : 
+\textbf{Formule générale}\footnote{Si les frais ne sont pas applicables pour le problème, simplement poser $G_h = E_h = 0$.} : 
 \begin{align*}
 	\actsymb[h+1]{V}{} 
-	&= 	\frac{(\actsymb[h]{V}{} + G_h - e_h)(1+i) - (b_{h+1} - E_{h+1}) \qx[]{x+h}[]}{\px[]{x+h}[]}
+	&= 	\frac{(\actsymb[h]{V}{} + G_h - e_h)(1+i) - (b_{h+1} + E_{h+1}) \qx[]{x+h}[]}{\px[]{x+h}[]}
 \end{align*}
-où $G_h$ est la prime \textit{(gross premium)} à recevoir à $t = h$, $e_h$ les frais relié à la collecte de la prime \textit{(per premium expenses)} et $E_h$ les frais reliés aux paiement de la prestation \textit{(settlement expenses)}.
+où
+\begin{description}
+	\item[$G_h$]	La prime \textit{(gross premium)} à recevoir à $t = h$;
+	\item[$e_h$]	Les frais relié à la collecte de la prime \textit{(per premium expenses)};
+	\item[$E_h$]	Les frais reliés aux paiement de la prestation \textit{(settlement expenses)}.
+\end{description}
+
+Alternativement, on peut récrire:
+\begin{align*}
+	\underbrace{(b_{h+1} + E_{h + 1} - \actsymb[h + 1]{V}{})}_{\text{montant net au risque}} \qx[]{x+h}[]
+	&= 	(\actsymb[h]{V}{} + G_h - e_h)(1+i)
+\end{align*}
+
 
 \paragraph{Formules alternatives pour Contrat d'assurance-vie entière (si $\pi^{PE}$)}
 \begin{align*}
