@@ -445,8 +445,8 @@ Contrat qui:
 
 \begin{distributions}[Notation]
 \begin{itemize}
-	\item[$C_{0}$:]	\textbf{Prix} de l'option d'achat (européenne);
-	\item[$C(K)$:]	Prix de l'option d'achat avec un prix d'exercice de $K$.
+	\item[$C_{0}$:]	\textbf{Prix} pour acheter l'option d'achat;
+	\item[$C(K)$:]	Notation pour représenter l'option d'achat (\og \textit{\textbf{C}all} \fg{}) avec un prix d'exercice de $K$.
 \end{itemize}
 \end{distributions}
 \end{definitionNOHFILL}
@@ -456,8 +456,8 @@ Contrat qui \textit{permet} à son \textit{détenteur} de \textbf{vendre} au lie
 
 \begin{distributions}[Notation]
 \begin{itemize}
-	\item[$P_{0}$:]	\textbf{Prix} de l'option de vente;
-	\item[$P(K)$:]	Prix de l'option de vente avec un prix d'exercice de $K$.
+	\item[$P_{0}$:]	\textbf{Prix} pour acheter l'option de vente;
+	\item[$P(K)$:]	Notation pour représenter l'option de vente (\og \textit{\textbf{P}ut} \fg{}) avec un prix d'exercice de $K$.
 \end{itemize}
 \end{distributions}
 
@@ -514,9 +514,13 @@ Il s'ensuit donc que la ligne de profit pour la position longue est moins élev�
 \end{tabular}
 \end{center}%
 \begin{center}
+
+
+
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,533.3333282470703); %set diagram left start at 0, and has height of 533.3333282470703
+%uncomment if require: \path (0,309); %set diagram left start at 0, and has height of 309
 
 %Shape: Rectangle [id:dp5014293673202075] 
 \draw  [fill={rgb, 255:red, 152; green, 209; blue, 255 }  ,fill opacity=1 ] (185.17,2.33) -- (617.17,2.33) -- (617.17,35.33) -- (185.17,35.33) -- cycle ;
@@ -579,7 +583,7 @@ Il s'ensuit donc que la ligne de profit pour la position longue est moins élev�
 
 
 %Straight Lines [id:da6447135481537327] 
-\draw [color={rgb, 255:red, 215; green, 172; blue, 249 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (90.25,260.08) -- (221.17,129.17) ;
+\draw [color={rgb, 255:red, 215; green, 172; blue, 249 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (75.17,258.17) -- (206.08,127.25) ;
 
 
 %Straight Lines [id:da24025984300874126] 
@@ -599,7 +603,7 @@ Il s'ensuit donc que la ligne de profit pour la position longue est moins élev�
 
 
 %Straight Lines [id:da4974018498235153] 
-\draw [color={rgb, 255:red, 249; green, 208; blue, 145 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (76,113) -- (206.33,243.33) ;
+\draw [color={rgb, 255:red, 249; green, 208; blue, 145 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (75,128) -- (205.33,258.33) ;
 
 
 %Straight Lines [id:da079381899397444] 
@@ -629,12 +633,13 @@ Il s'ensuit donc que la ligne de profit pour la position longue est moins élev�
 
 
 
-%Shape: Rectangle [id:dp2381964955840581] 
+%Shape: Rectangle [id:dp6695691986882595] 
 \draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (620,2.33) -- (775.17,2.33) -- (775.17,35.33) -- (620,35.33) -- cycle ;
-%Shape: Rectangle [id:dp2723528710393448] 
+%Shape: Rectangle [id:dp31056838616590854] 
 \draw  [draw opacity=0][fill={rgb, 255:red, 142; green, 19; blue, 254 }  ,fill opacity=1 ] (621,3.33) -- (669.17,3.33) -- (669.17,17.33) -- (621,17.33) -- cycle ;
-%Shape: Rectangle [id:dp5738737247232852] 
+%Shape: Rectangle [id:dp9578784787418022] 
 \draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ] (621,20.33) -- (669.17,20.33) -- (669.17,34.33) -- (621,34.33) -- cycle ;
+
 
 % Text Node
 \draw (254,198) node   [align=left] {$\displaystyle S_{T}$};
@@ -669,19 +674,15 @@ Il s'ensuit donc que la ligne de profit pour la position longue est moins élev�
 % Text Node
 \draw (638,216) node   [align=left] {$\displaystyle K$};
 % Text Node
-\draw (611,118) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {longue};
-% Text Node
-\draw (612,253) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {courte};
-% Text Node
 \draw (653,54) node   [align=left] {Option de vente};
 % Text Node
-\draw (485,260) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {courte};
+\draw (411,264) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {vendue};
 % Text Node
-\draw (232,256) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {courte};
+\draw (204,268) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {prix de vente fixé};
 % Text Node
-\draw (483,115) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {longue};
+\draw (462,116) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {achetée};
 % Text Node
-\draw (233,117) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {longue};
+\draw (199,112) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {prix d'achat fixé};
 % Text Node
 \draw (130,11) node  [font=\small] [align=left] {profit};
 % Text Node
@@ -690,8 +691,15 @@ Il s'ensuit donc que la ligne de profit pour la position longue est moins élev�
 \draw (723,10) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {position longue};
 % Text Node
 \draw (721,26) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {position courte};
+% Text Node
+\draw (622,125) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {achetée};
+% Text Node
+\draw (624,258) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {vendue};
+
 
 \end{tikzpicture}
+
+
 
 \end{center}
 \begin{center}
