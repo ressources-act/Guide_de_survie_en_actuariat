@@ -252,7 +252,12 @@ En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
 	\item	Si \textcolor{blue}{positif}, il s'agît d'un \textbf{coût} ;
 	\item	Si \textcolor{red}{négatif}, il s'agît d'une \textbf{compensation}.
 	\item[Valeur à l'échéance $T$:]	Les flux de trésorie au temps $t = T$;
-	\item	\og \textit{payoff} \fg{}.
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{payoff} \fg{};
+		\item	C'est à dire, l'argent que l'on reçoit à l'échéance;
+		\item	Dans le cas de l'achat d'un actif, on reçoit son prix et donc s'il est nul on ne reçoit rien;
+		\item	C'est le profit qui prend en compte les dépenses initiales et qui sera négatif.
+		\end{itemize}
 	\item[Profit\footnote{\textbf{V}aleure \textbf{A}ccumulée au taux sans risque.}] 
 		= (valeur à l'échéance) - (valeur accumulée du coût inital) \\
 		= $VA$(flux monétaires)\footnote{Pour exemple acheter une voiture et la revendre 10 ans plus tard---(prix de revente à dans 10 ans) - (valeur accumulée du coût d'achat inital à 0 au courant des 10 dernières années).}
@@ -734,6 +739,31 @@ Il s'ensuit donc que la ligne de profit pour la position longue est moins élev�
 %%%	------------------------------
 
 \section{Stratégie de couverture}
+
+\subsection{Préliminaires}
+
+\begin{conceptgen}{Hypothèses}
+Pour tout le chapitre, nous posons les hypothèses suivantes:
+\begin{multicols*}{2}
+\begin{enumerate}[leftmargin = *]
+	\item	Taux d'intérêt $i$ constant;
+	\item	Aucuns frais de transaction;
+	\item	Aucun risque de défaut;
+	\item	Aucun versement intermédiaire.
+\end{enumerate}
+\end{multicols*}
+\end{conceptgen}
+
+\begin{rappel}{Propriétés des maximums et minimums}
+\begin{align*}
+	\max(a, b) + c	&=	\max(a + c, b + c)	\\
+	\min(a, b) + c	&=	\min(a + c, b + c)	\\
+	\min(a, b)	&=	-\max(-a, -b)	\\
+	\max(a, b) \times c	&=	\max(a \times c, b \times c), \, c > 0	\\	
+	\max(a, b) + \min(a, b)	&=	a + b	
+\end{align*}
+\end{rappel}
+
 \subsection*{Floor}
 On achète $S$ en se protégant contre une baisse trop importante du sous-jacent (\textbf{position longue})
 \[Floor = Stock + Put(K,T)\]
@@ -758,7 +788,50 @@ On vend à découvert $S$ en se protégant contre une hausse trop importante du 
 \]
 \input{src/ACT-2011/cap}
 
-\begin{definitionNOHFILL}[Écart haussier \og \textit{Bull Spread} \fg{}]
+%\begin{definitionNOHFILL}[\textbf{Plancher} \og \textit{floor} \fg{}]
+%
+%\end{definitionNOHFILL}
+%
+%\begin{definitionNOHFILL}[\textbf{Plafond} \og \textit{cap} \fg{}]
+%
+%\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[\textbf{Position synthétique}]
+Une position synthétique réplique la valeur à l'échéance d'une autre position.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[\textbf{Contrat à terme synthétique} \og \textit{synthetic forward} \fg{}]
+Un contrat à terme synthétique réplique la valeur à l'échéance d'un contrat à terme sans réellement en signer un.
+
+Avec un \textbf{vrai} contrat à terme:
+\begin{itemize}
+	\item	le coût inital est nul et
+	\item	la valeur à l'échéance est l'écart entre le prix à terme et la valeur du sous-jacent ($S_{T} - F_{0, T}$).
+\end{itemize}
+
+Avec un contrat à terme \textbf{synthétique}:
+\begin{itemize}
+	\item	on prévoit l'échange du bien contre un prix quelconque $K$ et 
+	\item	la valeur à l'échéance est leur écart ($S_{T} - K$).
+	\item	Il s'ensuit que le coût initial ne peut être nul et 
+	\item	c'est pourquoi on \textbf{emprunte de l'argent}, ou de façon équivalente, \textbf{vend une obligation zéro-coupons}.
+\end{itemize}
+
+En bref, on \textbf{achète l'actif} et \textbf{emprunte de l'argent}:
+\begin{center}
+	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
+	\hline\rowcolor{airforceblue} 
+		\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{Flux au temps $0$}}	&	\textcolor{white}{\textbf{Flux au temps $T$}}	\\
+		Acheter un actif	&	$-S(0)$	&	$+S(T)$	\\
+		Emprunter de l'argent	&	$+S(0)$	&	$-S(0)\textrm{e}^{rT} = -F_{0, T}$	\\\hline
+		Net des flux monétaires	&	$0$	&	$S(T) - F_{0, T}$	\\\hline
+	\end{tabular}
+\end{center}
+	
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[\textbf{Écart haussier} \og \textit{Bull Spread} \fg{}]
 Crée en:
 \begin{itemize}[leftmargin = *]
 	\item	Achetant une option d'achat $C(K_{1})$ et vendant une autre option achat $C(K_{2})$  à un prix d'exercice plus élevé $K_{2} > K_{1}$;
@@ -776,10 +849,6 @@ Crée en:
 	\item[]	On peut également visualiser un taureau avec ses cornes pointues vers le haut prêt à attaquer.
 \end{itemize}
 \end{distributions}
-
-
-
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
 \begin{center}
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -901,7 +970,7 @@ Crée en:
 \end{center}
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILL}[Écart baissier \og \textit{Bear Spread} \fg{}]
+\begin{definitionNOHFILL}[\textbf{Écart baissier} \og \textit{Bear Spread} \fg{}]
 L'inverse d'un écart haussier, il est crée en:
 \begin{itemize}[leftmargin = *]
 	\item	Vendant une option d'achat $C(K_{1})$ et achetant une autre option achat $C(K_{2})$  à un prix d'exercice plus élevé $K_{2} > K_{1}$;
@@ -1044,25 +1113,17 @@ L'inverse d'un écart haussier, il est crée en:
 	
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILL}[Écart sur ratio d'options \og \textit{Ratio Spread} \fg{}]
+\begin{definitionNOHFILL}[\textbf{Écart sur ratio d'options} \og \textit{Ratio Spread} \fg{}]
 Crée en:
 \begin{itemize}
 	\item	\textbf{achetant} $m$ options à un prix d'exercice $K_{1}$ et
 	\item	puis \textbf{vendant} $n$ options à un prix d'exercice $K_{2}$ différent où
 	\item	$m \neq n$ et $K_{1} \neq K_{2}$.
 \end{itemize}
+
 \end{definitionNOHFILL}
 
-\subsection*{Ratio Spread}
-Cette stratégie est une combinaison un peu sur mesure (on ne peut pas nécessairement dire si elle est longue ou courte). On achète $n$ options d'achat à un prix d'exercice $K_1$ et on en vend $m$ à un prix d'exercice $K_2$.\footnote{On peut faire cette stratégie avec des options de vente aussi.}
-\begin{align*}
-Ratio Spread 		& 	= n Call(K_1, T) - m Call(K_2, T) \\
-Premium				& = n C(K_1, T) - m C(K_2,T) \\
-Payoff					& = ...
-\end{align*}
-
-
-\begin{definitionNOHFILL}[Boite \og \textit{Box Spread} \fg{}]
+\begin{definitionNOHFILL}[\textbf{Boite} \og \textit{Box Spread} \fg{}]
 \begin{itemize}
 	\item	La stratégie consiste à acheter un écart haussier ainsi qu'un écart baissier où l'un utilise des options d'achat et l'autre des options de vente (ayant les mêmes caractéristiques);
 	\item	Il est utilisé pour emprunter ou prêter de l'argent avec une valeur à l'échéance connue en avance, peu importe la direction prise par la valeur de l'actif sous-jacent;
@@ -1138,67 +1199,409 @@ Cela est donc équivalent à
 
 \end{definitionNOHFILL}
 
-\subsection*{Collar}
-La prime initiale du Collar peut être soit positive ou négative (dépendant du strike price).
-\begin{align*}
-Collar				& = Put(K_1, T) - Call(K_2, T) \\
-Premium			& = P(K_1, T) - C(K_2,T) \\
-Payoff				& = 
-\begin{cases}
-K_1 - S_T			& , S_T \leq K_1 \\
-0						& , K_1 < S_T \leq K_2 \\
-K_2 - S_T			& , S_T > K_2 \\
-\end{cases}
-\end{align*}
-\input{src/ACT-2011/collar}
-
-
-\subsection*{Stock Covered by Collar}
+\begin{definitionNOHFILL}[\textbf{Tunnel} \og \textit{Collar} \fg{} et \textbf{action couverte par un tunnel} \og \textit{Collared stock} \fg{} ]
+Le tunnel (\og \textit{Collar} \fg{}) est crée en
 \begin{itemize}
-\item On effectue la même stratégie qu'un Collar, en ayant initialement le sous-jacent $S$. \textbf{Position longue dans le sous-jacent}.
-\item Cette stratégie reproduit les flux monétaires d'un Bull Spread, alors
+	\item	Achetant une option de vente $P(K_{1})$ et 
+	\item	vendant une option d'achat $C(K_{2})$ où
+	\item	$K_{1} < K_{2}$.
 \end{itemize}
+
+Lorsqu'on achète l'actif (position longue) en plus, nous obtenons une action couverte par un tunnel (\og \textit{Collared stock} \fg{}).
+
+La largeur du tunnel est $K_{2} - K_{1}$.
+
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,349.33333587646484); %set diagram left start at 0, and has height of 349.33333587646484
+
+%Shape: Rectangle [id:dp3515130332085854] 
+\draw   (27,38.33) -- (297.17,38.33) -- (297.17,273.67) -- (27,273.67) -- cycle ;
+%Shape: Rectangle [id:dp13591016175410142] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (27,38.33) -- (297.17,38.33) -- (297.17,67.13) -- (27,67.13) -- cycle ;
+%Shape: Rectangle [id:dp6374879389517476] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (159.5,38.24) -- (297.17,38.24) -- (297.17,67.09) -- (159.5,67.09) -- cycle ;
+%Straight Lines [id:da38766311196421266] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=3.75]  [dash pattern={on 9pt off 4.5pt}]  (163.2,46.11) -- (220.87,46.11) ;
+
+
+%Straight Lines [id:da34278626539211876] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=3.75]    (165.5,59.33) -- (224.17,59.33) ;
+
+
+%Shape: Axis 2D [id:dp9727644255367149] 
+\draw  (64,186.33) -- (285.17,186.33)(88.17,107.33) -- (88.17,271.17) (278.17,181.33) -- (285.17,186.33) -- (278.17,191.33) (83.17,114.33) -- (88.17,107.33) -- (93.17,114.33)  ;
+%Straight Lines [id:da6780443513094567] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (135.5,186) -- (88.22,145.23) ;
+
+
+%Straight Lines [id:da5925572195913587] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (184.5,186) -- (135.5,186) ;
+
+
+%Straight Lines [id:da6546546955122134] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (230.78,226.77) -- (183.5,186) ;
+
+
+%Straight Lines [id:da17931450798858806] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (135.5,200) -- (88.22,159.23) ;
+
+
+%Straight Lines [id:da8374346923422318] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (184.5,200) -- (135.5,200) ;
+
+
+%Straight Lines [id:da8127386772726561] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (230.78,240.77) -- (183.5,200) ;
+
+
+
+%Straight Lines [id:da014608750351099653] 
+\draw    (82.83,145.33) -- (94.83,145.33) ;
+
+
+%Straight Lines [id:da7326332527248789] 
+\draw    (182.25,190.7) -- (182.25,181.05) ;
+
+
+%Straight Lines [id:da934826890739437] 
+\draw    (135.5,190.65) -- (135.5,181) ;
+
+
+%Shape: Brace [id:dp009676114572276795] 
+\draw   (135,229.33) .. controls (135,234) and (137.33,236.33) .. (142,236.33) -- (151.25,236.33) .. controls (157.92,236.33) and (161.25,238.66) .. (161.25,243.33) .. controls (161.25,238.66) and (164.58,236.33) .. (171.25,236.33)(168.25,236.33) -- (180.5,236.33) .. controls (185.17,236.33) and (187.5,234) .. (187.5,229.33) ;
+
+% Text Node
+\draw (90.08,52.73) node   [align=left] {Tunnel};
+% Text Node
+\draw (250.88,45.82) node  [font=\small] [align=left] {profit};
+% Text Node
+\draw (260.64,58.93) node  [font=\small] [align=left] {valeur à $\displaystyle T$};
+% Text Node
+\draw (285,204) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (67,140) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (64,92) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (138,209) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (184,210) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (162,249.33) node   [align=left] {{\scriptsize largeur du tunnel}};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,349.33333587646484); %set diagram left start at 0, and has height of 349.33333587646484
+
+%Shape: Rectangle [id:dp02624018355068425] 
+\draw   (336,39.33) -- (606.17,39.33) -- (606.17,273.67) -- (336,273.67) -- cycle ;
+%Shape: Rectangle [id:dp42550263898781093] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (336,39.33) -- (598.17,39.33) -- (598.17,78.67) -- (336,78.67) -- cycle ;
+%Shape: Rectangle [id:dp019016078913590695] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (468.5,39.24) -- (606.17,39.24) -- (606.17,78.67) -- (468.5,78.67) -- cycle ;
+%Straight Lines [id:da9746521197693616] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=3.75]  [dash pattern={on 9pt off 4.5pt}]  (472.2,47.11) -- (529.87,47.11) ;
+
+
+%Straight Lines [id:da21520173766895323] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=3.75]    (474.17,66.33) -- (531.17,66.33) ;
+
+
+%Shape: Axis 2D [id:dp9458670686230795] 
+\draw  (367,187.67) -- (588.17,187.67)(390.83,95.67) -- (390.83,270.67) (581.17,182.67) -- (588.17,187.67) -- (581.17,192.67) (385.83,102.67) -- (390.83,95.67) -- (395.83,102.67)  ;
+%Straight Lines [id:da46034392012067693] 
+\draw    (385.83,151.33) -- (397.83,151.33) ;
+
+
+%Straight Lines [id:da25541970441950257] 
+\draw    (485.25,196.7) -- (485.25,187.05) ;
+
+
+%Straight Lines [id:da5840111395603904] 
+\draw    (438.5,196.65) -- (438.5,187) ;
+
+
+%Straight Lines [id:da3398468398362082] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (490.25,134.64) -- (552.69,134.69) ;
+
+
+%Straight Lines [id:da766471031454568] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (453.12,166.62) -- (490.25,134.64) ;
+
+
+%Straight Lines [id:da8179350208142249] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (391.45,165.92) -- (453.88,165.96) ;
+
+
+%Straight Lines [id:da15703311440320822] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (489.12,120.04) -- (551.55,120.08) ;
+
+
+%Straight Lines [id:da2509003548986979] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (451.99,152.01) -- (489.12,120.04) ;
+
+
+%Straight Lines [id:da8299907131334008] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (390.31,151.31) -- (452.75,151.36) ;
+
+
+%Straight Lines [id:da6108319797175599] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (391.17,192.33) -- (491.17,92.33) ;
+
+
+%Shape: Brace [id:dp1095359743364297] 
+\draw   (437.18,222.33) .. controls (437.18,227) and (439.51,229.33) .. (444.18,229.33) -- (451.96,229.33) .. controls (458.63,229.33) and (461.96,231.66) .. (461.96,236.33) .. controls (461.96,231.66) and (465.29,229.33) .. (471.96,229.33)(468.96,229.33) -- (479.73,229.33) .. controls (484.4,229.33) and (486.73,227) .. (486.73,222.33) ;
+%Straight Lines [id:da5856705496016874] 
+\draw    (385.83,121.33) -- (397.83,121.33) ;
+
+
+%Shape: Brace [id:dp8659015694536814] 
+\draw   (558.5,153.67) .. controls (563.07,153.67) and (565.36,151.38) .. (565.36,146.8) -- (565.36,146.8) .. controls (565.36,140.27) and (567.65,137) .. (572.23,137) .. controls (567.65,137) and (565.36,133.73) .. (565.36,127.2)(565.36,130.14) -- (565.36,127.2) .. controls (565.36,122.62) and (563.07,120.33) .. (558.5,120.33) ;
+
+% Text Node
+\draw (399.08,57.73) node   [align=left] {Action couverte \\par un tunnel};
+% Text Node
+\draw (559.88,46.82) node  [font=\small] [align=left] {profit};
+% Text Node
+\draw (570.64,64.93) node  [font=\small] [align=left] {valeur à $\displaystyle T$};
+% Text Node
+\draw (584,206) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (374,150) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (367,98) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (442,210) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (488,210) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (530,92.33) node   [align=left] {\textcolor[rgb]{0.96,0.65,0.14}{{\scriptsize actif sous-jacent}}};
+% Text Node
+\draw (462.67,242.33) node   [align=left] {{\scriptsize largeur du tunnel}};
+% Text Node
+\draw (372,124) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (593,134.33) node  [rotate=-90] [align=left] {{\scriptsize largeur}};
+% Text Node
+\draw (583,132.33) node  [rotate=-90] [align=left] {{\scriptsize du tunnel}};
+
+
+\end{tikzpicture}
+
+\end{center}
+
 \begin{align*}
-BullSpread				& = Collar + Stock \\
-								& = Put(K_1, T) - Call(K_2, T) + Stock \\
-Premium					& = P(K_1, T) - C(K_2,T) + S_0 > 0  \\
-Payoff						& = 
-\begin{cases}
-K_1 					& , S_T \leq K_1 \\
-S_T					& , K_1 < S_T \leq K_2 \\
-K_2 					& , S_T > K_2 \\
-\end{cases}
+	\text{tunnel}
+	&= 	P(K_1) - C(K_2)	\\
+	\text{\textcolor{burntorange}{action couverte} par un tunnel}
+	&= 	P(K_1) - C(K_2)	+ \textcolor{burntorange}{S_{T}} 
 \end{align*}
-\input{src/ACT-2011/stock_covered_collar}
+\end{definitionNOHFILL}
 
+\subsection{Spéculations sur la volatilité}
+Ces combinaisons bénéficient d'une 
 
-\subsection*{Straddle}
-Stratégie pour spéculer sur la volatilité du sous-jacent $S$ autour du point $K$.
+\begin{definitionNOHFILL}[\textbf{Stellage} \og \textit{straddle} \fg{}]
+Créé en achetant une option de vente et une option d'achat avec un prix d'exercice $K$.\\
+$\text{Straddle} = Put(K, T) + Call(K, T)$.\\
+Souvent bâti avec des options au cours.
+
+Il s'ensuit que la valeur à l'échéance est:
 \begin{align*}
-Straddle			& = Put(K,T) + Call(K,T) \\
-Premium			& = P(K,T) + C(K,T) > 0 \\
-Payoff				& =
-\begin{cases}
-K - S_T				& , S_T \leq K \\
-S_T - K				& , S_T > K \\
-\end{cases}
+	|S_{T} - K|	
+	&\equiv	
+		\begin{cases}
+		(K - S_{T})	+	0	=	K - S_{T},	&	S_{T} \le K	\\
+		0	+	(S_{T} - K)	=	S_{T} - K,	&	S_{T} >	K	\\
+		\end{cases}
 \end{align*}
-\input{src/ACT-2011/straddle}
 
-\subsection*{Strangle}
-Même genre de stratégie que le strangle, on spécule sur la volatilité du sous-jacent à l'extérieur de l'intervalle $[K_1, K_2]$ : 
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,281.3333320617676); %set diagram left start at 0, and has height of 281.3333320617676
+
+%Shape: Axis 2D [id:dp8150307323595705] 
+\draw  (49,192.33) -- (244.17,192.33)(75.83,92.33) -- (75.83,251.33) (237.17,187.33) -- (244.17,192.33) -- (237.17,197.33) (70.83,99.33) -- (75.83,92.33) -- (80.83,99.33)  ;
+%Straight Lines [id:da9384465113929932] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (76.5,119.33) -- (150.5,193.33) ;
+
+
+%Shape: Rectangle [id:dp9521369685676353] 
+\draw   (29,22.33) -- (275.17,22.33) -- (275.17,258.33) -- (29,258.33) -- cycle ;
+%Shape: Rectangle [id:dp8359683554212727] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (29,22.33) -- (275.17,22.33) -- (275.17,51.13) -- (29,51.13) -- cycle ;
+%Shape: Rectangle [id:dp6862105279378832] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (118,53.33) -- (273.17,53.33) -- (273.17,86.33) -- (118,86.33) -- cycle ;
+%Straight Lines [id:da14433777002766845] 
+\draw [color={rgb, 255:red, 215; green, 172; blue, 249 }  ,draw opacity=1 ][line width=3.75]  [dash pattern={on 9pt off 4.5pt}]  (122.17,62.33) -- (187.17,62.33) ;
+
+
+%Straight Lines [id:da897309116521503] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=1 ][line width=3.75]    (122.17,77.33) -- (187.17,77.33) ;
+
+
+
+%Straight Lines [id:da6723643933487031] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (150.5,193.33) -- (222.83,121) ;
+
+
+%Straight Lines [id:da9747958724573911] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.6 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (76.5,152.33) -- (150.5,226.33) ;
+
+
+%Straight Lines [id:da3459436058254277] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.59 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (150.5,226.33) -- (222.83,154) ;
+
+
+%Straight Lines [id:da42512294493800273] 
+\draw    (70.83,119.33) -- (82.83,119.33) ;
+
+
+
+% Text Node
+\draw (257,203) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (59,119) node   [align=left] {$\displaystyle K$};
+% Text Node
+\draw (80,71) node  [font=\small,rotate=-358.99] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (152.08,36.73) node   [align=left] {Stellage};
+% Text Node
+\draw (232,77) node  [font=\small] [align=left] {valeur à $\displaystyle T$};
+% Text Node
+\draw (221,62) node  [font=\small] [align=left] {profit};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[\textbf{Stellage élargi} \og \textit{strangle} \fg{}]
+Créé en 
+\begin{itemize}
+	\item	achetant une option de vente avec un prix d'exercice $K_{1}$ et 
+	\item	achetant une option d'achat avec un prix d'exercice $K_{2}$ où 
+	\item	$K_{1} < K_{2}$.
+\end{itemize}
+
+$\text{Strangle} = Put(K_1, T) + Call(K_2, T)$.\\
+Souvent bâti avec des options hors du cours.
+
+Il s'ensuit que la valeur à l'échéance est:
 \begin{align*}
-Strangle			& = Put(K_1, T) + Call(K_2, T) \\
-Premium			& = P(K_1, T) + C(K_2, T) > 0 \\
-Payoff				& = 
-\begin{cases}
-K_1 - S_T			& , S_T \leq K_1 \\
-0						& , K_1 < S_T \leq K_2 \\
-S_T - K_2 		& , S_T > K_2 \\
-\end{cases}
+		\begin{cases}
+		(K_{1} - S_{T})	+	0	=	K_{1} - S_{T},	&	S_{T} \le K_{1}	\\
+		0	+	0	=	0,	&	K_{1} < S_{T} \le K_{2} 	\\
+		0	+	(S_{T} - K_{2})	=	S_{T} - K_{2},	&	S_{T} >	K_{2}	\\
+		\end{cases}
 \end{align*}
-\input{src/ACT-2011/strangle}
 
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,281.3333320617676); %set diagram left start at 0, and has height of 281.3333320617676
+
+%Shape: Axis 2D [id:dp09154892396952885] 
+\draw  (317,193.33) -- (512.17,193.33)(344.83,92.33) -- (344.83,251.33) (505.17,188.33) -- (512.17,193.33) -- (505.17,198.33) (339.83,99.33) -- (344.83,92.33) -- (349.83,99.33)  ;
+%Straight Lines [id:da6000960978699228] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (344.5,142.33) -- (395.5,193.33) ;
+
+
+%Shape: Rectangle [id:dp44437730275029286] 
+\draw   (297,22.33) -- (543.17,22.33) -- (543.17,258.33) -- (297,258.33) -- cycle ;
+%Shape: Rectangle [id:dp7743472076958418] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (297,22.33) -- (543.17,22.33) -- (543.17,51.13) -- (297,51.13) -- cycle ;
+%Shape: Rectangle [id:dp7779557733517186] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (386,53.33) -- (541.17,53.33) -- (541.17,86.33) -- (386,86.33) -- cycle ;
+%Straight Lines [id:da9460151429343937] 
+\draw [color={rgb, 255:red, 215; green, 172; blue, 249 }  ,draw opacity=1 ][line width=3.75]  [dash pattern={on 9pt off 4.5pt}]  (390.17,62.33) -- (455.17,62.33) ;
+
+
+%Straight Lines [id:da07066423334519834] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=1 ][line width=3.75]    (390.17,77.33) -- (455.17,77.33) ;
+
+
+
+%Straight Lines [id:da6891207896917613] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (443.5,193.33) -- (515.83,121) ;
+
+
+%Straight Lines [id:da9025524478967739] 
+\draw    (338.5,143.33) -- (350.5,143.33) ;
+
+
+%Straight Lines [id:da8837361321867341] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (395.5,193.33) -- (443.5,193.33) ;
+
+
+%Straight Lines [id:da8842152242628301] 
+\draw    (395.5,196.33) -- (395.5,189.33) ;
+
+
+%Straight Lines [id:da3358507555044139] 
+\draw    (443.5,196.33) -- (443.5,189.33) ;
+
+
+%Straight Lines [id:da3055341213887268] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.59 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (343.5,168.33) -- (394.5,219.33) ;
+
+
+%Straight Lines [id:da6895564400108751] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.59 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (442.5,219.33) -- (514.83,147) ;
+
+
+%Straight Lines [id:da22060129362320668] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.59 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (394.5,219.33) -- (442.5,219.33) ;
+
+
+
+% Text Node
+\draw (525,208) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (348,71) node  [font=\small,rotate=-358.99] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (420.08,36.73) node   [align=left] {Stellage élargi};
+% Text Node
+\draw (500,77) node  [font=\small] [align=left] {valeur à $\displaystyle T$};
+% Text Node
+\draw (489,62) node  [font=\small] [align=left] {profit};
+% Text Node
+\draw (328,143) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (447,205) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (398,205) node   [align=left] {$\displaystyle K_{1}$};
+
+
+\end{tikzpicture}
+
+\end{center}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Écart papillon asymétrique]
+\begin{align*}
+	\lambda	&=	\frac{K_{3} - K_{2}}{K_{3} - K_{1}}
+\end{align*}
+Pour chaque option avec un prix d'exercice de $K_{2}$ achetée, on achète $\lambda K_{1}$ et $(1 - \lambda) K_{3}$.
+\end{definitionNOHFILL}
 
 \subsection*{Butterfly Spread (BFS)}
 On combine un Straddle($K_2$) et un Strangle($K_1, K_3$) pour spéculer sur la non-volatilité du sous-jacent autour de $K_2$, mais en limitant nos pertes à $K_1 - K_2$ : 
