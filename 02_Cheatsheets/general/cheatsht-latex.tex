@@ -1,0 +1,110 @@
+\documentclass[10pt, french]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{../cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Redefine from template
+%% -----------------------------
+\def\auteur{Alec James van Rassel}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\fancyhead[L]{Aide-mémoire pour~ \LaTeX et \texttt{R}}
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
+\def\SectionColor{burntorange}
+\def\SubSectionColor{burntsienna}
+\def\SubSubSection{burntsienna}
+
+% 
+% Débute numérotation des chapitres à 2 pour suivre les notes de Marie-Piere.
+% 
+\setcounter{section}{1}
+
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+
+\begin{multicols*}{3} 
+
+\section*{Ressources}
+\begin{rappel}{Sites}
+\begin{description}
+	\item[detexify]
+	\item[latexcolor]
+	\item[matcha]
+\end{description}
+\end{rappel}
+
+
+\section*{Structure}
+\begin{distributions}[Fichiers]
+\begin{description}
+	\item[Preambule]
+	\item[Page titre]
+	\item[Fichier principal]
+	\item[Sous-fichiers]
+		\begin{itemize}
+		\item	Fonction \texttt{include}
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{distributions}[Dossier]
+\begin{description}
+	\item[src]
+	\item[img]
+	\item[fig]
+\end{description}
+\end{distributions}
+
+\section*{Paquetages}
+\begin{formula}{liste}
+\begin{description}
+	\item[actuarialsymbol]
+	\item[amsmath]
+	\item[amsymb]
+	\item[multicol]
+	\item[xcolor]
+	\item[tikz]
+	\item[tcolorbox]
+\end{description}
+\end{formula}
+
+\begin{algo2}[actuarialsymbol]
+\textbf{Fonctions}
+\begin{description}
+	\item	\texttt{actsymb}
+\end{description}
+\end{algo2}
+
+\begin{algo2}[amsmath]
+\end{algo2}
+
+\begin{algo2}[amsymb]
+\end{algo2}
+
+\begin{algo2}[multicol]
+\textbf{Fonctions}
+\begin{description}
+	\item	\texttt{multicols}
+\end{description}
+\end{algo2}
+
+\begin{algo2}[xcolor]
+\end{algo2}
+
+\begin{algo2}[tikz]
+\end{algo2}
+
+\begin{algo2}[tcolorbox]
+\end{algo2}
+
+\end{multicols*}
+%% -----------------------------
+%% Fin du document
+%% -----------------------------
+\end{document}
