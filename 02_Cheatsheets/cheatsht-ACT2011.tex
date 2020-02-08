@@ -400,26 +400,6 @@ Contrat à terme (achat) &	$S_{T} - F_{0, T}$	&	$S_{T} - F_{0, T}$	\\\hline
 \end{formula}
 \end{definitionNOHFILL}
 
-%%%%		-------
-%%%%		Pas dans le cadre du cours, mais pour IFM (AJVR-01/26/2020)
-%\begin{conceptgen}{4 façons d'acheter une action}
-%\begin{tabular}{|>{\columncolor{airforceblue}}c	|	>{\columncolor{beaublue}}c	|	>{\columncolor{beaublue}}c	|	c	|}
-%\hline
-%\rowcolor{blue(matcha)}
-%	Contrat	&	\shortstack{Moment de\\ paiement}	&	\shortstack{Moment de\\ d'achat}	&	Paiement	\\\hline
-%	\textcolor{white}{\textbf{Outright purchase}}	&	0	&	0	&	$S_{0}$	\\\hline
-%	\textcolor{white}{\textbf{Forward contract}}		&	$T$	&	$T$	&	$F_{0, T}$	\\\hline
-%	\textcolor{white}{\textbf{Prepaid forward contract}}	&	0	&	$T$	&	$F_{0, T}^{P}$	\\\hline
-%	\textcolor{white}{\textbf{Fully leveraged purchase}}	&	$T$	&	0	&	$S_{0}\textrm{e}^{rT}$	\\\hline
-%\end{tabular}
-%\begin{description}
-%	\item[Fully leveraged purchase:]	Emprunte de l'argent pour acheter l'actif maintenant ($t = 0$) et rembourse l'argent au temps $T$;
-%	\item[Prepaid forward contract:]	Paye au début ($t = 0$) au prix $P$ au lieu de plus tard, mais on reçoit quand même l'actif plus tard.
-%\end{description}
-%Ce faisant, on s'attend que $F_{0, T} = F_{0, T}^{P} \textrm{e}^{rT}$.
-%\end{conceptgen}
-%%%%		-------
-
 \begin{definitionNOHFILL}[Exercice (levée)]
 Décision d'\textit{exercer} l'option d'achat ou de vente.
 
@@ -795,40 +775,6 @@ On vend à découvert $S$ en se protégant contre une hausse trop importante du 
 %\begin{definitionNOHFILL}[\textbf{Plafond} \og \textit{cap} \fg{}]
 %
 %\end{definitionNOHFILL}
-
-\begin{definitionNOHFILL}[\textbf{Position synthétique}]
-Une position synthétique réplique la valeur à l'échéance d'une autre position.
-\end{definitionNOHFILL}
-
-\begin{definitionNOHFILL}[\textbf{Contrat à terme synthétique} \og \textit{synthetic forward} \fg{}]
-Un contrat à terme synthétique réplique la valeur à l'échéance d'un contrat à terme sans réellement en signer un.
-
-Avec un \textbf{vrai} contrat à terme:
-\begin{itemize}
-	\item	le coût inital est nul et
-	\item	la valeur à l'échéance est l'écart entre le prix à terme et la valeur du sous-jacent ($S_{T} - F_{0, T}$).
-\end{itemize}
-
-Avec un contrat à terme \textbf{synthétique}:
-\begin{itemize}
-	\item	on prévoit l'échange du bien contre un prix quelconque $K$ et 
-	\item	la valeur à l'échéance est leur écart ($S_{T} - K$).
-	\item	Il s'ensuit que le coût initial ne peut être nul et 
-	\item	c'est pourquoi on \textbf{emprunte de l'argent}, ou de façon équivalente, \textbf{vend une obligation zéro-coupons}.
-\end{itemize}
-
-En bref, on \textbf{achète l'actif} et \textbf{emprunte de l'argent}:
-\begin{center}
-	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
-	\hline\rowcolor{airforceblue} 
-		\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{Flux au temps $0$}}	&	\textcolor{white}{\textbf{Flux au temps $T$}}	\\
-		Acheter un actif	&	$-S(0)$	&	$+S(T)$	\\
-		Emprunter de l'argent	&	$+S(0)$	&	$-S(0)\textrm{e}^{rT} = -F_{0, T}$	\\\hline
-		Net des flux monétaires	&	$0$	&	$S(T) - F_{0, T}$	\\\hline
-	\end{tabular}
-\end{center}
-	
-\end{definitionNOHFILL}
 
 
 \begin{definitionNOHFILL}[\textbf{Écart haussier} \og \textit{Bull Spread} \fg{}]
@@ -1411,13 +1357,22 @@ La largeur du tunnel est $K_{2} - K_{1}$.
 \end{align*}
 \end{definitionNOHFILL}
 
-\subsection{Spéculations sur la volatilité}
-Ces combinaisons bénéficient d'une 
+%\subsection{Spéculations sur la volatilité}
+%Ces combinaisons bénéficient d'une 
 
 \begin{definitionNOHFILL}[\textbf{Stellage} \og \textit{straddle} \fg{}]
-Créé en achetant une option de vente et une option d'achat avec un prix d'exercice $K$.\\
+Créé en achetant une option de vente et une option d'achat avec un prix d'exercice $K$.
+
+\begin{distributions}[Contexte]
+\begin{itemize}[leftmargin = *]
+	\item	Souvent bâti avec un prix d'exercice au cours du marché (in-the-money);
+	\item	L'idée est de faire un profit si le prix de l'actif sous-jacent \textbf{baisse ou descend};
+	\item	Son avantage est donc qu'il peut être profitable avec une baisse ou hausse du prix de l'actif sous-jacent;
+	\item	Cependant, puisqu'il faut acheter deux options au cours du marché, le coût est plutôt élevé.
+\end{itemize}
+\end{distributions}
+
 $\text{Straddle} = Put(K, T) + Call(K, T)$.\\
-Souvent bâti avec des options au cours.
 
 Il s'ensuit que la valeur à l'échéance est:
 \begin{align*}
@@ -1500,8 +1455,14 @@ Créé en
 	\item	$K_{1} < K_{2}$.
 \end{itemize}
 
+\begin{distributions}[Contexte]
+\begin{itemize}[leftmargin = *]
+	\item	Pour réduire le coût des primes, les options sont à des prix d'exercice hors du cours du marché (out-of-the-money);
+	\item	Cela réduit la perte maximale mais augmente la variation nécessaire pour faire un profit.
+\end{itemize}
+\end{distributions}
+
 $\text{Strangle} = Put(K_1, T) + Call(K_2, T)$.\\
-Souvent bâti avec des options hors du cours.
 
 Il s'ensuit que la valeur à l'échéance est:
 \begin{align*}
@@ -1596,64 +1557,162 @@ Il s'ensuit que la valeur à l'échéance est:
 \end{center}
 \end{definitionNOHFILL}
 
+\begin{definitionNOHFILL}[Écart papillon \og \textit{Butterfly Spread (BFS)} \fg{} ]
+Créé en 
+\begin{itemize}
+	\item	achetant stellage élargi avec prix d'exercices $K_{1}$ et $K_{3}$
+	\item	vendant un stellage avec un prix d'exercice $K_{2}$ où 
+	\item	$K_{1} < K_{2} < K_{3}$;
+	\item	L'écart papillon	 est symétrique avec $K_{2} - K_{1} = K_{3} - K_{2}$.
+\end{itemize}
+
+$\text{BFS} = Put(K_1, T) + Call(K_3, T) - Put(K_2, T) - Call(K_2, T)$.
+
+\textbf{Notes}
+\begin{itemize}[leftmargin = *]
+	\item	Il existe plusieurs façons de recréer un écart papillon;
+	\item	Pour exemple, un écart haussier aux prix d'exercice $K_{1}$ et $K_{2}$ combiné avec un écart baissier aux prix d'exercice $K_{2}$ et $K_{3}$.
+\end{itemize}
+
+$\text{BFS} = Call(K_1, T) - 2 Call(K_2, T) + Call(K_3, T)$.
+
+\begin{center}
+	\input{src/ACT-2011/butterfly_spread}
+\end{center}
+\end{definitionNOHFILL}
+
+%\begin{align*}
+%Butterfly  & = Strangle - Straddle(K_2) \\
+%& = Put(K_1, T) - Put(K_2, T) \\
+%& - Call(K_2, T) + Call(K_3,T) \\
+%Premium	& = P(K_1, T) - P(K_2, T) \\
+%& - C(K_2, T) + C(K_3, T) < 0\\
+%Payoff		& = 
+%\begin{cases}
+%K_1 - K_2			& , S_T \leq K_1 \\
+%S_T - K_2			& , K_1 < S_T \leq K_2 \\
+%K_2 - S_T			& , K_2 < S_T \leq K_3 \\
+%K_2 - K_3			& , S_T > K_3 \\
+%\end{cases}
+%\end{align*}
+
+
+
 \begin{definitionNOHFILL}[Écart papillon asymétrique]
+\begin{itemize}[leftmargin = *]
+	\item	De façon similaire à l'écart papillon, on vend et achète en proportion différentes le stellage et stellage élargi;
+	\item	$\text{A-BFS} = mCall(K_1, T) - (m + n) Call(K_2, T) + n Call(K_3, T)$;
+	\item	L'écart est asymétrique avec $m(K_{2} - K_{1}) = n(K_{3} - K_{2})$.
+\end{itemize}
+
+On utilise la notation avec $\lambda$: 
 \begin{align*}
 	\lambda	&=	\frac{K_{3} - K_{2}}{K_{3} - K_{1}}
 \end{align*}
 Pour chaque option avec un prix d'exercice de $K_{2}$ achetée, on achète $\lambda K_{1}$ et $(1 - \lambda) K_{3}$.
 \end{definitionNOHFILL}
 
-\subsection*{Butterfly Spread (BFS)}
-On combine un Straddle($K_2$) et un Strangle($K_1, K_3$) pour spéculer sur la non-volatilité du sous-jacent autour de $K_2$, mais en limitant nos pertes à $K_1 - K_2$ : 
-\begin{align*}
-Butterfly  & = Strangle - Straddle(K_2) \\
-& = Put(K_1, T) - Put(K_2, T) \\
-& - Call(K_2, T) + Call(K_3,T) \\
-Premium	& = P(K_1, T) - P(K_2, T) \\
-& - C(K_2, T) + C(K_3, T) < 0\\
-Payoff		& = 
-\begin{cases}
-K_1 - K_2			& , S_T \leq K_1 \\
-S_T - K_2			& , K_1 < S_T \leq K_2 \\
-K_2 - S_T			& , K_2 < S_T \leq K_3 \\
-K_2 - K_3			& , S_T > K_3 \\
-\end{cases}
-\end{align*}
-\paragraph{Note} De façon générale (plusieurs combinaisons sont possibles), on a 
-\[BFS = Bull(K_1, K_2) + Bear(K_2, K_3) \]
-\input{src/ACT-2011/butterfly_spread}
-
-\paragraph{Asymetric Butterfly Spread} 
-\begin{itemize}
-\item Comme le Ratio Spread, il est possible de faire une stratégie sur mesure en achetant $n$ Bull Spread et en achetant $m$ Bear Spread en respectant les 3 prix d'exercices $K_1 < K_2 < K_3$.
-\item Si on désire avoir un BFS qui a un profit nul pour $S_T < K_1$ et $S_T > K_3$, alors on trouve $n$ et $m$ tel que
-\begin{align*}
-\frac{n}{m} = \frac{K_3 - K_2}{K_2 - K_1}
-\end{align*}
-\end{itemize}
-
 % --- Chapitre 5 ---
 % J'ai rassemblé une partie de la matière du chap.5 dans le chapitre 9, étant donné qu'on répétait de l'information.
 \setcounter{section}{4}
+
 \section{Forwards et Futures}
-\subsection*{Forward avec dividendes}
-\paragraph{Définition de base}
-\[C(K,T) - P(K,T) = S_0 - K(1+r_f)^{T}\]
 
-\paragraph{Action qui verse des dividendes}
-\begin{align*}
-C(K,T) - P(K,T) 		& = S - \text{PV}(Div) - K(1 + r_f)^{T} \\
-& = S_0 e^{-\delta T} - K e^{-rT}
-\end{align*}
-où $\delta$ est un taux de versement des dividendes continu. \\
+\begin{conceptgen}{4 façons d'acheter une action}
+\begin{tabular}{|>{\columncolor{airforceblue}}c	|	>{\columncolor{beaublue}}c	|	>{\columncolor{beaublue}}c	|	c	|}
+\hline
+\rowcolor{blue(matcha)}
+	Contrat	&	\shortstack{Moment de\\ paiement}	&	\shortstack{Moment de\\ d'achat}	&	Paiement	\\\hline
+	\textcolor{white}{\textbf{Outright purchase}}	&	0	&	0	&	$S_{0}$	\\\hline
+	\textcolor{white}{\textbf{Forward contract}}		&	$T$	&	$T$	&	$F_{0, T}$	\\\hline
+	\textcolor{white}{\textbf{Prepaid forward contract}}	&	0	&	$T$	&	$F_{0, T}^{P}$	\\\hline
+	\textcolor{white}{\textbf{Fully leveraged purchase}}	&	$T$	&	0	&	$S_{0}\textrm{e}^{rT}$	\\\hline
+\end{tabular}
+\begin{description}
+	\item[Achat pleinement par emprunt \og \textit{Fully leveraged purchase} \fg{}:]	Emprunte de l'argent pour acheter l'actif maintenant ($t = 0$) et rembourse l'argent au temps $T$;
+	\item[Contrat à terme de gré à gré prépayé \og \textit{Prepaid forward contract} \fg{}:]	Paye au début ($t = 0$) au prix $P$ au lieu de plus tard, mais on reçoit quand même l'actif plus tard.
+\end{description}
+Ce faisant, on s'attend que $F_{0, T} = F_{0, T}^{P} \textrm{e}^{rT}$.
+\end{conceptgen}
 
-De plus, on a
+\begin{distributions}[Notation de prix]
+\begin{itemize}
+	\item[$F_{0, T}^{P}$:]	est le \textbf{prix à terme} d'un contrat à terme de gré à gré prépayé;
+	\item	$F_{0, T} = F_{0, T}^{P} \textrm{e}^{rT}$.
+\end{itemize}
+\end{distributions}
+
+\begin{definitionNOHFILL}[La \textbf{loi du prix unique}]
+Stipule que deux portefeuilles avec les mêmes profits doivent avoir le même prix.
+
+Nous tarifions des contrats à terme de gré à gré \textit{prépayé} et utilisons ces prix pour dériver le prix des contrats à terme de gré à gré. 
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Tarification d'un \textbf{contrat à terme de gré à gré prépayé}}
+Sans dividendes, on obtient un prix de $S_{0}$; soit, le prix de l'actif sous-jacent aujourd'hui. Dans le cadre d'une action cependant, il peut y avoir des dividendes. 
+
+Les dividendes sont payables au propriétaire de l'action. Puisque l'acheteur du contrat (position longue) va seulement posséder le contrat au temps $T$, il ne recevra alors pas de dividendes. Cela baisse donc la valeur de l'action et le prix du contrat devrai tenir cela en compte.
+
+\tcbline
+Dans le cas de \textbf{dividendes discrets}, il suffit de soustraire la valeur actualisée des dividendes: $F_{0, T}^{P} = S_{0} - PV(div)$.
+
+\tcbline
+Un modèle de \textbf{dividendes payés continument} suppose un taux de dividendes continûment composé $\delta$. Alors, une part de l'action au temps initial devient $e_{\delta T}$ parts au temps $T$. Cependant, nous voulons seulement une part au temps $T$ et donc nous devons acheter $e_{-\delta T}$ parts au début. Le prix est donc $F_{0, T}^{P} = S_{0} e^{-\delta T}$.
+
+\tcbline
+\begin{center}
+En bref:\\
+
+\begin{tabular}{| >{\columncolor{beaublue}}c |	 >{\columncolor{beaublue}}c |	 >{\columncolor{beaublue}}c |}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{Dividendes}}	&	\textcolor{white}{\textbf{Prix à terme prépayé}}	&	\textcolor{white}{\textbf{Prix à terme}}	\\\specialrule{0.1em}{0em}{0.0em} 
+Sans dividendes				&	$S_{0}$					&	$S_{0} e^{r T}$	\\\hline
+Dividendes payés continument	&	$S_{0}e^{-\delta T}$		&	$S_{0} e^{(r - \delta) T}$	\\\hline
+Dividendes discrets			&	$S_{0} - PV(div.)$	&	$S_{0} e^{r T} - FV(div.)$	\\\hline
+\end{tabular}
+\end{center}
+\end{conceptgen}
+
+\begin{definitionNOHFILL}[\textbf{Prime à terme} \og \textit{forward premium} \fg{} ]
+Défini comme le ratio du prix à terme au prix courant de l'actif sous-jacent:
 \begin{align*}
-F_{0,T} & = F_{0,T}^{P} (1 + r_f)^{T} \\
-& = (S_0 - \text{PV}(div))(1+r_f)^{T} \\
-& = S_0 - \sum_{i=1}^{T} d_i (1+r_f)^{T-i} \\
-& = S_0 e^{(r-\delta)T}
+	\text{Prime à terme} = \frac{F_{0, T}}{S_{0}}
 \end{align*}
+
+Le taux annuel de la prime à terme composé continûment (\og \textit{annualized forward premium rate} \fg{}) est $\frac{1}{T} \ln \left( \frac{F_{0, T}}{S_{0}}\right)$.
+
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[\textbf{Contrat à terme synthétique} \og \textit{synthetic forward} \fg{}]
+Un contrat à terme synthétique réplique la valeur à l'échéance d'un contrat à terme sans réellement en signer un.
+
+Avec un \textbf{vrai} contrat à terme:
+\begin{itemize}
+	\item	le coût inital est nul et
+	\item	la valeur à l'échéance est l'écart entre le prix à terme et la valeur du sous-jacent ($S_{T} - F_{0, T}$).
+\end{itemize}
+
+Avec un contrat à terme \textbf{synthétique}:
+\begin{itemize}
+	\item	on prévoit l'échange du bien contre un prix quelconque $K$ et 
+	\item	la valeur à l'échéance est leur écart ($S_{T} - K$).
+	\item	Il s'ensuit que le coût initial ne peut être nul et 
+	\item	c'est pourquoi on \textbf{emprunte de l'argent}, ou de façon équivalente, \textbf{vend une obligation zéro-coupons}.
+\end{itemize}
+
+En bref, on \textbf{achète l'actif} et \textbf{emprunte de l'argent}:
+\begin{center}
+	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
+	\hline\rowcolor{airforceblue} 
+		\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{Flux au temps $0$}}	&	\textcolor{white}{\textbf{Flux au temps $T$}}	\\
+		Acheter un actif	&	$-S(0)$	&	$+S(T)$	\\
+		Emprunter de l'argent	&	$+S(0)$	&	$-S(0)\textrm{e}^{rT} = -F_{0, T}$	\\\hline
+		Net des flux monétaires	&	$0$	&	$S(T) - F_{0, T}$	\\\hline
+	\end{tabular}
+\end{center}
+	
+\end{definitionNOHFILL}
+
 
 \paragraph{Forward synthétique avec dividendes}
 On suppose le réinvestissement des dividendes.
@@ -1663,9 +1722,29 @@ Premium		& =  e^{-\delta T} S_0 - e^{-\delta T} S_0 = 0 \\
 Payoff			& = S_T - S_0 e^{(r-\delta) T}
 \end{align*}
 
-\paragraph{Cash-and-carry}
-Stratégie qui consiste  à créer un Forward synthétique et vendre un Forward (profit nul).
+\begin{center}
+	Est-ce de l'arbitrage?
+	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
+	\hline\rowcolor{airforceblue} 
+		\textcolor{white}{\textbf{Flux monétaires}}	&	\textcolor{white}{\textbf{Oui}}	&	\textcolor{white}{\textbf{Non}}	\\
+		Au temps $0$, est-ce que le flux monétaire net est $\ge 0$?	&	X	&		\\\hline
+		Est-ce que tous les flux monétaires nets futurs sont $\ge 0$?	&	X	&		\\\hline
+		Est-ce qu'au moins un des flux monétaires nets futurs est $> 0$?	&	X	&		\\\hline
+	\end{tabular}
+	
+	Si la réponse à tous les questions est oui, alors il y a une opportunité d'arbitrage.
+\end{center}
 
+\begin{definitionNOHFILL}[\textbf{Position synthétique}]
+Une position synthétique réplique la valeur à l'échéance d'une autre position.
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Achat au comptant - vente à terme \og \textit{\textbf{Cash-and-carry}} \fg{}]
+L'investisseur reçoit de l'argent d'un emprunt qu'il utilise pour acheter l'action qu'il porte à terme au futur.
+\tcbline
+L'inverse arrive lorsque le marché offre un contrat à terme de gré à gré sous-évalué.
+\end{definitionNOHFILL}
 
 \subsection*{Calcul avec prime de risque et nuance}
 \begin{itemize}
@@ -1701,29 +1780,49 @@ F_{0,T} & = F_{0,T}^{P} \left(1+r_D \right)^{T} \\
 \end{itemize}
 Le payoff sera $x_t - x_0 \left(  \frac{1+r_D}{1+r_{É}}   \right)^{T}$.
 
+\begin{definitionNOHFILL}[Contrat à terme standardisé \og \textit{future contract} \fg{}]
 
-\subsection*{Future}
-Essentiellement la même chose qu'un Forward, à quelques différences près : 
-\begin{itemize}
-\item Surveillé et contrôlé par des instances officielles (aucun \textit{Over-the-counter})
-\item S'applique sur certains types d'actifs définis seulement ;
-\item liquise et efficient
-\item nécessite un dépôt initial des 2 parties (le risque de défaut est minimisé)
-\item Transaction continues (règlement avec l'intermédiaire de façon quotidienne)
-\item Variation extrêmes dans les prix de Future sont limités (possibilité du \textit{circuit Breaker})
-\end{itemize}
-
-\paragraph{Fonctionnement}
-\begin{enumerate}
-\item L'intermédaire demande un dépôt initial (\textit{initial margin}), \textbf{souvent un \% de la valeur notionnelle}.
-\item Ce dépôt est accumulé à un taux de rendement $i$ fixé par l'intermédiaire.
-\item À chaque période de règlement, on calcule la marge en fonction du prix du Future : \\
-$\text{Marge}_T = \text{Marge}_{t} \cdot (1+i)^{T-t} + \text{Variation totale}_{[t,T]}$
-\item Si $\text{Marge}_t  < \text{Maintenance margin}$\footnote{Cette marge est souvent exprimée en \% de la marge initiale.}, on doit \textbf{ajouter des fonds à la marge pour revenir à la marge initiale.}
-avec $t < T$
+Différences aux contrats à terme de gré-à-gré:
+\begin{enumerate}[leftmargin = *]
+	\item	\textbf{Personnalisable};
+		\begin{itemize}[leftmargin = *]
+		\item	Pour un \textit{forward}, l'acheteur et le vendeur peuvent choisir n'importe quel prix, montant, date d'échéance ou actif sous-jacent;	
+		\item	Pour un \textit{future}, ces composantes sont prédéterminées et ont dit donc qu'il est \textbf{standardisé}.
+		\end{itemize}
+	\item	\textbf{Valorisation au prix du marché} \og \textit{Marked-to-Market} \fg{};
+		\begin{itemize}[leftmargin = *]
+		\item	Pour un \textit{forward}, tous les échanges d'argent se produisent à l'échéance (contrat est réglé à l'échéance);	
+		\item	Pour un \textit{future}, les pertes et profits sont réglés tous les jours (processus de valorisation au prix du marché).
+		\end{itemize}
+	\item	\textbf{Risque de défaut};
+		\begin{itemize}[leftmargin = *]
+		\item	Pour un \textit{forward}, le contrat est pleinement exposé au risque de défaut; 
+		\item	Pour un \textit{future}, avec le règlement quotidien des pertes et de profit le risque de défaut est minimisé.
+		\end{itemize}
+	\item	\textbf{Liquidité}: fait référence à l'aise d'acheter ou de vendre un actif, ou de façon équivalente, de sortir ou entrer de leur position;
+		\begin{itemize}[leftmargin = *]
+		\item	Pour un \textit{forward}, il est impossible de sortir d'un contrat et donc ils ne sont pas liquides;
+		\item	Pour un \textit{future}, puisqu'ils sont transigés sur les marchés boursiers, ils sont liquides.
+		\end{itemize}
+	\item	\textbf{Limite de prix};
+		\begin{itemize}[leftmargin = *]
+		\item	Pour un \textit{forward}, il n'y a aucune limite de prix sur l'actif sous-jacent et il peut varier sans limites;
+		\item	Pour un \textit{future}, il y a des limites incluses dans le contrat.
+		\end{itemize}
 \end{enumerate}
 
+Puisque le règlement des contrats à terme standardisé est différent des contrats à terme de gré à gré, le prix à terme sera également différent.
 
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Marges initiales et de maintien \og \textit{initial and maintenance margins} \fg{}]
+\begin{description}
+	\item[Compte]	Afin de contrer le risque de défaut, l'acheteur et le vendeur doivent déposer de l'argent dans un compte (\og a \textit{margin account} \fg{}) accumulant de l'intérêt;
+	\item[Marge initale]	Le dépôt initial est nommé la marge initiale (\og \textit{inital margin} \fg{});
+	\item[Marge de maintien]Les pertes et profits sont soustraits du compte et donc un niveau minimal est requis---la marge de maintien (\og \textit{maintenance margin} \fg{});
+	\item[Appel de marge]	Si le montant dans le compte descend en dessous de la marge de maintien, nous recevons un appel de marge (\og \textit{margin call} \fg{}) qu'il faut y ajouter des fonds pour ramener la balance à la \textbf{marge initiale}.
+\end{description}
+\end{definitionNOHFILL}
 
 % --- Chapitre 9 ---
 \setcounter{section}{8}
