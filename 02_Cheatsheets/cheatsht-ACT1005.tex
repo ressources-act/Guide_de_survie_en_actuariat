@@ -337,34 +337,7 @@ Auxquels on peut ajouter:
       		\item	Beaucoup d'enfants (pas de contraception);
       		\item	L'église se charge des pauvres;
       	\end{itemize},%
-      	1886	/	Première loi sur l'\textbf{hygiène publique}; précédemment\, le soin des malades était une responsabilité individuelle%
-       } { \ifnum\y=1 \node[description](\y){\desc};
-           \else\node[description,below=1ex of \z](\y){\desc};
-           \fi
-           \node[year](y-\y) [left=of \y] {\year};
-           \ifnum\y>1\draw[timeline] (y-\z)-- (y-\y);\fi
-           \global\let\z=\y% for drawing from last node
-       }
-\end{tikzpicture}
-\begin{tikzpicture}[yscale = 0.5,%
-           year/.style = {draw	= red,%
-           				 text 	= blue,%
-           				 fill 	= yellow!20,%
-           				 shape 	= ellipse,%
-           				 inner sep = 2pt%
-           				 },%
-           description/.style = {rectangle,%
-           				 		align		= left,%
-           				 		text width	= 55mm,%
-           				 		anchor		= west%
-           				 		},%
-           timeline/.style = {->,%
-           				 	 thick,%
-           				 	 red!50%
-           				 	 }%
-           			]
-
-    \foreach \year/\desc [count=\y] in {%
+      	1886	/	Première loi sur l'\textbf{hygiène publique}; précédemment\, le soin des malades était une responsabilité individuelle,%
        1914-1930	/	\textbf{Naissance de l'assistance publique}
        	\begin{itemize}[leftmargin = *]
 	       	\item	Première guerre mondiale;
@@ -372,22 +345,14 @@ Auxquels on peut ajouter:
 	       	\item[]	Ce faisant\, la qualité de vie dépend du salaire et si on tombe malade on risque la pauvreté;
 	       	\item	Églises plus suffisantes---trop de pauvres;
 	       	\item	Création des fraternités (ancêtre des compagnies d'assurance);
-       	\end{itemize}
-       ,%
+       	\end{itemize},%
        	1914	/	Premier programme moderne de \textbf{sécurité sociale} au Canada: La Loi sur les accidents au travail de l'Ontario,%
        	1921	/	\textbf{Loi} au Qubébec sur l'\textbf{assistance publique} 
        	\begin{itemize}[leftmargin = *]
        		\item	L'argent est donné aux gens en besoin;
-      	 	\item	Humliant, basé sur un examen de ressources publiques qui stigmatise ceux en besoin;
+      	 	\item	Humliant\, basé sur un examen de ressources publiques qui stigmatise ceux en besoin;
      	  	\item	Église mécontente puisqu'elle veut continuer de contrôler la vie des gens;
-       	\end{itemize},%
-       1930-1940	/	\textbf{Premières étapes d'une politique sociale}
-       	\begin{itemize}[leftmargin = *]
-	       	\item	\textbf{Crise} de 1929---chômage en forte hausse;
-	       	\item	Accroissement des interventions gouvernementales --- le gouvernement est encore timide car il doit avoir le soutien de l'Église;
-       	\end{itemize},%
-       	1927	/	\textbf{Assurance vieillesse} (\textbf{fédéral}); programme très strict,%
-       	1935/	\textbf{Hôpitaux provinciaux} au lieu de municipaux; cependant\, encore trop cher pour la majorité de la population%
+       	\end{itemize}%
        } { \ifnum\y=1 \node[description](\y){\desc};
            \else\node[description,below=1ex of \z](\y){\desc};
            \fi
@@ -395,7 +360,6 @@ Auxquels on peut ajouter:
            \ifnum\y>1\draw[timeline] (y-\z)-- (y-\y);\fi
            \global\let\z=\y% for drawing from last node
        }
-
 \end{tikzpicture}
 \begin{tikzpicture}[yscale = 0.5,%
            year/.style = {draw	= red,%
@@ -406,7 +370,7 @@ Auxquels on peut ajouter:
            				 },%
            description/.style = {rectangle,%
            				 		align		= left,%
-           				 		text width	= 55mm,%
+           				 		text width	= 50mm,%
            				 		anchor		= west%
            				 		},%
            timeline/.style = {->,%
@@ -415,6 +379,13 @@ Auxquels on peut ajouter:
            				 	 }%
            			]
     \foreach \year/\desc [count=\y] in {%
+       1930-1940		/	\textbf{Premières étapes d'une politique sociale}%
+       	\begin{itemize}[leftmargin = *]
+	       	\item	\textbf{Crise} de 1929---chômage en forte hausse;
+	       	\item	Accroissement des interventions gouvernementales --- le gouvernement est encore timide car il doit avoir le soutien de l'Église;
+       	\end{itemize},%
+       	1927	/	\textbf{Assurance vieillesse} (\textbf{fédéral}); programme très strict,%
+       	1935	/	\textbf{Hôpitaux provinciaux} au lieu de municipaux; cependant\, encore trop cher pour la majorité de la population,
 		1940-1960	/\textbf{Prépondérance fédérale}: 
 		\begin{itemize}[leftmargin = *]
 		  \item	Les besoins engendrés par la guerre règle le problème de chômage;
@@ -423,20 +394,47 @@ Auxquels on peut ajouter:
 		\end{itemize},%
 			1940	/	 \textbf{assurance chômage} (fédéral) Premier programme national,%
 			1949	/	 \textbf{allocations familiales} (fédérales),%
-			1952	/	 \textbf{pensions} de \textbf{vieillesse} (fédérales) non liée à la démonstration du manque de ressources,%
+			1952	/	 \textbf{pensions} de \textbf{vieillesse} (fédérales) non liée à la démonstration du manque de ressources%
 %%%	-----
 %%%	NOTE:
 %%%	+	fédéral ou provincial? (AJVR)
 %%% + fédéral, j'ai vérifié sur le Web (OC)
-%%%	-----
+%%%	-----%
+       } { \ifnum\y=1 \node[description](\y){\desc};
+           \else\node[description,below=1ex of \z](\y){\desc};
+           \fi
+           \node[year](y-\y) [left=of \y] {\year};
+           \ifnum\y>1\draw[timeline] (y-\z)-- (y-\y);\fi
+           \global\let\z=\y% for drawing from last node
+       }
+\end{tikzpicture}
+
+\begin{tikzpicture}[yscale = 0.5,%
+           year/.style = {draw	= red,%
+           				 text 	= blue,%
+           				 fill 	= yellow!20,%
+           				 shape 	= ellipse,%
+           				 inner sep = 2pt%
+           				 },%
+           description/.style = {rectangle,%
+           				 		align		= left,%
+           				 		text width	= 50mm,%
+           				 		anchor		= west%
+           				 		},%
+           timeline/.style = {->,%
+           				 	 thick,%
+           				 	 red!50%
+           				 	 }%
+           			]
+    \foreach \year/\desc [count=\y] in {%
        	1960-1970	/	\textbf{Modernisation Québécoise},%
-			1960	/	\textbf{Régime universel} d'assurance hospitalisation (encore aujourd'hui),%
-			1966	/	\textbf{Régime} de \textbf{rentes} du Québec
+			1960		/	\textbf{Régime universel} d'assurance hospitalisation (encore aujourd'hui),%
+			1966		/	\textbf{Régime} de \textbf{rentes} du Québec
 				\begin{itemize}[leftmargin = *]
-				\item	Premier programme à offrir une \textbf{indexation} des prestations
+				\item	Premier programme à offrir une \textbf{indexation} des prestations.
 				\end{itemize},%
 			1967	/	 \textbf{Allocations familiales} (Québec),%
-			1971	/	 \textbf{Couverture} \textbf{universelle} des \textbf{soins de santé} (Québec) (assurance maladie, encore aujourd'hui)
+			1971	/	 \textbf{Couverture} \textbf{universelle} des \textbf{soins de santé} (Québec) (assurance maladie\, encore aujourd'hui)
 				\begin{itemize}[leftmargin = *]
 				\item	précédemment\, il fallait payer pour voir un médecin;
 				\item	25\% de la population sous le seuil de la pauvreté (vs moins que 1\% aujourd'hui);
@@ -685,7 +683,7 @@ Nos régimes craquent d'un peu partout. On mets en vigueur des changements et de
 	\item Protection des démunis : axée sur l'aide sociale plutôt que la sécurité;
 	  \begin{itemize}
 	  \item On s'occupe des pauvres après (mesure humiliante : \textit{food ticket} pour l'épicerie)
-	\item 6 volets à la sécurité sociale:
+	  \item 6 volets à la sécurité sociale:
 	  \begin{enumerate}
 	    \item Vieillesse et décès (survivants) (fédérial)
 	    \item Invalidité (fédéral)
@@ -702,7 +700,9 @@ Nos régimes craquent d'un peu partout. On mets en vigueur des changements et de
 	    \item \textbf{supprimé le 1er Janvier 2019 }
 	    \item Certains états ont maintenu l'obligation de détenir de l'assurance maladie
 	    \item[] Exemple : \textit{Massachussett}, \textit{New Jersey} et \textit{Columbia}
- \end{itemize}
+	 \end{itemize}
+	 \end{itemize}
+	 \end{itemize}
  Les raisons d'un tel régime était qu'au \textit{États-Unis}, 64\% des faillites étaient liées aux frais de santé
 \newpage
 
