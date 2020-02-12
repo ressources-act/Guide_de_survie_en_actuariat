@@ -1822,6 +1822,29 @@ Puisque le règlement des contrats à terme standardisé est différent des cont
 	\item[Marge de maintien]Les pertes et profits sont soustraits du compte et donc un niveau minimal est requis---la marge de maintien (\og \textit{maintenance margin} \fg{});
 	\item[Appel de marge]	Si le montant dans le compte descend en dessous de la marge de maintien, nous recevons un appel de marge (\og \textit{margin call} \fg{}) qu'il faut y ajouter des fonds pour ramener la balance à la \textbf{marge initiale}.
 \end{description}
+
+Example:
+On suppose l'achat d'une action se transigeant au prix de 950\$ aujourd'hui ayant 250 parts sous-jacent. La force d'intérêt est de 6\%, la marge initiale égale à 80\% de la valeur notionnelle et la marge de maintien 10\% de la marge initiale.
+
+Ce faisant, la \colorbox{bleudefrance}{\textbf{balance de la marge}} \textit{dans une semaine} sera:
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	\overset{\text{marge de maintien}}{\overbrace{
+		\underset{\text{\shortstack{nombre\\ sous-jacent}}}{\underbrace{250}} \times
+		\underset{\text{nombre acheté}}{\underbrace{10}} \times 
+		\underset{\text{prix inital}}{\underbrace{950}} \times 
+		\underset{\text{taux de MI}}{\underbrace{0.10}} \times 
+		\underset{\text{\shortstack{accumulé sur\\ une semaine}}}{\underbrace{\textrm{e}^{0.06 (1/52)}}} 
+		}} \\ 
+		+ 
+	\overset{\text{gains (pertes)}}{\overbrace{
+		\underset{\text{\shortstack[c]{nombre\\ sous-jacent}}}{\underbrace{250}} \times
+		\underset{\text{nombre acheté}}{\underbrace{10}} \times 
+		\underset{\text{\shortstack[c]{profit par action\\ dans une semaine}}}{\underbrace{(F_{1/52, T} -  950)}}
+		}}
+\end{align*}
+\setlength{\mathindent}{1cm}
+
 \end{definitionNOHFILL}
 
 % --- Chapitre 9 ---
