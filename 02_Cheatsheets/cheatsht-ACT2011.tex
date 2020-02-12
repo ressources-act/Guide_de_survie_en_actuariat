@@ -1,6 +1,8 @@
 %% Aide-mémoire
 \documentclass[10pt, french]{article}
 \input{cheatsht-preamble-general.tex}
+\usepackage{array, multirow}
+\usepackage{booktabs}
 %% -----------------------------
 %% Préambule
 %% -----------------------------
@@ -13,8 +15,6 @@
 %% -----------------------------
 %% Début du document
 %% -----------------------------
-\usepackage{array, multirow}
-\usepackage{booktabs}
 
 \begin{document}
 
@@ -78,7 +78,20 @@ Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a cau
 \end{definitionNOHFILL}
 
 \subsection*{Transactions}
-\begin{algo}{Étapes d'une transaction}
+
+\begin{definitionNOHFILL}[Transaction gré-à-gré] 
+Transaction sans intermédiaire ou à l'extérieur de la bourse. 
+
+\begin{conceptgen}{Raisons pour ce type de transaction}
+\begin{itemize}
+\item Ce sont souvent de grosses transaction. On peut donc économiser sur les frais de transaction.
+\item On peut combiner (sur une même transaction) plusieurs micro-transaction et plusieurs types d'actifs.
+\end{itemize}
+\end{conceptgen}
+\end{definitionNOHFILL}
+
+
+\begin{algo2}[Étapes d'une transaction]
 \begin{enumerate}
 	\item 	L'acheteur et le vendeur se trouvent;
 	\item 	On définit les obligations de chaque partie, on dit que la transaction est \og \textbf{cleared} \fg{};
@@ -90,22 +103,12 @@ Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a cau
 	\item 	La transaction a lieu et les obligations sont remplies par chaque partie, on dit que la transaction est \og \textit{settled} \fg{};
 	\item 	Les registres de propriétés sont mis à jour.
 \end{enumerate}	
-\end{algo}
+\end{algo2}
 
-\begin{definitionNOHFILL}[Transaction gré-à-gré] 
-Transaction sans intermédiaire ou à l'extérieur de la bourse. 
+\begin{definitionNOHFILL}[Vente à découvert \og \textit{(short-sell)} \fg{}] 
+Lorsqu'on croit que le prix d'une action va baisser, on peut faire un profit quand même.
 
-\begin{conceptgen}{Raisons pour ce type de transaction}
-\begin{itemize}
-\item Ce sont souvent de grosses transaction. On peut donc économiser sur les frais de transaction.
-\item On peut combiner (sur une même transaction) plusieurs micro-transaction et plusieurs types d'actifs.
-\end{itemize}
-\end{conceptgen}
-
-\end{definitionNOHFILL}
-
-\begin{definitionNOHFILL}[Vente à découvert] 
-\begin{algo}{Étapes d'une vente à découvert}
+\begin{algo2}[Étapes d'une vente à découvert]
 \begin{multicols*}{2}
 \begin{enumerate}[leftmargin = *]
 	\item[]	Au début:\\
@@ -116,34 +119,79 @@ Transaction sans intermédiaire ou à l'extérieur de la bourse.
 	\item	Remboursement du titre
 \end{enumerate}	
 \end{multicols*}
-\end{algo}
+\end{algo2}
+
+\begin{formula}{Exemple de vente à découvert}
+\begin{itemize}
+	\item	Mon ami James possède 5 actions d'Apple ayant chacune une valeur de 5\$;
+	\item	Je lui emprunte ses 5 actions et lui promets d'y retourner;
+	\item	Immédiatement, je revends ses actions sur le marché des actions;
+		\begin{itemize}
+		\item	Je ne suis pas inquiété, je suis certain que le prix va baisser;
+		\item	Ce faisant, je suis certain que je serai capable de racheter ses actions plus tard à un prix plus faible.
+		\end{itemize}
+	\item	Après une certaine période de temps, j'achète 5 actions au nouveau prix et j’y retourne.
+\end{itemize}
+\end{formula}
 
 \begin{conceptgen}{Raisons pour une vente à découvert}
-\begin{multicols*}{3}
 \begin{itemize}
-	\item	Spéculation;
-	\item	Financement;
-	\item	Couverture.
+	\item	\textbf{Spéculation}: Un investisseur tire profit d'une baisse de prix;
+	\item	\textbf{Financement}: Une vente à découvert est une façon d'emprunter de l'argent;
+	\item	\textbf{Couverture} (hedging): Un investisseur peut éliminer le risque d'une position longue sur une action avec une vente à découvert.
 \end{itemize}
-\end{multicols*}
 \end{conceptgen}
 
 \begin{conceptgen}{Type de risques}
 \begin{description}
-	\item[Risque de défaut] Risque de ne pas être payé. Ce risque peut être réduit avec un dépôt initial en garantie ou une marge de sécurité.
-	\item[Risque de rareté] Si il est difficile de trouver un acheteur et un vendeur pour le sous-jacent (pas beaucoup de transactions signifie beaucoup de négociations et de variation dans les prix)
+	\item[Risque de défaut (de crédit)] Risque de ne pas être payé;
+		\begin{itemize}
+		\item	Ce risque peut être réduit avec un dépôt initial en garantie ou une marge de sécurité;
+		\item	\og \textit{credit risk} \fg{}.
+		\end{itemize}	
+	\item[Risque de rareté] Si il est difficile de trouver un acheteur et un vendeur pour le sous-jacent (pas beaucoup de transactions signifie beaucoup de négociations et de variation dans les prix).
+\end{description}
+\end{conceptgen}
+
+\begin{conceptgen}{Frais}
+investisseur: short-seller
+prêteur: Détenteur des actions dont l'investisseur a emprunté;
+\begin{description}
+	\item[\og \textit{short-sale \textbf{proceeds}} \fg{}]	Le recettes de la vente sont conservés comme collatéral au cas où que l'investisseur ne retourne pas les actions;
+		\begin{itemize}
+		\item	Soit le prêteur, ou un parti tierce, va conserver les revenus de la vente à découvert jusqu'au retour des actions;
+		\item	À ce moment, elles seront retournées à l'investisseur.
+		\end{itemize}
+	\item[\og \textit{a \textbf{haircut}} \fg{}]	Marge de sécurité pour couvrir le risque que le prix des actions augmente trop pour que l'investisseur ait la capacité financière des retourner, le prêteur exige un \og dépôt \fg{} additionnel;
+		\begin{itemize}
+		\item	Comme les recettes de la vente, cette marge de sécurité sera retournée au prêteur.
+		\end{itemize}
+	\item[\og \textit{Interest} \fg{}]	Il est naturel que le prêteur exige un retour sur la vente à découvert également;
+		\begin{itemize}
+		\item	Dans le marché des actions, l'intérêt accumulé sur le collatéral est le \og \textit{short rebate} \fg{};
+		\item	Dans le marché des obligations, c'est le \textbf{taux de mise en pension} (\og \textit{repo rebate} \fg{});
+		\item	Ces taux sont habituellement \textit{plus faible que} ceux du \textit{marché} et sont fondés sur l'offre et la demande.
+		\end{itemize}
+	\item[\og \textit{Dividends} \fg{}]	Il est possible que des dividendes sont payables lors du prêt;
+		\begin{itemize}
+		\item	Puisque le détenteur de l'action sera celui à qui l'investisseur à vendu les actions, l'investisseur et le prêteur ne vont pas les recevoir;
+		\item	Du point de vue du prêteur, les dividendes sont des paiements en espèce qu'il aura reçu s'il n'avait pas prêté l'action;
+		\item	Ce faisant, l'investisseur va payer ces dividendes au prêteur s'il y en a;
+		\item	Ce paiement ce nomme le \textbf{taux de location} (\og \textit{lease rate} \fg{}) de l'actif.
+		\end{itemize}
 \end{description}
 \end{conceptgen}
 
 \end{definitionNOHFILL}
 
-
 \begin{conceptgen}{Mesures de taille et d'activité d'un marché}
 \begin{description}
 	\item[Volume total des transactions:] Nombre total de titres transigés pendant une période;
 	\item[Valeur marchande:] $\text{nombre d'actions} \ \times \ \text{prix par action (\$)}$;
+	\item[]	\og \textit{Market value} \fg{}.
 	\item[Valeur notionnelle:] Valeur de l'actif sous-jacent du produit dérivé;
 	\item[Position ouverte:] Nombre de contrats encore en vigueur du produit dérivé;
+	\item[]	\og \textit{Open interest} \fg{}.
 %%%	-----
 %%%	NOTE:
 %%%	+	Du produit dérivé? 
@@ -152,7 +200,7 @@ Transaction sans intermédiaire ou à l'extérieur de la bourse.
 \end{description}
 \end{conceptgen}
 
-\paragraph{Rôle des marchés financiers} Partage du risque et diversification des risques.
+\textbf{Rôle des marchés financiers}: Partage du risque et diversification des risques.
 
 \begin{definitionNOHFILL}[Bid-Ask Spread]
 Écart entre le prix de vente (\textbf{ask}) et d'achat (\textbf{bid}). Ceci correspond à la \textbf{marge de profit} que le teneur de marché (\textit{market maker}) conserve. 
@@ -162,24 +210,31 @@ En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
 \begin{description}
 	\item[Ask:] Prix le plus \textit{élevé} auquel un investisseur est prêt à payer pour le sous-jacent;
 	\item	Lorsque le teneur de marché vend une action à un investisseur, il \textit{ask} le prix plus élevé;
+	\item	\og \textit{ask price} \fg{} se traduit au \textbf{cours vendeur} représentant l'idée de regarder les prix auxquels se transigent l'actif;
 	\item[Bid:] Prix le plus \textit{faible} auquel un investisseur est prêt à vendre le sous-jacent
+	\item	\og \textit{bid price} \fg{} se traduit au \textbf{cours acheteur};
 	\item	Lorsque le teneur de marché achète une action d'un investisseur, il \textit{bid} le prix plus faible;
 \end{description}
+
 \end{conceptgen}
+
 \end{definitionNOHFILL}
 
 \begin{distributions}[Terminologie des marchés]
 \begin{description}
-	\item[Ordre au marché (market order):]	On achète et vend selon les prix Bid Ask actuels.
-	\item[Ordre limite (limit order):] 	On achète le sous-jacent si $Ask < k$ ou on vend le sous-jacent si $Bid > k$.
-	\item[Ordre de vente stop (stop loss):]	On veut limiter sa perte si un sous-jacent perd énormément de valeur. Donc, on va vendre le sous-jacent si $Bid \leq k$.
-	\item[Longue] On se considère en position longue sur le sous-jacent si notre stratégie nous permet de bénéficier d'une \textcolor{ao(english)}{hausse} du sous-jacent.
-	\item[Courte] On se considère en position longue sur le sous-jacent si notre stratégie nous permet de bénéficier d'une \red{baisse} du sous-jacent.
+	\item[Ordre au cours du marché:]	On achète et vend selon les prix Bid Ask actuels;
+	\item[]	\og \textit{Market order} \fg{}.
+	\item[Ordre à cours limité:] 	On achète le sous-jacent si $Ask < k$ ou on vend le sous-jacent si $Bid > k$.
+	\item[]	\og \textit{Limit order} \fg{}.
+	\item[Ordre de vente stop:]	On veut limiter sa perte si un sous-jacent perd énormément de valeur. Donc, on va vendre le sous-jacent si $Bid \leq k$.
+	\item[]	\og \textit{Stop-loss order} \fg{}.
+	\item[Longue] On se considère en position longue \textbf{par rapport au sous-jacent} si notre stratégie nous permet de bénéficier d'une \textcolor{ao(english)}{hausse} du sous-jacent.
+	\item[Courte] On se considère en position longue \textbf{par rapport au sous-jacent} si notre stratégie nous permet de bénéficier d'une \red{baisse} du sous-jacent.
 \end{description}
 \end{distributions}
 
 %%%	-----
-%%	Pas assez pertinent pour l'inclure
+%%	Pas assez pertinent pour l'inclure (AJVR-26/01/2020)
 %%	Contrats ayant une protection pour chaque degrés en sur(sous) de 18 degrés celsius;
 %\paragraph{Contrats saisonnales}
 %\begin{description}
@@ -188,45 +243,289 @@ En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
 %\end{description}
 %%%	-----
 
-\vfill\null
+\section{Introduction aux Forwards et aux options}
+
+\begin{distributions}[Terminologie]
+\begin{description}
+	\item[Premium:] Flux financiers à $t = 0$;
+	\item	Prix de l'option / prime;
+	\item	Si \textcolor{blue}{positif}, il s'agît d'un \textbf{coût} ;
+	\item	Si \textcolor{red}{négatif}, il s'agît d'une \textbf{compensation}.
+	\item[Valeur à l'échéance $T$:]	Les flux de trésorie au temps $t = T$;
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{payoff} \fg{};
+		\item	C'est à dire, l'argent que l'on reçoit à l'échéance;
+		\item	Dans le cas de l'achat d'un actif, on reçoit son prix et donc s'il est nul on ne reçoit rien;
+		\item	C'est le profit qui prend en compte les dépenses initiales et qui sera négatif.
+		\end{itemize}
+	\item[Profit\footnote{\textbf{V}aleure \textbf{A}ccumulée au taux sans risque.}] 
+		= (valeur à l'échéance) - (valeur accumulée du coût inital) \\
+		= $VA$(flux monétaires)\footnote{Pour exemple acheter une voiture et la revendre 10 ans plus tard---(prix de revente à dans 10 ans) - (valeur accumulée du coût d'achat inital à 0 au courant des 10 dernières années).}
+	\begin{align*}
+%	&=	\begin{cases}
+%			\text{Payoff} - VA(\text{Premium})&	\text{si position longue}	\\
+%			\text{Payoff} + VA(\text{Premium})	&	\text{si position courte}
+%		\end{cases} \\
+	\end{align*}
+	\tcbline
+	\item[$r_f$:] taux d'intérêt sans risque (effectif annuel).
+	\item[$r$:] force d'intérêt sans risque (annuelle). 
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Obligation zéro coupon]
+
+\begin{minipage}{0.6\columnwidth}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp5760713807677853] 
+\draw  (68,203.33) -- (263.17,203.33)(95.17,121.33) -- (95.17,285.17) (256.17,198.33) -- (263.17,203.33) -- (256.17,208.33) (90.17,128.33) -- (95.17,121.33) -- (100.17,128.33)  ;
+%Straight Lines [id:da14694919423796993] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (95.5,246.33) -- (259.5,246.33) ;
+
+
+%Straight Lines [id:da006960924907699395] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (95.25,166.08) -- (259.5,166.08) ;
+
+
+%Shape: Rectangle [id:dp6904794669628107] 
+\draw   (48,51.33) -- (294.17,51.33) -- (294.17,290) -- (48,290) -- cycle ;
+%Shape: Rectangle [id:dp19849032343228457] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (48,51.33) -- (294.17,51.33) -- (294.17,80.13) -- (48,80.13) -- cycle ;
+%Straight Lines [id:da7331693440860174] 
+\draw [color={rgb, 255:red, 215; green, 172; blue, 249 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (102.5,203.33) -- (262.5,203.33) ;
+
+
+%Straight Lines [id:da37881158739253507] 
+\draw [color={rgb, 255:red, 249; green, 208; blue, 145 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (95.5,203.33) -- (260.33,203.33) ;
+
+
+%Shape: Rectangle [id:dp7574038380258179] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (137,82.33) -- (292.17,82.33) -- (292.17,115.33) -- (137,115.33) -- cycle ;
+%Straight Lines [id:da663902422463923] 
+\draw [color={rgb, 255:red, 215; green, 172; blue, 249 }  ,draw opacity=1 ][line width=3.75]  [dash pattern={on 9pt off 4.5pt}]  (141.17,91.33) -- (206.17,91.33) ;
+
+
+%Straight Lines [id:da012272169443842351] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=1 ][line width=3.75]    (141.17,106.33) -- (206.17,106.33) ;
+
+
+% Text Node
+\draw (275,248) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (75,166) node   [align=left] {$\displaystyle F_{0,\ T}$};
+% Text Node
+\draw (72,245) node   [align=left] {$\displaystyle -F_{0,\ T}$};
+% Text Node
+\draw (99,100) node  [font=\small,rotate=-358.99] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (162,228) node   [align=left] {$\displaystyle F_{0,\ T}$};
+% Text Node
+\draw (171.08,65.73) node   [align=left] {Obligation zéro coupon};
+% Text Node
+\draw (255,260) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {courte};
+% Text Node
+\draw (258,151) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {longue};
+% Text Node
+\draw (251,106) node  [font=\small] [align=left] {valeur à $\displaystyle T$};
+% Text Node
+\draw (240,91) node  [font=\small] [align=left] {profit};
+
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.4\columnwidth}
+La position 
+\begin{itemize}[leftmargin = *]
+	\item[]	\textbf{longue}:	Équivaut à un dépôt;
+	\item[]	\textbf{courte}:	Équivaut à un emprunt.
+\end{itemize}
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c |}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{Valeur à l'échéance}}	\\\specialrule{0.1em}{0em}{0.0em} 
+$F_{0, T}$	\\\hline
+\hline\rowcolor{airforceblue} \textcolor{white}{\textbf{Profit}} \\\specialrule{0.1em}{0em}{0.0em} 
+$F_{0, T} - (F_{0, T} - \textrm{e}^{-rT}) \textrm{e}^{rT}$	\\\hline
+\end{tabular}
+\end{center}
+\end{minipage}
+
+Le profit sera donc toujours nul.
+
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Contrat à terme (de gré à gré) \og \textit{forward contract} \fg{}]
+Contrat selon lequel: 
+\begin{itemize}
+	\item	\textit{deux} partis s'\textbf{engagent} d'\textbf{échanger}---un à \textit{acheter} et l'autre à \textit{vendre};
+	\item	une \textit{certaine} \textbf{quantité} d'un \textit{certain} \textbf{bien}---l'actif sous-jacent $S$;	
+	\item	à un \textit{certain} \textbf{prix}---prix à terme $F_{0, T}$;
+	\item	à un \textit{certain} \textbf{endroit} à une \textit{certaine} \textbf{date}---date d'échéance, $T$;
+\end{itemize}
+
+L'engagement est au départ à $t = 0$ mais aucune transaction y a lieu. Ce faisant, le profit sera égale à la valeur à l'échéance puisqu'il n'a pas de flux financiers à 0 à accumuler. L'achat \textbf{ferme} en revanche, implique l'\textit{achat} et la livraison de l'actif au départ à $t = 0$. Donc:
+\begin{center}
+\begin{tabular}{|	>{\columncolor{airforceblue}}c	| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{Valeur à l'échéance}}	&	\textcolor{white}{\textbf{Profit}}		\\\specialrule{0.1em}{0em}{0.0em} 
+Achat ferme		&	$S_{T}$	&	$S_{T} - S_{0} \textrm{e}^{rT}$	\\\hline
+Contrat à terme (achat) &	$S_{T} - F_{0, T}$	&	$S_{T} - F_{0, T}$	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{distributions}[Notation de prix]
+%\begin{multicols*}{2}
+\begin{itemize}
+	\item[$S_{t}$:] \textbf{Valeur} de l'actif \textbf{s}ous-jacent à $t$;
+	\item[$S_{0}$:] \textbf{Prix au comptant};
+	\item	Le prix au comptant représente le paiement pour la livraison immédiate à $t = 0$;
+	\item	\og \textit{(spot price)} \fg{}.
+	\item[$F_{0, T}$:]	est le \textbf{prix à terme};
+	\item	$F_{0, T} = S_{0} \textrm{e}^{r (T - 0)}$
+	\item[$F_{0, 0}$:]	est nul;
+	\item	La notation $F_{0, T}$ vient de \og future \fg{} ou \og forward \fg{}.
+\end{itemize}
+%\end{multicols*}
+\end{distributions}
+
+\begin{formula}{Exemple de bateau}
+\begin{itemize}
+	\item	Je veux acheter un \textit{(quantité)} bateau \textit{(bien)}, mais il est inconvénient pour moi de le recevoir maintenant;
+	\item	En lieu, puisque je veux l'acheter maintenant, je signe une entente \textit{(engagement)} pour l'acheter;
+	\item	La seule différence entre l'acheter aujourd'hui \textit{(au prix au comptant $S_{0}$)} et l'acheter lorsque la neige fond \textit{(au prix à terme $F_{0, T}$)} est l'accumulation d'intérêt;
+	\item	Puisqu'on suppose tout les deux d'êtres fiables et sans risque, le prix est accumulé au taux sans risque ($r$) et le prix payable rendu à l'été ($T$) sera $F_{0, T} = S_{0} \textrm{e}^{r (T - 0)}$;
+	\item[]	Si le taux sans risque est un \textbf{taux} \textbf{plutôt} qu'une \textit{force} d'intérêt, on obtient $F_{0, T} = S_{0} (1 + r_f)^{T}$.
+\end{itemize}
+\end{formula}
+\end{definitionNOHFILL}
+
+%%%%		-------
+%%%%		Pas dans le cadre du cours, mais pour IFM (AJVR-01/26/2020)
+%\begin{conceptgen}{4 façons d'acheter une action}
+%\begin{tabular}{|>{\columncolor{airforceblue}}c	|	>{\columncolor{beaublue}}c	|	>{\columncolor{beaublue}}c	|	c	|}
+%\hline
+%\rowcolor{blue(matcha)}
+%	Contrat	&	\shortstack{Moment de\\ paiement}	&	\shortstack{Moment de\\ d'achat}	&	Paiement	\\\hline
+%	\textcolor{white}{\textbf{Outright purchase}}	&	0	&	0	&	$S_{0}$	\\\hline
+%	\textcolor{white}{\textbf{Forward contract}}		&	$T$	&	$T$	&	$F_{0, T}$	\\\hline
+%	\textcolor{white}{\textbf{Prepaid forward contract}}	&	0	&	$T$	&	$F_{0, T}^{P}$	\\\hline
+%	\textcolor{white}{\textbf{Fully leveraged purchase}}	&	$T$	&	0	&	$S_{0}\textrm{e}^{rT}$	\\\hline
+%\end{tabular}
+%\begin{description}
+%	\item[Fully leveraged purchase:]	Emprunte de l'argent pour acheter l'actif maintenant ($t = 0$) et rembourse l'argent au temps $T$;
+%	\item[Prepaid forward contract:]	Paye au début ($t = 0$) au prix $P$ au lieu de plus tard, mais on reçoit quand même l'actif plus tard.
+%\end{description}
+%Ce faisant, on s'attend que $F_{0, T} = F_{0, T}^{P} \textrm{e}^{rT}$.
+%\end{conceptgen}
+%%%%		-------
+
+\begin{definitionNOHFILL}[Exercice (levée)]
+Décision d'\textit{exercer} l'option d'achat ou de vente.
+
+\begin{distributions}[Notation]
+\begin{itemize}
+	\item[$K$:]	\textbf{Prix d'exercice} \textit{(\textbf{strike price})};
+\end{itemize}
+\end{distributions}
+
+\begin{conceptgen}{Types d'exercices}
+\begin{description}
+	\item[\textbf{\underline{E}}uropéen:]		\textbf{Au moment} d'\textbf{\underline{e}}xpiration de l'option $T$;
+	\item[\textbf{\underline{A}}méricain:]	\textbf{N'importe quand} (\textbf{\underline{a}}ny moment) d'ici $T$;
+	\item[\textbf{\underline{B}}ermudien:]	À \textbf{quelques périodes} (\textbf{\underline{b}}ounded periods) d'ici $T$;
+\end{description}
+En réalité, la \textit{majorité sont américain}  et donc nous effectuons uniquement des calculs avec ce type.
+\end{conceptgen}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Option d'achat]
+Contrat qui: 
+\begin{itemize}
+	\item	\textit{permet} \textbf{(optionnel)} à son \textit{détenteur} d'\textbf{acheter};
+	\item	une \textit{certaine} \textbf{quantité} d'un \textit{certain} \textbf{bien}---l'actif sous-jacent;	
+	\item	à un \textit{certain} \textbf{prix}---prix d'exercice $K$;
+	\item	à un \textit{certain} \textbf{endroit} à, ou d'ici, une \textit{certaine} \textbf{date}---date d'échéance, $T$;
+\end{itemize}
+
+\begin{distributions}[Notation]
+\begin{itemize}
+	\item[$C_{0}$:]	\textbf{Prix} pour acheter l'option d'achat;
+	\item[$C(K)$:]	Notation pour représenter l'option d'achat (\og \textit{\textbf{C}all} \fg{}) avec un prix d'exercice de $K$.
+\end{itemize}
+\end{distributions}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Option de vente]
+Contrat qui \textit{permet} à son \textit{détenteur} de \textbf{vendre} au lieu d'acheter.
+
+\begin{distributions}[Notation]
+\begin{itemize}
+	\item[$P_{0}$:]	\textbf{Prix} pour acheter l'option de vente;
+	\item[$P(K)$:]	Notation pour représenter l'option de vente (\og \textit{\textbf{P}ut} \fg{}) avec un prix d'exercice de $K$.
+\end{itemize}
+\end{distributions}
+
+%%%	------	
+%%%	Commencé à convertir le tableau pour être du même format que la boite de l'obligation;
+%%%	Pense pas par contre que ce sera aussi beau donc je laisse tel quel;
+%\begin{minipage}{0.6\columnwidth}
+%
+%\end{minipage}
+%\begin{minipage}{0.4\columnwidth}
+%La position 
+%\begin{center}
+%\begin{tabular}{|	>{\columncolor{airforceblue}}m{1.2cm}	| >{\columncolor{beaublue}}r |}
+%\hline\rowcolor{airforceblue} 
+%\textcolor{white}{\textbf{Position}}	&	\textcolor{white}{\textbf{Valeur à l'échéance}}	\\\specialrule{0.1em}{0em}{0.0em} 
+%\textcolor{white}{Longue}	&	$\max\{0, K - S_{T}\}$	\\\hline
+%\textcolor{white}{Courte}	&	$\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, K - S_{T}\}$	\\\hline
+%\hline\rowcolor{airforceblue} 
+%\textcolor{white}{\textbf{Position}}	&\textcolor{white}{\textbf{Profit}} \\\specialrule{0.1em}{0em}{0.0em} 
+%\textcolor{white}{Longue}	&	$\max\{0, K - S_{T}\} - AV(\text{primes})$	\\\hline
+%\textcolor{white}{Courte}	&	$\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, K - S_{T}\} + AV(\text{primes})$	\\\hline
+%\end{tabular}
+%\end{center}
+%\end{minipage}
+%%%	------	
+\end{definitionNOHFILL}
+
+Pour bien comprendre les définitions de profit au tableau ci-dessous, ne pas oublier que $C_{0}$ représente le prix, ou \og \textit{premium} \fg{}, payé par l'acheteur d'une option et donc qu'il est naturel de le soustraire de sa valeur à l'échéance. Le vendeur de l'option tant qu'a lui reçoit ce paiement et on y additionne la valeur accumulée en lieu.
+
+Il s'ensuit donc que la ligne de profit pour la position longue est moins élevée, car on y soustrait la valeur accumulée du prix alors que celle de la position courte est plus élevée.
 
 \end{multicols*}
+\newpage
+
 \begin{center}
-\begin{tabular}{|l	c	c	c|}
+\begin{tabular}{|b{1cm}		b{2.25cm}	|	c	|	m{1.6cm}		|	m{4.5cm}		|	c|	c	|}
 \hline
 \rowcolor{blue(matcha)}
-	Degré de parité	&	\textit{Moneyness}	&	Option d'achat	&	Option de vente	\\\hline
-	au cours			&	At-the-money		&	$S_{T} = K$	&	$S_{T} = K$	\\
-	dans le cours	&	In-the-money 	&	$S_{T} > K$	&	$S_{T} < K$	\\
-	hors du cours	&	Out-of-the-money	&	$S_{T} < K$	&	$S_{T} > K$	\\\specialrule{.10em}{.0em}{0.5em} 
-\end{tabular}
-
-\begin{tabular}{|b{1cm}		b{2.25cm}	|	c	|	m{1.6cm}		|	m{4.5cm}		|	c|}
-\hline
-\rowcolor{blue(matcha)}
-	Autre	&	Contrat	&	Position	&	Rôle	& Stratégie	&	Valeur à $T$	 (payoff	)	\\\hline
-
+	Autre	&	Contrat	&	Position	&	Rôle	& Stratégie	&	Valeur à $T$	 (payoff	)	&	Profit	\\\hline
 \multicolumn{2}{|c|}{\multirow{2}{*}{Contrat à terme}}
 		&	\textcolor{amethyst}{Longue}	&	obligation d'\textcolor{amethyst}{acheter}		&	garantie / fixer le prix d'\textcolor{amethyst}{achat}	du sous-jacent		&   $S_{T} - F_{0, T}$\\\cline{3-6}
 	\multicolumn{2}{|c|}{}
 		&	\textcolor{burntsienna}{Courte}	&	obligation de \textcolor{burntsienna}{vendre}		&	garantie / fixer le prix de \textcolor{burntsienna}{vente} du sous-jacent		&   $\textcolor{burntsienna}{\boldsymbol{-}}(S_{T} - F_{0, T})$\\\specialrule{.10em}{.2em}{0.5em} 
+%
 \multirow{4}{*}{Option}
 		&	\multirow{2}{*}{d'achat (call)}
-			&	\textcolor{amethyst}{Longue}	&	\textcolor{amethyst}{droit} d'acheter				&	\textcolor{amethyst}{achat} d'assurance contre un prix sous-jacent élevé	&   $\max\{0, S_{T} - K\}$\\\cline{3-6}
+			&	\textcolor{amethyst}{Longue}	&	\textcolor{amethyst}{droit} d'acheter				&	\textcolor{amethyst}{achat} d'assurance contre un prix sous-jacent élevé	&   $\max\{0, S_{T} - K\}$	&	$\max\{0, S_{T} - K\} - C_{0} \textrm{e}^{rT}$\\\cline{3-7}
 	\multicolumn{2}{|c|}{}
-			&	\textcolor{burntsienna}{Courte}	&	\textcolor{burntsienna}{obligation} de vendre		&	\textcolor{burntsienna}{vente} d'assurance contre un prix sous-jacent élevé	&   $\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, S_{T} - K\}$\\\cline{3-6}
+			&	\textcolor{burntsienna}{Courte}	&	\textcolor{burntsienna}{obligation} de vendre		&	\textcolor{burntsienna}{vente} d'assurance contre un prix sous-jacent élevé	&   $\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, S_{T} - K\}$	&	$\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, S_{T} - K\} \textcolor{burntsienna}{\boldsymbol{+}} C_{0} \textrm{e}^{rT}$\\\cline{3-7}
 		&	\multirow{2}{*}{de vente (put)}
-			&	\textcolor{amethyst}{Longue}	&	\textcolor{amethyst}{droit} \newline de vendre	&	\textcolor{amethyst}{achat} d'assurance contre un prix sous-jacent faible	&   $\max\{0, K - S_{T}\}$\\\cline{3-6}
+			&	\textcolor{amethyst}{Longue}	&	\textcolor{amethyst}{droit} \newline de vendre	&	\textcolor{amethyst}{achat} d'assurance contre un prix sous-jacent faible	&   $\max\{0, K - S_{T}\}$	&	$\max\{0, K - S_{T}\} - P_{0} \textrm{e}^{rT}$\\\cline{3-7}
 	\multicolumn{2}{|c|}{}
-			&	\textcolor{burntsienna}{Courte}	&	\textcolor{burntsienna}{obligation} d'acheter			&	\textcolor{burntsienna}{vente} d'assurance contre un prix sous-jacent faible	&   $\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, K - S_{T}\}$\\\specialrule{.10em}{.0em}{0.5em} 
+			&	\textcolor{burntsienna}{Courte}	&	\textcolor{burntsienna}{obligation} d'acheter			&	\textcolor{burntsienna}{vente} d'assurance contre un prix sous-jacent faible	&   $\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, K - S_{T}\}$	&	$\textcolor{burntsienna}{\boldsymbol{-}}\max\{0, K - S_{T}\} \textcolor{burntsienna}{\boldsymbol{+}} P_{0} \textrm{e}^{rT}$\\\specialrule{.10em}{.0em}{0.5em} 
 \end{tabular}
-\end{center}
-
-
+\end{center}%
 \begin{center}
+
+
+
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,533.3333282470703); %set diagram left start at 0, and has height of 533.3333282470703
+%uncomment if require: \path (0,309); %set diagram left start at 0, and has height of 309
 
 %Shape: Rectangle [id:dp5014293673202075] 
 \draw  [fill={rgb, 255:red, 152; green, 209; blue, 255 }  ,fill opacity=1 ] (185.17,2.33) -- (617.17,2.33) -- (617.17,35.33) -- (185.17,35.33) -- cycle ;
@@ -289,7 +588,7 @@ En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
 
 
 %Straight Lines [id:da6447135481537327] 
-\draw [color={rgb, 255:red, 215; green, 172; blue, 249 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (90.25,260.08) -- (221.17,129.17) ;
+\draw [color={rgb, 255:red, 215; green, 172; blue, 249 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (75.17,258.17) -- (206.08,127.25) ;
 
 
 %Straight Lines [id:da24025984300874126] 
@@ -309,7 +608,7 @@ En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
 
 
 %Straight Lines [id:da4974018498235153] 
-\draw [color={rgb, 255:red, 249; green, 208; blue, 145 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (76,113) -- (206.33,243.33) ;
+\draw [color={rgb, 255:red, 249; green, 208; blue, 145 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (75,128) -- (205.33,258.33) ;
 
 
 %Straight Lines [id:da079381899397444] 
@@ -339,12 +638,13 @@ En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
 
 
 
-%Shape: Rectangle [id:dp2381964955840581] 
+%Shape: Rectangle [id:dp6695691986882595] 
 \draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (620,2.33) -- (775.17,2.33) -- (775.17,35.33) -- (620,35.33) -- cycle ;
-%Shape: Rectangle [id:dp2723528710393448] 
+%Shape: Rectangle [id:dp31056838616590854] 
 \draw  [draw opacity=0][fill={rgb, 255:red, 142; green, 19; blue, 254 }  ,fill opacity=1 ] (621,3.33) -- (669.17,3.33) -- (669.17,17.33) -- (621,17.33) -- cycle ;
-%Shape: Rectangle [id:dp5738737247232852] 
+%Shape: Rectangle [id:dp9578784787418022] 
 \draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ] (621,20.33) -- (669.17,20.33) -- (669.17,34.33) -- (621,34.33) -- cycle ;
+
 
 % Text Node
 \draw (254,198) node   [align=left] {$\displaystyle S_{T}$};
@@ -379,19 +679,15 @@ En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
 % Text Node
 \draw (638,216) node   [align=left] {$\displaystyle K$};
 % Text Node
-\draw (611,118) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {longue};
-% Text Node
-\draw (612,253) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {courte};
-% Text Node
 \draw (653,54) node   [align=left] {Option de vente};
 % Text Node
-\draw (485,260) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {courte};
+\draw (411,264) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {vendue};
 % Text Node
-\draw (232,256) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {courte};
+\draw (204,268) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {prix de vente fixé};
 % Text Node
-\draw (483,115) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {longue};
+\draw (462,116) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {achetée};
 % Text Node
-\draw (233,117) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {longue};
+\draw (199,112) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {prix d'achat fixé};
 % Text Node
 \draw (130,11) node  [font=\small] [align=left] {profit};
 % Text Node
@@ -400,140 +696,74 @@ En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
 \draw (723,10) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {position longue};
 % Text Node
 \draw (721,26) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {position courte};
+% Text Node
+\draw (622,125) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {achetée};
+% Text Node
+\draw (624,258) node  [color={rgb, 255:red, 225; green, 147; blue, 0 }  ,opacity=1 ] [align=left] {vendue};
 
 
 \end{tikzpicture}
+
+
+
+\end{center}
+\begin{center}
+\begin{tabular}{|l	c	c	c|}
+\hline
+\rowcolor{blue(matcha)}
+	Degré de parité	&	\og	\textit{Moneyness} \fg{}	&	Option d'achat	&	Option de vente	\\\hline
+	au cours			&	\og	\textit{At-the-money} \fg{}		&	$S_{T} = K$	&	$S_{T} = K$	\\
+	dans le cours	&	\og	\textit{In-the-money} \fg{} 	&	$S_{T} > K$	&	$S_{T} < K$	\\
+	hors du cours	&	\og	\textit{Out-of-the-money} \fg{}	&	$S_{T} < K$	&	$S_{T} > K$	\\\specialrule{.10em}{.0em}{0.5em} 
+\end{tabular}
 \end{center}
 
 \newpage
 \begin{multicols*}{2}
 
-\section{Introduction aux Forwards et aux options}
+%%%	------------------------------
+%%%	PAS ENCORE VU%
+%\paragraph{Achat ferme et emprunt} On utilise parfois la lettre $S$ pour désigner dans stratégie l'action de faire un achat ferme (i.e. acheter et se faire livrer le sous-jacent à $t=0$) et $B$ pour désigner un dépôt/emprunt (qu'on exprime comme une obligation zéro-coupon).
 
-\begin{distributions}[Terminologie]
-\begin{description}
-	\item[Premium] Flux financiers à $t = 0$;
-	\item	Si \textcolor{blue}{positif}, il s'agît d'un \textbf{coût} ;
-	\item	Si \textcolor{red}{négatif}, il s'agît d'une \textbf{compensation}.
-	\item[Valeur à l'échéance $T$ (payoff):]	Les flux de trésorie au temps $t = T$;
-	\item[Profit\footnote{\textbf{V}aleure \textbf{A}ccumulée au taux sans risque.}	] 
-	\begin{align*}
-	&=	\begin{cases}
-			\text{Payoff} - VA(\text{Premium})&	\text{si position longue}	\\
-			\text{Payoff} + VA(\text{Premium})	&	\text{si position courte}
-		\end{cases} \\
-	&\Leftrightarrow		VA(\text{flux de trésorie})
-	\end{align*}
-	\tcbline
-	\item[$r_f$:] taux sans risque. 
-	\item[]	Peut être exprimé comme une force d'intérêt $r$ continue ou comme un taux d'intérêt $r_{f}$.
-\end{description}
-\end{distributions}
+%\paragraph{Quelques définitions}
+%\begin{description}
+%\item[$F_{0,T}^{P}$] Prix d'un forward prépayé, i.e. on débourse $F_{0,T}^{P}$ à $t=0$ et on reçoit le sous-jacent à $t  = T$, alors
+%\[F_{0,T}^{P} = F_{0,T} (1 + r_f)^{-T}\]
+%\end{description}
 
-\begin{definitionNOHFILL}[Contrat à terme]
-Contrat selon lequel: 
-\begin{itemize}
-	\item	\textit{deux} partis s'\textbf{engagent} d'\textbf{échanger}---un à \textit{acheter} et l'autre à \textit{vendre};
-	\item	une \textit{certaine} \textbf{quantité} d'un \textit{certain} \textbf{bien}---l'actif sous-jacent $S$;	
-	\item	à un \textit{certain} \textbf{prix}---prix à terme $F_{0, T}$;
-	\item	à un \textit{certain} \textbf{endroit} à une \textit{certaine} \textbf{date}---date d'échéance, $T$;
-\end{itemize}
-
-L'engagement est au départ à $t = 0$.
-
-\begin{distributions}[Notation de prix]
-%\begin{multicols*}{2}
-\begin{itemize}
-	\item[$S_{t}$:] \textbf{Prix du sous-jacent} à $t$ \textit{(\textbf{spot price})};
-	\item[$S_{0}$:] \textbf{Prix au comptant};
-	\item	Le prix au comptant représente le paiement pour la livraison immédiate à $t = 0$.
-	\item[$F_{0, T}$:]	est le \textbf{prix à terme};
-	\item	$F_{0, T} = S_{0} \textrm{e}^{r (T - 0)}$
-	\item[$F_{0, 0}$:]	est nul;
-	\item	La notation $F_{0, T}$ vient de \og future \fg{} ou \og forward \fg{}.
-\end{itemize}
-%\end{multicols*}
-\end{distributions}
-
-\begin{formula}{Exemple de bateau}
-\begin{itemize}
-	\item	Je veux acheter un \textit{(quantité)} bateau \textit{(bien)} mais ça m'est inconvénient de l'avoir maintenant;
-	\item	En lieu, puisque je veux l'acheter maintenant, je signe une entente \textit{(engagement)} pour l'acheter;
-	\item	La seule différence entre l'acheter aujourd'hui \textit{(au prix au comptant $S_{0}$)} et l'acheter lorsque la neige fond \textit{(au prix à terme $F_{0, T}$)} est l'accumulation d'intérêt;
-	\item	Puisqu'on suppose tout les deux d'êtres fiables et sans risque, le prix est accumulé au taux sans risque ($r$) et le prix payable rendu à l'été ($T$) sera $F_{0, T} = S_{0} \textrm{e}^{r (T - 0)}$;
-\end{itemize}
-\end{formula}
-\end{definitionNOHFILL}
-
-\begin{definitionNOHFILL}[Exercice (levée)]
-Décision d'\textit{exercer} l'option d'achat ou de vente.
-
-\begin{distributions}[Notation]
-\begin{itemize}
-	\item[$K$:]	\textbf{Prix d'exercice} \textit{(\textbf{strike price})};
-\end{itemize}
-\end{distributions}
-
-\begin{conceptgen}{Types d'exercices}
-\begin{description}
-	\item[\textbf{\underline{E}}uropéen:]		\textbf{Au moment} d'\textbf{\underline{e}}xpiration de l'option $T$;
-	\item[\textbf{\underline{A}}méricain:]	\textbf{N'importe quand} (\textbf{\underline{a}}ny moment) d'ici $T$;
-	\item[\textbf{\underline{B}}ermudien:]	À \textbf{quelques périodes} (\textbf{\underline{b}}ounded periods) d'ici $T$;
-\end{description}
-En réalité, la \textit{majorité sont américain}  et donc nous effectuons uniquement des calculs avec ce type.
-\end{conceptgen}
-\end{definitionNOHFILL}
-
-\begin{definitionNOHFILL}[Option d'achat]
-Contrat qui: 
-\begin{itemize}
-	\item	\textit{permet} \textbf{(optionnel)} à son \textit{détenteur} d'\textbf{acheter};
-	\item	une \textit{certaine} \textbf{quantité} d'un \textit{certain} \textbf{bien}---l'actif sous-jacent;	
-	\item	à un \textit{certain} \textbf{prix}---prix d'exercice $K$;
-	\item	à un \textit{certain} \textbf{endroit} à, ou d'ici, une \textit{certaine} \textbf{date}---date d'échéance, $T$;
-\end{itemize}
-
-%\textbf{Notation de prix}:
-%\begin{multicols*}{2}
-%\begin{itemize}
-%	\item[$C_{t}$:] 
-%	\item[$C_{0}$:] 
-%\end{itemize}
-%\end{multicols*}
-\end{definitionNOHFILL}
-
-\begin{definitionNOHFILL}[Option de vente]
-Contrat qui \textit{permet} à son \textit{détenteur} de \textbf{vendre} au lieu d'acheter.
-\end{definitionNOHFILL}
-
-
-\paragraph{Quelques définitions}
-\begin{description}
-\item[$F_{0,T}$] Prix \textit{forward} du sous-jacent au temps $T$, qu'on définit comme
-\[F_{0,T} = S_0 (1 + r_f)^{T}\]
-\item[$F_{0,T}^{P}$] Prix d'un forward prépayé, i.e. on débourse $F_{0,T}^{P}$ à $t=0$ et on reçoit le sous-jacent à $t  = T$, alors
-\[F_{0,T}^{P} = F_{0,T} (1 + r_f)^{-T}\]
-\end{description}
-
-\paragraph{Achat ferme et emprunt} On utilise parfois la lettre $S$ pour désigner dans stratégie l'action de faire un achat ferme (i.e. acheter et se faire livrer le sous-jacent à $t=0$) et $B$ pour désigner un dépôt/emprunt (qu'on exprime comme une obligation zéro-coupon).
-
-
-\subsection*{$Call(K,T)$}
-Contrat qui \textit{permet} au détenteur de se procurer $S$ au prix $K$ à l'échéance $T$. \textbf{position longue dans le sous-jacent}
-\[Premium = C(K,T) \]
-
-\subsection*{$Put(K,T)$}
-Contrat qui \textit{permet} au détenteur de vendre $S$ au prix $K$ à l'échéance $T$. \textbf{position courte dans le sous-jacent}
-\[Premium = P(K,T)\]
-
-\subsection*{Forward synthétique}
-On peut créer un Forward synthétique 2 de façon (en combinant d'autres transactions) : 
-\[Forward = Stock - Bond \]
-\[Forward = Call(K,T) - Put(K,T) \]
-Ces deux égalités définissent la \emph{Put-Call Parity} vu un peu plus loin.
-
+%\subsection*{Forward synthétique}
+%On peut créer un Forward synthétique 2 de façon (en combinant d'autres transactions) : 
+%\[Forward = Stock - Bond \]
+%\[Forward = Call(K,T) - Put(K,T) \]
+%Ces deux égalités définissent la \emph{Put-Call Parity} vu un peu plus loin.
+%%%	------------------------------
 
 \section{Stratégie de couverture}
+
+\subsection{Préliminaires}
+
+\begin{conceptgen}{Hypothèses}
+Pour tout le chapitre, nous posons les hypothèses suivantes:
+\begin{multicols*}{2}
+\begin{enumerate}[leftmargin = *]
+	\item	Taux d'intérêt $i$ constant;
+	\item	Aucuns frais de transaction;
+	\item	Aucun risque de défaut;
+	\item	Aucun versement intermédiaire.
+\end{enumerate}
+\end{multicols*}
+\end{conceptgen}
+
+\begin{rappel}{Propriétés des maximums et minimums}
+\begin{align*}
+	\max(a, b) + c	&=	\max(a + c, b + c)	\\
+	\min(a, b) + c	&=	\min(a + c, b + c)	\\
+	\min(a, b)	&=	-\max(-a, -b)	\\
+	\max(a, b) \times c	&=	\max(a \times c, b \times c), \, c > 0	\\	
+	\max(a, b) + \min(a, b)	&=	a + b	
+\end{align*}
+\end{rappel}
+
 \subsection*{Floor}
 On achète $S$ en se protégant contre une baisse trop importante du sous-jacent (\textbf{position longue})
 \[Floor = Stock + Put(K,T)\]
@@ -558,144 +788,820 @@ On vend à découvert $S$ en se protégant contre une hausse trop importante du 
 \]
 \input{src/ACT-2011/cap}
 
-\subsection*{Bull Spread}
-Combinaison de 2 Call (ou 2 Put) pour spéculer sur un marché haussier. Avec $K_1 < K_2$, on a
-\paragraph{Avec option d'achat}
-\[Bull Spread (Call) = Call(K_1, T) - Call(K_2, T) \]
+%\begin{definitionNOHFILL}[\textbf{Plancher} \og \textit{floor} \fg{}]
+%
+%\end{definitionNOHFILL}
+%
+%\begin{definitionNOHFILL}[\textbf{Plafond} \og \textit{cap} \fg{}]
+%
+%\end{definitionNOHFILL}
 
-\[Premium = C(K_1, T) - Call(K_2, T) > 0 \]
-\[Payoff = 
-\begin{cases}
-0					& , S_T \leq K_1 \\
-S_T - K_1		& , k_1 < S_T \leq K_2 \\
-K_2 -K_1		& , S_T > K_2 \\
-\end{cases}
-\]
-\paragraph{Avec option de vente}
-\[Bull Spread(Put) = Put(K_1, T) - Put(K_2,T) \]
-\[Premium = P(K_1,T) - P(K_2, T) < 0\]
-\[Payoff = 
-\begin{cases}
-K_1 - K_2 			& , S_T \leq K_1 \\
-K_2 - S_T				& , K_1 < S_T \leq K_2 \\
-0							& , S_T > K_2 \\
-\end{cases}
-\]
+\begin{definitionNOHFILL}[\textbf{Position synthétique}]
+Une position synthétique réplique la valeur à l'échéance d'une autre position.
+\end{definitionNOHFILL}
 
-\input{src/ACT-2011/bull_spread}
+\begin{definitionNOHFILL}[\textbf{Contrat à terme synthétique} \og \textit{synthetic forward} \fg{}]
+Un contrat à terme synthétique réplique la valeur à l'échéance d'un contrat à terme sans réellement en signer un.
 
-
-\subsection*{Bear Spread}
-Combinaison de 2 Call ou 2 Put pour spéculer sur un marché baissier.
-\paragraph{Avec option d'achat}
-\begin{align*}
-Bear(Call) & =  - Bull(Call) \\
-& = Call(K_2, T) - Call(K_1, T) \\
-Premium		& = 	 C(K_2,T) - C(K_1,T) < 0 \\
-Profit	& = 
-\begin{cases}
-0					& , S_T \leq K_1 \\
-K_1 - S_T 	& , K_1 < S_T \leq K_2 \\
--(K_2 - K_1)& , S_T > K_2 \\
-\end{cases}
-\end{align*}
-
-\paragraph{Avec option de vente}
-\begin{align*}
-Bear(Put) 				& =  - Bull(Put) \\
-								& = Put(K_2, T) - Put(K_1, T) \\
-Premium					& = 	 P(K_2,T) - P(K_1,T) > 0 \\
-Profit						& = 
-\begin{cases}
-K_2 - K_1					& , S_T \leq K_1 \\
-K_2 - S_T 				& , K_1 < S_T \leq K_2 \\
-0								& , S_T > K_2 \\
-\end{cases}
-\end{align*}
-\input{src/ACT-2011/bear_spread}
-
-\subsection*{Ratio Spread}
-Cette stratégie est une combinaison un peu sur mesure (on ne peut pas nécessairement dire si elle est longue ou courte). On achète $n$ options d'achat à un prix d'exercice $K_1$ et on en vend $m$ à un prix d'exercice $K_2$.\footnote{On peut faire cette stratégie avec des options de vente aussi.}
-\begin{align*}
-Ratio Spread 		& 	= n Call(K_1, T) - m Call(K_2, T) \\
-Premium				& = n C(K_1, T) - m C(K_2,T) \\
-Payoff					& = ...
-\end{align*}
-
-\subsection*{Box Spread}
-Cette stratégie réplique l'achat d'une obligation zéro-coupon, en impliquant 2 option d'achat et 2 options de vente.
-\begin{align*}
-Box Spread			& = Bull(Call) + Bear(Put) \\
-& = Call(K_1, T) - Call(K_2, T)  \\
-& + Put(K_2, T) - Put(K_1, T) \\
-Premium				& = C(K_1, T) - C(K_2, T) \\
-							&  + P(K_2, T) - P(K_1,T) >  0 \\
-Payoff					& = K_2 - K_1  \ , \forall S_T \\
-\end{align*}
-\input{src/ACT-2011/box_spread}
-
-
-\subsection*{Collar}
-La prime initiale du Collar peut être soit positive ou négative (dépendant du strike price).
-\begin{align*}
-Collar				& = Put(K_1, T) - Call(K_2, T) \\
-Premium			& = P(K_1, T) - C(K_2,T) \\
-Payoff				& = 
-\begin{cases}
-K_1 - S_T			& , S_T \leq K_1 \\
-0						& , K_1 < S_T \leq K_2 \\
-K_2 - S_T			& , S_T > K_2 \\
-\end{cases}
-\end{align*}
-\input{src/ACT-2011/collar}
-
-
-\subsection*{Stock Covered by Collar}
+Avec un \textbf{vrai} contrat à terme:
 \begin{itemize}
-\item On effectue la même stratégie qu'un Collar, en ayant initialement le sous-jacent $S$. \textbf{Position longue dans le sous-jacent}.
-\item Cette stratégie reproduit les flux monétaires d'un Bull Spread, alors
+	\item	le coût inital est nul et
+	\item	la valeur à l'échéance est l'écart entre le prix à terme et la valeur du sous-jacent ($S_{T} - F_{0, T}$).
 \end{itemize}
+
+Avec un contrat à terme \textbf{synthétique}:
+\begin{itemize}
+	\item	on prévoit l'échange du bien contre un prix quelconque $K$ et 
+	\item	la valeur à l'échéance est leur écart ($S_{T} - K$).
+	\item	Il s'ensuit que le coût initial ne peut être nul et 
+	\item	c'est pourquoi on \textbf{emprunte de l'argent}, ou de façon équivalente, \textbf{vend une obligation zéro-coupons}.
+\end{itemize}
+
+En bref, on \textbf{achète l'actif} et \textbf{emprunte de l'argent}:
+\begin{center}
+	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
+	\hline\rowcolor{airforceblue} 
+		\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{Flux au temps $0$}}	&	\textcolor{white}{\textbf{Flux au temps $T$}}	\\
+		Acheter un actif	&	$-S(0)$	&	$+S(T)$	\\
+		Emprunter de l'argent	&	$+S(0)$	&	$-S(0)\textrm{e}^{rT} = -F_{0, T}$	\\\hline
+		Net des flux monétaires	&	$0$	&	$S(T) - F_{0, T}$	\\\hline
+	\end{tabular}
+\end{center}
+	
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[\textbf{Écart haussier} \og \textit{Bull Spread} \fg{}]
+Crée en:
+\begin{itemize}[leftmargin = *]
+	\item	Achetant une option d'achat $C(K_{1})$ et vendant une autre option achat $C(K_{2})$  à un prix d'exercice plus élevé $K_{2} > K_{1}$;
+	\item	Achetant une option de vente $P(K_{1})$ et vendant une autre option de vente $P(K_{2})$ à un prix d'exercice plus élevé $K_{2} > K_{1}$.
+\end{itemize}
+
+\begin{distributions}[Contexte]
+\begin{itemize}[leftmargin = *]
+	\item	Typiquement utilisé lorsqu'un investisseur croit que, entre deux prix d'exercice, le prix va augmenter \textit{\textbf{mais}} qu'il
+		\begin{itemize}
+		\item	Qu'il ne veut pas une perte trop importante si le prix de l'actif baisse;
+		\item	Ni qu'il veut payer pour plus de profit qu'il s'attend à recevoir.
+		\end{itemize}
+	\item	\og \textit{Bull Spread} \fg{} provient de l'idée d'être \og \textit{\textbf{bull}-ish} \fg{} et prévoir une augmentation du prix de l'action à un intervalle;
+	\item[]	On peut également visualiser un taureau avec ses cornes pointues vers le haut prêt à attaquer.
+\end{itemize}
+\end{distributions}
+
+\begin{center}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,349.33333587646484); %set diagram left start at 0, and has height of 349.33333587646484
+
+%Shape: Axis 2D [id:dp7601418140814886] 
+\draw  (80,190.33) -- (301.17,190.33)(104.17,111.33) -- (104.17,275.17) (294.17,185.33) -- (301.17,190.33) -- (294.17,195.33) (99.17,118.33) -- (104.17,111.33) -- (109.17,118.33)  ;
+%Straight Lines [id:da41700930229104993] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (170,191.33) -- (209.33,152) ;
+
+
+%Shape: Rectangle [id:dp3515130332085854] 
+\draw   (27,38.33) -- (315.17,38.33) -- (315.17,317.33) -- (27,317.33) -- cycle ;
+%Shape: Rectangle [id:dp13591016175410142] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (27,38.33) -- (315.17,38.33) -- (315.17,67.13) -- (27,67.13) -- cycle ;
+%Straight Lines [id:da8110867387524421] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (104.54,190.62) -- (170.67,190.62) ;
+
+
+%Shape: Rectangle [id:dp6374879389517476] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (177.5,38.24) -- (315.17,38.24) -- (315.17,67.09) -- (177.5,67.09) -- cycle ;
+%Straight Lines [id:da38766311196421266] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=3.75]  [dash pattern={on 9pt off 4.5pt}]  (181.2,46.11) -- (238.87,46.11) ;
+
+
+%Straight Lines [id:da8251624196749612] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=1 ][line width=3.75]    (183.17,59.33) -- (211.17,59.33) ;
+
+
+%Straight Lines [id:da7333005166945665] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (209.33,152) -- (275.46,152) ;
+
+
+%Straight Lines [id:da7002889517266064] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (170,231.33) -- (209.33,192) ;
+
+
+%Straight Lines [id:da9040823354436966] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (104.54,230.62) -- (170.67,230.62) ;
+
+
+%Straight Lines [id:da5330320430279016] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (209.33,192) -- (275.46,192) ;
+
+
+%Straight Lines [id:da4473231719641506] 
+\draw    (98.83,149.33) -- (110.83,149.33) ;
+
+
+%Straight Lines [id:da6014598987525124] 
+\draw    (98.54,232.62) -- (110.54,232.62) ;
+
+
+%Straight Lines [id:da5589803186094386] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (171,211.33) -- (210.33,172) ;
+
+
+%Straight Lines [id:da9151952042747453] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (105.54,210.62) -- (171.67,210.62) ;
+
+
+%Straight Lines [id:da26907052178753155] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (210.33,172) -- (276.46,172) ;
+
+
+%Shape: Brace [id:dp25440966898606243] 
+\draw   (104,277.33) .. controls (104,282) and (106.33,284.33) .. (111,284.33) -- (127.08,284.33) .. controls (133.75,284.33) and (137.08,286.66) .. (137.08,291.33) .. controls (137.08,286.66) and (140.41,284.33) .. (147.08,284.33)(144.08,284.33) -- (163.17,284.33) .. controls (167.84,284.33) and (170.17,282) .. (170.17,277.33) ;
+%Shape: Brace [id:dp5464922629290294] 
+\draw   (171,277.33) .. controls (171,282) and (173.33,284.33) .. (178,284.33) -- (180.08,284.33) .. controls (186.75,284.33) and (190.08,286.66) .. (190.08,291.33) .. controls (190.08,286.66) and (193.41,284.33) .. (200.08,284.33)(197.08,284.33) -- (202.17,284.33) .. controls (206.84,284.33) and (209.17,282) .. (209.17,277.33) ;
+%Shape: Brace [id:dp8339351145442746] 
+\draw   (210,277.33) .. controls (210,282) and (212.33,284.33) .. (217,284.33) -- (233.08,284.33) .. controls (239.75,284.33) and (243.08,286.66) .. (243.08,291.33) .. controls (243.08,286.66) and (246.41,284.33) .. (253.08,284.33)(250.08,284.33) -- (269.17,284.33) .. controls (273.84,284.33) and (276.17,282) .. (276.17,277.33) ;
+%Straight Lines [id:da6494635826891548] 
+\draw    (170,195.33) -- (170,186.33) ;
+
+
+%Straight Lines [id:da9618527970027351] 
+\draw    (209.33,195) -- (209.33,186) ;
+
+
+%Straight Lines [id:da34278626539211876] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=3.75]    (211.17,59.33) -- (242.17,59.33) ;
+
+
+
+% Text Node
+\draw (297,204) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (77,139) node   [align=left] {$\displaystyle K_{2} -K_{1}$};
+% Text Node
+\draw (80,96) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (165,200) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (90.08,52.73) node   [align=left] {Écart haussier};
+% Text Node
+\draw (232,138) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {option d'achat};
+% Text Node
+\draw (215,203) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (159,247) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0.29,0.56,0.89}{option de vente}};
+% Text Node
+\draw (66,222) node   [align=left] {$\displaystyle -( K_{2} -K_{1})$};
+% Text Node
+\draw (72,301.33) node   [align=left] {pente};
+% Text Node
+\draw (137,299.33) node   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (190,300.33) node   [align=left] {$\displaystyle +1$};
+% Text Node
+\draw (243,299.33) node   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (168,163) node  [font=\scriptsize,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {$\displaystyle S_{T} -K_{1} =$};
+% Text Node
+\draw (268.88,45.82) node  [font=\small] [align=left] {profit};
+% Text Node
+\draw (278.64,58.93) node  [font=\small] [align=left] {valeur à $\displaystyle T$};
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[\textbf{Écart baissier} \og \textit{Bear Spread} \fg{}]
+L'inverse d'un écart haussier, il est crée en:
+\begin{itemize}[leftmargin = *]
+	\item	Vendant une option d'achat $C(K_{1})$ et achetant une autre option achat $C(K_{2})$  à un prix d'exercice plus élevé $K_{2} > K_{1}$;
+	\item	Vendant une option de vente $P(K_{1})$ et achetant une autre option de vente $P(K_{2})$ à un prix d'exercice plus élevé $K_{2} > K_{1}$.
+\end{itemize}
+
+\begin{distributions}[Contexte]
+\begin{itemize}[leftmargin = *]
+	\item	Typiquement utilisé lorsqu'un investisseur croit que, entre deux prix d'exercice, le prix va baisser \textit{\textbf{mais}} qu'il
+		\begin{itemize}
+		\item	Qu'il ne veut pas une perte trop importante si le prix de l'actif baisse;
+		\item	Ni qu'il veut payer pour plus de profit qu'il s'attend à recevoir.
+		\end{itemize}
+	\item	\og \textit{Bear Spread} \fg{} provient de l'idée d'investir avec précaution pour \og \textit{\textbf{bear}-er} \fg{} une et baisse du prix de l'action à un intervalle;
+	\item[]	On peut également visualiser un ours qui va \og strike down \fg{} avec ses pates d'ours en attaque.
+\end{itemize}
+\end{distributions}
+
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,349.33333587646484); %set diagram left start at 0, and has height of 349.33333587646484
+
+%Shape: Axis 2D [id:dp680976564625396] 
+\draw  (375,190.33) -- (596.17,190.33)(399.17,111.33) -- (399.17,275.17) (589.17,185.33) -- (596.17,190.33) -- (589.17,195.33) (394.17,118.33) -- (399.17,111.33) -- (404.17,118.33)  ;
+%Straight Lines [id:da5848322385212859] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (511.25,189.41) -- (469.84,147.23) ;
+
+
+%Shape: Rectangle [id:dp35378675230131185] 
+\draw   (322,38.33) -- (610.17,38.33) -- (610.17,317.33) -- (322,317.33) -- cycle ;
+%Shape: Rectangle [id:dp5176381224989448] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (322,38.33) -- (610.17,38.33) -- (610.17,67.13) -- (322,67.13) -- cycle ;
+%Straight Lines [id:da16417371671750347] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (580.17,188.65) -- (510.55,188.65) ;
+
+
+%Straight Lines [id:da3198620949992881] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (469.84,148.23) -- (400.22,148.23) ;
+
+
+%Straight Lines [id:da5036887985940388] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][line width=2.25]    (511.25,232.31) -- (469.84,190.13) ;
+
+
+%Straight Lines [id:da3322721142838323] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][line width=2.25]    (580.87,232.31) -- (511.25,232.31) ;
+
+
+%Straight Lines [id:da8890931859596114] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][line width=2.25]    (469.84,190.13) -- (400.22,190.13) ;
+
+
+%Straight Lines [id:da07817633570689475] 
+\draw    (393.83,149.33) -- (405.83,149.33) ;
+
+
+%Straight Lines [id:da7851330337121041] 
+\draw    (393.54,232.62) -- (405.54,232.62) ;
+
+
+%Straight Lines [id:da7852978808587163] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (510.2,210.86) -- (468.79,168.68) ;
+
+
+%Straight Lines [id:da7015379305827307] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (579.11,210.1) -- (509.5,210.1) ;
+
+
+%Straight Lines [id:da47582543050744275] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (468.79,168.68) -- (399.17,168.68) ;
+
+
+%Shape: Brace [id:dp1704100229687211] 
+\draw   (399,277.33) .. controls (399,282) and (401.33,284.33) .. (406,284.33) -- (422.08,284.33) .. controls (428.75,284.33) and (432.08,286.66) .. (432.08,291.33) .. controls (432.08,286.66) and (435.41,284.33) .. (442.08,284.33)(439.08,284.33) -- (458.17,284.33) .. controls (462.84,284.33) and (465.17,282) .. (465.17,277.33) ;
+%Shape: Brace [id:dp8688743767541778] 
+\draw   (466,277.33) .. controls (466,282) and (468.33,284.33) .. (473,284.33) -- (475.08,284.33) .. controls (481.75,284.33) and (485.08,286.66) .. (485.08,291.33) .. controls (485.08,286.66) and (488.41,284.33) .. (495.08,284.33)(492.08,284.33) -- (497.17,284.33) .. controls (501.84,284.33) and (504.17,282) .. (504.17,277.33) ;
+%Shape: Brace [id:dp5219365881869815] 
+\draw   (505,277.33) .. controls (505,282) and (507.33,284.33) .. (512,284.33) -- (528.08,284.33) .. controls (534.75,284.33) and (538.08,286.66) .. (538.08,291.33) .. controls (538.08,286.66) and (541.41,284.33) .. (548.08,284.33)(545.08,284.33) -- (564.17,284.33) .. controls (568.84,284.33) and (571.17,282) .. (571.17,277.33) ;
+%Straight Lines [id:da9076040627764943] 
+\draw    (511.25,193.7) -- (511.25,184.05) ;
+
+
+%Straight Lines [id:da17266836853894918] 
+\draw    (469.84,193.35) -- (469.84,183.69) ;
+
+
+%Shape: Rectangle [id:dp7827835139171508] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (472.5,38.24) -- (610.17,38.24) -- (610.17,67.09) -- (472.5,67.09) -- cycle ;
+%Straight Lines [id:da899380327396603] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=3.75]  [dash pattern={on 9pt off 4.5pt}]  (476.2,46.11) -- (533.87,46.11) ;
+
+
+%Straight Lines [id:da14625994420742927] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=1 ][line width=3.75]    (476.17,60.33) -- (504.17,60.33) ;
+
+
+%Straight Lines [id:da9746587617345248] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=3.75]    (504.17,60.33) -- (535.17,60.33) ;
+
+
+
+% Text Node
+\draw (592,204) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (372,139) node   [align=left] {$\displaystyle K_{2} -K_{1}$};
+% Text Node
+\draw (375,96) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (460,200) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (385.08,52.73) node   [align=left] {Écart baissier};
+% Text Node
+\draw (460,241) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {option d'achat};
+% Text Node
+\draw (510,203) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (546,150) node  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0.29,0.56,0.89}{option de vente}};
+% Text Node
+\draw (361,222) node   [align=left] {$\displaystyle -( K_{2} -K_{1})$};
+% Text Node
+\draw (369,300.33) node   [align=left] {pente};
+% Text Node
+\draw (432,299.33) node   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (485,300.33) node   [align=left] {$\displaystyle -1$};
+% Text Node
+\draw (538,299.33) node   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (525,170) node  [font=\scriptsize,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {$\displaystyle \textcolor[rgb]{0.29,0.56,0.89}{=K}\textcolor[rgb]{0.29,0.56,0.89}{_{2}}\textcolor[rgb]{0.29,0.56,0.89}{-S}\textcolor[rgb]{0.29,0.56,0.89}{_{T}}$};
+% Text Node
+\draw (573.64,58.93) node  [font=\small] [align=left] {valeur à $\displaystyle T$};
+% Text Node
+\draw (563.88,45.82) node  [font=\small] [align=left] {profit};
+
+
+\end{tikzpicture}
+\end{center}
+	
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[\textbf{Écart sur ratio d'options} \og \textit{Ratio Spread} \fg{}]
+Crée en:
+\begin{itemize}
+	\item	\textbf{achetant} $m$ options à un prix d'exercice $K_{1}$ et
+	\item	puis \textbf{vendant} $n$ options à un prix d'exercice $K_{2}$ différent où
+	\item	$m \neq n$ et $K_{1} \neq K_{2}$.
+\end{itemize}
+
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[\textbf{Boite} \og \textit{Box Spread} \fg{}]
+\begin{itemize}
+	\item	La stratégie consiste à acheter un écart haussier ainsi qu'un écart baissier où l'un utilise des options d'achat et l'autre des options de vente (ayant les mêmes caractéristiques);
+	\item	Il est utilisé pour emprunter ou prêter de l'argent avec une valeur à l'échéance connue en avance, peu importe la direction prise par la valeur de l'actif sous-jacent;
+	\item	Il est donc équivalent à une obligation zéro-coupons.
+\end{itemize}
+\begin{center}
+Si on crée un écart haussier avec des 
+\end{center}
+\begin{minipage}{0.50\columnwidth}
+\begin{itemize}[leftmargin = *]
+	\item	options d'achat
+\end{itemize}
+\end{minipage}\hspace{.3cm}
+\begin{minipage}{0.5\columnwidth}
+\begin{itemize}[leftmargin = *]
+	\item	options de ventes
+\end{itemize}
+\end{minipage}
+\begin{center}
+et un écart baisser avec 
+\end{center}
+\begin{minipage}{0.50\columnwidth}
+\begin{itemize}[leftmargin = *]
+	\item	options de ventes
+\end{itemize}
+\end{minipage}\hspace{.3cm}
+\begin{minipage}{0.5\columnwidth}
+\begin{itemize}[leftmargin = *]
+	\item	options d'achat
+\end{itemize}
+\end{minipage}
+\begin{center}
+la valeur à l'échéance est équivalente à celle d'une obligation zéro-coupon sans risque
+\end{center}
+\begin{minipage}{0.50\columnwidth}
+\begin{itemize}[leftmargin = *]
+	\item	à position longue.
+\end{itemize}
+\end{minipage}\hspace{.3cm}
+\begin{minipage}{0.5\columnwidth}
+\begin{itemize}[leftmargin = *]
+	\item	à position courte.
+\end{itemize}
+\end{minipage}
+\begin{center}
+Cela est donc équivalent à 
+\end{center}
+\begin{minipage}{0.50\columnwidth}
+\begin{itemize}[leftmargin = *]
+	\item	à prêter de l'argent.
+\end{itemize}
+\end{minipage}\hspace{.3cm}
+\begin{minipage}{0.5\columnwidth}
+\begin{itemize}[leftmargin = *]
+	\item	à emprunter de l'argent.
+\end{itemize}
+\end{minipage}
+\tcbline
 \begin{align*}
-BullSpread				& = Collar + Stock \\
-								& = Put(K_1, T) - Call(K_2, T) + Stock \\
-Premium					& = P(K_1, T) - C(K_2,T) + S_0 > 0  \\
-Payoff						& = 
-\begin{cases}
-K_1 					& , S_T \leq K_1 \\
-S_T					& , K_1 < S_T \leq K_2 \\
-K_2 					& , S_T > K_2 \\
-\end{cases}
+	\text{Box Spread	}
+	&= 	Bull(Call) + Bear(Put) \\
+	&= 	Call(K_1, T) - Call(K_2, T)  \\
+	& 	+ Put(K_2, T) - Put(K_1, T) \\
+	\text{Premium}
+	&= 	C(K_1, T) - C(K_2, T) \\
+	&  + P(K_2, T) - P(K_1,T) >  0 \\
+	\text{Payoff}
+	&= 	K_2 - K_1  \ , \forall S_T \\
 \end{align*}
-\input{src/ACT-2011/stock_covered_collar}
+\begin{center}
+\input{src/ACT-2011/box_spread}
+\end{center}
+
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[\textbf{Tunnel} \og \textit{Collar} \fg{} et \textbf{action couverte par un tunnel} \og \textit{Collared stock} \fg{} ]
+Le tunnel (\og \textit{Collar} \fg{}) est crée en
+\begin{itemize}
+	\item	Achetant une option de vente $P(K_{1})$ et 
+	\item	vendant une option d'achat $C(K_{2})$ où
+	\item	$K_{1} < K_{2}$.
+\end{itemize}
+
+Lorsqu'on achète l'actif (position longue) en plus, nous obtenons une action couverte par un tunnel (\og \textit{Collared stock} \fg{}).
+
+La largeur du tunnel est $K_{2} - K_{1}$.
+
+\begin{center}
 
 
-\subsection*{Straddle}
-Stratégie pour spéculer sur la volatilité du sous-jacent $S$ autour du point $K$.
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,349.33333587646484); %set diagram left start at 0, and has height of 349.33333587646484
+
+%Shape: Rectangle [id:dp3515130332085854] 
+\draw   (27,38.33) -- (297.17,38.33) -- (297.17,273.67) -- (27,273.67) -- cycle ;
+%Shape: Rectangle [id:dp13591016175410142] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (27,38.33) -- (297.17,38.33) -- (297.17,67.13) -- (27,67.13) -- cycle ;
+%Shape: Rectangle [id:dp6374879389517476] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (159.5,38.24) -- (297.17,38.24) -- (297.17,67.09) -- (159.5,67.09) -- cycle ;
+%Straight Lines [id:da38766311196421266] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=3.75]  [dash pattern={on 9pt off 4.5pt}]  (163.2,46.11) -- (220.87,46.11) ;
+
+
+%Straight Lines [id:da34278626539211876] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=3.75]    (165.5,59.33) -- (224.17,59.33) ;
+
+
+%Shape: Axis 2D [id:dp9727644255367149] 
+\draw  (64,186.33) -- (285.17,186.33)(88.17,107.33) -- (88.17,271.17) (278.17,181.33) -- (285.17,186.33) -- (278.17,191.33) (83.17,114.33) -- (88.17,107.33) -- (93.17,114.33)  ;
+%Straight Lines [id:da6780443513094567] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (135.5,186) -- (88.22,145.23) ;
+
+
+%Straight Lines [id:da5925572195913587] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (184.5,186) -- (135.5,186) ;
+
+
+%Straight Lines [id:da6546546955122134] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (230.78,226.77) -- (183.5,186) ;
+
+
+%Straight Lines [id:da17931450798858806] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (135.5,200) -- (88.22,159.23) ;
+
+
+%Straight Lines [id:da8374346923422318] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (184.5,200) -- (135.5,200) ;
+
+
+%Straight Lines [id:da8127386772726561] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (230.78,240.77) -- (183.5,200) ;
+
+
+
+%Straight Lines [id:da014608750351099653] 
+\draw    (82.83,145.33) -- (94.83,145.33) ;
+
+
+%Straight Lines [id:da7326332527248789] 
+\draw    (182.25,190.7) -- (182.25,181.05) ;
+
+
+%Straight Lines [id:da934826890739437] 
+\draw    (135.5,190.65) -- (135.5,181) ;
+
+
+%Shape: Brace [id:dp009676114572276795] 
+\draw   (135,229.33) .. controls (135,234) and (137.33,236.33) .. (142,236.33) -- (151.25,236.33) .. controls (157.92,236.33) and (161.25,238.66) .. (161.25,243.33) .. controls (161.25,238.66) and (164.58,236.33) .. (171.25,236.33)(168.25,236.33) -- (180.5,236.33) .. controls (185.17,236.33) and (187.5,234) .. (187.5,229.33) ;
+
+% Text Node
+\draw (90.08,52.73) node   [align=left] {Tunnel};
+% Text Node
+\draw (250.88,45.82) node  [font=\small] [align=left] {profit};
+% Text Node
+\draw (260.64,58.93) node  [font=\small] [align=left] {valeur à $\displaystyle T$};
+% Text Node
+\draw (285,204) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (67,140) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (64,92) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (138,209) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (184,210) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (162,249.33) node   [align=left] {{\scriptsize largeur du tunnel}};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,349.33333587646484); %set diagram left start at 0, and has height of 349.33333587646484
+
+%Shape: Rectangle [id:dp02624018355068425] 
+\draw   (336,39.33) -- (606.17,39.33) -- (606.17,273.67) -- (336,273.67) -- cycle ;
+%Shape: Rectangle [id:dp42550263898781093] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (336,39.33) -- (598.17,39.33) -- (598.17,78.67) -- (336,78.67) -- cycle ;
+%Shape: Rectangle [id:dp019016078913590695] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (468.5,39.24) -- (606.17,39.24) -- (606.17,78.67) -- (468.5,78.67) -- cycle ;
+%Straight Lines [id:da9746521197693616] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=3.75]  [dash pattern={on 9pt off 4.5pt}]  (472.2,47.11) -- (529.87,47.11) ;
+
+
+%Straight Lines [id:da21520173766895323] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=3.75]    (474.17,66.33) -- (531.17,66.33) ;
+
+
+%Shape: Axis 2D [id:dp9458670686230795] 
+\draw  (367,187.67) -- (588.17,187.67)(390.83,95.67) -- (390.83,270.67) (581.17,182.67) -- (588.17,187.67) -- (581.17,192.67) (385.83,102.67) -- (390.83,95.67) -- (395.83,102.67)  ;
+%Straight Lines [id:da46034392012067693] 
+\draw    (385.83,151.33) -- (397.83,151.33) ;
+
+
+%Straight Lines [id:da25541970441950257] 
+\draw    (485.25,196.7) -- (485.25,187.05) ;
+
+
+%Straight Lines [id:da5840111395603904] 
+\draw    (438.5,196.65) -- (438.5,187) ;
+
+
+%Straight Lines [id:da3398468398362082] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (490.25,134.64) -- (552.69,134.69) ;
+
+
+%Straight Lines [id:da766471031454568] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (453.12,166.62) -- (490.25,134.64) ;
+
+
+%Straight Lines [id:da8179350208142249] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (391.45,165.92) -- (453.88,165.96) ;
+
+
+%Straight Lines [id:da15703311440320822] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (489.12,120.04) -- (551.55,120.08) ;
+
+
+%Straight Lines [id:da2509003548986979] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (451.99,152.01) -- (489.12,120.04) ;
+
+
+%Straight Lines [id:da8299907131334008] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (390.31,151.31) -- (452.75,151.36) ;
+
+
+%Straight Lines [id:da6108319797175599] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (391.17,192.33) -- (491.17,92.33) ;
+
+
+%Shape: Brace [id:dp1095359743364297] 
+\draw   (437.18,222.33) .. controls (437.18,227) and (439.51,229.33) .. (444.18,229.33) -- (451.96,229.33) .. controls (458.63,229.33) and (461.96,231.66) .. (461.96,236.33) .. controls (461.96,231.66) and (465.29,229.33) .. (471.96,229.33)(468.96,229.33) -- (479.73,229.33) .. controls (484.4,229.33) and (486.73,227) .. (486.73,222.33) ;
+%Straight Lines [id:da5856705496016874] 
+\draw    (385.83,121.33) -- (397.83,121.33) ;
+
+
+%Shape: Brace [id:dp8659015694536814] 
+\draw   (558.5,153.67) .. controls (563.07,153.67) and (565.36,151.38) .. (565.36,146.8) -- (565.36,146.8) .. controls (565.36,140.27) and (567.65,137) .. (572.23,137) .. controls (567.65,137) and (565.36,133.73) .. (565.36,127.2)(565.36,130.14) -- (565.36,127.2) .. controls (565.36,122.62) and (563.07,120.33) .. (558.5,120.33) ;
+
+% Text Node
+\draw (399.08,57.73) node   [align=left] {Action couverte \\par un tunnel};
+% Text Node
+\draw (559.88,46.82) node  [font=\small] [align=left] {profit};
+% Text Node
+\draw (570.64,64.93) node  [font=\small] [align=left] {valeur à $\displaystyle T$};
+% Text Node
+\draw (584,206) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (374,150) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (367,98) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (442,210) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (488,210) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (530,92.33) node   [align=left] {\textcolor[rgb]{0.96,0.65,0.14}{{\scriptsize actif sous-jacent}}};
+% Text Node
+\draw (462.67,242.33) node   [align=left] {{\scriptsize largeur du tunnel}};
+% Text Node
+\draw (372,124) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (593,134.33) node  [rotate=-90] [align=left] {{\scriptsize largeur}};
+% Text Node
+\draw (583,132.33) node  [rotate=-90] [align=left] {{\scriptsize du tunnel}};
+
+
+\end{tikzpicture}
+
+\end{center}
+
 \begin{align*}
-Straddle			& = Put(K,T) + Call(K,T) \\
-Premium			& = P(K,T) + C(K,T) > 0 \\
-Payoff				& =
-\begin{cases}
-K - S_T				& , S_T \leq K \\
-S_T - K				& , S_T > K \\
-\end{cases}
+	\text{tunnel}
+	&= 	P(K_1) - C(K_2)	\\
+	\text{\textcolor{burntorange}{action couverte} par un tunnel}
+	&= 	P(K_1) - C(K_2)	+ \textcolor{burntorange}{S_{T}} 
 \end{align*}
-\input{src/ACT-2011/straddle}
+\end{definitionNOHFILL}
 
-\subsection*{Strangle}
-Même genre de stratégie que le strangle, on spécule sur la volatilité du sous-jacent à l'extérieur de l'intervalle $[K_1, K_2]$ : 
+\subsection{Spéculations sur la volatilité}
+Ces combinaisons bénéficient d'une 
+
+\begin{definitionNOHFILL}[\textbf{Stellage} \og \textit{straddle} \fg{}]
+Créé en achetant une option de vente et une option d'achat avec un prix d'exercice $K$.\\
+$\text{Straddle} = Put(K, T) + Call(K, T)$.\\
+Souvent bâti avec des options au cours.
+
+Il s'ensuit que la valeur à l'échéance est:
 \begin{align*}
-Strangle			& = Put(K_1, T) + Call(K_2, T) \\
-Premium			& = P(K_1, T) + C(K_2, T) > 0 \\
-Payoff				& = 
-\begin{cases}
-K_1 - S_T			& , S_T \leq K_1 \\
-0						& , K_1 < S_T \leq K_2 \\
-S_T - K_2 		& , S_T > K_2 \\
-\end{cases}
+	|S_{T} - K|	
+	&\equiv	
+		\begin{cases}
+		(K - S_{T})	+	0	=	K - S_{T},	&	S_{T} \le K	\\
+		0	+	(S_{T} - K)	=	S_{T} - K,	&	S_{T} >	K	\\
+		\end{cases}
 \end{align*}
-\input{src/ACT-2011/strangle}
 
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,281.3333320617676); %set diagram left start at 0, and has height of 281.3333320617676
+
+%Shape: Axis 2D [id:dp8150307323595705] 
+\draw  (49,192.33) -- (244.17,192.33)(75.83,92.33) -- (75.83,251.33) (237.17,187.33) -- (244.17,192.33) -- (237.17,197.33) (70.83,99.33) -- (75.83,92.33) -- (80.83,99.33)  ;
+%Straight Lines [id:da9384465113929932] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (76.5,119.33) -- (150.5,193.33) ;
+
+
+%Shape: Rectangle [id:dp9521369685676353] 
+\draw   (29,22.33) -- (275.17,22.33) -- (275.17,258.33) -- (29,258.33) -- cycle ;
+%Shape: Rectangle [id:dp8359683554212727] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (29,22.33) -- (275.17,22.33) -- (275.17,51.13) -- (29,51.13) -- cycle ;
+%Shape: Rectangle [id:dp6862105279378832] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (118,53.33) -- (273.17,53.33) -- (273.17,86.33) -- (118,86.33) -- cycle ;
+%Straight Lines [id:da14433777002766845] 
+\draw [color={rgb, 255:red, 215; green, 172; blue, 249 }  ,draw opacity=1 ][line width=3.75]  [dash pattern={on 9pt off 4.5pt}]  (122.17,62.33) -- (187.17,62.33) ;
+
+
+%Straight Lines [id:da897309116521503] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=1 ][line width=3.75]    (122.17,77.33) -- (187.17,77.33) ;
+
+
+
+%Straight Lines [id:da6723643933487031] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (150.5,193.33) -- (222.83,121) ;
+
+
+%Straight Lines [id:da9747958724573911] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.6 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (76.5,152.33) -- (150.5,226.33) ;
+
+
+%Straight Lines [id:da3459436058254277] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.59 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (150.5,226.33) -- (222.83,154) ;
+
+
+%Straight Lines [id:da42512294493800273] 
+\draw    (70.83,119.33) -- (82.83,119.33) ;
+
+
+
+% Text Node
+\draw (257,203) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (59,119) node   [align=left] {$\displaystyle K$};
+% Text Node
+\draw (80,71) node  [font=\small,rotate=-358.99] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (152.08,36.73) node   [align=left] {Stellage};
+% Text Node
+\draw (232,77) node  [font=\small] [align=left] {valeur à $\displaystyle T$};
+% Text Node
+\draw (221,62) node  [font=\small] [align=left] {profit};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[\textbf{Stellage élargi} \og \textit{strangle} \fg{}]
+Créé en 
+\begin{itemize}
+	\item	achetant une option de vente avec un prix d'exercice $K_{1}$ et 
+	\item	achetant une option d'achat avec un prix d'exercice $K_{2}$ où 
+	\item	$K_{1} < K_{2}$.
+\end{itemize}
+
+$\text{Strangle} = Put(K_1, T) + Call(K_2, T)$.\\
+Souvent bâti avec des options hors du cours.
+
+Il s'ensuit que la valeur à l'échéance est:
+\begin{align*}
+		\begin{cases}
+		(K_{1} - S_{T})	+	0	=	K_{1} - S_{T},	&	S_{T} \le K_{1}	\\
+		0	+	0	=	0,	&	K_{1} < S_{T} \le K_{2} 	\\
+		0	+	(S_{T} - K_{2})	=	S_{T} - K_{2},	&	S_{T} >	K_{2}	\\
+		\end{cases}
+\end{align*}
+
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,281.3333320617676); %set diagram left start at 0, and has height of 281.3333320617676
+
+%Shape: Axis 2D [id:dp09154892396952885] 
+\draw  (317,193.33) -- (512.17,193.33)(344.83,92.33) -- (344.83,251.33) (505.17,188.33) -- (512.17,193.33) -- (505.17,198.33) (339.83,99.33) -- (344.83,92.33) -- (349.83,99.33)  ;
+%Straight Lines [id:da6000960978699228] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (344.5,142.33) -- (395.5,193.33) ;
+
+
+%Shape: Rectangle [id:dp44437730275029286] 
+\draw   (297,22.33) -- (543.17,22.33) -- (543.17,258.33) -- (297,258.33) -- cycle ;
+%Shape: Rectangle [id:dp7743472076958418] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (297,22.33) -- (543.17,22.33) -- (543.17,51.13) -- (297,51.13) -- cycle ;
+%Shape: Rectangle [id:dp7779557733517186] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (386,53.33) -- (541.17,53.33) -- (541.17,86.33) -- (386,86.33) -- cycle ;
+%Straight Lines [id:da9460151429343937] 
+\draw [color={rgb, 255:red, 215; green, 172; blue, 249 }  ,draw opacity=1 ][line width=3.75]  [dash pattern={on 9pt off 4.5pt}]  (390.17,62.33) -- (455.17,62.33) ;
+
+
+%Straight Lines [id:da07066423334519834] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=1 ][line width=3.75]    (390.17,77.33) -- (455.17,77.33) ;
+
+
+
+%Straight Lines [id:da6891207896917613] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (443.5,193.33) -- (515.83,121) ;
+
+
+%Straight Lines [id:da9025524478967739] 
+\draw    (338.5,143.33) -- (350.5,143.33) ;
+
+
+%Straight Lines [id:da8837361321867341] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (395.5,193.33) -- (443.5,193.33) ;
+
+
+%Straight Lines [id:da8842152242628301] 
+\draw    (395.5,196.33) -- (395.5,189.33) ;
+
+
+%Straight Lines [id:da3358507555044139] 
+\draw    (443.5,196.33) -- (443.5,189.33) ;
+
+
+%Straight Lines [id:da3055341213887268] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.59 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (343.5,168.33) -- (394.5,219.33) ;
+
+
+%Straight Lines [id:da6895564400108751] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.59 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (442.5,219.33) -- (514.83,147) ;
+
+
+%Straight Lines [id:da22060129362320668] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.59 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (394.5,219.33) -- (442.5,219.33) ;
+
+
+
+% Text Node
+\draw (525,208) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (348,71) node  [font=\small,rotate=-358.99] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (420.08,36.73) node   [align=left] {Stellage élargi};
+% Text Node
+\draw (500,77) node  [font=\small] [align=left] {valeur à $\displaystyle T$};
+% Text Node
+\draw (489,62) node  [font=\small] [align=left] {profit};
+% Text Node
+\draw (328,143) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (447,205) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (398,205) node   [align=left] {$\displaystyle K_{1}$};
+
+
+\end{tikzpicture}
+
+\end{center}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Écart papillon asymétrique]
+\begin{align*}
+	\lambda	&=	\frac{K_{3} - K_{2}}{K_{3} - K_{1}}
+\end{align*}
+Pour chaque option avec un prix d'exercice de $K_{2}$ achetée, on achète $\lambda K_{1}$ et $(1 - \lambda) K_{3}$.
+\end{definitionNOHFILL}
 
 \subsection*{Butterfly Spread (BFS)}
 On combine un Straddle($K_2$) et un Strangle($K_1, K_3$) pour spéculer sur la non-volatilité du sous-jacent autour de $K_2$, mais en limitant nos pertes à $K_1 - K_2$ : 

@@ -1,10 +1,14 @@
 # Guide de survie en actuariat
-Ce projet à pour but de créer un document contenant toutes les feuilles de formules utiles au bac en actuariat. Toutes les contributions sont les bienvenues.
 
-## Contributeurs 
-- [cre, aut] Nicholas Langevin [:octocat:](https://github.com/NicholasLangevin)
-- [cre, aut] Gabriel Crépeault-Cauchon [:octocat:](https://github.com/gabrielcrepeault)
-- [aut] Alec James van Rassel [:octocat:](https://github.com/alec42)
+Ce projet a pour but de créer un document contenant toutes les feuilles de formules utiles au bac en actuariat. Toutes les contributions sont les bienvenues.
+
+## Contributeurs
+
+- [aut., cre.] Nicholas Langevin [:octocat:](https://github.com/NicholasLangevin)
+- [aut., diplômé] Gabriel Crépeault-Cauchon [:octocat:](https://github.com/gabrielcrepeault)
+- [aut., cre.] Alec James van Rassel [:octocat:](https://github.com/alec42)
+
+Pour les contributeurs aux feuilles de formules ainsi qu'une description des différents rôles, voir [ce fichier](https://github.com/NicholasLangevin/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/contributeurs-cheatshts.pdf).
 
 ## Table des matières
 
@@ -14,27 +18,33 @@ Ce projet à pour but de créer un document contenant toutes les feuilles de for
 - [Rédaction d'un Pull Request](#pull-request)
 - [Contenu du répertoire](#contents)
 
-
-
 <a name="structure"/>
 
 ## Structure
+
 ### 00_Archive
+
 Contenu non adapté à la structure du document principal.
+
 > **Aucun pull request ne devrait ajouter du contenu à ce répertoire**
 
 ### 01_DocumentPrincipal
+
 Environnement de compilation du document principal. Pour créer un nouvelle section, suivre les règles suivantes:
+
 - **Chapter-\<nomDuChapitre\>.tex** : Chapitre portant sur une matière précise.
 - **Appendix-\<nomDeAppendix\>.tex** : Ajout pouvant être utile dans plusieurs matières/chapitres.
 - **Main-\<nomDuDocument\>.tex** : Fichier servant à la construction du document principal.
 - **src/\<nomDuChapitre>** : Dossier contenant tous les img/.R/etc utilisé dans la section en question.
-### 02_Cheatsheets
-Environnement de compilation des cheatsheets. **Important**, toutes les cheatsheets doivent utiliser le même préambule (**cheatsht-preamble-general.tex**).
-- **cheatsht-ACT\<XXXX\>.tex** : Code source de la cheatsheets concernant le cours ACT-\<XXXX\>.
+  
+  ### 02_Cheatsheets
+  
+  Environnement de compilation des feuilles de formules. **Important**, elles doivent tous utiliser le même préambule (**cheatsht-preamble-general.tex**).
+- **cheatsht-ACT\<XXXX\>.tex** : Code source de la feuille de formule concernant le cours ACT-\<XXXX\>.
 
 ### 03_Docs
-Autres document d'aide ou reletif au répertoire git.
+
+Autres documents d'aide.
 
 <a name="command-line-contrib"/>
 
@@ -42,45 +52,66 @@ Autres document d'aide ou reletif au répertoire git.
 
 1) Forker le repertoire sur votre compte github
 2) Cloner le répertoire sur votre machine personnelle et créer une branche de travail.
-```
-git clone https://github.com/<YourUserName>/Guide_de_survie_en_actuariat.git
-git checkout -b <NomDeLaBranche>
-```
+   
+   ```
+   git clone https://github.com/<YourUserName>/Guide_de_survie_en_actuariat.git
+   git checkout -b <NomDeLaBranche>
+   ```
 3) Effectuer les modification, stage and commit.
-```
-git add -A
-git commit -m "<DescriptionDuChangement>"
-```
+   
+   ```
+   git add -A
+   git commit -m "<DescriptionDuChangement>"
+   ```
 4) Publier les changements.
-```
-git push origin <NomDeLaBranche>
-```
+   
+   ```
+   git push origin <NomDeLaBranche>
+   ```
 5) Ouvrir un pull request sur la page officiel du répertoire
 
 <a name="github-desktop-contrib"/>
 
-## Contribuer avec GitHub Desktop 
+## Contribuer avec GitHub Desktop
 
 Installer [GitHub Desktop]([https://desktop.github.com/](https://desktop.github.com/) pour la gestion de Git et [Visual Studio Code]([https://code.visualstudio.com/](https://code.visualstudio.com/) pour la gestion de conflits.
 
 ### Workflow
 
-1. "*Open in Desktop*" pour cloner le projet à votre l'ordinateur
+1. Créer une fourche du répertoire:
 
-![Capture d’écran, le 2019-11-10 à 16.03.14.png](https://i.loli.net/2019/11/11/uijd5Og1JrZMXp6.png)
+<p align="center">
+  <img src="https://i.imgur.com/UAz5wSs.png" height="600">
+</p>
 
-2. Une fois le projet cloné, créer une nouvelle branche.
+__Noter__ que le projet est maintenant un "fork" du projet original
+<p align="center">
+  <img src="https://i.imgur.com/epr5Age.png" width="900">
+</p>
+
+2. "*Open in Desktop*" pour cloner le projet à votre l'ordinateur
+
+<p align="center">
+  <img src="https://i.imgur.com/5vuhlQk.png" width="900">
+</p>
+
+<p align="center">
+  <img src="https://i.imgur.com/D57iBL8.png" width="900">
+</p>
+
+3. Une fois le projet cloné, créer une nouvelle branche.
 
 <p align="center">
   <img src="https://i.loli.net/2019/11/11/ebfHPW5jnhClcmS.png" height="600">
 </p>
 
-3. Nommer la branche `<PRÉNOM>-MODIFS`
-<p align="center">
-  <img src="https://i.loli.net/2019/11/11/hioePf4s6maGWcp.png" height="350">
-</p>
+4. Nommer la branche `<PRÉNOM>-MODIFS`
+   
+   <p align="center">
+   <img src="https://i.loli.net/2019/11/11/hioePf4s6maGWcp.png" height="350">
+   </p>
 
-4. Publier votre branche!
+5. Publier votre branche!
    
    ![Capture d’écran, le 2019-11-10 à 16.17.40.png](https://i.loli.net/2019/11/11/cobXThj13pQyJFM.png)
 
@@ -100,19 +131,48 @@ Vous pouvez maintenant effectuer des modifications!
 
 2. `push`!![Capture d’écran, le 2019-11-10 à 16.00.56.png](https://i.loli.net/2019/11/11/YZzXkhtgvArMQSe.png)
 
+3. Pour fusionner au document principal, naviguer au dépôt original (donc pas votre fourche, mais le vrai dépôt) et naviguer à l'onglet "Pull Requests"
+
+<p align="center">
+  <img src="https://i.imgur.com/Qq9uetd.png" height="350">
+</p>
+
+4. Sélectionner "New Pull Request"
+
+<p align="center">
+  <img src="https://i.imgur.com/mXrYT6r.png" width="900">
+</p>
+
+5. Sélectionner l'option "comparer across forks"
+
+<p align="center">
+  <img src="https://i.imgur.com/hHUdNBH.png" width="900">
+</p>
+
+6. Sélectionner votre branche comme branche à fusionner au dépôt ("head repository")
+
+
+<p align="center">
+  <img src="https://i.imgur.com/PG4ruUy.png" width="900">
+</p>
+
+7. Sélectionner "Create Pull Request"
+
 ### Gérer les conflits
 
 Lorsque vous avez cette erreur, c'est qu'il y a un conflit; n'ayez pas peur, Visual Studio Code permet de la gérer visuellement.
 
 1. Ouvrir avec Visual Studio Code 
-<p align="center">
-  <img src="https://i.loli.net/2019/11/11/oIdG9C76rLNkFOX.png" height="300">
-</p>
+   
+   <p align="center">
+   <img src="https://i.loli.net/2019/11/11/oIdG9C76rLNkFOX.png" height="300">
+   </p>
 
 2. Défiler jusqu'à ce que vous trouvez une partie du code ressemblant à ceci:
-<p align="center">
-  <img src="https://i.loli.net/2019/11/11/KLjIWykF71hT8RQ.png">
-</p>
+   
+   <p align="center">
+   <img src="https://i.loli.net/2019/11/11/KLjIWykF71hT8RQ.png">
+   </p>
    
    Suffit de choisir quelle modification conserver!
    
@@ -121,7 +181,7 @@ Lorsque vous avez cette erreur, c'est qu'il y a un conflit; n'ayez pas peur, Vis
 3. Le message suivant va apparaître. 
    
    On peut donc faire le `commit` et faire un push de nos modifications.
-   
+
 <p align="center">
   <img src="https://i.loli.net/2019/11/11/KvAR23y7FmWDQq6.png" height="300">
 </p>
@@ -151,4 +211,5 @@ Lorsque vous avez cette erreur, c'est qu'il y a un conflit; n'ayez pas peur, Vis
 <a name="contents"/>
 
 ## Contents
+
 > TODO

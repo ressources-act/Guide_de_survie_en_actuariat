@@ -6,7 +6,7 @@
 %% -----------------------------
 %% Redefine from template
 %% -----------------------------
-\def\auteur{First Last}
+\def\auteur{Alec James van Rassel}
 %% -----------------------------
 %% Variable definition
 %% -----------------------------
@@ -18,12 +18,10 @@
 \def\SectionColor{green!50!black}
 \def\SubSectionColor{green!20!black}
 \def\SubSubSection{burntsienna}
-%
-% Redefine authors
-%
-\def\auteur{Alec James van Rassel}
 
-
+%	"to-do" list
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
 %% -----------------------------
 %% Début du document
 %% -----------------------------
@@ -31,7 +29,178 @@
 
 \begin{multicols*}{3} 
 
-\setcounter{section}{1}
+\section{Préparation de données}
+
+\begin{algo2}[Repères visuels]
+\begin{enumerate}
+	\item	La \textbf{position} sur une \textbf{même échelle} (variable numérique), souvent à l’aide de points ou de boite à moustache;
+	\item	La \textbf{position} sur une \textbf{échelle identique} mais \textbf{non alignée} (variable numérique);
+		\begin{itemize}
+		\item	Pour exemple, lorsqu’on utilise des facettes.
+		\end{itemize}
+	\item	La \textbf{longueur} sur une \textbf{même échelle} (variable numérique);
+		\begin{itemize}
+		\item	Pour exemple, dans un diagramme à bande ou un histogramme.
+		\end{itemize}
+	\item	L’angle ou \textbf{la pente} (variable numérique);
+		\begin{itemize}
+		\item	Pour exemple, en repésentant les données sous forme de lignes (pente);
+		\item	Pour exemple, la redoutable pointe à tarte (angle).
+		\end{itemize}
+	\item	La \textbf{forme des points} (variable catégorielle) peut représenter le groupe;
+	\item	L’aire ou \textbf{le volume} (variable numérique);
+		\begin{itemize}
+		\item	Pour exemple, dans un diagramme à bande ou un histogramme;
+		\end{itemize}
+	\item	La \textbf{saturation de la couleur} (numérique ou catégorielle) peut représenter “à quel point” sur une échelle de clair à foncé;
+		\begin{itemize}
+		\item	Pour exemple, gris vs. noir.
+		\end{itemize}
+	\item	La \textbf{teinte de couleur} (numérique ou catégorielle).
+		\begin{itemize}
+		\item	Pour exemple, bleu vs. rouge.
+		\end{itemize}
+\end{enumerate}
+\end{algo2}
+
+\begin{algo2}[Étapes du nettoyage de données]
+Cette liste n'est pas séquentielle, il est surtout important de \textit{tout} le faire.
+\begin{todolist}[leftmargin = *]
+	\item	\textbf{Comprendre} la structure des données;
+		\begin{itemize}
+		\item	dimensions, types de variables, \texttt{str} et \texttt{summary}.
+		\end{itemize}
+	\item	\textbf{Visualiser} les données;
+		\begin{itemize}
+		\item	\texttt{head}, \texttt{summary} et graphiques exploratoires.
+		\end{itemize}
+	\item	\textbf{Mettre en forme \textit{(format)}} les données;
+		\begin{itemize}
+		\item	Chaque ligne est une observation;
+		\item	Chaque colonne est une variable;
+		\item	Supprimer les doublons;
+		\end{itemize}
+	\item	Vérifier et corriger les \textbf{types} de variables;
+		\begin{itemize}
+		\item	booléens, entiers, numériques, facteurs, chaines de caractères, dates, etc.
+		\end{itemize}
+	\item	\textbf{Manipuler} les \textbf{chaines} de caractères;
+		\begin{itemize}
+		\item	Corriger les typos;
+		\item	Changer la casse avec \texttt{tolower};
+		\item	Extraire des informations avec les expressions régulières.
+		\end{itemize}
+	\item	Identifier les \textbf{données aberrantes};
+		\begin{itemize}
+		\item	Mettre \texttt{NA} et gérer plus tard.
+		\end{itemize}
+	\item	\textbf{Détecter} les \textbf{erreurs} flagrantes ou les changements structurels dans les donnéesl
+		\begin{itemize}
+		\item	Prendre compte des réformes;
+		\item	Constater les structures importantes.
+		\end{itemize}
+	\item	\textbf{Augmenter} les données à l'aide d'autres sources;
+		\begin{itemize}
+		\item	optionnel.
+		\end{itemize}
+\end{todolist}
+\end{algo2}
+
+\begin{conceptgen}{Types de variables}
+Les jeux de données peuvent être:
+\begin{description}[leftmargin = *]
+	\item[Structuré:]	Données ayant une structure prédéfinie.\\
+		Pour exemple:
+		\begin{itemize}
+		\item	Tableaux;
+		\item	\og spreadsheet \fg{};
+		\item	\og Relational databases \fg{}.
+		\end{itemize}
+	\item[Non-structuré:]	Données sans structure prédéfinie venant en toute forme et ne pouvant pas être facilement résumées à un tableau.\\
+		Pour exemple:
+		\begin{multicols*}{3}
+		\begin{itemize}
+		\item	Texte;
+		\item	Images;
+		\item	Audio;
+		\end{itemize}
+		\end{multicols*}
+\end{description}
+\begin{center}
+	\includegraphics[scale=0.15]{src/ACT-3114/data-un-structured.png}
+\end{center}
+
+Types de variables:
+\begin{description}
+	\item[Quantitatives:]	Données numériques pouvant être:
+		\begin{itemize}
+		\item	Discrète, pour exemple des données de comptage; 
+		\item	Continue, pour exemple des montants de sinistre.
+		\end{itemize}
+	\item[Qualitatives:]	Données catégorielles pouvant être:
+		\begin{itemize}
+		\item	Nominales, pour exemple le sexe; 
+		\item	Ordinales, pour exemple des groupes d'âge.
+		\end{itemize}
+	\item[Temporelles]Données chronologiques représentant un état dans le temps;
+		\begin{itemize}
+		\item	Pour exemple, la quantité totale de pluie au Canada le 1er juillet 1990.
+		\end{itemize}
+	\item[Spatiales]	Données géographiques avec des coordonnées (pour exemple, la latitude et longitude).
+\end{description}
+\end{conceptgen}
+
+\begin{algo2}[Conseils]
+\begin{itemize}
+	\item	Conserver un script séparé pour le traitement des données;
+	\item	Documenter nos choix;
+		\begin{itemize}
+		\item	Si l'on omet quelques observations en raison de données aberrantes être conscient que ça peut biaiser les résultats.
+		\end{itemize}
+	\item	Effacer l'encre superflue 
+	
+	\includegraphics[scale=0.15]{src/ACT-3114/data-superfluous.png}
+	\item	Considérer l'étique:
+		\begin{itemize}[leftmargin = *]
+		\item	Avons-nous l'autorisation d'utiliser les données?
+		\item[]	Pour exemple, les données ouvertes du gouvernement avec peu de restrictions;
+		\item	Est-ce qu'il y a des considérations étiques à l'utilisation des données?
+		\item[]	Pour exemple, Facebook qui utilise les données de façon immorale;
+		\item	Est-ce qu'il y a des biais dans les données pouvant causer préjudice?
+		\item[]	Pour exemple, des données avec un biais sexiste ou raciste, des données financées par une compagnie.
+		\end{itemize}
+\end{itemize}
+\end{algo2}
+
+\begin{conceptgen}{Biais}
+\begin{description}
+	\item[d'échantillonnage]	Lorsque les données d'entraînement ne représentent pas de façon représentative la vraie population.\\
+		Pour exemple:
+		\begin{itemize}[leftmargin = *]
+		\item	Entraîner une voiture autonome seulement le jour alors qu'elles peuvent être conduites jour et soir;
+		\item	Sonder les lecteurs du Devoir sur le parti pour lequel ils vont voter à l'élection et donc ignorer ceux ne lisant pas le journal.
+		\end{itemize}
+	\item[de stéréotypes]	Données influencées par des stéréotypes (consciemment ou pas).\\
+		Pour exemple:
+		\begin{itemize}[leftmargin = *]
+		\item	Entraîner un algorithme pour comprendre comment les personnes travaillent avec des images d'hommes sur des ordinateurs et de femmes à la maison;
+		\item	L'algorithme aura tendance à penser que les hommes sont des programmeurs et les femmes des cuisinières.
+		\end{itemize}
+	\item[de mesure]	Données influencées par un problème avec l'instrument de mesure.\\
+		Pour exemple:
+		\begin{itemize}[leftmargin = *]
+		\item	Entraîner un algorithme de reconnaissance d'image avec des images d'une caméra avec un filtre de couleur;
+		\item	L'algorithme serait fondé sur des images ayant systématique mal-représentée le vrai environnement.
+		\end{itemize}
+	\item[de modèle]	Le compromis de biais-variance $B(\hat{\theta}) = \text{E}[\hat{\theta}] - \theta$.\\
+		Pour exemple:
+		\begin{itemize}[leftmargin = *]
+		\item	Certaines variables ne sont pas considérées (ou mesurées);
+		\item	Le modèle n'est pas assez flexible (compromis linéaire vs lisse)
+		\end{itemize}
+\end{description}
+\end{conceptgen}
+
 \section{Données manquantes}
 
 Le chapitre utilise la \textbf{mise en contexte} suivante:
@@ -69,13 +238,42 @@ Le chapitre utilise la \textbf{mise en contexte} suivante:
 \end{itemize}
 \end{definition}
 
-\subsubsection*{Mécanisme de non-réponse}
+\begin{examplebox}{Exemple de notation}
+\begin{align*}
+	\bm{Y}	
+	&=	\begin{bmatrix}
+		2	&	3	\\
+		8	&	6	\\
+		3	&	12	
+		\end{bmatrix}	\\
+	\bm{Y}_{obs}
+	&=	\begin{bmatrix}
+		2	&	.	\\
+		8	&	6	\\
+		.	&	.
+		\end{bmatrix}	&
+	\bm{Y}_{mis}
+	&=	\begin{bmatrix}
+		.	&	3	\\
+		.	&	.	\\
+		3	&	12	
+		\end{bmatrix}	\\
+	\bm{R}
+	&=	\begin{bmatrix}
+		1	&	0	\\
+		1	&	1	\\
+		0	&	0	
+		\end{bmatrix}	
+\end{align*}
+\end{examplebox}
+
+\subsection*{Mécanisme de non-réponse}
 La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
 
 \textbf{Types de données manquantes}:
 \begin{enumerate}
 	\item	\textbf{MCAR}: Missing Completely at Random;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Le patron de non-réponse (pattern of missing values) est indépendant des données $\matr{Y}$;
 		\item	Il s'ensuit que la probabilité de réponse $f(R | \matr{Y}, \theta)$ ne dépend pas des données complètes $\matr{Y}$:
 			\begin{align*}
@@ -84,12 +282,14 @@ La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
 %		\item	Pour example
 		\begin{examplebox}{Exemple avec un $\theta$ de 10\%}
 		On perd $10\%$ des valeurs mesurées alors, $\forall i \in \{1, \dots, n\}, j \in \{1, \dots, p\}$, la distribution du mécanisme de non-réponse:
+		\setlength{\mathindent}{-1cm}
 			\begin{align*}
 			R_{ij} 
-			&\sim 	\text{Bernoulli}(\theta =  10\%)
+			&\sim 	\text{Bernoulli}(p = 1 - \theta =  90\%)
 			\end{align*}
+		\setlength{\mathindent}{1cm}
 		\end{examplebox}
-		\item	Tester la différence de moyennes:
+		\item	\textbf{Tester} la différence de moyennes:
 		\end{itemize}	
 		\setlength{\mathindent}{-2cm}
 			\begin{align*}
@@ -110,29 +310,59 @@ La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
 		\setlength{\mathindent}{1cm}
 		\begin{itemize}
 		\item[]	avec un test du khi-carré de Pearson;
+		\item[]	C'est-à-dire que le test est équivalent mais \textbf{pas} le hypothèses.
 		\end{itemize}	
 \end{enumerate}
 \begin{enumerate}
 	\setcounter{enumi}{1}
 	\item	\textbf{MAR}: Missing at Random;
-		\begin{itemize}
-		\item	La probabilité de réponse $f(R | Y, \theta)$ dépend seulement de variables qui ont été observées dans le jeu de données $\matr{Y}_{\text{obs}}$:
+	\item[]	Can think of it as Missing \textit{Conditionnaly} at Random;
+		\begin{itemize}[leftmargin = *]
+		\item	La probabilité de réponse $f(R | \bm{Y}1616, \theta)$ dépend seulement des variables qui ont été observées dans le jeu de données $\matr{Y}_{\text{obs}}$:
 			\begin{align*}
-			f(R | \matr{Y}, \theta) &= f(R | \matr{Y}_{\text{obs}}, \theta) \\
+			f(R | \matr{Y}, \theta) &= f(R | \matr{Y}_{\text{obs}}, \theta) 
 			\end{align*}
 		\item	Exemple de patients d'un hôpital: les données sont MAR lorsque la probabilité de non-réponse ne dépend pas de la qualité de vie sachant l'âge;
+		\item	Le négatif est qu'il est impossible de tester que, sachat l'âge, la probabilité de non-réponse ne dépend pas de la qualité de vie;
+		\item	Il est \textbf{inconcevable} d'avoir un test pour MAR.
 		\end{itemize}
 	\item	\textbf{NMAR}: Not Missing at Random;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Le patron de non-réponse pour $\matr{Y}$ est relié à sa valeur et les variables observées;
-		\item[]	Ce même si ont conditionne sur les valeurs observées;
+		\item[]	Ce même si on conditionne sur les valeurs observées;
 		\item	La probabilité de réponse $f(R | \matr{Y}, \theta)$ dépend également de $\matr{Y}_{\text{mis}}$ et ne peut pas être simplifiée;
 		\item	Pour exemple, les patients malades ne répondent pas aux sondages en plus des patients plus jeunes et donc la probabilité de réponse dépend de la qualité de vie;
 		\item	Pour exemple, la probabilité de réponse dépend d'une autre variable non observée;
 		\end{itemize}
 \end{enumerate}
 
-%\textbf{Schéma} (page 18)
+Visuellement on peut comparer les 3 patrons de non-réponse:
+\begin{itemize}
+	\item	On observe (MCAR) que la variable \textit{indépendante} $S$ ne dépend pas du patron de non-réponse $R$;
+	\item	On observe (MAR) que $G$ influe la variable réponse $S$ et le patron de non-réponse $R$;
+	\item	On observe (NMAR) qu'il y a un lien direct entre $S$ et $R$;
+	\item	En dernier, puisque $Z$ n'est pas mesuré et que $Y$ y dépend c'est NMAR.
+\end{itemize}
+\textbf{Principe d'inclusion}: Si une variable est exclue cela peut créer une corrélation entre la variable indépendante $S$ et le patron de non-réponse $R$. De plus, ça peut changer le patron lui-même!
+
+\includegraphics[scale=0.2]{src/ACT-3114/data-schema-missing.png}
+
+Pour exemple, si on cherchait à supprimer des valeurs d'une BD:
+\begin{description}
+	\item[MCAR]	supprime des valeurs aléatoirement;
+	\item[MAR]	supprime 60\% des valeurs pour les femmes et 40 \% des valeurs pour les hommes;
+	\item[NMAR]	plus il y a de sinistres observés, plus il y a de chances que les valeurs soient manquantes.
+\end{description}
+
+Ordre de restriction des différents patrons
+\begin{enumerate}
+	\item	MCAR: plus \og restrictif \fg{} car les données doivent être manquantes complètement aléatoirement;
+	\item[]	Même idée que l'hypothèse de normalité est restrictive puisque les données \textit{doivent} l'être \textbf{mais} cela nous permet d'utiliser plein de tests;
+	\item[]	Comme une Bernoulli, il n'y a pas de paramètres;
+	\item[]	plus restrictif alias moins flexible.
+	\item	MAR: inclue les variables observées et donc il y a plus de paramètres;
+	\item	NMAR: inclue toutes les variables et est donc le patron le plus flexible (alias, le moins restrictif).
+\end{enumerate}
 
 \subsection*{Visualisation et détection}
 \begin{algo}{Traiter les données manquantes}
@@ -142,6 +372,7 @@ La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
 	\item[]	Pour exemple, voici quelques patrons de non-réponse pour quelques variables:
 
 	\includegraphics[scale=0.3]{src/ACT-3114/patrons-non-repoonse-exemples.png}
+	\item[]	Exemple de patron univarié: concessionnaire ne pose jamais à ses assurés s'ils ont une piscine et donc la variable est manquante dans toutes ses données;
 	\item	Comparer les distributions des autres variables selon la valeur des variables indicatrices $R_{1j}, \dots, R_{nj}$;
 \end{enumerate}
 \end{algo}
@@ -169,6 +400,7 @@ Une question valide est si les options pour le traitement des données manquante
 		\item	\textbf{Impact}:
 			\begin{itemize}
 			\item[$\color{red}\downarrow$]	taille de l'échantillon	\\
+			\item[$\color{red}\downarrow$]	taille de la corrélation des variables	\\
 			\item[$\color{blue}\uparrow$]	variance des estimateurs	\\
 			\item[$\color{red}\downarrow$]	puissance des tests	\\
 			\end{itemize}

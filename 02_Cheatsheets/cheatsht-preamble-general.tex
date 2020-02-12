@@ -87,6 +87,8 @@
 \newcommand{\te}[1]{\text{exp}\left\{#1\right\}}
 \DeclareMathSymbol{\shortminus}{\mathbin}{AMSa}{"39}
 
+
+
 % To indicate equation number on a specific line in align environment
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 
@@ -152,10 +154,10 @@
 %%
 \newtcolorbox{conceptgen}[ 1 ]
 {
+	breakable,
 	colback = beaublue,
 	colframe = airforceblue,
-	title={#1},
-	breakable,
+	title=#1,
 	fonttitle = \bfseries
 }
 %%
@@ -165,7 +167,9 @@
 {
 	colback = ruddypink,
 	colframe = burgundy,
-	fonttitle = \bfseries,title=#1
+	fonttitle = \bfseries,	
+	breakable,
+	title=#1
 }
 %%
 %% Coloured box "formula" for formulas
@@ -175,7 +179,22 @@
 	colback = green!5!white,
 	colframe = green!70!black,
 	breakable,
-	fonttitle = \bfseries,title=#1
+	fonttitle = \bfseries,
+	title=#1
+}
+%%
+%% Coloured box "formula" for formulas
+%%
+\DeclareTColorBox{algo2}{ o }
+{
+	enhanced,
+	title = #1,
+	colback=blue!5!white,	
+	colbacktitle=blue!75!black,
+	fonttitle = \bfseries,
+	breakable,
+	boxed title style={size=small,colframe=arsenic} ,
+	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
 }
 %%
 %% Coloured box "examplebox" for formulas
@@ -184,6 +203,7 @@
 {
 	colback = lightmauve,
 	colframe = antiquefuchsia,
+	breakable,
 	fonttitle = \bfseries,title=#1
 }
 %%
@@ -193,6 +213,7 @@
 {
 	colback = ashgrey,
 	colframe = arsenic,
+	breakable,
 	fonttitle = \bfseries,title=#1
 }
 %%
@@ -207,6 +228,7 @@
 %	colframe=arsenic,	
 	colbacktitle=arsenic,
 	fonttitle = \bfseries,
+	breakable,
 	boxed title style={size=small,colframe=arsenic} ,
 	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
 }
@@ -224,6 +246,7 @@
 	fonttitle = \bfseries,
 	boxed title style={size=small,colframe=arsenic} ,
 	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
+	breakable
 %	left=0pt,
 %  	right=0pt,
 %    box align=center,
@@ -247,6 +270,7 @@
 %% Color configuration
 %% -----------------------------
 \usepackage{color, soulutf8, colortbl}
+
 
 %
 %	Colour definitions
@@ -346,6 +370,7 @@
 \usepackage{lastpage}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+
 %
 % Header
 %

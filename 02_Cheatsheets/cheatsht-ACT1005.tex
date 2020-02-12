@@ -6,7 +6,7 @@
 %% -----------------------------
 %% Redefine from template
 %% -----------------------------
-\def\auteur{Alec James van Rassel}
+\def\auteur{Alec James van Rassel et Olivier Côté}
 %% -----------------------------
 %% Variable definition
 %% -----------------------------
@@ -18,6 +18,11 @@
 \def\SectionColor{brickred}
 \def\SubSectionColor{amaranth}
 \def\SubSubSection{pastelred}
+%%	pour timeline
+\usetikzlibrary{shapes,positioning}
+\newcommand{\foo}{\hspace{-2.3pt}$\bullet$ \hspace{5pt}}
+\usepackage{booktabs}
+\usepackage{tabularx}
 
 
 %\setcounter{section}{1}
@@ -167,22 +172,778 @@ Exemples pour les \textcolor{amethyst}{individus} et \textcolor{amaranth}{entrep
 
 
 \section{La sécurité sociale}
-%\subsection{Définition}
-%\subsection{Deux différents conceptions}
-%\subsection{Bismarck}
-%\subsection{Beveridge}
-%\subsection{Déclaration universelle de droits de l'homme (UN) (1948)}
-%\subsection{Sécurité sociale au Canada et au Québec}
-%\subsubsection*{Historique}
-%\subsubsection*{Types de programmes}
-%\subsubsection*{Catégories de programmes}
-%\subsubsection*{Assistance sociale}
-%\subsubsection*{Assurance sociale}
-%\subsubsection*{Classement des régimes existants}
-%\subsection{Régimes sociaux sous tension}
+
+%%%	dans le coin des lignes 520 j'explique comment les tableaux fonctionnent en LaTeX;
+
+\begin{definition}[La sécurité sociale]
+\textbf{Programmes} visant à apporter une certaine \textbf{sécurité} afin de ne pas laisser son \textbf{statut social} descendre sous un certain seuil. Elles visent à \textit{maintenir}, \textit{protéger} et \textit{améliorer} les conditions de vie essentielles, ne laissant ainsi personne dans le besoin.
+
+\begin{itemize}
+	\item	Cette \og \textit{assurance} \fg{} est accordée par le gouvernement;
+	\item	Il s'agit d'une \textit{obligation} du gouvernement pour donner un niveau de vie minimum à tous;
+\end{itemize}
+\end{definition}
+
+
+\begin{definition}[Organisation internationale du travail (OIT)]
+But est de rassembler ses états membres en vue d'une action commune pour:
+\begin{itemize}
+	\item	\textit{Promouvoir} les \textbf{droits au travail};
+	\item	\textit{Encourager} la \textbf{création d'emplois} décents;
+	\item	\textit{Développer} la \textbf{protection sociale};
+	\item	\textit{Renforcer} le \textbf{dialogue social} dans le domaine du travail;
+	\item[]	C'est-à-dire, toutes formes de négociation, consultation, ou d'échange d'information entre gouvernements, employeurs et travailleurs. Leur vision est basée sur le fait qu'il ne peut y avoir de paix universelle et durable sans traitement décent des travailleurs (\textit{Prix Nobel de la paix en 1969}).
+\end{itemize}
+
+L'OIT est une:
+\begin{itemize}
+	\item	Agence spécialisée de l'ONU fondée en 1919 (donc sous l'ancêtre de l'ONU) à Genève;
+	\item	Institution tripartite: rassemble les gouvernements, employeurs et travailleurs membres de l'ONU (187 pays membres en 2016);
+\end{itemize}
+
+Pour exemple dans le cadre de sa mission, l'OIT cherche à s'assurer que les enfants ne travaillent pas, qu'il y a égalité homme-femme, etc.
+\end{definition}
+
+\begin{conceptgen}{2 conceptions différentes de la sécurité sociale}
+\begin{center}
+\textbf{Bismark}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Principe d'\textbf{assurance sociale} lié au \textbf{travail};
+	\item	Logique \textbf{assurantielle}
+	\item[]	C'est-à-dire que les prestations sont versées aux \textbf{individus assurés} contre un tel risque;
+	\item	\textbf{Principes} de la protection:
+		\begin{enumerate}
+		\item	Limité aux travailleurs;
+		\item	Protection obligatoire;
+			\begin{itemize}
+			\item	Pour ceux n'ayant pas assez d'argent pour se couvrir eux-mêmes;
+			\end{itemize}
+		\item	\textbf{Proportionnalité} des \textbf{cotisations} et \textbf{prestations} au salaire;
+			\begin{itemize}
+			\item	Pour exemple, le paiement (cotisation) d'assurance chômage qui varie en fonction du salaire;
+			\item	Si j'ai un plus grand salaire \textit{(par rapport aux autres salaires sous un certain seuil)}, ma participation au régime (cotisations) sera plus élevée. Par contre, il adviendra aussi que les prestations seront plus élevés que ceux ayant moins cotisés en cas de réalisation du risque couvert;
+%%%	-----
+%%%	NOTE:
+%%%	+	Peux-tu vérifier que ce que j'ai écris ci-dessus est cohérent stp? (AJVR)
+%%% + J'ai ajouté quelques petits truc, il est important de mentionner que lorsqu'on parle de 
+%%%   haut salaire, on parle de haut salaire parmi les bas salaire (ceux qui cotisent)
+%%%   C'était bien ! (OC)
+%%%	-----
+			\end{itemize}
+			\item	Protection gérée par les salariés et les employeurs;
+		\end{enumerate}
+	\item	Ce fut la base pour les autres systèmes.
+\end{itemize}
+\tcbline
+
+\begin{center}
+\textbf{Beveridge}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Principe de protection généralisée, la \textbf{sécurité sociale}, \textbf{sans lien au travail} fondée sur la solidarité;
+	\item	Logique \textbf{assistancielle}
+	\item[]	C'est-à-dire que les prestations sont versées aux \textbf{individus en besoin};
+		\begin{itemize}
+		\item	Est-ce qu'une personne a besoin d'un revenu? Si oui, on va l'aider.
+		\end{itemize}
+	\item	Exemple: chômage
+	\item	Principes de protection:
+		\begin{enumerate}
+		\item	\textbf{Universalité} de la protection sociale;
+			\begin{itemize}
+			\item	Couverture de toute la population et de tous les risques sociaux;
+			\end{itemize}
+		\item	\textbf{Uniformité} des prestations;
+			\begin{itemize}
+			\item	Couverture fondée sur les \textit{besoins} et \textbf{non} les \textit{revenus};
+			\end{itemize}
+		\item	\textbf{Unicité};
+			\begin{itemize}
+			\item	Gestion par l'état de tous les programmes;
+			\end{itemize}	
+		\item	Financement par \textbf{l'impôt};
+			\begin{itemize}
+			\item	Ce faisant, il est également appelé le système \og national \fg{} 
+			\end{itemize}
+		\end{enumerate}
+\end{itemize}
+\end{conceptgen}
+
+\begin{rappel_enhanced}[Déclaration universelle des droits de l'homme (1948)]
+\begin{distributions}[Article 22]
+Toute personne, en tant que membre de la société, a droit à la sécurité sociale.
+\end{distributions}
+\begin{distributions}[Article 25]
+\begin{enumerate}[leftmargin = *]
+	\item	Toute personne a droit à un niveau de vie suffisant pour assurer sa santé, son bien-être et ceux de sa famille.
+	\item	La maternité et l'enfance ont droit à une aide et à une assistance spéciale.
+\end{enumerate}
+\end{distributions}
+\end{rappel_enhanced}
+
+\begin{conceptgen}{La Sécurité sociale selon l'\textit{OIT}}
+Selon l'OIT, les états membres doivent mettre en place au moins 3 des fonctions suivantes (dont au moins une de 3, 4, 5 et 9): 
+\begin{enumerate}[leftmargin = *]
+	\item	Soins médicaux;
+	\item	Indemnités de maladie: prestations fournies pour rétablir ou améliorer la santé d'une personne;
+	\item	Chômage: prestations fournies à une personne ayant perdu son emploi rémunéré;
+	\item	Vieillesse: prestations fournies aux personnes s'étant retiré du marché du travail pour prendre leur retraite. Celles-ci sont payées sous certaines conditions (âge de la retraite atteint, résidence/nationalité)
+	\item	Accident du travail et maladies professionnelles;
+	\item	Familles: prestations fournies afin de payer les coûts et satisfaire les besoins liés à l'éducation des enfants et aux personnes à charge;
+	\item	Invalidité;
+	\item	Maternité;
+	\item	Survivants;
+\end{enumerate}
+
+Auxquels on peut ajouter:
+\begin{enumerate}[leftmargin = *]
+	\item	Logement: prestations fournies (sous condition de ressources) pour aider directement un \textit{ménage} (pas un particulier) à payer le coût de son logement;
+	\item	Éducation: Prestations en espèces ou en nature fournis afin de subvenir aux besoins d'éducation des enfants (pour payer l'école directement, contrairement à la protection \textit{6. Famille};
+%%%	-----
+%%%	NOTE:
+%%%	+	Faut trouver une façon de mieux distinguer éducation de famille hmmm; (AJVR)
+%%% + J'ai l'impression que famille ce sont les besoins LIÉS à l'école, alors qu'éducation
+%%%   Ce serait les frais de scolarité directement .... À demander ? (ex : prêt et bourse ?) (OC)
+%%%	-----
+	\item	Assistance sociale: \textit{Exemple : \og food stamps \fg{} aux É.-U};
+\end{enumerate}
+\end{conceptgen}
+
+\textbf{Événements marquants historiques}
+%%%	NOTE: le timeline est splitté en 3 pour qu'il ait sur des différents pages
+\newcounter{year}
+
+\begin{tikzpicture}[yscale = 0.5,%
+           year/.style = {draw	= red,%
+           				 text 	= blue,%
+           				 fill 	= yellow!20,%
+           				 shape 	= ellipse,%
+           				 inner sep = 2pt%
+           				 },%
+           description/.style = {rectangle,%
+           				 		align		= left,%
+           				 		text width	= 50mm,%
+           				 		anchor		= west%
+           				 		},%
+           timeline/.style = {->,%
+           				 	 thick,%
+           				 	 red!50%
+           				 	 }%
+           			]
+    \foreach \year/\desc [count=\y] in {%
+       1608-1914	/ \textbf{Charité}
+       	\begin{itemize}[leftmargin = *]
+      		\item	Beaucoup d'enfants (pas de contraception);
+      		\item	L'église se charge des pauvres;
+      	\end{itemize},%
+      	1886	/	Première loi sur l'\textbf{hygiène publique}; précédemment\, le soin des malades était une responsabilité individuelle%
+       } { \ifnum\y=1 \node[description](\y){\desc};
+           \else\node[description,below=1ex of \z](\y){\desc};
+           \fi
+           \node[year](y-\y) [left=of \y] {\year};
+           \ifnum\y>1\draw[timeline] (y-\z)-- (y-\y);\fi
+           \global\let\z=\y% for drawing from last node
+       }
+\end{tikzpicture}
+\begin{tikzpicture}[yscale = 0.5,%
+           year/.style = {draw	= red,%
+           				 text 	= blue,%
+           				 fill 	= yellow!20,%
+           				 shape 	= ellipse,%
+           				 inner sep = 2pt%
+           				 },%
+           description/.style = {rectangle,%
+           				 		align		= left,%
+           				 		text width	= 55mm,%
+           				 		anchor		= west%
+           				 		},%
+           timeline/.style = {->,%
+           				 	 thick,%
+           				 	 red!50%
+           				 	 }%
+           			]
+
+    \foreach \year/\desc [count=\y] in {%
+       1914-1930	/	\textbf{Naissance de l'assistance publique}
+       	\begin{itemize}[leftmargin = *]
+	       	\item	Première guerre mondiale;
+	       	\item	Industrialisation avec espoir d'une meilleure vie en ville;
+	       	\item[]	Ce faisant\, la qualité de vie dépend du salaire et si on tombe malade on risque la pauvreté;
+	       	\item	Églises plus suffisantes---trop de pauvres;
+	       	\item	Création des fraternités (ancêtre des compagnies d'assurance);
+       	\end{itemize}
+       ,%
+       	1914	/	Premier programme moderne de \textbf{sécurité sociale} au Canada: La Loi sur les accidents au travail de l'Ontario,%
+       	1921	/	\textbf{Loi} au Qubébec sur l'\textbf{assistance publique} 
+       	\begin{itemize}[leftmargin = *]
+       		\item	L'argent est donné aux gens en besoin;
+      	 	\item	Humliant, basé sur un examen de ressources publiques qui stigmatise ceux en besoin;
+     	  	\item	Église mécontente puisqu'elle veut continuer de contrôler la vie des gens;
+       	\end{itemize},%
+       1930-1940	/	\textbf{Premières étapes d'une politique sociale}
+       	\begin{itemize}[leftmargin = *]
+	       	\item	\textbf{Crise} de 1929---chômage en forte hausse;
+	       	\item	Accroissement des interventions gouvernementales --- le gouvernement est encore timide car il doit avoir le soutien de l'Église;
+       	\end{itemize},%
+       	1927	/	\textbf{Assurance vieillesse} (\textbf{fédéral}); programme très strict,%
+       	1935/	\textbf{Hôpitaux provinciaux} au lieu de municipaux; cependant\, encore trop cher pour la majorité de la population%
+       } { \ifnum\y=1 \node[description](\y){\desc};
+           \else\node[description,below=1ex of \z](\y){\desc};
+           \fi
+           \node[year](y-\y) [left=of \y] {\year};
+           \ifnum\y>1\draw[timeline] (y-\z)-- (y-\y);\fi
+           \global\let\z=\y% for drawing from last node
+       }
+
+\end{tikzpicture}
+\begin{tikzpicture}[yscale = 0.5,%
+           year/.style = {draw	= red,%
+           				 text 	= blue,%
+           				 fill 	= yellow!20,%
+           				 shape 	= ellipse,%
+           				 inner sep = 2pt%
+           				 },%
+           description/.style = {rectangle,%
+           				 		align		= left,%
+           				 		text width	= 55mm,%
+           				 		anchor		= west%
+           				 		},%
+           timeline/.style = {->,%
+           				 	 thick,%
+           				 	 red!50%
+           				 	 }%
+           			]
+    \foreach \year/\desc [count=\y] in {%
+		1940-1960	/\textbf{Prépondérance fédérale}: 
+		\begin{itemize}[leftmargin = *]
+		  \item	Les besoins engendrés par la guerre règle le problème de chômage;
+			\item	Dynamisme du gouvernement fédéral;
+			\item	L'idée de donner à \textit{tous} un certain niveau de vie\, et non juste ceux en besoin\, pousse de l'assistance sociale à la sécurité sociale;
+		\end{itemize},%
+			1940	/	 \textbf{assurance chômage} (fédéral) Premier programme national,%
+			1949	/	 \textbf{allocations familiales} (fédérales),%
+			1952	/	 \textbf{pensions} de \textbf{vieillesse} (fédérales) non liée à la démonstration du manque de ressources,%
+%%%	-----
+%%%	NOTE:
+%%%	+	fédéral ou provincial? (AJVR)
+%%% + fédéral, j'ai vérifié sur le Web (OC)
+%%%	-----
+       	1960-1970	/	\textbf{Modernisation Québécoise},%
+			1960	/	\textbf{Régime universel} d'assurance hospitalisation (encore aujourd'hui),%
+			1966	/	\textbf{Régime} de \textbf{rentes} du Québec
+				\begin{itemize}[leftmargin = *]
+				\item	Premier programme à offrir une \textbf{indexation} des prestations
+				\end{itemize},%
+			1967	/	 \textbf{Allocations familiales} (Québec),%
+			1971	/	 \textbf{Couverture} \textbf{universelle} des \textbf{soins de santé} (Québec) (assurance maladie, encore aujourd'hui)
+				\begin{itemize}[leftmargin = *]
+				\item	précédemment\, il fallait payer pour voir un médecin;
+				\item	25\% de la population sous le seuil de la pauvreté (vs moins que 1\% aujourd'hui);
+				\end{itemize},%
+       	1970-1980	/	Politique globale de \textbf{sécurité sociale},%
+			1978	/	\textbf{Régime} public d'\textbf{assurance automobile} (SAAQ)%
+       } { \ifnum\y=1 \node[description](\y){\desc};
+           \else\node[description,below=1ex of \z](\y){\desc};
+           \fi
+           \node[year](y-\y) [left=of \y] {\year};
+           \ifnum\y>1\draw[timeline] (y-\z)-- (y-\y);\fi
+           \global\let\z=\y% for drawing from last node
+       }
+\end{tikzpicture}
+
+\textbf{Suite : Recul de la protection Sociale}
+\begin{itemize}
+	\item	Poussée inflationniste, récession \textbf{(1981-1983)}, taux de chômage élevé;
+	\item	Hausse des déficits et baisse des revenus fiscaux, crise de l'endettement public;
+	\item	Recul de la protection sociale avec des programmes jugés extravagants;
+	\item	Politiques de restriction budgétaire;
+	\item	Explosion des coûts de l'assurance maladie
+		\begin{itemize}
+		\item[1984: ]	Loi canadienne sur la santé---pour préserver l'universalité des soins de santé;
+		\end{itemize}
+	\item	Coûts d'aucun \og bon sens \fg{} avec un régime qui \textbf{va} devoir changer;
+		\begin{itemize}
+		\item[1997:]	Assurance médicaments (Québec);
+		\item[2006:]	Création d'assurance parentale (Québec);
+		\end{itemize}
+\end{itemize}
+
+%%%%%%
+
+\begin{conceptgen}{Programmes sociaux au Québec / Canada}
+Les 9 fonctions de l'OIT sont couvert par ces programmes:
+\begin{itemize}
+	\item	Assurance sociale;
+	\item	Assurance emploi;
+	\item	Allocations familiales;
+	\item	Indemnisation accidents travail (CEESST);
+	\item	Régime de Rentes du Québec (RRQ);
+	\item	Régime de Pension du Canada (RPC);
+	\item	Pension sécurité vieillesse (fédéral) \textbf{\textit{ET}}\\ supplément de revenu garanti \textbf{\textit{ET}}\\ allocation au conjoint;
+	\item	Régime de santé (maladie \textbf{\textit{ET}} hospitalisation---conjoint Canada-Québec);
+	\item	\textcolor{amaranth}{Assurance Automobile (Québec) (SAAQ) (Couvert dans le cours \textit{Introduction à l'actuariat I})} ;
+	\item	Assurance parentale (Québec);
+	\item	Assurance médicaments (Québec)
+\end{itemize}
+\end{conceptgen}
+
+Catégories de programmes
+
+\begin{tabularx}{\columnwidth}{| >{\columncolor{airforceblue!80}}>{\setlength\hsize{.25cm}} l | >{\columncolor{beaublue}}X  | >{\columncolor{beaublue}}X	|  >{\columncolor{beaublue}}X  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Programme}}	&	\textcolor{white}{\textbf{Assistance sociale}}	&	\textcolor{white}{\textbf{Assurance sociale}}		&	\textcolor{white}{\textbf{Régimes universels}}	\\\specialrule{0.1em}{0em}{0em} 
+Objectif	&	protection minimale (dernier recourt)	&	protection de base			\\\hline
+\end{tabularx}
+
+\textbf{Assistance sociale}
+
+\begin{itemize}[leftmargin = *]
+	\item	\textbf{Caractéristiques}:
+	\item[]	Test de résidence;
+	\item[]	Test de besoin;
+	\item[]	Financement gouvernementale (Pay As You Go);
+	\item	\textbf{Aide Sociale} au Québec:
+	  \item[] Prestations non-imposable;
+	  \item[] 3 programmes pour ceux dans le besoin :
+		  \begin{enumerate}
+		  \item	Programme d'\textbf{assistance sociale} (qui s'appelait le bien-être social);
+		  \item	Prime au travail;
+			  \begin{itemize}
+			  \item	crédit d'impôt qui vise à encourager les individus à faible revenu à rester sur le marché du travail en bonifiant leur offrant un certain soutien financier;
+			  \end{itemize}
+			 \item	\textbf{Supplément de revenu garanti} (\textit{SRG}) et \textbf{allocation au conjoint} (Fédéral);
+		  \end{enumerate}
+\end{itemize}
+	
+%%%	-----
+%%%	XXX. Comment trouves-tu ce format pour les commentaires? Je trouve ça pourrait être idéal!
+%%%	NOTES: (AJVR)
+%%%	+ A.	je n'ai pas compris ce qu'elle voulait dire par pay as you go (AJVR);
+%%%	+	B.  Reste du stock à ajouter mais j'étais tanné un peu;
+%%%		    aide sociale au QC, 3 programmes
+%%%	NOTES: (OC)
+%%% + XXX. J'adore ! C'est parfait ! 
+%%% + A. Je crois que c'est comme ca qu'on appelle les régimes par répartition (l'argent pars au fur et à mesure) (OC)
+%%% + B. Men occupe
+%%%	-----
+
+
+
+\textbf{Assurance sociale}
+\begin{itemize}[leftmargin = *]
+	\item	\textbf{Caractéristiques}:
+	  \item[]	Contributions obligatoires;
+	  \item[]	Les prestations sont en fonction de la participation (reliés aux gains);
+	  \item[]	Supervision gouvernementale;
+	  \item[]	Capitalisation : totale ou partielle;
+		  \begin{itemize}
+		  \item	L'idée de la capitalisation est que c'est de l'argent mis de côté et pas inclus dans les revenus puisqu'elle sera éventuellement dépensée comme revenu.
+		  \end{itemize}
+	\item Similitudes avec l'assurance privée:
+	  \begin{itemize}
+		  \item	Mise en commun des risques
+		  \item Description des prestations
+		  \item Calcul mathématique des prestations
+		  \item Contributions pour financer le coût
+		  \item Pas de test de besoins
+		  \item Contribue à la sécurité économique
+		\end{itemize}
+%%%	-----
+%%%	NOTES (AJVR):
+%%%	+	Développer sur contributions? 
+%%%	+	Donner des exemples de programmes obligatoires;
+%%%	+	Les prestations ça m'est un peu flou live j'ai moyen compris la façon qu'elle l'a dit mais j'en n'ai pas saise une assez bonne compréhension pour bien l'expliquer, toi?
+%%% + va falloir aller lui demander ! Je me fais une liste de questions 
+%%%	-----
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Avantages}}	&	\textcolor{white}{\textbf{Désavantages}}		\\\specialrule{0.1em}{0em}{0em} 
+Protection de base	&	non-universel	\\\hline
+Redistribution de l'argent	&	insuffisant	\\\hline
+\end{tabular}
+\end{center}
+%%%	-----
+%%%	Comment trouves-tu ce format pour les commentaires? Je trouve ça pourrait être idéal!
+%%%	NOTES (AJVR):
+%%%	+	Reste à développer sur ceci, voudrait peut-être la peine de ne pas le mettre en forme de tableau mais je me pratiquais;
+%%%	+	Ajouter similitude avec assurance privée?
+%%% + J'aime ca ! Je vois pas quoi ajouter d'Autres et meme le tableau est clean je trouves ca ok. 
+%%%	-----
+\end{itemize}
+%%%	-----
+%%%	Breakdown de tableaux (AJVR):
+%%%	Les tableaux c'est compliqué en LaTeX, je t'explique divers composantes ici:
+%%%	+	Le premier argument après "begin{tabular}" est l'alignement des colonnes;
+%%%	+	"c" pour center, "l" pour left-aligned, "r" pour right-aligned;
+%%%	+	les barres "|" ajoute une barre verticale entre colonnes;
+%%%	+	on met autant de lettre d'alignement que de colonnes désirées;
+%%%	+	"tabular" est l'environnement pour créer les tables;
+%%%	+	"airforceblue" est une des couleurs que j'ai défini dans le préambule, airforceblue!80 implique que j'y donne une opacité de 80%;
+%%%	+	\columncolor va ensuite appliquer cette couleur à la _colonne_ en entier;
+%%%	+	il est entouré de >{} pour y dire d'appliquer cette couleur à la position d'alignement "c"
+%%%	+	en revanche, \rowcolor applique une couleur à une _rangée_ en entière;
+%%%	+	\hline crée une _ligne_ _h_orizontale;
+%%%	+	On sépare les items de la table avec "&" et fini la ligne avec "\\";
+%%%	+	\shortstack crée comme une "boite" de texte ce qui fait que je peux créer plusieurs lignes;
+%%%	+	Ceci sert uniquement à avoir plusieurs lignes de texte dans une même cellule;
+%%%	+	\shortstack[l] est pour y indiquer d'aligner le texte à la gauche.
+%%%	-----
+\begin{center}
+	\textbf{Comparaison d'assurance sociale et privée}
+\begin{tabular}{| >{\columncolor{airforceblue!80}}l | >{\columncolor{beaublue}}l  | >{\columncolor{beaublue}}l |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Assurance}}		&	\textcolor{white}{\textbf{Sociale}}		&	\textcolor{white}{\textbf{Privée}}		\\\specialrule{0.1em}{0em}{0em} 
+Participation	&	obligatoire	&	facultative		\\\hline
+Équité			&	sociale		&	individuelle		\\\hline
+Base				&	légale		&	contractuelle	\\\hline
+Contexte			&	monopole		&	compétition		\\\hline
+\shortstack[l]{Facilité de \\ prévision des\\ coûts}	&	difficile 	&	\shortstack[l]{facile (tout\\ le monde\\ est couvert)}		\\\hline
+Capitalisation	&	pas toujours	&	pleinement		\\\hline
+\shortstack[l]{Sélection\\ des risques}	&	\shortstack[l]{aucune (peut pas \\ décider d'exclure\\ une personne)}	&	\\\hline
+Indexation	&	au coût de la vie	&	rarement		\\\hline
+But		&	sécurité sociale	&	\shortstack{couvrir ceux\\ qui le désirent}	\\\hline
+\end{tabular}
+\end{center}
+Donc il y a des similitudes mais leur objectif diffère de façon significative.
+
+
+
+
+
+\textbf{Régimes universels}
+\begin{itemize}[leftmargin = *]
+	\item	\textbf{Caractéristiques}:
+	  \item[]	Obligatoire et universel;
+	  \item[]	Pas de tests de besoins;
+	  \item[]	Éligibilité basée sur la résidence (Citoyenneté);
+	  \item[]	Prestations fixes définies par la loi;
+	  \item[]	Pas de Capitalisation (financés par les recette du gouvernement);
+%%%	-----
+%%%	NOTES: (AJVR)
+%%%	+	J'étais tanné et je n'ai vraiment pas mis beaucoup de détails rendu ici;
+%%%	+	Ajouter
+%%%	-----
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Avantages}}	&	\textcolor{white}{\textbf{Désavantages}}		\\\specialrule{0.1em}{0em}{0em} 
+Simple	&	Pas relié aux besoins	\\\hline
+Combat la pauvreté	&	Coût caché	\\\hline
+	&	Faibles prestations	\\\hline
+\end{tabular}
+\end{center}
+\end{itemize}
+
+Classement des régimes existants
+
+%%%	-----
+%%%	NOTES (AJVR):
+%%%	+	Ce tableau est à retravailler dans un autre format je crois afin d'ajouter plus de détails d'Isabelle si t'en as, sinon c'est chill je vais faire du reformatting;
+%%%	-----
+\begin{tabular}{| >{\columncolor{beaublue}}m{3cm} | >{\columncolor{beaublue}}m{3cm} | >{\columncolor{beaublue}}m{3cm} |}
+\hline\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Assurance emploi}}						&	\textcolor{white}{\textbf{Assistance sociale}}	&	\textcolor{white}{\textbf{Régimes universels}}	\\\hline
+Assurance parentale					&	Assistance sociale						&	Allocations familiales	\\
+\hline
+Régime de rentes du Québec (R.R.Q.)	&	Prime au travail				&	soins de santé	\\
+\hline
+Santé Sécurité	au Travail (SST)		&	Supplément de revenu garanti	&	Sécurité de la vieillesse	\\
+\hline
+Assurance automobile					&	Allocation au conjoint					&	\\
+\hline
+Assurance médicament					&											&	\\\hline
+\end{tabular}
+
+\textbf{Régimes sociaux sous tension}
+\begin{itemize}[leftmargin = *]
+	\item	Vieillissement de la population;
+	\item Changements démographiques (Les \textit{Boomers} sont beaucoup !);
+	\item Complexité administrative
+	\item Évolution de la société depuis leur mise en place;
+	  \begin{itemize}
+	  \item Par exemple, la \textit{rente du Survivant}. Le salaire ne vient plus seulement du mari, à revoir ? 
+	  \end{itemize}
+	\item Répartition de la richesse
+	\item Abus
+	\item La mondialisation mène à la compétition
+	  \begin{itemize}
+	  \item Maintenant qu'on sait ce que les autres pays font, on sait ce qui se fait mieux, on veut compétitionner
+	  \end{itemize}
+\end{itemize}
+Nos régimes craquent d'un peu partout. On mets en vigueur des changements et des lois pour cacher ces fissures, mais ça va sans doute exploser un jour.
+
+\textbf{Les États-Unis}
+
+\begin{itemize}[leftmargin = *]
+	\item	Les droits sociaux ne sont pas dans la constitution;
+	\item Vision différente:
+	  \begin{itemize}
+	  \item Selon eux, la meilleure assistance sociale reste le plein emploi : ils cherchent à maintenir la croissance économique et à faire baissser le chômage.
+	  \end{itemize}
+	\item Protection des démunis : axée sur l'aide sociale plutôt que la sécurité;
+	  \begin{itemize}
+	  \item On s'occupe des pauvres après (mesure humiliante : \textit{food ticket} pour l'épicerie)
+	\item 6 volets à la sécurité sociale:
+	  \begin{enumerate}
+	    \item Vieillesse et décès (survivants) (fédérial)
+	    \item Invalidité (fédéral)
+	    \item Médicare (Medicaid) (fédéral)
+	    \item Chômages (États)
+	    \item Accidents de travail et maladies professionnelles (États)
+	    \item Assurance maladie (Obama Care)
+	  \end{enumerate}
+	\item Obama Care (détails) : 
+	  \begin{itemize}
+	    \item Obligation aux individus de souscrire si non-couvert par leur employeur
+	    \item Interdiction de refuser de couvrir un individu en raison d'antécédents médicaux (du côté des assureurs)
+	    \item le gouvernement accorde de l'aide pour payer la prime si le revenu est entre 1 à 4 fois le seuil de la pauvreté
+	    \item \textbf{supprimé le 1er Janvier 2019 }
+	    \item Certains états ont maintenu l'obligation de détenir de l'assurance maladie
+	    \item[] Exemple : \textit{Massachussett}, \textit{New Jersey} et \textit{Columbia}
+ \end{itemize}
+ Les raisons d'un tel régime était qu'au \textit{États-Unis}, 64\% des faillites étaient liées aux frais de santé
+\newpage
+
+\section{Le système de retraite au Canada}
+
+\begin{definitionNOHFILL}[Vie active]
+Période de vie où 
+\begin{itemize}[leftmargin = *]
+	\item	l'on est \textbf{actif} sur le \textbf{marché du travail};
+	\item	ses \textbf{revenus} proviennent principalement de revenus \textbf{d'emploi}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[La retraite]
+Période de la vie où l'on est, ou considérée d'être, \textbf{incapable de travailler}. Il s'ensuit que le revenus ne provient pas d'emploi.
+
+\begin{conceptgen}{\textbf{Types de revenus} à la retraite}
+\begin{itemize}[leftmargin = *]
+	\item	Rentes de l'état: gouvernement paye des rentes (régime public);
+	\item	Rentes de l'employeur: certains employeurs payent des rentes (régime privé);
+	\item	Épargne personnelle (patrimoine): la proportion du revenu dépend de l'épargne de l'individu;
+	\item	Aide sociale pour personnes âgées.
+\end{itemize}
+\end{conceptgen} 
+
+\begin{conceptgen}{Objectifs de la protection}
+\begin{itemize}[leftmargin = *]
+	\item	Compenser la \textbf{perte de revenu} associée à la retraite;
+	\item	Contrer la pauvreté des personnes âgées;
+	\item	Maintenir en emploi ou favoriser le retrait des travailleurs âgés.
+\end{itemize}
+\end{conceptgen} 
+\end{definitionNOHFILL}
+
+%%%
+
+\begin{definitionNOHFILL}[Âge normal de retraite (ANR)]
+Âge de début de retraite utilisée pour le calcul des prestations payables à la retraite.
+
+\begin{rappel_enhanced}[Historique]
+\begin{itemize}[leftmargin = *]
+	\item	L'ANR est de 65 ans depuis 1970 ($\pm$ Harper voulant l'augmenter entre 2023 et 2029);
+	\item	Dans le passé, l'ANR était de 65 ans pour les hommes et 60 ans pour les femmes---cette pratique maintenant considérée discriminatoire est interdite;
+	\item	Les régimes publics l'utilisent et c'est l'âge maximal permis pour les régimes privés;
+	\item	Ce n'est pas un âge obligatoire.
+\end{itemize}
+\end{rappel_enhanced}
+
+\begin{conceptgen}{Retraite anticipée}
+\begin{itemize}[leftmargin = *]
+	\item	Prendre sa retraite plus tôt implique une \textbf{réduction actuarielle};
+	\item	La loi peut prévoir qu'une rente sans réduction peut être versée à \textit{certaines conditions};
+		\begin{itemize}[leftmargin = *]
+		\item	Pour exemple, selon le \textbf{nombre d'années de service} comme l'armée avec une pension complète après 25 ans.
+		\end{itemize}
+\end{itemize}
+\end{conceptgen} 
+\end{definitionNOHFILL}
+
+\begin{rappel_enhanced}[Historique de la retraite]
+Historiquement, la retraite était rare et courte, mais avec l'augmentation de l'espérance de vie, il y a eu un changement de mentalité. 
+
+Ce tableau illustre assez bien l'historique de la retraite:
+
+\centerline{\includegraphics[scale=0.32]{src/ACT-1005/retraite-age-hist.png}}
+
+\begin{itemize}[leftmargin = *]
+		\item	La vie active a donc diminué avec la \textbf{diminution de l'ANR} et la \textbf{retraite anticipé};
+		\item	La durée de la retraite est passée de 10 à 21 ans menant à de grandes \textbf{pressions financières} sur le système de retraite;
+		\item	De plus, le coût de la vie à augmentée et cette \textbf{inflation} \textit{multiplie les pressions} sur la \textbf{période de paiement longue} (20 ans et plus).
+\end{itemize}
+\end{rappel_enhanced}
+
+%%%
+
+\begin{rappel_enhanced}[Baby Boom]
+\begin{itemize}[leftmargin = *]
+	\item	Génération d'enfants nés après la fin de la Deuxième Guerre mondiale (taux de natalité élevé);
+	\item[]	Nés dans les alentours \textit{approximatifs} de 1946 à 1965.
+	\item	Le nombre moyen d'enfants par femme était de 3.7 (4.1 dans les années 50);
+	\item[]	En contraste, c'est de 1.6 enfants par femme aujourd'hui.
+	\item	Le départ des baby-boomers à la retraite a un impact socio-économique important.
+\end{itemize}
+\end{rappel_enhanced}
+
+\begin{rappel_enhanced}[Baby Bust (génération X)]
+\begin{itemize}[leftmargin = *]
+	\item	Enfants nés dans les alentours \textit{approximatifs} de 1966 à 1976.
+	\item	Génération coincée entre les baby-boomers et la génération Y;
+	\item	Difficulté à trouver des emplois en raison du grand nombre de baby-boomers.
+\end{itemize}
+\end{rappel_enhanced}
+
+\begin{conceptgen}{Proportion de la population active}
+Les graphiques de pyramides d'âges permettent la visualisation de l'augmentation importante de la population âgée. L'\textbf{insuffisance} de la \textbf{population active} pour \textbf{soutenir} le \textbf{régime de retraite} actuel s'ensuit.
+
+En \textbf{contraste} aux \textbf{États-Unis} (1.9\%) et le \textbf{reste du Canada} (5.1\%), la \textbf{population active du Québec} entre 20 et 64 ans va \textbf{diminuer} (-3.6\%) de 2015 à 2030. 
+\end{conceptgen} 
+
+%%%
+
+\begin{conceptgen}{Approches aux régimes de retraite}
+\textbf{Beveridge}
+\begin{itemize}[leftmargin = *]
+	\item	Approche d'une rente \textbf{universelle};
+	\item	Verse à tous les individus une rente;
+	\item	Prestations aux démunis.
+\end{itemize}
+\tcbline
+\textbf{Bismark}
+\begin{itemize}[leftmargin = *]
+	\item	Approche d'une rente pour les \textbf{travailleurs}.
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Adhésion à un régime de revenu à la retraite}
+Les régimes peuvent être \textbf{obligatoires} ou \textbf{volontaires}.
+
+\textbf{Obligatoire}
+\begin{itemize}[leftmargin = *]
+	\item	Tous les individus doivent cotiser pour leurs retraites;
+	\item	Garanti que tout le monde s'établit une retraite.
+\end{itemize}
+
+\textbf{Volontaire}
+\begin{itemize}[leftmargin = *]
+	\item	Les gens ont tendance à sous-estimer leurs besoins futurs et ne pas épargner suffisamment d'argent;
+	\item	La présence d'un système obligatoire n'empêche pas celle d'une épargne supplémentaire par un régime facultatif;
+\end{itemize}
+
+\begin{center}
+	\textbf{Exemples}
+\end{center}
+\textbf{État}
+\begin{itemize}[leftmargin = *]
+	\item	Pension de la sécurité de vieillesse (PSV) \textcolor{brickred}{(obligatoire)};
+	\item	Régie des rentes du Québec (RRQ) \textcolor{brickred}{(obligatoire)}.
+\end{itemize}
+
+\textbf{Privé}
+\begin{itemize}[leftmargin = *]
+	\item	Régimes complémentaires de retraite (RCR) \textcolor{brickred}{(habituellement obligatoire s'il est présent)};
+	\item	Régime volontaire d'épargne-retraite (RVER) \textcolor{blue}{(facultatif)};
+	\item	Régime enregistré d'épargne-retraite (REER) \textit{collectif} \textcolor{blue}{(facultatif)}.
+\end{itemize}
+		
+\textbf{Individuel} \textcolor{blue}{(facultatifs)}
+\begin{itemize}[leftmargin = *]
+	\item	Compte d'épargne libre d'impôt (CELI), REER, épargne, biens (maisons, \dots).
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Financement}
+
+\begin{center}
+\textbf{Capitalisation} (\textbf{funded})
+\end{center}
+
+\textbf{Procédure}:
+\begin{enumerate}[leftmargin = *]
+	\item	Participants actifs versent leurs cotisations;
+	\item	Le régime place les sommes au nom de chaque participant;
+	\item	Au moment de la retraite, ces mêmes montants lui sont restitués sous forme de rente.
+\end{enumerate}
+
+\textbf{Détails}
+\begin{itemize}[leftmargin = *]
+	\item	Il est possible d'avoir une capitalisation totale ou partielle;
+	\item	Les sommes sont considérables et servent de financement pour les gouvernements et industries;
+	\item	Fonctionnement se rapproche à celui d'une compagnie d'assurance.
+\end{itemize}
+
+\textbf{Risques}
+\begin{itemize}[leftmargin = *]
+	\item	\textbf{Fluctuations} de l'économie;
+	\item	\textbf{Faillites} d'entreprises;
+	\item	\textbf{Corruption} (malversations).
+\end{itemize}
+
+\begin{center}
+\textbf{Répartition} (\textit{Pay-as-you-go (PAYG))}
+\end{center}
+
+\textbf{Procédure}:
+\begin{enumerate}[leftmargin = *]
+	\item	Participants actifs versent leurs cotisations;
+	\item	Le régime utilise les sommes pour payer les pensions des retraités actuels.
+\end{enumerate}
+
+\textbf{Détails}
+\begin{itemize}[leftmargin = *]
+	\item	Repose sur une forte solidarité entre générations;
+	\item	Sa viabilité dépend du rapport entre le nombre de cotisants et le nombre de personnes retraitées;
+	\item	Aucun actif mis de côté;
+	\item	Dois presque forcément être un régime obligatoire et public.
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Paliers du système équilibré canadien de la retraite}
+\centerline{\includegraphics[scale=0.25]{src/ACT-1005/retraite-paliers.png}}
+
+\textbf{Palier I et II}
+\begin{enumerate}[leftmargin = *]
+	\item	Composante \textbf{publique};
+	\item	But d'\textbf{éliminer} au maximum la \textbf{pauvreté} des personnes âgées;
+	\item	\textbf{Répartit les revenus} des gens tout au long de leur vie pour assurer un certain niveau de remplacement de revenu.
+\end{enumerate}
+
+\textbf{Palier III}
+\begin{enumerate}[leftmargin = *]
+	\item	Composante \textbf{privée}.
+\end{enumerate}
+\end{conceptgen}
+
+\begin{conceptgen}{Remplacement de revenu à la retraite}
+\paragraph{Principe de base}Règle générale qu'on doit compter sur un remplacement de 70\% de son revenu avant la retraite afin de maintenir le \textbf{même} niveau de vie. Cela ne tient pas compte cependant du \textbf{niveau de revenu} ni du \textbf{type de retraite} visé.
+\\
+
+Raisons pourquoi pas 100\%:
+\begin{itemize}[leftmargin = *]
+	\item	Dépenses transport moindre;
+	\item	Fin de dépenses hypothécaires;
+	\item	Départ d'enfants (études, nourriture, \dots);
+	\item	Dépenses générales moindres (rabais, \dots);
+	\item	Fins des charges sociales et de l'épargne retraite;
+	\item	Plus de parents à charge.
+\end{itemize}
+\tcbline
+\textbf{Provenance} de revenu à la retraite
+\begin{itemize}[leftmargin = *]
+	\item	L'objectif des régimes gouvernementaux est de remplacer $Y\%$ pour les personnes gagnant un certain salaire;
+	\item	Ce salaire, appelé le \textbf{maximum des gains admissibles} (MGA), est déterminé annuellement par la RRQ;
+	\item	L'importance de chaque palier va donc varier entre individus selon leur revenu.
+\end{itemize}
+\end{conceptgen}
+
+
+%\section{Loi sur la sécurité de la vieillesse}
+
+
 
 \end{multicols*}
-%% -----------------------------
-%% Fin du document
-%% -----------------------------
 \end{document}
+
