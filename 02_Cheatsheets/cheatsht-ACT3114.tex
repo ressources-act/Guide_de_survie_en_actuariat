@@ -640,7 +640,16 @@ Un exemple d'application de la similarité du Cosinus est l'analyse de texte. On
 \end{conceptgen}
 
 \subsection*{$K$-means clustering}
-
+\begin{distributions}[Notation]
+\begin{itemize}[leftmargin = *]
+	\item	Soit les observations $\matr{x_{1}, \dots, x_{n}}$ formées de variables \textbf{quantitatives};
+	\item	Soit les sous-ensembles $C_{1}, \dots, C_{k}$;
+	\item	Chaque observation appartient seulement à un groupe et donc les ensembles sont \textbf{mutuellement exclusifs}
+		\begin{align*}
+		C_{j} \cap C_{j'} = \emptyset, \, \forall j \neq j', j, \, j' \in \{1, \dots, k\}
+		\end{align*}
+\end{itemize}
+\end{distributions}
 
 \subsection*{Hierarchical clustering}
 
