@@ -3,12 +3,14 @@
 \input{cheatsht-preamble-general.tex}
 \usepackage{array, multirow}
 \usepackage{booktabs}
+\usepackage{eurosym}
 %% -----------------------------
 %% Préambule
 %% -----------------------------
 \def\BackgroundColor{white}
 \def\SectionColor{teal!90!black}
 \def\SubSectionColor{teal!45!black}
+\def\SubSubSectionColor{armygreen}
 \def\cours{GRF-II}
 \def\sigle{ACT-2011}
 \def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin, Alec James van Rassel}
@@ -27,6 +29,7 @@
 Titre financier dont sa valeur est déterminée par le prix de quelque chose d'autre, soit l'\textbf{actif sous-jacent} du produit dérivé.
 
 Tout comme un couteau n'est pas dangereux de soi, les produits dérivés ne le sont pas non plus. Cependant, on peut heurter quelqu'un avec un couteau tout comme on peu couper des patates. Les produits dérivés sont en fait des \textbf{outils de gestion du risque} qui deviennent utile lorsque le risque du sous-jacent augmente.
+\end{definitionNOHFILL}
 
 \begin{rappel_enhanced}[Origine]
 Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a causé de l'hyperinflation dans plusieurs pays) pour plutôt laisser le libre-marché fixer la valeur des devise de chaque pays.
@@ -35,7 +38,7 @@ Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a cau
 \begin{formula}{Exemples de produits dérivés}
 \begin{itemize}[leftmargin = *]
 	\item	Contrat à terme standardisé (\textbf{futures});
-	\item	Contrat à terme de gré-à-gré (\textbf{forwards});
+	\item	Contrat à terme de gré à gré (\textbf{forwards});
 	\item[]	\textit{Gré}: acceptation, ou consentement;
 	\item	Option d'achat (\textbf{call});
 	\item	Option de vente (\textbf{put});
@@ -75,11 +78,10 @@ Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a cau
 	\item[Economic observers:]	Observateurs du marché analysant et régulant les activités des market-makers et end-users;
 \end{description}
 \end{conceptgen}
-\end{definitionNOHFILL}
 
 \subsection*{Transactions}
 
-\begin{definitionNOHFILL}[Transaction gré-à-gré] 
+\begin{definitionNOHFILL}[Transaction gré à gré] 
 Transaction sans intermédiaire ou à l'extérieur de la bourse. 
 
 \begin{conceptgen}{Raisons pour ce type de transaction}
@@ -120,6 +122,7 @@ Lorsqu'on croit que le prix d'une action va baisser, on peut faire un profit qua
 \end{enumerate}	
 \end{multicols*}
 \end{algo2}
+\end{definitionNOHFILL}
 
 \begin{formula}{Exemple de vente à découvert}
 \begin{itemize}
@@ -182,7 +185,6 @@ prêteur: Détenteur des actions dont l'investisseur a emprunté;
 \end{description}
 \end{conceptgen}
 
-\end{definitionNOHFILL}
 
 \begin{conceptgen}{Mesures de taille et d'activité d'un marché}
 \begin{description}
@@ -242,6 +244,8 @@ En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
 %	\item[heating degree-day futures contracts:] Pour la rigueur de l'été (une chaleur anormalement élevée);
 %\end{description}
 %%%	-----
+
+\newpage
 
 \section{Introduction aux Forwards et aux options}
 
@@ -717,6 +721,8 @@ Il s'ensuit donc que la ligne de profit pour la position longue est moins élev�
 %\[Forward = Call(K,T) - Put(K,T) \]
 %Ces deux égalités définissent la \emph{Put-Call Parity} vu un peu plus loin.
 %%%	------------------------------
+
+\newpage
 
 \section{Stratégie de couverture}
 
@@ -1616,9 +1622,12 @@ Pour chaque option avec un prix d'exercice de $K_{2}$ achetée, on achète $\lam
 % J'ai rassemblé une partie de la matière du chap.5 dans le chapitre 9, étant donné qu'on répétait de l'information.
 \setcounter{section}{4}
 
+\newpage
+
 \section{Forwards et Futures}
 
-\begin{conceptgen}{4 façons d'acheter une action}
+\subsection*{4 façons d'acheter une action}
+
 \begin{tabular}{|>{\columncolor{airforceblue}}c	|	>{\columncolor{beaublue}}c	|	>{\columncolor{beaublue}}c	|	c	|}
 \hline
 \rowcolor{blue(matcha)}
@@ -1628,12 +1637,12 @@ Pour chaque option avec un prix d'exercice de $K_{2}$ achetée, on achète $\lam
 	\textcolor{white}{\textbf{Prepaid forward contract}}	&	0	&	$T$	&	$F_{0, T}^{P}$	\\\hline
 	\textcolor{white}{\textbf{Fully leveraged purchase}}	&	$T$	&	0	&	$S_{0}\textrm{e}^{rT}$	\\\hline
 \end{tabular}
+
 \begin{description}
 	\item[Achat pleinement par emprunt \og \textit{Fully leveraged purchase} \fg{}:]	Emprunte de l'argent pour acheter l'actif maintenant ($t = 0$) et rembourse l'argent au temps $T$;
 	\item[Contrat à terme de gré à gré prépayé \og \textit{Prepaid forward contract} \fg{}:]	Paye au début ($t = 0$) au prix $P$ au lieu de plus tard, mais on reçoit quand même l'actif plus tard.
 \end{description}
 Ce faisant, on s'attend que $F_{0, T} = F_{0, T}^{P} \textrm{e}^{rT}$.
-\end{conceptgen}
 
 \begin{distributions}[Notation de prix]
 \begin{itemize}
@@ -1648,21 +1657,19 @@ Stipule que deux portefeuilles avec les mêmes profits doivent avoir le même pr
 Nous tarifions des contrats à terme de gré à gré \textit{prépayé} et utilisons ces prix pour dériver le prix des contrats à terme de gré à gré. 
 \end{definitionNOHFILL}
 
-\begin{conceptgen}{Tarification d'un \textbf{contrat à terme de gré à gré prépayé}}
-Sans dividendes, on obtient un prix de $S_{0}$; soit, le prix de l'actif sous-jacent aujourd'hui. Dans le cadre d'une action cependant, il peut y avoir des dividendes. 
+\subsection*{Tarification d'un \textbf{contrat à terme de gré à gré prépayé}}
+
+Sans dividendes, le prix du contrat à terme de gré à gré prépayé est le prix de l'actif sous-jacent aujourd'hui---$S_{0}$. Dans le cadre d'une action cependant, il peut y avoir des \textbf{dividendes}. 
 
 Les dividendes sont payables au propriétaire de l'action. Puisque l'acheteur du contrat (position longue) va seulement posséder le contrat au temps $T$, il ne recevra alors pas de dividendes. Cela baisse donc la valeur de l'action et le prix du contrat devrai tenir cela en compte.
 
-\tcbline
 Dans le cas de \textbf{dividendes discrets}, il suffit de soustraire la valeur actualisée des dividendes: $F_{0, T}^{P} = S_{0} - PV(div)$.
 
-\tcbline
 Un modèle de \textbf{dividendes payés continument} suppose un taux de dividendes continûment composé $\delta$. Alors, une part de l'action au temps initial devient $e_{\delta T}$ parts au temps $T$. Cependant, nous voulons seulement une part au temps $T$ et donc nous devons acheter $e_{-\delta T}$ parts au début. Le prix est donc $F_{0, T}^{P} = S_{0} e^{-\delta T}$.
 
-\tcbline
 \begin{center}
-En bref:\\
-
+	En bref:
+\end{center}
 \begin{tabular}{| >{\columncolor{beaublue}}c |	 >{\columncolor{beaublue}}c |	 >{\columncolor{beaublue}}c |}
 \hline\rowcolor{airforceblue} 
 	\textcolor{white}{\textbf{Dividendes}}	&	\textcolor{white}{\textbf{Prix à terme prépayé}}	&	\textcolor{white}{\textbf{Prix à terme}}	\\\specialrule{0.1em}{0em}{0.0em} 
@@ -1670,8 +1677,6 @@ Sans dividendes				&	$S_{0}$					&	$S_{0} e^{r T}$	\\\hline
 Dividendes payés continument	&	$S_{0}e^{-\delta T}$		&	$S_{0} e^{(r - \delta) T}$	\\\hline
 Dividendes discrets			&	$S_{0} - PV(div.)$	&	$S_{0} e^{r T} - FV(div.)$	\\\hline
 \end{tabular}
-\end{center}
-\end{conceptgen}
 
 \begin{definitionNOHFILL}[\textbf{Prime à terme} \og \textit{forward premium} \fg{} ]
 Défini comme le ratio du prix à terme au prix courant de l'actif sous-jacent:
@@ -1713,15 +1718,6 @@ En bref, on \textbf{achète l'actif} et \textbf{emprunte de l'argent}:
 	
 \end{definitionNOHFILL}
 
-
-\paragraph{Forward synthétique avec dividendes}
-On suppose le réinvestissement des dividendes.
-\begin{align*}
-\text{Forward}_{\text{avec div.}} & = e^{-\delta T} Stock - (e^{-\delta T} \cdot S_0) Bond \\
-Premium		& =  e^{-\delta T} S_0 - e^{-\delta T} S_0 = 0 \\
-Payoff			& = S_T - S_0 e^{(r-\delta) T}
-\end{align*}
-
 \begin{center}
 	Est-ce de l'arbitrage?
 	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
@@ -1731,9 +1727,13 @@ Payoff			& = S_T - S_0 e^{(r-\delta) T}
 		Est-ce que tous les flux monétaires nets futurs sont $\ge 0$?	&	X	&		\\\hline
 		Est-ce qu'au moins un des flux monétaires nets futurs est $> 0$?	&	X	&		\\\hline
 	\end{tabular}
-	
-	Si la réponse à tous les questions est oui, alors il y a une opportunité d'arbitrage.
 \end{center}
+Si la réponse à tous les questions est oui, alors il y a une opportunité d'arbitrage. Pour identifier les flux monétaires on utilise l'approche à deux étapes:
+\begin{enumerate}
+	\item	Écrire, sous forme d'inégalité, ce qui est observé;
+	\item	Déplacer tout ce qui est sur le coté inférieur ($<$) au coté supérieur ou égale ($\ge$);
+	\item[]	Nous avons les signes appropriés pour les transactions.
+\end{enumerate}
 
 \begin{definitionNOHFILL}[\textbf{Position synthétique}]
 Une position synthétique réplique la valeur à l'échéance d'une autre position.
@@ -1746,6 +1746,56 @@ L'investisseur reçoit de l'argent d'un emprunt qu'il utilise pour acheter l'act
 L'inverse arrive lorsque le marché offre un contrat à terme de gré à gré sous-évalué.
 \end{definitionNOHFILL}
 
+\subsection*{Contrats de change}
+\begin{distributions}[Notation de devises]
+\begin{multicols*}{2}
+\begin{itemize}
+	\item[DD] \textbf{Devise domestique} (ou de départ);
+	\item[DÉ] \textbf{Devise étrangère};
+	\item[$i_{D}$]	taux d'intérêt dans la DD;
+	\item[$i_{\text{É}}$]	taux d'intérêt dans la DÉ;
+\end{itemize}
+\end{multicols*}
+\setlength{\mathindent}{-1cm}
+\begin{multicols*}{2}
+\begin{itemize}
+	\item[$F_{0, T}^{P}$:]	est le prix d'un contrat de change à terme prépayé en DD;
+	\begin{align*}
+	F_{0, T}^{P} &= x_{0}(1 + i_{\text{É}})^{-T}\text{DD}
+	\end{align*}		
+	\item[$F_{0, T}$:]	est le prix d'un contrat de change à terme en DD;
+	\begin{align*}
+	F_{0, T} &= x_{0}(1 + i_{\text{É}})^{-T}(1 + i_{\text{D}})^{T}\text{DD}	
+	\end{align*}		
+\end{itemize}
+\end{multicols*}
+\setlength{\mathindent}{1cm}
+\begin{itemize}
+	\item[$x_{t}$]	taux de change au temps $t$ en DD/DÉ
+		\begin{itemize}[leftmargin = *]
+		\item	Par exemple, $x_{0}\frac{2\$}{\text{1\euro}} = x_{0}\left(2 \frac{\$}{\text{\euro}}\right) \equiv x_{0}\frac{2\text{DD}}{1\text{DÉ}}$
+		\end{itemize}
+\end{itemize}
+
+La logique des formules des contrats à terme de gré à gré est:
+\begin{align*}
+	F_{0, T}^{P}(1 \text{DÉ})
+	&=	\left(1\text{DÉ} \cdot \textrm{e}^{-i_{\text{DÉ}}T}\right) \cdot \left( x_{0}\frac{\text{DD}}{\text{DÉ}} \right)	
+	=	x_{0} \cdot \textrm{e}^{-i_{\text{DÉ}}T}\text{DD}
+\end{align*}
+\end{distributions}
+
+Un actif peut avoir un prix défini dans n'importe quelle devise; on dit qu'il est \og \textit{denominated} \fg{} dans cette devise.
+
+\begin{definitionNOHFILL}[Contrat de change synthétique]
+\begin{enumerate}
+	\item	Emprunt de $x_0(1 + i_{\text{É}})^{-T}\text{DD}$ au taux $i_D$;
+	\item 	Convertir les DD en DÉ;
+	\item	Dépôt de $(1 + i_{É})^{-T}\text{DÉ}$ (au taux $i_{É}$) de 0 à $T$.
+\end{enumerate}
+La valeur à l'échéance sera $x_t - x_0 \left(\frac{1 + i_D}{1 + i_{\text{É}}}\right)^{T}$.
+\end{definitionNOHFILL}
+
 \subsection*{Calcul avec prime de risque et nuance}
 \begin{itemize}
 \item Certains sous-jacent ont une composante de risque non-négligeable. Or, on ne peut pas dire que $F_{0,T} = \esp{S_T}$. Toutefois,
@@ -1754,35 +1804,10 @@ L'inverse arrive lorsque le marché offre un contrat à terme de gré à gré so
 où $\alpha$ est la prime de risque 	qu'on enlève pour obtenir le prix du Forward, tel que
 \[\alpha = \underbrace{r}_{\text{Taux sans risque}} + \underbrace{(\alpha - r)}_{\text{Prime de risque}}\]
 
-\subsection*{Forward de devise}
-\paragraph{Put-Call parity avec les devises}
-\begin{description}
-\item[DD] Devise locale
-\item[DÉ] Device étrangère
-\item[$x_0$] Taux de change $\frac{DD}{DÉ}$ actuel ($t=0$)
-\item[$r_D$] Taux sans risque \underline{local}
-\item[$r_{É}$] Taux sans risque étranger
-\end{description}
-Le prix Forward prépayé pour une unité de DÉ à $t =0$ (payé en DD) est
-\[F_{0,T}^{P}  = x_0 \left(1 + r_{É} \right)^{-T} \]
-Et le prix Forward (à $t = T$) pour une unité de DÉ est
-\begin{align*}
-F_{0,T} & = F_{0,T}^{P} \left(1+r_D \right)^{T} \\
-& = x_0 \left(  \frac{1+r_D}{1+r_{É}}   \right)^{T}\\
-&  = x_0 e^{(r_D - r_{É})T}
-\end{align*}
-
-\paragraph{Forward synthétique de devise}
-\begin{itemize}
-\item Emprunt de $x_0(1+r_{É})^{-T}$ DD au taux $r_D$
-\item Convertir les DD en DÉ
-\item Dépôt de $(1+r_{É})^{-T}$ DÉ (au taux $r_{É}$) de 0 à $T$.
-\end{itemize}
-Le payoff sera $x_t - x_0 \left(  \frac{1+r_D}{1+r_{É}}   \right)^{T}$.
+\subsection*{Contrat à terme standardisé}
 
 \begin{definitionNOHFILL}[Contrat à terme standardisé \og \textit{future contract} \fg{}]
-
-Différences aux contrats à terme de gré-à-gré:
+Différences aux contrats à terme de gré à gré:
 \begin{enumerate}[leftmargin = *]
 	\item	\textbf{Personnalisable};
 		\begin{itemize}[leftmargin = *]
@@ -1822,8 +1847,9 @@ Puisque le règlement des contrats à terme standardisé est différent des cont
 	\item[Marge de maintien]Les pertes et profits sont soustraits du compte et donc un niveau minimal est requis---la marge de maintien (\og \textit{maintenance margin} \fg{});
 	\item[Appel de marge]	Si le montant dans le compte descend en dessous de la marge de maintien, nous recevons un appel de marge (\og \textit{margin call} \fg{}) qu'il faut y ajouter des fonds pour ramener la balance à la \textbf{marge initiale}.
 \end{description}
+\end{definitionNOHFILL}
 
-Example:
+\begin{algo2}[Exemple]
 On suppose l'achat d'une action se transigeant au prix de 950\$ aujourd'hui ayant 250 parts sous-jacent. La force d'intérêt est de 6\%, la marge initiale égale à 80\% de la valeur notionnelle et la marge de maintien 10\% de la marge initiale.
 
 Ce faisant, la \colorbox{bleudefrance}{\textbf{balance de la marge}} \textit{dans une semaine} sera:
@@ -1844,88 +1870,361 @@ Ce faisant, la \colorbox{bleudefrance}{\textbf{balance de la marge}} \textit{dan
 		}}
 \end{align*}
 \setlength{\mathindent}{1cm}
+\end{algo2}
 
-\end{definitionNOHFILL}
+\newpage
 
 % --- Chapitre 9 ---
 \setcounter{section}{8}
-\section{Put-Call Parity}
+\section{Parité et autres liens entre les options}
+
+\begin{rappel}{Équation de parité des options vente-achat}
 \begin{align*}
-Call - Put = Stock - Bond
+	C_{\text{Eur}}(K, T) - P_{\text{Eur}}(K, T)
+	&=	F_{0, T}^{P}(S) - K\textrm{e}^{-rT}\\
 \end{align*}
 
-\subsection*{Put-Call Parity avec devises}
+En anglais c'est le \og \textit{\textbf{Put-Call Parity Equation}} \fg{}.
+\end{rappel}
+
+\subsection*{Positions synthétiques}
+
+Avec l'équation de parité, on peut créer des options, actions ou obligations zéro-coupon synthétiques.
+
+\textbf{Option d'achat}
+\begin{align*}
+	-C(S, K)	
+	&=	\underset{\text{\shortstack{achat d'une option\\ de vente équivalente}}}{\underbrace{-P(S, K)}} \;
+		\underset{\text{\shortstack{achat d'une part\\ de l'action}}}{\underbrace{-F_{0, T}^{P}(S)}} \;
+		\underset{\text{\shortstack{emprunt de $Ke^{-rT}$\\ au taux sans risque}}}{\underbrace{+K\textrm{e}^{-rT}}}
+\end{align*}
+
+\textbf{Option de vente}
+\begin{align*}
+	-P(S, K)	
+	&=	\underset{\text{\shortstack{achat d'une option\\ d'achat équivalente}}}{\underbrace{-C(S, K)}} \;
+		\underset{\text{\shortstack{vente d'une part\\ de l'action}}}{\underbrace{+F_{0, T}^{P}(S)}} \;
+		\underset{\text{\shortstack{pret de $Ke^{-rT}$\\ au taux sans risque}}}{\underbrace{-K\textrm{e}^{-rT}}}
+\end{align*}
+
+\textbf{Action}
+\begin{align*}
+	-S_{0}
+	&=	\underset{\text{\shortstack{vente de $e^{\delta T}$\\ options de vente}}}{\underbrace{+\textrm{e}^{\delta T} P(S. K)}} \;
+		\underset{\text{\shortstack{achat de $e^{\delta T}$\\ options d'achat}}}{\underbrace{-\textrm{e}^{\delta T} C(S, K)}} \;
+		\underset{\text{\shortstack{pret de $Ke^{-(r - \delta)T}$\\ au taux sans risque}}}{\underbrace{-K\textrm{e}^{-(r - \delta)T}}}
+\end{align*}
+
+\textbf{Bon du trésor} (\og \textit{Treasury Bill (T-Bill)} \fg{})
+\begin{align*}
+	-K \textrm{e}^{-r T}
+	&=	\underset{\text{\shortstack{vente d'une\\ option d'achat}}}{\underbrace{+C(S; K)}} \;
+		\underset{\text{\shortstack{achat d'une\\ option de vente}}}{\underbrace{-P(S; K)}} \;
+		\underset{\text{\shortstack{achat de $e^{-\delta T}$\\ parts de l'action}}}{\underbrace{-S_{0}\textrm{e}^{-\delta T}}}
+\end{align*}
+
+\subsection*{Parité des options}
+
+\subsubsection*{Parité des options sur devises}
 \begin{description}
-\item[$Call(x_0, K, T)$ : ] Option d'achat qui permet d'acheter 1 unité de DÉ pour K unité de DD à l'échéance $t = T$.
-\item[$Put(x_0, K, T)$ : ] Option de vente qui permet d'acheter 1 unité de DÉ pour K unité de DD à l'échéance $t = T$.
+	\item[$C(x_0, K, T)$]	Option d'achat qui permet d'acheter une unité de DÉ pour K unités de DD à l'échéance $T$;
+	\item[$P(x_0, K, T)$] 	Option de vente qui permet d'acheter une unité de DÉ pour K unités de DD à l'échéance $T$.
 \end{description}
-Alors, on peut réécrire l'équation Put-Call Parity : 
+
+Alors, on peut réécrire l'équation de parité : 
 \begin{align*}
-Call(x_0, K,T) - Put(x_0, K, T) = x_0(1+r_{É})^{-T} - K(1+r_D)^{-T}
+	C(x_0, K,T) - P(x_0, K, T) 
+	&= 	x_0 (1 + i_{\text{É}})^{-T} - K(1 + i_D)^{-T}
 \end{align*}
 
-
-\subsection*{Parité généralisée et option d'échange}
+\subsubsection*{Parité des options sur obligation}
 \begin{description}
-\item[$Call(S_t, Q_t, T - t)$ : ] Option d'achat qui permet d'acheter le sous-jacent $S$ au prix du sous-jacent $Q$ au temps $t = T$.
-\item[$Put(S_t, Q_t, T - t)$ : ] Option de vente qui permet de vendre le sous-jacent $S$ au prix du sous-jacent $Q$ au temps $t = T$.
+	\item[$B_{0}$]	Prix aujourd'hui ($t = 0$) d'une obligation avec coupons;
+	\item[$F_{0, T}^{P}(B)$]	Prix d'un contrat à terme standardisé prépayé sur une obligation avec coupons.
+		\setlength{\mathindent}{-1cm}
+		\begin{align*}
+		F_{0, T}^{P}(B) 
+		&=	B_{t} - PV(\text{coupons})
+		\end{align*}
+		\setlength{\mathindent}{1cm}
 \end{description}
-On peut généraliser l'équation Put-Call Parity : 
+
+Alors, on peut réécrire l'équation de parité : 
 \begin{align*}
-C(S_t, Q_t, T - t) - P(S_t, Q_t, T-t) = F_{t,T}^{P}(S) - F_{t,T}^{P}(Q)
+	C(B_{0}, K, T) - P(B_{0}, K, T) 
+	&= 	F_{0, T}^{P}(B) - F_{0, T}^{P}(K)
 \end{align*}
 
-\subsection*{Options sur devise}
+\subsubsection*{Parité généralisée et option d'échange}
+On peut généraliser toute option comme étant l'option d'échanger des actifs---l'\textit{actif sous-jacent} et l'\textit{actif d'exercice}---que l'on nomme des \textbf{options d'échange}.\\
+
+Les options d'achat et de vente sont donc des options d'échange avec de l'argent comme actif d'exercice. On généralise d'abord la notation au-delà du concept d'achat et de vente pour un certain prix:
+\begin{rappel_enhanced}[Notation]
+\begin{description}
+	\item[$C(S, K)$:] Permet au détenteur de l'option d'achat de recevoir $S$ en échange de $K$;
+	\item[$P(S, K)$:] Permet au détenteur de l'option de vente de recevoir $K$ en échange de $S$.
+\end{description}
+\end{rappel_enhanced}
+
+On peut penser à cette notation comme $C(\text{Receive}, \text{Give up})$ et $P(\text{Receive}, \text{Give up})$. Dans les deux cas, la valeur à l'échéance est $\max(0; \text{Receive} - \text{Give up})$.
+
+\begin{rappel_enhanced}[Notation Claire]
+\begin{description}
+	\item[$S_{t}$:] Prix à $t$ de l'actif sous-jacent---le titre $A$;
+	\item[$Q_{t}$:] Prix à $t$ du prix d'exercice---le titre $B$;
+	\item[$C_{\text{euro}}(S_{t}, Q_{t}, T - t)$:] Permet, à $T$, d'achat le titre $A$ au prix du titre $B$;
+	\item[$P_{\text{euro}}(S_{t}, Q_{t}, T - t)$:] Permet, à $T$, de vendre le titre $A$ au prix du titre $B$.
+\end{description}
+\end{rappel_enhanced}
+
+\begin{rappel}{Équation de parité des options d'échange}
 \begin{align*}
-Call_{DD}(x_0, K, T) & = K \cdot Put_{DD}\left( \frac{1}{x_0}, \frac{1}{K}, T \right) \\
-& = K \cdot x_0 \cdot Put_{DÉ} \left( \frac{1}{x_0}, \frac{1}{K}, T \right) \\
+	C_{\text{euro}}(S_t, Q_t, T - t) - P_{\text{euro}}(S_t, Q_t, T-t) 
+	&= 	F_{t,T}^{P}(S) - F_{t,T}^{P}(Q)
+\end{align*}
+\end{rappel}
+
+%%%	------------
+%%%	NOTE:
+%%%	+	Sauté les notes de coaching pour les sous-sections sur:
+%%%		Exchange Option Duality
+%\begin{definitionNOHFILL}[Exchange option duality]
+%By the law of one price, the two options $C(A, B)$ and $P(B, A)$ must have the same price : $C(A, B) = P(B, A)$.
+%\end{definitionNOHFILL}
+%%%		Put-Call Parity for Exchange Options
+%%%		Scaling Exchange Options
+%%%	------------
+
+\subsubsection*{Options sur devise}
+\begin{align*}
+	C^{DD}(x_0, K, T) 
+	&= 	K \cdot P^{DD}\left( \frac{1}{x_0}; \frac{1}{K}; T \right) 
+	= 	x_0	K \cdot P^{\text{DÉ}} \left( \frac{1}{x_0}; \frac{1}{K}; T \right) \\
 \end{align*}
 
+\paragraph{Note}	Si le prix d'exercice sera dans la même devise que le prix de l'option.
 
 \subsection*{Comparaison de différentes options}
-\paragraph{Option américaine vs européenne}
+
+%%%	-----------------------------------
+%%%	NOTE:
+%%%	+	Ne fit pas ici, mais je pense qu'il faut le mettre quelque-part (AJVR).
+%%%	
+%\begin{rappel}{Intuition sur les options}
+%Jusqu'ici les contrats étudiés ont été des engagements fermes---des contrats à termes de gré à gré (\og \textit{forward} \fg{}) ou standardisés (\og \textit{future} \fg{}). \\
+%
+%Ces contrats ne permettent pas aux deux parties de se retirer du contrat. L'aspect facultatif (\og \textit{optionability} \fg{}) est alors présent s'il est possible d'éviter des transactions non rentables.\\
+%
+%La question principale en tarification est donc:
+%\begin{quotation}
+%	Comment évaluer le droit de se retirer d'un engagement?
+%\end{quotation}
+%\end{rappel}
+%%%	-----------------------------------
+
+\subsubsection*{Considérations différents types d'options}
+
+La première considération est que la valeur à l'échéance d'une option ne sera jamais négative puisqu'un investisseur \og rationnel \fg{} n'exercerait simplement pas l'option. L'émetteur de l'option va donc toujours demander une \textbf{prime positive} pour accepter ce risque de perte.\\
+
+Donc les options américaines et européennes vont toujours avoir une \textbf{valeur d'au moins 0\$}:
 \begin{align*}
-C_{amer}(K,T) & \geq C_{euro}(K,T) \\
-P_{amer}(K,T) & \geq P_{euro}(K,T) \\
+	C(S, K, T) &\geq	0	&
+	P(S, K, T) &\geq	0	
 \end{align*}
 
-\paragraph{Option d'achat américaine}
-Bien qu'on puisse exercer l'option américaine au moment qu'on veut, il \underline{peut} être optimal d'exercer avant l'échéance seulement si
+Une option européenne peut uniquement être exercée à l'échéance alors qu'une option américaine peut être exercé à n'importe quel moment d'ici l'échéance. Il s'ensuit qu'une \textbf{option américaine vaut au moins autant qu'une option européenne}:
 \begin{align*}
-PV(div) > K \left(1 - (1+r_f)^{-(T-t)} \right)
-\end{align*}
-ou si
-\begin{align*}
-PV(div) > P(K, T-t) + K \left(1 - (1+r_f)^{-(T-t)} \right)
+	C_{\text{amer}}(S, K, T)	&\geq	C_{\text{euro}}(S, K, T)	&
+	P_{\text{amer}}(S, K, T)	&\geq	P_{\text{euro}}(S, K, T)	
 \end{align*}
 
-\paragraph{Option de vente américaine}
-Le moment optimal pour exercer le Put serait tout juste \textbf{après la date ex-dividende}.
+\subsubsection*{Bornes inférieures}
+\paragraph{Option européenne}	Avec l'équation de parité des options vente-achat et que le coût ne peut pas être négatif on obtient:
 
-
-
-\paragraph{Date d'expiration}
-Pour $T_1 < T_2$,
 \begin{align*}
-C(K, T_1) & \leq C(K, T_2) \\ 
-P(K, T_1) & \leq P(K, T_2)
+	C_{\text{euro}}(S, K, T)	
+	&=	F_{0, T}^{P}(S) - K\textrm{e}^{-rT} \textcolor{teal}{+ P_{\text{euro}}(S, K, T)}	\\
+	&\geq	\max\left(F_{0, T}^{P}(S) - K\textrm{e}^{-rT}; 0\right)	\\
+	P_{\text{euro}}(S, K, T)	
+	&=	F_{0, T}^{P}(S) - K\textrm{e}^{-rT} \textcolor{teal}{+ C_{\text{euro}}(S, K, T)}	\\
+	&\geq	\max\left(K\textrm{e}^{-rT} - F_{0, T}^{P}(S); 0\right)
 \end{align*}
 
+\paragraph{Option américaine}	Une option américaine aura une valeur d'au moins l'option européenne. Également, puisqu'une option américaine peut être exercé à tout moment, sa valeur doit être au moins la valeur d'un exercice immédiat.
 
-\paragraph{Prix d'exercice}
-Les différentes conditions énumérées ci-bas doivent être respectées : 
-\begin{tabbing}
-\hspace{5cm}\=\kill
- $C(K,T) \geq S_0 - K$ \>  $ P(K,T) \geq K - S_0$ \\ 
-  $C(K_1, T) > C(K_2, T)$ \> $P(K_1, T) < P(K_2, T)$ \\
- $C(K_1, T) - C(K_2, T) \leq K_2 - K_1$ \> $P(K_2, T) - P(K_1, T) \leq K_2 - K_1$ \\
- $\frac{C(K_1, T) - C(K_2, T)}{K_2 - K_1} \geq \frac{C(K_2, T) - C(K_3, T)}{K_3 - K_2}$ \>  $\frac{P(K_2, T) - P(K_1, T)}{K_2 - K_1} \geq \frac{P(K_3, T) - P(K_2, T)}{K_3 - K_2}$ \\
-\end{tabbing}
-Si le prix d'exercice est \textit{Constant en valeur actualisée}\footnote{i.e. $K_t = K(1+r_f)^{T}$.}, alors, avec $t < T$
+\paragraph{En bref}
+\begin{rappel_enhanced}[Bornes inférieures options]
 \begin{align*}
-C(K_t, t) & \leq C(K_T, T) \\
-P(K_t, t) & \leq P(K_T, T) \\
+	C_{\text{amer}}(S, K, T)	\geq
+	C_{\text{euro}}(S, K, T)	
+	&\geq	\max\left(F_{0, T}^{P}(S) - K\textrm{e}^{-rT}; 0\right)	\\
+	P_{\text{amer}}(S, K, T)	\geq
+	P_{\text{euro}}(S, K, T)	
+	&\geq	\max\left(K\textrm{e}^{-rT} - F_{0, T}^{P}(S); 0\right)
 \end{align*}
+et
+\begin{align*}
+	C_{\text{amer}}(S, K, T)	
+	&\geq	S - K	&
+	P_{\text{amer}}(S, K, T)
+	&\geq	K - S
+\end{align*}
+\end{rappel_enhanced}
+
+\subsubsection*{Bornes supérieures}
+\begin{center}
+	\textbf{Option américaine}
+\end{center}
+
+\paragraph{Option d'achat}
+À son exercice, l'option permet d'obtenir l'actif sous-jacent. Si cette option coûtait plus que le prix du sous-jacent, on a simplement à l'acheter au lieu d'une option.\\
+
+Ce faisant, \textcolor{cobalt}{la borne supérieure d'une option d'achat américaine est le prix au comptant (\og \textit{spot price} \fg{})}:
+\begin{align*}
+	S	
+	\geq	C_{\text{amer}}(S, K, T)
+	\geq	C_{\text{euro}}(S, K, T)
+	\geq	\max\left(F_{0, T}^{P}(S) - K\textrm{e}^{-rT}; 0\right)
+\end{align*}
+
+\paragraph{Option de vente}
+La valeur à l'échéance maximale d'une option de vente est le prix d'exercice $K$; lorsque la valeur de l'action est nulle on a $\max(K - 0; 0) = K$. Si le prix était supérieur à $K$, le vendeur n'aurait qu'à vendre son action directement sur le marché. \\
+
+Ce faisant, \textcolor{cobalt}{la borne supérieure d'une option de vente américaine est le prix d'exercice}:
+\begin{align*}
+	K	
+	\geq	P_{\text{amer}}(S, K, T)
+	\geq	P_{\text{euro}}(S, K, T)
+	\geq	\max\left(K\textrm{e}^{-rT} - F_{0, T}^{P}(S); 0\right)	
+\end{align*}
+
+\begin{center}
+	\textbf{Option européenne}
+\end{center}
+
+\paragraph{Option d'achat}
+La valeur à l'échéance sera au plus $\max(S_{T} - 0; 0) = S_{T}$. Le prix aujourd'hui pour avoir $S_{T}$ à $T$ correspond à un contrat à terme de gré à gré prépayé $F_{0, T}^{P}(S)$.\\
+
+Ce faisant, \textcolor{cobalt}{la borne supérieure d'une option d'achat américaine est ce contrat à terme de gré à gré prépayé}:
+\begin{align*}
+	F_{0, T}^{P}(S)
+	\geq	C_{\text{euro}}(S, K, T)
+	\geq	\max\left(F_{0, T}^{P}(S) - K\textrm{e}^{-rT}; 0\right)
+\end{align*}
+
+\paragraph{Option de vente}	La distinction avec la valeur maximal d'une option européenne est qu'elle est seulement reçu à $T$.\\
+
+Ce faisant, \textcolor{cobalt}{la borne supérieure d'une option de vente européenne est le prix d'exercice actualisé à 0}:
+\begin{align*}
+	K \textrm{e}^{-rT}
+	\geq	P_{\text{euro}}(S, K, T)
+	\geq	\max\left(K\textrm{e}^{-rT} - F_{0, T}^{P}(S); 0\right)
+\end{align*}
+
+\subsection*{Exercice hâtif des options américaines}
+\subsubsection*{Notions d'intérêt et d'escompte}
+La valeur actualisée de l'intérêt accumulé sur le prix d'exercice $K$ est $PV(\text{intérêt sur le prix d'exercice}) = K(1 - \textrm{e}^{-rT})$.\\
+
+La valeur actualisée des dividendes correspond à l'écart entre le prix de l'action aujourd'hui $S_{0}$ et le prix à terme prépayé $F_{0, T}^{P}$; $PV_{0, T}(\text{divs}) = S_{0} - F_{0, T}^{P}(S)$.\\
+
+Dans le cas continu, $PV(\text{dividendes}) = S_{0} (1 - \textrm{e}^{-\delta T})$ et le cas discret $PV(\text{dividendes}) = \sum_{i = 1}^{n} \text{div}_{i} \textrm{e}^{-r t_{i}}$.
+
+\subsubsection*{Options d'achat américaines}
+L'avantage d'exercer l'option d'achat immédiatement est la \textbf{réception des dividendes}.\\
+
+Cependant, l'avantage de repousser l'exercice est \textbf{l'intérêt accumulé sur le prix d'exercice} $K$ et la protection, ou \textit{assurance}, \textbf{contre le risque d'une baisse du prix de l'action}. Une protection contre ce risque de baisse correspond donc à une \textbf{option de vente}.\\
+
+Il est donc important de retenir:
+\begin{enumerate}
+	\item	Il est rationnel d'effectuer un exercice hâtif si\\
+	 $PV(\text{dividendes}) > PV(\text{intérêt sur $K$}) - PV(\text{assurance})$;
+ 	\item[]	$PV(\text{assurance})$ sera donc égale au coût de l'option de vente équivalente.
+	\item	Il n'est \textbf{jamais rationnel} d'effectuer un \textbf{exercice hâtif} sur une option d'achat américaine \textbf{sans dividendes};
+	\item[]	Il s'ensuit qu'une \textbf{option d'achat américaine} sur une action \textbf{sans dividendes} a le \textbf{même prix} qu'une \textbf{option d'achat européenne} équivalente.
+	\item	Il est \textbf{\textit{possiblement} rationnel} d'effectuer un exercice hâtif si \\
+	$PV(\text{dividendes}) > PV(\text{intérêt sur $K$})$.
+\end{enumerate}
+
+\subsubsection*{Options de vente américaines}
+L'avantage d'exercer l'option d'achat immédiatement est la réception de prix d'exercice $K$ et \textbf{l'intérêt qu'on peut accumuler avec}.\\
+
+Cependant, l'avantage de repousser l'exercice est de \textbf{continuer à recevoir des dividendes}. Également, la protection contre le risque de \textbf{ne \textit{pas} vendre l'action à un prix plus élevé}. Une protection contre ce risque d'une hausse de prix correspond donc à une \textbf{option d'achat}.\\
+
+Il est donc important de retenir:
+\begin{enumerate}
+	\item	Il est rationnel d'effectuer un exercice hâtif si\\
+	 $PV(\text{intérêt sur $K$}) > PV(\text{dividendes}) + PV(\text{assurance})$;
+ 	\item[]	$PV(\text{assurance})$ sera donc égale au coût de l'option d'achat équivalente.
+	\item	Il est \textbf{\textit{possiblement} rationnel} d'effectuer un exercice hâtif si \\
+	$PV(\text{intérêt sur $K$}) > PV(\text{dividendes})$;
+	\item	Il s'ensuit qu'il est \textbf{\textit{possiblement} rationnel} d'effectuer un \textbf{exercice hâtif} sur une \textbf{option d'achat} américaine \textbf{sans dividendes}.
+\end{enumerate}
+
+
+\subsection*{Effet du prix d'exercice}
+Trois arguments sur comment différents prix d'exercices font varier les prix d'options. Ces arguments, ou \textit{propositions}, expliquent le lien:
+\begin{itemize}
+	\item	La première proposition relie le prix d'option au prix d'exercice;
+	\item	La deuxième proposition relie la différence des prix d'options à la différence des prix d'exercices;
+	\item	La troisième proposition relie le taux de variation du prix de l'option selon le prix d'exercice.
+\end{itemize}
+
+\subsubsection*{Proposition 1:	Lien entre les prix d'options et d'exercice}
+\begin{description}
+	\item[Option d'achat]	Une ${\color{blue}\uparrow} K$ mène à ${\color{red}\downarrow} \text{valeur à l'échéance}$ ainsi que ${\color{red}\downarrow} C(K)$;
+		\begin{align*}
+		C(K_{1}) \geq	C(K_{2}) \geq	C(K_{3}) 
+		\end{align*}
+	\item[Option de vente]	Une ${\color{blue}\uparrow} K$ mène à ${\color{blue}\uparrow} \text{valeur à l'échéance}$ ainsi que ${\color{blue}\uparrow} P(K)$;
+		\begin{align*}
+		P(K_{1}) \leq	P(K_{2}) \leq	P(K_{3}) 
+		\end{align*}
+\end{description}
+
+\subsubsection*{Proposition 2:	Lien entre la différence des prix d'options et d'exercice}
+\begin{itemize}
+	\item	Une option d'achat profite d'une hausse de prix;
+	\item	Si le prix d'exercice baisse de, par exemple, 10\$, alors la valeur à l'échéance maximal possible augmente de 10\$;
+	\item	Ce faisant, le plus que je sera prêt à payer pour potentiellement avoir 10\$ de plus \textit{est} 10\$ de plus.
+\end{itemize}
+
+\begin{description}
+	\item[Option d'achat]	
+		\begin{align*}
+		C_{\text{amer}}(K_{1}) - C_{\text{amer}}(K_{2}) &\leq K_{2} - K_{1}	\\
+		C_{\text{euro}}(K_{1}) - C_{\text{euro}}(K_{2}) &\leq (K_{2} - K_{1})\textrm{e}^{-rT}
+		\end{align*}
+	\item[Option de vente]	
+		\begin{align*}
+		C_{\text{amer}}(K_{2}) - C_{\text{amer}}(K_{1}) &\leq K_{2} - K_{1}	\\
+		C_{\text{euro}}(K_{2}) - C_{\text{euro}}(K_{1}) &\leq (K_{2} - K_{1})\textrm{e}^{-rT}
+		\end{align*}
+\end{description}
+
+
+\subsubsection*{Proposition 3: Lien entre le taux de variation des prix d'option et d'exercice}
+\begin{itemize}
+	\item	Le prix d'une option d'achat décroît plus lentement lorsque le prix d'exercice augmente;
+	\item	Le prix d'une option de vente croît plus rapidement lorsque le prix d'exercice augmente.
+\end{itemize}
+
+\begin{description}
+	\item[Option d'achat]	
+		\begin{align*}
+		\frac{C(K_{1}) - C(K_{2})}{K_{2} - K_{1}}
+		&\geq	
+		\frac{C(K_{2}) - C(K_{3})}{K_{3} - K_{2}}	
+		\end{align*}
+	\item[Option de vente]	
+		\begin{align*}
+		\frac{P(K_{2}) - P(K_{1})}{K_{2} - K_{1}}
+		&\leq
+		\frac{P(K_{3}) - P(K_{2})}{K_{3} - K_{2}}	
+		\end{align*}
+\end{description}
+
+
+\newpage
 
 % --- Chapitre 10 ---
 \section{Introduction au modèle binomial d'évaluation des options}
