@@ -12,6 +12,7 @@
 \def\auteur{Gabriel Crépeault-Cauchon // Nicholas Langevin // Alexandre Turcotte}
 \def\SectionColor{burntorange}
 \def\SubSectionColor{burntsienna}
+\def\SubSubSectionColor{burntsienna}
 
 %% Reduce margin space
 \setlength{\abovedisplayskip}{-15pt}
@@ -177,11 +178,49 @@ on peut approximer $\actsymb[t]{V}{}$ avec la \underline{Méthode d'Euler} :
 \[\actsymb[t]{V}{} = \frac{\actsymb[t+h]{V}{} - h(G_t - e_t - (b_t + E_t)\mu_{[x] + t})}{1 + h \delta_t + h \mu_{[x] + t}}   \]
 
 \subsection*{Modification de contrat}
-\subsubsection*{Valeur de rachat (\emph{Cash value at surrender})}
+\subsubsection*{Valeur de rachat (\textbf{Cash value at surrender})}
+
+\subsection*{Approximations}
+
+Woolhouse
+\begin{align*}
+	\ax**{x}[(m)]	
+	&\approx	\ax**{x}	-	\frac{m - 1}{2m}	-	\frac{m^{2} - 1}{12m^{2}}(\delta + \mu_{x})\\
+	\ax**{x:\angln}[(m)]	
+	&\approx	\ax**{x:\angln}	-	\frac{m - 1}{2m}(1 - v^{n}\px[n]{x})	-	\frac{m^{2} - 1}{12m^{2}}(\delta + \mu_{x} - v^{n} \px[n]{x}(\delta + \mu_{x + n}))
+\end{align*}
+
+\subsection*{Frais d'acquisition reportés}
+
+\begin{description}
+	\item[$\actsymb[t]{V}{}[g]$]	Réserve de primes brutes;
+	\item[$\actsymb[t]{V}{}[n]$]	Réserve de primes nettes;
+	\item[$\actsymb[t]{V}{}[FTP]$]	Réserve de primes FTP;
+\end{description}
 
 
+\begin{itemize}[leftmargin = *]
+	\item	Habituellement, il y a plus de frais au temps d'acquisition;
+	\item	Ce frais supplémentaire est réparti sur la durée du contrat;
+	\item	en anglais c'est le \og \textit{Deferred Acquisition Cost (\textbf{DAC})} \fg{};
+	\item	Le frais est défini comme la différence entre la réserve pour un contrat avec primes brutes (avec des frais) et la réserve avec primes pures (sans frais):
+		\begin{align*}
+		DAC_{t}	
+		=	\actsymb[t]{V}{}[g] - \actsymb[t]{V}{}[n] 
+		= 	\actsymb[t]{V}{}[e]
+		\end{align*}
+	\item	La réserve est négative pour les frais si $e_{0} > e_{k}$.w
+\end{itemize}
 
-
+\subsubsection{Primes}
+\begin{description}
+	\item[$P^{e}$]	Chargement pour les frais;
+	\item[$P^{g}$]	Prime nivelée pour un contrat avec des frais;
+	\item[$P^{n}$]	Prime nivelée pour un contrat sans frais;
+		\begin{align*}
+		P^{e}	=	P^{g}	-	P^{n}
+		\end{align*}
+\end{description}
 
 
 
