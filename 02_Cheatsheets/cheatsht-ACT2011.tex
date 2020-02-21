@@ -696,9 +696,9 @@ Il s'ensuit donc que la ligne de profit pour la position longue est moins élev�
 \hline
 \rowcolor{blue(matcha)}
 	Degré de parité	&	\og	\textit{Moneyness} \fg{}	&	Option d'achat	&	Option de vente	\\\hline
-	au cours			&	\og	\textit{At-the-money} \fg{}		&	$S_{T} = K$	&	$S_{T} = K$	\\
-	dans le cours	&	\og	\textit{In-the-money} \fg{} 	&	$S_{T} > K$	&	$S_{T} < K$	\\
-	hors du cours	&	\og	\textit{Out-of-the-money} \fg{}	&	$S_{T} < K$	&	$S_{T} > K$	\\\specialrule{.10em}{.0em}{0.5em} 
+	au cours			&	\og	\textit{At-the-money} \fg{}		&	$S_{0} = K$	&	$S_{0} = K$	\\
+	dans le cours	&	\og	\textit{In-the-money} \fg{} 	&	$S_{0} > K$	&	$S_{0} < K$	\\
+	hors du cours	&	\og	\textit{Out-of-the-money} \fg{}	&	$S_{0} < K$	&	$S_{0} > K$	\\\specialrule{.10em}{.0em}{0.5em} 
 \end{tabular}
 \end{center}
 
@@ -1606,26 +1606,51 @@ $\text{BFS} = Call(K_1, T) - 2 Call(K_2, T) + Call(K_3, T)$.
 
 \begin{definitionNOHFILL}[Écart papillon asymétrique]
 \begin{itemize}[leftmargin = *]
-	\item	De façon similaire à l'écart papillon, on vend et achète en proportion différentes le stellage et stellage élargi;
+	\item	
 	\item	$\text{A-BFS} = mCall(K_1, T) - (m + n) Call(K_2, T) + n Call(K_3, T)$;
 	\item	L'écart est asymétrique avec $m(K_{2} - K_{1}) = n(K_{3} - K_{2})$.
 \end{itemize}
 
-On utilise la notation avec $\lambda$: 
-\begin{align*}
-	\lambda	&=	\frac{K_{3} - K_{2}}{K_{3} - K_{1}}
-\end{align*}
-Pour chaque option avec un prix d'exercice de $K_{2}$ achetée, on achète $\lambda K_{1}$ et $(1 - \lambda) K_{3}$.
-\end{definitionNOHFILL}
+Lorsque la différence en prix n'est pas symétrique, on fait une "interpolation" de sorte.
+\begin{enumerate}
+	\item	On calcule la différence en prix total $K_{3} - K_{1}$;
+	\item	On calcule séparément les différences de prix:
+		\begin{align*}
+		K_{2} - K_{1}	\\
+		K_{3} - K_{2}
+		\end{align*}
+	\item[]\textbf{Intuition}	La somme de ces deux différences résulte en l'écart total.
+		\begin{align*}
+		(K_{2} - K_{1}) +  (K_{3} - K_{2}) = (K_{3} - K_{1})
+		\end{align*}
+	\item	On :
+		\begin{itemize}[leftmargin = *]
+		\item	vends $K_{3} - K_{1}$ options au prix d'exercice $K_{2}$;
+		\item	achète $K_{2} - K_{1}$ options au prix $K_{3}$;
+		\item	achète $K_{3} - K_{2}$ options au prix $K_{1}$.
+		\end{itemize}
+	\item	Avec des options d'achat on obtient:
+		\begin{align*}
+		 + (K_{3} - K_{2}) C(K_{1}) - (K_{3} - K_{1}) C(K_{2}) + (K_{2} - K_{1}) C(K_{3}) 
+		\end{align*}
+	\item[]\textbf{Intuition}	On peut donc pondérer par la différence totale et obtenir une "interpolation":
+		\begin{align*}
+		 + \frac{(K_{3} - K_{2})}{(K_{3} - K_{1})} C(K_{1}) - C(K_{2}) + \frac{(K_{2} - K_{1})}{(K_{3} - K_{1})} C(K_{3}) 
+		\end{align*}
+\end{enumerate}
 
-% --- Chapitre 5 ---
-% J'ai rassemblé une partie de la matière du chap.5 dans le chapitre 9, étant donné qu'on répétait de l'information.
-\setcounter{section}{4}
+C'est d'ici que provient la notation avec $\lambda$: 
+\begin{align*}
+	\lambda
+	&=	\frac{K_{3} - K_{2}}{K_{3} - K_{1}}
+\end{align*}
+Pour chaque option avec un prix d'exercice de $K_{2}$ vendu, on achète $\lambda K_{1}$ et $(1 - \lambda) K_{3}$.
+\end{definitionNOHFILL}
 
 \newpage
 
-\section{Forwards et Futures}
-
+\setcounter{section}{4}
+\section{Contrats à terme}
 \subsection*{4 façons d'acheter une action}
 
 \begin{tabular}{|>{\columncolor{airforceblue}}c	|	>{\columncolor{beaublue}}c	|	>{\columncolor{beaublue}}c	|	c	|}
@@ -2184,8 +2209,8 @@ Trois arguments sur comment différents prix d'exercices font varier les prix d'
 \subsubsection*{Proposition 2:	Lien entre la différence des prix d'options et d'exercice}
 \begin{itemize}
 	\item	Une option d'achat profite d'une hausse de prix;
-	\item	Si le prix d'exercice baisse de, par exemple, 10\$, alors la valeur à l'échéance maximal possible augmente de 10\$;
-	\item	Ce faisant, le plus que je sera prêt à payer pour potentiellement avoir 10\$ de plus \textit{est} 10\$ de plus.
+	\item	Si le prix d'exercice baisse de, par exemple, 10\$, alors la valeur à l'échéance maximale possible augmente de 10\$;
+	\item	Ce faisant le plus que je serai prêt à payer pour potentiellement avoir 10\$ de plus \textit{est} 10\$ de plus.
 \end{itemize}
 
 \begin{description}
@@ -2196,11 +2221,12 @@ Trois arguments sur comment différents prix d'exercices font varier les prix d'
 		\end{align*}
 	\item[Option de vente]	
 		\begin{align*}
-		C_{\text{amer}}(K_{2}) - C_{\text{amer}}(K_{1}) &\leq K_{2} - K_{1}	\\
-		C_{\text{euro}}(K_{2}) - C_{\text{euro}}(K_{1}) &\leq (K_{2} - K_{1})\textrm{e}^{-rT}
+		P_{\text{amer}}(K_{2}) - P_{\text{amer}}(K_{1}) &\leq K_{2} - K_{1}	\\
+		P_{\text{euro}}(K_{2}) - P_{\text{euro}}(K_{1}) &\leq (K_{2} - K_{1})\textrm{e}^{-rT}
 		\end{align*}
 \end{description}
 
+Si la différence en prix d'option était supérieure à la différence en prix d'exercice il y a arbitrage; on peut avoir aucun risque de perte. Pour comprendre ceci, voir le graphique d'un écart-baissier et imaginer la ligne pointillée rouge uniquement au-dessus de l'axe des x.
 
 \subsubsection*{Proposition 3: Lien entre le taux de variation des prix d'option et d'exercice}
 \begin{itemize}
@@ -2228,6 +2254,77 @@ Trois arguments sur comment différents prix d'exercices font varier les prix d'
 
 % --- Chapitre 10 ---
 \section{Introduction au modèle binomial d'évaluation des options}
+
+\begin{description}
+	\item[Modèle binomial d'évaluation des options]	le prix de l'actif sous-jacent au début d'une période devient un de deux prix possibles à la fin de la période;
+		\begin{itemize}[leftmargin = *]
+		\item	en anglais c'est le \og \textit{Binomial Option Pricing Model} \fg{}.
+		\end{itemize}
+\end{description}
+
+\begin{distributions}[Notation de prix]
+\begin{multicols*}{2}
+\begin{description}[leftmargin = *]
+	\item[$u$]	facteur de hausse \og \textit{"up" factor} \fg{};
+	\item[$d$]	facteur de baisse \og \textit{"down" factor} \fg{};	
+\end{description}
+\end{multicols*}
+\begin{multicols*}{2}
+\begin{description}[leftmargin = *]
+	\item[$S_{u}$]	prix de l'action s'il y a une hausse;
+		\begin{align*}
+		S_{u} = S_{0} u
+		\end{align*}
+	\item[$S_{d}$]	prix de l'action s'il y a une baisse;
+		\begin{align*}
+		S_{d} = S_{0} d
+		\end{align*}
+\end{description}
+\end{multicols*}
+\begin{description}[leftmargin = *]
+	\item[$\Delta$]	nombre de parts d'actions à acheter;
+	\item[$B$]	montant à prêter au taux sans risque.
+	\item[$V_{u}$]	valeur à la node supérieure \og \textit{value at upper node} \fg{};
+	\item[$V_{d}$]	valeur à la node inférieur \og \textit{value at lower node} \fg{};
+	\item[$V_{0}$]	valeur du portefeuille au temps $0$;
+\end{description}
+\end{distributions}
+
+\subsection*{Portefeuille réplicatif \og \textit{Replicating Portfolio} \fg{}}
+
+\begin{algo2}[Créer un portefeuille réplicatif]
+\begin{enumerate}
+	\item	Acheter $\Delta	=	e^{-\delta h} \left(\frac{V_{u} - V_{d}}{S_{0}(u - d)}\right)$ parts de l'action;
+	\item	Prêter $B	=	e^{-\delta h} \left[ V_{u} \left(\frac{d}{u - d}\right) + V_{d}\left(	\frac{u}{u - d}\right) \right]$ au taux sans risque;
+\end{enumerate}
+
+La valeur initiale du portefeuille réplicatif est donc $V_{0}	=	\Delta S_{0} + B$.
+\end{algo2}
+
+Selon les signes on observe :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{}}	&	\textcolor{white}{$+$}	&	\textcolor{white}{$-$}	\\\specialrule{0.1em}{0em}{0.0em} 
+$\Delta$	&	achète des parts de l'action	&	vend des parts de l'action	\\\hline
+$B$		&	prête de l'argent			&	emprunte de l'argent			\\
+\hline
+\end{tabular}
+\end{center}
+
+Également, pour répliquer les options, les combinaisons sont:
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{}}	&	\textcolor{white}{Option d'achat}	&	\textcolor{white}{Option de vente}	\\\specialrule{0.1em}{0em}{0.0em} 
+$\Delta$	&	$+$	&	$-$			\\\hline
+$B$		&	$-$	&	$+$			\\
+\hline
+\end{tabular}
+\end{center}
+
+
+
 \subsection*{Probabilité neutre au risque}
 \begin{itemize}
 \item $U = uS$ est la valeur supérieure que peut prendre le sous-jacent $S$
