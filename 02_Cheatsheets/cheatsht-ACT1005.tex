@@ -17,7 +17,7 @@
 %% -----------------------------
 \def\SectionColor{brickred}
 \def\SubSectionColor{amaranth}
-\def\SubSubSection{pastelred}
+\def\SubSubSectionColor{pastelred}
 %%	pour timeline
 \usetikzlibrary{shapes,positioning}
 \newcommand{\foo}{\hspace{-2.3pt}$\bullet$ \hspace{5pt}}
@@ -1326,15 +1326,17 @@ Acquis \textbf{conservés}:
 		\item	Réduction de la rente de conjoint survivant combinée à une rente de retraite (ou d'invalidité);
 		\item	Mécanisme permanent d'ajustement du taux de cotisation sera mis en place à compter de 2018.
 		\end{itemize}
-	\item[2019]	Mise en place d'un régime supplémentaire permettant de:
-		\begin{enumerate}[leftmargin = *]
-		\item	Augmenter le taux de remplacement du revenu;
-		\item	Augmenter le salaire admissible maximal.
-		\end{enumerate}
+	\item[2019]	Mise en place d'un régime supplémentaire puisque le monde n'épargnait pas suffisamment d'argent pour la retraite. \\
+				Le régime permet de:
+			\begin{enumerate}[leftmargin = *]
+			\item	Augmenter le taux de remplacement du revenu;
+			\item	Augmenter le salaire admissible maximal.
+			\end{enumerate}	
 \end{description}
 \end{rappel_enhanced}
 
-\begin{conceptgen}{Quelques chiffres}
+\paragraph{Quelques chiffres}	L'important à retenir est la \textit{taille des chiffres} et \textbf{non} les \textit{chiffres eux-mêmes}. Il y a des milliards de dollars transigés qui représentent une partie importante de l'économie.\\
+
 \begin{itemize}[leftmargin = *]
 	\item	4M cotisants;
 	\item	2M bénéficiaires;
@@ -1342,66 +1344,211 @@ Acquis \textbf{conservés}:
 	\item	11.1G\$ de revenus de cotisations;
 	\item	13.8G\$ de dépenses de prestations.
 \end{itemize}
+
+\clearpage 
+
+\section*{La retraite}
+
+\subsection*{Régime de base}
+\begin{rappel_enhanced}[Historique]
+Établit le 1er janvier 1966
+\end{rappel_enhanced}
+ 
+\subsubsection*{Financement}
+\begin{description}
+	\item[Cotisation]	obligatoire provenant des travailleurs et employeurs;
+		\begin{itemize}[leftmargin = *]
+			\item	Le régime est donc autofinancé par ses membres et non des impôts;
+			\item	Le travail rémunéré est visé.
+%%%	--------------
+%%%	NOTE
+%%%	+	pas certain ce que ça entend? (AJVR) 
+%%%	--------------
+		\end{itemize}
+	\item[Période cotisable]	Période servant au calcul de la rente de retraite;
+		\begin{itemize}[leftmargin = *]
+			\item	débute à 18 ans même si l'individu n'a pas encore commencé à travailler;
+			\item	termine à la fin du premier du mois:  
+				\begin{itemize}[leftmargin = *]
+				\item	de décès;
+				\item	suivant le 70e anniversaire;
+				\item	précédent le début du versement d'un rente de retraite$^{*}$.
+				\end{itemize}
+			\item[]	$^{*}$ \textbf{Exception}: Si l'individu continu a travailler tout en recevant une rente de retraite, il doit continuer de cotiser au régime.
+			\item	Si un travailleur reçoit une rente d'invalidité, il ne cotise plus au régime.
+		\end{itemize}
+	\item[Exemption générale]	toute personne ayant un salaire inférieur à cette limite n'a pas à cotiser au RRQ;
+		\begin{itemize}[leftmargin = *]
+			\item	Le seuil est gelé depuis 1998 à 3 500\$;
+			\item	Geler le seuil \textbf{augmente} le \textit{nombre de cotisants} ainsi que la \textit{masse salariale cotisable}.
+		\end{itemize}
+	\item[Maximum des gains admissibles (MGA)] tout salaire supérieur à cette limite n'est pas assujettis à des cotisation;
+		\begin{itemize}[leftmargin = *]
+			\item	Le MGA \textbf{augmente} selon la croissance du \textit{salaire moyen} hebdomadaire au Canada mais est un peu plus élevé que le salaire moyen;
+			\item	\textcolor{red}{en 2020 ce montant est de 58 700\$};
+			\item	L’interprétation est que le gouvernement veut s’assurer que \textit{tous} les Québécois aient un certain niveau de vie \textit{minimal} et, qu’au-delà du MGA, c’est à l’individu de gérer ses finances.
+		\end{itemize}
+	\item[Taux de cotisation]	L'employeur et l'employé cotisent chacun la moitié, sauf les travailleurs autonomes qui cotisent l'entièreté du taux;
+		\begin{itemize}[leftmargin = *]
+			\item	Était stable à 1.8\% de 1966 à 1986;
+			\item	Il a ensuite été augmenté graduellement jusqu'en 1998;
+			\item	Suite aux réformes de 1998, il a été augmenté graduellement;
+			\item	Depuis 2018, un \textbf{mécanisme d'ajustement} est en place pour rétablir l'équilibre du financement jusqu'à un \textbf{taux de cotisation d'équilibre};
+			\item	Aujourd'hui le taux est de 10.80\% voulant dire qu'on cotise beaucoup plus pour la même prestation---c'est actuariellement juste même ;
+		\end{itemize}
+	\item[Taux de cotisation d'équilibre]	taux nécessaire pour maintenir constant à long terme le rapport entre la réserve et les sorties de fonds annuelles;
+		\begin{itemize}[leftmargin = *]
+		\item	Si le taux de cotisation excède d'au moins 0.10\% le taux d'équilibre, il est ajusté jusqu'à un maximum de 0.10\% par année.
+		\end{itemize}
+	\item[Varia]
+		\begin{itemize}[leftmargin = *]
+			\item	Cotisations sont un crédit dans le calcul de l'impôt du Québec \textit{et} fédéral;
+			\item	On cotise uniquement sur des revenus d'emploi;
+			\item	Il est possible de racheter des années de revenus de travail manquantes;
+			\item	Il est impossible de récupérer des cotisations versées, car elles sont acquises au régime.
+		\end{itemize}
+\end{description}
+
+
+\subsubsection*{Prestations---\textit{admissibilité}}
+
+La rente de retraite est payée à la personne :
+\begin{itemize}[leftmargin = *]
+	\item	qui en fait la demande;
+	\item	âgée d'au moins 60 ans;
+	\item	ayant cotisé au moins 1 an au régime.
+\end{itemize}
+
+Notes:
+\begin{itemize}[leftmargin = *]
+	\item	L'individu peut recevoir sa rente tout en continuant de travailler;
+	\item	Une retraite anticipée (avant l'ANR de 65 ans) mène à une réduction actuarielle.
+\end{itemize}
+
+\subsubsection*{Prestations---\textit{montant de la rente}}
+
+Le montant de la \textbf{rente de retraite de base (RRB)} équivaut à 25\% de la moyenne mensuelle des gains admissibles de travail après ajustement pour l'inflation (indexation selon l'IPC le 1er janvier).
+
+\paragraph{Étapes du calcul de la rente de retraite}
+\begin{enumerate}[leftmargin = *]
+	\item	Établissement de la période de cotisation;
+		\begin{itemize}[leftmargin = *]
+		\item	Ensemble des années considérées pour le calcul de prestations;		
+		\item	Établit le montant et le \textbf{droit} à une prestation.
+		\end{itemize}
+	\item	Exclusion de certains mois (s'il y a lieu);
+		\begin{itemize}[leftmargin = *]
+		\item	Mois d'admissibilité à des allocations familiales pour des enfants de moins de 7 ans si les revenus étaient inférieurs à l'exemption générale;
+		\item	Mois de paiement d'une \textit{rente d'invalidité }(RRQ ou RPC);
+		\item	Mois de paiement d'une \textit{indemnité} (CNESST);
+		\item	\textit{Exclure des mois est bénéfique} pour le travailleur puisque ça augmente sa moyenne de salaire.
+		\end{itemize}
+	\item	Rajustement de gains admissibles (selon l'inflation);
+		\begin{itemize}[leftmargin = *]
+		\item	Gain admissible non ajusté (GANA) $\times$ $\frac{\text{\shortstack{la moyenne du maximum des gains\\ admissibles (MGA) des 5 dernières années}}}{\text{ sur le MGA de l'année du gain}}$.
+		\end{itemize}
+	\item	Retranchement de certains mois (s'il y a lieu);
+		\begin{itemize}[leftmargin = *]
+		\item	Fait de soustraire des mois où les GANA sont faibles ou nuls afin d'augmenter la moyenne;
+		\item	Jusqu'à 15\% des mois contenus dans la période cotisable (cependant, il doit rester au moins 120 mois (10 ans) après le retranchement).
+		\end{itemize}
+	\item	Calcul de la RRB;
+	\item	Application du facteur d'ajustement actuariel.
+		\begin{itemize}[leftmargin = *]
+		\item	Il y a un biais---pénalité pour une retraite anticipée et une compensation pour une retraite repoussée;
+		\item	augmentation de 0.7\% par mois après 65 ans et diminution de 0.5 à 0.6\% par mois  avant 65 ans.
+		\end{itemize}
+\end{enumerate}
+
+\subsubsection*{Partage des gains admissibles}
+Objectif: Équilibrer les revenus de travail des conjoints qui \og mettent fin à leur union \fg{}; c'est-à-dire, une divorce, séparation légale ou dissolution d'une union civile.
+\begin{itemize}
+	\item	Seulement pour les revenus durant la période d'union légale;
+	\item	\textbf{Automatique} sauf si renonciation lors de la fin de l'union;
+	\item	Aucune entrée d'argent immédiate---les revenus sont corrigés pour le calcul des rentes futures.
+\end{itemize}
+
+Exemple:
+\begin{center}
+	\includegraphics[scale=0.4]{src/ACT-1005/exemple-DIVORCE.png}
+\end{center}
+
+
+\subsubsection*{Division de la rente de retraite}
+Conditions:
+\begin{itemize}[leftmargin = *]
+	\item	Les 2 conjoints doivent avoir au minimum 60 ans;
+	\item	L'objectif est l'égalité économique des conjoints;
+	\item	La raison principale est fiscale;
+	\item	Si les conjoints sont mariés, c'est automatique à la demande d'un des deux sinon les deux doivent faire la demande.
+\end{itemize}
+
+
+%%%	---------------
+%%%	NOTE:
+%%%	+	Je ne savais pas trop comment / si je devrais reformuler ces deux prochaines sous-sous-sections parce-que je n'ai pas écris grand chose à propos (AJVR).
+%%%	---------------
+\subsubsection*{Suffisance de la rente}
+La PSV et le RRQ fournissent 40\% du salaire (MGA) et l'objectif est d'environ 70\%. Cela est atteint avec des RCR, le nouveau régime supplémentaire, etc.
+
+\subsubsection*{Provisionnement}
+Mélange entre un régime par répartition et un régime à capitalisation
+
+
+\subsection*{Régime supplémentaires}
+\begin{rappel_enhanced}[Historique]
+Entrée en vigueur:
+\begin{description}
+	\item[Premier volet]	1er janvier 2019 (régime S1);
+	\item[Deuxième volet]	1er janvier 2024	(régime S2).
+\end{description}
+\end{rappel_enhanced}
+
+\begin{conceptgen}{But}
+\begin{itemize}[leftmargin = *]
+	\item	Améliorer la qualité de vie des futurs retraités au Québec;
+	\item	Assurer l'équité intergénérationnelle;
+	\item	Renforcer le financement du régime.
+\end{itemize}
 \end{conceptgen}
 
-%\section*{La retraite}
-%
-%\subsection*{Régime de base}
-% Depuis le 1er janvier 1966
-%
-%\textbf{Financement}
-%\begin{description}
-%	\item[Cotisation]	des travailleurs et employeurs
-%		\begin{itemize}[leftmargin = *]
-%			\item	Autofinancement et non des impôts;
-%			\item	Le travail rémunéré est visé 
-%%%%	--------------
-%%%%	NOTE
-%%%%	+	pas certain ce que ça entend? (AJVR) 
-%%%%	--------------
-%		\end{itemize}
-%	\item[Période cotisable]
-%		\begin{itemize}[leftmargin = *]
-%			\item	Début
-%			\item	Période servant au calcul de la rente de retraite se termine à la fin du premier des mois suivants:
-%			\item	Continuer à travailler mais recevoir une rente de retraite implique une continuation de la cotisation au régime.
-%		\end{itemize}
-%	\item[Exemption générale]
-%		\begin{itemize}[leftmargin = *]
-%			\item	Si se salaire est inférieur à 3 500\$, aucune cotisation au RRQ;
-%			\item	Gelé depuis 1998.
-%		\end{itemize}
-%	\item[Maximum des gains admissibles] (MGA)
-%		\begin{itemize}[leftmargin = *]
-%			\item	Si le salaire est supérieur à la limite, le salaire en sus n'est pas assujettis à des cotisation;
-%			\item	Le MGA augmente selon la croissance du salaire moyen hebdomadaire au Canada;
-%			\item	Détails sur le calcul utilisant l'année précédente.
-%		\end{itemize}
-%	\item[Taux de cotisation]
-%		\begin{itemize}[leftmargin = *]
-%			\item	Stable à 1.8\% pendant 20 ans (1966 à 1986);
-%			\item	A été augmenté de graduellement et plus rapidement depuis 1998;
-%			\item	Mécanisme d'auto-ajustement en place depuis 2018 pour rétablir l'équilibre du financement s'il y a lieu;
-%			\item	Détails sur ce que représente le taux de cotisation;
-%			\item	Le travailleur autonome paye la partie du travailleur \textit{et} employeur.
-%		\end{itemize}
-%	\item[Varia]
-%		\begin{itemize}[leftmargin = *]
-%			\item	Cotisation obligatoires;
-%			\item	Dès l'âge de 18 ans;
-%			\item	Cotisations font sont un crédit pour les impôts;
-%			\item	On cotise uniquement sur des revenus de travail;
-%			\item	Pouvons racheter des années de revenus de travail manquantes;
-%			\item	Pas possible de récupérer des cotisations versées car elles sont acquises au régime.
-%		\end{itemize}
-%\end{description}
+\subsubsection*{Financement}
+En surplus du régime de base.
+\begin{description}
+	\item[S1]	sur 4 ans;
+	\item[S2]	sur 1 an.
+		\begin{itemize}[leftmargin = *]
+		\item	MSGA.
+		\end{itemize}
+\end{description}
 
-%\textbf{Prestations}---\textit{admissibilité}
-%\begin{itemize}[leftmargin = *]
-%	\item	La rente de retraite est payée à la personne qui en fait la demande âgée d'au moins 60 ans ayant cotisé au moins 1 an au régime;
-%	\item	Peut recevoir sa rente tout en continuant de travailler;
-%	\item	Rappel de la réduction actuarielle pour une retraite anticipée.
-%\end{itemize}
+\subsubsection*{Prestations---\textit{admissibilité}}
+Montant de prestation proportionnel au nombre d'années membre.
+
+\subsubsection*{Prestations---\textit{montant de la rente}}
+
+\subsubsection*{Provisionnement}
+
+\section*{L'invalidité}
+
+\subsection{Rentes}
+
+\subsubsection{Rente d'invalidité}
+
+\textbf{Description}
+\textbf{Calcul}
+
+\subsubsection{Rente d'enfant de personnes invalides}
+
+\section*{Les prestations de survivants}
+
+\subsection*{Admissibilité}
+
+\subsection*{Rente de conjoint survivant}
+
+\subsection*{Rente d'orphelin}
+
+\subsection*{Prestation de décès}
 
 \end{multicols*}
 \end{document}
