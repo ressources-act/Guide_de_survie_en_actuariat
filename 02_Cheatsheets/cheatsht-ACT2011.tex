@@ -2287,8 +2287,8 @@ Si la différence en prix d'option était supérieure à la différence en prix 
 
 \begin{algo2}[Créer un portefeuille réplicatif]
 \begin{enumerate}
-	\item	Acheter $\Delta	=	e^{-\delta h} \left(\frac{V_{u} - V_{d}}{S_{0}(u - d)}\right)$ parts de l'action;
-	\item	Prêter $B	=	e^{-\delta h} \left[ V_{d}\left(	\frac{u}{u - d}\right) - V_{u} \left(\frac{d}{u - d}\right) \right]$ au taux sans risque;
+	\item	Acheter $\Delta	=	\textrm{e}^{-\delta h} \left(\frac{V_{u} - V_{d}}{S_{0}(u - d)}\right)$ parts de l'action;
+	\item	Prêter $B	=	\textrm{e}^{-r h} \left[ V_{d}\left(	\frac{u}{u - d}\right) - V_{u} \left(\frac{d}{u - d}\right) \right]$ au taux sans risque;
 \end{enumerate}
 
 La valeur initiale du portefeuille réplicatif est donc $V_{0}	=	\Delta S_{0} + B$.
@@ -2382,8 +2382,6 @@ On isole:
 		\begin{align*}
 		h	=	\frac{T}{n}
 		\end{align*}
-%	\item[$VAE$]	Valeur espérée actualisée.
-%	\item[$VSL$]	Valeur si levée.
 \end{description}
 \end{distributions}
 
@@ -2411,16 +2409,179 @@ Il y a 2 approches:
 \end{enumerate}
 \tcbline
 \begin{itemize}[leftmargin = *]
-	\item	La probabilité d'atteindre un nœud terminal est calculé avec une distribution binomiale;
+	\item	La probabilité d'atteindre un nœud terminal est calculée avec une distribution binomiale;
 	\item	Pour $n$ périodes, $k$ est le nombre de hausses $u$ pour atteindre le nœud;
 	\item	La probabilité est: \[\Pr(\text{atteindre un nœud ayant $k$ hausses})	=	\binom{n}{k} (p^{*})^{k} (1 - p^{*})^{n - k}\] pour $k = 0, 1, \dots, n$.
 \end{itemize}
 \end{algo2}
 
+\begin{distributions}[Pour un nœud $u$]
+\begin{align*}
+	V_{u}	&=	\textrm{e}^{-r h}\left[ p^{*}V_{uu} + (1 - p^{*})V_{ud} \right]
+\end{align*}
+\end{distributions}
+
 \subsubsection*{Portefeuille réplicatif}
 
+$\Delta$ et $B$ ne restent pas constants et donc il faut prendre l'approche nœud par nœud. Ce faisant, il est \textit{\textbf{beaucoup}} plus compliqué et long de trouver le prix avec cette approche.
 
+\begin{distributions}[Pour un nœud $u$]
+\begin{align*}
+	\Delta_{u}	&=	\textrm{e}^{-\delta h}\left( \frac{V_{uu} = V_{ud}}{(u - d)S_{u}} \right)	\\
+	B_{u}	&=	\textrm{e}^{-r h} \left[ V_{ud}\left(	\frac{u}{u - d}\right) - V_{uu} \left(\frac{d}{u - d}\right) \right]	\\
+	V_{u}	&=	\Delta_{u} S_{u} + B_{u}
+\end{align*}
+\end{distributions}
+
+\subsection*{Tarification d'options américaines}
+La distinction avec les options américaines est la possibilité d'un exercice hâtif.
+
+\begin{description}
+	\item[Valeur espérée actualisée (VEA)]	valeur (\og \textit{payoff} \fg{}) pour un maintien de l'option;
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{Pull-back value}\fg{} car on se retire (\og \textit{pull-back} \fg{}) d'exercer l'option immédiatement.
+		\end{itemize}
+	\item[Valeur si levée (VSL)]	valeur (\og \textit{payoff} \fg{}) pour un exercice hâtif.
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{Immediate exercice value} \fg{}.
+		\end{itemize}
+\end{description}
+
+\begin{distributions}[Pour un nœud $u$]
+\begin{align*}
+VSL	&=	
+	\begin{cases}
+	S_{u}	-	K,	&	\text{option d'achat}	\\
+	K	-	S_{u},	&	\text{option de vente}
+	\end{cases}
+\end{align*}
+\begin{align*}
+	VEA	
+	&=		\textrm{e}^{-r h}\left[ p^{*}V_{uu} + (1 - p^{*})V_{ud} \right]	\\
+	V_{u}	
+	&=	\max(VEA, VSL)
+\end{align*}
+\end{distributions}
+
+\begin{algo2}[Processus de tarification]
+\begin{enumerate}[leftmargin = *]
+	\item	À partir du nœud le plus à droite de l'arbre décider à chaque nœud de l'arbre si l'exercice hâtif est optimal;
+		\begin{itemize}[leftmargin = *]
+		\item	Si $VSL > VEA$ alors il y a un exercice hâtif sinon on maintient l'option au moins une période de plus;
+		\item	Donc $\text{valeur au nœud} = \max\left(\text{\shortstack{valeur pour un\\ maintien de l'option}}, \text{\shortstack{valeur pour un\\ exercice immédiat}}\right)$.
+		\end{itemize}
+	\item	Répéter jusqu'au nœud initial.
+\end{enumerate}
+\end{algo2}
+
+\subsection*{Tarification d'options sur un contrat à terme standardisé}
+\textbf{Pas sur l'examen partiel hiver 2020.}
+
+\begin{distributions}[Notation]
+\begin{description}[leftmargin = *]
+	\item[$T_{F}$]	temps d'expiration du contrat à terme standardisé;
+	\item[$T$]	temps d'expiration d'une option;
+		\begin{align*}
+		T \le T_{F}
+		\end{align*}
+	\item[$F_{t, T_{F}}$]	Prix à terme au temps $t$ pour un contrat à terme standardisé expirant au temps $T_{F}$.
+		\begin{align*}
+		F_{t, T_{F}}
+		&=	S_{t} \textrm{e}^{(r - \delta)(T_{F} - t)}
+		\end{align*}
+	\item[$u_{F}$ et $d_{F}$]	Facteurs de hausse et de baisse pour un arbre de contrats à terme standardisés;
+		\begin{align*}
+		u_{F}	
+		&=	u \textrm{e}^{-(r - \delta)h}	=	\textrm{e}^{\sigma \sqrt{h}}	\\
+		d_{F}
+		&=	d \textrm{e}^{-(r - \delta)h}	=	\textrm{e}^{-\sigma \sqrt{h}}
+		\end{align*}
+\end{description}
+\end{distributions}
+
+L'équation pour un arbre de contrats à terme standardisés suffit de remplacer les paramètres:
+\begin{align*}
+	p^{*}	
+		&=	\frac{\textrm{e}^{(r - \delta)h} - d}{u - d}	&
+	&\Rightarrow	&
+	p^{*}	
+		&=	\frac{\textrm{e}^{(r -r)h} - d_{F}}{u_{F} - d_{F}}
+		=	\frac{1 - d_{F}}{u_{F} - d_{F}}	\\
+	u	
+		&=	\textrm{e}^{(r - \delta)h + \sigma \sqrt{h}}	&
+	&\Rightarrow	&
+	u	
+		&=	\textrm{e}^{(r - r)h + \sigma \sqrt{h}}	
+		=	\textrm{e}^{\sigma \sqrt{h}}	\\
+	d	
+		&=	\textrm{e}^{(r - \delta)h - \sigma \sqrt{h}}	&
+	&\Rightarrow	&
+	d	
+		&=	\textrm{e}^{(r - r)h - \sigma \sqrt{h}}	
+		=	\textrm{e}^{-\sigma \sqrt{h}}	\\
+	\Delta
+		&=	\frac{V_{u} - V_{d}}{S(u - d)}	&
+	&\Rightarrow	&
+	\Delta
+		&=	\frac{V_{u} - V_{d}}{F(u_{F} - d_{F})}	
+\end{align*}
+
+\begin{align*}
+	V_{u}
+		&=	\Delta	(F u_{F} - F) + B \textrm{e}^{rh}	&
+	V_{d}
+		&=	\Delta	(F d_{F} - F) + B \textrm{e}^{rh}
+\end{align*}
+
+\subsection*{Tarification d'options sur devises}
+\begin{distributions}[Notation]
+\begin{description}[leftmargin = *]
+	\item[$r_{\text{DD}}$]	taux (force) d'intérêt sans risque sur le marché domestique;
+	\item[$r_{\text{DÉ}}$]	taux (force) d'intérêt sans risque sur le marché étranger.
+\end{description}
+\end{distributions}
+
+L'équation pour un arbre standard suffit de remplacer les paramètres:
+\begin{align*}
+	p^{*}	&=	\frac{\textrm{e}^{(r - \delta)h} - d}{u - d}	&
+	&\Rightarrow	&
+	p^{*}	&=	\frac{\textrm{e}^{(r_{\text{DD}} - r_{\text{DÉ}})h} - d}{u - d}	\\
+	u	&=	\textrm{e}^{(r - \delta)h + \sigma \sqrt{h}}	&
+	&\Rightarrow	&
+	u	&=	\textrm{e}^{(r_{\text{DD}} - r_{\text{DÉ}})h + \sigma \sqrt{h}}	\\
+	d	&=	\textrm{e}^{(r - \delta)h - \sigma \sqrt{h}}	&
+	&\Rightarrow	&
+	d	&=	\textrm{e}^{(r_{\text{DD}} - r_{\text{DÉ}})h - \sigma \sqrt{h}}	
+\end{align*}
 	
+	
+\subsection*{Volatilité}
+\begin{align*}
+	r_{t, t + h}
+	&=	\ln\left( \frac{S_{t + h}}{S_{t}} \right)
+\end{align*}
+
+\begin{distributions}[Notation]
+\begin{description}[leftmargin = *]
+	\item[$R$]	variable aléatoire de la force du rendement (sous base annuelle).
+		\begin{align*}
+		\sigma	
+		&=	\sqrt{\text{Var}(R)}
+		\end{align*}
+\end{description}
+\end{distributions}
+
+\paragraph*{Estimation}
+
+\begin{align*}
+	\bar{r}
+	&=	\frac{\overset{n}{\underset{i = 1}{\sum}} r_{t + (i - 1)h, t + ih}}{n}	&
+	s_{h}
+	&=	\sqrt{\frac{\overset{n}{\underset{i = 1}{\sum}} (r_{t + (i - 1)h, t + ih} - \bar{r})^{2}}{n - 1}}
+\end{align*}
+
+Pour $h = \frac{1}{12}$ on a $\sigma = s_{1/12}\sqrt{12}$ ou pour $h = \frac{1}{52}$ on a $\sigma = s_{1/52}\sqrt{52}$.
+
 \end{multicols*}
 
 %% -----------------------------
