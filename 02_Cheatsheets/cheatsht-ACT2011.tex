@@ -2520,10 +2520,15 @@ L'équation pour un arbre de contrats à terme standardisés suffit de remplacer
 		&=	\textrm{e}^{(r - r)h - \sigma \sqrt{h}}	
 		=	\textrm{e}^{-\sigma \sqrt{h}}	\\
 	\Delta
-		&=	\frac{V_{u} - V_{d}}{S(u - d)}	&
+		&=	\textrm{e}^{-\delta h} \left(\frac{V_{u} - V_{d}}{S(u - d)}\right)	&
 	&\Rightarrow	&
 	\Delta
-		&=	\frac{V_{u} - V_{d}}{F(u_{F} - d_{F})}	
+		&=	\frac{V_{u} - V_{d}}{F(u_{F} - d_{F})}	\\
+	B	
+		&=	\textrm{e}^{-rh} \left[V_{d} \frac{u}{u - d} - V_{u}\frac{d}{u - d}\right]	&
+	&\Rightarrow	&
+	B
+		&=	\textrm{e}^{-rh} [p^{*} V_{u} + (1 - p^{*}) V_{d}]
 \end{align*}
 
 \begin{align*}
