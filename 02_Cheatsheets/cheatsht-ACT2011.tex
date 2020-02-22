@@ -2263,14 +2263,9 @@ Si la différence en prix d'option était supérieure à la différence en prix 
 \end{description}
 
 \begin{distributions}[Notation de prix]
-\begin{multicols*}{2}
 \begin{description}[leftmargin = *]
 	\item[$u$]	facteur de hausse \og \textit{"up" factor} \fg{};
 	\item[$d$]	facteur de baisse \og \textit{"down" factor} \fg{};	
-\end{description}
-\end{multicols*}
-\begin{multicols*}{2}
-\begin{description}[leftmargin = *]
 	\item[$S_{u}$]	prix de l'action s'il y a une hausse;
 		\begin{align*}
 		S_{u} = S_{0} u
@@ -2279,14 +2274,11 @@ Si la différence en prix d'option était supérieure à la différence en prix 
 		\begin{align*}
 		S_{d} = S_{0} d
 		\end{align*}
-\end{description}
-\end{multicols*}
-\begin{description}[leftmargin = *]
 	\item[$\Delta$]	nombre de parts d'actions à acheter;
 	\item[$B$]	montant à prêter au taux sans risque.
 	\item[$V_{u}$]	valeur à la node supérieure \og \textit{value at upper node} \fg{};
 	\item[$V_{d}$]	valeur à la node inférieur \og \textit{value at lower node} \fg{};
-	\item[$V_{0}$]	valeur du portefeuille au temps $0$;
+	\item[$V_{0}$]	valeur du portefeuille au temps $0$ alias \textbf{le prix};
 \end{description}
 \end{distributions}
 
@@ -2294,8 +2286,8 @@ Si la différence en prix d'option était supérieure à la différence en prix 
 
 \begin{algo2}[Créer un portefeuille réplicatif]
 \begin{enumerate}
-	\item	Acheter $\Delta	=	e^{-\delta h} \left(\frac{V_{u} - V_{d}}{S_{0}(u - d)}\right)$ parts de l'action;
-	\item	Prêter $B	=	e^{-\delta h} \left[ V_{u} \left(\frac{d}{u - d}\right) + V_{d}\left(	\frac{u}{u - d}\right) \right]$ au taux sans risque;
+	\item	Acheter $\Delta	=	e^{-\delta T} \left(\frac{V_{u} - V_{d}}{S_{0}(u - d)}\right)$ parts de l'action;
+	\item	Prêter $B	=	e^{-\delta T} \left[ V_{u} \left(\frac{d}{u - d}\right) + V_{d}\left(	\frac{u}{u - d}\right) \right]$ au taux sans risque;
 \end{enumerate}
 
 La valeur initiale du portefeuille réplicatif est donc $V_{0}	=	\Delta S_{0} + B$.
@@ -2323,36 +2315,73 @@ $B$		&	$-$	&	$+$			\\
 \end{tabular}
 \end{center}
 
+\subsection*{Évaluation neutre au risque}
 
-
-\subsection*{Probabilité neutre au risque}
 \begin{itemize}
-\item $U = uS$ est la valeur supérieure que peut prendre le sous-jacent $S$
-\item $D = dS$ est la valeur inférieure que peut prendre le sous-jacent $S$
-\item $p$ est la probabilité (Bernouilli) que le sous-jacent prenne la valeur $U$.
-\item $C_u$, $C_d$, $P_u$ et $P_d$ sont les payoff d'un call (ou put) selon la valeur du sous-jacent après $h$ périodes.
-\item $r$ et $\delta$ sont respectivement la force d'intérêt sans risque et le taux de dividende continu.
+	\item	Présume que $\text{E}[\text{rendement}] = r_{f}$;
+	\item	La technique pondère les possibilités de valeur à l'échéance des options avec des probabilités neutre au risque puis les actualise au taux sans risque;
+	\item	En raison de la simplicité des calculs, les options sont souvent tarifiées avec l'évaluation neutre au risque;
+	\item	Le prix est en fait identique à celui obtenu avec l'approche du portefeuille réplicatif.
 \end{itemize}
- Alors, la probabilité \textit{neutre au risque} est
-\begin{align*}
-p = \frac{e^{(r-\delta)h} - d}{u-d}
-\end{align*}
 
-\subsection*{Portefeuille réplicatif d'une option}
-On peut reproduire une option (Call ou Put) avec la stratégie suivante  :
-\[C = \Delta S + B\]
-où $B$ et $\Delta S$ changent de signe selon si c'est un Call ou un Put. On peut obtenir la prime initiale (\textit{Premium}) et les composantes du portefeuille réplicatif avec
-\begin{align*}
-\Delta = e^{-\delta h} \left( \frac{C_u - C_d}{U - D} \right) =   e^{-\delta h} \left( \frac{C_u - C_d}{S(u -d)} \right)
-\end{align*}
-\begin{align*}
-B = e^{-rh} \left( \frac{U \cdot C_d - D \cdot C_u}{U - D} \right) = e^{-rh} \left( \frac{u C_d - d C_u}{u-d} \right)
-\end{align*}
-\begin{align*}
-\text{Premium} = \Delta S_0 + B
-\end{align*}
+\begin{distributions}[Notation]
+\begin{description}[leftmargin = *]
+	\item[$p^{*}$]	la probabilité neutre au risque d'une hausse de l'actif.
+		\begin{align*}
+		p^{*}	&=	\frac{\textrm{e}^{(r - \delta)T} - d}{u - d}
+		\end{align*}
+\end{description}
+Le prix est donc :
+	\begin{align*}
+	V_{0}	&=	\textrm{e}^{-rT} \left[p^{*} V_{u} + (1 - p^{*})V_{d} \right]
+	\end{align*}
+\end{distributions}
 
+On déduit que $0 < p^{*} < 1$ ce qui mène à l'équation suivante:
+	\begin{align*}
+	d < \textrm{e}^{(r - \delta)T} < u
+	\end{align*}
+Sinon, il y a arbitrage.
 
+\subsection*{Construction d'un arbre binomial}
+
+\begin{description}
+	\item[Méthode générale]	Arbitrairement sélectionner des valeurs de $u$ et $d$ pour l'arbre binomial crée;
+	\item[Arbre binomial standard]	Sélectionner des valeurs de $u$ et $d$ selon des prix à terme résultant en un arbre binomial standard.
+\end{description}
+
+\subsubsection*{Arbre binomial standard}
+L'intuition est de multiplier le prix à terme de l'action par un facteur variant selon la volatilité.
+
+\begin{distributions}[Notation]
+\begin{description}[leftmargin = *]
+	\item[$\sigma$]	la volatilité annuelle du rendement de l'action composée continûment;
+	\item[]	L'écart type de la volatilité sur une période de durée $T$ est donc $\sigma \sqrt{T}$.
+\end{description}
+\end{distributions}
+
+Le prix à terme est donc multiplié par $\textrm{e}^{\sigma \sqrt{T}}$ pour le prix avec une hausse $S_{u} = F_{t, t + T}\textrm{e}^{\sigma \sqrt{T}}$ et $\textrm{e}^{-\sigma \sqrt{T}}$ pour le prix $S_{d} = F_{t, t + T}\textrm{e}^{-\sigma \sqrt{T}}$ avec une baisse.\\
+
+On isole:
+\begin{rappel}{}
+	\begin{align*}
+	u	&=	\textrm{e}^{(r - \delta)T + \sigma \sqrt{T}}	&
+	d	&=	\textrm{e}^{(r - \delta)T - \sigma \sqrt{T}}
+	\end{align*}
+\end{rappel}
+
+Également, pour ce cas spécial, $p^{*}$ se simplifie à $p^{*}	=	\frac{1}{1 + \textrm{e}^{\sigma \sqrt{T}}}$
+
+%\subsection*{Arbres binomiaux à plusieurs périodes}
+%
+%Risk Neural Valuation
+%	Node by Node
+%	Direct approach
+%Replicating Portfolio approach
+%	Step 1
+%	Step 2
+%	Step 3
+	
 \end{multicols*}
 
 %% -----------------------------
