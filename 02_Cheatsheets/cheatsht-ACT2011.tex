@@ -2561,31 +2561,39 @@ L'équation pour un arbre standard suffit de remplacer les paramètres:
 	
 	
 \subsection*{Volatilité}
-\begin{align*}
-	r_{t, t + h}
-	&=	\ln\left( \frac{S_{t + h}}{S_{t}} \right)
-\end{align*}
+%\begin{align*}
+%	r_{t, t + h}
+%	&=	
+%\end{align*}
 
 \begin{distributions}[Notation]
 \begin{description}[leftmargin = *]
-	\item[$R$]	variable aléatoire de la force du rendement (sous base annuelle).
-		\begin{align*}
-		\sigma	
-		&=	\sqrt{\text{Var}(R)}
-		\end{align*}
+	\item[$R$]	variable aléatoire de la force du rendement (sous base annuelle);
+	\item[Hypothèse]	Les rendements composés continûment sur des périodes disjointes, mais de même longueur $h$, sont i.i.d.
 \end{description}
 \end{distributions}
 
-\paragraph*{Estimation}
+On suppose $n$ rendements, sur une période de $h$ années, composés continûment $r_{t, t + h}, r_{t + h, t + 2h}, \dots, r_{t + (n - 1)h, t + nh}$. On peut estimer la volatilité historique avec:
 
 \begin{align*}
+	s_{h}
+	&=	\sqrt{\frac{\overset{n}{\underset{i = 1}{\sum}} (r_{t + (i - 1)h, t + ih} - \bar{r})^{2}}{n - 1}}, &
+	&\text{où}&
 	\bar{r}
 	&=	\frac{\overset{n}{\underset{i = 1}{\sum}} r_{t + (i - 1)h, t + ih}}{n}	&
-	s_{h}
-	&=	\sqrt{\frac{\overset{n}{\underset{i = 1}{\sum}} (r_{t + (i - 1)h, t + ih} - \bar{r})^{2}}{n - 1}}
 \end{align*}
 
-Pour $h = \frac{1}{12}$ on a $\sigma = s_{1/12}\sqrt{12}$ ou pour $h = \frac{1}{52}$ on a $\sigma = s_{1/52}\sqrt{52}$.
+Donc $s_{h}$ estime $\sigma_{h}$ et $\bar{r}_{h}$ estime $\mu_{h}$ où:
+	\begin{align*}
+	\sigma_{h}
+	&=	\sqrt{\text{Var}\left(\ln\left( \frac{S_{t + h}}{S_{t}} \right)\right)}	
+	=	\sqrt{\text{Var}(R_{t, t + h})}	\\
+	\mu_{h}
+	&=	\text{E}[R_{t, t + h}]
+	\end{align*}
+
+Pour changer d'une base annuelle (le défaut de $h$) à une base quelconque, on divise par $h$ puisqu'il faut additionner $\frac{1}{h}$ rendements. \\
+Par exemple, sous base mensuelle $h = \frac{1}{12}$ on a $\sigma = s_{1/12}\sqrt{12}$ ou sous base hebdomadaire $h = \frac{1}{52}$ on a $\sigma = s_{1/52}\sqrt{52}$.
 
 \end{multicols*}
 
