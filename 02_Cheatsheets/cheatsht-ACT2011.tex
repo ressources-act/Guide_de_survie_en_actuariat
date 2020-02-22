@@ -2274,11 +2274,12 @@ Si la différence en prix d'option était supérieure à la différence en prix 
 		\begin{align*}
 		S_{d} = S_{0} d
 		\end{align*}
+	\item[$h$]	durée de chaque période;
 	\item[$\Delta$]	nombre de parts d'actions à acheter;
-	\item[$B$]	montant à prêter au taux sans risque.
+	\item[$B$]	montant à prêter au taux sans risque;
 	\item[$V_{u}$]	valeur à la node supérieure \og \textit{value at upper node} \fg{};
 	\item[$V_{d}$]	valeur à la node inférieur \og \textit{value at lower node} \fg{};
-	\item[$V_{0}$]	valeur du portefeuille au temps $0$ alias \textbf{le prix};
+	\item[$V_{0}$]	valeur du portefeuille au temps $0$ alias \textbf{le prix}.
 \end{description}
 \end{distributions}
 
@@ -2286,8 +2287,8 @@ Si la différence en prix d'option était supérieure à la différence en prix 
 
 \begin{algo2}[Créer un portefeuille réplicatif]
 \begin{enumerate}
-	\item	Acheter $\Delta	=	e^{-\delta T} \left(\frac{V_{u} - V_{d}}{S_{0}(u - d)}\right)$ parts de l'action;
-	\item	Prêter $B	=	e^{-\delta T} \left[ V_{u} \left(\frac{d}{u - d}\right) + V_{d}\left(	\frac{u}{u - d}\right) \right]$ au taux sans risque;
+	\item	Acheter $\Delta	=	e^{-\delta h} \left(\frac{V_{u} - V_{d}}{S_{0}(u - d)}\right)$ parts de l'action;
+	\item	Prêter $B	=	e^{-\delta h} \left[ V_{d}\left(	\frac{u}{u - d}\right) - V_{u} \left(\frac{d}{u - d}\right) \right]$ au taux sans risque;
 \end{enumerate}
 
 La valeur initiale du portefeuille réplicatif est donc $V_{0}	=	\Delta S_{0} + B$.
@@ -2328,18 +2329,18 @@ $B$		&	$-$	&	$+$			\\
 \begin{description}[leftmargin = *]
 	\item[$p^{*}$]	la probabilité neutre au risque d'une hausse de l'actif.
 		\begin{align*}
-		p^{*}	&=	\frac{\textrm{e}^{(r - \delta)T} - d}{u - d}
+		p^{*}	&=	\frac{\textrm{e}^{(r - \delta)h} - d}{u - d}
 		\end{align*}
 \end{description}
 Le prix est donc :
 	\begin{align*}
-	V_{0}	&=	\textrm{e}^{-rT} \left[p^{*} V_{u} + (1 - p^{*})V_{d} \right]
+	V_{0}	&=	\textrm{e}^{-rh} \left[p^{*} V_{u} + (1 - p^{*})V_{d} \right]
 	\end{align*}
 \end{distributions}
 
 On déduit que $0 < p^{*} < 1$ ce qui mène à l'équation suivante:
 	\begin{align*}
-	d < \textrm{e}^{(r - \delta)T} < u
+	d < \textrm{e}^{(r - \delta)h} < u
 	\end{align*}
 Sinon, il y a arbitrage.
 
@@ -2356,31 +2357,69 @@ L'intuition est de multiplier le prix à terme de l'action par un facteur varian
 \begin{distributions}[Notation]
 \begin{description}[leftmargin = *]
 	\item[$\sigma$]	la volatilité annuelle du rendement de l'action composée continûment;
-	\item[]	L'écart type de la volatilité sur une période de durée $T$ est donc $\sigma \sqrt{T}$.
+	\item[]	L'écart type de la volatilité sur une période de durée $h$ est donc $\sigma \sqrt{h}$.
 \end{description}
 \end{distributions}
 
-Le prix à terme est donc multiplié par $\textrm{e}^{\sigma \sqrt{T}}$ pour le prix avec une hausse $S_{u} = F_{t, t + T}\textrm{e}^{\sigma \sqrt{T}}$ et $\textrm{e}^{-\sigma \sqrt{T}}$ pour le prix $S_{d} = F_{t, t + T}\textrm{e}^{-\sigma \sqrt{T}}$ avec une baisse.\\
+Le prix à terme est donc multiplié par $\textrm{e}^{\sigma \sqrt{h}}$ pour le prix avec une hausse $S_{u} = F_{t, t + h}\textrm{e}^{\sigma \sqrt{h}}$ et $\textrm{e}^{-\sigma \sqrt{h}}$ pour le prix $S_{d} = F_{t, t + h}\textrm{e}^{-\sigma \sqrt{h}}$ avec une baisse.\\
 
 On isole:
 \begin{rappel}{}
 	\begin{align*}
-	u	&=	\textrm{e}^{(r - \delta)T + \sigma \sqrt{T}}	&
-	d	&=	\textrm{e}^{(r - \delta)T - \sigma \sqrt{T}}
+	u	&=	\textrm{e}^{(r - \delta)h + \sigma \sqrt{h}}	&
+	d	&=	\textrm{e}^{(r - \delta)h - \sigma \sqrt{h}}
 	\end{align*}
 \end{rappel}
 
-Également, pour ce cas spécial, $p^{*}$ se simplifie à $p^{*}	=	\frac{1}{1 + \textrm{e}^{\sigma \sqrt{T}}}$
+Également, pour ce cas spécial, $p^{*}$ se simplifie à $p^{*}	=	\frac{1}{1 + \textrm{e}^{\sigma \sqrt{h}}}$
 
-%\subsection*{Arbres binomiaux à plusieurs périodes}
-%
-%Risk Neural Valuation
-%	Node by Node
-%	Direct approach
-%Replicating Portfolio approach
-%	Step 1
-%	Step 2
-%	Step 3
+\subsection*{Arbres binomiaux à plusieurs périodes}
+
+\begin{distributions}[Notation]
+\begin{description}[leftmargin = *]
+	\item[$n$]	nombre de périodes;
+	\item[$h$]	durée de chacune des périodes;
+		\begin{align*}
+		h	=	\frac{T}{n}
+		\end{align*}
+%	\item[$VAE$]	Valeur espérée actualisée.
+%	\item[$VSL$]	Valeur si levée.
+\end{description}
+\end{distributions}
+
+La généralisation des méthodes précédente pour les arbres binomiaux à plusieurs périodes se résume à multiplier les facteurs $u$ et $d$. \\
+Par example:
+\begin{center}
+	\includegraphics[scale=0.33]{src/ACT-2011/mult-per-bin-tree.png}
+\end{center}
+
+Lorsque les facteurs $u$ et $d$ sont fixes, l'arbre se recombine et $S_{0} \cdot u \cdot d = S_{0} \cdot d \cdot u$.
+
+\subsubsection*{Évaluation neutre au risque}
+
+Il y a 2 approches:
+\begin{description}
+	\item[Nœud par nœud]	On calcule la valeur de l'option à chaque nœud récursivement avec l'évaluation neutre au risque jusqu'à arriver au prix;
+	\item[Approche directe]	Pour les \textbf{options européennes} dont l\textbf{'exercice hâtif n'est pas possible}.
+\end{description}
+
+\begin{algo2}[Approche directe]
+\begin{enumerate}[leftmargin = *]
+	\item	Calculer la valeur à l'échéance;
+	\item	La pondérer par la probabilité neutre au risque de l'atteindre;
+	\item	L'actualiser au taux sans risque.
+\end{enumerate}
+\tcbline
+\begin{itemize}[leftmargin = *]
+	\item	La probabilité d'atteindre un nœud terminal est calculé avec une distribution binomiale;
+	\item	Pour $n$ périodes, $k$ est le nombre de hausses $u$ pour atteindre le nœud;
+	\item	La probabilité est: \[\Pr(\text{atteindre un nœud ayant $k$ hausses})	=	\binom{n}{k} (p^{*})^{k} (1 - p^{*})^{n - k}\] pour $k = 0, 1, \dots, n$.
+\end{itemize}
+\end{algo2}
+
+\subsubsection*{Portefeuille réplicatif}
+
+
 	
 \end{multicols*}
 
