@@ -25,19 +25,28 @@
 \section{Introduction aux produits dérivés}
 
 \begin{definitionNOHFILL}[Produits dérivés]
-Titre financier dont sa valeur est déterminée par le prix de quelque chose d'autre, soit l'\textbf{actif sous-jacent} du produit dérivé.
+Titre financier dont sa valeur est déterminée par le prix de quelque chose d'autre, soit l'\textbf{actif sous-jacent} du produit dérivé.\\
 
-Tout comme un couteau n'est pas dangereux de soi, les produits dérivés ne le sont pas non plus. Cependant, on peut heurter quelqu'un avec un couteau tout comme on peut couper des patates. Les produits dérivés sont en fait des \textbf{outils de gestion du risque} qui deviennent utiles lorsque le risque du sous-jacent augmente.
+Tout comme un couteau n'est pas dangereux de soi, les produits dérivés ne le sont pas non plus. On peut heurter quelqu'un avec un couteau tout comme on peut couper des patates. Le risque dépend de leur utilisation.\\
+
+Les produits dérivés apparaissent souvent en raison d'une augmentation du risque du sous-jacent; ils sont en fait des \textbf{outils de gestion du risque}.
 \end{definitionNOHFILL}
 
 \begin{rappel_enhanced}[Origine]
 Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a causé de l'hyperinflation dans plusieurs pays) pour plutôt laisser le libre-marché fixer la valeur des devises de chaque pays.
+\tcbline
+\textbf{Causes} de la transformation des marchés:
+\begin{itemize}[leftmargin = *]
+	\item	Déréglementation;
+	\item	Automatisation des traitements avec l'informatique;
+	\item	Mondialisation.
+\end{itemize}
 \end{rappel_enhanced}
 
 \begin{formula}{Exemples de produits dérivés}
 \begin{itemize}[leftmargin = *]
-	\item	Contrat à terme standardisé (\og \textit{futures contract} \fg{} );
-	\item	Contrat à terme de gré à gré (\og \textit{forward contract} \fg{} );
+	\item	Contrat à terme standardisé (\og \textit{futures contract} \fg{});
+	\item	Contrat à terme de gré à gré (\og \textit{forward contract} \fg{});
 	\item[]	\textit{Gré}: acceptation, ou consentement;
 	\item	Option d'achat (\og \textit{call} \fg{});
 	\item	Option de vente (\og \textit{put} \fg{});
@@ -48,9 +57,9 @@ Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a cau
 \begin{formula}{Exemples de sous-jacent aux produits dérivés}
 \begin{multicols*}{2}
 \begin{itemize}[leftmargin = *]
-	\item	Action;
 	\item	Indice boursier;
-	\item	Devise;
+	\item	Taux d'intérêt;
+	\item	Taux de change;
 	\item	Climat;
 	\item	Prix d'une marchandise.
 \end{itemize}
@@ -61,7 +70,7 @@ Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a cau
 \begin{itemize}[leftmargin = *]
 	\item 	Gestion des risques (\textbf{hedging});
 	\item[]	Par exemple, un avion peut se procurer une option d'achat pour contrer le risque d'une augmentation du prix du pétrole;
-	\item[]	On dit qu'elle \og \textit{hedge} \fg{} contre le prix du pétrole.
+	\item[]	On dit qu'elle \og \textit{hedge} \fg{}, ou protège sa position, contre le prix du pétrole.
 	\item 	\textbf{Spéculation};
 	\item[]	Par exemple, un investisseur croit que le prix d'une action va augmenter et se procure une option d'achat.
 	\item 	\textbf{Réduction} des \textbf{frais} de \textbf{transaction}: Faire le même profit qu'en transigeant des actions sans réellement les transiger;
@@ -72,19 +81,37 @@ Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a cau
 
 \begin{conceptgen}{Parties prenantes}
 \begin{description}
-	\item[End-users]	participants au contrat du produit dérivé;
-	\item[Teneur de marché]	intermédiaire visant à faire un profit de la transaction entre end-users;
+	\item[Utilisateur final]	participant au contrat du produit dérivé;
+		\begin{itemize}
+		\item	\og \textit{end-user} \fg{}.
+		\end{itemize}
+	\item[Teneur de marché]	"crée" le marché en tant qu'intermédiaire;
 		\begin{itemize}[leftmargin = *]
+		\item	Il cherche à faire un profit, une "cote", sur la transaction;
 		\item	\og \textit{Market-makers} \fg{}.
 		\end{itemize}
-	\item[Economic observers]	observateurs du marché analysant et régulant les activités des teneurs de marché et end-users.
+	\item[Observateur économique]	observateurs du marché qui analysent et réglementent les activités des teneurs de marché et utilisateurs.
 \end{description}
 \end{conceptgen}
 
-\subsection*{Transactions}
+\begin{definitionNOHFILL}[Ingénierie financière] 
+Création de produits dérivés à partir de d'autres produits.\\
 
+\textbf{Implications}
+\begin{itemize}[leftmargin = *]
+	\item	Les teneurs de marchés peuvent \textbf{couvrir} leurs positions (\og \textit{hedging position} \fg{});
+	\item	Les teneurs de marchés peuvent \textbf{personnaliser} les produits dérivés;
+	\item	L'arbitrage réglementaire est difficile à empêcher puisqu'il existe souvent plusieurs façons pour recréer un produit dérivé.
+		\begin{itemize}[leftmargin = *]
+		\item	Pour comprendre le concept, $1 + 3 = 4$ tout comme $2 + 2$;
+		\item	Si le numéro 3 est illégal, on peut arriver à 4 d'une autre façon.
+		\end{itemize}		 
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsection*{Marchés financiers}
 \begin{definitionNOHFILL}[Transaction gré à gré] 
-Transaction sans intermédiaire ou à l'extérieur de la bourse. 
+Transaction sans intermédiaire ou à l'extérieur de la bourse sur un marché hors cote. 
 
 \begin{conceptgen}{Raisons pour ce type de transaction}
 \begin{itemize}[leftmargin = *]
@@ -94,14 +121,13 @@ Transaction sans intermédiaire ou à l'extérieur de la bourse.
 \end{conceptgen}
 \end{definitionNOHFILL}
 
-
 \begin{algo2}[Étapes d'une transaction]
 \begin{enumerate}
 	\item 	L'acheteur et le vendeur se trouvent;
 	\item 	On définit les obligations de chaque partie, on dit que la transaction est \og \textbf{cleared} \fg{};
 		\begin{itemize}[leftmargin = *]
 		\item	C'est-à-dire, l'actif à livrer, la date d'échéance, le prix, etc.;
-		\item	Les transactions sur les marchés financiers sont \textit{cleared} avec un intermédiaire surnommé le \og \textbf{clearing house} \fg{};
+		\item	Les transactions sur les marchés financiers sont \textit{cleared} avec un intermédiaire nommé la \textbf{chambre de compensation} (\og \textit{clearing house} \fg{});
 		\item	Elle met en relation les acheteurs et vendeurs \textit{(1$^{\text{ère}}$ étape)}, et tient compte des obligations et paiements.
 		\end{itemize}	
 	\item 	La transaction a lieu et les obligations sont remplies par chaque partie, on dit que la transaction est \og \textit{settled} \fg{};
@@ -109,8 +135,129 @@ Transaction sans intermédiaire ou à l'extérieur de la bourse.
 \end{enumerate}	
 \end{algo2}
 
+\begin{definitionNOHFILL}[\textbf{Chambre de compensation} \og \textit{clearing house} \fg{}]
+\begin{itemize}
+	\item	La chambre de compensation règle beaucoup de transactions sur les marchés organisés;
+	\item	Elle est une entité standardisée et réglementée;
+	\item	\textbf{Novation} est défini comme un processus de substitution;
+	\item	Dans le cas de produits dérivés, la chambre de compensation, \textit{par novation}, devient le vendeur de tous les acheteurs et l'acheteur de tous les vendeurs;
+	\item	Donc, la chambre de compensation est un intermédiaire pour les acheteurs et vendeurs. 
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Mesures de taille et d'activité d'un marché}
+\begin{description}
+	\item[Volume total des transactions:] Nombre total de titres transigés pendant une période de temps donnée;
+	\item[Valeur marchande:] Valeur de tout ce qui pourrait être transigé;
+		\begin{itemize}[leftmargin = *]
+		\item	$\text{nombre d'actions} \ \times \ \text{prix par action (\$)}$;
+		\item	en anglais, le \og \textit{market value} \fg{};
+		\item	Dans le cas des produits dérivés, ce n'est pas intéressant
+		\end{itemize}
+\tcbline
+	\item[Valeur notionnelle:] Valeur du sous-jacent au produit dérivé;
+	\item[Position ouverte:] Nombre de contrats pour lesquels un des parties a une obligation. 
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{Open interest} \fg{}.
+		\end{itemize}
+%%%	-----number of contracts for which there is a future obligatioon for one party to perform
+%%%	NOTE:
+%%%	+	Du produit dérivé? 
+%%%	+	Pas certain si c'est adéquat de définir de cette façon---i.e. restreinte au produit dérivé.
+%%%	-----
+\end{description}
+\end{conceptgen}
+
+Les compagnies recueillent du capital en émettant des actions et obligations selon leurs objectifs. 
+\begin{description}
+	\item[Obligations]	Une obligation se compare à un emprunt bancaire et est traitée comme de la dette;
+		\begin{itemize}[leftmargin = *]
+		\item	Souvent, elles sont émises pour des besoins de liquidité à court terme ou,
+		\item	Pour le démarrage d'une entreprise.
+		\end{itemize}
+	\item[Actions]	Une action correspond à une partie de la compagnie.
+		\begin{itemize}[leftmargin = *]
+		\item	Souvent, une compagnie va faire une offre publique lorsqu'elle cherche, ou nécessite de l'argent pour soit s'élargir, développer de nouveaux produits, etc.;
+		\item	L'avantage en comparaison à une obligation est qu'il n'y a pas de promesse de rembourser les fonds;
+		\item	En revanche, la compagnie est forcée d'échanger une partie de son contrôle.
+		\end{itemize}
+\end{description}
+
+Il s'ensuit que le \textbf{marché des actions} est plus actif (a un volume total de \textbf{transactions} plus important) que le \textbf{marché des obligations}; les obligations se transigent moins souvent que les actions. Cependant, la taille des deux marchés (valeur marchande) est similaire.\\
+
+\textbf{Rôle des marchés financiers}: Partage du risque et diversification des risques. Si un risque est non diversifiable.\\
+
+\begin{definitionNOHFILL}[\textbf{Écart acheteur-vendeur} \og \textit{Bid-Ask Spread} \fg{} ]
+Écart entre le prix de vente (\textbf{ask}) et d'achat (\textbf{bid}).\\
+
+Ceci correspond à la \textbf{marge de profit} que le teneur de marché conserve. En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
+
+\begin{conceptgen}{Prix}
+\begin{description}
+	\item[Ask:] Prix le plus \textit{élevé} auquel un investisseur est prêt à payer pour le sous-jacent;
+		\begin{itemize}[leftmargin = *]
+		\item	Lorsque le teneur de marché vend une action à un investisseur, il \textit{ask} le prix plus élevé;
+		\item	\og \textit{ask price} \fg{} se traduit au \textbf{cours vendeur} représentant l'idée de regarder les prix auxquels se transigent l'actif.
+		\end{itemize}
+	\item[Bid:] Prix le plus \textit{faible} auquel un investisseur est prêt à vendre le sous-jacent.
+		\begin{itemize}[leftmargin = *]
+		\item	Lorsque le teneur de marché achète une action d'un investisseur, il \textit{bid} le prix plus faible;
+		\item	\og \textit{bid price} \fg{} se traduit au \textbf{cours acheteur}.
+		\end{itemize}
+\end{description}
+
+\end{conceptgen}
+
+\end{definitionNOHFILL}
+
+\begin{distributions}[Terminologie des marchés]
+\begin{description}
+	\item[Ordre au cours du marché:]	On achète et vend selon les meilleurs prix bid-ask actuels;
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{Market order} \fg{}.
+		\end{itemize}
+	\item[Ordre à cours limité:] Ordre pour une quantité précise dans une tranche spécifiée de prix;
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{Limit order} \fg{};
+		\item	On achète le sous-jacent si $Ask < k$ ou on vend le sous-jacent si $Bid > k$ sinon aucune transaction a lieu.
+		\end{itemize}
+	\item[Ordre de vente stop:]	Ordre au cours du marché déclenché par l'atteinte d'un certain prix;
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{Stop-loss order} \fg{};
+		\item	On veut limiter sa perte si un sous-jacent perd énormément de valeur et le vendre si $Bid \leq k$.
+		\end{itemize}
+	\item[Longue] On se considère en position longue \textbf{par rapport au sous-jacent} si notre stratégie nous permet de bénéficier d'une \textcolor{ao(english)}{hausse} du sous-jacent;
+		\begin{itemize}[leftmargin = *]
+		\item	On possède quelque-chose.
+		\end{itemize}
+	\item[Courte] On se considère en position longue \textbf{par rapport au sous-jacent} si notre stratégie nous permet de bénéficier d'une \red{baisse} du sous-jacent.
+		\begin{itemize}[leftmargin = *]
+		\item	On emprunte quelque-chose.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+%%%	-----
+%%	Pas assez pertinent pour l'inclure (AJVR-26/01/2020)
+%%	Contrats ayant une protection pour chaque degrés en sur(sous) de 18 degrés celsius;
+%\paragraph{Contrats saisonnales}
+%\begin{description}
+%	\item[cooling degree-day futures contracts:] Pour la rigueur de l'hiver (un froid anormalement élevé);
+%	\item[heating degree-day futures contracts:] Pour la rigueur de l'été (une chaleur anormalement élevée);
+%\end{description}
+%%%	-----
+
+\subsection*{Vente à découvert}
+
 \begin{definitionNOHFILL}[Vente à découvert \og \textit{(short-sell)} \fg{}] 
-Lorsqu'on croit que le prix d'une action va baisser, on peut faire un profit quand même.
+La vente d'un actif qu'on ne possède pas. On peut y penser comme l'inverse d'un achat.\\
+
+\textbf{Utilités:}
+\begin{description}
+	\item[Spéculation]	Tirer profit d'une baisse de valeur de l'actif;
+	\item[Financement]	Aller chercher de l'argent tout de suite comme un emprunt;
+	\item[Couverture]	Se protéger contre la baisse de la valeur d'un actif que vous possédez.
+\end{description}
 
 \begin{algo2}[Étapes d'une vente à découvert]
 \begin{multicols*}{2}
@@ -120,7 +267,7 @@ Lorsqu'on croit que le prix d'une action va baisser, on peut faire un profit qua
 	\item	Vente du titre;
 	\item[]	Après une certaine période de temps:
 	\item	Achat du titre;
-	\item	Remboursement du titre
+	\item	Remboursement du titre.
 \end{enumerate}	
 \end{multicols*}
 \end{algo2}
@@ -154,7 +301,12 @@ Lorsqu'on croit que le prix d'une action va baisser, on peut faire un profit qua
 		\item	Ce risque peut être réduit avec un dépôt initial en garantie ou une marge de sécurité;
 		\item	\og \textit{credit risk} \fg{}.
 		\end{itemize}	
-	\item[Risque de rareté] S’il est difficile de trouver un acheteur et un vendeur pour le sous-jacent (peu de transactions signifient beaucoup de négociations et de variation dans les prix).
+	\item[Risque de rareté] Risque qu'il soit difficile de trouver un acheteur et un vendeur pour le sous-jacent.
+		\begin{itemize}[leftmargin = *]
+		\item	C'est le risque lié à un actif peu liquide;
+		\item	En raison du faible nombre de transactions, il peut être difficile d'établir des clauses et conditions avec peu de transactions sur lesquelles se baser;
+		\item	Il s'ensuit qu'il y a beaucoup de négociations et de variations dans les prix.
+		\end{itemize}
 \end{description}
 \end{conceptgen}
 
@@ -186,80 +338,6 @@ L'\textbf{investisseur} est le \textit{short-seller} et le \textbf{prêteur} le 
 		\end{itemize}
 \end{description}
 \end{conceptgen}
-
-
-\begin{conceptgen}{Mesures de taille et d'activité d'un marché}
-\begin{description}
-	\item[Volume total des transactions:] Nombre total de titres transigés pendant une période;
-	\item[Valeur marchande:] $\text{nombre d'actions} \ \times \ \text{prix par action (\$)}$;
-		\begin{itemize}[leftmargin = *]
-		\item	\og \textit{Market value} \fg{}.
-		\end{itemize}
-	\item[Valeur notionnelle:] Valeur de l'actif sous-jacent du produit dérivé;
-	\item[Position ouverte:] Nombre de contrats encore en vigueur du produit dérivé.
-		\begin{itemize}[leftmargin = *]
-		\item	\og \textit{Open interest} \fg{}.
-		\end{itemize}
-%%%	-----
-%%%	NOTE:
-%%%	+	Du produit dérivé? 
-%%%	+	Pas certain si c'est adéquat de définir de cette façon---i.e. restreinte au produit dérivé.
-%%%	-----
-\end{description}
-\end{conceptgen}
-
-\textbf{Rôle des marchés financiers}: Partage du risque et diversification des risques.
-
-\begin{definitionNOHFILL}[Bid-Ask Spread]
-Écart entre le prix de vente (\textbf{ask}) et d'achat (\textbf{bid}). Ceci correspond à la \textbf{marge de profit} que le teneur de marché (\textit{market maker}) conserve. 
-En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
-
-\begin{conceptgen}{Prix}
-\begin{description}
-	\item[Ask:] Prix le plus \textit{élevé} auquel un investisseur est prêt à payer pour le sous-jacent;
-		\begin{itemize}[leftmargin = *]
-		\item	Lorsque le teneur de marché vend une action à un investisseur, il \textit{ask} le prix plus élevé;
-		\item	\og \textit{ask price} \fg{} se traduit au \textbf{cours vendeur} représentant l'idée de regarder les prix auxquels se transigent l'actif.
-		\end{itemize}
-	\item[Bid:] Prix le plus \textit{faible} auquel un investisseur est prêt à vendre le sous-jacent.
-		\begin{itemize}[leftmargin = *]
-		\item	Lorsque le teneur de marché achète une action d'un investisseur, il \textit{bid} le prix plus faible;
-		\item	\og \textit{bid price} \fg{} se traduit au \textbf{cours acheteur}.
-		\end{itemize}
-\end{description}
-
-\end{conceptgen}
-
-\end{definitionNOHFILL}
-
-\begin{distributions}[Terminologie des marchés]
-\begin{description}
-	\item[Ordre au cours du marché:]	On achète et vend selon les prix Bid Ask actuels;
-		\begin{itemize}[leftmargin = *]
-		\item	\og \textit{Market order} \fg{}.
-		\end{itemize}
-	\item[Ordre à cours limité:] 	On achète le sous-jacent si $Ask < k$ ou on vend le sous-jacent si $Bid > k$;
-		\begin{itemize}[leftmargin = *]
-		\item	\og \textit{Limit order} \fg{}.
-		\end{itemize}
-	\item[Ordre de vente stop:]	On veut limiter sa perte si un sous-jacent perd énormément de valeur. Donc, on va vendre le sous-jacent si $Bid \leq k$;
-		\begin{itemize}[leftmargin = *]
-		\item	\og \textit{Stop-loss order} \fg{}.
-		\end{itemize}
-	\item[Longue] On se considère en position longue \textbf{par rapport au sous-jacent} si notre stratégie nous permet de bénéficier d'une \textcolor{ao(english)}{hausse} du sous-jacent;
-	\item[Courte] On se considère en position longue \textbf{par rapport au sous-jacent} si notre stratégie nous permet de bénéficier d'une \red{baisse} du sous-jacent.
-\end{description}
-\end{distributions}
-
-%%%	-----
-%%	Pas assez pertinent pour l'inclure (AJVR-26/01/2020)
-%%	Contrats ayant une protection pour chaque degrés en sur(sous) de 18 degrés celsius;
-%\paragraph{Contrats saisonnales}
-%\begin{description}
-%	\item[cooling degree-day futures contracts:] Pour la rigueur de l'hiver (un froid anormalement élevé);
-%	\item[heating degree-day futures contracts:] Pour la rigueur de l'été (une chaleur anormalement élevée);
-%\end{description}
-%%%	-----
 
 \newpage
 
@@ -2004,7 +2082,7 @@ Avec l'équation de parité, on peut créer des options, actions ou obligations 
 		\underset{\text{\shortstack{pret de $Ke^{-(r - \delta)T}$\\ au taux sans risque}}}{\underbrace{-K\textrm{e}^{-(r - \delta)T}}}
 \end{align*}
 
-\textbf{Bon du trésor} (\og \textit{Treasury Bill (T-Bill)} \fg{})
+\textbf{Bon du Trésor} (\og \textit{Treasury Bill (T-Bill)} \fg{})
 \begin{align*}
 	-K \textrm{e}^{-r T}
 	&=	\underset{\text{\shortstack{vente d'une\\ option d'achat}}}{\underbrace{+C(S; K)}} \;
@@ -2091,7 +2169,7 @@ On peut penser à cette notation comme $C(\text{Receive}, \text{Give up})$ et $P
 	= 	x_0	K \cdot P^{\text{DÉ}} \left( \frac{1}{x_0}; \frac{1}{K}; T \right) \\
 \end{align*}
 
-\paragraph{Note}	Si le prix d'exercice sera dans la même devise que le prix de l'option.
+\paragraph{Note}	Si le prix d'exercice est dans la même devise que le prix de l'option.
 
 \subsection*{Comparaison de différentes options}
 
@@ -2121,14 +2199,14 @@ Donc les options américaines et européennes vont toujours avoir une \textbf{va
 	P(S, K, T) &\geq	0	
 \end{align*}
 
-Une option européenne peut uniquement être exercée à l'échéance alors qu'une option américaine peut être exercé à n'importe quel moment d'ici l'échéance. Il s'ensuit qu'une \textbf{option américaine vaut au moins autant qu'une option européenne}:
+Une option européenne peut uniquement être exercée à l'échéance alors qu'une option américaine peut être exercée à n'importe quel moment d'ici l'échéance. Il s'ensuit qu'une \textbf{option américaine vaut au moins autant qu'une option européenne}:
 \begin{align*}
 	C_{\text{amer}}(S, K, T)	&\geq	C_{\text{euro}}(S, K, T)	&
 	P_{\text{amer}}(S, K, T)	&\geq	P_{\text{euro}}(S, K, T)	
 \end{align*}
 
 \subsubsection*{Bornes inférieures}
-\paragraph{Option européenne}	Avec l'équation de parité des options vente-achat et que le coût ne peut pas être négatif on obtient:
+\paragraph{Option européenne}	Avec l'équation de parité des options vente-achat et que le coût ne peut pas être négatif, on obtient:
 
 \begin{align*}
 	C_{\text{euro}}(S, K, T)	
@@ -2139,7 +2217,7 @@ Une option européenne peut uniquement être exercée à l'échéance alors qu'u
 	&\geq	\max\left(K\textrm{e}^{-rT} - F_{0, T}^{P}(S); 0\right)
 \end{align*}
 
-\paragraph{Option américaine}	Une option américaine aura une valeur d'au moins l'option européenne. Également, puisqu'une option américaine peut être exercé à tout moment, sa valeur doit être au moins la valeur d'un exercice immédiat.
+\paragraph{Option américaine}	Une option américaine aura une valeur d'au moins l'option européenne. Également, puisqu'une option américaine peut être exercée à tout moment, sa valeur doit être au moins la valeur d'un exercice immédiat.
 
 \paragraph{En bref}
 \begin{rappel_enhanced}[Bornes inférieures options]
@@ -2201,7 +2279,7 @@ Ce faisant, \textcolor{cobalt}{la borne supérieure d'une option d'achat améric
 	\geq	\max\left(F_{0, T}^{P}(S) - K\textrm{e}^{-rT}; 0\right)
 \end{align*}
 
-\paragraph{Option de vente}	La distinction avec la valeur maximal d'une option européenne est qu'elle est seulement reçu à $T$.\\
+\paragraph{Option de vente}	La distinction avec la valeur maximale d'une option européenne est qu'elle est seulement reçue à $T$.\\
 
 Ce faisant, \textcolor{cobalt}{la borne supérieure d'une option de vente européenne est le prix d'exercice actualisé à 0}:
 \begin{align*}
@@ -2227,7 +2305,7 @@ Il est donc important de retenir:
 \begin{enumerate}
 	\item	Il est rationnel d'effectuer un exercice hâtif si\\
 	 $PV(\text{dividendes}) > PV(\text{intérêt sur $K$}) - PV(\text{assurance})$;
- 	\item[]	$PV(\text{assurance})$ sera donc égale au coût de l'option de vente équivalente.
+ 	\item[]	$PV(\text{assurance})$ sera donc égal au coût de l'option de vente équivalente.
 	\item	Il n'est \textbf{jamais rationnel} d'effectuer un \textbf{exercice hâtif} sur une option d'achat américaine \textbf{sans dividendes};
 	\item[]	Il s'ensuit qu'une \textbf{option d'achat américaine} sur une action \textbf{sans dividendes} a le \textbf{même prix} qu'une \textbf{option d'achat européenne} équivalente.
 	\item	Il est \textbf{\textit{possiblement} rationnel} d'effectuer un exercice hâtif si \\
@@ -2243,7 +2321,7 @@ Il est donc important de retenir:
 \begin{enumerate}
 	\item	Il est rationnel d'effectuer un exercice hâtif si\\
 	 $PV(\text{intérêt sur $K$}) > PV(\text{dividendes}) + PV(\text{assurance})$;
- 	\item[]	$PV(\text{assurance})$ sera donc égale au coût de l'option d'achat équivalente.
+ 	\item[]	$PV(\text{assurance})$ sera donc égal au coût de l'option d'achat équivalente.
 	\item	Il est \textbf{\textit{possiblement} rationnel} d'effectuer un exercice hâtif si \\
 	$PV(\text{intérêt sur $K$}) > PV(\text{dividendes})$;
 	\item	Il s'ensuit qu'il est \textbf{\textit{possiblement} rationnel} d'effectuer un \textbf{exercice hâtif} sur une \textbf{option d'achat} américaine \textbf{sans dividendes}.
@@ -2251,7 +2329,7 @@ Il est donc important de retenir:
 
 
 \subsection*{Effet du prix d'exercice}
-Trois arguments sur comment différents prix d'exercices font varier les prix d'options. Ces arguments, ou \textit{propositions}, expliquent le lien:
+Trois arguments sur comment différents prix d'exercices font varier les prix d'options. Ces arguments, ou \textit{propositions} expliquent le lien:
 \begin{itemize}
 	\item	La première proposition relie le prix d'option au prix d'exercice;
 	\item	La deuxième proposition relie la différence des prix d'options à la différence des prix d'exercices;
@@ -2290,7 +2368,7 @@ Trois arguments sur comment différents prix d'exercices font varier les prix d'
 		\end{align*}
 \end{description}
 
-Si la différence en prix d'option était supérieure à la différence en prix d'exercice il y a arbitrage; on peut avoir aucun risque de perte. Pour comprendre ceci, voir le graphique d'un écart-baissier et imaginer la ligne pointillée rouge uniquement au-dessus de l'axe des x.
+Si la différence en prix d'option était supérieure à la différence en prix d'exercice il y a arbitrage; on peut n’avoir aucun risque de perte. Pour comprendre ceci, voir le graphique d'un écart-baissier et imaginer la ligne pointillée rouge uniquement au-dessus de l'axe des x.
 
 \subsubsection*{Proposition 3: Lien entre le taux de variation des prix d'option et d'exercice}
 \begin{itemize}
