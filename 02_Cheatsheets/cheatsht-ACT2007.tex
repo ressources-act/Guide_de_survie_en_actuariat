@@ -9,7 +9,6 @@
 %% -----------------------------
 \def\cours{Mathématiques actuarielles Vie II}
 \def\sigle{ACT-2007}
-\def\auteur{Gabriel Crépeault-Cauchon // Nicholas Langevin // Alexandre Turcotte}
 \def\SectionColor{burntorange}
 \def\SubSectionColor{burntsienna}
 \def\SubSubSectionColor{burntsienna}
@@ -21,6 +20,14 @@
 %% Début du document
 %% -----------------------------
 \begin{document}
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT2007}
+
+\newpage
+
 \begin{multicols*}{2} 
 
 \section{Calcul de réserve}
@@ -193,9 +200,9 @@ Woolhouse
 \subsection*{Frais d'acquisition reportés}
 
 \begin{description}
-	\item[$\actsymb[t]{V}{}[g]$]	Réserve de primes brutes;
-	\item[$\actsymb[t]{V}{}[n]$]	Réserve de primes nettes;
-	\item[$\actsymb[t]{V}{}[FTP]$]	Réserve de primes FTP;
+	\item	$\actsymb[t]{V}{}[g]$	Réserve de primes brutes;
+	\item	$\actsymb[t]{V}{}[n]$	Réserve de primes nettes;
+	\item	$\actsymb[t]{V}{}[FTP]$	Réserve de primes FTP;
 \end{description}
 
 
@@ -209,7 +216,7 @@ Woolhouse
 		=	\actsymb[t]{V}{}[g] - \actsymb[t]{V}{}[n] 
 		= 	\actsymb[t]{V}{}[e]
 		\end{align*}
-	\item	La réserve est négative pour les frais si $e_{0} > e_{k}$.w
+	\item	La réserve est négative pour les frais si $e_{0} > e_{k}$.
 \end{itemize}
 
 \subsubsection{Primes}

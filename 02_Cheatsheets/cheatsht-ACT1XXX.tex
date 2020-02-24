@@ -15,7 +15,7 @@
 %% -----------------------------
 \def\SectionColor{burntorange}
 \def\SubSectionColor{burntsienna}
-\def\SubSubSection{burntsienna}
+\def\SubSubSectionColor{burntsienna}
 %% -----------------------------
 %% Colour setup for prestations
 %%	Ajoute couleurs sur les trêmas des signes de prestations
@@ -52,7 +52,6 @@
 %% -----------------------------
 %% Variable definition
 %% -----------------------------
-\def\auteur{Alec James van Rassel}
 %%
 %% Matrix notation variable (bold style)
 %%
@@ -60,6 +59,13 @@
 \newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
 
 \begin{document}
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT1XXX}
+
+\newpage
 
 \begin{multicols*}{2}
 
