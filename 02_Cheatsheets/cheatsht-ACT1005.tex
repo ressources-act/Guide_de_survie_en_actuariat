@@ -17,7 +17,7 @@
 %% -----------------------------
 \def\SectionColor{brickred}
 \def\SubSectionColor{amaranth}
-\def\SubSubSection{pastelred}
+\def\SubSubSectionColor{pastelred}
 %%	pour timeline
 \usetikzlibrary{shapes,positioning}
 \newcommand{\foo}{\hspace{-2.3pt}$\bullet$ \hspace{5pt}}
@@ -67,9 +67,9 @@ L'aversion au risque est la \textit{peur} d'un investisseur d'un risque qu'il ju
 L'aversion au risque se caractérise par une personne qui:
 \begin{itemize}
 	\item	Ne souhaite pas courir le risque et va vouloir le \textbf{transférer};
-	\item[]	Pour exemple, assurer sa maison contre le risque d'inondation;
+	\item[]	Par exemple, assurer sa maison contre le risque d'inondation;
 	\item	Ne juge pas d'être en mesure de supporter le risque et \textbf{refuse} de s'y exposer;
-	\item[]	Pour exemple, ne pas faire de parachutisme;
+	\item[]	Par exemple, ne pas faire de parachutisme;
 \end{itemize}
 	
 Le \textbf{degré d'aversion} au risque est \textbf{variable} selon l'intervenant (tous on une aversion au risque, seul le \textit{degré d'aversion} diffère). Par exemple, même les compagnies d'assurance se \textit{\textbf{ré}}assurent. 
@@ -84,7 +84,7 @@ Lorsqu'un individu souhaite \textit{transférer} son risque, il échange au pren
 \end{definitionNOHFILL}
 
 \begin{algo}{Gérer du risque}
-Différentes \textbf{méthodes} existent pour gérer un risque, pour exemple:
+Différentes \textbf{méthodes} existent pour gérer un risque, par exemple:
 \begin{itemize}[leftmargin = *]
 	\item	Évitement (Ex : Éviter d'avoir une voiture);
 	\item	Prévention (Conserver le risque réduit grâce à la prévention);
@@ -201,7 +201,7 @@ L'OIT est une:
 	\item	Institution tripartite: rassemble les gouvernements, employeurs et travailleurs membres de l'ONU (187 pays membres en 2016);
 \end{itemize}
 
-Pour exemple dans le cadre de sa mission, l'OIT cherche à s'assurer que les enfants ne travaillent pas, qu'il y a égalité homme-femme, etc.
+Par exemple dans le cadre de sa mission, l'OIT cherche à s'assurer que les enfants ne travaillent pas, qu'il y a égalité homme-femme, etc.
 \end{definition}
 
 \begin{conceptgen}{2 conceptions différentes de la sécurité sociale}
@@ -221,7 +221,7 @@ Pour exemple dans le cadre de sa mission, l'OIT cherche à s'assurer que les enf
 			\end{itemize}
 		\item	\textbf{Proportionnalité} des \textbf{cotisations} et \textbf{prestations} au salaire;
 			\begin{itemize}
-			\item	Pour exemple, le paiement (cotisation) d'assurance chômage qui varie en fonction du salaire;
+			\item	Par exemple, le paiement (cotisation) d'assurance chômage qui varie en fonction du salaire;
 			\item	Si j'ai un plus grand salaire \textit{(par rapport aux autres salaires sous un certain seuil)}, ma participation au régime (cotisations) sera plus élevée. Par contre, il adviendra aussi que les prestations seront plus élevés que ceux ayant moins cotisés en cas de réalisation du risque couvert;
 %%%	-----
 %%%	NOTE:
@@ -337,34 +337,7 @@ Auxquels on peut ajouter:
       		\item	Beaucoup d'enfants (pas de contraception);
       		\item	L'église se charge des pauvres;
       	\end{itemize},%
-      	1886	/	Première loi sur l'\textbf{hygiène publique}; précédemment\, le soin des malades était une responsabilité individuelle%
-       } { \ifnum\y=1 \node[description](\y){\desc};
-           \else\node[description,below=1ex of \z](\y){\desc};
-           \fi
-           \node[year](y-\y) [left=of \y] {\year};
-           \ifnum\y>1\draw[timeline] (y-\z)-- (y-\y);\fi
-           \global\let\z=\y% for drawing from last node
-       }
-\end{tikzpicture}
-\begin{tikzpicture}[yscale = 0.5,%
-           year/.style = {draw	= red,%
-           				 text 	= blue,%
-           				 fill 	= yellow!20,%
-           				 shape 	= ellipse,%
-           				 inner sep = 2pt%
-           				 },%
-           description/.style = {rectangle,%
-           				 		align		= left,%
-           				 		text width	= 55mm,%
-           				 		anchor		= west%
-           				 		},%
-           timeline/.style = {->,%
-           				 	 thick,%
-           				 	 red!50%
-           				 	 }%
-           			]
-
-    \foreach \year/\desc [count=\y] in {%
+      	1886	/	Première loi sur l'\textbf{hygiène publique}; précédemment\, le soin des malades était une responsabilité individuelle,%
        1914-1930	/	\textbf{Naissance de l'assistance publique}
        	\begin{itemize}[leftmargin = *]
 	       	\item	Première guerre mondiale;
@@ -372,22 +345,14 @@ Auxquels on peut ajouter:
 	       	\item[]	Ce faisant\, la qualité de vie dépend du salaire et si on tombe malade on risque la pauvreté;
 	       	\item	Églises plus suffisantes---trop de pauvres;
 	       	\item	Création des fraternités (ancêtre des compagnies d'assurance);
-       	\end{itemize}
-       ,%
+       	\end{itemize},%
        	1914	/	Premier programme moderne de \textbf{sécurité sociale} au Canada: La Loi sur les accidents au travail de l'Ontario,%
        	1921	/	\textbf{Loi} au Qubébec sur l'\textbf{assistance publique} 
        	\begin{itemize}[leftmargin = *]
        		\item	L'argent est donné aux gens en besoin;
-      	 	\item	Humliant, basé sur un examen de ressources publiques qui stigmatise ceux en besoin;
+      	 	\item	Humliant\, basé sur un examen de ressources publiques qui stigmatise ceux en besoin;
      	  	\item	Église mécontente puisqu'elle veut continuer de contrôler la vie des gens;
-       	\end{itemize},%
-       1930-1940	/	\textbf{Premières étapes d'une politique sociale}
-       	\begin{itemize}[leftmargin = *]
-	       	\item	\textbf{Crise} de 1929---chômage en forte hausse;
-	       	\item	Accroissement des interventions gouvernementales --- le gouvernement est encore timide car il doit avoir le soutien de l'Église;
-       	\end{itemize},%
-       	1927	/	\textbf{Assurance vieillesse} (\textbf{fédéral}); programme très strict,%
-       	1935/	\textbf{Hôpitaux provinciaux} au lieu de municipaux; cependant\, encore trop cher pour la majorité de la population%
+       	\end{itemize}%
        } { \ifnum\y=1 \node[description](\y){\desc};
            \else\node[description,below=1ex of \z](\y){\desc};
            \fi
@@ -395,7 +360,6 @@ Auxquels on peut ajouter:
            \ifnum\y>1\draw[timeline] (y-\z)-- (y-\y);\fi
            \global\let\z=\y% for drawing from last node
        }
-
 \end{tikzpicture}
 \begin{tikzpicture}[yscale = 0.5,%
            year/.style = {draw	= red,%
@@ -406,7 +370,7 @@ Auxquels on peut ajouter:
            				 },%
            description/.style = {rectangle,%
            				 		align		= left,%
-           				 		text width	= 55mm,%
+           				 		text width	= 50mm,%
            				 		anchor		= west%
            				 		},%
            timeline/.style = {->,%
@@ -415,6 +379,13 @@ Auxquels on peut ajouter:
            				 	 }%
            			]
     \foreach \year/\desc [count=\y] in {%
+       1930-1940		/	\textbf{Premières étapes d'une politique sociale}%
+       	\begin{itemize}[leftmargin = *]
+	       	\item	\textbf{Crise} de 1929---chômage en forte hausse;
+	       	\item	Accroissement des interventions gouvernementales --- le gouvernement est encore timide car il doit avoir le soutien de l'Église;
+       	\end{itemize},%
+       	1927	/	\textbf{Assurance vieillesse} (\textbf{fédéral}); programme très strict,%
+       	1935	/	\textbf{Hôpitaux provinciaux} au lieu de municipaux; cependant\, encore trop cher pour la majorité de la population,
 		1940-1960	/\textbf{Prépondérance fédérale}: 
 		\begin{itemize}[leftmargin = *]
 		  \item	Les besoins engendrés par la guerre règle le problème de chômage;
@@ -423,20 +394,47 @@ Auxquels on peut ajouter:
 		\end{itemize},%
 			1940	/	 \textbf{assurance chômage} (fédéral) Premier programme national,%
 			1949	/	 \textbf{allocations familiales} (fédérales),%
-			1952	/	 \textbf{pensions} de \textbf{vieillesse} (fédérales) non liée à la démonstration du manque de ressources,%
+			1952	/	 \textbf{pensions} de \textbf{vieillesse} (fédérales) non liée à la démonstration du manque de ressources%
 %%%	-----
 %%%	NOTE:
 %%%	+	fédéral ou provincial? (AJVR)
 %%% + fédéral, j'ai vérifié sur le Web (OC)
-%%%	-----
+%%%	-----%
+       } { \ifnum\y=1 \node[description](\y){\desc};
+           \else\node[description,below=1ex of \z](\y){\desc};
+           \fi
+           \node[year](y-\y) [left=of \y] {\year};
+           \ifnum\y>1\draw[timeline] (y-\z)-- (y-\y);\fi
+           \global\let\z=\y% for drawing from last node
+       }
+\end{tikzpicture}
+
+\begin{tikzpicture}[yscale = 0.5,%
+           year/.style = {draw	= red,%
+           				 text 	= blue,%
+           				 fill 	= yellow!20,%
+           				 shape 	= ellipse,%
+           				 inner sep = 2pt%
+           				 },%
+           description/.style = {rectangle,%
+           				 		align		= left,%
+           				 		text width	= 50mm,%
+           				 		anchor		= west%
+           				 		},%
+           timeline/.style = {->,%
+           				 	 thick,%
+           				 	 red!50%
+           				 	 }%
+           			]
+    \foreach \year/\desc [count=\y] in {%
        	1960-1970	/	\textbf{Modernisation Québécoise},%
-			1960	/	\textbf{Régime universel} d'assurance hospitalisation (encore aujourd'hui),%
-			1966	/	\textbf{Régime} de \textbf{rentes} du Québec
+			1960		/	\textbf{Régime universel} d'assurance hospitalisation (encore aujourd'hui),%
+			1966		/	\textbf{Régime} de \textbf{rentes} du Québec
 				\begin{itemize}[leftmargin = *]
-				\item	Premier programme à offrir une \textbf{indexation} des prestations
+				\item	Premier programme à offrir une \textbf{indexation} des prestations.
 				\end{itemize},%
 			1967	/	 \textbf{Allocations familiales} (Québec),%
-			1971	/	 \textbf{Couverture} \textbf{universelle} des \textbf{soins de santé} (Québec) (assurance maladie, encore aujourd'hui)
+			1971	/	 \textbf{Couverture} \textbf{universelle} des \textbf{soins de santé} (Québec) (assurance maladie\, encore aujourd'hui)
 				\begin{itemize}[leftmargin = *]
 				\item	précédemment\, il fallait payer pour voir un médecin;
 				\item	25\% de la population sous le seuil de la pauvreté (vs moins que 1\% aujourd'hui);
@@ -480,7 +478,7 @@ Les 9 fonctions de l'OIT sont couvert par ces programmes:
 	\item	Indemnisation accidents travail (CEESST);
 	\item	Régime de Rentes du Québec (RRQ);
 	\item	Régime de Pension du Canada (RPC);
-	\item	Pension sécurité vieillesse (fédéral) \textbf{\textit{ET}}\\ supplément de revenu garanti \textbf{\textit{ET}}\\ allocation au conjoint;
+	\item	Pension sécurité vieillesse (fédéral) \textbf{\textit{ET}}\\ supplément de revenu garanti (fédéral)\textbf{\textit{ET}}\\ allocation au conjoint ;
 	\item	Régime de santé (maladie \textbf{\textit{ET}} hospitalisation---conjoint Canada-Québec);
 	\item	\textcolor{amaranth}{Assurance Automobile (Québec) (SAAQ) (Couvert dans le cours \textit{Introduction à l'actuariat I})} ;
 	\item	Assurance parentale (Québec);
@@ -685,7 +683,7 @@ Nos régimes craquent d'un peu partout. On mets en vigueur des changements et de
 	\item Protection des démunis : axée sur l'aide sociale plutôt que la sécurité;
 	  \begin{itemize}
 	  \item On s'occupe des pauvres après (mesure humiliante : \textit{food ticket} pour l'épicerie)
-	\item 6 volets à la sécurité sociale:
+	  \item 6 volets à la sécurité sociale:
 	  \begin{enumerate}
 	    \item Vieillesse et décès (survivants) (fédérial)
 	    \item Invalidité (fédéral)
@@ -702,7 +700,9 @@ Nos régimes craquent d'un peu partout. On mets en vigueur des changements et de
 	    \item \textbf{supprimé le 1er Janvier 2019 }
 	    \item Certains états ont maintenu l'obligation de détenir de l'assurance maladie
 	    \item[] Exemple : \textit{Massachussett}, \textit{New Jersey} et \textit{Columbia}
- \end{itemize}
+	 \end{itemize}
+	 \end{itemize}
+	 \end{itemize}
  Les raisons d'un tel régime était qu'au \textit{États-Unis}, 64\% des faillites étaient liées aux frais de santé
 \newpage
 
@@ -756,7 +756,7 @@ Période de la vie où l'on est, ou considérée d'être, \textbf{incapable de t
 	\item	Prendre sa retraite plus tôt implique une \textbf{réduction actuarielle};
 	\item	La loi peut prévoir qu'une rente sans réduction peut être versée à \textit{certaines conditions};
 		\begin{itemize}[leftmargin = *]
-		\item	Pour exemple, selon le \textbf{nombre d'années de service} comme l'armée avec une pension complète après 25 ans.
+		\item	Par exemple, selon le \textbf{nombre d'années de service} comme l'armée avec une pension complète après 25 ans.
 		\end{itemize}
 \end{itemize}
 \end{conceptgen} 
@@ -836,19 +836,18 @@ Les régimes peuvent être \textbf{obligatoires} ou \textbf{volontaires}.
 \begin{center}
 	\textbf{Exemples}
 \end{center}
+
 \textbf{État}
 \begin{itemize}[leftmargin = *]
 	\item	Pension de la sécurité de vieillesse (PSV) \textcolor{brickred}{(obligatoire)};
 	\item	Régie des rentes du Québec (RRQ) \textcolor{brickred}{(obligatoire)}.
 \end{itemize}
-
 \textbf{Privé}
 \begin{itemize}[leftmargin = *]
 	\item	Régimes complémentaires de retraite (RCR) \textcolor{brickred}{(habituellement obligatoire s'il est présent)};
 	\item	Régime volontaire d'épargne-retraite (RVER) \textcolor{blue}{(facultatif)};
 	\item	Régime enregistré d'épargne-retraite (REER) \textit{collectif} \textcolor{blue}{(facultatif)}.
 \end{itemize}
-		
 \textbf{Individuel} \textcolor{blue}{(facultatifs)}
 \begin{itemize}[leftmargin = *]
 	\item	Compte d'épargne libre d'impôt (CELI), REER, épargne, biens (maisons, \dots).
@@ -856,12 +855,11 @@ Les régimes peuvent être \textbf{obligatoires} ou \textbf{volontaires}.
 \end{conceptgen}
 
 \begin{conceptgen}{Financement}
-
 \begin{center}
 \textbf{Capitalisation} (\textbf{funded})
 \end{center}
 
-\textbf{Procédure}:
+\textbf{Procédure}
 \begin{enumerate}[leftmargin = *]
 	\item	Participants actifs versent leurs cotisations;
 	\item	Le régime place les sommes au nom de chaque participant;
@@ -881,6 +879,8 @@ Les régimes peuvent être \textbf{obligatoires} ou \textbf{volontaires}.
 	\item	\textbf{Faillites} d'entreprises;
 	\item	\textbf{Corruption} (malversations).
 \end{itemize}
+
+\tcbline
 
 \begin{center}
 \textbf{Répartition} (\textit{Pay-as-you-go (PAYG))}
@@ -939,10 +939,616 @@ Raisons pourquoi pas 100\%:
 \end{itemize}
 \end{conceptgen}
 
+\newpage
 
-%\section{Loi sur la sécurité de la vieillesse}
+\section{Loi sur la sécurité de la vieillesse}
+
+\begin{conceptgen}{Types de prestations}
+Il existe plusieurs types de prestations dont:
+\begin{itemize}[leftmargin =  *]
+	\item	Pension de la sécurité de la vieillesse (PSV);
+	\item	Supplément du revenu garantie (SRG);
+	\item	Allocation (au conjoint);
+	\item	Allocation (de survivant).
+\end{itemize}
+\end{conceptgen}
+
+\begin{rappel_enhanced}[Historique]
+%%%	--------------
+%%%	NOTE
+%%%	+	Voir cette page de "l'encyclopédie canadienne" (https://www.thecanadianencyclopedia.ca/fr/article/pension-de-vieillesse);
+%%%	--------------
+\begin{description}
+	\item[1952]	Entrée en vigueur de la loi de la sécurité et vieillesse;
+		\begin{itemize}[leftmargin = *]
+		\item	Programme fédéral;
+		\item	Au niveau provincial, il n'y a pas encore grand-chose de développé;
+		\item	Idée de garantir à \textbf{tous}	les citoyens âgés (70 ans et plus) une pension pas liée au revenu avec la PSV.
+		\end{itemize}
+	\item[1966]	Entrée en vigueur du RCP et RRQ;
+		\begin{itemize}[leftmargin = *]
+		\item	Inclut une révision de la PSV---élargir la portée, revoir le programme, etc.;
+%		\item	Programme obligatoire.	
+%%%	--------------
+%%%	NOTE
+%%%	+	mis en commentaire, je ne sais pas à quel point c'est pertinent de mentionner (AJVR)
+%%%	--------------
+		\end{itemize}
+	\item[1967]	Entrée en vigueur du SRG
+		\begin{itemize}[leftmargin = *]
+		\item	Supplément au PSV temporaire jusqu'au début des paiements du RCP et RRQ;
+		\item	Initialement supposé être temporaire pour aider ceux déjà à la retraite, car le RCP et RRQ n'allaient pas payer de prestations avant 10 ans;
+		\item	Diminution de l'âge d'admissibilité à 65 ans;
+		\item	Augmentation du montant de pension.
+		\end{itemize}
+	\item[1975]	Entrée en vigueur de l'allocation au conjoint;
+		\begin{itemize}[leftmargin = *]
+		\item	Lorsqu'un seul membre du couple reçoit la PSV et le RSG et que l'autre a entre 60 et 64 ans;
+		\item	Éventuellement renommé \og allocation \fg{}.
+		\end{itemize}
+	\item[1985]	Entrée en vigueur de l'allocation au conjoint veuf.
+		\begin{itemize}[leftmargin = *]
+		\item	Extension à l'allocation au conjoint pour inclure les veuf(ve)s à faible revenu entre 60 et 64 ans dont le conjoint décédé était prestataire de la PSV et le RSG;
+		\item	Éventuellement renommé \og allocation de survivant \fg{}.
+		\end{itemize}
+\end{description}
+\end{rappel_enhanced}
+
+\subsection{PSV}
+\begin{definitionNOHFILL}[Définition]
+Régime \textbf{universel} assurant un revenu \textit{minimum} à la retraite tout citoyen canadien \textbf{admissible}. Le but est de couvrir \textit{environ} 15\% des revenus avant retraite pour le travailleur moyen.
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Admissibilité}
+\begin{itemize}[leftmargin = *]
+	\item	Sujet à un test de résidence---doit être citoyen canadien ou un résident autorisé et avoir habité au Canada pendant au moins 10 ans après l'âge de 18 ans;
+	\item	Si quitte le Canada, doit avoir habité au Canada pendant au moins 20 ans après l'âge de 18 ans;
+	\item	Autres possibilités selon ententes avec d'autres pays (comme les É.-U.);
+	\item	Pas de test de besoin, mais possibilité de devoir la rembourser;
+	\item	Doit être d'au moins l'ANR (65 ans), mais \textit{pas besoin d'être retraité};
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Montant de la rente}
+Établi selon le nombre d'années où l'individu a habité au Canada après l'âge de 18 ans.
+
+Pension complète :
+\begin{itemize}[leftmargin = *]
+	\item	Si 40 ans de résidence au Canada après l'âge de 18 ans;
+	\item	Dont au moins 10 ans immédiatement avant la demande ou 1 an de résidence avant la demande et 3 ans de résidence avant l'âge de 55 ans pour chaque année manquante du 10 ans; 
+\end{itemize}
+
+Pension Partielle :
+\begin{itemize}[leftmargin = *]
+	\item	Au moins 10 ans de résidence au Canada après l'âge de 18 ans;
+	\item	Un quarantième (1/40) de la pension pour chaque année après 18 ans;
+	\item	Une pension partielle peut être augmentée après son approbation en fonction du nombre d'années de résidence supplémentaire.
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Particularités du paiements}
+\begin{description}
+	\item[Étranger]	Avoir vécu au Canada pendant au moins 20 ans après l'âge de 18 ans;
+		\begin{itemize}[leftmargin = *]
+		\item	Note que l'on ne peut pas être absent du Canada pour plus que 6 mois de l'année sans perdre avantages sociaux;
+		\end{itemize}
+	\item[Report]	En échange d'une pension plus élevée, il est possible depuis juillet 2013 de reporter la PSV jusqu'à 5 ans;
+		\begin{itemize}[leftmargin = *]
+		\item	Augmentation de 0.6\% pour chaque mois de report jusqu'à un maximum de 36\% à l'âge de 70 ans (modification actuarielle).
+		\end{itemize}
+	\item[Indexation]	Le montant de la rente est indexé à l'IPC à chaque trimestre.
+\end{description}
+\end{conceptgen}
+
+\begin{conceptgen}{Fiscalité}
+\begin{itemize}[leftmargin = *]
+	\item	La prestation est imposable (fédéral et provincial);
+	\item	Depuis 1989, il existe un impôt de récupération qui s'impose lorsque le revenu excède un certain seuil;
+	\item	Le seuil de revenu maximal en 2019 était de 77 580\$ et donc la récupération serait 15\% du revenu net \textbf{en excès de} ce montant;
+	\item	Il est possible de récupérer la PSV en entier (dès 126 058\$);
+	\item	Puisque le test de revenu est individuel et non par couple, il est possible d'être créatif avec ses finances.
+\end{itemize}
+\end{conceptgen}
+
+\paragraph{Note} L'ICA a pris position publiquement en avril 2019 pour une augmentation de l'ANR en échange de prestations plus élevées.
+
+\paragraph{Note}	Le financement de la PSV est \og pay as you go \fg{}, il n'y a pas de caisse distincte et sort directement des impôts.
+
+\subsection{SRG}
+\begin{definitionNOHFILL}[Définition]
+Prestation mensuelle non imposable offerte aux bénéficiaires de la PSV ayant un faible revenu résidant au Canada.
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Admissibilité}
+\begin{itemize}[leftmargin = *]
+	\item	Recevoir la PSV;
+	\item	Avoir des gains faibles---prestation réduite selon les autres revenus de la personne ou du conjoint.
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Montant de la prestation}
+Établi en fonction de l'état conjugale et du revenu de l'année précédente.
+
+La définition de revenus:
+\begin{description}
+	\item[exclus]	la PSV et l'allocation;
+	\item[inclus]	RRQ, REER, RCR, placements, loyers, gains en capitaux, emplois, etc.
+\end{description}
+
+\begin{itemize}[leftmargin = *]
+	\item	Depuis 2008, il est possible d'avoir des revenus d'emploi de 3 500\$ sans impact sur la prestation---ce montant \textit{devrait} augmenter à 5 000 \$ en 2020 et une pénalité de seulement 50\% pour les 10 000\$ suivants;
+	\item	Réduction de 1\$ pour chaque 2\$ de revenu autre;
+	\item	Montant déterminé annuellement selon les gains de l'année précédente pouvant donc fluctuer dans le temps.
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Particularités du paiements}
+\begin{description}
+	\item[Étranger]	Aucune prestation pour le non-résident du Canada;
+	\item[Indexation]	Le montant de la rente est indexé à l'IPC à chaque trimestre;
+	\item[Fiscalité]	Aucune imposition des montants de SRG;
+	\item[Financement]	Pay as you go;
+\end{description}
+\end{conceptgen}
+
+\begin{conceptgen}{Cessation des paiements}
+\begin{itemize}[leftmargin = *]
+	\item	Si l'individu (couple) ne soumet pas de déclaration de revenus;
+	\item	Départ pour plus de 6 mois consécutifs;
+	\item	Revenu(s) supérieur au montant maximal établit pour l'année;
+	\item	Incarcération;
+	\item	Décès.
+\end{itemize}
+\end{conceptgen}
+
+%%%	--------------
+%%%	NOTE
+%%%	+	Faudrait développer ces deux sous-sections d'allocations---j'étais tanné (AJVR)
+%%%	--------------
+\subsection{Allocation}
+\begin{definitionNOHFILL}[Définition]
+Prestation mensuelle payable à une personne entre 60 et 64 ans conjoint d'un prestataire du SRG.
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Admissibilité}
+\begin{itemize}[leftmargin = *]
+	\item	Être conjoint d'un prestataire du SRG;
+	\item	Être âgé entre 60 et 64 ans;
+	\item	Citoyen canadien ou résident autorisé;
+	\item	Habiter au Canada;
+	\item	Avoir vécu au Canada pendant au moins 10 ans après l'âge de 18 ans;
+	\item	Présenter une nouvelle demande annuellement;
+	\item	Avoir des revenus faibles (le revenu combiné, excluant PSV et SRG, ne doit pas excéder un certain seuil).
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Montant de la prestation}
+
+\begin{itemize}[leftmargin = *]
+	\item	Le maximum est la somme du PSV et SRG maximal au taux du couple marié---en 2018 ceci était de 1 141.08\$ par personne;
+	\item	Aucune allocation si les autres revenus du couple excèdent 33 696\$;
+	\item	Il y a des particularités sur la réduction du paiement.
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Cessation des paiements}
+65 ans ou décès.
+\end{conceptgen}
+
+\subsection{Allocation au survivant}
+\begin{conceptgen}{Admissibilité}
+
+\begin{itemize}[leftmargin = *]
+	\item	Être veuf(ve);
+	\item	Être âgé entre 60 et 64 ans;
+	\item	Citoyen canadien ou résident autorisé;
+	\item	Avoir vécu au Canada pendant au moins 10 ans après l'âge de 18 ans;
+	\item	Avoir des revenus faibles.
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Montant de la prestation}
+\begin{itemize}[leftmargin = *]
+	\item	Le maximum est de 1 360.20 \$.
+	\item	Aucune allocation si les autres revenus du couple excèdent 24 552\$;
+	\item	Il y a des particularités sur la réduction du paiement.
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Cessation des paiements}
+\begin{itemize}[leftmargin = *]
+	\item	Se remarie;
+	\item	Décède;
+	\item	Si revenus deviennent suffisants;
+	\item	Si 65 ans.
+\end{itemize}
+\end{conceptgen}
 
 
+\newpage
+
+\section{Le régime des rentes du Québec}
+
+\begin{conceptgen}{Raison d'être}
+\begin{itemize}[leftmargin = *]
+	\item	Régime d'assurance sociale;
+	\item	Offrir une protection financière \textbf{de base} aux travailleurs (et leurs proches) à la \textit{retraite}, au \textit{décès} ou en cas d'\textit{invalidité};
+	\item	Le Québec est la seule province à avoir son propre régime public de pensions qui couvre tous les emplois au Québec.
+\end{itemize}
+
+\textbf{Caractéristiques}
+\begin{description}
+	\item[Public]	Administré entièrement par des organismes de l'état;
+	\item[Universel]	Mais basé sur le travail (\textit{approche bismarckienne});
+	\item[Obligatoire]	Tous les travailleurs sont obligés de cotiser;
+	\item[Contributif]	Les cotisations des travailleurs et employeurs supportent les prestations du régime;
+	\item[Autofinancé]	Tout comme les prestations, les coûts d'administration proviennent des cotisations;
+	\item[Imposable]	Les prestations reçues sont imposables;
+	\item[Transférable]	Le régime est pancanadien vers le RPC;
+	\item[Indexé]	Le régime est indexé de 2 façons:
+		\begin{enumerate}[leftmargin = *]
+		\item	Lors du calcul initial des prestations;
+		\item	L'augmentation des rentes déjà en paiement.
+		\end{enumerate}
+\end{description}
+\end{conceptgen}
+
+\begin{conceptgen}{Types de prestations}
+\begin{description}
+	\item[Retraite]	
+		\begin{itemize}[leftmargin = *]
+		\item	Rente de retraite (RR).
+		\end{itemize}
+	\item[Invalidité]	
+		\begin{itemize}[leftmargin = *]
+		\item	Rente d'invalidité (RI);
+		\item	Rente d'enfant de personne invalide;
+		\item	Montant additionnel pour invalidité pour les bénéficiaires de la RR.
+		\end{itemize}
+	\item[Décès]	
+		\begin{itemize}[leftmargin = *]
+		\item	Rente de conjoint survivant (RCS);
+		\item	Rente d'orphelin (RO);
+		\item	Prestation de décès.
+		\end{itemize}
+\end{description}
+\end{conceptgen}
+
+\begin{rappel_enhanced}[Mise en place]
+\begin{description}
+	\item[1966]	Entrée en vigueur;
+		\begin{itemize}[leftmargin = *]
+		\item	La \textbf{Caisse de dépôt et placements} a été crée en même pour supporter la mise en place du Régime;
+		\item	La caisse est un investisseur institutionnel qui gère les actifs du RRQ ainsi que d'autres régimes de traite et d'assurance (para)publics.
+%		\item	Gère 325G\$;
+%		\item	Sa filliable Invanhoé Cambridge est au 2e rang au Canada en tant que propriétaire d'immeubles
+%%%	--------------
+%%%	NOTE
+%%%	+	Recherche d'avantage sur ceci pour trouver une meilleur façon de le dire autre que "#2 propriétaire d'immeubles" (AJVR).
+%%%	--------------
+		\end{itemize}
+	\item[1963]	Début de la conceptualisation du RRQ;
+		\begin{itemize}[leftmargin = *]
+		\item	L'idée d'un régime de pension universel administré par l'état est développée.
+		\end{itemize}
+	\item[1965]	Adoption de la loi sur le RRQ et création de la Régie des rentes du Québec;
+		\begin{itemize}[leftmargin = *]
+		\item	La Régie des rentes du Québec gère le RRQ.
+		\end{itemize}
+	\item[1966]	Conditions sur les personnes admissibles;
+		\begin{itemize}[leftmargin = *]
+		\item	Tous les travailleurs âgés de 18 à 70 ans gagnant un certain salaire doivent participer au régime.
+		\end{itemize}
+	\item[2016]	Cession du RRQ à Retraite Québec;
+		\begin{itemize}[leftmargin = *]
+		\item	Nouvel organisme après la fusion de la régie avec la commission administrative de régimes de retraite et d'assurance (CARRA);
+		\item	CARRA administrait les régimes de retraire du secteur public.
+		\end{itemize}
+\end{description}
+\end{rappel_enhanced}
+
+\begin{rappel_enhanced}[Réforme de 1998]
+Pressions financières sur le régime et donc le gouvernement propose de le revoir.
+
+\
+
+Acquis \textbf{conservés}:
+\begin{enumerate}[leftmargin = *]
+	\item	Taux de remplacement du revenu;
+	\item	Âge normal de la retraite (ANR);
+	\item	Indexation des prestations en fonction du coût de la vie;
+	\item	Retranchement des gains faibles ou nuls.
+\end{enumerate}
+
+\textbf{Modifications} apportées
+\begin{enumerate}[leftmargin = *]
+	\item	Hausse des cotisations de 6\% en 1997 à 9.9\% en 2003;
+	\item	Exemption admissible gelée à 3 500\$ afin de progressivement diminuer son importance;
+%%%	--------------
+%%%	NOTE
+%%%	+	Développer sur cette exemption et ce qu'elle représente (AVJR).
+%%%	--------------
+	\item	Les retraités qui travaillent doivent maintenant cotiser au régime;
+	\item	Ajustement des gains passés avec la moyenne des 5 au lieu de 3 dernières années;
+	\item	Diminution de la prestation de décès;
+	\item	Réduction de la rente de retraite des personnes qui reçoivent une rente d'invalidité;
+	\item	Évaluation actuarielle aux 3 au lieu de 5 ans;
+	\item	Consultation publique aux 6 ans.
+\end{enumerate}
+\end{rappel_enhanced}
+
+\begin{rappel_enhanced}[Consultations publiques]
+\begin{description}
+	\item[2004]	Adapter le régime de rentes aux nouvelles réalités du Québec;
+		\begin{itemize}[leftmargin = *]
+		\item	Problèmes soulevés: vieillissement démographique, changements du marché du travail et évolution des réalités familiales;
+		\item	Malgré les modifications de 1998, le régime est sous haute tension;
+		\item	L'écart entre la situation financière du RRQ et le RPC s'élargit;
+		\item	Plusieurs propositions non adoptées.
+		\end{itemize}
+	\item[2008]	Vers un régime de rentes du Québec renforcé et plus équitable;
+		\begin{itemize}[leftmargin = *]
+		\item	La consultation de 2004 à permis de cerner les enjeux;
+		\item	Cependant, pas de consensus sur les modifications à apporter au RRQ;
+		\item	Plusieurs propositions non adoptées.
+		\end{itemize}
+\end{description}
+\end{rappel_enhanced}
+
+\begin{rappel_enhanced}[Évaluations actuarielles]
+\begin{description}
+	\item[2006]	Les enjeux sont essentiellement ceux identifiés en 2004:
+		\begin{itemize}[leftmargin = *]
+		\item	Stabilisation du financement du régime;
+		\item	Maintien de l'équivalence avec le RPC;
+		\item	Adaptation aux transformations du marché du travail;
+		\item	Adaptation à l'évolution des familles.
+		\end{itemize}
+	\item[2009]	Conclusions:
+		\begin{itemize}[leftmargin = *]
+		\item	Le taux de cotisation de 9.9\% ne permet de payer les prestations que jusqu'en 2039 point auquel la réserve sera épuisée;
+		\item	À ce moment, le taux de cotisation devra augmenter à 12.2\% en 2039 jusqu'à 12.6\% en 2055;
+		\item	La situation et l'équité intergénérationnelle commandent l'action.
+		\end{itemize}
+	\item[2012]	Les modifications de 2011 portent fruit et le Régime se porte bien financièrement;
+	\item[2015]	Les cotisations et revenus de placements sont \textbf{suffisants} pour financer le RRQ jusqu'en 2065 et aucune modification de cotisation n’est prévue;
+	\item[2018]	Les entrées de fonds sont suffisantes et le taux de cotisation demeure à 10.80\% (le taux d'équilibre est de 10.61\%).
+\end{description}
+\end{rappel_enhanced}
+
+\begin{rappel_enhanced}[Modifications]
+\begin{description}
+	\item[2011]	
+		\begin{itemize}[leftmargin = *]
+		\item	Augmentation de la réduction actuarielle pour la retraite anticipée (sauf les rentes faibles);
+		\item	Hausse du facteur d'augmentation actuarielle pour la retraite reportée;
+		\item	Augmentation graduelle du taux de cotisation de 9.9\% à 10.8\% en 2017;
+		\item	Réduction de la rente de conjoint survivant combinée à une rente de retraite (ou d'invalidité);
+		\item	Mécanisme permanent d'ajustement du taux de cotisation sera mis en place à compter de 2018.
+		\end{itemize}
+	\item[2019]	Mise en place d'un régime supplémentaire puisque le monde n'épargnait pas suffisamment d'argent pour la retraite. \\
+				Le régime permet de:
+			\begin{enumerate}[leftmargin = *]
+			\item	Augmenter le taux de remplacement du revenu;
+			\item	Augmenter le salaire admissible maximal.
+			\end{enumerate}	
+\end{description}
+\end{rappel_enhanced}
+
+\paragraph{Quelques chiffres}	L'important à retenir est la \textit{taille des chiffres} et \textbf{non} les \textit{chiffres eux-mêmes}. Il y a des milliards de dollars transigés qui représentent une partie importante de l'économie.\\
+
+\begin{itemize}[leftmargin = *]
+	\item	4M cotisants;
+	\item	2M bénéficiaires;
+	\item	60G\$ de réserve (régime de base) et 366 M\$ (régime supplémentaire);
+	\item	11.1G\$ de revenus de cotisations;
+	\item	13.8G\$ de dépenses de prestations.
+\end{itemize}
+
+\clearpage 
+
+\section*{La retraite}
+
+\subsection*{Régime de base}
+\begin{rappel_enhanced}[Historique]
+Établit le 1er janvier 1966
+\end{rappel_enhanced}
+ 
+\subsubsection*{Financement}
+\begin{description}
+	\item[Cotisation]	obligatoire provenant des travailleurs et employeurs;
+		\begin{itemize}[leftmargin = *]
+			\item	Le régime est donc autofinancé par ses membres et non des impôts;
+			\item	Le travail rémunéré est visé.
+%%%	--------------
+%%%	NOTE
+%%%	+	pas certain ce que ça entend? (AJVR) 
+%%%	--------------
+		\end{itemize}
+	\item[Période cotisable]	Période servant au calcul de la rente de retraite;
+		\begin{itemize}[leftmargin = *]
+			\item	débute à 18 ans même si l'individu n'a pas encore commencé à travailler;
+			\item	termine à la fin du premier du mois:  
+				\begin{itemize}[leftmargin = *]
+				\item	de décès;
+				\item	suivant le 70e anniversaire;
+				\item	précédent le début du versement d'un rente de retraite$^{*}$.
+				\end{itemize}
+			\item[]	$^{*}$ \textbf{Exception}: Si l'individu continu a travailler tout en recevant une rente de retraite, il doit continuer de cotiser au régime.
+			\item	Si un travailleur reçoit une rente d'invalidité, il ne cotise plus au régime.
+		\end{itemize}
+	\item[Exemption générale]	toute personne ayant un salaire inférieur à cette limite n'a pas à cotiser au RRQ;
+		\begin{itemize}[leftmargin = *]
+			\item	Le seuil est gelé depuis 1998 à 3 500\$;
+			\item	Geler le seuil \textbf{augmente} le \textit{nombre de cotisants} ainsi que la \textit{masse salariale cotisable}.
+		\end{itemize}
+	\item[Maximum des gains admissibles (MGA)] tout salaire supérieur à cette limite n'est pas assujettis à des cotisation;
+		\begin{itemize}[leftmargin = *]
+			\item	Le MGA \textbf{augmente} selon la croissance du \textit{salaire moyen} hebdomadaire au Canada mais est un peu plus élevé que le salaire moyen;
+			\item	\textcolor{red}{en 2020 ce montant est de 58 700\$};
+			\item	L’interprétation est que le gouvernement veut s’assurer que \textit{tous} les Québécois aient un certain niveau de vie \textit{minimal} et, qu’au-delà du MGA, c’est à l’individu de gérer ses finances.
+		\end{itemize}
+	\item[Taux de cotisation]	L'employeur et l'employé cotisent chacun la moitié, sauf les travailleurs autonomes qui cotisent l'entièreté du taux;
+		\begin{itemize}[leftmargin = *]
+			\item	Était stable à 1.8\% de 1966 à 1986;
+			\item	Il a ensuite été augmenté graduellement jusqu'en 1998;
+			\item	Suite aux réformes de 1998, il a été augmenté graduellement;
+			\item	Depuis 2018, un \textbf{mécanisme d'ajustement} est en place pour rétablir l'équilibre du financement jusqu'à un \textbf{taux de cotisation d'équilibre};
+			\item	Aujourd'hui le taux est de 10.80\% voulant dire qu'on cotise beaucoup plus pour la même prestation---c'est actuariellement juste même ;
+		\end{itemize}
+	\item[Taux de cotisation d'équilibre]	taux nécessaire pour maintenir constant à long terme le rapport entre la réserve et les sorties de fonds annuelles;
+		\begin{itemize}[leftmargin = *]
+		\item	Si le taux de cotisation excède d'au moins 0.10\% le taux d'équilibre, il est ajusté jusqu'à un maximum de 0.10\% par année.
+		\end{itemize}
+	\item[Varia]
+		\begin{itemize}[leftmargin = *]
+			\item	Cotisations sont un crédit dans le calcul de l'impôt du Québec \textit{et} fédéral;
+			\item	On cotise uniquement sur des revenus d'emploi;
+			\item	Il est possible de racheter des années de revenus de travail manquantes;
+			\item	Il est impossible de récupérer des cotisations versées, car elles sont acquises au régime.
+		\end{itemize}
+\end{description}
+
+
+\subsubsection*{Prestations---\textit{admissibilité}}
+
+La rente de retraite est payée à la personne :
+\begin{itemize}[leftmargin = *]
+	\item	qui en fait la demande;
+	\item	âgée d'au moins 60 ans;
+	\item	ayant cotisé au moins 1 an au régime.
+\end{itemize}
+
+Notes:
+\begin{itemize}[leftmargin = *]
+	\item	L'individu peut recevoir sa rente tout en continuant de travailler;
+	\item	Une retraite anticipée (avant l'ANR de 65 ans) mène à une réduction actuarielle.
+\end{itemize}
+
+\subsubsection*{Prestations---\textit{montant de la rente}}
+
+Le montant de la \textbf{rente de retraite de base (RRB)} équivaut à 25\% de la moyenne mensuelle des gains admissibles de travail après ajustement pour l'inflation (indexation selon l'IPC le 1er janvier).
+
+\paragraph{Étapes du calcul de la rente de retraite}
+\begin{enumerate}[leftmargin = *]
+	\item	Établissement de la période de cotisation;
+		\begin{itemize}[leftmargin = *]
+		\item	Ensemble des années considérées pour le calcul de prestations;		
+		\item	Établit le montant et le \textbf{droit} à une prestation.
+		\end{itemize}
+	\item	Exclusion de certains mois (s'il y a lieu);
+		\begin{itemize}[leftmargin = *]
+		\item	Mois d'admissibilité à des allocations familiales pour des enfants de moins de 7 ans si les revenus étaient inférieurs à l'exemption générale;
+		\item	Mois de paiement d'une \textit{rente d'invalidité }(RRQ ou RPC);
+		\item	Mois de paiement d'une \textit{indemnité} (CNESST);
+		\item	\textit{Exclure des mois est bénéfique} pour le travailleur puisque ça augmente sa moyenne de salaire.
+		\end{itemize}
+	\item	Rajustement de gains admissibles (selon l'inflation);
+		\begin{itemize}[leftmargin = *]
+		\item	Gain admissible non ajusté (GANA) $\times$ $\frac{\text{\shortstack{la moyenne du maximum des gains\\ admissibles (MGA) des 5 dernières années}}}{\text{ sur le MGA de l'année du gain}}$.
+		\end{itemize}
+	\item	Retranchement de certains mois (s'il y a lieu);
+		\begin{itemize}[leftmargin = *]
+		\item	Fait de soustraire des mois où les GANA sont faibles ou nuls afin d'augmenter la moyenne;
+		\item	Jusqu'à 15\% des mois contenus dans la période cotisable (cependant, il doit rester au moins 120 mois (10 ans) après le retranchement).
+		\end{itemize}
+	\item	Calcul de la RRB;
+	\item	Application du facteur d'ajustement actuariel.
+		\begin{itemize}[leftmargin = *]
+		\item	Il y a un biais---pénalité pour une retraite anticipée et une compensation pour une retraite repoussée;
+		\item	augmentation de 0.7\% par mois après 65 ans et diminution de 0.5 à 0.6\% par mois  avant 65 ans.
+		\end{itemize}
+\end{enumerate}
+
+\subsubsection*{Partage des gains admissibles}
+Objectif: Équilibrer les revenus de travail des conjoints qui \og mettent fin à leur union \fg{}; c'est-à-dire, une divorce, séparation légale ou dissolution d'une union civile.
+\begin{itemize}
+	\item	Seulement pour les revenus durant la période d'union légale;
+	\item	\textbf{Automatique} sauf si renonciation lors de la fin de l'union;
+	\item	Aucune entrée d'argent immédiate---les revenus sont corrigés pour le calcul des rentes futures.
+\end{itemize}
+
+Exemple:
+\begin{center}
+	\includegraphics[scale=0.4]{src/ACT-1005/exemple-DIVORCE.png}
+\end{center}
+
+
+\subsubsection*{Division de la rente de retraite}
+Conditions:
+\begin{itemize}[leftmargin = *]
+	\item	Les 2 conjoints doivent avoir au minimum 60 ans;
+	\item	L'objectif est l'égalité économique des conjoints;
+	\item	La raison principale est fiscale;
+	\item	Si les conjoints sont mariés, c'est automatique à la demande d'un des deux sinon les deux doivent faire la demande.
+\end{itemize}
+
+
+%%%	---------------
+%%%	NOTE:
+%%%	+	Je ne savais pas trop comment / si je devrais reformuler ces deux prochaines sous-sous-sections parce-que je n'ai pas écris grand chose à propos (AJVR).
+%%%	---------------
+\subsubsection*{Suffisance de la rente}
+La PSV et le RRQ fournissent 40\% du salaire (MGA) et l'objectif est d'environ 70\%. Cela est atteint avec des RCR, le nouveau régime supplémentaire, etc.
+
+\subsubsection*{Provisionnement}
+Mélange entre un régime par répartition et un régime à capitalisation
+
+
+\subsection*{Régime supplémentaires}
+\begin{rappel_enhanced}[Historique]
+Entrée en vigueur:
+\begin{description}
+	\item[Premier volet]	1er janvier 2019 (régime S1);
+	\item[Deuxième volet]	1er janvier 2024	(régime S2).
+\end{description}
+\end{rappel_enhanced}
+
+\begin{conceptgen}{But}
+\begin{itemize}[leftmargin = *]
+	\item	Améliorer la qualité de vie des futurs retraités au Québec;
+	\item	Assurer l'équité intergénérationnelle;
+	\item	Renforcer le financement du régime.
+\end{itemize}
+\end{conceptgen}
+
+\subsubsection*{Financement}
+En surplus du régime de base.
+\begin{description}
+	\item[S1]	sur 4 ans;
+	\item[S2]	sur 1 an.
+		\begin{itemize}[leftmargin = *]
+		\item	MSGA.
+		\end{itemize}
+\end{description}
+
+\subsubsection*{Prestations---\textit{admissibilité}}
+Montant de prestation proportionnel au nombre d'années membre.
+
+\subsubsection*{Prestations---\textit{montant de la rente}}
+
+\subsubsection*{Provisionnement}
+
+\section*{L'invalidité}
+
+\subsection{Rentes}
+
+\subsubsection{Rente d'invalidité}
+
+\textbf{Description}
+\textbf{Calcul}
+
+\subsubsection{Rente d'enfant de personnes invalides}
+
+\section*{Les prestations de survivants}
+
+\subsection*{Admissibilité}
+
+\subsection*{Rente de conjoint survivant}
+
+\subsection*{Rente d'orphelin}
+
+\subsection*{Prestation de décès}
 
 \end{multicols*}
 \end{document}

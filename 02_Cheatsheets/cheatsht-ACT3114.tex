@@ -33,8 +33,8 @@
 
 \begin{algo2}[Repères visuels]
 \begin{enumerate}
-	\item	La \textbf{position} sur une \textbf{même échelle} (variable numérique), souvent à l’aide de points ou de boite à moustache;
-	\item	La \textbf{position} sur une \textbf{échelle identique} mais \textbf{non alignée} (variable numérique);
+	\item	La \textbf{position} sur une \textbf{même échelle} (variable numérique), souvent à l’aide de points ou de boîte à moustache;
+	\item	La \textbf{position} sur une \textbf{échelle identique}, mais \textbf{non alignée} (variable numérique);
 		\begin{itemize}
 		\item	Pour exemple, lorsqu’on utilise des facettes.
 		\end{itemize}
@@ -44,7 +44,7 @@
 		\end{itemize}
 	\item	L’angle ou \textbf{la pente} (variable numérique);
 		\begin{itemize}
-		\item	Pour exemple, en repésentant les données sous forme de lignes (pente);
+		\item	Pour exemple, en représentant les données sous forme de lignes (pente);
 		\item	Pour exemple, la redoutable pointe à tarte (angle).
 		\end{itemize}
 	\item	La \textbf{forme des points} (variable catégorielle) peut représenter le groupe;
@@ -52,13 +52,13 @@
 		\begin{itemize}
 		\item	Pour exemple, dans un diagramme à bande ou un histogramme;
 		\end{itemize}
-	\item	La \textbf{saturation de la couleur} (numérique ou catégorielle) peut représenter “à quel point” sur une échelle de clair à foncé;
+	\item	La \textbf{saturation de la couleur} (numérique ou catégorielle) peut représenter “à quel point” sur une échelle de claire à foncé;
 		\begin{itemize}
-		\item	Pour exemple, gris vs. noir.
+		\item	Pour exemple, gris vs noir.
 		\end{itemize}
 	\item	La \textbf{teinte de couleur} (numérique ou catégorielle).
 		\begin{itemize}
-		\item	Pour exemple, bleu vs. rouge.
+		\item	Pour exemple, bleu vs rouge.
 		\end{itemize}
 \end{enumerate}
 \end{algo2}
@@ -82,9 +82,9 @@ Cette liste n'est pas séquentielle, il est surtout important de \textit{tout} l
 		\end{itemize}
 	\item	Vérifier et corriger les \textbf{types} de variables;
 		\begin{itemize}
-		\item	booléens, entiers, numériques, facteurs, chaines de caractères, dates, etc.
+		\item	booléens, entiers, numériques, facteurs, chaînes de caractères, dates, etc.
 		\end{itemize}
-	\item	\textbf{Manipuler} les \textbf{chaines} de caractères;
+	\item	\textbf{Manipuler} les \textbf{chaînes} de caractères;
 		\begin{itemize}
 		\item	Corriger les typos;
 		\item	Changer la casse avec \texttt{tolower};
@@ -94,7 +94,7 @@ Cette liste n'est pas séquentielle, il est surtout important de \textit{tout} l
 		\begin{itemize}
 		\item	Mettre \texttt{NA} et gérer plus tard.
 		\end{itemize}
-	\item	\textbf{Détecter} les \textbf{erreurs} flagrantes ou les changements structurels dans les donnéesl
+	\item	\textbf{Détecter} les \textbf{erreurs} flagrantes ou les changements structurels dans les données;
 		\begin{itemize}
 		\item	Prendre compte des réformes;
 		\item	Constater les structures importantes.
@@ -116,7 +116,7 @@ Les jeux de données peuvent être:
 		\item	\og spreadsheet \fg{};
 		\item	\og Relational databases \fg{}.
 		\end{itemize}
-	\item[Non-structuré:]	Données sans structure prédéfinie venant en toute forme et ne pouvant pas être facilement résumées à un tableau.\\
+	\item[Non structuré:]	Données sans structure prédéfinie venant en toute forme et ne pouvant pas être facilement résumées à un tableau.\\
 		Pour exemple:
 		\begin{multicols*}{3}
 		\begin{itemize}
@@ -155,7 +155,7 @@ Types de variables:
 	\item	Conserver un script séparé pour le traitement des données;
 	\item	Documenter nos choix;
 		\begin{itemize}
-		\item	Si l'on omet quelques observations en raison de données aberrantes être conscient que ça peut biaiser les résultats.
+		\item	Si l'on omet quelques observations en raison de données aberrantes, il faut être conscients que ça peut biaiser les résultats.
 		\end{itemize}
 	\item	Effacer l'encre superflue 
 	
@@ -164,7 +164,7 @@ Types de variables:
 		\begin{itemize}[leftmargin = *]
 		\item	Avons-nous l'autorisation d'utiliser les données?
 		\item[]	Pour exemple, les données ouvertes du gouvernement avec peu de restrictions;
-		\item	Est-ce qu'il y a des considérations étiques à l'utilisation des données?
+		\item	Est-ce qu'il y a des considérations éthiques à l'utilisation des données?
 		\item[]	Pour exemple, Facebook qui utilise les données de façon immorale;
 		\item	Est-ce qu'il y a des biais dans les données pouvant causer préjudice?
 		\item[]	Pour exemple, des données avec un biais sexiste ou raciste, des données financées par une compagnie.
@@ -310,20 +310,20 @@ La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
 		\setlength{\mathindent}{1cm}
 		\begin{itemize}
 		\item[]	avec un test du khi-carré de Pearson;
-		\item[]	C'est-à-dire que le test est équivalent mais \textbf{pas} le hypothèses.
+		\item[]	C'est-à-dire que le test est équivalent, mais \textbf{pas} le hypothèses.
 		\end{itemize}	
 \end{enumerate}
 \begin{enumerate}
 	\setcounter{enumi}{1}
 	\item	\textbf{MAR}: Missing at Random;
-	\item[]	Can think of it as Missing \textit{Conditionnaly} at Random;
+	\item[]	Can think of it as Missing \textit{Conditionally} at Random;
 		\begin{itemize}[leftmargin = *]
 		\item	La probabilité de réponse $f(R | \bm{Y}1616, \theta)$ dépend seulement des variables qui ont été observées dans le jeu de données $\matr{Y}_{\text{obs}}$:
 			\begin{align*}
 			f(R | \matr{Y}, \theta) &= f(R | \matr{Y}_{\text{obs}}, \theta) 
 			\end{align*}
 		\item	Exemple de patients d'un hôpital: les données sont MAR lorsque la probabilité de non-réponse ne dépend pas de la qualité de vie sachant l'âge;
-		\item	Le négatif est qu'il est impossible de tester que, sachat l'âge, la probabilité de non-réponse ne dépend pas de la qualité de vie;
+		\item	Le négatif est qu'il est impossible de tester que, sachant l'âge, la probabilité de non-réponse ne dépend pas de la qualité de vie;
 		\item	Il est \textbf{inconcevable} d'avoir un test pour MAR.
 		\end{itemize}
 	\item	\textbf{NMAR}: Not Missing at Random;
@@ -343,7 +343,7 @@ Visuellement on peut comparer les 3 patrons de non-réponse:
 	\item	On observe (NMAR) qu'il y a un lien direct entre $S$ et $R$;
 	\item	En dernier, puisque $Z$ n'est pas mesuré et que $Y$ y dépend c'est NMAR.
 \end{itemize}
-\textbf{Principe d'inclusion}: Si une variable est exclue cela peut créer une corrélation entre la variable indépendante $S$ et le patron de non-réponse $R$. De plus, ça peut changer le patron lui-même!
+\textbf{Principe d'inclusion}: Si une variable est exclue, cela peut créer une corrélation entre la variable indépendante $S$ et le patron de non-réponse $R$. De plus, ça peut changer le patron lui-même!
 
 \includegraphics[scale=0.2]{src/ACT-3114/data-schema-missing.png}
 
@@ -356,8 +356,8 @@ Pour exemple, si on cherchait à supprimer des valeurs d'une BD:
 
 Ordre de restriction des différents patrons
 \begin{enumerate}
-	\item	MCAR: plus \og restrictif \fg{} car les données doivent être manquantes complètement aléatoirement;
-	\item[]	Même idée que l'hypothèse de normalité est restrictive puisque les données \textit{doivent} l'être \textbf{mais} cela nous permet d'utiliser plein de tests;
+	\item	MCAR: plus \og restrictif \fg{}, car les données doivent être manquantes complètement aléatoirement;
+	\item[]	Même idée que l'hypothèse de normalité est restrictive puisque les données \textit{doivent} l'être, \textbf{mais} cela nous permet d'utiliser plein de tests;
 	\item[]	Comme une Bernoulli, il n'y a pas de paramètres;
 	\item[]	plus restrictif alias moins flexible.
 	\item	MAR: inclue les variables observées et donc il y a plus de paramètres;
@@ -377,11 +377,11 @@ Ordre de restriction des différents patrons
 \end{enumerate}
 \end{algo}
 
-\subsection*{Identification des types de non-réponse}
+\subsection*{Identification des types de non-réponses}
 \begin{itemize}
 	\item	Pour les variables continues, on fait un \textbf{test $t$ sur les différences de moyenne} au lieu du khi-carré de Pearson comme pour MCAR;
 	\item	Problème de comparaisons multiples;
-	\item	Le test MCAR de Little est peu utile, mais peut adresser le problème de comparaisons multiple avec un hypothèse testant toutes les variables;
+	\item	Le test MCAR de Little est peu utile, mais peut adresser le problème de comparaisons multiple avec une hypothèse testant toutes les variables;
 \end{itemize}
 
 \subsection*{Traitement des données manquantes}
@@ -426,7 +426,7 @@ Une question valide est si les options pour le traitement des données manquante
 	\item	Imputation simple par une régression;
 		\begin{itemize}
 		\item	Substitue les \texttt{NA} par la prévision d'une régression de la variable sur les autres avec les cas complets;
-		\item	Si plusieurs variables ont des donnés manquantes, leurs patrons doivent être traités séparément;
+		\item	Si plusieurs variables ont des données manquantes, leurs patrons doivent être traités séparément;
 		\item	L'inter \textbf{corrélation} des variables est \textbf{conservée}, mais est \textcolor{blue}{\textbf{surestimée}} (même si MCAR);
 		\item	La variance est \textcolor{red}{\textbf{sous-estimée}}, mais \textbf{moins} qu'avec l'imputation par la moyenne;
 %%%	-------------------------------
@@ -498,6 +498,160 @@ Autres méthodes:
 	\item	Plus la proportion de non-réponses est élevée, plus l'impact sur l'analyse sera important;
 	\item	S'il y a plusieurs patrons de non-réponse différents, l'ordre dans lequel les données sont imputées est important;
 \end{itemize}
+
+\section{Analyse en composantes principales}
+
+\section{Classification non supervisée}
+
+\subsection*{Concepts de distance et similarité}
+
+\begin{definitionNOHFILL}[Classification]
+\begin{description}
+	\item[supervisée]	Lorsqu'on connaît les \textbf{étiquettes} des groupes et on veut prédire l'appartenance à un groupe pour de nouvelles observations;
+		\begin{itemize}[leftmargin = *] 
+		\item	\og \textit{Classification} \fg{}.
+		\end{itemize}
+	\item[non supervisée]	Lorsqu'on ne sait pas combien de groupes il y a ni comment qu'ils sont formés;
+		\begin{itemize}[leftmargin = *]
+		\item	Alias partitionnement ou regroupement;
+		\item	\og \textit{Clustering} \fg{}.
+		\end{itemize}
+\end{description}
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Conditions des mesures de distance}
+Une mesure de distance dans l'espace $\mathbb{E}$ est une application $d : E \times E \rightarrow \mathbb{R}^{+}$ respectant ces 3 conditions:
+\begin{enumerate}[leftmargin = *]
+	\item	Symétrique\\
+	$d(i, j) = d(j, i), \, \forall i, j \in E$;
+	\item	Nulle pour un même objet\\
+	$d(i, j) = 0 \Leftrightarrow i = j, \, \forall i, j \in E$;
+	\item	Satisfait l'inégalité du triangle\\
+	$d(i, k) \le d(i, j) + d(j, k), \, \forall i, j, k \in E$.
+\end{enumerate}
+\end{conceptgen}
+
+\begin{definitionNOHFILL}[Distance de Minkowski $\ell_{q}$]
+Soit 2 points $(x_{11}, \dots, x_{1d})$ et $(x_{21}, \dots, x_{2d})$ dans l'espace $\mathbb{R}^{d}$.
+
+Alors, pour $q \ge 1$:
+\begin{align*}
+	\ell_{q}
+	&=	\Vert \matr{x_{1} - x_{2}} \Vert_{q}	\\
+	&=	\left( \sum_{i = 1}^{d} |x_{1i} - x_{2i}|^{q} \right)^{1/q}	\\
+\end{align*}
+
+Deux cas particuliers sont bien connus:
+\begin{itemize}[leftmargin = *]
+	\item	$q = 1$:	Distance de Manhattan $\ell_{1}$;
+	\item	$q = 2$:	Distance euclidienne $\ell_{2}$.
+\end{itemize}
+
+\tcbline
+
+La version standardisée de la distance euclidienne se simplifie à:
+\begin{align*}
+	d(\matr{x_{1}, x_{2}})
+	&=	\sqrt{\sum_{i = 1}^{d} \left( \frac{x_{1i} - x_{2i}}{s_{i}} \right)^{2}}
+\end{align*}
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Conditions des indices de similarité}
+Une mesure de similarité entre 2 objets dans l'espace $\mathbb{E}$ est une application $s : E \times E \rightarrow [0, 1]$ respectant ces 2 conditions:
+\begin{enumerate}[leftmargin = *]
+	\item	Symétrique\\
+	$s(i, j) = s(j, i), \, \forall i, j \in E$;
+	\item	Un même objet est identique et maximise la similarité\\
+	$s(i, j) = 1 \ge s(i, j), \, \forall i, j \in E$.
+\end{enumerate}
+
+\tcbline
+
+De plus, l'indice de similarité peut être obtenu d'une mesure de distance $s(i, j) = \frac{1}{1 + d(i, j)}$.\\
+Également, on peut définir un indice de \textbf{dissimilarité} avec $\tilde{d}(i, j) = 1 - s(i, j)$.
+\end{conceptgen}
+
+\begin{conceptgen}{Types de variables binaires}
+\begin{description}
+	\item[symétrique]	Si une variable binaire est \textbf{symétrique}, c'est que ses deux niveaux sont aussi fréquents;
+		\begin{itemize}[leftmargin = *]
+		\item	Par exemple, qu'une personne soit un homme ou une femme.
+		\end{itemize}
+	\item[asymétrique]	Si une variable binaire est \textbf{asymétrique}, c'est qu'un niveau est plus rare que l'autre.
+		\begin{itemize}
+		\item	On dénote le niveau plus rare par 1;
+		\item	Par exemple, deux personnes ayant brisé leur orteil sont plus semblables que deux personnes ayant un mal de tête.
+		\end{itemize}
+\end{description}
+\end{conceptgen}
+
+\begin{conceptgen}{Mesures de similarité (variables binaires ou ordinales)}
+\begin{center}
+	Variable binaire symétrique
+\end{center}
+La \textbf{proportion d'accord} (\og \textit{simple matching coefficient} \fg{}):
+\begin{align*}
+	s(\matr{x_{1} - x_{2}})
+	&=	\frac{1}{d}	\sum_{i = 1}^{d} \bm{1}_{\{x_{1i} = x_{2i}\}}
+\end{align*}
+\tcbline
+\begin{center}
+	Variable binaire asymétrique
+\end{center}
+\textbf{L'indice de Jaccard}:
+\begin{align*}
+	s(\matr{x_{1} - x_{2}})
+	&=	\frac{\sum_{i = 1}^{d} x_{1i}x_{2i}}{\sum_{i = 1}^{d} \{1 - (1 - x_{1i})(1 - x_{2i})\}}
+\end{align*}
+\tcbline
+\begin{center}
+	Variable binaire asymétrique
+\end{center}
+On assigne un score numérique (positif) à chaque niveau et traite la variable comme une variable numérique.
+\end{conceptgen}
+
+\begin{conceptgen}{Similarité de Gower}
+Dans le cas où les variables sont de plusieurs types:
+\setlength{\mathindent}{-1cm}
+
+\begin{align*}
+	G(\matr{x_{1} - x_{2}})
+	&=	\frac{\sum_{i = 1}^{d} w_{i} \gamma_{i} (x_{1i}, x_{2i}) s_{i}(x_{1i}, x_{2i})}{\sum_{i = 1}^{d} w_{i} \gamma_{i} (x_{1i}, x_{2i})}
+\end{align*}
+\setlength{\mathindent}{1cm}
+où le poids des variables $w_{i} > 0$.
+
+Également, avec l'étendu dénoté $r_{i} = \max(x_{1i}, \dots, x_{ni}) - \min(x_{1i}, \dots, x_{ni})$, si $\matr{x_{i}}$ est :
+
+\begin{itemize}[leftmargin = *]
+	\item	numérique ou ordinale, $\gamma_{i} (x_{1i}, x_{2i}) = 1$ et  $s_{i}(x_{1i}, x_{2i}) = 1 - \frac{|x_{1i} - x_{2i}|}{r_{i}}$;
+	\item	binaire symétrique, $\gamma_{i} (x_{1i}, x_{2i}) = 1$ et  $s_{i}(x_{1i}, x_{2i}) = 1_{\{x_{1i} = x_{2i}\}}$;
+	\item	binaire asymétrique, $\gamma_{i} (x_{1i}, x_{2i}) = 1 - (1 - x_{1i})(1 - x_{2i})$ et  $s_{i}(x_{1i}, x_{2i}) = 1_{\{x_{1i} = x_{2i}\}}$.
+\end{itemize}
+\end{conceptgen}
+
+\begin{conceptgen}{Similarité du Cosinus}
+Un exemple d'application de la similarité du Cosinus est l'analyse de texte. On assigne une variable indicatrice pour chaque mot selon s'il est présent ou non (il y a donc \textit{beaucoup} de colonnes). Par la suite, on assigne un poids $w_i$ à chaque variable selon son importance. Donc, par exemple, la mesure peut calculer la similarité entre deux textes.
+
+\begin{align*}
+	s_{i}(x_{1i}, x_{2i}) 
+	&=	\frac{\sum_{i = 1}^{d} w_{i} x_{1i} x_{2i}}{\sqrt{\sum_{i = 1}^{d}w_{i}x_{1i}^{2}\sum_{i = 1}^{d} w_{i} x_{2i}^{2}}}
+\end{align*}
+\end{conceptgen}
+
+\subsection*{$K$-means clustering}
+\begin{distributions}[Notation]
+\begin{itemize}[leftmargin = *]
+	\item	Soit les observations $\matr{x_{1}, \dots, x_{n}}$ formées de variables \textbf{quantitatives};
+	\item	Soit les sous-ensembles $C_{1}, \dots, C_{k}$;
+	\item	Chaque observation appartient seulement à un groupe et donc les ensembles sont \textbf{mutuellement exclusifs}
+		\begin{align*}
+		C_{j} \cap C_{j'} = \emptyset, \, \forall j \neq j', j, \, j' \in \{1, \dots, k\}
+		\end{align*}
+\end{itemize}
+\end{distributions}
+
+\subsection*{Hierarchical clustering}
 
 \end{multicols*}
 %% -----------------------------
