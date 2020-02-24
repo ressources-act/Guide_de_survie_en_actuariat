@@ -1579,8 +1579,10 @@ La largeur du tunnel est $K_{2} - K_{1}$.
 	\text{tunnel}
 	&= 	P(K_1) - C(K_2)	\\
 	\text{\textcolor{burntorange}{action couverte} par un tunnel}
-	&= 	P(K_1) - C(K_2)	+ \textcolor{burntorange}{S_{T}} 
+	&= 	P(K_1) - C(K_2)	+ \textcolor{burntorange}{S_{T}} \\
 \end{align*}
+
+Si l'on achète deux options ayant la même prime, on obtient un tunnel à prime zéro. Par exemple, on vend une option d'achat $C(120) = 5$ et achète une option de vente $-P(120) = -5$ ayant donc un coût initial nul.
 \end{definitionNOHFILL}
 
 \subsection*{Spéculations sur la volatilité}
@@ -1927,6 +1929,8 @@ En bref, on \textbf{achète l'actif} et \textbf{emprunte de l'argent}:
 		Net des flux monétaires	&	$0$	&	$S(T) - F_{0, T}$	\\\hline
 	\end{tabular}
 \end{center}
+
+Le montant du prêt n'a pas besoin d'être $S_{0}$ puisque le contrat est synthétique. Ce faisant, si le montant emprunté d'un contrat est de $S_{0}$ on qu'il est au cours du marché.
 \end{definitionNOHFILL}
 
 \begin{center}
