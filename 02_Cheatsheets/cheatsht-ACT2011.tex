@@ -13,12 +13,17 @@
 \def\SubSubSectionColor{armygreen}
 \def\cours{GRF-II}
 \def\sigle{ACT-2011}
-\def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin, Alec James van Rassel}
 %% -----------------------------
 %% Début du document
 %% -----------------------------
-
+%%	Feuille basé sur 
 \begin{document}
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT2011}
+
+\newpage
 
 \begin{multicols*}{2}
 
@@ -108,6 +113,8 @@ Création de produits dérivés à partir de d'autres produits.\\
 		\end{itemize}		 
 \end{itemize}
 \end{definitionNOHFILL}
+
+\columnbreak
 
 \subsection*{Marchés financiers}
 \begin{definitionNOHFILL}[Transaction gré à gré] 
@@ -247,6 +254,8 @@ Ceci correspond à la \textbf{marge de profit} que le teneur de marché conserve
 %\end{description}
 %%%	-----
 
+\columnbreak
+
 \subsection*{Vente à découvert}
 
 \begin{definitionNOHFILL}[Vente à découvert \og \textit{(short-sell)} \fg{}] 
@@ -374,6 +383,8 @@ L'\textbf{investisseur} est le \textit{short-seller} et le \textbf{prêteur} le 
 	\item[$T$]	date d'échéance.
 \end{description}
 \end{distributions}
+
+\columnbreak
 
 \subsection*{Contrats à terme de gré à gré}
 
@@ -1030,7 +1041,7 @@ On achète une option d'achat pour garantir un prix maximal d'achat et couvrir u
 \end{center}
 \end{definitionNOHFILL}
 
-\newpage
+\columnbreak
 
 \subsection*{Écarts et tunnels}
 
@@ -1585,8 +1596,8 @@ La largeur du tunnel est $K_{2} - K_{1}$.
 Si l'on achète deux options ayant la même prime, on obtient un tunnel à prime zéro. Par exemple, on vend une option d'achat $C(120) = 5$ et achète une option de vente $-P(120) = -5$ ayant donc un coût initial nul.
 \end{definitionNOHFILL}
 
-\subsection*{Spéculations sur la volatilité}
-
+\columnbreak
+\subsection*{Spéculation sur la volatilité}
 \begin{definitionNOHFILL}[\textbf{Stellage} \og \textit{straddle} \fg{}]
 Créé en achetant une option de vente et une option d'achat avec un prix d'exercice $K$.
 
@@ -1841,20 +1852,22 @@ Pour chaque option avec un prix d'exercice de $K_{2}$ vendue, on achète $\lambd
 \setcounter{section}{4}
 \section{Contrats à terme}
 \subsection*{4 façons d'acheter une action}
-
+Il y a plusieurs façons d'acheter une action et le prix va dépendre du \textbf{moment de paiement} et du \textbf{moment de la livraison}.
+\begin{center}
 \begin{tabular}{|>{\columncolor{airforceblue}}c	|	>{\columncolor{beaublue}}c	|	>{\columncolor{beaublue}}c	|	c	|}
 \hline
 \rowcolor{blue(matcha)}
-	Contrat	&	\shortstack{Moment de\\ paiement}	&	\shortstack{Moment de\\ d'achat}	&	Paiement	\\\hline
+	Contrat	&	\shortstack{Moment de\\ paiement}	&	\shortstack{Moment de\\ la livraison}	&	Paiement	\\\hline
 	\textcolor{white}{\textbf{Outright purchase}}	&	0	&	0	&	$S_{0}$	\\\hline
 	\textcolor{white}{\textbf{Forward contract}}		&	$T$	&	$T$	&	$F_{0, T}$	\\\hline
 	\textcolor{white}{\textbf{Prepaid forward contract}}	&	0	&	$T$	&	$F_{0, T}^{P}$	\\\hline
 	\textcolor{white}{\textbf{Fully leveraged purchase}}	&	$T$	&	0	&	$S_{0}\textrm{e}^{rT}$	\\\hline
 \end{tabular}
+\end{center}
 
 \begin{description}
-	\item[Achat pleinement par emprunt \og \textit{fully leveraged purchase} \fg{}]	emprunte de l'argent pour acheter l'actif maintenant ($t = 0$) et rembourse l'argent au temps $T$;
-	\item[Contrat à terme de gré à gré prépayé \og \textit{prepaid forward contract} \fg{}]	Au lieu de payer plus tard, on paye au début (à $t = 0$) au prix $F_{0, T}^{P}$, mais on reçoit quand même l'actif plus tard.
+	\item[Achat pleinement par emprunt \og \textit{fully leveraged purchase} \fg{}]	On emprunte de l'argent pour obtenir l'actif immédiatement (à $t = 0$) en différant le paiement (remboursement) au temps $T$;
+	\item[Contrat à terme de gré à gré prépayé \og \textit{prepaid forward contract} \fg{}]	On paye immédiatement (à $t = 0$) au prix $F_{0, T}^{P}$, mais on reçoit quand même l'actif plus tard.
 \end{description}
 Ce faisant, on s'attend à ce que $F_{0, T} = F_{0, T}^{P} \textrm{e}^{rT}$.
 
@@ -1871,19 +1884,21 @@ Stipule que deux portefeuilles avec les mêmes profits doivent avoir le même pr
 Nous tarifions des contrats à terme de gré à gré \textit{prépayé}s et utilisons ces prix pour dériver les prix des contrats à terme de gré à gré. 
 \end{definitionNOHFILL}
 
+\columnbreak
+
 \subsection*{Tarification d'un \textbf{contrat à terme de gré à gré prépayé}}
 
 Sans dividendes, le prix du contrat à terme de gré à gré prépayé est le prix de l'actif sous-jacent aujourd'hui---$S_{0}$. 
 
-Si une action a des dividendes, elles seront payables au propriétaire de l'action. Puisque l'acheteur du contrat (position longue) va seulement posséder le contrat au temps $T$, il ne recevra pas de dividendes. Cela va donc faire baisser la valeur de l'action et le prix du contrat devra le tenir en compte.
+Si une action a des dividendes, elles seront payables au propriétaire de l'action. Puisque l'acheteur du contrat (position longue) va seulement posséder le contrat au temps $T$, il ne recevra pas de \textbf{dividendes}. Cela va donc faire \textbf{baisser la valeur de l'action} et le prix à terme du contrat devra le tenir en compte. Également, on présume que le \textbf{droit de vote n'a aucune valeur} pour calculer le prix à terme.\\
 
-Dans le cas de \textbf{dividendes discrets}, il suffit de soustraire la valeur actualisée des dividendes: $F_{0, T}^{P} = S_{0} - PV(div)$.
+Dans le cas de \textbf{dividendes discrets}, il suffit de soustraire la valeur actualisée des dividendes: $F_{0, T}^{P} = S_{0} - PV(div)$. Ces dividendes sont supposés d'être réinvestis dans des obligations zéro coupon.
 
 Un modèle de \textbf{dividendes payés continûment} suppose un taux de dividendes continûment composé $\delta$. Une part de l'action au temps initial devient $\textrm{e}^{\delta T}$ parts au temps $T$. Cependant, nous souhaitons avoir seulement une part au temps $T$ et donc achetons $\textrm{e}^{-\delta T}$ parts au début. Le prix du contrat est donc $F_{0, T}^{P} = S_{0} e^{-\delta T}$.
 
+Dans le cas de dividendes \textbf{proportionnels}, on suppose qu'ils sont réinvestis dans le sous-jacent.
 \begin{center}
 	En bref:
-\end{center}
 \begin{tabular}{| >{\columncolor{beaublue}}c |	 >{\columncolor{beaublue}}c |	 >{\columncolor{beaublue}}c |}
 \hline\rowcolor{airforceblue} 
 	\textcolor{white}{\textbf{Dividendes}}	&	\textcolor{white}{\textbf{Prix à terme prépayé}}	&	\textcolor{white}{\textbf{Prix à terme}}	\\\specialrule{0.1em}{0em}{0.0em} 
@@ -1891,6 +1906,7 @@ Sans dividendes				&	$S_{0}$					&	$S_{0} e^{r T}$	\\\hline
 Dividendes payés continument	&	$S_{0}e^{-\delta T}$		&	$S_{0} e^{(r - \delta) T}$	\\\hline
 Dividendes discrets			&	$S_{0} - PV(div.)$	&	$S_{0} e^{r T} - FV(div.)$	\\\hline
 \end{tabular}
+\end{center}
 
 \begin{definitionNOHFILL}[\textbf{Prime à terme} \og \textit{forward premium} \fg{} ]
 Défini comme le ratio du prix à terme au prix courant de l'actif sous-jacent:
@@ -1900,6 +1916,63 @@ Défini comme le ratio du prix à terme au prix courant de l'actif sous-jacent:
 
 La prime à terme annualisée (\og \textit{annualized forward premium} \fg{}) est $\frac{1}{T} \ln \left( \frac{F_{0, T}}{S_{0}}\right)$.
 
+\end{definitionNOHFILL}
+
+\begin{center}
+	Est-ce de l'arbitrage?
+	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
+	\hline\rowcolor{airforceblue} 
+		\textcolor{white}{\textbf{Flux monétaires}}	&	\textcolor{white}{\textbf{Oui}}	&	\textcolor{white}{\textbf{Non}}	\\
+		Au temps $0$, est-ce que le flux monétaire net est $\ge 0$?	&	X	&		\\\hline
+		Est-ce que tous les flux monétaires nets futurs sont $\ge 0$?	&	X	&		\\\hline
+		Est-ce qu'au moins un des flux monétaires nets futurs est $> 0$?	&	X	&		\\\hline
+	\end{tabular}
+\end{center}
+Si la réponse à toutes les questions est oui, alors il y a une opportunité d'arbitrage. Pour identifier les flux monétaires, on utilise l'approche à deux étapes:
+\begin{enumerate}
+	\item	Écrire, sous forme d'inégalité, ce qui est observé;
+	\item	Déplacer tout ce qui est sur le côté inférieur ($<$) au côté supérieur ou égal ($\ge$);
+	\item[]	Nous avons les signes appropriés pour les transactions.
+\end{enumerate}
+
+\begin{definitionNOHFILL}[\textbf{Position synthétique}]
+Une position synthétique réplique la valeur à l'échéance d'une autre position.
+
+\tcbline
+
+\begin{center}
+	\textbf{Achat d'action synthétique}
+\end{center}
+
+On peut synthétiquement répliquer l'achat d'une action en prêtant de l'argent et achetant un contrat à terme de gré à gré.
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c |	c	|	c	|}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{$t = 0$}}	&	\textcolor{white}{\textbf{$t = T$}}	\\\specialrule{0.1em}{0em}{0.0em} 
+Prêt de $S_{0}\textrm{e}^{-\delta T}$	&	$-S_{0}\textrm{e}^{-\delta T}$	&	$+S_{0}\textrm{e}^{(r - \delta) T} = F_{0, T}$	\\\hline
+\shortstack{Achat d'un contrat à\\ terme de gré à gré}	&	$0$	&	$S_{T} - F_{0, T}$	\\\specialrule{0.1em}{0em}{0.0em} 
+Net	&	$-S_{0}\textrm{e}^{-\delta T}$	&	$S_{T}$	\\\specialrule{0.1em}{0em}{0.0em} 
+\end{tabular}
+\end{center}
+
+\tcbline
+
+\begin{center}
+	\textbf{Obligation zéro-coupon synthétique}
+\end{center}
+
+On peut créer une obligation zéro-coupon synthétique en achetant une action et vendant un contrat à terme de gré à gré.
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c |	c	|	c	|}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{$t = 0$}}	&	\textcolor{white}{\textbf{$t = T$}}	\\\specialrule{0.1em}{0em}{0.0em} 
+Achat de $\textrm{e}^{-\delta T}$ actions	&		$-S_{0}\textrm{e}^{-\delta T}$	&	$+S_{T}$	\\\hline
+\shortstack{Vente d'un contrat à\\ terme de gré à gré}	&	$0$	&	$F_{0, T} - S_{T}$	\\\specialrule{0.1em}{0em}{0.0em} 
+Net	&	$0$	&	$F_{0, T} = S_{0}\textrm{e}^{(r - \delta)T}$	\\\specialrule{0.1em}{0em}{0.0em} 
+\end{tabular}
+\end{center}
+
+Le rendement de cette stratégie s'appelle le \textbf{taux de mise en pension implicite} (\og \textit{implied repo rate} \fg{}). Cela signifie le taux implicite dans cette stratégie pour répliquer un rendement équivalent à une obligation zéro-coupon.
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[\textbf{Contrat à terme synthétique} \og \textit{synthetic forward} \fg{}]
@@ -1933,33 +2006,28 @@ En bref, on \textbf{achète l'actif} et \textbf{emprunte de l'argent}:
 Le montant du prêt n'a pas besoin d'être $S_{0}$ puisque le contrat est synthétique. Ce faisant, si le montant emprunté d'un contrat est de $S_{0}$ on qu'il est au cours du marché.
 \end{definitionNOHFILL}
 
+\begin{definitionNOHFILL}[Comptant terme \og \textit{\textbf{Cash-and-carry}} \fg{}]
+Dans un comptant terme, alias l'achat au comptant - vente à terme, achète une action avec un emprunt et vend un contrat à terme de gré à gré.\\
+
+La stratégie s'apparente à une obligation zéro coupon financé par une obligation zéro coupon. Il s'ensuit que, sans arbitrage, le profit sera nul.
 \begin{center}
-	Est-ce de l'arbitrage?
-	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
-	\hline\rowcolor{airforceblue} 
-		\textcolor{white}{\textbf{Flux monétaires}}	&	\textcolor{white}{\textbf{Oui}}	&	\textcolor{white}{\textbf{Non}}	\\
-		Au temps $0$, est-ce que le flux monétaire net est $\ge 0$?	&	X	&		\\\hline
-		Est-ce que tous les flux monétaires nets futurs sont $\ge 0$?	&	X	&		\\\hline
-		Est-ce qu'au moins un des flux monétaires nets futurs est $> 0$?	&	X	&		\\\hline
-	\end{tabular}
+\begin{tabular}{| >{\columncolor{beaublue}}c |	c	|	c	|}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{$t = 0$}}	&	\textcolor{white}{\textbf{$t = T$}}	\\\specialrule{0.1em}{0em}{0.0em} 
+Achat de $\textrm{e}^{-\delta T}$ actions	&		$-S_{0}\textrm{e}^{-\delta T}$	&	$+S_{T}$	\\\hline
+\shortstack{Vente d'un contrat à\\ terme de gré à gré}	&	$0$	&	$F_{0, T} - S_{T}$	\\\hline
+Emprunt de $S_{0}\textrm{e}^{-\delta T}$	&	$+S_{0}\textrm{e}^{-\delta T}$	&	$-S_{0}\textrm{e}^{(r - \delta) T}$	\\\specialrule{0.1em}{0em}{0.0em} 
+Net	&	$0$	&	$F_{0, T} - S_{0}\textrm{e}^{(r - \delta) T}$	\\\specialrule{0.1em}{0em}{0.0em} 
+\end{tabular}
 \end{center}
-Si la réponse à toutes les questions est oui, alors il y a une opportunité d'arbitrage. Pour identifier les flux monétaires, on utilise l'approche à deux étapes:
-\begin{enumerate}
-	\item	Écrire, sous forme d'inégalité, ce qui est observé;
-	\item	Déplacer tout ce qui est sur le côté inférieur ($<$) au côté supérieur ou égal ($\ge$);
-	\item[]	Nous avons les signes appropriés pour les transactions.
-\end{enumerate}
 
-\begin{definitionNOHFILL}[\textbf{Position synthétique}]
-Une position synthétique réplique la valeur à l'échéance d'une autre position.
-\end{definitionNOHFILL}
+Sans arbitrage, la dernière ligne s'annule.
 
-
-\begin{definitionNOHFILL}[Achat au comptant - vente à terme \og \textit{\textbf{Cash-and-carry}} \fg{}]
-L'investisseur reçoit de l'argent d'un emprunt qu'il utilise pour acheter l'action qu'il porte à terme au futur.
 \tcbline
 L'inverse arrive lorsque le marché offre un contrat à terme de gré à gré sous-évalué.
 \end{definitionNOHFILL}
+
+\columnbreak
 
 \subsection*{Contrats de change}
 \begin{distributions}[Notation de devises]
@@ -2013,25 +2081,31 @@ La valeur à l'échéance sera $x_t - x_0 \left(\frac{1 + i_D}{1 + i_{\text{É}}
 %où $\alpha$ est la prime de risque 	qu'on enlève pour obtenir le prix du Forward, tel que
 %\[\alpha = \underbrace{r}_{\text{Taux sans risque}} + \underbrace{(\alpha - r)}_{\text{Prime de risque}}\]
 %%%	------------------------------------------------------------
+\columnbreak
+
 \subsection*{Contrat à terme standardisé}
+
+Les contrats à terme standardisés sont transigés à la bourse. Ces transactions peuvent avoir lieu soit sur le plancher ou électroniquement.
 
 \begin{definitionNOHFILL}[Contrat à terme standardisé \og \textit{future contract} \fg{}]
 Différences des contrats à terme standardisés aux contrats à terme de gré à gré:
 \begin{enumerate}[leftmargin = *]
 	\item	\textbf{Personnalisable};
 		\begin{itemize}[leftmargin = *]
-		\item	Pour un \og \textit{forward} \fg{}, l'acheteur et le vendeur peuvent choisir n'importe quel prix, montant, date d'échéance ou actif sous-jacent;	
-		\item	Pour un \og \textit{future} \fg{}, ces composantes sont prédéterminées et ont dit donc qu'il est \textbf{standardisé}.
+		\item	Les contrats \og \textit{forwards} \fg{} peuvent être \textbf{faits de gré à gré} sur n'importe quel actif avec n'importe quelle clause et/ou condition;
+		\item[]	L'acheteur et le vendeur peuvent choisir n'importe quel prix, montant, date d'échéance ou actif sous-jacent;	
+		\item	Les contrats \og \textit{futures} \fg{} sont \textbf{surveillés et contrôlés} par des instances officielles au même titre que la bourse;
+		\item[]	On dit donc qu'ils sont \textbf{standardisés}.
 		\end{itemize}
 	\item	\textbf{Valorisation au prix du marché} \og \textit{Marked-to-Market} \fg{};
 		\begin{itemize}[leftmargin = *]
 		\item	Pour un \og \textit{forward} \fg{}, toutes les échanges d'argent se produisent à l'échéance (le contrat est réglé à l'échéance);	
-		\item	Pour un \og \textit{future} \fg{}, les pertes et profits sont réglés tous les jours (processus de valorisation au prix du marché).
+		\item	Pour un \og \textit{future} \fg{}, les pertes et profits sont réglés tous les jours (processus de valorisation au prix du marché) en espèces.
 		\end{itemize}
 	\item	\textbf{Risque de défaut};
 		\begin{itemize}[leftmargin = *]
 		\item	Pour un \og \textit{forward} \fg{}, le contrat est pleinement exposé au risque de défaut; 
-		\item	Pour un \og \textit{future} \fg{}, avec le règlement quotidien des pertes et de profit le risque de défaut est minimisé.
+		\item	Pour un \og \textit{future} \fg{}, avec le règlement quotidien des pertes et profits, le risque de défaut est minimisé.
 		\end{itemize}
 	\item	\textbf{Liquidité}: fait référence à l'aise d'acheter ou de vendre un actif ou, de façon équivalente, de sortir ou entrer de leur position;
 		\begin{itemize}[leftmargin = *]
@@ -2041,11 +2115,12 @@ Différences des contrats à terme standardisés aux contrats à terme de gré �
 	\item	\textbf{Limite de prix};
 		\begin{itemize}[leftmargin = *]
 		\item	Pour un \og \textit{forward} \fg{}, il n'y a aucune limite de prix sur l'actif sous-jacent et il peut varier sans limites;
-		\item	Pour un \og \textit{future} \fg{}, il y a des limites incluses dans le contrat.
+		\item	Pour un \og \textit{future} \fg{}, il y a des limites incluses dans le contrat sur la variation du prix du sous-jacent;
+		\item	Par exemple, s'il y a une baisse de 13\% au S \& P 500, il y a un \og \textit{circuit breaker} \fg{} qui arrête temporairement l'échange.
 		\end{itemize}
 \end{enumerate}
 
-Puisque le règlement des contrats à terme standardisé est différent des contrats à terme de gré à gré, le prix à terme sera également différent.
+Puisque le règlement des contrats à terme standardisé est quotidien alors que le règlement des contrats à terme de gré à gré s'effectue à l'échéance, le prix à terme est différent.
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Marges initiales et de maintien \og \textit{initial and maintenance margins} \fg{}]
@@ -2079,6 +2154,8 @@ Ce faisant, la \colorbox{bleudefrance}{\textbf{balance de la marge}} \textit{dan
 \end{align*}
 \setlength{\mathindent}{1cm}
 \end{algo2}
+
+\paragraph*{Note}	Le S \& P 500 a 250 parts sous-jacentes.
 
 \newpage
 
