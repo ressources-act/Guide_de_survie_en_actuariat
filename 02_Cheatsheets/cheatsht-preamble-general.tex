@@ -20,7 +20,7 @@
 %% -----------------------------
 %% Variable definition
 %% -----------------------------
-\def\auteur{Gabriel Crépeault-Cauchon / Nicholas Langevin}
+\def\auteur{\href{https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/contributeurs-cheatshts.pdf}{\faGithub \ ressources-act/Guide de survie en actuariat/Liste des contributeurs}}
 \def\BackgroundColor{white}
 
 %% -----------------------------
@@ -253,6 +253,14 @@
 %    ams align*
 %  	top=-10pt
 }
+\newtcolorbox{contrib}[ 1 ]
+{
+	colback = babyblueeyes,
+	colframe = airforceblue,
+	fonttitle = \bfseries,
+	title = {#1},
+	valign = center
+}
 
 %% -----------------------------
 %% Graphics and pictures
@@ -312,6 +320,7 @@
 \definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
 \definecolor{brickred}{rgb}{0.8, 0.25, 0.33}
 \definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
 
 %
 % Useful shortcuts for coloured text
