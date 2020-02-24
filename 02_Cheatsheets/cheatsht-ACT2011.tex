@@ -228,11 +228,11 @@ Ceci correspond à la \textbf{marge de profit} que le teneur de marché conserve
 		\end{itemize}
 	\item[Longue] On se considère en position longue \textbf{par rapport au sous-jacent} si notre stratégie nous permet de bénéficier d'une \textcolor{ao(english)}{hausse} du sous-jacent;
 		\begin{itemize}[leftmargin = *]
-		\item	On possède quelque-chose.
+		\item	La position peut également être déterminé selon le produit dérivé; on se considère en position longue si l'on possède quelque-chose.
 		\end{itemize}
 	\item[Courte] On se considère en position longue \textbf{par rapport au sous-jacent} si notre stratégie nous permet de bénéficier d'une \red{baisse} du sous-jacent.
 		\begin{itemize}[leftmargin = *]
-		\item	On emprunte quelque-chose.
+		\item	La position peut également être déterminé selon le produit dérivé; on se considère en position longue si l'on emprunte quelque-chose.
 		\end{itemize}
 \end{description}
 \end{distributions}
@@ -345,34 +345,106 @@ L'\textbf{investisseur} est le \textit{short-seller} et le \textbf{prêteur} le 
 
 \begin{distributions}[Terminologie]
 \begin{description}
-	\item[Premium:] Flux financiers à $t = 0$;
-	\item	Prix de l'option / prime;
-	\item	Si \textcolor{blue}{positif}, il s'agit d'un \textbf{coût} ;
-	\item	Si \textcolor{red}{négatif}, il s'agît d'une \textbf{compensation}.
-	\item[Valeur à l'échéance $T$:]	Les flux de trésorier au temps $t = T$;
+	\item[Prime:] Flux financiers à $t = 0$;
+		\begin{itemize}[leftmargin = *]
+		\item	Dans le cas d'options, la prime est le coût $C(K)$;
+		\item	Si \textcolor{blue}{positif}, il s'agit d'un \textbf{coût};
+		\item	Si \textcolor{red}{négatif}, il s'agît d'une \textbf{compensation}.		
+		\end{itemize}
+	\item[Valeur à l'échéance $T$:]	L'argent que l'on reçoit à l'échéance;
 		\begin{itemize}[leftmargin = *]
 		\item	\og \textit{payoff} \fg{};
-		\item	C'est à dire, l'argent que l'on reçoit à l'échéance;
-		\item	Dans le cas de l'achat d'un actif, on reçoit son prix et donc s'il est nul on ne reçoit rien;
-		\item	C'est le profit qui prend en compte les dépenses initiales et qui sera négatif.
+		\item	C'est à dire, les flux de trésorier au temps $t = T$;
+		\item	Dans le cas de l'achat d'un actif, on reçoit son prix $S_{T}$; s'il est nul, on ne reçoit rien.
 		\end{itemize}
-	\item[Profit\footnote{\textbf{V}aleur \textbf{A}ccumulée au taux sans risque.}] 
+	\item[Profit] 
 		= (valeur à l'échéance) - (valeur accumulée du coût initial) \\
-		= $VA$(flux monétaires)\footnote{Par exemple acheter une voiture et la revendre 10 ans plus tard---(prix de revente à dans 10 ans) - (valeur accumulée du coût d'achat initial à 0 au courant des 10 dernières années).}
-%	\begin{align*}
-%	&=	\begin{cases}
-%			\text{Payoff} - VA(\text{Premium})&	\text{si position longue}	\\
-%			\text{Payoff} + VA(\text{Premium})	&	\text{si position courte}
-%		\end{cases} \\
-%	\end{align*}
+		= $VA$(flux monétaires)\footnote{\textbf{V}aleur \textbf{A}ccumulée au taux sans risque.}
+		\begin{itemize}[leftmargin = *]
+		\item	Le profit soustrait les flux financiers initiaux accumulés de la valeur à l'échéance;
+		\item	Par exemple, acheter une voiture et la revendre 10 ans plus tard:
+			\begin{align*}
+			\text{profit} 
+			=	&\text{(prix de revente à dans 10 ans)} -\\ &\text{\shortstack{(valeur accumulée du coût d'achat initial\\ à 0 au courant des 10 dernières années)}}
+			\end{align*}
+		\item	Dans le cas d'options, on soustrait la valeur accumulée de la prime.
+		\end{itemize}
 	\tcbline
-	\item[$r_f$:] taux d'intérêt sans risque (effectif annuel).
-	\item[$r$:] force d'intérêt sans risque (annuelle). 
+	\item[$r$] 	taux (force) d'intérêt sans risque (effectif annuel);
+	\item[$T$]	date d'échéance.
 \end{description}
 \end{distributions}
 
-\begin{definitionNOHFILL}[Obligation zéro coupon]
+\subsection*{Contrats à terme de gré à gré}
 
+\begin{definitionNOHFILL}[Contrat à terme (de gré à gré) \og \textit{forward contract} \fg{}]
+Contrat selon lequel: 
+\begin{itemize}
+	\item	\textit{deux} partis s'\textbf{engagent} d'\textbf{échanger}---un à \textit{acheter} et l'autre à \textit{vendre};
+	\item	une \textit{certaine} \textbf{quantité} d'un \textit{certain} \textbf{bien}---l'actif sous-jacent $S$;	
+	\item	à un \textit{certain} \textbf{prix}---prix à terme $F_{0, T}$;
+	\item	à un \textit{certain} \textbf{endroit} à une \textit{certaine} \textbf{date}---date d'échéance, $T$;
+\end{itemize}
+
+L'engagement est au départ à $t = 0$ mais aucune transaction y a lieu. Ce faisant, le profit sera égal à la valeur à l'échéance puisqu'il n'a pas de flux financiers à 0 à accumuler. L'achat \textbf{ferme} en revanche, implique l'\textit{achat} et la livraison de l'actif au départ à $t = 0$. Donc:
+\begin{center}
+\begin{tabular}{|	>{\columncolor{airforceblue}}c	| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{Valeur à l'échéance}}	&	\textcolor{white}{\textbf{Profit}}		\\\specialrule{0.1em}{0em}{0.0em} 
+\textcolor{white}{Achat ferme}				&	$S_{T}$	&	$S_{T} - S_{0} \textrm{e}^{rT}$	\\\hline
+\textcolor{white}{Contrat à terme (achat)}	&	$S_{T} - F_{0, T}$	&	$S_{T} - F_{0, T}$	\\\hline
+\end{tabular}
+\end{center}
+\end{definitionNOHFILL}
+
+\begin{distributions}[Notation de prix]
+\begin{itemize}
+	\item[$S_{t}$:] \textbf{Valeur} de l'actif \textbf{s}ous-jacent à $t$;
+	\item[$S_{0}$:] \textbf{Prix au comptant};
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{(spot price)} \fg{};
+		\item	C'est le paiement pour la livraison immédiate à $t = 0$;
+		\item	En d'autres mots, le prix de l'actif sous-jacent aujourd'hui payable dans le cas d'un achat ferme.
+		\end{itemize}
+	\item[$F_{0, T}$:]	\textbf{Prix à terme} payable à $T$;
+		\begin{itemize}[leftmargin = *]
+		\item	$F_{0, T} = S_{0} \textrm{e}^{r (T - 0)}$
+		\end{itemize}
+	\item[$F_{0, 0}$:]	est nul.
+\end{itemize}
+La notation $F_{0, T}$ vient de \og \textit{future} \fg{} ou \og \textit{forward} \fg{}.
+\end{distributions}
+
+\begin{formula}{Exemple de bateau}
+\begin{itemize}[leftmargin = *]
+	\item	Je veux acheter un \textit{(quantité)} bateau \textit{(bien)}, mais il est inconvénient pour moi de le recevoir maintenant;
+	\item	En lieu, puisque je veux l'acheter maintenant, je signe une entente \textit{(engagement)} pour l'acheter;
+	\item	La seule différence entre l'acheter aujourd'hui \textit{(au prix au comptant $S_{0}$)} et l'acheter lorsque la neige fond \textit{(au prix à terme $F_{0, T}$)} est l'accumulation d'intérêt;
+	\item	Puisqu'on suppose tout les deux d'êtres fiables et sans risque, le prix est accumulé au taux sans risque ($r$) et le prix payable rendu à l'été ($T$) sera $F_{0, T} = S_{0} \textrm{e}^{r (T - 0)}$;
+	\item[]	Si le taux sans risque est un \textbf{taux} \textbf{plutôt} qu'une \textit{force} d'intérêt, on obtient $F_{0, T} = S_{0} (1 + r_f)^{T}$.
+\end{itemize}
+\end{formula}
+
+\begin{definitionNOHFILL}[Exercice (levée)]
+Décision d'\textit{exercer} l'option d'achat ou de vente.
+
+\begin{distributions}[Notation]
+\begin{itemize}[leftmargin = *]
+	\item[$K$:]	\textbf{Prix d'exercice} \textit{(\textbf{strike price})};
+\end{itemize}
+\end{distributions}
+
+\begin{conceptgen}{Types d'exercices}
+\begin{description}
+	\item[\textbf{\underline{E}}uropéen:]		\textbf{Au moment} d'\textbf{\underline{e}}xpiration de l'option $T$;
+	\item[\textbf{\underline{A}}méricain:]	\textbf{N'importe quand} (\textbf{\underline{a}}ny moment) d'ici $T$;
+	\item[\textbf{\underline{B}}ermudien:]	À \textbf{quelques périodes} (\textbf{\underline{b}}ounded periods) d'ici $T$;
+\end{description}
+En réalité, la \textit{majorité des options sont américaines}.
+\end{conceptgen}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Obligation zéro coupon]
 \begin{minipage}{0.6\columnwidth}
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
@@ -450,72 +522,8 @@ $F_{0, T} - (F_{0, T} - \textrm{e}^{-rT}) \textrm{e}^{rT}$	\\\hline
 \end{minipage}
 
 Le profit sera donc toujours nul.
-
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILL}[Contrat à terme (de gré à gré) \og \textit{forward contract} \fg{}]
-Contrat selon lequel: 
-\begin{itemize}
-	\item	\textit{deux} partis s'\textbf{engagent} d'\textbf{échanger}---un à \textit{acheter} et l'autre à \textit{vendre};
-	\item	une \textit{certaine} \textbf{quantité} d'un \textit{certain} \textbf{bien}---l'actif sous-jacent $S$;	
-	\item	à un \textit{certain} \textbf{prix}---prix à terme $F_{0, T}$;
-	\item	à un \textit{certain} \textbf{endroit} à une \textit{certaine} \textbf{date}---date d'échéance, $T$;
-\end{itemize}
-
-L'engagement est au départ à $t = 0$ mais aucune transaction y a lieu. Ce faisant, le profit sera égal à la valeur à l'échéance puisqu'il n'a pas de flux financiers à 0 à accumuler. L'achat \textbf{ferme} en revanche, implique l'\textit{achat} et la livraison de l'actif au départ à $t = 0$. Donc:
-\begin{center}
-\begin{tabular}{|	>{\columncolor{airforceblue}}c	| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
-\hline\rowcolor{airforceblue} 
-\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{Valeur à l'échéance}}	&	\textcolor{white}{\textbf{Profit}}		\\\specialrule{0.1em}{0em}{0.0em} 
-\textcolor{white}{Achat ferme}				&	$S_{T}$	&	$S_{T} - S_{0} \textrm{e}^{rT}$	\\\hline
-\textcolor{white}{Contrat à terme (achat)}	&	$S_{T} - F_{0, T}$	&	$S_{T} - F_{0, T}$	\\\hline
-\end{tabular}
-\end{center}
-
-\begin{distributions}[Notation de prix]
-%\begin{multicols*}{2}
-\begin{itemize}
-	\item[$S_{t}$:] \textbf{Valeur} de l'actif \textbf{s}ous-jacent à $t$;
-	\item[$S_{0}$:] \textbf{Prix au comptant};
-	\item	Le prix au comptant représente le paiement pour la livraison immédiate à $t = 0$;
-	\item	\og \textit{(spot price)} \fg{}.
-	\item[$F_{0, T}$:]	est le \textbf{prix à terme};
-	\item	$F_{0, T} = S_{0} \textrm{e}^{r (T - 0)}$
-	\item[$F_{0, 0}$:]	est nul;
-	\item	La notation $F_{0, T}$ vient de \og future \fg{} ou \og forward \fg{}.
-\end{itemize}
-%\end{multicols*}
-\end{distributions}
-
-\begin{formula}{Exemple de bateau}
-\begin{itemize}
-	\item	Je veux acheter un \textit{(quantité)} bateau \textit{(bien)}, mais il est inconvénient pour moi de le recevoir maintenant;
-	\item	En lieu, puisque je veux l'acheter maintenant, je signe une entente \textit{(engagement)} pour l'acheter;
-	\item	La seule différence entre l'acheter aujourd'hui \textit{(au prix au comptant $S_{0}$)} et l'acheter lorsque la neige fond \textit{(au prix à terme $F_{0, T}$)} est l'accumulation d'intérêt;
-	\item	Puisqu'on suppose tout les deux d'êtres fiables et sans risque, le prix est accumulé au taux sans risque ($r$) et le prix payable rendu à l'été ($T$) sera $F_{0, T} = S_{0} \textrm{e}^{r (T - 0)}$;
-	\item[]	Si le taux sans risque est un \textbf{taux} \textbf{plutôt} qu'une \textit{force} d'intérêt, on obtient $F_{0, T} = S_{0} (1 + r_f)^{T}$.
-\end{itemize}
-\end{formula}
-\end{definitionNOHFILL}
-
-\begin{definitionNOHFILL}[Exercice (levée)]
-Décision d'\textit{exercer} l'option d'achat ou de vente.
-
-\begin{distributions}[Notation]
-\begin{itemize}
-	\item[$K$:]	\textbf{Prix d'exercice} \textit{(\textbf{strike price})};
-\end{itemize}
-\end{distributions}
-
-\begin{conceptgen}{Types d'exercices}
-\begin{description}
-	\item[\textbf{\underline{E}}uropéen:]		\textbf{Au moment} d'\textbf{\underline{e}}xpiration de l'option $T$;
-	\item[\textbf{\underline{A}}méricain:]	\textbf{N'importe quand} (\textbf{\underline{a}}ny moment) d'ici $T$;
-	\item[\textbf{\underline{B}}ermudien:]	À \textbf{quelques périodes} (\textbf{\underline{b}}ounded periods) d'ici $T$;
-\end{description}
-En réalité, la \textit{majorité sont européens} et donc nous effectuons uniquement des calculs avec ce type.
-\end{conceptgen}
-\end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Option d'achat]
 Contrat qui: 
@@ -546,6 +554,8 @@ Contrat qui \textit{permet} à son \textit{détenteur} de \textbf{vendre} au lie
 En réalité, on dénote le prix, alias prime,  avec $P(K)$ mais selon la notation de Claire elle aime le faire avec $P_{0}$.
 \end{distributions}
 
+\paragraph*{Note}	L'acheteur d'une option de vente a une position \textbf{longue} par rapport à l'\textbf{option} mais une position \textbf{courte} par rapport au \textbf{sous-jacent}.
+
 %%%	------	
 %%%	Commencé à convertir le tableau pour être du même format que la boite de l'obligation;
 %%%	Pense pas par contre que ce sera aussi beau donc je laisse tel quel;
@@ -569,6 +579,45 @@ En réalité, on dénote le prix, alias prime,  avec $P(K)$ mais selon la notati
 %\end{minipage}
 %%%	------	
 \end{definitionNOHFILL}
+
+\begin{center}
+	Profit (perte) extrême
+	
+\begin{tabular}{| >{\columncolor{beaublue}}c |	c	|	c	|}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{Position}}	&	\textcolor{white}{\textbf{Minimum}}	&	\textcolor{white}{\textbf{Maximum}}\\\specialrule{0.1em}{0em}{0.0em} 
+Contrat à terme (longue)	&	$-F_{0, T}$						&	$+\infty$	\\
+Contrat à terme (courte)	&	$-\infty$						&	$+F_{0, T}$	\\\hline
+Option d'achat (longue)	&	$-C_{0}\textrm{e}^{rT}$			&	$+\infty$	\\
+Option d'achat (courte)	&	$-\infty$						&	$+C_{0}\textrm{e}^{rT}$	\\\hline
+Option de vente (longue)	&	$-P_{0}\textrm{e}^{rT}$			&	$K - P_{0}\textrm{e}^{rT}$	\\
+Option de vente (courte)	&	$-(K - P_{0}\textrm{e}^{rT})$	&	$+P_{0}\textrm{e}^{rT}$	\\\specialrule{0.1em}{0em}{0.0em} 
+\end{tabular}
+\end{center}
+
+\paragraph{Types de positions:}
+\begin{description}
+	\item[Position capitalisée]	Une position est dite "capitalisée" si elle est payée en entier au début (à $t = 0$);
+		\begin{itemize}[leftmargin = *]
+		\item	Par exemple, l'achat ferme d'un action aujourd'hui.
+		\end{itemize}
+	\item[Position non capitalisée]	Une position est dite "non capitalisée" si le paiement en est différé.
+		\begin{itemize}[leftmargin = *]
+		\item	Par exemple, un contrat à terme de gré à gré dont le paiement est différé à l'échéance.
+		\end{itemize}
+\end{description}
+
+En bref, la différence fondamentale entre l'achat ferme et l'achat différé est le moment du règlement de l'achat.\\
+
+\begin{conceptgen}{Règlement en espèce et livraison}
+En \textbf{théorie}, avec un contrat à terme de gré à gré, l'acheteur reçoit l'actif sous-jacent \textit{à la date de livraison} et le vendeur reçoit, à ce même moment, l'argent (\textit{le prix à terme}) en échange.\\
+
+En \textbf{pratique}, il arrive que le sous-jacent ne soit jamais transigé. En lieu, le règlement se fait en espèce au parti ayant fait un profit dans la transaction.\\
+
+Ceci revient à ce que l'acheteur paye $F_{0, T}$ au vendeur en échange de $S_{T}$; puis, il va immédiatement revendre l'actif au cours du marché. Les profits sont alors de $S_{T} - F_{0, T}$ pour l'acheteur et de $F_{0, T} - S_{T}$ pour le vendeur.\\
+
+Il n'y a aucun impact sur les profits et le \textbf{vendeur peut ne jamais avoir possédé l'actif} sous-jacent. Les contrats \og \textit{forward} \fg{} permettent donc aux investisseurs de spéculer ou d'atténuer des risques pris dans d'autres transactions, positions et investissements tout en \textbf{évitant des frais de transactions}.
+\end{conceptgen}
 \end{multicols*}
 \newpage
 
