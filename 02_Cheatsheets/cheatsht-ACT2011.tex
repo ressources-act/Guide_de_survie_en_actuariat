@@ -828,8 +828,6 @@ Il n'y a aucun impact sur les profits et le \textbf{vendeur peut ne jamais avoir
 
 \end{tikzpicture}
 
-
-
 \end{center}
 \begin{center}
 \begin{tabular}{|l	c	c	c|}
@@ -844,23 +842,6 @@ Il n'y a aucun impact sur les profits et le \textbf{vendeur peut ne jamais avoir
 
 \newpage
 \begin{multicols*}{2}
-
-%%%	------------------------------
-%%%	PAS ENCORE VU%
-%\paragraph{Achat ferme et emprunt} On utilise parfois la lettre $S$ pour désigner dans stratégie l'action de faire un achat ferme (i.e. acheter et se faire livrer le sous-jacent à $t=0$) et $B$ pour désigner un dépôt/emprunt (qu'on exprime comme une obligation zéro-coupon).
-
-%\paragraph{Quelques définitions}
-%\begin{description}
-%\item[$F_{0,T}^{P}$] Prix d'un forward prépayé, i.e. on débourse $F_{0,T}^{P}$ à $t=0$ et on reçoit le sous-jacent à $t  = T$, alors
-%\[F_{0,T}^{P} = F_{0,T} (1 + r_f)^{-T}\]
-%\end{description}
-
-%\subsection*{Forward synthétique}
-%On peut créer un Forward synthétique 2 de façon (en combinant d'autres transactions) : 
-%\[Forward = Stock - Bond \]
-%\[Forward = Call(K,T) - Put(K,T) \]
-%Ces deux égalités définissent la \emph{Put-Call Parity} vu un peu plus loin.
-%%%	------------------------------
 
 \newpage
 
@@ -890,8 +871,13 @@ Pour tout le chapitre, nous posons les hypothèses suivantes:
 \end{align*}
 \end{rappel}
 
+Une option est dite d'être non-couverte si nous avons aucune position dans l'actif sous-jacent. En revanche, une option est couverte si l'on a une position correspondant à l'obligation de l'option.	
+
+Une \textbf{option d'achat couverte} est la \textbf{vente de l'option d'achat} $-C(K)$ et \textbf{l'achat du sous-jacent} $+S_{0}$.\\
+Une \textbf{option de vente couverte} est la \textbf{vente de l'option de vente} $-P(K)$ et de \textbf{la vente à découvert du sous-jacent}.
+
 \begin{definitionNOHFILL}[\textbf{Plancher} \og \textit{floor} \fg{}]
-On achète une option de vente pour garantir un prix minimum de vente. On dit donc avoir une option de vente de protection qui sert de \textit{plancher} minimale.
+On achète une option de vente pour garantir un prix minimum de vente et couvrir une position longue dans l'actif sous-jacent. On dit donc avoir une \textbf{option de vente de protection} qui sert de \textit{plancher} minimale. 
 
 \begin{align*}
 	\text{Floor} 
@@ -968,7 +954,7 @@ On achète une option de vente pour garantir un prix minimum de vente. On dit do
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[\textbf{Plafond} \og \textit{cap} \fg{}]
-On achète une option d'achat pour garantir un prix maximal d'achat. Ce faisant, on \textit{plafonne} le prix d'achat.
+On achète une option d'achat pour garantir un prix maximal d'achat et couvrir une position courte dans l'actif sous-jacent. Ce faisant, on \textit{plafonne} le prix d'achat.
 
 \begin{align*}
 	\text{Cap} 
@@ -1043,6 +1029,8 @@ On achète une option d'achat pour garantir un prix maximal d'achat. Ce faisant,
 \end{tikzpicture}
 \end{center}
 \end{definitionNOHFILL}
+
+\newpage
 
 \subsection*{Écarts et tunnels}
 
