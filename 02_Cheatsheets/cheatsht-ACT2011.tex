@@ -261,13 +261,6 @@ Ceci correspond à la \textbf{marge de profit} que le teneur de marché conserve
 \begin{definitionNOHFILL}[Vente à découvert \og \textit{(short-sell)} \fg{}] 
 La vente d'un actif qu'on ne possède pas. On peut y penser comme l'inverse d'un achat.\\
 
-\textbf{Utilités:}
-\begin{description}
-	\item[Spéculation]	Tirer profit d'une baisse de valeur de l'actif;
-	\item[Financement]	Aller chercher de l'argent tout de suite comme un emprunt;
-	\item[Couverture]	Se protéger contre la baisse de la valeur d'un actif que vous possédez.
-\end{description}
-
 \begin{algo2}[Étapes d'une vente à découvert]
 \begin{multicols*}{2}
 \begin{enumerate}[leftmargin = *]
@@ -343,6 +336,7 @@ L'\textbf{investisseur} est le \textit{short-seller} et le \textbf{prêteur} le 
 		\item	Puisque le détenteur de l'action sera celui à qui l'investisseur a vendu les actions, l'investisseur et le prêteur ne vont pas les recevoir;
 		\item	Du point de vue du prêteur, les dividendes sont des paiements en espèce qu'il aurait reçus s'il n'avait pas prêté l'action;
 		\item	Ce faisant, l'investisseur va payer ces dividendes au prêteur s'il y en a;
+		\item	Pour le prêteur ils sont imposables alors que pour l'investisseur ils sont déductibles d'impôts;
 		\item	Ce paiement se nomme le \textbf{taux de location} (\og \textit{lease rate} \fg{}) de l'actif.
 		\end{itemize}
 \end{description}
@@ -2162,14 +2156,13 @@ Ce faisant, la \colorbox{bleudefrance}{\textbf{balance de la marge}} \textit{dan
 % --- Chapitre 9 ---
 \setcounter{section}{8}
 \section{Parité et autres liens entre les options}
-
 \begin{rappel}{Équation de parité des options vente-achat}
 \begin{align*}
 	C_{\text{Eur}}(K, T) - P_{\text{Eur}}(K, T)
 	&=	F_{0, T}^{P}(S) - K\textrm{e}^{-rT}\\
 \end{align*}
 
-En anglais c'est le \og \textit{\textbf{Put-Call Parity Equation}} \fg{}.
+En anglais c'est le \og \textit{\textbf{Put-Call Parity Equation}} \fg{}. Cette équation vaut pour les options européennes seulement puisque les américaines peuvent être exercées à n'importe quel moment.
 \end{rappel}
 
 \subsection*{Positions synthétiques}
@@ -2207,6 +2200,8 @@ Avec l'équation de parité, on peut créer des options, actions ou obligations 
 		\underset{\text{\shortstack{achat d'une\\ option de vente}}}{\underbrace{-P(S; K)}} \;
 		\underset{\text{\shortstack{achat de $e^{-\delta T}$\\ parts de l'action}}}{\underbrace{-S_{0}\textrm{e}^{-\delta T}}}
 \end{align*}
+
+%\columnbreak
 
 \subsection*{Parité des options}
 
@@ -2288,6 +2283,8 @@ On peut penser à cette notation comme $C(\text{Receive}, \text{Give up})$ et $P
 \end{align*}
 
 \paragraph{Note}	Si le prix d'exercice est dans la même devise que le prix de l'option.
+
+%\columnbreak
 
 \subsection*{Comparaison de différentes options}
 
@@ -2406,6 +2403,8 @@ Ce faisant, \textcolor{cobalt}{la borne supérieure d'une option de vente europ�
 	\geq	\max\left(K\textrm{e}^{-rT} - F_{0, T}^{P}(S); 0\right)
 \end{align*}
 
+%\columnbreak
+
 \subsection*{Exercice hâtif des options américaines}
 \subsubsection*{Notions d'intérêt et d'escompte}
 La valeur actualisée de l'intérêt accumulé sur le prix d'exercice $K$ est $PV(\text{intérêt sur le prix d'exercice}) = K(1 - \textrm{e}^{-rT})$.\\
@@ -2420,6 +2419,7 @@ L'avantage d'exercer l'option d'achat immédiatement est la \textbf{réception d
 Cependant, l'avantage de repousser l'exercice est \textbf{l'intérêt accumulé sur le prix d'exercice} $K$ et la protection, ou \textit{assurance}, \textbf{contre le risque d'une baisse du prix de l'action}. Une protection contre ce risque de baisse correspond donc à une \textbf{option de vente}.\\
 
 Il est donc important de retenir:
+\begin{conceptgen}{}
 \begin{enumerate}
 	\item	Il est rationnel d'effectuer un exercice hâtif si\\
 	 $PV(\text{dividendes}) > PV(\text{intérêt sur $K$}) - PV(\text{assurance})$;
@@ -2429,6 +2429,7 @@ Il est donc important de retenir:
 	\item	Il est \textbf{\textit{possiblement} rationnel} d'effectuer un exercice hâtif si \\
 	$PV(\text{dividendes}) > PV(\text{intérêt sur $K$})$.
 \end{enumerate}
+\end{conceptgen}
 
 \subsubsection*{Options de vente américaines}
 L'avantage d'exercer l'option d'achat immédiatement est la réception de prix d'exercice $K$ et \textbf{l'intérêt qu'on peut accumuler avec}.\\
@@ -2436,6 +2437,7 @@ L'avantage d'exercer l'option d'achat immédiatement est la réception de prix d
 Cependant, l'avantage de repousser l'exercice est de \textbf{continuer à recevoir des dividendes}. Également, la protection contre le risque de \textbf{ne \textit{pas} vendre l'action à un prix plus élevé}. Une protection contre ce risque d'une hausse de prix correspond donc à une \textbf{option d'achat}.\\
 
 Il est donc important de retenir:
+\begin{conceptgen}{}
 \begin{enumerate}
 	\item	Il est rationnel d'effectuer un exercice hâtif si\\
 	 $PV(\text{intérêt sur $K$}) > PV(\text{dividendes}) + PV(\text{assurance})$;
@@ -2444,7 +2446,9 @@ Il est donc important de retenir:
 	$PV(\text{intérêt sur $K$}) > PV(\text{dividendes})$;
 	\item	Il s'ensuit qu'il est \textbf{\textit{possiblement} rationnel} d'effectuer un \textbf{exercice hâtif} sur une \textbf{option d'achat} américaine \textbf{sans dividendes}.
 \end{enumerate}
+\end{conceptgen}
 
+%\columnbreak
 
 \subsection*{Effet du prix d'exercice}
 Trois arguments sur comment différents prix d'exercices font varier les prix d'options. Ces arguments, ou \textit{propositions} expliquent le lien:
@@ -2516,7 +2520,7 @@ Si la différence en prix d'option était supérieure à la différence en prix 
 \section{Introduction au modèle binomial d'évaluation des options}
 
 \begin{description}
-	\item[Modèle binomial d'évaluation des options]	le prix de l'actif sous-jacent au début d'une période devient un de deux prix possibles à la fin de la période;
+	\item[Modèle binomial d'évaluation des options]	le prix de l'actif sous-jacent au début d'une période devient un de deux prix possibles à la fin de la période.
 		\begin{itemize}[leftmargin = *]
 		\item	en anglais c'est le \og \textit{Binomial Option Pricing Model} \fg{}.
 		\end{itemize}
@@ -2820,6 +2824,23 @@ L'équation pour un arbre standard suffit de remplacer les paramètres:
 \end{align*}
 	
 	
+\subsection*{Rendements composés continûment}
+\begin{itemize}
+	\item	La fonction \textbf{logarithmique} calcule des rendements composés continûment à partir des prix.
+		\begin{align*}
+		r_{t, t + h} &= \log\left(\frac{S_{t + h}}{S_{t}}\right)
+		\end{align*}
+	\item	La fonction \textbf{exponentielle} calcul des prix à partir des rendements composés continûment.
+		\begin{align*}
+		S_{t + h}	&=	S_{t}\textrm{e}^{r_{t, t + h}}
+		\end{align*}
+	\item	Les rendements composés continûment sont \textbf{additifs}.
+		\begin{align*}
+		r_{t, t + nh}	&=	\overset{n}{\underset{i = 1}{\sum}} r_{t + (i - 1)h, t + ih}
+		\end{align*}
+\end{itemize}	
+
+	
 \subsection*{Volatilité}
 %\begin{align*}
 %	r_{t, t + h}
@@ -2829,7 +2850,11 @@ L'équation pour un arbre standard suffit de remplacer les paramètres:
 \begin{distributions}[Notation]
 \begin{description}[leftmargin = *]
 	\item[$R$]	variable aléatoire de la force du rendement (sous base annuelle);
-	\item[Hypothèse]	Les rendements composés continûment sur des périodes disjointes, mais de même longueur $h$, sont i.i.d.
+	\item[Hypothèse]	Les rendements composés continûment sur des périodes disjointes, mais de même longueur $h$, sont i.i.d.;
+	\item[$r_{t, t + h}$]	le \textbf{rendement composé continûment entre $t$ et $t + h$}.
+		\begin{align*}
+		r_{t, t + h} &= \log\left(\frac{S_{t + h}}{S_{t}}\right)
+		\end{align*}
 \end{description}
 \end{distributions}
 
