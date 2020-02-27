@@ -4,9 +4,6 @@
 %% -----------------------------
 \input{cheatsht-preamble-general.tex}
 %% -----------------------------
-%% Redefine from template
-%% -----------------------------
-%% -----------------------------
 %% Variable definition
 %% -----------------------------
 \def\cours{Analyse et traitement collectif du risque}
@@ -30,12 +27,24 @@
 %% Début du document
 %% -----------------------------
 \begin{document}
+
 \begin{center}
 	\textsc{\Large Contributeurs}\\[0.5cm] 
 \end{center}
 \input{contributeurs/contrib-ACT1005}
 
+\begin{algo2}[Légende]
+\begin{description}
+	\item[\hl{surligné en jaune}]	si quelque-chose est \hl{surligné en jaune} alors c'est jugé d'être important; 
+	\item[\textcolor{bulgarianrose}{fédéral} et \textcolor{blue(pigment)}{provincial}]	afin de bien associer les programmes comme étant soit \textcolor{bulgarianrose}{fédéral} ou \textcolor{blue(pigment)}{provincial} on les mets en couleur;
+	\item[\textcolor{red}{mots en rouge}]	pas nécessaire pour l'examen;
+	\item[\textcolor{burntorange}{mots en orange}]	extra / pas dans le cadre du cours;
+	\item[\textcolor{darkgreen}{Pay-as-you-go}]	certains mots qui reviennent souvent sont en couleur pour plus facilement s'en rapeller.
+\end{description}
+\end{algo2}
+
 \newpage
+
 
 \begin{multicols*}{3} 
 \section{Le risque et l'assurance}
@@ -46,7 +55,7 @@
 \end{description}
 
 Il y \textbf{deux composantes} aux risques:
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	La \textbf{probabilité d'occurrence} d'un événement accidentel;
 	\item	La \textbf{gravité} des effets (ou conséquences) \textit{financière} de l'événement;
 \end{itemize}
@@ -54,7 +63,7 @@ Il y \textbf{deux composantes} aux risques:
 Donc du point de vue d'un assureur, le risque est l'\textbf{exposition} à un \textit{événement} dommageable inhérent à une situation (ou activité). 
 
 Quelques \textbf{exemples} d'événements dont l'exposition peut être prise en charge par une compagnie:
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	Une compagnie d'assurance auto assure une personne contre le risque d'un accident automobile;
 	\item	Une compagnie d'assurance de voyage assure une personne contre le \textbf{danger} (toujours sous forme de conséquence \textit{financière}, que ce soit au niveau de la responsibilité civile, des frais médicaux etc.) d'aller au Mexique;
 %%%	-----
@@ -70,7 +79,7 @@ L'aversion au risque est la \textit{peur} d'un investisseur d'un risque qu'il ju
 (L'antonyme de l'\textit{aversion} au risque serait la \textit{tolérance} de celui-ci)
 
 L'aversion au risque se caractérise par une personne qui:
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	Ne souhaite pas courir le risque et va vouloir le \textbf{transférer};
 	\item[]	Par exemple, assurer sa maison contre le risque d'inondation;
 	\item	Ne juge pas d'être en mesure de supporter le risque et \textbf{refuse} de s'y exposer;
@@ -80,7 +89,7 @@ L'aversion au risque se caractérise par une personne qui:
 Le \textbf{degré d'aversion} au risque est \textbf{variable} selon l'intervenant (tous on une aversion au risque, seul le \textit{degré d'aversion} diffère). Par exemple, même les compagnies d'assurance se \textit{\textbf{ré}}assurent. 
 
 Habituellement, elles ont moins d'aversion au risque qu'un individu en raison de leur:
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	\textbf{capacité financière};
 	\item	La \textbf{mise en commun} des risques;
 \end{itemize} 
@@ -101,7 +110,7 @@ Différentes \textbf{méthodes} existent pour gérer un risque, par exemple:
 \end{itemize}
 %
 Face à un risque, différents \textbf{comportements} peuvent survenir selon:
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	La \textit{perception} du risque;
 	\item	L'\textit{aversion} au risque;
 	\item	La disponibilité d'\textit{outils} pour gérer des risques;
@@ -123,14 +132,14 @@ L'assurance est un \textit{système} qui permet de \textit{protéger} un assuré
 %%%	-----
 
 Les assureurs est en mesure de protéger les individus contre un risque grâce à \textit{loi des grands nombres}:
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	On associe un assuré à une \textbf{communauté} de personnes---l'ensemble des assurés;
 	\item	On \textbf{rassemble} \textit{(pool)} les primes; 
 \end{itemize}
 Lorsque des risques se réalisent, on \textbf{indemnise} les membres ayant subi des dommages. Ce faisant, la communauté prend \textbf{matériellement} en charge les dommages de ses membres.
 
 On définit donc l'assurance comme un système de gestion des risques basé sur la notion de \textit{solidarité}. Ce \textbf{mécanisme} de l'assurance :
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	Ne modifie ni la \textit{fréquence} du risque ni sa \textit{sévérité};
 	\item	\textit{Transfère} le risque d'un assuré à un, ou plusieurs, autres;
 	\item	\textit{Protège} un assuré contre le risque de survenance d'événements qu'il ne peut pas supporter seul;
@@ -142,7 +151,7 @@ Lorsque des risques se réalisent, on \textbf{indemnise} les membres ayant subi 
 \end{definitionNOHFILL}
 
 \begin{algo}{\textbf{Revenu} de l'assureur}
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	L'assureur reçoit les \textbf{primes} d'assurance;
 	\item	L'assureur \textbf{place l'argent} des assurés, excédentaire des paiements qu'il doit faire, en bourse;
 \end{itemize}
@@ -176,8 +185,6 @@ Exemples pour les \textcolor{amethyst}{individus} et \textcolor{amaranth}{entrep
 \end{conceptgen}
 
 
-\newpage
-
 \section{La sécurité sociale}
 
 %%%	dans le coin des lignes 520 j'explique comment les tableaux fonctionnent en LaTeX;
@@ -185,7 +192,7 @@ Exemples pour les \textcolor{amethyst}{individus} et \textcolor{amaranth}{entrep
 \begin{definition}[La sécurité sociale]
 \textbf{Programmes} visant à apporter une certaine \textbf{sécurité} afin de ne pas laisser son \textbf{statut social} descendre sous un certain seuil. Elles visent à \textit{maintenir}, \textit{protéger} et \textit{améliorer} les conditions de vie essentielles, ne laissant ainsi personne dans le besoin.
 
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	Cette \og \textit{assurance} \fg{} est accordée par le gouvernement;
 	\item	Il s'agit d'une \textit{obligation} du gouvernement pour donner un niveau de vie minimum à tous;
 \end{itemize}
@@ -194,7 +201,7 @@ Exemples pour les \textcolor{amethyst}{individus} et \textcolor{amaranth}{entrep
 
 \begin{definition}[Organisation internationale du travail (OIT)]
 But est de rassembler ses états membres en vue d'une action commune pour:
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	\textit{Promouvoir} les \textbf{droits au travail};
 	\item	\textit{Encourager} la \textbf{création d'emplois} décents;
 	\item	\textit{Développer} la \textbf{protection sociale};
@@ -203,7 +210,7 @@ But est de rassembler ses états membres en vue d'une action commune pour:
 \end{itemize}
 
 L'OIT est une:
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	Agence spécialisée de l'ONU fondée en 1919 (donc sous l'ancêtre de l'ONU) à Genève;
 	\item	Institution tripartite: rassemble les gouvernements, employeurs et travailleurs membres de l'ONU (187 pays membres en 2016);
 \end{itemize}
@@ -223,11 +230,11 @@ Par exemple dans le cadre de sa mission, l'OIT cherche à s'assurer que les enfa
 		\begin{enumerate}
 		\item	Limité aux travailleurs;
 		\item	Protection obligatoire;
-			\begin{itemize}[leftmargin = *]
+			\begin{itemize}
 			\item	Pour ceux n'ayant pas assez d'argent pour se couvrir eux-mêmes;
 			\end{itemize}
 		\item	\textbf{Proportionnalité} des \textbf{cotisations} et \textbf{prestations} au salaire;
-			\begin{itemize}[leftmargin = *]
+			\begin{itemize}
 			\item	Par exemple, le paiement (cotisation) d'assurance chômage qui varie en fonction du salaire;
 			\item	Si j'ai un plus grand salaire \textit{(par rapport aux autres salaires sous un certain seuil)}, ma participation au régime (cotisations) sera plus élevée. Par contre, il adviendra aussi que les prestations seront plus élevés que ceux ayant moins cotisés en cas de réalisation du risque couvert;
 %%%	-----
@@ -251,26 +258,26 @@ Par exemple dans le cadre de sa mission, l'OIT cherche à s'assurer que les enfa
 	\item	Principe de protection généralisée, la \textbf{sécurité sociale}, \textbf{sans lien au travail} fondée sur la solidarité;
 	\item	Logique \textbf{assistancielle}
 	\item[]	C'est-à-dire que les prestations sont versées aux \textbf{individus en besoin};
-		\begin{itemize}[leftmargin = *]
+		\begin{itemize}
 		\item	Est-ce qu'une personne a besoin d'un revenu? Si oui, on va l'aider.
 		\end{itemize}
 	\item	Exemple: chômage
 	\item	Principes de protection:
-		\begin{enumerate}[leftmargin = *]
+		\begin{enumerate}
 		\item	\textbf{Universalité} de la protection sociale;
-			\begin{itemize}[leftmargin = *]
+			\begin{itemize}
 			\item	Couverture de toute la population et de tous les risques sociaux;
 			\end{itemize}
 		\item	\textbf{Uniformité} des prestations;
-			\begin{itemize}[leftmargin = *]
+			\begin{itemize}
 			\item	Couverture fondée sur les \textit{besoins} et \textbf{non} les \textit{revenus};
 			\end{itemize}
 		\item	\textbf{Unicité};
-			\begin{itemize}[leftmargin = *]
+			\begin{itemize}
 			\item	Gestion par l'état de tous les programmes;
 			\end{itemize}	
 		\item	Financement par \textbf{l'impôt};
-			\begin{itemize}[leftmargin = *]
+			\begin{itemize}
 			\item	Ce faisant, il est également appelé le système \og national \fg{} 
 			\end{itemize}
 		\end{enumerate}
@@ -391,17 +398,17 @@ Auxquels on peut ajouter:
 	       	\item	\textbf{Crise} de 1929---chômage en forte hausse;
 	       	\item	Accroissement des interventions gouvernementales --- le gouvernement est encore timide car il doit avoir le soutien de l'Église;
        	\end{itemize},%
-       	1927	/	\textbf{Assurance vieillesse} (\textbf{fédéral}); programme très strict,%
+       	1927	/	\textbf{Assurance vieillesse} (\textbf{\textcolor{bulgarianrose}{fédéral}}); programme très strict,%
        	1935	/	\textbf{Hôpitaux provinciaux} au lieu de municipaux; cependant\, encore trop cher pour la majorité de la population,
-		1940-1960	/\textbf{Prépondérance fédérale}: 
+		1940-1960	/\textbf{Prépondérance \textcolor{bulgarianrose}{fédéral}e}: 
 		\begin{itemize}[leftmargin = *]
 		  \item	Les besoins engendrés par la guerre règle le problème de chômage;
-			\item	Dynamisme du gouvernement fédéral;
+			\item	Dynamisme du gouvernement \textcolor{bulgarianrose}{fédéral};
 			\item	L'idée de donner à \textit{tous} un certain niveau de vie\, et non juste ceux en besoin\, pousse de l'assistance sociale à la sécurité sociale;
 		\end{itemize},%
-			1940	/	 \textbf{assurance chômage} (fédéral) Premier programme national,%
-			1949	/	 \textbf{allocations familiales} (fédérales),%
-			1952	/	 \textbf{pensions} de \textbf{vieillesse} (fédérales) non liée à la démonstration du manque de ressources%
+			1940	/	 \textbf{assurance chômage} (\textcolor{bulgarianrose}{fédéral}) Premier programme national,%
+			1949	/	 \textbf{allocations familiales} (\textcolor{bulgarianrose}{fédérales}),%
+			1952	/	 \textbf{pensions} de \textbf{vieillesse} (\textcolor{bulgarianrose}{fédérales}) non liée à la démonstration du manque de ressources%
 %%%	-----
 %%%	NOTE:
 %%%	+	fédéral ou provincial? (AJVR)
@@ -440,8 +447,8 @@ Auxquels on peut ajouter:
 				\begin{itemize}[leftmargin = *]
 				\item	Premier programme à offrir une \textbf{indexation} des prestations.
 				\end{itemize},%
-			1967	/	 \textbf{Allocations familiales} (Québec),%
-			1971	/	 \textbf{Couverture} \textbf{universelle} des \textbf{soins de santé} (Québec) (assurance maladie\, encore aujourd'hui)
+			1967	/	 \textbf{Allocations familiales} (\textcolor{blue(pigment)}{Québec}),%
+			1971	/	 \textbf{Couverture} \textbf{universelle} des \textbf{soins de santé} (\textcolor{blue(pigment)}{Québec}) (assurance maladie\, encore aujourd'hui)
 				\begin{itemize}[leftmargin = *]
 				\item	précédemment\, il fallait payer pour voir un médecin;
 				\item	25\% de la population sous le seuil de la pauvreté (vs moins que 1\% aujourd'hui);
@@ -458,19 +465,19 @@ Auxquels on peut ajouter:
 \end{tikzpicture}
 
 \textbf{Suite : Recul de la protection Sociale}
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	Poussée inflationniste, récession \textbf{(1981-1983)}, taux de chômage élevé;
 	\item	Hausse des déficits et baisse des revenus fiscaux, crise de l'endettement public;
 	\item	Recul de la protection sociale avec des programmes jugés extravagants;
 	\item	Politiques de restriction budgétaire;
 	\item	Explosion des coûts de l'assurance maladie
-		\begin{itemize}[leftmargin = *]
+		\begin{itemize}
 		\item[1984: ]	Loi canadienne sur la santé---pour préserver l'universalité des soins de santé;
 		\end{itemize}
 	\item	Coûts d'aucun \og bon sens \fg{} avec un régime qui \textbf{va} devoir changer;
-		\begin{itemize}[leftmargin = *]
-		\item[1997:]	Assurance médicaments (Québec);
-		\item[2006:]	Création d'assurance parentale (Québec);
+		\begin{itemize}
+		\item[1997:]	Assurance médicaments (\textcolor{blue(pigment)}{Québec});
+		\item[2006:]	Création d'assurance parentale (\textcolor{blue(pigment)}{Québec});
 		\end{itemize}
 \end{itemize}
 
@@ -478,18 +485,18 @@ Auxquels on peut ajouter:
 
 \begin{conceptgen}{Programmes sociaux au Québec / Canada}
 Les 9 fonctions de l'OIT sont couvert par ces programmes:
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	Assurance sociale;
 	\item	Assurance emploi;
 	\item	Allocations familiales;
 	\item	Indemnisation accidents travail (CEESST);
 	\item	Régime de Rentes du Québec (RRQ);
 	\item	Régime de Pension du Canada (RPC);
-	\item	Pension sécurité vieillesse (fédéral) \textbf{\textit{ET}}\\ supplément de revenu garanti (fédéral)\textbf{\textit{ET}}\\ allocation au conjoint ;
+	\item	Pension sécurité vieillesse (\textcolor{bulgarianrose}{fédéral}) \textbf{\textit{ET}}\\ supplément de revenu garanti (\textcolor{bulgarianrose}{fédéral})\textbf{\textit{ET}}\\ allocation au conjoint ;
 	\item	Régime de santé (maladie \textbf{\textit{ET}} hospitalisation---conjoint Canada-Québec);
-	\item	\textcolor{amaranth}{Assurance Automobile (Québec) (SAAQ) (Couvert dans le cours \textit{Introduction à l'actuariat I})} ;
-	\item	Assurance parentale (Québec);
-	\item	Assurance médicaments (Québec)
+	\item	\textcolor{amaranth}{Assurance Automobile (\textcolor{blue(pigment)}{Québec}) (SAAQ) (Couvert dans le cours \textit{Introduction à l'actuariat I})} ;
+	\item	Assurance parentale (\textcolor{blue(pigment)}{Québec});
+	\item	Assurance médicaments (\textcolor{blue(pigment)}{Québec})
 \end{itemize}
 \end{conceptgen}
 
@@ -507,32 +514,19 @@ Objectif	&	protection minimale (dernier recourt)	&	protection de base			\\\hline
 	\item	\textbf{Caractéristiques}:
 	\item[]	Test de résidence;
 	\item[]	Test de besoin;
-	\item[]	Financement gouvernementale (Pay As You Go);
-	\item	\textbf{Aide Sociale} au Québec:
+	\item[]	Financement gouvernementale (\textcolor{darkgreen}{pay-as-you-go});
+	\item	\textbf{Aide Sociale} au \textcolor{blue(pigment)}{Québec}:
 	  \item[] Prestations non-imposable;
 	  \item[] 3 programmes pour ceux dans le besoin :
-		  \begin{enumerate}[leftmargin = *]
+		  \begin{enumerate}
 		  \item	Programme d'\textbf{assistance sociale} (qui s'appelait le bien-être social);
 		  \item	Prime au travail;
-			  \begin{itemize}[leftmargin = *]
+			  \begin{itemize}
 			  \item	crédit d'impôt qui vise à encourager les individus à faible revenu à rester sur le marché du travail en bonifiant leur offrant un certain soutien financier;
 			  \end{itemize}
-			 \item	\textbf{Supplément de revenu garanti} (\textit{SRG}) et \textbf{allocation au conjoint} (Fédéral);
+			 \item	\textbf{Supplément de revenu garanti} (\textit{SRG}) et \textbf{allocation au conjoint} (\textcolor{bulgarianrose}{fédéral});
 		  \end{enumerate}
 \end{itemize}
-	
-%%%	-----
-%%%	XXX. Comment trouves-tu ce format pour les commentaires? Je trouve ça pourrait être idéal!
-%%%	NOTES: (AJVR)
-%%%	+ A.	je n'ai pas compris ce qu'elle voulait dire par pay as you go (AJVR);
-%%%	+	B.  Reste du stock à ajouter mais j'étais tanné un peu;
-%%%		    aide sociale au QC, 3 programmes
-%%%	NOTES: (OC)
-%%% + XXX. J'adore ! C'est parfait ! 
-%%% + A. Je crois que c'est comme ca qu'on appelle les régimes par répartition (l'argent pars au fur et à mesure) (OC)
-%%% + B. Men occupe
-%%%	-----
-
 
 
 \textbf{Assurance sociale}
@@ -542,11 +536,11 @@ Objectif	&	protection minimale (dernier recourt)	&	protection de base			\\\hline
 	  \item[]	Les prestations sont en fonction de la participation (reliés aux gains);
 	  \item[]	Supervision gouvernementale;
 	  \item[]	Capitalisation : totale ou partielle;
-		  \begin{itemize}[leftmargin = *]
+		  \begin{itemize}
 		  \item	L'idée de la capitalisation est que c'est de l'argent mis de côté et pas inclus dans les revenus puisqu'elle sera éventuellement dépensée comme revenu.
 		  \end{itemize}
 	\item Similitudes avec l'assurance privée:
-	  \begin{itemize}[leftmargin = *]
+	  \begin{itemize}
 		  \item	Mise en commun des risques
 		  \item Description des prestations
 		  \item Calcul mathématique des prestations
@@ -667,13 +661,13 @@ Assurance médicament					&											&	\\\hline
 	\item Changements démographiques (Les \textit{Boomers} sont beaucoup !);
 	\item Complexité administrative
 	\item Évolution de la société depuis leur mise en place;
-	  \begin{itemize}[leftmargin = *]
+	  \begin{itemize}
 	  \item Par exemple, la \textit{rente du Survivant}. Le salaire ne vient plus seulement du mari, à revoir ? 
 	  \end{itemize}
 	\item Répartition de la richesse
 	\item Abus
 	\item La mondialisation mène à la compétition
-	  \begin{itemize}[leftmargin = *]
+	  \begin{itemize}
 	  \item Maintenant qu'on sait ce que les autres pays font, on sait ce qui se fait mieux, on veut compétitionner
 	  \end{itemize}
 \end{itemize}
@@ -684,23 +678,23 @@ Nos régimes craquent d'un peu partout. On mets en vigueur des changements et de
 \begin{itemize}[leftmargin = *]
 	\item	Les droits sociaux ne sont pas dans la constitution;
 	\item Vision différente:
-	  \begin{itemize}[leftmargin = *]
+	  \begin{itemize}
 	  \item Selon eux, la meilleure assistance sociale reste le plein emploi : ils cherchent à maintenir la croissance économique et à faire baissser le chômage.
 	  \end{itemize}
 	\item Protection des démunis : axée sur l'aide sociale plutôt que la sécurité;
-	  \begin{itemize}[leftmargin = *]
+	  \begin{itemize}
 	  \item On s'occupe des pauvres après (mesure humiliante : \textit{food ticket} pour l'épicerie)
 	  \item 6 volets à la sécurité sociale:
-	  \begin{enumerate}[leftmargin = *]
-	    \item Vieillesse et décès (survivants) (fédérial)
-	    \item Invalidité (fédéral)
-	    \item Médicare (Medicaid) (fédéral)
+	  \begin{enumerate}
+	    \item Vieillesse et décès (survivants) (\textcolor{bulgarianrose}{fédéral})
+	    \item Invalidité (\textcolor{bulgarianrose}{fédéral})
+	    \item Médicare (Medicaid) (\textcolor{bulgarianrose}{fédéral})
 	    \item Chômages (États)
 	    \item Accidents de travail et maladies professionnelles (États)
 	    \item Assurance maladie (Obama Care)
 	  \end{enumerate}
 	\item Obama Care (détails) : 
-	  \begin{itemize}[leftmargin = *]
+	  \begin{itemize}
 	    \item Obligation aux individus de souscrire si non-couvert par leur employeur
 	    \item Interdiction de refuser de couvrir un individu en raison d'antécédents médicaux (du côté des assureurs)
 	    \item le gouvernement accorde de l'aide pour payer la prime si le revenu est entre 1 à 4 fois le seuil de la pauvreté
@@ -711,7 +705,6 @@ Nos régimes craquent d'un peu partout. On mets en vigueur des changements et de
 	 \end{itemize}
 	 \end{itemize}
  Les raisons d'un tel régime était qu'au \textit{États-Unis}, 64\% des faillites étaient liées aux frais de santé
-
 \newpage
 
 \section{Le système de retraite au Canada}
@@ -811,7 +804,7 @@ Ce tableau illustre assez bien l'historique de la retraite:
 \begin{conceptgen}{Proportion de la population active}
 Les graphiques de pyramides d'âges permettent la visualisation de l'augmentation importante de la population âgée. L'\textbf{insuffisance} de la \textbf{population active} pour \textbf{soutenir} le \textbf{régime de retraite} actuel s'ensuit.
 
-En \textbf{contraste} aux \textbf{États-Unis} (1.9\%) et le \textbf{reste du Canada} (5.1\%), la \textbf{population active du Québec} entre 20 et 64 ans va \textbf{diminuer} (-3.6\%) de 2015 à 2030. 
+En \textbf{contraste} aux \textbf{États-Unis} (1.9\%) et le \textbf{reste du Canada} (5.1\%), la \textbf{population active du \textcolor{blue(pigment)}{Québec}} entre 20 et 64 ans va \textbf{diminuer} (-3.6\%) de 2015 à 2030. 
 \end{conceptgen} 
 
 \begin{itemize}[leftmargin = *]
@@ -901,7 +894,7 @@ Les régimes peuvent être \textbf{obligatoires} ou \textbf{volontaires}.
 \tcbline
 
 \begin{center}
-\textbf{Répartition} (\textit{Pay-as-you-go (PAYG))}
+\textbf{Répartition} (\textcolor{darkgreen}{Pay-as-you-go (PAYG)})
 \end{center}
 
 \textbf{Procédure}:
@@ -970,10 +963,10 @@ Raisons pourquoi pas 100\%:
 \begin{conceptgen}{Types de prestations}
 Il existe plusieurs types de prestations dont:
 \begin{itemize}[leftmargin =  *]
-	\item	Pension de la sécurité de la vieillesse (\textit{PSV});
-	\item	Supplément du revenu garantie (\textit{SRG});
-	\item	Allocation (au conjoint);
-	\item	Allocation (de survivant).
+	\item	\hyperref[sec:PSV]{Pension de la sécurité de la vieillesse (\textit{PSV})};
+	\item	\hyperref[sec:SRG]{Supplément du revenu garantie (\textit{SRG})};
+	\item	\hyperref[sec:Alloc]{Allocation (au conjoint)};
+	\item	\hyperref[sec:Alloc_survival]{Allocation (de survivant)}.
 \end{itemize}
 \end{conceptgen}
 
@@ -986,55 +979,59 @@ Il existe plusieurs types de prestations dont:
 \begin{description}
 	\item[1952]	Entrée en vigueur de la loi de la sécurité et vieillesse;
 		\begin{itemize}[leftmargin = *]
-		\item	Programme fédéral;
-		\item	Au niveau provincial, il n'y a pas encore grand-chose de développé;
-		\item	Idée de garantir à \textbf{tous}	les citoyens âgés (70 ans et plus) une pension non-liée au revenu avec la PSV.
+		\item	Programme \textcolor{bulgarianrose}{fédéral};
+		\item	Au niveau \textcolor{blue(pigment)}{provincial}, il n'y a pas encore grand-chose de développé;
+		\item	Idée de \hl{garantir à \textbf{tous}} les citoyens \hl{âgés} (70 ans et plus) une \hl{pension non-liée au revenu} avec la PSV.
 		\end{itemize}
 	\item[1966]	Entrée en vigueur du \textit{RCP} et \textit{RRQ};
 		\begin{itemize}[leftmargin = *]
 		\item	Inclut une révision de la \textit{PSV}---élargir la portée, revoir le programme, etc.;
 		\item	Programmes obligatoires.	
-%%%	--------------
-%%%	NOTE
-%%%	+	mis en commentaire, je ne sais pas à quel point c'est pertinent de mentionner (AJVR)
-%%% +   Je trouves ça pertinent. (OC)
-%%%	--------------
 		\end{itemize}
 	\item[1967]	Entrée en vigueur du \textit{SRG}
 		\begin{itemize}[leftmargin = *]
-%		\item	Supplément au \textit{PSV} temporaire jusqu'au début des paiements du \textit{RCP} et \textit{RRQ};
-%		\item	Initialement supposé être temporaire pour aider ceux déjà à la retraite, car le \textit{RCP} et \textit{RRQ} n'allaient pas payer de prestations avant 10 ans;
-		\item	\textbf{Diminution de l'âge d'admissibilité à 65 ans};
+		\item	Supplément au \textit{PSV} temporaire jusqu'au début des paiements du \textit{RCP} et \textit{RRQ};
+		\item	Initialement supposé être temporaire pour aider ceux déjà à la retraite, car le \textit{RCP} et \textit{RRQ} n'allaient pas payer de prestations avant 10 ans;
+		\item	Diminution de l'âge d'admissibilité à 65 ans;
 		\item	Augmentation du montant des pensions.
 		\end{itemize}
 %%%	--------------
 %%%	NOTE
 %%%	+	Je trouves ça hyper pertinent, mais penses-tu qu'on devrait se limiter au contenu du cours ? (je penses à ceux qui paniquent pour rien en lisant du "nouveau contenu")(OC)
+%%%	+	Ajout de colour code --- orange pour l'extra (AJVR)
 %%%	--------------
 	\item[1975]	Entrée en vigueur de l'Allocation au conjoint ;
 		\begin{itemize}[leftmargin = *]
-		\item	Lorsqu'un seul membre du couple reçoit la \textit{PSV} et le \textit{RSG} et que l'autre a entre 60 et 64 ans;
-		\item	Éventuellement renommé \og Allocation \fg{}.
+		\item	{\color{burntorange} Lorsqu'un seul membre du couple reçoit la \textit{PSV} et le \textit{RSG} et que l'autre a entre 60 et 64 ans;
+		\item	Éventuellement renommé \og Allocation \fg{}.}
 		\end{itemize}
 	\item[1985]	Entrée en vigueur de l'allocation au conjoint veuf.
 		\begin{itemize}[leftmargin = *]
-		\item	Extension à l'allocation au conjoint pour inclure les veuf(ve)s à faible revenu entre 60 et 64 ans dont le conjoint décédé était prestataire de la PSV et le RSG;
-		\item	Éventuellement renommé \og allocation de survivant \fg{}.
+		\item	{\color{burntorange} Extension à l'allocation au conjoint pour inclure les veuf(ve)s à faible revenu entre 60 et 64 ans dont le conjoint décédé était prestataire de la PSV et le RSG;
+		\item	Éventuellement renommé \og allocation de survivant \fg{}.}
 		\end{itemize}
 \end{description}
 \end{rappel_enhanced}
 
 \subsection{Pension de sécurité à la vieillesse (\textit{PSV})}
+\label{sec:PSV}
 \begin{definitionNOHFILL}[Définition]
-Régime \textbf{universel} assurant un revenu \textit{minimum} à la retraite tout citoyen canadien \textbf{admissible}. Le but est de couvrir \textit{environ} 15\% des revenus avant retraite pour le travailleur moyen.
+Régime \textbf{universel} assurant un revenu \textit{minimum} à la retraite tout citoyen canadien \textbf{admissible}. 
+\hl{Le but est de couvrir \textit{environ} 15\% des revenus avant retraite} pour le \hl{travailleur moyen}.
 \end{definitionNOHFILL}
 
 \begin{conceptgen}{Admissibilité}
 \begin{itemize}[leftmargin = *]
-	\item	Sujet à un test de résidence---doit être citoyen canadien ou un résident autorisé et avoir habité au Canada pendant au moins 10 ans après l'âge de 18 ans;
+	\item	Sujet à un \hl{test de résidence}---doit: 
+		\begin{enumerate}[leftmargin = *]
+		\item	être citoyen canadien \\
+					\textbf{ou}\\
+				être un résident autorisé;
+		\item	avoir habité au Canada pendant au moins 10 ans après l'âge de 18 ans;
+		\end{enumerate}
 	\item	Si quitte le Canada, doit avoir habité au Canada pendant au moins 20 ans après l'âge de 18 ans;
-	\item	Autres possibilités selon ententes avec d'autres pays (comme les É.-U.);
-	\item	Pas de test de besoin, mais possibilité de devoir la rembourser (impôt de récupération);
+	\item[]	\textbf{Note}: Il y existe d'autres possibilités selon ententes avec d'autres pays (comme les É.-U.);
+	\item	Pas de test de besoin, mais possibilité de devoir la rembourser (\hypertarget{recup_tx_l8r1}{\hyperlink{recup_tx_explain}{\textcolor{blue_rectangle}{impôt de récupération}}});
 	\item   Aucun critère lié au travail;
 	\item	Doit être d'au moins l'ANR (65 ans), mais \textit{pas besoin d'être retraité};
 \end{itemize}
@@ -1042,13 +1039,16 @@ Régime \textbf{universel} assurant un revenu \textit{minimum} à la retraite to
 
 \begin{conceptgen}{Montant de la rente}
 Établi selon le nombre d'années où l'individu a habité au Canada après l'âge de 18 ans.
-Pension complète :
+
+\paragraph*{Pension complète}
 \begin{itemize}[leftmargin = *]
 	\item	Si 40 ans de résidence au Canada après l'âge de 18 ans;
-	\item	Dont au moins 10 ans immédiatement avant la demande \textbf{ou} 1 an de résidence avant la demande et 3 ans de résidence avant l'âge de 55 ans pour chaque année manquante du 10 ans; 
+	\item	Dont au moins 10 ans immédiatement avant la demande \\
+				\textbf{ou} 	\\
+			1 an de résidence avant la demande et 3 ans de résidence avant l'âge de 55 ans pour chaque année manquante du 10 ans.
 \end{itemize}
 
-Pension Partielle :
+\paragraph*{Pension partielle}
 \begin{itemize}[leftmargin = *]
 	\item	Au moins 10 ans de résidence au Canada après l'âge de 18 ans;
 	\item	Un quarantième (1/40) de la pension pour chaque année après 18 ans;
@@ -1074,24 +1074,24 @@ Pension Partielle :
 
 \begin{conceptgen}{Fiscalité}
 \begin{itemize}[leftmargin = *]
-	\item	La prestation est imposable (fédéral et provincial);
-	\item	Depuis 1989, il existe un impôt de récupération qui s'impose lorsque le revenu excède un certain seuil;
+	\item	La prestation est imposable (\textcolor{bulgarianrose}{fédéral} et \textcolor{blue(pigment)}{provincial});
+	\item	Depuis 1989, il existe un \hypertarget{recup_tx_explain}{\hyperlink{recup_tx_l8r1}{\textcolor{blue_rectangle}{impôt de récupération}}} qui s'impose lorsque le revenu excède un certain seuil;
 	\item	Le seuil de revenu maximal en 2019 était de 77 580\$ et donc la récupération serait 15\% du revenu net \textbf{en excès de} ce montant (celle-ci n'est donc pas universelle);
 	\item	Il est possible de récupérer la PSV en entier (dès 126 058\$);
-	\item	Puisque le test de revenu est individuel et non par couple, il est possible d'être créatif avec ses finances.
+	\item	Puisque \hl{le test de revenu est individuel} et non par couple, il est possible d'être créatif avec ses finances.
 \end{itemize}
 \end{conceptgen}
 
 \begin{conceptgen}{Âge à la retraite}
 	\begin{itemize}[leftmargin = *]
 		\item	Le gouvernement \textit{Harper} avait annoncé en 2012 l'intention de hausser graduellement l'âge de la retraite de 65 à 67 ans (2023-2029);
-				\begin{itemize}
+				\begin{itemize}[leftmargin = *]
 				\item Le but était d'assurer la préservation du programme, compte tenu de l'augmentation de l'espérance de vie à la hausse.
 				\end{itemize}
-		\item	Le gouvernement \textit{Trudeau} a annoncé l'annulation de l'intention de hausser de l'\textit{ANR} en 2016.;
-		\item	La raréfaction de la main d'oeuvre ca mettre une pression sur les travailleurs de rester sur le marché du travail plus longtemps;
+		\item	Le gouvernement \textit{Trudeau} a annoncé l'annulation de l'intention de hausser de l'\textit{ANR} en 2016;
+		\item	La \hl{raréfaction de la main d'oeuvre} va mettre une \hl{pression} sur les travailleurs de \hl{rester sur le marché du travail plus longtemps};
 		\item	L'ICA a pris position publiquement en avril 2019 pour une augmentation de l'ANR en échange de prestations plus élevées.
-				\begin{itemize}
+				\begin{itemize}[leftmargin = *]
 				\item Pour la \textit{PSV}, cela impliquerait une prestation payable à 67 ans au lieu de 65 ans.
 				\item Un revenu encore plus élevé à la retraite assurerait une meilleure protection contre les coûts associés au risque de longévité.
 				\end{itemize}
@@ -1099,18 +1099,18 @@ Pension Partielle :
 \end{conceptgen}
 
 \begin{conceptgen}{Financement}
-	\begin{itemize}[leftmargin = *]
-		\item	Le financement de la \textit{PSV} est \og pay as you go \fg{}, il n'y a pas de caisse distincte et sort directement des impôts.
-				\begin{itemize}
-				\item En raison du vieillissement de la population, le coût du programme augmente à un taux très supérieur à la croissance du \textit{PIB}.
-				\end{itemize}
-	\end{itemize}
+Le financement de la \textit{PSV} est \textcolor{darkgreen}{pay-as-you-go}, il n'y a pas de caisse distincte et sort directement des impôts.
+\begin{itemize}[leftmargin = *]
+	\item En raison du vieillissement de la population, le coût du programme augmente à un taux très supérieur à la croissance du \textit{PIB}.
+\end{itemize}
 \end{conceptgen}
 
+\columnbreak
 
 \subsection{Supplément de revenu garanti (\textit{SRG})}
+\label{sec:SRG}
 \begin{definitionNOHFILL}[Définition]
-Prestation mensuelle non imposable offerte aux bénéficiaires de la \textit{PSV} ayant un faible revenu résidant au Canada. Tel que mentionné précédemment, le \textit{SRG} est entré en vigueur en 1967 à la suite de la mise en place du \textit{RPC/RRQ} (1966).
+Prestation mensuelle non imposable offerte aux bénéficiaires de la \textit{PSV} ayant un faible revenu résidant au Canada. 
 \end{definitionNOHFILL}
 
 \begin{conceptgen}{Admissibilité}
@@ -1121,7 +1121,7 @@ Prestation mensuelle non imposable offerte aux bénéficiaires de la \textit{PSV
 \end{conceptgen}
 
 \begin{conceptgen}{Montant de la prestation}
-Établi en fonction de l'état conjugal et du revenu de l'année précédente.
+Établi en fonction de l'état conjugal et du revenu de l'année précédente.\\
 
 La définition de revenus:
 \begin{description}
@@ -1129,26 +1129,26 @@ La définition de revenus:
 	\item[inclus]	\textit{RRQ}, \textit{REER}, \textit{RCR}, placements, loyers, gains en capitaux, emplois, etc.
 \end{description}
 
-Montants maximaux mensuels (\textit{1$^{\text{er}}$ Janvier 2020}):
+\textbf{Montants maximaux} mensuels (\textit{1$^{\text{er}}$ Janvier 2020}):
 \begin{itemize}[leftmargin = *]
-	\item	Personne seule et personne ayant un conjoint qui ne reçoit pas la \textit{PSV} : 916.38\$;
-	\item	Personne ayant un conjoint qui reçoit la \textit{PSV}  ou l'Allocation : 551.63\$;
+	\item	Personne seule et personne ayant un conjoint qui ne \textit{reçoit pas la PSV} : 916.38\$;
+	\item	Personne ayant un conjoint qui \textit{reçoit la PSV ou l'Allocation} : 551.63\$;
 \end{itemize}
 
-Caractéristique : 
+\textbf{Caractéristiques} : 
 \begin{itemize}[leftmargin = *]
-	\item	Depuis 2008, il est possible d'avoir des revenus d'emploi de 3 500\$ sans impact sur la prestation---ce montant \textit{devrait} augmenter à 5 000 \$ en 2020 et une pénalité de seulement 50\% pour les 10 000\$ suivants;
+	\item	Depuis 2008, il est possible d'avoir jusqu'à 3 500\$ de revenus d'emploi sans impact sur la prestation---ce montant \textit{devrait} augmenter à 5 000 \$ en 2020 avec une pénalité de seulement 50\% pour les 10 000\$ suivants;
 	\item	Réduction de 1\$ pour chaque 2\$ de revenu autre;
-	\item	Montant déterminé annuellement selon les gains de l'année précédente pouvant donc fluctuer dans le temps.
+	\item	Le montant est déterminé annuellement selon les gains de l'année précédente et donc il peut fluctuer dans le temps.
 \end{itemize}
 \end{conceptgen}
 
-\begin{conceptgen}{Particularités du paiements}
+\begin{conceptgen}{Particularités du paiement}
 \begin{description}
 	\item[Étranger]	Aucune prestation pour le non-résident du Canada;
 	\item[Indexation]	Le montant de la rente est indexé à l'IPC à chaque trimestre;
 	\item[Fiscalité]	Aucune imposition des montants de SRG;
-	\item[Financement]	Par répartition : \textit{Pay as you go};
+	\item[Financement]	Par répartition (\textcolor{darkgreen}{pay-as-you-go});
 \end{description}
 \end{conceptgen}
 
@@ -1162,22 +1162,21 @@ Caractéristique :
 \end{itemize}
 \end{conceptgen}
 
-%%%	--------------
-%%%	NOTE
-%%%	+	Faudrait développer ces deux sous-sections d'allocations---j'étais tanné (AJVR)
-%%% +   Je m'en occupe ! (j'essaye) (OC)
-%%%	--------------
+\columnbreak
 
 \subsection{Allocation}
+\label{sec:Alloc}
 \begin{definitionNOHFILL}[Définition]
-Prestation mensuelle payable à une personne entre 60 et 64 ans conjoint d'un prestataire du \textit{SRG}. (anciennement appelée Allocation au conjoint, existe depuis 1975)
+Prestation mensuelle payable à une personne entre 60 et 64 ans conjoint d'un prestataire du \textit{SRG} (anciennement appelée Allocation au conjoint, existe depuis 1975).
 \end{definitionNOHFILL}
 
 \begin{conceptgen}{Admissibilité}
 \begin{itemize}[leftmargin = *]
 	\item	Être conjoint d'un prestataire de la \textit{PSV} et du \textit{SRG};
 	\item	Être âgé de 60 à 64 ans;
-	\item	Citoyen canadien ou résident autorisé;
+	\item	Citoyen canadien \\
+			\textbf{ou}\\
+			résident autorisé;
 	\item	Habiter au Canada;
 	\item	Avoir vécu au Canada pendant au moins 10 ans après l'âge de 18 ans;
 	\item	Présenter une nouvelle demande annuellement;
@@ -1191,7 +1190,7 @@ Prestation mensuelle payable à une personne entre 60 et 64 ans conjoint d'un pr
 	\item	Le maximum est la somme du PSV et SRG maximal au taux du couple marié---en 2018 ceci était de 1 141.08\$ par personne;
 	\item	Aucune allocation si les autres revenus du couple excèdent 33 696\$;
 	\item	Il y a des particularités sur la réduction du paiement.
-			\begin{itemize}
+			\begin{itemize}[leftmargin = *]
 			\item   Allocation réduite selon les revenus autres que la \textit{PSV}, \textit{SRG} de 3\$ par 4\$ de revenus jusqu'à ce que le montant soit égal à la \textit{PSV};
 			\item   Réduit de 1\$ par 4\$ de revenu ensuite. 
 			\end{itemize}
@@ -1208,24 +1207,29 @@ Prestation mensuelle payable à une personne entre 60 et 64 ans conjoint d'un pr
 		\item 	Incarcération;
 		\item	Atteinte de 65 ans;
 		\item	Décès
-		\begin{itemize}
+			\begin{itemize}[leftmargin = *]
 			\item	Du conjoint;
 			\item 	De la personne qui reçoit l'Allocation.
-		\end{itemize}
+			\end{itemize}
 	\end{itemize}
 \end{conceptgen}
 
+\columnbreak
+
 \subsection{Allocation au survivant}
+\label{sec:Alloc_survival}
 \begin{conceptgen}{Admissibilité}
 
 \begin{definitionNOHFILL}[Définition]
-Prestation mensuelle payable à une personne entre 60 et 64 ans veuf (ou veuve). (existe depuis 1985)
+Prestation mensuelle payable à une personne entre 60 et 64 ans veuf(ve) (existe depuis 1985).
 \end{definitionNOHFILL}
 
 \begin{itemize}[leftmargin = *]
 	\item	Être veuf(ve);
 	\item	Être âgé entre 60 et 64 ans;
-	\item	Citoyen canadien ou résident autorisé;
+	\item	Citoyen canadien \\
+			\textbf{ou}\\
+			résident autorisé;			
 	\item	Avoir vécu au Canada pendant au moins 10 ans après l'âge de 18 ans;
 	\item	Avoir des revenus faibles.
 \end{itemize}
@@ -1236,16 +1240,15 @@ Prestation mensuelle payable à une personne entre 60 et 64 ans veuf (ou veuve).
 	\item	Le maximum est de 1 360.20 \$.
 	\item	Aucune allocation si les autres revenus excèdent 24 552\$;
 	\item	Il y a des particularités sur la réduction du paiement.
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item   Allocation réduite selon les revenus autres que la \textit{PSV}, \textit{SRG} de 3\$ par 4\$ de revenus jusqu'à ce que le montant soit égal à la \textit{PSV};
-		\item   Réduit de 1\$ par 2\$ de revenu ensuite. 
+		\item   Réduite de 1\$ par 2\$ de revenu ensuite. 
 		\end{itemize}
 \end{itemize}
 \end{conceptgen}
 
 \begin{conceptgen}{Cessation des paiements}
 \begin{itemize}[leftmargin = *]
-	\item 	Pas de déclaration de revenu
 	\item	Si les revenus de l'individu deviennent suffisants;
 	\item 	Départ pendant plus de 6 mois;
 	\item	Se remarie (ou union de fait) pendant plus de 12 mois;
@@ -1266,8 +1269,8 @@ Prestation mensuelle payable à une personne entre 60 et 64 ans veuf (ou veuve).
 \begin{conceptgen}{Raison d'être}
 \begin{itemize}[leftmargin = *]
 	\item	Régime d'assurance sociale;
-	\item	Offrir une protection financière \textbf{de base} aux travailleurs (et leurs proches) à la \textit{retraite}, au \textit{décès} ou en cas d'\textit{invalidité};
-	\item	Le Québec est la seule province à avoir son propre régime public de pensions qui couvre tous les emplois au Québec.
+	\item	Offrir une \hl{protection financière de base aux travailleurs} (et leurs proches) à la \textit{retraite}, au \textit{décès} ou en cas d'\textit{invalidité};
+	\item	Le \textcolor{blue(pigment)}{Québec} est la seule province à avoir son propre régime public de pensions qui couvre tous les emplois au \textcolor{blue(pigment)}{Québec}.
 \end{itemize}
 
 \textbf{Caractéristiques}
@@ -1312,7 +1315,7 @@ Prestation mensuelle payable à une personne entre 60 et 64 ans veuf (ou veuve).
 \begin{description}
 	\item[1966]	Entrée en vigueur;
 		\begin{itemize}[leftmargin = *]
-		\item	La \textbf{Caisse de dépôt et placements} a été crée en même pour supporter la mise en place du Régime;
+		\item	La \textbf{Caisse de dépôt et placements} a été crée en même temps pour supporter la mise en place du Régime;
 		\item	La caisse est un investisseur institutionnel qui gère les actifs du RRQ ainsi que d'autres régimes de traite et d'assurance (para)publics.
 %		\item	Gère 325G\$;
 %		\item	Sa filliable Invanhoé Cambridge est au 2e rang au Canada en tant que propriétaire d'immeubles
@@ -1342,9 +1345,7 @@ Prestation mensuelle payable à une personne entre 60 et 64 ans veuf (ou veuve).
 \end{rappel_enhanced}
 
 \begin{rappel_enhanced}[Réforme de 1998]
-Pressions financières sur le régime et donc le gouvernement propose de le revoir.
-
-\
+Il y a des pressions financières sur le régime et donc le gouvernement propose de le revoir.\\
 
 Acquis \textbf{conservés}:
 \begin{enumerate}[leftmargin = *]
@@ -1354,16 +1355,18 @@ Acquis \textbf{conservés}:
 	\item	Retranchement des gains faibles ou nuls.
 \end{enumerate}
 
+\
+
 \textbf{Modifications} apportées
 \begin{enumerate}[leftmargin = *]
 	\item	Hausse des cotisations de 6\% en 1997 à 9.9\% en 2003;
-	\item	Exemption admissible gelée à 3 500\$ afin de progressivement diminuer son importance;
+	\item	Exemption admissible \hypertarget{seuil_link}{gelée à 3 500\$} afin de progressivement diminuer son importance;
 %%%	--------------
 %%%	NOTE
 %%%	+	Développer sur cette exemption et ce qu'elle représente (AVJR).
 %%%	--------------
 	\item	Les retraités qui travaillent doivent maintenant cotiser au régime;
-	\item	Ajustement des gains passés avec la moyenne des 5 au lieu de 3 dernières années;
+	\item	\hl{Ajustement des gains} passés avec la \hl{moyenne des 5} au lieu de 3 \hl{dernières années};
 	\item	Diminution de la prestation de décès;
 	\item	Réduction de la rente de retraite des personnes qui reçoivent une rente d'invalidité;
 	\item	Évaluation actuarielle aux 3 au lieu de 5 ans;
@@ -1473,7 +1476,7 @@ Acquis \textbf{conservés}:
 		\end{itemize}
 	\item[Exemption générale]	toute personne ayant un salaire inférieur à cette limite n'a pas à cotiser au RRQ;
 		\begin{itemize}[leftmargin = *]
-			\item	Le seuil est gelé depuis 1998 à 3 500\$;
+			\item	Le seuil est \hyperlink{seuil_link}{\textcolor{blue_rectangle}{gelé depuis 1998}} à 3 500\$;
 			\item	Geler le seuil \textbf{augmente} le \textit{nombre de cotisants} ainsi que la \textit{masse salariale cotisable}.
 		\end{itemize}
 	\item[Maximum des gains admissibles (MGA)] tout salaire supérieur à cette limite n'est pas assujettis à des cotisation;
@@ -1496,7 +1499,7 @@ Acquis \textbf{conservés}:
 		\end{itemize}
 	\item[Varia]
 		\begin{itemize}[leftmargin = *]
-			\item	Cotisations sont un crédit dans le calcul de l'impôt du Québec \textit{et} fédéral;
+			\item	Cotisations sont un crédit dans le calcul de l'impôt du Québec \textit{et} \textcolor{bulgarianrose}{fédéral};
 			\item	On cotise uniquement sur des revenus d'emploi;
 			\item	Il est possible de racheter des années de revenus de travail manquantes;
 			\item	Il est impossible de récupérer des cotisations versées, car elles sont acquises au régime.
