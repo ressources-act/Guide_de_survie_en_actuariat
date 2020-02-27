@@ -1680,8 +1680,9 @@ Les autres caractéristiques du régime (indexation, partage des droits, etc.) s
 
 Cette définition est très différente que celle d'une compagnie d'assurance. \\
 Par exemple, celle de SSQ:
-
-\colorbox{asparagus}{\parbox{0.9\textwidth}{Limitation physique ou mentale, d’une durée temporaire ou permanente, qui empêche un assuré de remplir partiellement ou totalement les principales fonctions de son emploi.}}
+\begin{center}
+	\colorbox{asparagus}{\parbox{0.9\textwidth}{Limitation physique ou mentale, d’une durée temporaire ou permanente, qui empêche un assuré de remplir partiellement ou totalement les principales fonctions de son emploi.}}
+\end{center}
 \end{definitionNOHFILL}
 		
 \paragraph*{Note}	Les deux rentes sont payables mensuellement, indexées et imposables.
@@ -1745,19 +1746,72 @@ Période entre le moment où survient l'invalidité et le début des prestations
 \end{itemize}
 \end{conceptgen}
 
-
-
 \columnbreak
 
 \subsection*{Les prestations de survivants}
 
-\subsubsection*{Admissibilité}
+\begin{conceptgen}{Admissibilité}
+Payable si la personne a décédée a cotisée:
+\begin{itemize}[leftmargin = *]
+	\item	1/3 des années de sa période cotisable (période d'au moins 3 années)	\\
+%%%	--------------------------------
+%%%	NOTE
+%%%	+	Clarifier ici si c'est 3 ans ou 9 ans période cotisable ?
+%%%	--------------------------------
+			\textbf{ou}	\\
+			10 années.
+\end{itemize}
+\end{conceptgen}
 
 \subsubsection*{Rente de conjoint survivant}
 
+\begin{definitionNOHFILL}[Conjoint]
+\begin{itemize}[leftmargin = *]
+	\item	Marriage	\\
+			\textbf{ou}\\
+			Union civile;
+	\item	Conjoint de fait: 3 ans de vie commune (ou 1 s'il y a un enfant);
+	\item	Inclut les couples du même sexe.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Prestation}
+\begin{itemize}[leftmargin = *]
+	\item	Dans le cas d'un remariage, la rente continue d'être versée. \\
+			S'il y a décès du nouveau conjoint, la rente la plus avantageuse des deux est versée;
+	\item	Les prestations sont mensuelles.
+\end{itemize}
+
+Il y a plusieurs composantes à la rente donc certaines qui sont variables (c'est la seule rente avec cette caractéristique).
+\begin{itemize}[leftmargin = *]
+	\item	La partie uniforme varie selon l'âge et le nombre d'enfants à charge;
+	\item	Il est possible que la rente soit réduite si la personne reçoit d'autres rentes (retraite, invalidité) mais est cumulative jusqu'à un maximum établi par la loi.
+\end{itemize}
+\begin{center}
+	\includegraphics[scale=0.2]{src/ACT-1005/rente-conj-surv.png}
+	\includegraphics[scale=0.2]{src/ACT-1005/rente-conj-surv-2.png}
+\end{center}
+\end{conceptgen}
+
 \subsubsection*{Rente d'orphelin}
 
+\begin{conceptgen}{Détails}
+\begin{itemize}[leftmargin = *]
+	\item	Cesse à 18 ans (ou plus tard s'il est un étudiant à temps plein);
+	\item	Montant mensuel fixe \red{(255.03\$ en 2020)};
+	\item	Payable une seule fois même si les 2 parents décèdent.
+\end{itemize}
+\end{conceptgen}
+
 \subsubsection*{Prestation de décès}
+
+\begin{conceptgen}{Détails}
+\begin{itemize}[leftmargin = *]
+	\item	Montant unique de 2 500\$;
+	\item	Priorité à la personne ayant acquitté les frais funéraires.
+\end{itemize}
+\end{conceptgen}
+
 
 \end{multicols*}
 \end{document}
