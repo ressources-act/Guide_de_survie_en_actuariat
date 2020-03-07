@@ -30,6 +30,7 @@
 %	Extra math symbols
 %
 \usepackage{mathrsfs}
+\usetikzlibrary{matrix}
 %
 % thin space, limits underneath in displays
 %
@@ -86,8 +87,7 @@
 		&\approx f(x_0) + f'(x_0) (x - x_0)
 \end{align*}
 
-\subsection*{Théorème de Leibnitz}
-
+\begin{definitionNOHFILL}[Théorème de Leibnitz]
 Soit: 
 \begin{itemize}
 	\item 	une fonction $f(x, \alpha)$ continue sur $[a, b]$ et
@@ -99,9 +99,9 @@ Alors,
 	\deriv{\alpha} \int_{u(\alpha)}^{v(\alpha)} f(x, \alpha) dx = 
 	\int_{u(\alpha)}^{v(\alpha)} \deriv{\alpha}  f(x, \alpha) dx + f(v(\alpha), \alpha) \deriv{\alpha} v(\alpha) - f(u(\alpha), \alpha) \deriv{\alpha} u(\alpha)
 \end{equation*}
+\end{definitionNOHFILL}
 
-\subsection*{Domaines}
-
+\begin{definitionNOHFILL}[Domaines]
 \begin{itemize}
 	\item[$\mathds{R}$]: Real numbers, $x \in (-\infty, \infty)$.
 	\item[$\mathds{Z}$]: Integers; all integers positive \& negative, $x \in \{\dots, -3, -2, -1, 0, 1, 2, 3, \dots\}$.
@@ -109,11 +109,14 @@ Alors,
 	\item[$\mathds{Q}$]: Rational numbers; numbers written as fractions, for example $1.25\%$, $-0.4775$, $3.\overline{153}$, $\frac{1}{2}, \frac{4}{7}$.	
 	\item[$\mathds{R} \backslash \mathds{Q}$]: Irrational numbers; for example $\pi, \mathrm{e}, \sqrt{3}$.
 \end{itemize}
+\end{definitionNOHFILL}
 
 \subsection*{Fonction impaire}
 
 Une fonction est impaire \textit{(odd)} lorsque $f(-x) = -f(x)$.\\
 Par exemple, $\sin(-x) = -\sin(x)$.
+
+\newpage
 
 \section*{Mathématiques financières}
 
@@ -229,26 +232,112 @@ Paiement en continu, valeurs accumulée et actualisée
 	&=	100 \left( 1 - \frac{dt}{360} \right)^{t}
 \end{align*}
 
+\columnbreak
+
 \subsection*{Obligations}
 
-Formule de base
-
-\begin{enumerate}
-	\item[\text{P}] Prix de l'obligation 
-	\item[\text{F}] Valeur nominale de l'obligation \textit{(face value)}
-	\item[$r$] Taux de coupon par période de paiement \textit{(coupon rate)}
-	\item[$i$] Taux d'intérêt par période de paiement \textit{(interest rate)}
-	\begin{enumerate}
-		\item[$Fr$] Montant par paiement.
-	\end{enumerate}
-	\item[\text{C}] Valeur de remboursement de l'obligation \textit{(redemption value)}
-\end{enumerate}
-
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$P$]	Le \textbf{prix} de l'obligation;
+	\item[$F$]	La \textbf{valeur nominale} de l'obligation.
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{face amount} \fg{} ou \og \textit{par value} \fg{};
+		\item	La valeur nominale est l'unité dans laquelle l'obligation est émise.
+		\end{itemize}
+	\item[$C$]	La valeur de remboursement de l'obligation;
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{redemption value} \fg{};
+		\item	Par défaut, $F = C$.
+		\end{itemize}
+	\item[$r$]	Le taux de coupon par période de paiement;
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{coupon rate} \fg{};
+		\item	Le montant de chaque coupon est $Fr$;
+		\item	Le taux est habituellement donné sous base \textbf{annuelle} mais la majorité des obligations ont des coupons payables semi annuellement.
+		\end{itemize}
+	\item[$g$]	Le taux de coupon "spéciale" utilisé dans les formules mathématiques;
+		\begin{itemize}[leftmargin = *]
+		\item	Taux tel que $Cg = Fr$.
+		\end{itemize}
+	\item[$n$]	Number of remaining coupon \textbf{payments}.
+	\item[$i$]	Le taux d'intérêt effectif par période de paiement;
+		\begin{itemize}[leftmargin = *]
+		\item	C'est le \og \textit{yield-to-maturity} \fg{} pour une obligation se transigeant au prix $P$.\\
+				Donc, contrairement au taux $r$ qui est une composante fixe de l'obligation, $i$ va varier selon le prix $P$;
+		\item	C'est donc le taux $i$ tel que $P = PV(\text{bond payments})$.
+		\end{itemize}
+\end{description}
+\tcbline
+\begin{rappel}{Formule pour prix}
 \begin{align*}
-	\text{P}
-		&=	\text{F} r \ax{\angln i} + \text{C} v^{n} \\
-		&=	\text{C} + (\text{F} r - \text{C} i) \ax{\angln i} +  v^{n} 
+	P
+	&=	Fr \ax{\angln}	+	Cv^{n}
+	\equiv	Cg \ax{\angln}	+	Cv^{n}	\\
+	&=	C + (Fr - Ci) \ax{\angln}
+	\equiv	C + (Cg - Ci) \ax{\angln}
 \end{align*}
+\end{rappel}
+\end{distributions}
+
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 1cm,
+		minimum width = 1.2cm,
+		anchor = center,
+		outer sep = 0,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			fill = ballblue,  % header colour
+			text = white,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 2cm, 
+		align = center,
+		nodes = {
+			font = \bfseries
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 3cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+	column 3/.style = {
+		text width = 3cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+	column 4/.style = {
+		text width = 3cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+%	row 1 column 1/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+	Condition	&	Équivalent	&	Obligation transigée	&	anglais \\
+	$P > C$	&	$Fr > Ci$	&	avec prime	&	with premium	\\
+	$P = C$	&	$Fr = Ci$	&	avec parité	&	at par	\\
+	$P < C$	&	$Fr < Ci$	&	avec escompte	&	with discount	\\
+};
+\end{tikzpicture}
 
 \subsubsection*{Amortissement d'obligations}
 
@@ -257,6 +346,8 @@ Book value
 	\text{BV}_{t}
 		&=	(\text{F}r - \text{C}) \ax[n - t]{j} + \text{C}
 \end{align*}
+
+\newpage
 
 \section*{Analyse probabiliste des risques actuariels}
 
@@ -497,6 +588,8 @@ $F_{X}(x)$
 		&= 	\frac{1}{(2 \pi)^{\frac{n}{2}} \sqrt{\text{det}(\bm{\Sigma})}} \e{\shortminus \frac{1}{2} (\matr{x} - \bm{\mu})^{\top} \bm{\Sigma}^{-1}(\bm{x} - \bm{\mu})}
 \end{align*}
 \end{rappel}
+
+\columnbreak
 
 \subsection*{Théorèmes limites}
 
