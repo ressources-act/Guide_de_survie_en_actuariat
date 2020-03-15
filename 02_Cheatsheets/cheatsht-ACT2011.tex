@@ -2853,12 +2853,13 @@ L'équation pour un arbre standard suffit de remplacer les paramètres:
 	\item[Hypothèse]	Les rendements composés continûment sur des périodes disjointes, mais de même longueur $h$, sont i.i.d.;
 	\item[$r_{t, t + h}$]	le \textbf{rendement composé continûment entre $t$ et $t + h$}.
 		\begin{align*}
-		r_{t, t + h} &= \log\left(\frac{S_{t + h}}{S_{t}}\right)
+		r_{t, t + h} &= \ln\left(\frac{S_{t + h}}{S_{t}}\right)
 		\end{align*}
 \end{description}
 \end{distributions}
 
-On suppose $n$ rendements, sur une période de $h$ années, composés continûment $r_{t, t + h}, r_{t + h, t + 2h}, \dots, r_{t + (n - 1)h, t + nh}$. On peut estimer la volatilité historique avec:
+On suppose $n$ rendements, sur une période de $h$ années, composés continûment $r_{t, t + h}, r_{t + h, t + 2h}, \dots, r_{t + (n - 1)h, t + nh}$. \\
+On peut estimer la volatilité historique avec:
 
 \begin{align*}
 	s_{h}
@@ -2879,6 +2880,136 @@ Donc $s_{h}$ estime $\sigma_{h}$ et $\bar{r}_{h}$ estime $\mu_{h}$ où:
 
 Pour changer d'une base annuelle (le défaut de $h$) à une base quelconque, on divise par $h$ puisqu'il faut additionner $\frac{1}{h}$ rendements. \\
 Par exemple, sous base mensuelle $h = \frac{1}{12}$ on a $\sigma = s_{1/12}\sqrt{12}$ ou sous base hebdomadaire $h = \frac{1}{52}$ on a $\sigma = s_{1/52}\sqrt{52}$.
+
+\newpage
+
+\section{Modèle binomial d’évaluation des options: sujets sélectionnés}
+
+\subsection*{Compréhension de l'exercice hâtif}
+
+Avec un exercice hâtif, le détenteur d'une option d'achat:
+\begin{enumerate}[leftmargin = *]
+	\item	Reçoit l'action et donc les dividendes futurs.	\\
+			Donc, on souhaite que $\delta$ augmente.
+	\item	Paie le prix d'exercice avant expiration et donc subit des coûts d'intérêt.	\\
+			Donc, on ne souhaite pas que $r$ augmente.
+	\item	Perd l'assurance implicite à l'option.	\\
+			Donc, on ne souhaite pas que $\sigma$ augmente.
+\end{enumerate}
+
+Le plus la volatilité $\sigma$ est élevée, le plus élevé (faible) le prix de l'action auquel on va exercer l'option d'achat (de vente).\\
+
+Si la valeur de l'assurance est nulle ($\sigma = 0$) et que $T \rightarrow \infty$, on lève l'option d'achat si $\delta S_{T} > r K$; c'est-à-dire, si la valeur des dividendes est supérieure à l'intérêt accumulé sur le prix d'exercice.\\
+
+Pour une option de vente, c'est l'inverse.
+
+\subsection*{Compréhension de l'évaluation neutre au risque}
+
+\begin{distributions}[Notation]
+\begin{itemize}[leftmargin = *]
+	\item[$r$]	force d'intérêt sans risque;
+	\item[$\delta$]	force de dividendes;
+	\item[$\alpha$]	force de rendement espéré sur l'action;
+%	\item[]	$\alpha > r$ gain en capital + dividendes
+%	\item[$p$]	vraie probabilité (que $S_{T}$ passe à $u^{*}S_{T}$).
+\end{itemize}
+\end{distributions}
+
+\begin{description}
+	\item[Aversion au risque]	Souhaite maximiser le rendement espéré $\text{E}[R]$ tout en \textit{minimisant} le risque $\sigma^{2}_{R}$.
+	\item[Indifférence au risque]	Souhaite maximiser le rendement espéré $\text{E}[R]$ et est \textit{indifférent} au risque $\sigma^{2}_{R}$.
+	\item[Exemple]	Soit 2 investissements: 1 000\$ assuré ou 2 000\$ avec une probabilité de 50\% et 0\$ avec une probabilité de 50\%.\\
+					Un investisseur avec une \textit{aversion} au risque préfère la première option, car elle est moins risquée.	\\
+					Un investisseur avec une \textit{indifférence} au risque est indifférent à la première ou la deuxième option, car le rendement espéré des deux options est égal.
+\end{description}
+
+Donc une évaluation neutre au risque suppose que les investisseurs sont indifférents au risque \textbf{même s'ils ne le sont pas}.
+
+%%%	------------------------------------
+%%%	NOTE
+%%%	+	Pas couvert le bout sur \gamma puisque pas jugé nécessaire.
+%%%	------------------------------------
+
+\subsection*{L'arbre binomial et la lognormalité}
+
+Il y a 3 problèmes qui empêchent la modélisation du prix de l'action avec une marche aléatoire:
+\begin{conceptgen}{Problèmes}
+\begin{enumerate}[leftmargin = *]
+	\item	Le prix de l'action \textbf{peut devenir négatif} s'il y a suffisamment de mouvements vers le bas. 
+	\item	La magnitude d'un mouvement devrait dépendre de: la \textbf{fréquence} des mouvements et le \textbf{niveau} du prix de l'action.
+		\begin{itemize}[leftmargin = *]
+		\item	Il n'est pas réaliste d'avoir le prix d'une action monter ou baisser de 60\$ en une journée.
+		\end{itemize}
+	\item	Le \textbf{rendement} sur l'action devrait, en moyenne, \textbf{être positif}.
+\end{enumerate}
+\end{conceptgen}
+
+%%%	------------------------------------
+%%%	NOTE
+%%%	+	Pas couvert la distance carrée du point du départ qui est de n.
+%%%	------------------------------------
+
+
+Le modèle binomial est une variante du modèle de marche aléatoire qui résout ces problèmes; il suppose que les rendements composés continûment sont une \textbf{marche aléatoire avec dérive}. 
+Le rendement a 2 composantes: une \textit{certaine} $(r - \delta)h$ et une \textit{incertaine} $\pm \sigma \sqrt{h}$.
+
+Le modèle règle donc les problèmes :
+\begin{conceptgen}{Problèmes}
+\begin{enumerate}[leftmargin = *]
+	\item	Le \textbf{prix} de l'action \textbf{ne peut pas être négatif}.
+	\item	Si les \textbf{mouvements} du prix de l'action sont \textbf{plus fréquents}, $h$ se rapetisse et les mouvements du prix deviennent \textbf{plus petits}. 
+	\item	On peut garantir un \textbf{prix positif}. 
+		\begin{itemize}[leftmargin = *]
+		\item	Ceci, car il y a une composante certaine et que l'on choisit la probabilité d'une augmentation du prix.
+		\end{itemize}
+\end{enumerate}
+\end{conceptgen}
+
+\subsubsection*{Lognormalité}
+
+%%%	------------------------------------
+%%%	NOTE
+%%%	+	Pas couvert la probabilité de la i-ème node qui est une distribution binomial.
+%%%	------------------------------------
+
+Lorsqu'on traverse un arbre binomial, on additionne implicitement les composantes de rendements $(r - \delta)h \pm \sigma \sqrt{h}$. Cette somme de variables aléatoires binomiales tend, lorsque $n \rightarrow \infty$ (ou, de façon équivalente, $h \rightarrow 0$), vers une normale.
+Il en résulte que les rendements composés continûment sont approximativement normalement distribués et donc que le prix de l'action a une distribution (approximativement) lognormale.
+
+\subsubsection*{Arbres binomiaux alternatifs}
+Il y existe d'autres façons de construire un arbre binomial qui mènent à des mouvements de $u$ et $d$ différents:
+
+\begin{center}
+\begin{tabular}{|	>{\columncolor{airforceblue}}c	| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Méthode}}	&	\textcolor{white}{\textbf{Mouvement}}	&	\textcolor{white}{\textbf{Notes}}		\\\specialrule{0.1em}{0em}{0.0em} 
+\textcolor{white}{Arbre à terme}		&	$\textrm{e}^{(r - \delta)h \pm \sigma \sqrt{h}}$	&	$u > \textrm{e}^{(r - \delta)h} > d$	\\\hline
+\textcolor{white}{\shortstack{Arbre de\\ Cox-Ross-Rubenstein}}	&	$\textrm{e}^{\pm \sigma \sqrt{h}}$	&	$ud = 1$	\\\hline
+\textcolor{white}{Arbre lognormal}	&	$\textrm{e}^{(r - \delta - \frac{1}{2}\sigma^{2})h \pm \sigma \sqrt{h}}$	&	$p^{*} \approx \frac{1}{2}$	\\\hline
+\end{tabular}
+\end{center}
+\paragraph{Note}	Il est possible qu'avec un arbre de Cox-Ross-Rubenstein, si $h$ est gros et $\sigma$ petit, $\textrm{e}^{rh} > \textrm{e}^{\sigma\sqrt{h}}$.
+
+Malgré que toutes les différentes méthodes mènent à des prix différents lorsque $n$ est fini, elles tendent vers le même prix lorsque $n \rightarrow \infty$. De plus, malgré que les mouvements $u$ et $d$ sont différents, le ratio des facteurs $\frac{u}{d}$ est le même:
+\begin{align*}
+	\frac{u}{d}
+	&=	\textrm{e}^{2\sigma\sqrt{h}}
+\end{align*}
+
+Alors, peu importe la méthode utilisée pour construire l'arbre, la distance proportionnelle entre $u$ et $d$ mesure la volatilité.
+
+\subsubsection*{Est-ce un modèle réaliste?}
+\begin{conceptgen}{Hypothèses}
+Il y a des hypothèses douteuses à la distribution lognormale des prix:
+\begin{enumerate}[label = \alph*), leftmargin = *]
+	\item	Volatilité $\sigma$ constante.
+	\item	Pas de grandes variations spontanées.
+	\item	Indépendance entre les rendements composés continûment.
+\end{enumerate}
+
+\tcbline
+
+En pratique, aucune de ces hypothèses n'est vérifiée. Le modèle n'est pas parfait, mais sert plutôt de bon point de départ.
+\end{conceptgen}
 
 \end{multicols*}
 
