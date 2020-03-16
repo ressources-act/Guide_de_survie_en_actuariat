@@ -1991,9 +1991,9 @@ En bref, on \textbf{achète l'actif} et \textbf{emprunte de l'argent}:
 	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
 	\hline\rowcolor{airforceblue} 
 		\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{Flux au temps $0$}}	&	\textcolor{white}{\textbf{Flux au temps $T$}}	\\
-		Acheter un actif			&	$-S(0)$	&	$+S(T)$	\\
-		Emprunter de l'argent	&	$+S(0)$	&	$-S(0)\textrm{e}^{rT} = -F_{0, T}$	\\\hline
-		Net des flux monétaires	&	$0$	&	$S(T) - F_{0, T}$	\\\hline
+		Acheter un actif			&	$-S_{0}$	&	$+S_{t}$	\\
+		Emprunter de l'argent	&	$+S_{0}$	&	$-S_{0}\textrm{e}^{rT} = -F_{0, T}$	\\\hline
+		Net des flux monétaires	&	$0$	&	$S_{t} - F_{0, T}$	\\\hline
 	\end{tabular}
 \end{center}
 
@@ -3010,6 +3010,371 @@ Il y a des hypothèses douteuses à la distribution lognormale des prix:
 
 En pratique, aucune de ces hypothèses n'est vérifiée. Le modèle n'est pas parfait, mais sert plutôt de bon point de départ.
 \end{conceptgen}
+
+\newpage
+
+\section{Modèle lognormale}
+
+\begin{rappel}{Rappels de la distribution normale}
+Si $X \sim \mathcal{N}(m, v^{2})$ alors $Z = \frac{X - m}{v} \sim \mathcal{N}(0, 1)$.\\
+
+On définit $Pr(Z \le x) = N(x)$.
+Rappel que la distribution normale est symétrique et donc $N(-x) = 1 - N(x)$.
+\end{rappel}
+
+\begin{rappel}{Rappels de la distribution lognormale}
+Lorsque $Y = \textrm{e}^{X}$ alors $Y \sim LN(m,v^{2})$.\\
+
+Rappel que les deux premiers moments sont obtenus de la FGM de la distribution normale et ne sont \textbf{\textit{pas}} les paramètres:
+\begin{align*}
+	\text{E}[Y]
+	&=	\textrm{e}^{m + \frac{1}{2}v^{2}}	&
+	\text{Var}(Y)
+	&=	\left(\text{E}[Y]\right)^{2} \left(\textrm{e}^{v^{2}} - 1\right)	\\
+\end{align*}
+
+\tcbline
+
+2 propriétés intéressantes de la distribution lognormale:
+\begin{enumerate}[leftmargin = *]
+	\item	La variable aléatoire ne peut pas être négative puisque $\textrm{e}^{X} \ge 0$.
+		\begin{itemize}[leftmargin = *]
+		\item	Donc supposer que les prix d'actions suivent une distribution lognormale suppose que les prix ne peuvent pas être négatifs (une hypothèse réaliste).
+		\end{itemize}
+	\item	Le \textit{produit} (et non la somme) de deux variables aléatoires lognormale est une variable aléatoire.
+		\begin{itemize}[leftmargin = *]
+		\item	$X_{1} + X_{2} \sim \mathcal{N}$
+		\item	$\textrm{e}^{X_{1}} 	\times \textrm{e}^{X_{2}} \sim LN$
+		\end{itemize}
+\end{enumerate}
+\end{rappel}
+
+%\columnbreak
+
+\subsection*{Modèle lognormale pour le prix d'une action}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$R(0, t)$]	Rendement sur l'action composé continûment;
+	\item[$\ln\left(\frac{S_{t}}{S_{0}}\right)$]	Gains en capitaux;
+	\item[$\delta t$]	Dividend yield;
+	\item[$\alpha$]	Rendement espéré sur l'action composé continûment;
+	\item[$\alpha - \delta$]	Parfois noté comme le taux d'appréciation.
+\end{description}
+\end{distributions}
+
+\begin{conceptgen}{Hypothèses}
+Pour modéliser le prix d'une action avec le modèle lognormale, on doit poser:
+\begin{enumerate}[leftmargin = *]
+	\item	Le rendement composé continûment d'une action $R(0, t)$ suit une distribution normale.
+			\begin{itemize}[leftmargin = *]
+			\item	Soit une action achetée au temps $0$ pour $S_{0}$\$ et vendue au temps $t$ pour $S_{t}$\$.
+			\item	Le rendement composé continûment équivaut à la somme des \textbf{gains en capitaux} $\ln\left(\frac{S_{t}}{S_{0}}\right)$ et du \textbf{dividend yield} $\delta t$.
+			\item	Donc, $R(0, t) = \ln\left(\frac{S_{t}}{S_{0}}\right) + \delta t$.
+			\end{itemize}
+	\item	Les rendements de l'action sont indépendants entre périodes de temps.
+\end{enumerate}
+\end{conceptgen}
+
+\begin{definitionNOHFILL}[Distribution]
+Avec l'hypothèse d'une distribution normale des rendements, on obtient:
+
+\begin{align*}
+	\ln\left(\frac{S_{t}}{S_{0}}\right) 
+	&\sim	\mathcal{N}\left(m = \Big(\alpha - \delta - \frac{1}{2}\sigma^{2}\Big)t, v^{2} = \sigma^{2}t\right)	\\
+	\ln(S_{t}) 
+	&\sim	\mathcal{N}\left(m = \ln(S_{0}) + \Big(\alpha - \delta - \frac{1}{2}\sigma^{2}\Big)t, v^{2} = \sigma^{2}t\right)	\\
+	S_{t} 
+	&=	S_{0}\textrm{e}^{(\alpha - \delta - \frac{1}{2}\sigma^{2})t + \sigma\sqrt{t}Z}
+\end{align*}
+
+\tcbline
+
+On obtient la deuxième équation en traitant $\ln(S_{0})$ comme une constante connue.\\
+On obtient la troisième équation avec la relation $X = m + vZ$.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Moyenne variance et covariance]
+Avec la distribution lognormale, on obtient:
+\begin{align*}
+	\text{E}[S_{t}]
+	&=	S_{0}\textrm{e}^{(\alpha - \delta)t}	\\
+	\text{Var}(S_{t})
+	&=	\left(\text{E}[S_{t}]\right)^{2} \left(\textrm{e}^{\sigma^{2}t} - 1\right)	\\
+	Cov(S_{t}, S_{t})
+	&=	\text{E}\left[\frac{S_{t}}{S_{t}}\right] \cdot \text{Var}(S_{t})	
+	=	\textrm{e}^{(\alpha - \delta)(T - t)} \text{Var}(S_{t})
+\end{align*}
+\end{definitionNOHFILL}
+
+\begin{distributions}[Trouver le $p$-ème percentile de $S_{t}$]
+\begin{enumerate}[leftmargin = *]
+	\item	Trouver le percentile correspondant $z_{\alpha}$ de la distribution normale standard $Z$.
+	\item	Insérer le percentile correspondant de $Z$ dans l'équation pour $S_{t}$.
+\end{enumerate}
+\tcbline
+\paragraph{Note}	Utiliser la même approche pour trouver un intervalle de prévision.
+\end{distributions}
+
+%\columnbreak
+
+\subsection*{Tarification d'options avec une action lognormale}
+
+On pose:
+\begin{align*}
+	\hat{d}_{1}
+	&=	\left(
+			\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta {\color{blue}+} \frac{1}{2}\sigma^{2})t}
+	 			 {\sigma\sqrt{t}}
+		\right)	\\
+	\hat{d}_{2}
+	&=	\left(
+			\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta {\color{red}+} \frac{1}{2}\sigma^{2})t}
+	 			 {\sigma\sqrt{t}}
+		\right)
+	=	\hat{d}_{1} - \sigma \sqrt{t}
+\end{align*}
+
+\begin{distributions}[Trouver une probabilité pour $S_{t}$]
+\begin{align*}
+	\Pr(S_{t} < K) 
+	&=	N(-\hat{d_{2}})
+\end{align*}
+\end{distributions}
+
+\begin{algo}{Comment trouver une probabilité avec $S_{t}$}
+\begin{enumerate}[leftmargin = *]
+	\item	Isoler la distribution normale $\ln\left(\frac{S_{t}}{S_{0}}\right)$;
+		\begin{align*}
+		\Pr(S_{t} < K)
+		&\equiv	\Pr\left( \ln\frac{S_{t}}{S_{0}} < \ln\frac{S_{t}}{S_{0}} \right)
+		\end{align*}
+	\item	Centrer et réduire pour obtenir la distribution normale standard $Z$.
+		\begin{align*}
+		\Pr(S_{t} < K)
+		&\equiv	\Pr\left( \frac{\ln\frac{S_{t}}{S_{0}} - m}{v} < \frac{\ln\frac{K}{S_{0}} - (\alpha - \delta - \frac{1}{2}\sigma^{2})t}{\sigma\sqrt{t}}\right)	\\
+		&=	\Pr\left( Z < - {\color{teal}\left(
+				\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta - \frac{1}{2}\sigma^{2})t}{\sigma\sqrt{t}}\right)}
+				\right)	\\
+		&=	\Pr\left( Z < - {\color{teal}\hat{d_{2}}}\right)	\\
+		&=	N(-\hat{d_{2}})
+		\end{align*}
+\end{enumerate}
+\end{algo}
+
+\begin{conceptgen}{Espérance conditionnelle du prix de l'action}
+%Nous avons l'espérance du prix lorsque l'action est hors-du-cours et dans le cours
+\begin{align*}
+	\text{E}[S_{t} | S_{t} < K]
+	&=	\frac{\text{PE}[S_{t} | S_{t} < K]}{\Pr(S_{t} | S_{t} < K)}
+	=	\frac{S_{0}\textrm{e}^{(\alpha - \delta)t}N(-\hat{d}_{1})}{N(-\hat{d}_{2})}	\\
+	\text{E}[S_{t} | S_{t} > K]
+	&=	\frac{\text{PE}[S_{t} | S_{t} > K]}{\Pr(S_{t} | S_{t} > K)}
+	=	\frac{S_{0}\textrm{e}^{(\alpha - \delta)t}N(+\hat{d}_{1})}{N(+\hat{d}_{2})}
+\end{align*}
+\end{conceptgen}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\gamma$]	Rendement espéré sur l'option composé continûment.
+		\begin{itemize}[leftmargin = *]
+		\item	Typiquement, $\gamma$ est inconnu et donc il est difficile de trouver le prix d'une option.
+		\item	En lieu, on utilise l'approche d'évaluation neutre au risque.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Prix d'options européennes]
+\begin{align*}
+	C(K)
+	&=	\textrm{e}^{-\gamma T}\text{E}[\text{valeur à l'échéance de l'option d'achat}]	\\
+	&=	\textrm{e}^{-\gamma T} \left( S_{0} \textrm{e}^{(\alpha - \delta)T}N(\hat{d}_{1}) - K N(\hat{d}_{2})\right)	\\
+	P(K)
+	&=	\textrm{e}^{-\gamma T}\text{E}[\text{valeur à l'échéance de l'option de vente}]	\\
+	&=	\textrm{e}^{-\gamma T} \left(K N(-\hat{d}_{2}) - S_{0}\textrm{e}^{(\alpha - \delta)T}N(-\hat{d}_{1})	\right)
+\end{align*}
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Tarification neutre au risque}
+On pose à la fois le rendement sur les options $\gamma$ et sur les actions $\alpha$ comme étant égale au taux sans risque ${\color{teal}r}$.
+
+On pose:
+\begin{align*}
+	d_{1}
+	&=	\left(
+			\frac{\ln\frac{S_{0}}{K} + ({\color{teal}r} - \delta {\color{blue}+} \frac{1}{2}\sigma^{2})t}
+	 			 {\sigma\sqrt{t}}
+		\right)	\\
+	d_{2}
+	&=	\left(
+			\frac{\ln\frac{S_{0}}{K} + ({\color{teal}r} - \delta {\color{red}+} \frac{1}{2}\sigma^{2})t}
+	 			 {\sigma\sqrt{t}}
+		\right)
+	=	d_{1} - \sigma \sqrt{t}
+\end{align*}
+
+%%%	---------------------
+%%%	NOTE
+%%%	+	Qu'est-ce que la "mesure"?
+%%%	---------------------
+La seule modification apportée est de remplacer $\alpha$ par ${\color{teal}r}$; en bref:
+\begin{itemize}
+	\item	$\hat{d}_{1}$ et $\hat{d}_{2}$ suivent la véritable mesure en utilisant $\alpha$;
+	\item	$d_{1}$ et $d_{2}$ suivent la mesure \textbf{neutre au risque} en utilisant ${\color{teal}r}$.
+\end{itemize}
+
+\begin{definitionNOHFILL}[Formule de Black-Scholes pour le prix d'options européennes]
+En remplaçant $\gamma$ et $\alpha$ par ${\color{teal}r}$ on obtient la \textbf{formule de Black-Scholes}:
+
+\begin{align*}
+	C(K)
+	&=	S_{0} \textrm{e}^{- \delta T} N(\hat{d}_{1}) - K\textrm{e}^{-rT} N(\hat{d}_{2})	\\
+	P(K)
+	&=	K\textrm{e}^{-rT} N(-\hat{d}_{2}) - S_{0}\textrm{e}^{-\delta T}N(-\hat{d}_{1})	
+\end{align*}
+\end{definitionNOHFILL}
+\tcbline
+\paragraph{Note}	On identifie par un astérisque (*) ce qui est une mesure neutre au risque.
+\end{conceptgen}
+
+\begin{conceptgen}{Énoncés équivalents}
+\begin{itemize}[leftmargin = *]
+	\item	Le modèle de Black-Scholes s'applique.
+	\item	Le prix de l'action suit un modèle lognormale.
+	\item	$\ln\left(\frac{S_{t}}{S_{0}}\right) \sim \mathcal{N}\left(m = \Big(\alpha - \delta - \frac{1}{2}\sigma^{2}\Big)t, v^{2} = \sigma^{2}t\right)$.
+	\item	$S_{t} =	S_{0}\textrm{e}^{(\alpha - \delta - \frac{1}{2}\sigma^{2})t + \sigma\sqrt{t}Z}$.
+\end{itemize}
+\end{conceptgen}
+
+%\columnbreak
+
+\subsection*{Estimation du rendement et de la volatilité}
+
+\begin{definitionNOHFILL}[Estimation des paramètres de la distribution lognormale]
+On obtient les estimations des paramètres avec $n + 1$ observations de prix historiques $S_{0}, S_{1}, \dots, S_{n}$ à un intervalle de longueur $h$.
+\begin{enumerate}
+	\item	Calculer les rendements composés continûment.
+		\begin{align*}
+		r_{i}
+		&=	\ln\frac{S_{i}}{S_{(i - 1)}}, \, \forall i = 1, 2, \dots, n
+		\end{align*}
+	\item	Calculer la moyenne de l'échantillon des rendements.
+		\begin{align*}
+		\bar{r}
+		&=	\frac{\overset{n}{\underset{i = 1}{\sum}} r_{i}}{n}	
+		\underset{\tiny{\shortstack{prop. des log}}}{\equiv}	\frac{\ln\frac{S_{n}}{S_{0}}}{n}
+		\end{align*}
+	\item	Estimer l'écart-type des rendements.
+		\begin{align*}
+		\hat{\sigma}_{h}
+		&=	\sqrt{\frac{\overset{n}{\underset{i = 1}{\sum}} (r_{i} - \bar{r})^{2}}{n - 1}}
+		\end{align*}
+	\item	Mettre l'estimation de l'écart-type sous base annuelle.
+		\begin{align*}
+		\hat{\sigma}
+		&=	\frac{\hat{\sigma}_{h}}{\sqrt{h}}
+		\end{align*}
+	\item	Mettre l'estimation du rendement espéré sous base annuelle.
+		\begin{align*}
+		\text{E}\left[\ln\frac{S_{t + h}}{S_{t}}\right]
+		&=
+		\left(\hat{\alpha} - \delta - \frac{1}{2} \hat{\sigma}^{2}\right)h	
+		=	\bar{r}	\\
+		\therefore \hat{\alpha}	&=	\frac{\bar{r}}{h} + \delta + \frac{1}{2} \hat{\sigma}^{2}
+		\end{align*}
+\end{enumerate}
+\end{definitionNOHFILL}
+
+\columnbreak
+
+\subsection*{Formule de Black-Scholes généralisée}
+\begin{conceptgen}{Hypothèses de la formule de Black-Scholes}
+\begin{center}
+	\textbf{Sur la distribution de l'action sous-jacente}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Le rendement composé continûment sur l'action a une distribution normale et est indépendant avec le temps.
+	\item	La volatilité est connue et constante.
+	\item	Les futurs dividendes sont connus.
+\end{itemize}
+\tcbline
+\begin{center}
+	\textbf{Sur l'environnement économique}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Le taux sans risque est connu et constant.
+	\item	Il n'y a pas d'impôt	 ni de frais de transactions.
+	\item	Il n'y a aucun coût relié à la vente à découvert.
+	\item	Les investisseurs peuvent emprunter et prêter au taux sans risque.
+\end{itemize}
+\end{conceptgen}
+
+\begin{definitionNOHFILL}[Formule de Black-Scholes généralisée]
+Équations généralisées :
+
+\begin{align*}
+	d_{1}
+	&=	\left(
+			\frac{\ln\frac{F^{P}(S)}{F^{P}(K)} {\color{blue}{+}} \frac{1}{2} \sigma^{2} T}
+	 			 {\sigma\sqrt{t}}
+		\right)	&
+	d_{2}
+	&=	\left(
+			\frac{\ln\frac{F^{P}(S)}{F^{P}(K)} {\color{red}{-}} \frac{1}{2} \sigma^{2} T}
+	 			 {\sigma\sqrt{t}}
+		\right)	
+	\equiv	d_{1} - \sigma \sqrt{t}	\\
+\end{align*}
+
+Prix d'options \textbf{européennes} selon la formule de Black-Scholes:
+
+\begin{align*}
+	C(K)
+	&=	F^{P}(S) N(d_{1}) - F^{P}(K) N(d_{2})	\\
+	P(K)
+	&=	F^{P}(K) N(-d_{2}) - F^{P}(S) N(-d_{1})	
+\end{align*}
+
+\tcbline
+\textbf{Notes}
+\begin{align*}
+	\sigma
+	&=	\sqrt{\frac{\text{Var}(\ln F^{P}_{t, T}(S))}{t}}	
+	\equiv	\sqrt{\frac{\text{Var}(\ln F_{t, T}(S))}{t}}	
+	\equiv	\sqrt{\frac{\text{Var}(\ln S_{t})}{t}}, \, \forall 0 < t \le T	\\
+\end{align*}
+
+\begin{description}
+	\item[$\ln S_{t}$]	\textbf{Volatilité de l'action} ou, de façon équivalente, volatilité du rendement sur l'action composé continûment.
+\end{description}
+\end{definitionNOHFILL}
+
+\subsection*{Options sur d'autres sous-jacents}
+
+Avec la formule généralisée, on peut appliquer la formule de Black-Scholes à d'autres sous-jacents. Il y a quelques considérations à prendre dans un tel cas pour option sur:
+\begin{description}
+	\item[Contrats à terme standardisés]	Il peut arriver que la date d'échéance---$T$---de l'option ne soit pas la même que la date d'échéance---$T'$---du contrat à terme standardisé sur un actif quelconque $Q$. \\
+			Dans un tel cas, il faut que $T' \ge T$ et qu'on actualise le prix à terme $F_{0, T'}(Q)$ à partir de $T$ (et non $T'$).
+			\begin{align*}
+			F^{P}_{0, T}(F)	
+			&=	F_{0, T'}(Q) \textrm{e}^{-rT}	&
+			F^{P}_{0, T}(K)
+			&=	K \textrm{e}^{-rT}	\\
+			\end{align*}
+	\item[Devises]	Les prix à terme prépayés doivent être dans la même devise que l'option.
+\end{description}
+
+%%%	-------------------------
+%%%	NOTE
+%%%	+	Ajouter clarification sur le K =/= nécessairment à F_{0, T'}(Q) et r =/= nécessairement \delta.
+%%%	+	Compléter pour devises lorsque les notes de cours seront rendues disponibles.
+%%%	-------------------------
+
+
+\newpage
+
+
+\section*{Option Greeks}
 
 \end{multicols*}
 
