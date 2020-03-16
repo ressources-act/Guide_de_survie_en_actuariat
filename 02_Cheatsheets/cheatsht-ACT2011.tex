@@ -3374,7 +3374,269 @@ Avec la formule généralisée, on peut appliquer la formule de Black-Scholes à
 \newpage
 
 
-\section*{Option Greeks}
+\section*{Les grecs de l'option}
+
+\begin{center}
+\begin{tabular}{|	>{\columncolor{airforceblue}}c	| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}m{0.5\columnwidth}  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Grec}}	&	\textcolor{white}{\textbf{Définition}}	&	\textcolor{white}{\textbf{Mesure le changement de la valeur ($V$)}}		\\\specialrule{0.1em}{0em}{0.0em} 
+$\Delta$	&	$\deriv{S}{V}$	&	de l'option par une augmentation (de 1\$) du prix de l'action.	\\
+$\Gamma$	&	$\deriv{S}{\Delta} \equiv \deriv[2]{S}{V}$	&	du Delta par une augmentation (de 1\$) du prix de l'action.	\\
+$\theta/365$	&	$\deriv{t}{V}$	&	de l'option par une baisse (d'un jour) de la date d'échéance.	\\
+\textbf{Vega}	&	$\deriv{\sigma}{V}$	&	de l'option par une augmentation (de 1\%) de la volatilité.	\\
+$\rho/100$	&	$\deriv{r}{V}$	&	de l'option par une augmentation (de 1\%) du taux sans risque.	\\
+$\psi/100$	&	$\deriv{\delta}{V}$	&	de l'option par une augmentation (de 1\%) de la force de dividende.	\\
+\end{tabular}
+\end{center}
+
+Notes
+\begin{itemize}[leftmargin = *]
+	\item	Si on fait référence au \og Delta \fg{} d'une option, on suppose la position longue.\\
+			De même pour tous les autres grecs.
+\end{itemize}
+
+\subsection*{Grecs}
+
+\begin{definitionNOHFILL}[Delta $\Delta	=	\deriv{S}{V}$]
+Mesure la variation du prix de l'option correspondante à une augmentation du prix de l'action.
+
+\tcbline
+
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Expressions du Delta pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Delta_{C}
+	&=	\textrm{e}^{-\delta T} N(d_{1})	\\
+	\Delta_{P}
+	&=	-\textrm{e}^{-\delta T} N(-d_{1})	
+\end{align*}
+\end{gather}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Domaine}
+\end{center}
+\begin{gather}
+\begin{align*}
+	0 \le \Delta_{C} \le 1	\\
+	-1 \le \Delta_{P} \le 0	
+\end{align*}
+\end{gather}
+\end{minipage}
+
+\tcbline
+%Lien entre delta d'options de vente et d'achat:
+%\begin{align*}
+%	C - P	&=	S\textrm{e}^{-\delta T} - K\textrm{e}^{-rT}	\\
+%	\deriv{S}{C} - \deriv{S}{P}	&=	\deriv{S}{} (S\textrm{e}^{-\delta T}) - \deriv{S}{} (K\textrm{e}^{-rT})	\\
+%	\Delta_{C} - \Delta_{P}	&=	\textrm{e}^{-\delta T}
+%\end{align*}
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Le Delta $\Delta_{C}$ ($\Delta_{P}$) peut être interprété comme le nombre d'actions à acheter (vendre) pour répliquer une option d'achat (de vente).
+	\item	Une option d'achat devient de plus en plus profitable lorsque le prix de l'action sous-jacente augmente. \\
+			Alors, $\Delta_{C}$ se rapproche de 0 lorsque l'option est hors du cours ($S_{T} < K$) et de 1 lorsqu'elle est dans le cours ($S_{T} > K$).\\
+			Cependant, le $\Delta_{C}$ ne sera jamais négatif car l'option d'achat a un seuil minimal de 0 pour sa valeur à l'échéance.\\
+			De même, $\Delta_{P}$ ne sera jamais positif.
+	\item	Dans les deux cas, le $\Delta$ augmente avec le prix de l'action.
+	\item	Mathématiquement, le domaine est restreint puisque $0 \le N(x) \le 1, \forall x$ et $0 \le e^{-\delta T} \le 1$.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Gamma $\Gamma = \deriv{S}{\Delta} \equiv \deriv[2]{S}{V}$]
+Mesure la variation du Delta de l'option correspondante à une augmentation du prix de l'action.
+
+\tcbline
+
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Expressions du Gamma pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Gamma_{C}
+	&=	\Gamma_{P}
+	=	\textrm{e}^{-\delta T} N'(d_{1}) \frac{1}{S \sigma \sqrt{T}}	
+\end{align*}
+\end{gather}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Domaine}
+\end{center}
+\begin{gather}
+\begin{align*}
+	0 \le \Gamma_{C} = \Gamma_{P}
+\end{align*}
+\end{gather}
+\end{minipage}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Le $\Gamma$ mesure le \textit{taux} de variation du $\Delta$.\\
+			Puisque le $\Delta$ augmente toujours, le $\Gamma$ est toujours positif.
+	\item	Le $\Gamma$ est maximisé au cours du marché car c'est où le $\Delta$ connait le plus de variation.
+		\begin{center}
+		\includegraphics[scale=0.4]{src/ACT-2011/gamma-delta-greek.png}
+		\end{center}
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Theta $\theta	=	\deriv{t}{V}$]
+Mesure la variation du prix de l'option correspondante à l'écoulement du temps.
+
+\tcbline
+
+\begin{center}
+	\textbf{Expressions du Theta pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\theta_{C}
+	&=	\delta S \textrm{e}^{-\delta (T - t)} N(d_{1}) - 
+		r K \textrm{e}^{-r (T - t)} N(d_{2})	-
+		\frac{K\textrm{e}^{-r (T - t)} N'(d_{2}) \sigma}{2\sqrt{T - t}}	\\
+	\theta_{P}
+	&=	\theta_{C} + 
+		r K \textrm{e}^{-r (T - t)}	-
+		\delta S \textrm{e}^{-\delta (T - t)} 
+\end{align*}
+\end{gather}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	La valeur d'une option décroît avec le temps. \\
+			$\theta$ estime de combien, ceteris paribus, la valeur décroît par jour.
+	\item	Ce faisant, $\theta$ est habituellement \textbf{négatif}.\\
+			Il est \textit{possible} qu'il soit négatif pour une option \underline{profondément} dans le cours du marché ayant un taux de dividende \underline{très} élevé.
+	\item	Pour obtenir la variation en valeur par jour, il suffit de diviser $\theta$ par 365.
+	\item	\textbf{T}heta pour \textbf{t}emps.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Vega $Vega	=	\deriv{\sigma}{V}$]
+Mesure la variation du prix de l'option correspondante à une augmentation de la volatilité de l'action.
+\tcbline
+
+\begin{center}
+	\textbf{Expression du Vega pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	Vega_{C}
+	&=	Vega_{P}
+	=	S \textrm{e}^{-\delta T} N'(d_{1}) \sqrt{T}
+\end{align*}
+\end{gather}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Une augmentation de la volatilité mène toujours à une augmentation des prix d'options.\\
+			Il s'ensuit que le Vega sera toujours positif et augmente avec la volatilité.
+	\item	Pour obtenir la variation en pourcentage, il suffit de diviser $Vega$ par 100.
+	\item	\textbf{V}ega pour \textbf{v}olatilité.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Rho $\rho	=	\deriv{r}{V}$]
+Mesure la variation du prix de l'option correspondante à une augmentation du taux sans risque.
+
+\tcbline
+
+\begin{center}
+	\textbf{Expression du Rho pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\rho_{C}
+	&=	T K \textrm{e}^{-r T} N(d_{2})	&
+	\rho_{P}
+	&=	-T K \textrm{e}^{-r T} N(-d_{2})
+\end{align*}
+\end{gather}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Une augmentation du taux sans risque $r$ fait baisser la valeur actualisée du prix d'exercice $K\textrm{e}^{-rT}$.\\
+			Selon la formule de Black-Scholes, baisser $K\textrm{e}^{-rT}$ fait \textbf{augmenter} la valeur d'une option d'achat mais \textbf{baisser} celle d'une option de vente.\\
+			Donc, $\rho_{C} > 0$ et $\rho_{P} < 0$.
+	\item	Pour obtenir la variation en pourcentage, il suffit de diviser $\rho$ par 100.
+	\item	\textbf{R}ho pour taux sans \textbf{r}isque.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Psi $\psi	=	\deriv{\delta}{V}$]
+Mesure la variation du prix de l'option correspondante à une augmentation du taux de dividendes.
+
+\tcbline
+
+\begin{center}
+	\textbf{Expression du Psi pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\psi_{C}
+	&=	- T S \textrm{e}^{-\delta T} N(d_{1})	&
+	\psi_{P}
+	&=	T S \textrm{e}^{-\delta T} N(-d_{1})
+\end{align*}
+\end{gather}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Une augmentation du taux de dividendes $\delta$ fait baisser la valeur actualisée du prix de l'action $S\textrm{e}^{-\delta T}$.\\
+			Selon la formule de Black-Scholes, baisser $S\textrm{e}^{-\delta T}$ fait \textbf{baisser} la valeur d'une option d'achat mais \textbf{augmenter} celle d'une option de vente.\\
+			Donc, $\psi_{C} < 0$ et $\psi_{P} > 0$.
+	\item	Pour obtenir la variation en pourcentage, il suffit de diviser $\psi$ par 100.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\columnbreak
+
+\subsection*{Portfolio}
+
+Le grecque d'un portefeuille composé de $N$ options sur une même action, avec $n_{i}$ options de chaque type, est simplement la somme des grecques:
+\begin{align*}
+	\text{Grec}_{\text{ptf.}}
+	&=	\overset{N}{\underset{i = 1}{\sum}} n_{i} \text{Grec}_{i}	
+\end{align*}
+%
+%\subsection*{Élasticité}
+%
+%Bornes
+%Prime de risque
+%Ratio de Sharpe
+%
+%\subsection*{Approximation}
+%
+%Delta-Gamma
+%Delta-Gamma-Theta
 
 \end{multicols*}
 
