@@ -3371,6 +3371,91 @@ Avec la formule généralisée, on peut appliquer la formule de Black-Scholes à
 %%%	-------------------------
 
 
+\subsection*{Diagrammes du profit avant échéance}
+Nous avons précédemment tracé des diagrammes de profit de valeur à l'échéance pour les options \textbf{à l'expiration}. Nous allons maintenant étendre ceci pour tracer les diagrammes \textbf{avant expiration}.
+
+L'idée est la même qu'auparavant mais on remplace la valeur à l'échéance par la valeur de revente de l'option
+
+Pour tracer les diagrammes, on fait varier les prix en maintenant fixe les dates.
+
+Nous illustrons ceci avec 2 stratégies:
+
+\begin{definitionNOHFILL}[Achat et revente d'une option d'achat]
+Crée en :
+\begin{itemize}[leftmargin = *]
+	\item	Achetant l'option d'achat au temps $t_{1}$
+	\item	Vendant l'option d'achat au temps $t_{2}$
+\end{itemize}
+
+\begin{description}
+	\item[Valeur à $t_{2}$]	
+		\begin{align*}
+		&=	\text{Prix de revente}	\\
+		&=	C(S_{t_{2}}, K, \sigma, r, T - t_{2}, \delta)
+		\end{align*}
+	\item[Profit à $t_{2}$]	
+		\begin{align*}
+		&=	\text{Prix de revente} - \text{Prix d'achat à $t_{1}$ accumulé à $t_{2}$}	\\
+		&=	C(S_{t_{2}}, K, \sigma, r, T - t_{2}, \delta) - C(S_{t_{1}}, K, \sigma, r, T - t_{1}, \delta) \textrm{e}^{r(t_{2} - t_{1})}
+		\end{align*}
+\end{description}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Écart horizontal]
+Crée en :
+\begin{itemize}[leftmargin = *]
+	\item	Vendant une option venant à échéance à $t_{1}$.
+	\item	Achetant une option identique sauf pour la date d'échéance de $t_{2}$.
+\end{itemize}
+
+\begin{description}
+	\item[Coût initial]	Pour des options d'achat on obtient:
+		\begin{align*}
+		&=	C(S, K, \sigma, r, T_{2}, \delta) - C(S, K, \sigma, r, T_{1}, \delta) 
+		\end{align*}
+\end{description}
+
+\tcbline
+%%%	--------------------
+%%%	NOTE
+%%%	+	Détailler davantage le contexte / profit / raisons pour
+%%%	--------------------
+\textbf{Notes}
+\begin{itemize}[leftmargin = *]
+	\item	Permet de spéculer sur la volatilité de l'action.\\
+			Typiquement utilisé lorsqu'un investisseur croit que, entre deux prix d'exercice, le prix va rester fixe.
+	\item	\og \textit{calendar spread} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsection*{Volatilité implicite}
+\hl{à compléter}
+%%%	---------------
+%%%	NOTE
+%%%	+	Manque volatility skew, etc.
+%%%	+	Plus de détails sur le contexte général.
+%%%	+	Utilité.
+%%%	---------------
+
+\begin{itemize}[leftmargin = *]
+	\item	La volatilité n'est pas observable et sont estimation est problématique.
+	\item	La volatilité \textit{historique} ne prévoit pas le futur.
+	\item	On peut donc isoler la volatilité \textit{implicite} avec le prix observé de l'action et la formule de Black-Scholes.
+%	\item	Malgré que la volatilité est supposée constante dans la formule, elle varie avec le prix d'exercice $K$ et la date d'échéance $T$.
+%	\item	En voyant le marché des options comme un marché qui transige la volatilité, on peut la révéler.\\
+%			Selon cette théorie, les prix d'options révèlent les attentes du marché de la distribution des prix d'actions dans le futur.
+\end{itemize}
+\begin{description}
+	\item[Volatilité implicite]	La valeur de $\sigma$ telle que la formule de Black-Scholes reproduit le prix de l’option observé sur le marché.
+\end{description}
+
+%%%	--------------------
+%%%	PAS CADRE DU COURS
+%\subsection*{Perpetual american options}
+%\hl{à compléter}
+%%%	--------------------
+
+
 \newpage
 
 
@@ -3752,6 +3837,8 @@ On peut également le calculer avec les paramètres du portefeuille $\Omega_{\te
 	\item	$\theta$ diminue l'approximation car il est habituellement négatif.
 \end{itemize}
 \end{definitionNOHFILL}
+
+
 
 
 \end{multicols*}
