@@ -3316,12 +3316,12 @@ On obtient les estimations des paramètres avec $n + 1$ observations de prix his
 	d_{1}
 	&=	\left(
 			\frac{\ln\frac{F^{P}(S)}{F^{P}(K)} {\color{blue}{+}} \frac{1}{2} \sigma^{2} T}
-	 			 {\sigma\sqrt{t}}
+	 			 {\sigma\sqrt{T}}
 		\right)	&
 	d_{2}
 	&=	\left(
 			\frac{\ln\frac{F^{P}(S)}{F^{P}(K)} {\color{red}{-}} \frac{1}{2} \sigma^{2} T}
-	 			 {\sigma\sqrt{t}}
+	 			 {\sigma\sqrt{T}}
 		\right)	
 	\equiv	d_{1} - \sigma \sqrt{t}	\\
 \end{align*}
@@ -3619,24 +3619,140 @@ Mesure la variation du prix de l'option correspondante à une augmentation du ta
 
 \columnbreak
 
-\subsection*{Portfolio}
+\subsubsection*{Portefeuille}
 
 Le grecque d'un portefeuille composé de $N$ options sur une même action, avec $n_{i}$ options de chaque type, est simplement la somme des grecques:
 \begin{align*}
 	\text{Grec}_{\text{ptf.}}
 	&=	\overset{N}{\underset{i = 1}{\sum}} n_{i} \text{Grec}_{i}	
 \end{align*}
-%
-%\subsection*{Élasticité}
-%
-%Bornes
-%Prime de risque
-%Ratio de Sharpe
-%
-%\subsection*{Approximation}
-%
-%Delta-Gamma
-%Delta-Gamma-Theta
+
+\subsection*{Élasticité}
+
+
+\begin{definitionNOHFILL}[Élasticité $\Omega	=	\frac{\Delta S}{V}$]
+Mesure le pourcentage de variation du prix de l'option correspondante au pourcentage d'augmentation du prix de l'action.
+
+\tcbline
+
+\begin{center}
+	\textbf{Élasticité}
+\end{center}
+\begin{align*}
+		\Omega
+		&=	\frac{\text{\% variation du prix de l'option}}{\text{\% variation du prix de l'action}}	
+		=	\frac{{\color{teal}(V_{t} - V_{0})}/V_{0}}{{\color{teal}(S_{t} - S_{0})}/S_{0}}	\\
+		&=	{\color{teal}\Delta} \cdot \frac{S_{0}}{V_{0}}
+		=	\frac{\Delta S}{V}
+\end{align*}
+
+\begin{center}
+	\textbf{Bornes}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Omega_{C}	&\ge		1	&
+	\Omega_{P}	&\le		0
+\end{align*}
+\end{gather}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Pour obtenir l'élasticité par augmentation de 1\% du prix de l'action, diviser par 100---$\Omega/100$.
+	\item	Le $\Delta$ peut être vu comme $\Delta = \frac{\text{variation du prix de l'option}}{\text{variation du prix de l'action}}$ et donc l'Omega évalue le \% au lieu du montant.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsubsection*{Rendement sur l'option $\gamma$}
+Pour un portefeuille réplicatif on a que $V = \Delta S + B$. \\
+Avec ceci on trouve:
+\begin{description}
+	\item[\% investit dans l'action sous-jacente]	$\% \text{ action} = \frac{\Delta S}{V} = \Omega$.
+	\item[\% investit dans l'actif sans risque]	$\% \text{ actif} = \frac{B}{V} = 1 - \Omega$.
+	\item[Rendement espéré instantané sur l'option $\gamma$]	On pondère les rendements sur l'action et l'actif:
+		\begin{align*}
+		\gamma 
+		&=	(\% \text{ action}) \alpha + (\% \text{ actif}) r	\\
+		&=	\Omega \alpha + (1 - \Omega) r
+		\end{align*}
+\end{description}
+
+\subsubsection*{Prime de risque}
+Une \textbf{prime de risque} est l'excès du rendement espéré d'un actif au taux sans risque.
+\begin{description}
+	\item[Prime de risque sur l'action]	$\alpha - r$
+	\item[Prime de risque sur l'option]	$\gamma - r \equiv \Omega (\alpha - r)$
+\end{description}
+
+\subsubsection*{Volatilité}
+Puisqu'un actif sans risque n'a aucune volatilité, la volatilité de l'option va seulement dépendre sur celle de l'action.\\
+Pour l'obtenir, on pondère la volatilité de l'action par la valeur absolue de $\Omega$:
+\begin{align*}
+	\sigma_{\text{option}}
+	&=	| \Omega | \sigma_{\text{action}}
+\end{align*}
+
+\subsubsection*{Ratio de Sharpe}
+Le \textbf{ratio de Sharpe} d'un actif est le ratio de sa prime de risque à sa volatilité.
+\begin{description}
+	\item[Ratio de Sharpe de l'action]	
+		\begin{align*}
+		\text{\o}_{\text{action}}	
+		&=	\frac{\alpha - r}{\sigma_{\text{action}}}
+		\end{align*}
+	\item[Ratio de Sharpe de l'option]	
+		\begin{align*}
+		\text{\o}_{\text{option}}	
+		&=	\frac{\gamma - r}{\sigma_{\text{option}}}	
+		\equiv	\frac{\Omega}{|\Omega|}\sigma_{\text{option}}	
+		\end{align*}
+\end{description}
+Puisque $\Omega$ est positif pour les option d'achat et négatif pour les options de vente:
+\begin{align*}
+	\text{\o}_{C}	&=	\text{\o}_{\text{action}}	&
+	\text{\o}_{P}	&=	-\text{\o}_{\text{action}}
+\end{align*}
+
+\subsubsection*{Portefeuille}
+
+L'élasticité d'un portefeuille composé de $n$ options est simplement la moyenne pondérée de l'élasticité de chaque type d'option. Donc, avec $\omega_{i}$\% du portefeuille investi dans l'option $i$, on a:
+\begin{align*}
+	\Omega_{\text{ptf.}}
+	&=	\overset{n}{\underset{i = 1}{\sum}} \omega_{i} \Omega_{i}, \: \text{où } \omega_{i} = \text{\# acheté} \times \frac{V_{i}}{V_{\text{ptf}}}
+\end{align*}
+
+On peut également le calculer avec les paramètres du portefeuille $\Omega_{\text{ptf.}} = \frac{\Delta_{\text{ptf.}}S}{V_{\text{ptf.}}}$.
+
+
+\subsection*{Approximation}
+
+\begin{itemize}[leftmargin = *]
+	\item	On peut approximer la variation du prix de l'option avec les grecques. 
+	\item	Le Delta \textit{varie avec le prix} et donc est seulement valide comme approximation du prix pour des très petites variations. \\
+			En considérant le Gamma, l'approximation devient valide pour des plus grandes variations.
+	\item	Cependant, la meilleure approximation se fait en incluant Theta pour considérer \textit{l'effet du temps}.
+\end{itemize}
+
+\begin{definitionNOHFILL}[Approximation Delta-Gamma-Theta]
+\begin{align*}
+	V_{t + h}
+	&\approx	V_{t} + \Delta_{t} \varepsilon + \frac{1}{2} \Gamma_{t} \varepsilon^{2} + \theta_{t} h	
+\end{align*}
+
+\tcbline
+
+\textbf{Notes}
+\begin{itemize}[leftmargin = *]
+	\item	$\varepsilon$ est la variation du prix.
+	\item	$h$ et $\theta$ doivent être dans la même unité de temps.
+	\item	$\theta$ diminue l'approximation car il est habituellement négatif.
+\end{itemize}
+\end{definitionNOHFILL}
+
 
 \end{multicols*}
 
