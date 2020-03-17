@@ -347,6 +347,124 @@ Book value
 		&=	(\text{F}r - \text{C}) \ax[n - t]{j} + \text{C}
 \end{align*}
 
+\columnbreak
+
+\subsection*{Immunisation}
+
+\begin{description}
+	\item[$P(i)$]	Valeur actualisée des flux monétaires au taux effectif $i$.
+		\begin{align*}
+		P(i)	
+		&=	\underset{t = 0}{\overset{n}{\sum}} (A_{t}v^{t})
+		\end{align*}
+\end{description}
+
+\paragraph{Note}	La duration de \textit{\textbf{Macaulay}} est surnommée \og \textit{duration} \fg{} par défaut alors que la convexité \textit{\textbf{modifiée}} est surnommée \og \textit{convexité} \fg{} par défaut.
+
+\begin{rappel}{Duration}
+\begin{align*}
+	D_{\text{mac}}(i)
+	&=	\frac{-P'(\delta)}{P(\delta)}
+	=	\frac{\underset{t = 0}{\overset{n}{\sum}} (t) (A_{t}v^{t})}{P(i)}	\\
+	D_{\text{mod}}(i)
+	&=	\frac{-P'(i)}{P(i)}	
+	=	\frac{\underset{t = 0}{\overset{n}{\sum}} (t) (A_{t}v^{t + 1})}{P(i)}	\\
+	D_{\text{mod}}(i)
+	&=	vD_{\text{mac}}(i)
+\end{align*}
+
+\tcbline
+
+Portfeuille de $n$ obligations ayant chacune un prix de $P_k$:
+\begin{align*}
+	D_{\text{mac}}(\text{ptf.}) 
+	&=	\frac{\overset{n}{\underset{k = 1}{\sum}} D_{\text{mac}}(\text{$k$-ème obligation}) P_{k}}{\overset{n}{\underset{k = 1}{\sum}} P_{k}}
+\end{align*}
+\end{rappel}
+
+\begin{rappel}{Convexité}
+\begin{align*}
+	C_{\text{mod}}(i)
+	&=	\frac{P''(i)}{P(i)}
+	=	\frac{\overset{n}{\underset{t = 1}{\sum}} t (t + 1) v^{t + 2} A_{t}}{P(i)}	\\
+	C_{\text{mac}}(i)
+	&=	\frac{P''(\delta)}{P(\delta)}
+	=	\frac{\overset{n}{\underset{t = 1}{\sum}} t^{2} v^{t} A_{t}}{P(i)}	\\
+	C_{\text{mod}}(i)
+	&=	(C_{\text{mac}}(i) + D_{\text{mac}}(i))v^{2}
+\end{align*}
+\end{rappel}
+
+\begin{rappel}{Approximations}
+\begin{description}
+	\item[Approximation linéaire]	Basée sur la duration modifiée.
+		\begin{align*}
+		P(i)
+		&\approx	P(i_{0})[1 - (i - i_{0})D_{\text{mod}}(i_{0})]
+		\end{align*}
+	\item[Approximation de Macaulay]	Basée sur la duration de Macaulay.
+		\begin{align*}
+		P(i)
+		&\approx	P(i_{0}) \left( \frac{1 + i_{0}}{1 + i} \right)^{D_{\text{mac}}(i_{0})}
+		\end{align*}
+\end{description}
+\end{rappel}
+
+\begin{center}
+\textbf{Obligation zéro-coupon de $n$ années}\\
+
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 1cm,
+		minimum width = 1.2cm,
+		anchor = center,
+		outer sep = 0,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			fill = ballblue,  % header colour
+			text = white,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 2cm, 
+		align = center,
+		nodes = {
+			font = \bfseries
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 3cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+%	row 1 column 1/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+	Mesure	&	Égale	\\
+	$C_{\text{mac}}$	&	$n^{2}$	\\
+	$D_{\text{mac}}$	&	$n$	\\
+	$C_{\text{mod}}$	&	$\frac{n(n + 1)}{(1 + i)^{2}}$	\\
+	$D_{\text{mod}}$	&	$\frac{n}{1 + i}$	\\
+};
+\end{tikzpicture}
+\end{center}
+
 \newpage
 
 \section*{Analyse probabiliste des risques actuariels}
