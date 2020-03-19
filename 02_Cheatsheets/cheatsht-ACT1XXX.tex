@@ -465,6 +465,84 @@ Portfeuille de $n$ obligations ayant chacune un prix de $P_k$:
 \end{tikzpicture}
 \end{center}
 
+\columnbreak
+
+\subsection*{Taux au comptant et taux à terme}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$r_{t}$]	Taux de rendement annuel effectif d'un investissement sur $t$ années.
+		\begin{itemize}[leftmargin = *]
+		\item	\textbf{Taux au comptant} ou \og \textit{spot rate} \fg{}.
+		\item	Parfois appelé le taux zéro-coupon car $r_{t} = P_{t}^{-1/t} - 1$ où $P_{t}$ est le prix d'une obligation zéro-coupon.
+		\item	C'est en fait une moyenne des taux sur la période.
+		\end{itemize}
+		\begin{align*}
+		(1 + r_{n})^{n} 
+		&=	\overset{n}{\underset{i = 1}{\prod}} (1 + f_{t_{i}})
+		\end{align*}
+	\item[$f_{[t_{1}, t_{2}]}$]	Taux d'intérêt annuel effectif en vigueur de $t_{1}$ à $t_{2}$.
+		\begin{itemize}[leftmargin = *]
+		\item	\textbf{Taux à terme} ou \og \textit{forward rate} \fg{}.
+		\item	Habituellement, la période est d'un an ou d'un trimestre, mais en théorie il peut être appliqué sur n'importe quelle longueur de période.
+		\item	Le taux à terme est une anticipation pour une période future en date d'aujourd'hui.
+		\item	$(1 + f_{[t_{1}, t_{2}]})(1 + f_{[t_{2}, t_{3}]}) = (1 + f_{[t_{1}, t_{3}]})$
+		\item	Corrolaire:
+		\end{itemize}
+		\begin{align*}
+		f_{[t_{1}, t_{2}]}
+		&=	\left[\frac{(1 + r_{t_{2}})^{t_{2}}}{(1 + r_{t_{1}})^{t_{1}}}\right]^{1/(t_{2} - t_{1})} - 1
+		\end{align*}			
+\end{description}
+Pour bien saisir la distinction entre les deux:
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp11598225207048363] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (48,51.33) -- (294.17,51.33) -- (294.17,189.72) -- (48,189.72) -- cycle ;
+%Shape: Axis 2D [id:dp3788668579196355] 
+\draw  (62,171.72) -- (257.17,171.72)(87.5,89.33) -- (87.5,181.72) (250.17,166.72) -- (257.17,171.72) -- (250.17,176.72) (82.5,96.33) -- (87.5,89.33) -- (92.5,96.33)  ;
+%Straight Lines [id:da9101312021066204] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (89.17,171.33) -- (244.9,118.13) ;
+%Shape: Rectangle [id:dp7987614739910429] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (48,51.33) -- (294.17,51.33) -- (294.17,80.13) -- (48,80.13) -- cycle ;
+%Shape: Rectangle [id:dp9676581606760322] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (141.5,51.21) -- (294.17,51.21) -- (294.17,80.24) -- (141.5,80.24) -- cycle ;
+%Straight Lines [id:da5630202320242259] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=1 ][line width=3.75]    (145.6,72.33) -- (209.55,72.33) ;
+%Straight Lines [id:da8305691123140908] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=3.75]    (145.6,59.13) -- (209.55,59.13) ;
+
+%Curve Lines [id:da09193472671814629] 
+\draw [color={rgb, 255:red, 189; green, 16; blue, 224 }  ,draw opacity=1 ][line width=2.25]    (89.17,171.33) .. controls (155.5,152.72) and (168.5,145.72) .. (245.5,140.72) ;
+
+% Text Node
+\draw (93.08,65.73) node   [align=left] {Rendement};
+% Text Node
+\draw (253.66,72.03) node  [font=\small] [align=left] {Spot rate};
+% Text Node
+\draw (253.66,58.84) node  [font=\small] [align=left] {Forward rate};
+
+
+\end{tikzpicture}
+
+\end{center}
+\end{distributions}
+
+\begin{algo}{Application aux obligations}
+\begin{enumerate}[leftmargin = *]
+	\item	Identifier les flux monétaires de l'obligation $CF_{t}$.
+	\item	Actualiser chaque $CF_{t}$ selon son taux à terme $r_{t}$ pour déterminer le prix $P$.
+	\item	Déterminer le taux de rendement $i$ (\og \textit{Yield-to-Maturity} \fg{} , \og \textit{IRR} \fg{}) qui, en actualisant les $CF_{t}$, reproduit le prix $P$.
+	\item	$P = \underset{t}{\sum}\frac{CF_{t}}{(1 + r_{t})^{t}} = \underset{t}{\sum}\frac{CF_{t}}{(1 + i)^{t}}$
+\end{enumerate}
+\end{algo}
+
 \newpage
 
 \section*{Analyse probabiliste des risques actuariels}
