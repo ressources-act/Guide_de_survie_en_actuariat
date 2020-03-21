@@ -97,7 +97,7 @@ Cette borne est rarement comprise et sur la base de \hyperlink{https://www.youtu
 
 Premièrement, on définit l'utilité des deux premières dérivées:
 \begin{description}
-	\item[$\deriv{\theta} \mathcal{L}(\theta)$]: Représente le \og rate of change \fg{} \textit{(angl.)} de la fonction.
+	\item[$\frac{\partial}{\partial\theta} \mathcal{L}(\theta)$]: Représente le \og rate of change \fg{} \textit{(angl.)} de la fonction.
 	\item[$\frac{\partial^{2}}{\partial\theta^{2}} \mathcal{L}(\theta)$]: Représente la concavité de la fonction; on peut y penser comme sa \og curve \fg{}.
 \end{description}
 
@@ -399,6 +399,7 @@ et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qu
 
 %%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
 %		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
+\columnbreak	
 
 \subsection*{Statistiques d'ordre}
 
@@ -469,6 +470,158 @@ Finalement, on définit la distribution conjointe du minimum et du maximum $\for
 	f_{X_{(1)}, X_{(n)}}(x, y)
 	&=	n (n - 1) [F_{X}(y) - F_{X}(x)]^{n - 2} f_{X}(x) f_{X}(y)
 \end{align*}
+
+\pagebreak
+
+\section*{Modèles linéaires en actuariat}
+
+\subsection*{Régression linéaire simple}
+
+\begin{definitionNOHFILL}[Modèle de régression linéaire simple]
+\begin{align*}
+	Y_{i} 
+	&=	\beta_{0} + \beta_{1} x_{i} + \varepsilon_{i}
+\end{align*}
+\end{definitionNOHFILL}
+
+\subsubsection*{Exemple de compréhension}
+
+On illustre le concept et la signification des paramètres de régression avec cet exemple illustratif
+
+\paragraph{Objectif}	On veut deviner le coût d'une télévision (TV) selon la taille de son écran.
+
+\
+
+L'idée de la "régression" est de deviner, ou "prédire" du mieux qu'on peut le coût d'une TV en fonction de la taille de son écran.
+
+Deviner le coût \textit{exact} d'une TV \textit{seulement} en fonction de la taille de son écran est impossible. Il y a plein de raisons qui déterminent le prix d'une TV, un bon exercice est de réfléchir ce qu'elles pourraient être. 
+J'inclus ci-dessous une liste de quelques raisons, ou "facteurs", qui me sont survenus:
+\begin{itemize}[leftmargin = *]
+	\item	La compagnie qui la produit (Sony vs LG, etc.).
+	\item	La résolution (4K vs 360p).
+	\item	L'année de fabrication (1990 vs 2020).
+	\item	L'endroit de l'achat (Amazon vs BestBuy, Mexique vs Canada, etc.).
+	\item	Le temps de l'année (été vs hiver, Boxing Day, etc.).
+\end{itemize}
+
+Maintenant supposons que je veux jouer à un jeu avec mes amis où qu'ils doivent deviner le coût d'une TV en fonction de sa taille. Ils vont probablement tous me donner des différentes réponses.
+
+Si je créé un modèle de prévision, je dois être systématique et toujours deviner le même prix pour une même taille d'écran---même si la prévision est erronée. 
+
+Alors supposons que je change le jeu un peu et stipule que la personne qui devine le prix le plus éloigné doit prendre une gorgée de sa bière. Les réponses de mes amis vont probablement se ressembler un peu plus mais il y a un problème qui demeure---je veux que les prévisions soit proportionnelles à la taille de l'écran. C'est-à-dire, si mon ami devine qu'une TV de 25" coûte 100\$, je m'attend à ce qu'il devine qu'une TV de 50" coûte 200\$.
+
+La raison est qu'une régression \textbf{linéaire} \textit{simple} est simplement une droite:
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp3720388407437436] 
+\draw  (50,144.67) -- (219.83,144.67)(75.83,33) -- (75.83,165) (212.83,139.67) -- (219.83,144.67) -- (212.83,149.67) (70.83,40) -- (75.83,33) -- (80.83,40)  ;
+%Straight Lines [id:da45260329028360524] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
+
+% Text Node
+\draw (246,142.67) node   [align=left] {\shortstack{taille de\\ l'écran $x$}};
+% Text Node
+\draw (54,34.67) node   [align=left] {\shortstack{coût de la \\TV $Y$}};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+L'intuition est que mon ami se base uniquement sur la taille de l'écran comme information pour deviner le cout. Un régression \textbf{linéaire} simple applique un facteur \textbf{multiplicatif}. Il ne peut pas se dire que le plus grand l'écran de la TV, le plus le prix va augmenter---ceci serait une régression avec un paramètre \textbf{exponentiel}. 
+
+On crée donc un facteur surnommé "paramètre". Dans le cas d'une régression linéaire simple, on a deux paramètres d'intérêts: un "niveau de base" $\beta_{0}$ et un "multiplicateur" $\beta_{1}$:
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp3720388407437436] 
+\draw  (50,144.67) -- (219.83,144.67)(75.83,33) -- (75.83,165) (212.83,139.67) -- (219.83,144.67) -- (212.83,149.67) (70.83,40) -- (75.83,33) -- (80.83,40)  ;
+%Straight Lines [id:da45260329028360524] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
+
+% Text Node
+\draw (246,142.67) node   [align=left] {\shortstack{taille de\\ l'écran $x$}};
+% Text Node
+\draw (54,34.67) node   [align=left] {\shortstack{coût de la \\TV $Y$}};
+
+% Text Node
+\draw (64,115) node  [font=\footnotesize] [align=left] {$\beta _{0}$};
+% Text Node
+\draw (161,72) node  [font=\small,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\hat{Y} =\ \beta _{0} \ +\ \beta _{1} x$};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+On suppose qu'une TV doit coûter au moins un certain prix. Ce "niveau de base" est l'intercepte sur le graphique ci-dessus surnommé l'ordonnée $\beta_{0}$. De mon gré, je suppose au moins $\beta_{0} = 200\$$ pour cet exemple. 
+
+Ensuite, le multiplicateur va multiplier la taille de l'écran pour obtenir un prix. Ce paramètre représente donc la pente $\beta_{1}$. De mon gré, je suppose une pente de $\beta_{1} = 2\$$ pour cet exemple. 
+
+Le coût (l'axe des $Y$) est la variable qui dépend de la taille---c'est la variable "dépendante" $Y$. Le taille (l'axe des $x$) est la variable que l'on connait indépendament du coût---c'est la variable "indépendante" $x$. 
+
+Finalement la droite elle-même est le coût que le modèle devine $\hat{Y}$. Le chapeau signifie que c'est une estimation, ou "prévision".
+
+Par exemple, le modèle devine que le prix d'une TV de 50" est de 300\$; soit, $\hat{Y} = \beta_{0} + \beta_{1} x = 200 + (2) \cdot (50) = 300$. Selon le modèle, on estime que le coût de la TV est de 300\$.
+
+Maintenant, si je savais le \textit{vrai} coût réel $Y$ je pourrais mesurer à quel point je suis dans le champ. Je suppose que le vrai coût est de $Y = 400\$$. Alors, l'erreur dans ma prédiction est de $\varepsilon = 400 - 300 = 100\$$. 
+
+Graphiquement:
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp0590336014536994] 
+\draw  (50,141.82) -- (219.83,141.82)(75.5,28.33) -- (75.5,169.33) (212.83,136.82) -- (219.83,141.82) -- (212.83,146.82) (70.5,35.33) -- (75.5,28.33) -- (80.5,35.33) (100.5,136.82) -- (100.5,146.82)(125.5,136.82) -- (125.5,146.82)(150.5,136.82) -- (150.5,146.82)(175.5,136.82) -- (175.5,146.82)(200.5,136.82) -- (200.5,146.82)(70.5,116.82) -- (80.5,116.82)(70.5,91.82) -- (80.5,91.82)(70.5,66.82) -- (80.5,66.82) ;
+\draw   ;
+%Straight Lines [id:da6064475343931128] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
+%Flowchart: Connector [id:dp8477117117153217] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (167.73,94.81) .. controls (165.68,93.14) and (165.38,90.12) .. (167.05,88.07) .. controls (168.72,86.02) and (171.74,85.71) .. (173.79,87.39) .. controls (175.84,89.06) and (176.15,92.08) .. (174.48,94.13) .. controls (172.8,96.18) and (169.79,96.49) .. (167.73,94.81) -- cycle ;
+%Flowchart: Connector [id:dp4707804099581703] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (167.73,67.81) .. controls (165.68,66.14) and (165.38,63.12) .. (167.05,61.07) .. controls (168.72,59.02) and (171.74,58.71) .. (173.79,60.39) .. controls (175.84,62.06) and (176.15,65.08) .. (174.48,67.13) .. controls (172.8,69.18) and (169.79,69.49) .. (167.73,67.81) -- cycle ;
+%Shape: Brace [id:dp37242003440355953] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (165.5,64.33) .. controls (161.93,64.4) and (160.18,66.22) .. (160.25,69.79) -- (160.25,69.79) .. controls (160.35,74.89) and (158.61,77.47) .. (155.04,77.54) .. controls (158.61,77.47) and (160.45,79.99) .. (160.54,85.08)(160.5,82.79) -- (160.54,85.08) .. controls (160.61,88.65) and (162.43,90.4) .. (166,90.33) ;
+
+% Text Node
+\draw (285,147.67) node   [align=left] {\shortstack{taille de l'écran $\displaystyle x$}};
+% Text Node
+\draw (63,16.67) node   [align=left] {\shortstack{coût de la TV $\displaystyle Y$}};
+% Text Node
+\draw (256,100) node  [font=\footnotesize,color={rgb, 255:red, 189; green, 16; blue, 224 }  ,opacity=1 ] [align=left] {$\displaystyle \hat{Y} \ =\ 200\ +\ 2\cdot 50=300\$$};
+% Text Node
+\draw (55,117.33) node   [align=left] {$\displaystyle 200$};
+% Text Node
+\draw (56,92.33) node   [align=left] {$\displaystyle 300$};
+% Text Node
+\draw (55,66.33) node   [align=left] {$\displaystyle 400$};
+% Text Node
+\draw (205,51) node  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle Y\ =400\$$};
+% Text Node
+\draw (123,73.33) node  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle  \begin{array}{{>{\displaystyle}l}}
+\varepsilon =400-300\\
+\ \ =100
+\end{array}$};
+æ	
+\end{tikzpicture}
+\end{center}
+
+On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" théorique pour obtenir une variable dépendante $Y$ en fonction de: 
+\begin{itemize}
+	\item	Une variable indépendante $x$ multipliée par un facteur $\beta_{1}$.
+	\item	Un niveau de base l'intercepte $\beta_{0}$.
+	\item	Une erreur aléatoire inconnue.
+\end{itemize}
 
 \end{multicols*}
 
