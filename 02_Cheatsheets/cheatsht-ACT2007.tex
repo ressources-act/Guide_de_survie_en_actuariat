@@ -219,7 +219,7 @@ Woolhouse
 	\item	La réserve est négative pour les frais si $e_{0} > e_{k}$.
 \end{itemize}
 
-\subsubsection{Primes}
+\subsubsection*{Primes}
 \begin{description}
 	\item[$P^{e}$]	Chargement pour les frais;
 	\item[$P^{g}$]	Prime nivelée pour un contrat avec des frais;
@@ -230,10 +230,36 @@ Woolhouse
 \end{description}
 
 
+\subsection*{Prime FTP}
+\begin{align*}
+	\pi_{0}^{\text{FTP}}
+	&=	v \qx{[x]}
+\end{align*}
 
+Contrat vie entière
+\begin{align*}
+	\pi^{\text{FTP}}	_{i}
+	&=	\frac{A_{[x] + 1}}{\ax**{[x] + 1}}, 	\,	i = 1, 2, 3, \dots	
+\end{align*}
 
+Contrat temporaire
+\begin{align*}
+	\pi^{\text{FTP}}	_{i}
+	&=	\frac{A_{\nthtop{1}{[x] + 1}:\angl{n - 1}}}{\ax**{\nthtop{1}{[x] + 1}:\angl{n - 1}}}, 	\,	i = 1, 2, 3, \dots	\\
+\end{align*}
 
-% -------------------------------------------------------------
-% Fin de la feuille aide-mémoire
+\newpage
+
+\section{Modèles à plusieurs états}
+
+\begin{description}
+	\item	$\px[t]{x}^{ij}$	probabilité qu'un individu dans l'état $i$ au temps $x$ soit dans l'état $j$ (où $j$ peut être égale à $i$) au temps $x + t$.
+	\item	$\px[t]{x}^{\overline{ij}}$	probabilité qu'un individu dans l'état $i$ au temps $x$ reste dans dans l'état $i$ continument jusqu'au temps $x + t$.
+\end{description}
+
+Donc, où l'état $0$ est la vie et $1$ la mort, $\px[t]{x}$ devient $\px[t]{x}^{\overline{00}}$ (ou $\px[t]{x}^{00}$ puisque décéder est un état absorbant) avec la nouvelle notation et $\qx[t]{x}$ devient $\px[t]{x}^{01}$.
+
+%%%	Lire l'ASM de MLC pour apprendre la section.
+
 \end{multicols*}
 \end{document}

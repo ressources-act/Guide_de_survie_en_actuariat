@@ -670,6 +670,20 @@ Un exemple d'application de la similarité du Cosinus est l'analyse de texte. On
 
 \subsection*{Hierarchical clustering}
 
+\subsection*{Paramètres}
+Un paramètre est appris par l'entraînement.\\
+Un hyperparamètre informe l'entraînement comme tel et est fixé à l'avance. \\
+Par exemple, $k$ est un hyperparamètre dans le $K$-NN, et c'est le seul.
+
+\subsection*{Échantillonage}
+Pour atténuer le problème de débalancement:
+\begin{description}
+	\item[sur-échantillonnage]	dupliquer au hasard des observations sous observées.
+	\item[sous-échantillonnage]	ignorer une partie des observations ayant l'étiquette plus fréquemment rencontrée.
+\end{description}
+D'une manière ou l'autre, le jeu de données étudié est alors plus balancé.
+
+
 \end{multicols*}
 %% -----------------------------
 %% Fin du document

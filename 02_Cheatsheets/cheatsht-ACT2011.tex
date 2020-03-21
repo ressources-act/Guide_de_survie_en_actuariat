@@ -1991,9 +1991,9 @@ En bref, on \textbf{achète l'actif} et \textbf{emprunte de l'argent}:
 	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
 	\hline\rowcolor{airforceblue} 
 		\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{Flux au temps $0$}}	&	\textcolor{white}{\textbf{Flux au temps $T$}}	\\
-		Acheter un actif			&	$-S(0)$	&	$+S(T)$	\\
-		Emprunter de l'argent	&	$+S(0)$	&	$-S(0)\textrm{e}^{rT} = -F_{0, T}$	\\\hline
-		Net des flux monétaires	&	$0$	&	$S(T) - F_{0, T}$	\\\hline
+		Acheter un actif			&	$-S_{0}$	&	$+S_{t}$	\\
+		Emprunter de l'argent	&	$+S_{0}$	&	$-S_{0}\textrm{e}^{rT} = -F_{0, T}$	\\\hline
+		Net des flux monétaires	&	$0$	&	$S_{t} - F_{0, T}$	\\\hline
 	\end{tabular}
 \end{center}
 
@@ -2853,12 +2853,13 @@ L'équation pour un arbre standard suffit de remplacer les paramètres:
 	\item[Hypothèse]	Les rendements composés continûment sur des périodes disjointes, mais de même longueur $h$, sont i.i.d.;
 	\item[$r_{t, t + h}$]	le \textbf{rendement composé continûment entre $t$ et $t + h$}.
 		\begin{align*}
-		r_{t, t + h} &= \log\left(\frac{S_{t + h}}{S_{t}}\right)
+		r_{t, t + h} &= \ln\left(\frac{S_{t + h}}{S_{t}}\right)
 		\end{align*}
 \end{description}
 \end{distributions}
 
-On suppose $n$ rendements, sur une période de $h$ années, composés continûment $r_{t, t + h}, r_{t + h, t + 2h}, \dots, r_{t + (n - 1)h, t + nh}$. On peut estimer la volatilité historique avec:
+On suppose $n$ rendements, sur une période de $h$ années, composés continûment $r_{t, t + h}, r_{t + h, t + 2h}, \dots, r_{t + (n - 1)h, t + nh}$. \\
+On peut estimer la volatilité historique avec:
 
 \begin{align*}
 	s_{h}
@@ -2879,6 +2880,966 @@ Donc $s_{h}$ estime $\sigma_{h}$ et $\bar{r}_{h}$ estime $\mu_{h}$ où:
 
 Pour changer d'une base annuelle (le défaut de $h$) à une base quelconque, on divise par $h$ puisqu'il faut additionner $\frac{1}{h}$ rendements. \\
 Par exemple, sous base mensuelle $h = \frac{1}{12}$ on a $\sigma = s_{1/12}\sqrt{12}$ ou sous base hebdomadaire $h = \frac{1}{52}$ on a $\sigma = s_{1/52}\sqrt{52}$.
+
+\newpage
+
+\section{Modèle binomial d’évaluation des options: sujets sélectionnés}
+
+\subsection*{Compréhension de l'exercice hâtif}
+
+Avec un exercice hâtif, le détenteur d'une option d'achat:
+\begin{enumerate}[leftmargin = *]
+	\item	Reçoit l'action et donc les dividendes futurs.	\\
+			Donc, on souhaite que $\delta$ augmente.
+	\item	Paie le prix d'exercice avant expiration et donc subit des coûts d'intérêt.	\\
+			Donc, on ne souhaite pas que $r$ augmente.
+	\item	Perd l'assurance implicite à l'option.	\\
+			Donc, on ne souhaite pas que $\sigma$ augmente.
+\end{enumerate}
+
+Le plus la volatilité $\sigma$ est élevée, le plus élevé (faible) le prix de l'action auquel on va exercer l'option d'achat (de vente).\\
+
+Si la valeur de l'assurance est nulle ($\sigma = 0$) et que $T \rightarrow \infty$, on lève l'option d'achat si $\delta S_{T} > r K$; c'est-à-dire, si la valeur des dividendes est supérieure à l'intérêt accumulé sur le prix d'exercice.\\
+
+Pour une option de vente, c'est l'inverse.
+
+\subsection*{Compréhension de l'évaluation neutre au risque}
+
+\begin{distributions}[Notation]
+\begin{itemize}[leftmargin = *]
+	\item[$r$]	force d'intérêt sans risque;
+	\item[$\delta$]	force de dividendes;
+	\item[$\alpha$]	force de rendement espéré sur l'action;
+%	\item[]	$\alpha > r$ gain en capital + dividendes
+%	\item[$p$]	vraie probabilité (que $S_{T}$ passe à $u^{*}S_{T}$).
+\end{itemize}
+\end{distributions}
+
+\begin{description}
+	\item[Aversion au risque]	Souhaite maximiser le rendement espéré $\text{E}[R]$ tout en \textit{minimisant} le risque $\sigma^{2}_{R}$.
+	\item[Indifférence au risque]	Souhaite maximiser le rendement espéré $\text{E}[R]$ et est \textit{indifférent} au risque $\sigma^{2}_{R}$.
+	\item[Exemple]	Soit 2 investissements: 1 000\$ assuré ou 2 000\$ avec une probabilité de 50\% et 0\$ avec une probabilité de 50\%.\\
+					Un investisseur avec une \textit{aversion} au risque préfère la première option, car elle est moins risquée.	\\
+					Un investisseur avec une \textit{indifférence} au risque est indifférent à la première ou la deuxième option, car le rendement espéré des deux options est égal.
+\end{description}
+
+Donc une évaluation neutre au risque suppose que les investisseurs sont indifférents au risque \textbf{même s'ils ne le sont pas}.
+
+%%%	------------------------------------
+%%%	NOTE
+%%%	+	Pas couvert le bout sur \gamma puisque pas jugé nécessaire.
+%%%	------------------------------------
+
+\subsection*{L'arbre binomial et la lognormalité}
+
+Il y a 3 problèmes qui empêchent la modélisation du prix de l'action avec une marche aléatoire:
+\begin{conceptgen}{Problèmes}
+\begin{enumerate}[leftmargin = *]
+	\item	Le prix de l'action \textbf{peut devenir négatif} s'il y a suffisamment de mouvements vers le bas. 
+	\item	La magnitude d'un mouvement devrait dépendre de: la \textbf{fréquence} des mouvements et le \textbf{niveau} du prix de l'action.
+		\begin{itemize}[leftmargin = *]
+		\item	Il n'est pas réaliste d'avoir le prix d'une action monter ou baisser de 60\$ en une journée.
+		\end{itemize}
+	\item	Le \textbf{rendement} sur l'action devrait, en moyenne, \textbf{être positif}.
+\end{enumerate}
+\end{conceptgen}
+
+%%%	------------------------------------
+%%%	NOTE
+%%%	+	Pas couvert la distance carrée du point du départ qui est de n.
+%%%	------------------------------------
+
+
+Le modèle binomial est une variante du modèle de marche aléatoire qui résout ces problèmes; il suppose que les rendements composés continûment sont une \textbf{marche aléatoire avec dérive}. 
+Le rendement a 2 composantes: une \textit{certaine} $(r - \delta)h$ et une \textit{incertaine} $\pm \sigma \sqrt{h}$.
+
+Le modèle règle donc les problèmes :
+\begin{conceptgen}{Problèmes}
+\begin{enumerate}[leftmargin = *]
+	\item	Le \textbf{prix} de l'action \textbf{ne peut pas être négatif}.
+	\item	Si les \textbf{mouvements} du prix de l'action sont \textbf{plus fréquents}, $h$ se rapetisse et les mouvements du prix deviennent \textbf{plus petits}. 
+	\item	On peut garantir un \textbf{prix positif}. 
+		\begin{itemize}[leftmargin = *]
+		\item	Ceci, car il y a une composante certaine et que l'on choisit la probabilité d'une augmentation du prix.
+		\end{itemize}
+\end{enumerate}
+\end{conceptgen}
+
+\subsubsection*{Lognormalité}
+
+%%%	------------------------------------
+%%%	NOTE
+%%%	+	Pas couvert la probabilité de la i-ème node qui est une distribution binomial.
+%%%	------------------------------------
+
+Lorsqu'on traverse un arbre binomial, on additionne implicitement les composantes de rendements $(r - \delta)h \pm \sigma \sqrt{h}$. Cette somme de variables aléatoires binomiales tend, lorsque $n \rightarrow \infty$ (ou, de façon équivalente, $h \rightarrow 0$), vers une normale.
+Il en résulte que les rendements composés continûment sont approximativement normalement distribués et donc que le prix de l'action a une distribution (approximativement) lognormale.
+
+\subsubsection*{Arbres binomiaux alternatifs}
+Il y existe d'autres façons de construire un arbre binomial qui mènent à des mouvements de $u$ et $d$ différents:
+
+\begin{center}
+\begin{tabular}{|	>{\columncolor{airforceblue}}c	| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Méthode}}	&	\textcolor{white}{\textbf{Mouvement}}	&	\textcolor{white}{\textbf{Notes}}		\\\specialrule{0.1em}{0em}{0.0em} 
+\textcolor{white}{Arbre à terme}		&	$\textrm{e}^{(r - \delta)h \pm \sigma \sqrt{h}}$	&	$u > \textrm{e}^{(r - \delta)h} > d$	\\\hline
+\textcolor{white}{\shortstack{Arbre de\\ Cox-Ross-Rubenstein}}	&	$\textrm{e}^{\pm \sigma \sqrt{h}}$	&	$ud = 1$	\\\hline
+\textcolor{white}{Arbre lognormal}	&	$\textrm{e}^{(r - \delta - \frac{1}{2}\sigma^{2})h \pm \sigma \sqrt{h}}$	&	$p^{*} \approx \frac{1}{2}$	\\\hline
+\end{tabular}
+\end{center}
+\paragraph{Note}	Il est possible qu'avec un arbre de Cox-Ross-Rubenstein, si $h$ est gros et $\sigma$ petit, $\textrm{e}^{rh} > \textrm{e}^{\sigma\sqrt{h}}$.
+
+Malgré que toutes les différentes méthodes mènent à des prix différents lorsque $n$ est fini, elles tendent vers le même prix lorsque $n \rightarrow \infty$. De plus, malgré que les mouvements $u$ et $d$ sont différents, le ratio des facteurs $\frac{u}{d}$ est le même:
+\begin{align*}
+	\frac{u}{d}
+	&=	\textrm{e}^{2\sigma\sqrt{h}}
+\end{align*}
+
+Alors, peu importe la méthode utilisée pour construire l'arbre, la distance proportionnelle entre $u$ et $d$ mesure la volatilité.
+
+\subsubsection*{Est-ce un modèle réaliste?}
+\begin{conceptgen}{Hypothèses}
+Il y a des hypothèses douteuses à la distribution lognormale des prix:
+\begin{enumerate}[label = \alph*), leftmargin = *]
+	\item	Volatilité $\sigma$ constante.
+	\item	Pas de grandes variations spontanées.
+	\item	Indépendance entre les rendements composés continûment.
+\end{enumerate}
+
+\tcbline
+
+En pratique, aucune de ces hypothèses n'est vérifiée. Le modèle n'est pas parfait, mais sert plutôt de bon point de départ.
+\end{conceptgen}
+
+\newpage
+
+\section{Modèle lognormale}
+
+\begin{rappel}{Rappels de la distribution normale}
+Si $X \sim \mathcal{N}(m, v^{2})$ alors $Z = \frac{X - m}{v} \sim \mathcal{N}(0, 1)$.\\
+
+On définit $Pr(Z \le x) = N(x)$.
+Rappel que la distribution normale est symétrique et donc $N(-x) = 1 - N(x)$.
+\end{rappel}
+
+\begin{rappel}{Rappels de la distribution lognormale}
+Lorsque $Y = \textrm{e}^{X}$ alors $Y \sim LN(m,v^{2})$.\\
+
+Rappel que les deux premiers moments sont obtenus de la FGM de la distribution normale et ne sont \textbf{\textit{pas}} les paramètres:
+\begin{align*}
+	\text{E}[Y]
+	&=	\textrm{e}^{m + \frac{1}{2}v^{2}}	&
+	\text{Var}(Y)
+	&=	\left(\text{E}[Y]\right)^{2} \left(\textrm{e}^{v^{2}} - 1\right)	\\
+\end{align*}
+
+\tcbline
+
+2 propriétés intéressantes de la distribution lognormale:
+\begin{enumerate}[leftmargin = *]
+	\item	La variable aléatoire ne peut pas être négative puisque $\textrm{e}^{X} \ge 0$.
+		\begin{itemize}[leftmargin = *]
+		\item	Donc supposer que les prix d'actions suivent une distribution lognormale suppose que les prix ne peuvent pas être négatifs (une hypothèse réaliste).
+		\end{itemize}
+	\item	Le \textit{produit} (et non la somme) de deux variables aléatoires lognormale est une variable aléatoire.
+		\begin{itemize}[leftmargin = *]
+		\item	$X_{1} + X_{2} \sim \mathcal{N}$
+		\item	$\textrm{e}^{X_{1}} 	\times \textrm{e}^{X_{2}} \sim LN$
+		\end{itemize}
+\end{enumerate}
+\end{rappel}
+
+%\columnbreak
+
+\subsection*{Modèle lognormale pour le prix d'une action}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$R(0, t)$]	Rendement sur l'action composé continûment;
+	\item[$\ln\left(\frac{S_{t}}{S_{0}}\right)$]	Gains en capitaux;
+	\item[$\delta t$]	Dividend yield;
+	\item[$\alpha$]	Rendement espéré sur l'action composé continûment;
+	\item[$\alpha - \delta$]	Parfois noté comme le taux d'appréciation.
+\end{description}
+\end{distributions}
+
+\begin{conceptgen}{Hypothèses}
+Pour modéliser le prix d'une action avec le modèle lognormale, on doit poser:
+\begin{enumerate}[leftmargin = *]
+	\item	Le rendement composé continûment d'une action $R(0, t)$ suit une distribution normale.
+			\begin{itemize}[leftmargin = *]
+			\item	Soit une action achetée au temps $0$ pour $S_{0}$\$ et vendue au temps $t$ pour $S_{t}$\$.
+			\item	Le rendement composé continûment équivaut à la somme des \textbf{gains en capitaux} $\ln\left(\frac{S_{t}}{S_{0}}\right)$ et du \textbf{dividend yield} $\delta t$.
+			\item	Donc, $R(0, t) = \ln\left(\frac{S_{t}}{S_{0}}\right) + \delta t$.
+			\end{itemize}
+	\item	Les rendements de l'action sont indépendants entre périodes de temps.
+\end{enumerate}
+\end{conceptgen}
+
+\begin{definitionNOHFILL}[Distribution]
+Avec l'hypothèse d'une distribution normale des rendements, on obtient:
+
+\begin{align*}
+	\ln\left(\frac{S_{t}}{S_{0}}\right) 
+	&\sim	\mathcal{N}\left(m = \Big(\alpha - \delta - \frac{1}{2}\sigma^{2}\Big)t, v^{2} = \sigma^{2}t\right)	\\
+	\ln(S_{t}) 
+	&\sim	\mathcal{N}\left(m = \ln(S_{0}) + \Big(\alpha - \delta - \frac{1}{2}\sigma^{2}\Big)t, v^{2} = \sigma^{2}t\right)	\\
+	S_{t} 
+	&=	S_{0}\textrm{e}^{(\alpha - \delta - \frac{1}{2}\sigma^{2})t + \sigma\sqrt{t}Z}
+\end{align*}
+
+\tcbline
+
+On obtient la deuxième équation en traitant $\ln(S_{0})$ comme une constante connue.\\
+On obtient la troisième équation avec la relation $X = m + vZ$.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Moyenne variance et covariance]
+Avec la distribution lognormale, on obtient:
+\begin{align*}
+	\text{E}[S_{t}]
+	&=	S_{0}\textrm{e}^{(\alpha - \delta)t}	\\
+	\text{Var}(S_{t})
+	&=	\left(\text{E}[S_{t}]\right)^{2} \left(\textrm{e}^{\sigma^{2}t} - 1\right)	\\
+	Cov(S_{t}, S_{t})
+	&=	\text{E}\left[\frac{S_{t}}{S_{t}}\right] \cdot \text{Var}(S_{t})	
+	=	\textrm{e}^{(\alpha - \delta)(T - t)} \text{Var}(S_{t})
+\end{align*}
+\end{definitionNOHFILL}
+
+\begin{distributions}[Trouver le $p$-ème percentile de $S_{t}$]
+\begin{enumerate}[leftmargin = *]
+	\item	Trouver le percentile correspondant $z_{\alpha}$ de la distribution normale standard $Z$.
+	\item	Insérer le percentile correspondant de $Z$ dans l'équation pour $S_{t}$.
+\end{enumerate}
+\tcbline
+\paragraph{Note}	Utiliser la même approche pour trouver un intervalle de prévision.
+\end{distributions}
+
+%\columnbreak
+
+\subsection*{Tarification d'options avec une action lognormale}
+
+On pose:
+\begin{align*}
+	\hat{d}_{1}
+	&=	\left(
+			\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta {\color{blue}+} \frac{1}{2}\sigma^{2})t}
+	 			 {\sigma\sqrt{t}}
+		\right)	\\
+	\hat{d}_{2}
+	&=	\left(
+			\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta {\color{red}+} \frac{1}{2}\sigma^{2})t}
+	 			 {\sigma\sqrt{t}}
+		\right)
+	=	\hat{d}_{1} - \sigma \sqrt{t}
+\end{align*}
+
+\begin{distributions}[Trouver une probabilité pour $S_{t}$]
+\begin{align*}
+	\Pr(S_{t} < K) 
+	&=	N(-\hat{d_{2}})
+\end{align*}
+\end{distributions}
+
+\begin{algo}{Comment trouver une probabilité avec $S_{t}$}
+\begin{enumerate}[leftmargin = *]
+	\item	Isoler la distribution normale $\ln\left(\frac{S_{t}}{S_{0}}\right)$;
+		\begin{align*}
+		\Pr(S_{t} < K)
+		&\equiv	\Pr\left( \ln\frac{S_{t}}{S_{0}} < \ln\frac{S_{t}}{S_{0}} \right)
+		\end{align*}
+	\item	Centrer et réduire pour obtenir la distribution normale standard $Z$.
+		\begin{align*}
+		\Pr(S_{t} < K)
+		&\equiv	\Pr\left( \frac{\ln\frac{S_{t}}{S_{0}} - m}{v} < \frac{\ln\frac{K}{S_{0}} - (\alpha - \delta - \frac{1}{2}\sigma^{2})t}{\sigma\sqrt{t}}\right)	\\
+		&=	\Pr\left( Z < - {\color{teal}\left(
+				\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta - \frac{1}{2}\sigma^{2})t}{\sigma\sqrt{t}}\right)}
+				\right)	\\
+		&=	\Pr\left( Z < - {\color{teal}\hat{d_{2}}}\right)	\\
+		&=	N(-\hat{d_{2}})
+		\end{align*}
+\end{enumerate}
+\end{algo}
+
+\begin{conceptgen}{Espérance conditionnelle du prix de l'action}
+%Nous avons l'espérance du prix lorsque l'action est hors-du-cours et dans le cours
+\begin{align*}
+	\text{E}[S_{t} | S_{t} < K]
+	&=	\frac{\text{PE}[S_{t} | S_{t} < K]}{\Pr(S_{t} | S_{t} < K)}
+	=	\frac{S_{0}\textrm{e}^{(\alpha - \delta)t}N(-\hat{d}_{1})}{N(-\hat{d}_{2})}	\\
+	\text{E}[S_{t} | S_{t} > K]
+	&=	\frac{\text{PE}[S_{t} | S_{t} > K]}{\Pr(S_{t} | S_{t} > K)}
+	=	\frac{S_{0}\textrm{e}^{(\alpha - \delta)t}N(+\hat{d}_{1})}{N(+\hat{d}_{2})}
+\end{align*}
+\end{conceptgen}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\gamma$]	Rendement espéré sur l'option composé continûment.
+		\begin{itemize}[leftmargin = *]
+		\item	Typiquement, $\gamma$ est inconnu et donc il est difficile de trouver le prix d'une option.
+		\item	En lieu, on utilise l'approche d'évaluation neutre au risque.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Prix d'options européennes]
+\begin{align*}
+	C(K)
+	&=	\textrm{e}^{-\gamma T}\text{E}[\text{valeur à l'échéance de l'option d'achat}]	\\
+	&=	\textrm{e}^{-\gamma T} \left( S_{0} \textrm{e}^{(\alpha - \delta)T}N(\hat{d}_{1}) - K N(\hat{d}_{2})\right)	\\
+	P(K)
+	&=	\textrm{e}^{-\gamma T}\text{E}[\text{valeur à l'échéance de l'option de vente}]	\\
+	&=	\textrm{e}^{-\gamma T} \left(K N(-\hat{d}_{2}) - S_{0}\textrm{e}^{(\alpha - \delta)T}N(-\hat{d}_{1})	\right)
+\end{align*}
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Tarification neutre au risque}
+On pose à la fois le rendement sur les options $\gamma$ et sur les actions $\alpha$ comme étant égale au taux sans risque ${\color{teal}r}$.
+
+On pose:
+\begin{align*}
+	d_{1}
+	&=	\left(
+			\frac{\ln\frac{S_{0}}{K} + ({\color{teal}r} - \delta {\color{blue}+} \frac{1}{2}\sigma^{2})t}
+	 			 {\sigma\sqrt{t}}
+		\right)	\\
+	d_{2}
+	&=	\left(
+			\frac{\ln\frac{S_{0}}{K} + ({\color{teal}r} - \delta {\color{red}+} \frac{1}{2}\sigma^{2})t}
+	 			 {\sigma\sqrt{t}}
+		\right)
+	=	d_{1} - \sigma \sqrt{t}
+\end{align*}
+
+%%%	---------------------
+%%%	NOTE
+%%%	+	Qu'est-ce que la "mesure"?
+%%%	---------------------
+La seule modification apportée est de remplacer $\alpha$ par ${\color{teal}r}$; en bref:
+\begin{itemize}
+	\item	$\hat{d}_{1}$ et $\hat{d}_{2}$ suivent la véritable mesure en utilisant $\alpha$;
+	\item	$d_{1}$ et $d_{2}$ suivent la mesure \textbf{neutre au risque} en utilisant ${\color{teal}r}$.
+\end{itemize}
+
+\begin{definitionNOHFILL}[Formule de Black-Scholes pour le prix d'options européennes]
+En remplaçant $\gamma$ et $\alpha$ par ${\color{teal}r}$ on obtient la \textbf{formule de Black-Scholes}:
+
+\begin{align*}
+	C(K)
+	&=	S_{0} \textrm{e}^{- \delta T} N(\hat{d}_{1}) - K\textrm{e}^{-rT} N(\hat{d}_{2})	\\
+	P(K)
+	&=	K\textrm{e}^{-rT} N(-\hat{d}_{2}) - S_{0}\textrm{e}^{-\delta T}N(-\hat{d}_{1})	
+\end{align*}
+\end{definitionNOHFILL}
+\tcbline
+\paragraph{Note}	On identifie par un astérisque (*) ce qui est une mesure neutre au risque.
+\end{conceptgen}
+
+\begin{conceptgen}{Énoncés équivalents}
+\begin{itemize}[leftmargin = *]
+	\item	Le modèle de Black-Scholes s'applique.
+	\item	Le prix de l'action suit un modèle lognormale.
+	\item	$\ln\left(\frac{S_{t}}{S_{0}}\right) \sim \mathcal{N}\left(m = \Big(\alpha - \delta - \frac{1}{2}\sigma^{2}\Big)t, v^{2} = \sigma^{2}t\right)$.
+	\item	$S_{t} =	S_{0}\textrm{e}^{(\alpha - \delta - \frac{1}{2}\sigma^{2})t + \sigma\sqrt{t}Z}$.
+\end{itemize}
+\end{conceptgen}
+
+%\columnbreak
+
+\subsection*{Estimation du rendement et de la volatilité}
+
+\begin{definitionNOHFILL}[Estimation des paramètres de la distribution lognormale]
+On obtient les estimations des paramètres avec $n + 1$ observations de prix historiques $S_{0}, S_{1}, \dots, S_{n}$ à un intervalle de longueur $h$.
+\begin{enumerate}
+	\item	Calculer les rendements composés continûment.
+		\begin{align*}
+		r_{i}
+		&=	\ln\frac{S_{i}}{S_{(i - 1)}}, \, \forall i = 1, 2, \dots, n
+		\end{align*}
+	\item	Calculer la moyenne de l'échantillon des rendements.
+		\begin{align*}
+		\bar{r}
+		&=	\frac{\overset{n}{\underset{i = 1}{\sum}} r_{i}}{n}	
+		\underset{\tiny{\shortstack{prop. des log}}}{\equiv}	\frac{\ln\frac{S_{n}}{S_{0}}}{n}
+		\end{align*}
+	\item	Estimer l'écart-type des rendements.
+		\begin{align*}
+		\hat{\sigma}_{h}
+		&=	\sqrt{\frac{\overset{n}{\underset{i = 1}{\sum}} (r_{i} - \bar{r})^{2}}{n - 1}}
+		\end{align*}
+	\item	Mettre l'estimation de l'écart-type sous base annuelle.
+		\begin{align*}
+		\hat{\sigma}
+		&=	\frac{\hat{\sigma}_{h}}{\sqrt{h}}
+		\end{align*}
+	\item	Mettre l'estimation du rendement espéré sous base annuelle.
+		\begin{align*}
+		\text{E}\left[\ln\frac{S_{t + h}}{S_{t}}\right]
+		&=
+		\left(\hat{\alpha} - \delta - \frac{1}{2} \hat{\sigma}^{2}\right)h	
+		=	\bar{r}	\\
+		\therefore \hat{\alpha}	&=	\frac{\bar{r}}{h} + \delta + \frac{1}{2} \hat{\sigma}^{2}
+		\end{align*}
+\end{enumerate}
+\end{definitionNOHFILL}
+
+\columnbreak
+
+\subsection*{Formule de Black-Scholes généralisée}
+\begin{conceptgen}{Hypothèses de la formule de Black-Scholes}
+\begin{center}
+	\textbf{Sur la distribution de l'action sous-jacente}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Le rendement composé continûment sur l'action a une distribution normale et est indépendant avec le temps.
+	\item	La volatilité est connue et constante.
+	\item	Les futurs dividendes sont connus.
+\end{itemize}
+\tcbline
+\begin{center}
+	\textbf{Sur l'environnement économique}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Le taux sans risque est connu et constant.
+	\item	Il n'y a pas d'impôt	 ni de frais de transactions.
+	\item	Il n'y a aucun coût relié à la vente à découvert.
+	\item	Les investisseurs peuvent emprunter et prêter au taux sans risque.
+\end{itemize}
+\end{conceptgen}
+
+\begin{definitionNOHFILL}[Formule de Black-Scholes généralisée]
+Équations généralisées :
+
+\begin{align*}
+	d_{1}
+	&=	\left(
+			\frac{\ln\frac{F^{P}(S)}{F^{P}(K)} {\color{blue}{+}} \frac{1}{2} \sigma^{2} T}
+	 			 {\sigma\sqrt{T}}
+		\right)	&
+	d_{2}
+	&=	\left(
+			\frac{\ln\frac{F^{P}(S)}{F^{P}(K)} {\color{red}{-}} \frac{1}{2} \sigma^{2} T}
+	 			 {\sigma\sqrt{T}}
+		\right)	
+	\equiv	d_{1} - \sigma \sqrt{t}	\\
+\end{align*}
+
+Prix d'options \textbf{européennes} selon la formule de Black-Scholes:
+
+\begin{align*}
+	C(K)
+	&=	F^{P}(S) N(d_{1}) - F^{P}(K) N(d_{2})	\\
+	P(K)
+	&=	F^{P}(K) N(-d_{2}) - F^{P}(S) N(-d_{1})	
+\end{align*}
+
+\tcbline
+\textbf{Notes}
+\begin{align*}
+	\sigma
+	&=	\sqrt{\frac{\text{Var}(\ln F^{P}_{t, T}(S))}{t}}	
+	\equiv	\sqrt{\frac{\text{Var}(\ln F_{t, T}(S))}{t}}	
+	\equiv	\sqrt{\frac{\text{Var}(\ln S_{t})}{t}}, \, \forall 0 < t \le T	\\
+\end{align*}
+
+\begin{description}
+	\item[$\ln S_{t}$]	\textbf{Volatilité de l'action} ou, de façon équivalente, volatilité du rendement sur l'action composé continûment.
+\end{description}
+\end{definitionNOHFILL}
+
+\subsection*{Options sur d'autres sous-jacents}
+
+Avec la formule généralisée, on peut appliquer la formule de Black-Scholes à d'autres sous-jacents. Il y a quelques considérations à prendre dans un tel cas pour option sur:
+\begin{description}
+	\item[Contrats à terme standardisés]	Il peut arriver que la date d'échéance---$T$---de l'option ne soit pas la même que la date d'échéance---$T'$---du contrat à terme standardisé sur un actif quelconque $Q$. \\
+			Dans un tel cas, il faut que $T' \ge T$ et qu'on actualise le prix à terme $F_{0, T'}(Q)$ à partir de $T$ (et non $T'$).
+			\begin{align*}
+			F^{P}_{0, T}(F)	
+			&=	F_{0, T'}(Q) \textrm{e}^{-rT}	&
+			F^{P}_{0, T}(K)
+			&=	K \textrm{e}^{-rT}	\\
+			\end{align*}
+	\item[Devises]	Les prix à terme prépayés doivent être dans la même devise que l'option.
+\end{description}
+
+%%%	-------------------------
+%%%	NOTE
+%%%	+	Ajouter clarification sur le K =/= nécessairment à F_{0, T'}(Q) et r =/= nécessairement \delta.
+%%%	+	Compléter pour devises lorsque les notes de cours seront rendues disponibles.
+%%%	-------------------------
+
+
+\subsection*{Diagrammes du profit avant échéance}
+Nous avons précédemment tracé des diagrammes de profit de valeur à l'échéance pour les options \textbf{à l'expiration}. Nous allons maintenant étendre ceci pour tracer les diagrammes \textbf{avant expiration}.
+
+L'idée est la même qu'auparavant mais on remplace la valeur à l'échéance par la valeur de revente de l'option
+
+Pour tracer les diagrammes, on fait varier les prix en maintenant fixe les dates.
+
+Nous illustrons ceci avec 2 stratégies:
+
+\begin{definitionNOHFILL}[Achat et revente d'une option d'achat]
+Crée en :
+\begin{itemize}[leftmargin = *]
+	\item	Achetant l'option d'achat au temps $t_{1}$
+	\item	Vendant l'option d'achat au temps $t_{2}$
+\end{itemize}
+
+\begin{description}
+	\item[Valeur à $t_{2}$]	
+		\begin{align*}
+		&=	\text{Prix de revente}	\\
+		&=	C(S_{t_{2}}, K, \sigma, r, T - t_{2}, \delta)
+		\end{align*}
+	\item[Profit à $t_{2}$]	
+		\begin{align*}
+		&=	\text{Prix de revente} - \text{Prix d'achat à $t_{1}$ accumulé à $t_{2}$}	\\
+		&=	C(S_{t_{2}}, K, \sigma, r, T - t_{2}, \delta) - C(S_{t_{1}}, K, \sigma, r, T - t_{1}, \delta) \textrm{e}^{r(t_{2} - t_{1})}
+		\end{align*}
+\end{description}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Écart horizontal]
+Crée en :
+\begin{itemize}[leftmargin = *]
+	\item	Vendant une option venant à échéance à $t_{1}$.
+	\item	Achetant une option identique sauf pour la date d'échéance de $t_{2}$.
+\end{itemize}
+
+\begin{description}
+	\item[Coût initial]	Pour des options d'achat on obtient:
+		\begin{align*}
+		&=	C(S, K, \sigma, r, T_{2}, \delta) - C(S, K, \sigma, r, T_{1}, \delta) 
+		\end{align*}
+\end{description}
+
+\tcbline
+%%%	--------------------
+%%%	NOTE
+%%%	+	Détailler davantage le contexte / profit / raisons pour
+%%%	--------------------
+\textbf{Notes}
+\begin{itemize}[leftmargin = *]
+	\item	Permet de spéculer sur la volatilité de l'action.\\
+			Typiquement utilisé lorsqu'un investisseur croit que, entre deux prix d'exercice, le prix va rester fixe.
+	\item	\og \textit{calendar spread} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsection*{Volatilité implicite}
+\hl{à compléter}
+%%%	---------------
+%%%	NOTE
+%%%	+	Manque volatility skew, etc.
+%%%	+	Plus de détails sur le contexte général.
+%%%	+	Utilité.
+%%%	---------------
+
+\begin{itemize}[leftmargin = *]
+	\item	La volatilité n'est pas observable et sont estimation est problématique.
+	\item	La volatilité \textit{historique} ne prévoit pas le futur.
+	\item	On peut donc isoler la volatilité \textit{implicite} avec le prix observé de l'action et la formule de Black-Scholes.
+%	\item	Malgré que la volatilité est supposée constante dans la formule, elle varie avec le prix d'exercice $K$ et la date d'échéance $T$.
+%	\item	En voyant le marché des options comme un marché qui transige la volatilité, on peut la révéler.\\
+%			Selon cette théorie, les prix d'options révèlent les attentes du marché de la distribution des prix d'actions dans le futur.
+\end{itemize}
+\begin{description}
+	\item[Volatilité implicite]	La valeur de $\sigma$ telle que la formule de Black-Scholes reproduit le prix de l’option observé sur le marché.
+\end{description}
+
+%%%	--------------------
+%%%	PAS CADRE DU COURS
+%\subsection*{Perpetual american options}
+%\hl{à compléter}
+%%%	--------------------
+
+
+\newpage
+
+
+\section*{Les grecs de l'option}
+
+\begin{center}
+\begin{tabular}{|	>{\columncolor{airforceblue}}c	| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}m{0.5\columnwidth}  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Grec}}	&	\textcolor{white}{\textbf{Définition}}	&	\textcolor{white}{\textbf{Mesure le changement de la valeur ($V$)}}		\\\specialrule{0.1em}{0em}{0.0em} 
+$\Delta$	&	$\deriv{S}{V}$	&	de l'option par une augmentation (de 1\$) du prix de l'action.	\\
+$\Gamma$	&	$\deriv{S}{\Delta} \equiv \deriv[2]{S}{V}$	&	du Delta par une augmentation (de 1\$) du prix de l'action.	\\
+$\theta/365$	&	$\deriv{t}{V}$	&	de l'option par une baisse (d'un jour) de la date d'échéance.	\\
+\textbf{Vega}	&	$\deriv{\sigma}{V}$	&	de l'option par une augmentation (de 1\%) de la volatilité.	\\
+$\rho/100$	&	$\deriv{r}{V}$	&	de l'option par une augmentation (de 1\%) du taux sans risque.	\\
+$\psi/100$	&	$\deriv{\delta}{V}$	&	de l'option par une augmentation (de 1\%) de la force de dividende.	\\
+\end{tabular}
+\end{center}
+
+Notes
+\begin{itemize}[leftmargin = *]
+	\item	Si on fait référence au \og Delta \fg{} d'une option, on suppose la position longue.\\
+			De même pour tous les autres grecs.
+\end{itemize}
+
+\subsection*{Grecs}
+
+\begin{definitionNOHFILL}[Delta $\Delta	=	\deriv{S}{V}$]
+Mesure la variation du prix de l'option correspondante à une augmentation du prix de l'action.
+
+\tcbline
+
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Expressions du Delta pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Delta_{C}
+	&=	\textrm{e}^{-\delta T} N(d_{1})	\\
+	\Delta_{P}
+	&=	-\textrm{e}^{-\delta T} N(-d_{1})	
+\end{align*}
+\end{gather}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Domaine}
+\end{center}
+\begin{gather}
+\begin{align*}
+	0 \le \Delta_{C} \le 1	\\
+	-1 \le \Delta_{P} \le 0	
+\end{align*}
+\end{gather}
+\end{minipage}
+
+\tcbline
+%Lien entre delta d'options de vente et d'achat:
+%\begin{align*}
+%	C - P	&=	S\textrm{e}^{-\delta T} - K\textrm{e}^{-rT}	\\
+%	\deriv{S}{C} - \deriv{S}{P}	&=	\deriv{S}{} (S\textrm{e}^{-\delta T}) - \deriv{S}{} (K\textrm{e}^{-rT})	\\
+%	\Delta_{C} - \Delta_{P}	&=	\textrm{e}^{-\delta T}
+%\end{align*}
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Le Delta $\Delta_{C}$ ($\Delta_{P}$) peut être interprété comme le nombre d'actions à acheter (vendre) pour répliquer une option d'achat (de vente).
+	\item	Une option d'achat devient de plus en plus profitable lorsque le prix de l'action sous-jacente augmente. \\
+			Alors, $\Delta_{C}$ se rapproche de 0 lorsque l'option est hors du cours ($S_{T} < K$) et de 1 lorsqu'elle est dans le cours ($S_{T} > K$).\\
+			Cependant, le $\Delta_{C}$ ne sera jamais négatif car l'option d'achat a un seuil minimal de 0 pour sa valeur à l'échéance.\\
+			De même, $\Delta_{P}$ ne sera jamais positif.
+	\item	Dans les deux cas, le $\Delta$ augmente avec le prix de l'action.
+	\item	Mathématiquement, le domaine est restreint puisque $0 \le N(x) \le 1, \forall x$ et $0 \le e^{-\delta T} \le 1$.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Gamma $\Gamma = \deriv{S}{\Delta} \equiv \deriv[2]{S}{V}$]
+Mesure la variation du Delta de l'option correspondante à une augmentation du prix de l'action.
+
+\tcbline
+
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Expressions du Gamma pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Gamma_{C}
+	&=	\Gamma_{P}
+	=	\textrm{e}^{-\delta T} N'(d_{1}) \frac{1}{S \sigma \sqrt{T}}	
+\end{align*}
+\end{gather}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Domaine}
+\end{center}
+\begin{gather}
+\begin{align*}
+	0 \le \Gamma_{C} = \Gamma_{P}
+\end{align*}
+\end{gather}
+\end{minipage}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Le $\Gamma$ mesure le \textit{taux} de variation du $\Delta$.\\
+			Puisque le $\Delta$ augmente toujours, le $\Gamma$ est toujours positif.
+	\item	Le $\Gamma$ est maximisé au cours du marché car c'est où le $\Delta$ connait le plus de variation.
+		\begin{center}
+		\includegraphics[scale=0.4]{src/ACT-2011/gamma-delta-greek.png}
+		\end{center}
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Theta $\theta	=	\deriv{t}{V}$]
+Mesure la variation du prix de l'option correspondante à l'écoulement du temps.
+
+\tcbline
+
+\begin{center}
+	\textbf{Expressions du Theta pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\theta_{C}
+	&=	\delta S \textrm{e}^{-\delta (T - t)} N(d_{1}) - 
+		r K \textrm{e}^{-r (T - t)} N(d_{2})	-
+		\frac{K\textrm{e}^{-r (T - t)} N'(d_{2}) \sigma}{2\sqrt{T - t}}	\\
+	\theta_{P}
+	&=	\theta_{C} + 
+		r K \textrm{e}^{-r (T - t)}	-
+		\delta S \textrm{e}^{-\delta (T - t)} 
+\end{align*}
+\end{gather}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	La valeur d'une option décroît avec le temps. \\
+			$\theta$ estime de combien, ceteris paribus, la valeur décroît par jour.
+	\item	Ce faisant, $\theta$ est habituellement \textbf{négatif}.\\
+			Il est \textit{possible} qu'il soit négatif pour une option \underline{profondément} dans le cours du marché ayant un taux de dividende \underline{très} élevé.
+	\item	Pour obtenir la variation en valeur par jour, il suffit de diviser $\theta$ par 365.
+	\item	\textbf{T}heta pour \textbf{t}emps.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Vega $Vega	=	\deriv{\sigma}{V}$]
+Mesure la variation du prix de l'option correspondante à une augmentation de la volatilité de l'action.
+\tcbline
+
+\begin{center}
+	\textbf{Expression du Vega pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	Vega_{C}
+	&=	Vega_{P}
+	=	S \textrm{e}^{-\delta T} N'(d_{1}) \sqrt{T}
+\end{align*}
+\end{gather}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Une augmentation de la volatilité mène toujours à une augmentation des prix d'options.\\
+			Il s'ensuit que le Vega sera toujours positif et augmente avec la volatilité.
+	\item	Pour obtenir la variation en pourcentage, il suffit de diviser $Vega$ par 100.
+	\item	\textbf{V}ega pour \textbf{v}olatilité.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Rho $\rho	=	\deriv{r}{V}$]
+Mesure la variation du prix de l'option correspondante à une augmentation du taux sans risque.
+
+\tcbline
+
+\begin{center}
+	\textbf{Expression du Rho pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\rho_{C}
+	&=	T K \textrm{e}^{-r T} N(d_{2})	&
+	\rho_{P}
+	&=	-T K \textrm{e}^{-r T} N(-d_{2})
+\end{align*}
+\end{gather}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Une augmentation du taux sans risque $r$ fait baisser la valeur actualisée du prix d'exercice $K\textrm{e}^{-rT}$.\\
+			Selon la formule de Black-Scholes, baisser $K\textrm{e}^{-rT}$ fait \textbf{augmenter} la valeur d'une option d'achat mais \textbf{baisser} celle d'une option de vente.\\
+			Donc, $\rho_{C} > 0$ et $\rho_{P} < 0$.
+	\item	Pour obtenir la variation en pourcentage, il suffit de diviser $\rho$ par 100.
+	\item	\textbf{R}ho pour taux sans \textbf{r}isque.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Psi $\psi	=	\deriv{\delta}{V}$]
+Mesure la variation du prix de l'option correspondante à une augmentation du taux de dividendes.
+
+\tcbline
+
+\begin{center}
+	\textbf{Expression du Psi pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\psi_{C}
+	&=	- T S \textrm{e}^{-\delta T} N(d_{1})	&
+	\psi_{P}
+	&=	T S \textrm{e}^{-\delta T} N(-d_{1})
+\end{align*}
+\end{gather}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Une augmentation du taux de dividendes $\delta$ fait baisser la valeur actualisée du prix de l'action $S\textrm{e}^{-\delta T}$.\\
+			Selon la formule de Black-Scholes, baisser $S\textrm{e}^{-\delta T}$ fait \textbf{baisser} la valeur d'une option d'achat mais \textbf{augmenter} celle d'une option de vente.\\
+			Donc, $\psi_{C} < 0$ et $\psi_{P} > 0$.
+	\item	Pour obtenir la variation en pourcentage, il suffit de diviser $\psi$ par 100.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\columnbreak
+
+\subsubsection*{Portefeuille}
+
+Le grecque d'un portefeuille composé de $N$ options sur une même action, avec $n_{i}$ options de chaque type, est simplement la somme des grecques:
+\begin{align*}
+	\text{Grec}_{\text{ptf.}}
+	&=	\overset{N}{\underset{i = 1}{\sum}} n_{i} \text{Grec}_{i}	
+\end{align*}
+
+\subsection*{Élasticité}
+
+
+\begin{definitionNOHFILL}[Élasticité $\Omega	=	\frac{\Delta S}{V}$]
+Mesure le pourcentage de variation du prix de l'option correspondante au pourcentage d'augmentation du prix de l'action.
+
+\tcbline
+
+\begin{center}
+	\textbf{Élasticité}
+\end{center}
+\begin{align*}
+		\Omega
+		&=	\frac{\text{\% variation du prix de l'option}}{\text{\% variation du prix de l'action}}	
+		=	\frac{{\color{teal}(V_{t} - V_{0})}/V_{0}}{{\color{teal}(S_{t} - S_{0})}/S_{0}}	\\
+		&=	{\color{teal}\Delta} \cdot \frac{S_{0}}{V_{0}}
+		=	\frac{\Delta S}{V}
+\end{align*}
+
+\begin{center}
+	\textbf{Bornes}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Omega_{C}	&\ge		1	&
+	\Omega_{P}	&\le		0
+\end{align*}
+\end{gather}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Pour obtenir l'élasticité par augmentation de 1\% du prix de l'action, diviser par 100---$\Omega/100$.
+	\item	Le $\Delta$ peut être vu comme $\Delta = \frac{\text{variation du prix de l'option}}{\text{variation du prix de l'action}}$ et donc l'Omega évalue le \% au lieu du montant.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsubsection*{Rendement sur l'option $\gamma$}
+Pour un portefeuille réplicatif on a que $V = \Delta S + B$. \\
+Avec ceci on trouve:
+\begin{description}
+	\item[\% investit dans l'action sous-jacente]	$\% \text{ action} = \frac{\Delta S}{V} = \Omega$.
+	\item[\% investit dans l'actif sans risque]	$\% \text{ actif} = \frac{B}{V} = 1 - \Omega$.
+	\item[Rendement espéré instantané sur l'option $\gamma$]	On pondère les rendements sur l'action et l'actif:
+		\begin{align*}
+		\gamma 
+		&=	(\% \text{ action}) \alpha + (\% \text{ actif}) r	\\
+		&=	\Omega \alpha + (1 - \Omega) r
+		\end{align*}
+\end{description}
+
+\subsubsection*{Prime de risque}
+Une \textbf{prime de risque} est l'excès du rendement espéré d'un actif au taux sans risque.
+\begin{description}
+	\item[Prime de risque sur l'action]	$\alpha - r$
+	\item[Prime de risque sur l'option]	$\gamma - r \equiv \Omega (\alpha - r)$
+\end{description}
+
+\subsubsection*{Volatilité}
+Puisqu'un actif sans risque n'a aucune volatilité, la volatilité de l'option va seulement dépendre sur celle de l'action.\\
+Pour l'obtenir, on pondère la volatilité de l'action par la valeur absolue de $\Omega$:
+\begin{align*}
+	\sigma_{\text{option}}
+	&=	| \Omega | \sigma_{\text{action}}
+\end{align*}
+
+\subsubsection*{Ratio de Sharpe}
+Le \textbf{ratio de Sharpe} d'un actif est le ratio de sa prime de risque à sa volatilité.
+\begin{description}
+	\item[Ratio de Sharpe de l'action]	
+		\begin{align*}
+		\text{\o}_{\text{action}}	
+		&=	\frac{\alpha - r}{\sigma_{\text{action}}}
+		\end{align*}
+	\item[Ratio de Sharpe de l'option]	
+		\begin{align*}
+		\text{\o}_{\text{option}}	
+		&=	\frac{\gamma - r}{\sigma_{\text{option}}}	
+		\equiv	\frac{\Omega}{|\Omega|}\sigma_{\text{option}}	
+		\end{align*}
+\end{description}
+Puisque $\Omega$ est positif pour les option d'achat et négatif pour les options de vente:
+\begin{align*}
+	\text{\o}_{C}	&=	\text{\o}_{\text{action}}	&
+	\text{\o}_{P}	&=	-\text{\o}_{\text{action}}
+\end{align*}
+
+\subsubsection*{Portefeuille}
+
+L'élasticité d'un portefeuille composé de $n$ options est simplement la moyenne pondérée de l'élasticité de chaque type d'option. Donc, avec $\omega_{i}$\% du portefeuille investi dans l'option $i$, on a:
+\begin{align*}
+	\Omega_{\text{ptf.}}
+	&=	\overset{n}{\underset{i = 1}{\sum}} \omega_{i} \Omega_{i}, \: \text{où } \omega_{i} = \text{\# acheté} \times \frac{V_{i}}{V_{\text{ptf}}}
+\end{align*}
+
+On peut également le calculer avec les paramètres du portefeuille $\Omega_{\text{ptf.}} = \frac{\Delta_{\text{ptf.}}S}{V_{\text{ptf.}}}$.
+
+
+\subsection*{Approximation}
+
+\begin{itemize}[leftmargin = *]
+	\item	On peut approximer la variation du prix de l'option avec les grecques. 
+	\item	Le Delta \textit{varie avec le prix} et donc est seulement valide comme approximation du prix pour des très petites variations. \\
+			En considérant le Gamma, l'approximation devient valide pour des plus grandes variations.
+	\item	Cependant, la meilleure approximation se fait en incluant Theta pour considérer \textit{l'effet du temps}.
+\end{itemize}
+
+\begin{definitionNOHFILL}[Approximation Delta-Gamma-Theta]
+\begin{align*}
+	V_{t + h}
+	&\approx	V_{t} + \Delta_{t} \varepsilon + \frac{1}{2} \Gamma_{t} \varepsilon^{2} + \theta_{t} h	
+\end{align*}
+
+\tcbline
+
+\textbf{Notes}
+\begin{itemize}[leftmargin = *]
+	\item	$\varepsilon$ est la variation du prix.
+	\item	$h$ et $\theta$ doivent être dans la même unité de temps.
+	\item	$\theta$ diminue l'approximation car il est habituellement négatif.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+
 
 \end{multicols*}
 
