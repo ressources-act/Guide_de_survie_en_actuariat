@@ -220,7 +220,7 @@ Dans la section précédente, on évalue les méthodes pour évaluer la \textbf{
 Cependant, comment obtenons-nous des estimateurs pour les évaluer?
 
 Plusieurs méthodes existent pour établir des estimateurs, de plus plusieurs méthodes existent pour estimer des paramètres.
-La méthode vu dans le cadre du cours de statistique est la \textbf{méthode fréquentiste}, le cours de mathématiques IARD 1 (ACT-2005) présente \textbf{l'estimation Bayésienne}.
+La méthode vu dans le cadre du cours de statistique est la \textbf{méthode fréquentiste}, le cours de mathématiques IARD 1 (ACT-2005) présente \textbf{l'estimation bayésienne}.
 
 Avant de le faire, nous présentons quelques concepts:
 \begin{description}
@@ -404,8 +404,8 @@ et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qu
 \subsection*{Statistiques d'ordre}
 
 Soit un échantillon aléatoire de taille $n$.
-Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.
-Les crochets sont utilisés pour distinguer la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.
+Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.\\
+Les crochets sont utilisés pour différencier la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.\\
 
 Nous sommes habituellement intéressés au minimum $X_{(1)}$ et le maximum $X_{(n)}$.
 
@@ -450,11 +450,42 @@ De façon plus générale, on défini:
 Nous pouvons également définir quelques autres statistiques d'intérêt :
 
 \begin{description}
-	\item[$R = X_{(n)} - X_{(1)}$: ] Amplitude échantillonnale, où \textbf{l'étendue} (Range) est la différence entre le minimum et le maximum d'un échantillon.
+	\item[$R = X_{(n)} - X_{(1)}$: ] \textbf{L'étendu}e (range) est la différence entre le minimum et le maximum d'un échantillon.
+		\begin{itemize}[leftmargin = *]
+		\item	L'utilité de l'étendue est limitée puisqu'elle est très sensible aux données extrêmes.
+		\item	Par exemple, supposons qu’on observe des données historiques de température pour le 1er septembre. \\
+				En moyenne, la température est de $16\degree C$, mais nous avons un cas extrême de $-60\degree C$ en 1745.\\
+				L'étendue sera de $86\degree C$ ce qui n'est très représentatif des données.\\
+				Donc, dans ce contexte, la mesure n'est pas d'une très grande utilité.
+		\end{itemize}
 	\item[$M = \frac{X_{(n)} + X_{(1)}}{2}$: ] \textbf{mi-étendue} (Midrange), est la moyenne entre le minimum et le maximum d'un échantillon.
+		\begin{itemize}[leftmargin = *]
+		\item	Pour comprendre ce que représente la mi-étendue, on la compare à la moyenne arithmétique.
+		\item	La moyenne arithmétique considère les données observées et calcule leur moyenne.\\
+				Il s'ensuit qu'elle ne considère pas les chiffres qui ne sont pas observés.
+		\item	La mi-étendue considère \textbf{tous} les chiffres, observés ou non, entre la plus grande et la plus petite valeur d'un échantillon et en prend la moyenne.		
+		\end{itemize}
 \end{description}
 
-De plus, nous pouvons définir la \textbf{médiane} en termes de statistiques d'ordre:
+\begin{conceptgen}{Exemple sur les statistiques d'ordre}
+Soit un échantillon de données météorologiques $\{-30\degree, -24\degree, -7\degree, -23\degree, +5\degree\}$ (celsius).
+
+Je suppose que ce sont des températures du 4 février observées lors des dernières années.
+\begin{itemize}[leftmargin = *]
+	\item	La moyenne arithmétique ($-22.25\degree C$) m'intéresse, car je peux savoir, en moyenne, ce qu'est la température le 4 février.
+	\item	La mi-étendue ($-12.5\degree C$), tout comme l'étendue ($-35\degree C$), ne m'intéresse pas puisqu'elle ne prend pas en considération la vraisemblance des différentes températures.
+\end{itemize}
+
+Maintenant, je suppose que ces données sont des températures observées tout au long de l'hiver passé.
+\begin{itemize}[leftmargin = *]
+	\item	La moyenne arithmétique ne m'intéresse pas puisqu'elle est beaucoup trop biaisée par les températures de cette même journée. 
+	\item	Cependant, la mi-étendue et l'étendue me donnent maintenant une meilleure idée de la température de l'hiver.
+\end{itemize}
+
+L'important à retenir est que l'utilité des mesures dépend de la situation. Également, ceci est un exemple \textbf{très} simpliste et dans tous les cas on ne peut pas tirer de conclusions sur les températures de l'hiver à partir d'une seule journée.
+\end{conceptgen}
+
+Nous pouvons définir la \textbf{médiane} en termes de statistiques d'ordre:
 \begin{align*}
 	\text{Med}
 	&=	\left\{
@@ -506,9 +537,9 @@ J'inclus ci-dessous une liste de quelques raisons, ou "facteurs", qui me sont su
 
 Maintenant supposons que je veux jouer à un jeu avec mes amis où qu'ils doivent deviner le coût d'une TV en fonction de sa taille. Ils vont probablement tous me donner des différentes réponses.
 
-Si je créé un modèle de prévision, je dois être systématique et toujours deviner le même prix pour une même taille d'écran---même si la prévision est erronée. 
+Si je crée un modèle de prévision, je dois être systématique et toujours deviner le même prix pour une même taille d'écran---même si la prévision est erronée. 
 
-Alors supposons que je change le jeu un peu et stipule que la personne qui devine le prix le plus éloigné doit prendre une gorgée de sa bière. Les réponses de mes amis vont probablement se ressembler un peu plus mais il y a un problème qui demeure---je veux que les prévisions soit proportionnelles à la taille de l'écran. C'est-à-dire, si mon ami devine qu'une TV de 25" coûte 100\$, je m'attend à ce qu'il devine qu'une TV de 50" coûte 200\$.
+Alors, supposons que je change le jeu un peu et stipule que la personne qui devine le prix le plus éloigné doit prendre une gorgée de sa bière. Les réponses de mes amis vont probablement se ressembler un peu plus, mais il y a un problème qui demeure---je veux que les prévisions soit proportionnelles à la taille de l'écran. C'est-à-dire, si mon ami devine qu'une TV de 25" coûte 100\$, je m'attends à ce qu'il devine qu'une TV de 50" coûte 200\$.
 
 La raison est qu'une régression \textbf{linéaire} \textit{simple} est simplement une droite:
 \begin{center}
@@ -533,7 +564,7 @@ La raison est qu'une régression \textbf{linéaire} \textit{simple} est simpleme
 
 \end{center}
 
-L'intuition est que mon ami se base uniquement sur la taille de l'écran comme information pour deviner le cout. Un régression \textbf{linéaire} simple applique un facteur \textbf{multiplicatif}. Il ne peut pas se dire que le plus grand l'écran de la TV, le plus le prix va augmenter---ceci serait une régression avec un paramètre \textbf{exponentiel}. 
+L'intuition est que mon ami se base uniquement sur la taille de l'écran comme information pour deviner le coût. Une régression \textbf{linéaire} simple applique un facteur \textbf{multiplicatif}. Il ne peut pas se dire que le plus grand l'écran de la TV, le plus le prix va augmenter---ceci serait une régression avec un paramètre \textbf{exponentiel}. 
 
 On crée donc un facteur surnommé "paramètre". Dans le cas d'une régression linéaire simple, on a deux paramètres d'intérêts: un "niveau de base" $\beta_{0}$ et un "multiplicateur" $\beta_{1}$:
 \begin{center}
@@ -566,7 +597,7 @@ On suppose qu'une TV doit coûter au moins un certain prix. Ce "niveau de base" 
 
 Ensuite, le multiplicateur va multiplier la taille de l'écran pour obtenir un prix. Ce paramètre représente donc la pente $\beta_{1}$. De mon gré, je suppose une pente de $\beta_{1} = 2\$$ pour cet exemple. 
 
-Le coût (l'axe des $Y$) est la variable qui dépend de la taille---c'est la variable "dépendante" $Y$. Le taille (l'axe des $x$) est la variable que l'on connait indépendament du coût---c'est la variable "indépendante" $x$. 
+Le coût (l'axe des $Y$) est la variable qui dépend de la taille---c'est la variable "dépendante" $Y$. La taille (l'axe des $x$) est la variable que l'on connaît indépendamment du coût---c'est la variable "indépendante" $x$. 
 
 Finalement la droite elle-même est le coût que le modèle devine $\hat{Y}$. Le chapeau signifie que c'est une estimation, ou "prévision".
 
