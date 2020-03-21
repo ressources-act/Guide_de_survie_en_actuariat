@@ -519,13 +519,13 @@ Finalement, on définit la distribution conjointe du minimum et du maximum $\for
 
 On illustre le concept et la signification des paramètres de régression avec cet exemple illustratif
 
-\paragraph{Objectif}	On veut deviner le coût d'une télévision (TV) selon la taille de son écran.
+\paragraph{Objectif}	On veut deviner le coût d'une télévision (télé) selon la taille de son écran.
 
 \
 
-L'idée de la "régression" est de deviner, ou "prédire" du mieux qu'on peut le coût d'une TV en fonction de la taille de son écran.
+L'idée de la "régression" est de deviner, ou "prédire" du mieux qu'on peut le coût d'une télé en fonction de la taille de son écran.
 
-Deviner le coût \textit{exact} d'une TV \textit{seulement} en fonction de la taille de son écran est impossible. Il y a plein de raisons qui déterminent le prix d'une TV, un bon exercice est de réfléchir ce qu'elles pourraient être. 
+Deviner le coût \textit{exact} d'une télé \textit{seulement} en fonction de la taille de son écran est impossible. Il y a de nombreuses raisons qui déterminent le prix d'une télé et un bon exercice est de réfléchir à ce qu'elles pourraient être. 
 J'inclus ci-dessous une liste de quelques raisons, ou "facteurs", qui me sont survenus:
 \begin{itemize}[leftmargin = *]
 	\item	La compagnie qui la produit (Sony vs LG, etc.).
@@ -535,13 +535,13 @@ J'inclus ci-dessous une liste de quelques raisons, ou "facteurs", qui me sont su
 	\item	Le temps de l'année (été vs hiver, Boxing Day, etc.).
 \end{itemize}
 
-Maintenant supposons que je veux jouer à un jeu avec mes amis où qu'ils doivent deviner le coût d'une TV en fonction de sa taille. Ils vont probablement tous me donner des différentes réponses.
+Maintenant supposons que tu joues à un jeu avec tes amis où qu'ils doivent deviner le coût d'une télé en fonction de sa taille. Ils vont probablement tous te donner des différentes réponses.
 
-Si je crée un modèle de prévision, je dois être systématique et toujours deviner le même prix pour une même taille d'écran---même si la prévision est erronée. 
+Si tu crées un modèle de prévision, il doit être systématique et toujours deviner le même prix pour la même taille d'écran---même si la prévision est erronée. 
 
-Alors, supposons que je change le jeu un peu et stipule que la personne qui devine le prix le plus éloigné doit prendre une gorgée de sa bière. Les réponses de mes amis vont probablement se ressembler un peu plus, mais il y a un problème qui demeure---je veux que les prévisions soit proportionnelles à la taille de l'écran. C'est-à-dire, si mon ami devine qu'une TV de 25" coûte 100\$, je m'attends à ce qu'il devine qu'une TV de 50" coûte 200\$.
+Alors, supposons que tu changes le jeu un peu et stipules que la personne qui devine le prix le plus éloigné doit prendre une gorgée de sa bière. Les réponses de tes amis vont probablement se ressembler un peu plus, mais il y a un problème qui demeure---tu veux que les prévisions soient proportionnelles à la taille de l'écran. C'est-à-dire, si ton ami devine qu'une télé de 25" coûte 100\$, tu t'attends à ce qu'il devine qu'une télé de 50" coûte 200\$.
 
-La raison est qu'une régression \textbf{linéaire} \textit{simple} est simplement une droite:
+La raison est qu'une régression \textbf{linéaire} \textit{simple} est simplement une ligne droite:
 \begin{center}
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -557,16 +557,16 @@ La raison est qu'une régression \textbf{linéaire} \textit{simple} est simpleme
 % Text Node
 \draw (246,142.67) node   [align=left] {\shortstack{taille de\\ l'écran $x$}};
 % Text Node
-\draw (54,34.67) node   [align=left] {\shortstack{coût de la \\TV $Y$}};
+\draw (54,34.67) node   [align=left] {\shortstack{coût de la \\télé $Y$}};
 
 
 \end{tikzpicture}
 
 \end{center}
 
-L'intuition est que mon ami se base uniquement sur la taille de l'écran comme information pour deviner le coût. Une régression \textbf{linéaire} simple applique un facteur \textbf{multiplicatif}. Il ne peut pas se dire que le plus grand l'écran de la TV, le plus le prix va augmenter---ceci serait une régression avec un paramètre \textbf{exponentiel}. 
+L'intuition est que ton ami se base uniquement sur la taille de l'écran comme information pour deviner le coût. Une régression \textbf{linéaire} simple applique un facteur \textbf{multiplicatif}. Il ne peut pas se dire que plus grand l'écran est grand, plus le prix va augmenter---ceci serait plutôt une régression avec un paramètre \textbf{exponentiel}. 
 
-On crée donc un facteur surnommé "paramètre". Dans le cas d'une régression linéaire simple, on a deux paramètres d'intérêts: un "niveau de base" $\beta_{0}$ et un "multiplicateur" $\beta_{1}$:
+On crée donc un facteur surnommé "paramètre". Dans le cas d'une régression linéaire simple, on a deux paramètres d'intérêts: un "niveau de base" pour le coût $\beta_{0}$ et un "multiplicateur" de la taille d'écran $\beta_{1}$:
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -581,7 +581,7 @@ On crée donc un facteur surnommé "paramètre". Dans le cas d'une régression l
 % Text Node
 \draw (246,142.67) node   [align=left] {\shortstack{taille de\\ l'écran $x$}};
 % Text Node
-\draw (54,34.67) node   [align=left] {\shortstack{coût de la \\TV $Y$}};
+\draw (54,34.67) node   [align=left] {\shortstack{coût de la \\télé $Y$}};
 
 % Text Node
 \draw (64,115) node  [font=\footnotesize] [align=left] {$\beta _{0}$};
@@ -593,17 +593,17 @@ On crée donc un facteur surnommé "paramètre". Dans le cas d'une régression l
 
 \end{center}
 
-On suppose qu'une TV doit coûter au moins un certain prix. Ce "niveau de base" est l'intercepte sur le graphique ci-dessus surnommé l'ordonnée $\beta_{0}$. De mon gré, je suppose au moins $\beta_{0} = 200\$$ pour cet exemple. 
+On suppose qu'une télé doit coûter au moins un certain prix. Ce "niveau de base" est l'intercepte sur le graphique ci-dessus surnommé l'ordonnée $\beta_{0}$. De ton gré, tu supposes au moins $\beta_{0} = 200\$$ pour cet exemple. 
 
-Ensuite, le multiplicateur va multiplier la taille de l'écran pour obtenir un prix. Ce paramètre représente donc la pente $\beta_{1}$. De mon gré, je suppose une pente de $\beta_{1} = 2\$$ pour cet exemple. 
+Ensuite, le multiplicateur va multiplier la taille de l'écran pour obtenir un prix. Ce paramètre représente donc la pente $\beta_{1}$. De ton gré, tu suppose une pente de $\beta_{1} = 2\$$ pour cet exemple. 
 
 Le coût (l'axe des $Y$) est la variable qui dépend de la taille---c'est la variable "dépendante" $Y$. La taille (l'axe des $x$) est la variable que l'on connaît indépendamment du coût---c'est la variable "indépendante" $x$. 
 
 Finalement la droite elle-même est le coût que le modèle devine $\hat{Y}$. Le chapeau signifie que c'est une estimation, ou "prévision".
 
-Par exemple, le modèle devine que le prix d'une TV de 50" est de 300\$; soit, $\hat{Y} = \beta_{0} + \beta_{1} x = 200 + (2) \cdot (50) = 300$. Selon le modèle, on estime que le coût de la TV est de 300\$.
+Par exemple, le modèle devine que le prix d'une télé de 50" est de 300\$; soit, $\hat{Y} = \beta_{0} + \beta_{1} x = 200 + (2) \cdot (50) = 300$. Selon le modèle, on estime que le coût de la télé est de 300\$.
 
-Maintenant, si je savais le \textit{vrai} coût réel $Y$ je pourrais mesurer à quel point je suis dans le champ. Je suppose que le vrai coût est de $Y = 400\$$. Alors, l'erreur dans ma prédiction est de $\varepsilon = 400 - 300 = 100\$$. 
+Maintenant, si tu connais le \textit{vrai} coût réel $Y$ tu peux mesurer à quel point tu est dans le champ. Supposons que le vrai coût est de $Y = 400\$$. Alors, l'erreur dans ta prédiction est de $\varepsilon = 400 - 300 = 100\$$. 
 
 Graphiquement:
 \begin{center}
@@ -627,7 +627,7 @@ Graphiquement:
 % Text Node
 \draw (285,147.67) node   [align=left] {\shortstack{taille de l'écran $\displaystyle x$}};
 % Text Node
-\draw (63,16.67) node   [align=left] {\shortstack{coût de la TV $\displaystyle Y$}};
+\draw (63,16.67) node   [align=left] {\shortstack{coût de la télé $\displaystyle Y$}};
 % Text Node
 \draw (256,100) node  [font=\footnotesize,color={rgb, 255:red, 189; green, 16; blue, 224 }  ,opacity=1 ] [align=left] {$\displaystyle \hat{Y} \ =\ 200\ +\ 2\cdot 50=300\$$};
 % Text Node
@@ -651,7 +651,7 @@ On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" th
 \begin{itemize}
 	\item	Une variable indépendante $x$ multipliée par un facteur $\beta_{1}$.
 	\item	Un niveau de base l'intercepte $\beta_{0}$.
-	\item	Une erreur aléatoire inconnue.
+	\item	Une erreur aléatoire $\varepsilon$ inconnue.
 \end{itemize}
 
 \end{multicols*}
