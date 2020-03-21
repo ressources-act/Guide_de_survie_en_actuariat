@@ -557,7 +557,7 @@ La raison est qu'une régression \textbf{linéaire} \textit{simple} est simpleme
 % Text Node
 \draw (246,142.67) node   [align=left] {\shortstack{taille de\\ l'écran $x$}};
 % Text Node
-\draw (54,34.67) node   [align=left] {\shortstack{coût de la \\télé $Y$}};
+\draw (48,34.67) node   [align=left] {\shortstack{coût de la \\ télé $Y$}};
 
 
 \end{tikzpicture}
@@ -579,9 +579,9 @@ On crée donc un facteur surnommé "paramètre". Dans le cas d'une régression l
 \draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
 
 % Text Node
-\draw (246,142.67) node   [align=left] {\shortstack{taille de\\ l'écran $x$}};
+\draw (246,142.67) node   [align=left] {taille de\\ l'écran $x$};
 % Text Node
-\draw (54,34.67) node   [align=left] {\shortstack{coût de la \\télé $Y$}};
+\draw (54,34.67) node   [align=left] {\shortstack{coût de la \\ télé $Y$}};
 
 % Text Node
 \draw (64,115) node  [font=\footnotesize] [align=left] {$\beta _{0}$};
@@ -606,30 +606,32 @@ Par exemple, le modèle devine que le prix d'une télé de 50" est de 300\$; soi
 Maintenant, si tu connais le \textit{vrai} coût réel $Y$ tu peux mesurer à quel point tu est dans le champ. Supposons que le vrai coût est de $Y = 400\$$. Alors, l'erreur dans ta prédiction est de $\varepsilon = 400 - 300 = 100\$$. 
 
 Graphiquement:
-\begin{center}
+
+
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
 
 %Shape: Axis 2D [id:dp0590336014536994] 
-\draw  (50,141.82) -- (219.83,141.82)(75.5,28.33) -- (75.5,169.33) (212.83,136.82) -- (219.83,141.82) -- (212.83,146.82) (70.5,35.33) -- (75.5,28.33) -- (80.5,35.33) (100.5,136.82) -- (100.5,146.82)(125.5,136.82) -- (125.5,146.82)(150.5,136.82) -- (150.5,146.82)(175.5,136.82) -- (175.5,146.82)(200.5,136.82) -- (200.5,146.82)(70.5,116.82) -- (80.5,116.82)(70.5,91.82) -- (80.5,91.82)(70.5,66.82) -- (80.5,66.82) ;
+\draw  (50,141.82) -- (234.5,141.82)(77.7,28.33) -- (77.7,169.33) (227.5,136.82) -- (234.5,141.82) -- (227.5,146.82) (72.7,35.33) -- (77.7,28.33) -- (82.7,35.33) (102.7,136.82) -- (102.7,146.82)(127.7,136.82) -- (127.7,146.82)(152.7,136.82) -- (152.7,146.82)(177.7,136.82) -- (177.7,146.82)(202.7,136.82) -- (202.7,146.82)(72.7,116.82) -- (82.7,116.82)(72.7,91.82) -- (82.7,91.82)(72.7,66.82) -- (82.7,66.82) ;
 \draw   ;
 %Straight Lines [id:da6064475343931128] 
 \draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
 %Flowchart: Connector [id:dp8477117117153217] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (167.73,94.81) .. controls (165.68,93.14) and (165.38,90.12) .. (167.05,88.07) .. controls (168.72,86.02) and (171.74,85.71) .. (173.79,87.39) .. controls (175.84,89.06) and (176.15,92.08) .. (174.48,94.13) .. controls (172.8,96.18) and (169.79,96.49) .. (167.73,94.81) -- cycle ;
+\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (173.73,93.81) .. controls (171.68,92.14) and (171.38,89.12) .. (173.05,87.07) .. controls (174.72,85.02) and (177.74,84.71) .. (179.79,86.39) .. controls (181.84,88.06) and (182.15,91.08) .. (180.48,93.13) .. controls (178.8,95.18) and (175.79,95.49) .. (173.73,93.81) -- cycle ;
 %Flowchart: Connector [id:dp4707804099581703] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (167.73,67.81) .. controls (165.68,66.14) and (165.38,63.12) .. (167.05,61.07) .. controls (168.72,59.02) and (171.74,58.71) .. (173.79,60.39) .. controls (175.84,62.06) and (176.15,65.08) .. (174.48,67.13) .. controls (172.8,69.18) and (169.79,69.49) .. (167.73,67.81) -- cycle ;
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (173.73,66.81) .. controls (171.68,65.14) and (171.38,62.12) .. (173.05,60.07) .. controls (174.72,58.02) and (177.74,57.71) .. (179.79,59.39) .. controls (181.84,61.06) and (182.15,64.08) .. (180.48,66.13) .. controls (178.8,68.18) and (175.79,68.49) .. (173.73,66.81) -- cycle ;
 %Shape: Brace [id:dp37242003440355953] 
-\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (165.5,64.33) .. controls (161.93,64.4) and (160.18,66.22) .. (160.25,69.79) -- (160.25,69.79) .. controls (160.35,74.89) and (158.61,77.47) .. (155.04,77.54) .. controls (158.61,77.47) and (160.45,79.99) .. (160.54,85.08)(160.5,82.79) -- (160.54,85.08) .. controls (160.61,88.65) and (162.43,90.4) .. (166,90.33) ;
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (171.5,63.33) .. controls (167.93,63.4) and (166.18,65.22) .. (166.25,68.79) -- (166.25,68.79) .. controls (166.35,73.89) and (164.61,76.47) .. (161.04,76.54) .. controls (164.61,76.47) and (166.45,78.99) .. (166.54,84.08)(166.5,81.79) -- (166.54,84.08) .. controls (166.61,87.65) and (168.43,89.4) .. (172,89.33) ;
 
 % Text Node
-\draw (285,147.67) node   [align=left] {\shortstack{taille de l'écran $\displaystyle x$}};
+\draw (275,142.67) node   [align=center] {taille de\\ l'écran $x$};
 % Text Node
-\draw (63,16.67) node   [align=left] {\shortstack{coût de la télé $\displaystyle Y$}};
+\draw (45,34.67) node   [align=center] {coût de la \\ télé $Y$};
+
 % Text Node
-\draw (256,100) node  [font=\footnotesize,color={rgb, 255:red, 189; green, 16; blue, 224 }  ,opacity=1 ] [align=left] {$\displaystyle \hat{Y} \ =\ 200\ +\ 2\cdot 50=300\$$};
+\draw (262,99) node  [font=\footnotesize,color={rgb, 255:red, 189; green, 16; blue, 224 }  ,opacity=1 ] [align=left] {$\displaystyle \hat{Y} \ =\ 200\ +\ 2\cdot 50=300\$$};
 % Text Node
 \draw (55,117.33) node   [align=left] {$\displaystyle 200$};
 % Text Node
@@ -637,15 +639,17 @@ Graphiquement:
 % Text Node
 \draw (55,66.33) node   [align=left] {$\displaystyle 400$};
 % Text Node
-\draw (205,51) node  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle Y\ =400\$$};
+\draw (211,50) node  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle Y\ =400\$$};
 % Text Node
-\draw (123,73.33) node  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle  \begin{array}{{>{\displaystyle}l}}
+\draw (129,72.33) node  [font=\scriptsize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle  \begin{array}{{>{\displaystyle}l}}
 \varepsilon =400-300\\
 \ \ =100
 \end{array}$};
-æ	
+% Text Node
+\draw (178,159.33) node   [align=left] {$\displaystyle 50$};
+
+
 \end{tikzpicture}
-\end{center}
 
 On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" théorique pour obtenir une variable dépendante $Y$ en fonction de: 
 \begin{itemize}
