@@ -443,7 +443,7 @@ De façon plus générale, on défini:
 	f_{X_{(k)}}(x)
 	&=	\frac{n!}{\textcolor{teal}{(k - 1)!} \textcolor{cobalt}{1!} \textcolor{cyan}{(n - k)!}} \textcolor{teal}{\underset{\text{observations } < \ k}{\underbrace{\big[ F_{X}(x) \big]^{k - 1}}}} \textcolor{cobalt}{\overset{\text{observation } = \ k}{\overbrace{f_{X}(x)}}} \textcolor{cyan}{\underset{\text{observations } > \ k}{\underbrace{\big[ S_{X}(x) \big]^{n - k}}}} \\
 	F_{X_{(k)}}(x)
-	&=	\underset{\text{Probabilité qu'au moins } k \text{ des } n \text{ observations } X_{k} \text{ sont } \le \ x}{\underbrace{\sum_{i = 1}^{n} \binom{n}{i} [F_{X}(x)]^{j} [1 - F_{X}(x)]^{n - j}}}
+	&=	\underset{\text{Probabilité qu'au moins } k \text{ des } n \text{ observations } X_{k} \text{ sont } \le \ x}{\underbrace{\sum_{i = r}^{n} \binom{n}{i} [F_{X}(x)]^{j} [1 - F_{X}(x)]^{n - j}}}
 \end{align*}
 \end{algo}
 
@@ -659,5 +659,69 @@ On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" th
 \end{itemize}
 
 \end{multicols*}
+
+\subsection*{Erreur}
+
+\begin{description}
+	\item[Écart-type]	Mesure la variation \underline{entre les observations} d'\textbf{un} ensemble de données.
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{standard deviation} \fg{}.
+		\end{itemize}
+	\item[Erreur type]	Mesure la variation \underline{entre les moyennes} de \textbf{plusieurs} ensembles de données.
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{standard error} \fg{}.
+		\end{itemize}
+\end{description}
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: ; %set diagram left start at 0, and has height of 300
+\path (140,300);
+%Straight Lines [id:da9507328710446465] 
+\draw [color={rgb, 255:red, 47; green, 59; blue, 164 }  ,draw opacity=1 ][line width=0.75]    (299,38) -- (514.5,38) (330,30.5) -- (330,45.5)(361,30.5) -- (361,45.5)(392,30.5) -- (392,45.5)(423,30.5) -- (423,45.5)(454,30.5) -- (454,45.5)(485,30.5) -- (485,45.5) ;
+\draw [shift={(517.5,38)}, rotate = 180] [fill={rgb, 255:red, 47; green, 59; blue, 164 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Flowchart: Connector [id:dp49196443804032897] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (341.93,34.09) .. controls (339.68,36.85) and (340.09,40.91) .. (342.85,43.15) .. controls (345.61,45.4) and (349.66,44.99) .. (351.91,42.23) .. controls (354.16,39.47) and (353.75,35.42) .. (350.99,33.17) .. controls (348.23,30.92) and (344.17,31.33) .. (341.93,34.09) -- cycle ;
+%Straight Lines [id:da16566713463288463] 
+\draw [color={rgb, 255:red, 139; green, 87; blue, 42 }  ,draw opacity=1 ][line width=2.25]    (412.49,54.92) -- (412.49,21.42)(415.49,54.92) -- (415.49,21.42) ;
+%Flowchart: Connector [id:dp2719499728523407] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (366.93,34.09) .. controls (364.68,36.85) and (365.09,40.91) .. (367.85,43.15) .. controls (370.61,45.4) and (374.66,44.99) .. (376.91,42.23) .. controls (379.16,39.47) and (378.75,35.42) .. (375.99,33.17) .. controls (373.23,30.92) and (369.17,31.33) .. (366.93,34.09) -- cycle ;
+%Flowchart: Connector [id:dp38621080351875015] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (423.93,34.09) .. controls (421.68,36.85) and (422.09,40.91) .. (424.85,43.15) .. controls (427.61,45.4) and (431.66,44.99) .. (433.91,42.23) .. controls (436.16,39.47) and (435.75,35.42) .. (432.99,33.17) .. controls (430.23,30.92) and (426.17,31.33) .. (423.93,34.09) -- cycle ;
+%Flowchart: Connector [id:dp524908432272202] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (471.93,34.09) .. controls (469.68,36.85) and (470.09,40.91) .. (472.85,43.15) .. controls (475.61,45.4) and (479.66,44.99) .. (481.91,42.23) .. controls (484.16,39.47) and (483.75,35.42) .. (480.99,33.17) .. controls (478.23,30.92) and (474.17,31.33) .. (471.93,34.09) -- cycle ;
+%Straight Lines [id:da6349212726258848] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=2.25]    (491.83,53.42) -- (346.99,53.42) ;
+%Straight Lines [id:da6027610399276473] 
+\draw [color={rgb, 255:red, 47; green, 59; blue, 164 }  ,draw opacity=1 ][line width=0.75]    (301,127) -- (516.5,127) (332,119.5) -- (332,134.5)(363,119.5) -- (363,134.5)(394,119.5) -- (394,134.5)(425,119.5) -- (425,134.5)(456,119.5) -- (456,134.5)(487,119.5) -- (487,134.5) ;
+\draw [shift={(519.5,127)}, rotate = 180] [fill={rgb, 255:red, 47; green, 59; blue, 164 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Straight Lines [id:da5541928102826961] 
+\draw [color={rgb, 255:red, 139; green, 87; blue, 42 }  ,draw opacity=1 ][line width=2.25]    (414.49,143.92) -- (414.49,110.42)(417.49,143.92) -- (417.49,110.42) ;
+%Straight Lines [id:da8274440427236684] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=2.25]    (439.5,143.92) -- (392.99,143.92) ;
+%Straight Lines [id:da9657797584396934] 
+\draw [color={rgb, 255:red, 223; green, 32; blue, 126 }  ,draw opacity=1 ][line width=2.25]    (392.99,141) -- (392.99,112) ;
+%Straight Lines [id:da5276442707901798] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=2.25]    (398.99,141) -- (398.99,112) ;
+%Straight Lines [id:da913086332256527] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (445.99,141) -- (445.99,112) ;
+%Straight Lines [id:da7555633203437795] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (461.99,141) -- (461.99,112) ;
+
+% Text Node
+\draw (417.83,12) node  [color={rgb, 255:red, 109; green, 61; blue, 19 }  ,opacity=1 ] [align=left] {moyenne};
+% Text Node
+\draw (414.83,66) node   [align=left] {\textcolor[rgb]{0.25,0.46,0.02}{écart-type}};
+% Text Node
+\draw (419.83,101) node  [color={rgb, 255:red, 109; green, 61; blue, 19 }  ,opacity=1 ] [align=left] {moyenne des moyennes};
+% Text Node
+\draw (418.83,156) node   [align=left] {\textcolor[rgb]{0.25,0.46,0.02}{erreur type}};
+
+
+\end{tikzpicture}
+
+\subsection*{Intervalles de confiance}
+
+
+
 
 \end{document}

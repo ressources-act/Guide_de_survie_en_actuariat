@@ -3129,7 +3129,7 @@ On pose:
 		\right)	\\
 	\hat{d}_{2}
 	&=	\left(
-			\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta {\color{red}+} \frac{1}{2}\sigma^{2})t}
+			\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta {\color{red}-} \frac{1}{2}\sigma^{2})t}
 	 			 {\sigma\sqrt{t}}
 		\right)
 	=	\hat{d}_{1} - \sigma \sqrt{t}
@@ -3207,7 +3207,7 @@ On pose:
 		\right)	\\
 	d_{2}
 	&=	\left(
-			\frac{\ln\frac{S_{0}}{K} + ({\color{teal}r} - \delta {\color{red}+} \frac{1}{2}\sigma^{2})t}
+			\frac{\ln\frac{S_{0}}{K} + ({\color{teal}r} - \delta {\color{red}-} \frac{1}{2}\sigma^{2})t}
 	 			 {\sigma\sqrt{t}}
 		\right)
 	=	d_{1} - \sigma \sqrt{t}
@@ -3362,6 +3362,10 @@ Avec la formule généralisée, on peut appliquer la formule de Black-Scholes à
 			&=	K \textrm{e}^{-rT}	\\
 			\end{align*}
 	\item[Devises]	Les prix à terme prépayés doivent être dans la même devise que l'option.
+		\begin{align*}
+		C(x_{0}, K, \sigma, r_{\text{DD}}, T, r_{\text{DÉ}})
+		&=	x_{0} \textrm{e}^{-r_{\text{DÉ}} T}N(d_{1}) - K \textrm{e}^{r_{\text{DD}}T} N(d_{2})	
+		\end{align*}
 \end{description}
 
 %%%	-------------------------

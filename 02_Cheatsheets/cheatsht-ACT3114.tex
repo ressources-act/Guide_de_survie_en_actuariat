@@ -683,6 +683,56 @@ Pour atténuer le problème de débalancement:
 \end{description}
 D'une manière ou l'autre, le jeu de données étudié est alors plus balancé.
 
+\pagebreak
+
+\section{Apprentissage supervisé}
+\pagebreak
+
+\section{Arbres de classification et de régression}
+
+\begin{description}
+	\item[CART]	Classification and Regression Tree.
+\end{description}
+
+\begin{definitionNOHFILL}[Indice de Gini]
+Mesure de la variance totale entre les $K$ classes:
+\begin{align*}
+	G	
+	&=	\underset{k = 1}{\overset{K}{\sum}} \hat{p}_{mk} (1 - \hat{p}_{mk})
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	L'indice de Gini mesure la \textbf{pureté des nœuds}, si les proportions échantillonnales sont près de 0 ou 1, $G$ sera très petit.
+	\item	C'est la mesure par défaut avec la fonction pour une classificationd \texttt{rpart(method = "class")}
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Déviance, ou entropie croisée]
+
+\begin{align*}
+D	
+	&=	-\underset{k = 1}{\overset{K}{\sum}} \hat{p}_{mk} \log(\hat{p}_{mk})
+\end{align*}
+%\begin{itemize}[leftmargin = *]
+%	\item	
+%\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Élagage par coût-complexité]
+\begin{description}
+	\item[cp]	Paramètre de complexité.
+	\item[|T|]	Nombre de feuilles (\og \textit{terminal nodes} \fg{}).
+	\item[Critère de coût-complexité]
+\end{description}
+\begin{align*}
+	C_{cp}(T)	
+	&=	\underset{m = 1}{\overset{| T |}{\sum}}\underset{i:\bm{x}_{i} \in R_{m}}{\sum} (y_{i} - \hat{y}_{R_{m}})^{2} + cp | T |
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Le critère permet d'ajuster le modèle en balancant la \textbf{complexité} de l'arbre \textbf{\textit{et}} la \textbf{qualité} de l'ajustement.
+\end{itemize}
+\end{definitionNOHFILL}
+
+La seule réserve des CART est leur précision qui a tendance à être mauvaise.
 
 \end{multicols*}
 %% -----------------------------
