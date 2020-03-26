@@ -60,7 +60,7 @@
 \begin{align*}
 	\Ax*{\nthtop{1}{[x] + h}:\angl{n - h}}
 	&=	\int_{0}^{n - h} \textrm{e}^{-\delta t} \px[t]{[x] + h} \mu_{[x] + h + t} dt	\\
-	&=	\int_{h}^{n} \textrm{e}^{-\delta (s - h)} \frac{\px[s]{[x]}}{\px[h]{[x]}} \mu_{[x] + s} ds	\\
+	&=	\int_{h}^{n} \textrm{e}^{-\delta (s - h)} \frac{\px[s]{[x]}}{\px[h]{[x]}} \mu_{[x] + s} ds
 \end{align*}
 
 \pagebreak
@@ -335,13 +335,44 @@ on peut approximer $\Vx[h]{}[g]$ avec la \underline{Méthode d'Euler} :
 \section{Modèles à plusieurs états}
 
 \begin{description}
-	\item	$\px[t]{x}^{ij}$	probabilité qu'un individu dans l'état $i$ au temps $x$ soit dans l'état $j$ (où $j$ peut être égale à $i$) au temps $x + t$.
-	\item	$\px[t]{x}^{\overline{ij}}$	probabilité qu'un individu dans l'état $i$ au temps $x$ reste dans dans l'état $i$ continument jusqu'au temps $x + t$.
+	\item	$\px[k]{x + t}^{ij}$	probabilité qu'un individu d'âge $x$ dans l'état $i$ au temps $x + t$ soit dans l'état $j$ (où $j$ peut être égale à $i$) au temps $x + t + k$.
+		\begin{itemize}[leftmargin = *]
+		\item	De façon équivalente, $\actsymb[k]{Q}{t}[(i, j)]$.
+		\end{itemize}
+	\item	$\px[k]{x + t}^{\overline{ij}}$	probabilité qu'un individu d'âge $x$ dans l'état $i$ au temps $x + t$ reste dans dans l'état $i$ continument jusqu'au temps $x + t + k$.
 \end{description}
 
 Donc, où l'état $0$ est la vie et $1$ la mort, $\px[t]{x}$ devient $\px[t]{x}^{\overline{00}}$ (ou $\px[t]{x}^{00}$ puisque décéder est un état absorbant) avec la nouvelle notation et $\qx[t]{x}$ devient $\px[t]{x}^{01}$.
 
-%%%	Lire l'ASM de MLC pour apprendre la section.
+\begin{description}
+	\item[$_{k}Q_{t}^{(i, j)}$]	Probabilité de transition de l'état $i$ au temps $t$ à l'état $j$ au temps $t + k$.
+	\item[$M_{t}$]	État au temps $t$ parmi les $\{1, 2, \dots, r\}$ ou $\{0, 1, \dots, r\}$ états.
+		\begin{itemize}[leftmargin = *]
+		\item	De façon équivalente, $M(t)$.
+		\item	Le processus $M_{t}$ est une "Chaine de Markov" ssi $\forall t = 0, 1, 2, \dots$:
+		\begin{align*}
+		Q_{t}^{(i, j)}
+		&=	\Pr(M_{t + 1} = j | M_{t} = i, M_{t - 1}, \dots, M_{0})
+		&=	\Pr(M_{t + 1} = j | M_{t} = i)
+		\end{align*}
+		\end{itemize}
+	\item[$\bm{Q}_{t}$]	Matrice des probabilités de transition.
+		\begin{itemize}[leftmargin = *]
+		\item	Les transitions sont en fin d'année.
+		\item	Si la matrice :
+			\begin{description}
+			\item[dépend du temps]	alors $M_{t}$ est une chaîne de Markov \textbf{non-homogène}.
+			\item[ne dépend pas du temps]	alors $M_{t}$ est une chaîne de Markov \textbf{homogène}.
+			\item	Également, dans ce cas-ci, on dénote $\bm{Q}_{t}$ par $\bm{Q}$ puisque $Q_{t}^{ij} = Q^{ij} \, \forall t \geq 0$
+			\end{description}
+		\end{itemize}
+	\item[$_{k}\bm{Q}_{t}$]	Matrice de $k$-étapes des probabilités de transition.
+\end{description}
+
+\begin{align*}
+	\actsymb[m + n]{Q}{t}[(i, j)]
+	&=	\sumz{r}{k = 1}\actsymb[m]{Q}{t}[(i, k)] \actsymb[n]{Q}{t + m}[(k, j)]
+\end{align*}
 
 \end{multicols*}
 \end{document}
