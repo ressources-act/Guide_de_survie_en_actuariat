@@ -87,6 +87,11 @@
 \newcommand{\e}[1]{\mathrm{e}^{#1}}
 \newcommand{\te}[1]{\text{exp}\left\{#1\right\}}
 \DeclareMathSymbol{\shortminus}{\mathbin}{AMSa}{"39}
+%%	Example usage:	\sumz{n}{i = 1} <=> \overset{n}{\underset{i = 1}{\sum}}
+\newcommand{\sumz}[2]{\overset{#1}{\underset{#2}{\sum}}}
+%%	Example usage:	\LVx{h}	<=>	\actsymb[h]{L}{}[]
+%%					\LVx[n]{h}	<=>	\actsymb[h]{L}{}[n]
+\newcommand{\LVx}[2][]{\actsymb[#2]{L}{}[#1]}
 
 
 
@@ -202,8 +207,8 @@
 %%
 \newtcolorbox{examplebox}[ 1 ]
 {
-	colback = lightmauve,
-	colframe = antiquefuchsia,
+	colback = beaublue,
+	colframe = amethyst,
 	breakable,
 	fonttitle = \bfseries,title=#1
 }
@@ -313,6 +318,7 @@
 \definecolor{bulgarianrose}{rgb}{0.28, 0.02, 0.03}
 \definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}		
 \definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{eggshell}{rgb}{0.94, 0.92, 0.84}
 \definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
 \definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}			
 \definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}		

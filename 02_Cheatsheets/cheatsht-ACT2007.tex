@@ -30,223 +30,305 @@
 
 \begin{multicols*}{2} 
 
+\subsection*{Rappels}
+
+\textbf{Woolhouse}
+\begin{align*}
+	\ax**{x\color{airforceblue}{:\angln}}[(m)]	
+	&\approx	\ax**{x\textcolor{airforceblue}{:\angln}}	-	
+		\frac{m - 1}{2m} \textcolor{airforceblue}{\left( 1 - \Ex[n]{x} \right)}	-	
+		\frac{m^{2} - 1}{12m^{2}}(\delta + \mu_{x} \textcolor{airforceblue}{- \Ex[n]{x} (\delta + \mu_{x + n})})		\\
+\end{align*}	
+
+\textbf{DUD}
+\begin{align*}
+	\Ax*{x\textcolor{airforceblue}{:\angln}}
+	&\overset{DUD}{=}	\Ax{\nthtop{\textcolor{airforceblue}{1}}{x}\textcolor{airforceblue}{:\angln}}		{\color{airforceblue} + \Ax{x\textcolor{airforceblue}{:\nthtop{1}{\angln}}}}	\\
+\end{align*}
+
+\textbf{Relation}
+\begin{align*}
+	\ax**{x:\angln}[\textcolor{airforceblue}{(m)}]
+	&=	\frac{1}{\textcolor{airforceblue}{m}}	+
+		v^{\textcolor{airforceblue}{\frac{1}{m}}} 
+		\px[\textcolor{airforceblue}{\frac{1}{m}}]{x}
+		\ax**{x + \frac{1}{\textcolor{airforceblue}{m}}:\angl{n - \frac{1}{\color{airforceblue}{m}}}}[\textcolor{airforceblue}{(m)}]	\\
+	\Ax{x}	&=	v\qx{x} + v\px{x} \Ax{x + 1}	\\
+\end{align*}
+
+\textbf{Sélection à l'âge $[x]$}
+\begin{align*}
+	\Ax*{\nthtop{1}{[x] + h}:\angl{n - h}}
+	&=	\int_{0}^{n - h} \textrm{e}^{-\delta t} \px[t]{[x] + h} \mu_{[x] + h + t} dt	\\
+	&=	\int_{h}^{n} \textrm{e}^{-\delta (s - h)} \frac{\px[s]{[x]}}{\px[h]{[x]}} \mu_{[x] + s} ds	\\
+\end{align*}
+
+\pagebreak
+
 \section{Calcul de réserve}
 
 \subsection*{Notation}
-\begin{itemize}
-	\item[] 	$\actsymb[t]{L}{}$: Perte prospective de l'assuré au temps $t$;
-		\begin{itemize}
-		\item	Le symbole représente la perte pour un assuré d'âge $x$ à partir du temps $t$ et peut donc être réécrit comme:
+\begin{itemize}[leftmargin = *]
+	\item[] 	$\actsymb[h]{L}{}$: Perte nette future sur un contrat d'assurance pour un individu d'âge $(x)$ au temps $h$.
+		\begin{itemize}[leftmargin = *]
+		\item	Puisque la perte est évaluée au temps $h$, on suppose que l'assuré va décéder par après et conditionne à sa survie:
 			\begin{align*}
-			\actsymb[t]{L}{}	
-			&=	\{ \actsymb[t]{L}{} | T_{x} > t \}
+			\actsymb[h]{L}{}	
+			&=	\{ \actsymb[h]{L}{} | T_{x} > h \}
 			\end{align*}
 		\end{itemize}
-	\item[]	$\actsymb[t]{V}{}$: Réserve de l'assureur au temps $t$;
-		\begin{itemize}
-		\item	Le symbole représente la réserve pour un contrat d'assurance d'un assuré d'âge $x$ à partir du temps $t$ et peut donc être réécrit comme:
+	\item[]	$\actsymb[h]{V}{}$: Réserve nette pour un contrat d'assurance pour un individu d'âge $(x)$ au temps $h$.
+		\begin{itemize}[leftmargin = *]
+		\item	La réserve est basée sur ce qu'on s'attend à avoir comme perte:
 			\begin{align*}
-			\actsymb[t]{V}{}	
-			&=	\text{E}[\{ \actsymb[t]{L}{} | T_{x} \ge t \}]
+			\actsymb[h]{V}{}	
+			&=	\text{E}[\actsymb[h]{L}{}]	
 			\end{align*}
+		\item[]	$\actsymb[h]{V}{}[g]$: Réserve pour contrat avec primes brutes (lorsqu'il y a des frais).
+		\item[]	$\actsymb[h]{V}{}[n]$: Réserve pour contrat avec primes pures (lorsqu'il n'y a pas de frais).
 		\end{itemize}
-	\item[]	$VP_{@t}$: La valeur présente au temps $t$;
-	\item[]	$VPA_{@t}$: La valeur présente actuarielle au temps $t$;
+	\item[]	$VP_{@h}$: La valeur présente au temps $h$.
+	\item[]	$VPA_{@h}$: La valeur présente anticipée au temps $h$.
 		\begin{align*}
 		VPA_{@t}	
-		&=	\text{E}[VP_{@t}]
+		&=	\text{E}[VP_{@h}]
 		\end{align*}
 \end{itemize}
 
-\subsection*{Termes}
-\begin{description}
-	\item[endowment:] Mixte;
-\end{description}
+\begin{examplebox}{Notation pour un contrat d'assurance vie entière}
+\begin{align*}
+	\actsymb[h]{L}{}	
+	&=	M Z_{x + h} - \pi \ddot{Y}_{x + h}	\\
+	\text{Var}(\actsymb[h]{L}{})
+	&=	\left(M + \frac{\pi}{d}\right)^{2} \left[ \actsymb[][2]{A}{x + h} - (\Ax{x + h})^{2} \right]	\\
+	\actsymb[h]{V}{}[n]	
+	&=	M \Ax{x + h} - \pi \ax**{x + h}	\\
+	&\equiv	\left(M + \frac{\pi}{d}\right) \Ax{x + h} - \frac{\pi}{d}
+\end{align*}
+
+Sous le principe d'équivalence du portefeuille (PEP):
+\begin{align*}
+	\Vx[h]{}[n]
+	&\overset{PEP}{=}	M\left[\frac{\Ax{x + h} - \Ax{x}}{1 - \Ax{x}}\right]	\\
+	&\overset{PEP}{=}	M\left[1 - \frac{\ax**{x + h}}{\ax**{x}}\right]	
+\end{align*}
+\end{examplebox}
+
+\begin{examplebox}{Notation pour un contrat d'assurance avec primes non-nivelées}
+\begin{align*}
+	\LVx{h}
+	&=	b_{\color{burntsienna}K_{x + h} + h + 1} v^{\color{orange}K_{x + h} + 1} - \sumz{K_{x + h}}{i = 0} \pi_{i + h} v^{i}	\\
+	\Vx[h]{}[n]
+	&=	\sumz{\infty}{j = 0} b_{\textcolor{teal}{j} + h + 1} v^{\textcolor{teal}{j} + 1} \px[\textcolor{teal}{j}]{x + h} \qx{x + h + \textcolor{teal}{j}} - \sumz{\infty}{j = 0} \pi_{i + h} v^{i} \px[\textcolor{teal}{j}]{x + h}
+\end{align*}
+	\textbf{Note}
+\begin{itemize}[leftmargin = *]
+	\item	La prestation $b$ est payable au moment ${\color{burntsienna}K_{x + h} + h + 1}$. 
+	\item	Cependant, puisqu'on évalue la perte au temps $h$, il y a seulement ${\color{orange}K_{x + h} + 1}$ années à actualiser.
+\end{itemize}
+\end{examplebox}
 
 \subsection*{Calcul de réserves}
-
-\paragraph{Perte prospective:} la perte prospective, $\actsymb[t]{L}{}$, actualise les transactions qui vont arriver dans le futur:
-\setlength{\mathindent}{-1cm}
+\begin{conceptgen}{Méthodes d'évaluation de la réserve}
+\setlength{\mathindent}{-1.5cm}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+	\textbf{Prospective}
+\end{center}
 \begin{align*}
-	\actsymb[t]{L}{} 
-%	&= 	\{ \actsymb[t]{L}{} | T_x > t \} 	\\
-	&= 	VP_{@t}(\text{prestations à payer}) - VP_{@t}(\text{primes à reçevoir}) \textcolor{ao(english)}{+ VP_{@t}(\text{frais à payer})} 	
-%	&= 	Z - Y
+	\actsymb[h]{V}{}[g]
+	&=	VPA_{@t}\left(\shortstack{prestations futures\\ à payer}\right)\\	 
+		&+	VPA_{@t}\left(\shortstack{frais futurs\\ à payer}\right)\\ 
+		&- 	VPA_{@t}\left(\shortstack{primes futures\\ à recevoir}\right)
 \end{align*}
+\end{minipage}
+\setlength{\mathindent}{-0.5cm}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+	\textbf{Rétrospective}
+\end{center}
+\begin{align*}
+	\actsymb[h]{V}{}[g]
+	&=	\frac{\actsymb[0]{V}{}[g]}{\Ex[h]{x}}	\\
+		&+ 	\frac{VPA_{@\textcolor{orange}{0}}\left(\shortstack{primes recues\\ avant $h$}\right)}{\Ex[h]{x}}	\\
+		&- 	\frac{VPA_{@\textcolor{orange}{0}}\left(\shortstack{prestations à payer\\ avant $h$}\right)}{\Ex[h]{x}}
+\end{align*}
+\end{minipage}
 \setlength{\mathindent}{1cm}
-\textcolor{ao(english)}{S'il y a des frais pour les contrats, il suffit de l'ajouter à la perte.}
+
+\tcbline
+
+Exemple pour un contrat d'assurance vie mixte $n$ années:
+\begin{description}
+	\item[Méthode prospective]	$\actsymb[h]{V}{}[n]	=	M \Ax{x + h: \angl{n - h}} - P \ax**{x + h: \angl{n - h}}$
+	\item[Méthode rétrospective]	$\actsymb[h]{V}{}[n]	=	0 + \frac{P \ax**{x:\angl{h}} - M\Ax{\nthtop{\color{orange}\textbf{1}}{x}:\angl{h}}}{\Ex[h]{x}}$
+	\item	L'assurance mixte devient une temporaire puisque la méthode rétrospective considère seulement les prestations à payer {\color{orange}\textbf{avant}} $h$.
+\end{description}
+
+\end{conceptgen}
 
 \textbf{Relation:} $\{T_{x} - t | T_{x} > t\} \overset{d}{=} T_{x + t}$ où $\overset{d}{=}$ veut dire égale en distribution.
 
-\paragraph{Réserve:} La réserve, $\actsymb[t]{V}{}$, est l'espérance du montant que l'assureur devra payer dans le futur---alias, l'espérance de la perte. Il y a donc plusieurs façons de calculer ces réserves mais on utilise surtout la méthode prospective.
-
-Selon la méthode \textbf{prospective},
-\setlength{\mathindent}{-1cm}
-\begin{align*}
-	\actsymb[t]{V}{} 
-	&= 	\esp{\actsymb[t]{L}{}} \\
-	&= 	VPA_{@t}(\text{prestations à payer}) - VPA_{@t}(\text{primes à reçevoir}) \\ 
-	&\quad \textcolor{ao(english)}{+ VPA_{@t}(\text{frais à payer})} 	
-%	= \esp{Z} - \esp{Y}
-\end{align*}
-\setlength{\mathindent}{1cm}
-
-%%%	--------------------------
-%%%	Pas vu dans à l'hiver 2020
-%%%
-%Selon la méthode \textbf{rétrospective},
-%\setlength{\mathindent}{-1cm} 
-%\begin{align*}
-%	\actsymb[t]{V}{} 
-%	&= 	\frac{\text{VPA}_{@t}(\text{primes ($\pi$) reçues avant $h$}) - \text{VPA}_{@t}(\text{prestations payables avant $h$})}{g}		
-%\end{align*}
-%\setlength{\mathindent}{1cm}
-%%%	--------------------------
-
-\paragraph{Remarque:} Pour des primes \textbf{nivelées} établies selon le principe d'équivalence du portefeuille, on pose $\actsymb[0]{V}{} = 0$. Donc:
-\setlength{\mathindent}{-1cm}
-\begin{align*}
-	VPA_{@t}(\text{primes à reçevoir})
-	=	VPA_{@t}(\text{prestations à payer}) \textcolor{ao(english)}{+ VPA_{@t}(\text{frais à payer})} 
-\end{align*}
-\setlength{\mathindent}{1cm}
-
-\paragraph{Relation récursive pour les réserves (discrètes)}
+\subsubsection*{Relation récursive pour les réserves (discrètes)}
 
 \begin{align*}
-	\textcolor{burntorange}{(\actsymb[h]{V}{} + \pi_{h})}\textcolor{burntsienna}{(1 + i)}
-	&=	\textcolor{amethyst}{\qx{x + h} b_{h + 1}} + \textcolor{ao(english)}{\px{x + h} \actsymb[h + 1]{V}{}}
+	\Vx[h]{}[n]
+	&=	\left[
+			\textcolor{ao(english)}{\px{x + h}\Vx[h + 1]{}[n]} + 
+			\textcolor{amethyst}{\qx{x + h} b_{h + 1}}
+		\right]\textcolor{orange}{v} - 
+		\textcolor{burntorange}{\pi_{h}}	\\
+	\Vx[h]{}[g]
+	&=	\left[
+			\textcolor{ao(english)}{\px{x + h}\Vx[h + 1]{}[n]} + 
+			\textcolor{amethyst}{\qx{x + h} (b_{h + 1} + E_{h + 1})}
+		\right]\textcolor{orange}{v} - 
+		\textcolor{burntorange}{(G_{h} - e_{h})}
 \end{align*}
-On ajoute \textcolor{burntorange}{la prime $P$ à la réserve $\actsymb[h]{V}{}$ au temps $h$} et \textcolor{burntsienna}{accumule pour un an}. \\
-Ceci est équivalent à soit \textcolor{amethyst}{décéder à l'âge $x + h$ et payer la prestation en cas de décès $b_{h + 1}$} ou \textcolor{ao(english)}{survive et ajouter à la réserve $\actsymb[h + 1]{V}{}$ au temps $x + h$}.
 
-\textbf{Formule générale}\footnote{Si les frais ne sont pas applicables pour le problème, simplement poser $G_h = E_h = 0$.} : 
-\begin{align*}
-	\actsymb[h+1]{V}{} 
-	&= 	\frac{(\actsymb[h]{V}{} + G_h - e_h)(1+i) - (b_{h+1} + E_{h+1}) \qx[]{x+h}[]}{\px[]{x+h}[]}
-\end{align*}
+La réserve pour l'année $h$ est composée de:
+\begin{itemize}
+	\item	\textcolor{ao(english)}{La réserve au temps $h + 1$ si l'assuré survie l'année $h$} et
+	\item	\textcolor{amethyst}{la prestation payable (et frais encourus) à $h + 1$ si l'assuré décède lors de l'année $h$},
+	\item	\textcolor{orange}{actualisés de $h + 1$ à $h$},
+	\item	\textcolor{burntorange}{moins la prime (plus les frais) reçus de l'assuré au début de l'année $h$}.
+\end{itemize}
 où
 \begin{description}
 	\item[$G_h$]	La prime \textit{(gross premium)} à recevoir à $t = h$;
-	\item[$e_h$]	Les frais relié à la collecte de la prime \textit{(per premium expenses)};
-	\item[$E_h$]	Les frais reliés aux paiement de la prestation \textit{(settlement expenses)}.
+	\item[$e_h$]	Les frais reliés à la collecte de la prime \textit{(per premium expenses)};
+	\item[$E_h$]	Les frais reliés au paiement de la prestation \textit{(settlement expenses)}.
 \end{description}
 
-Alternativement, on peut récrire:
+Avec la réserve pour l'année $h + 1$ isolée :
 \begin{align*}
-	\underbrace{(b_{h+1} + E_{h + 1} - \actsymb[h + 1]{V}{})}_{\text{montant net au risque}} \qx[]{x+h}[]
-	&= 	(\actsymb[h]{V}{} + G_h - e_h)(1+i)
+	\Vx[h + 1]{}[g]
+	&= 	\frac{(\Vx[h]{}[g] + G_h - e_h)(1+i) - (b_{h+1} + E_{h+1}) \qx[]{x+h}[]}{\px[]{x+h}[]}
+\end{align*}
+
+Avec le montant net au risque réserve pour l'année $h + 1$ isolé :
+\begin{align*}
+	\underbrace{(b_{h + 1} + E_{h + 1} - \Vx[h + 1]{}[g])}_{\text{montant net au risque}} \qx[]{x+h}[]
+	&= 	(\Vx[h]{}[g] + G_h - e_h)(1 + i) - \Vx[h + 1]{}[g]
 \end{align*}
 
 
-\paragraph{Formules alternatives pour Contrat d'assurance-vie entière (si $\pi^{PE}$)}
+\subsubsection*{Approximation classique pour les réserves à durées fractionnaires}
 \begin{align*}
-\actsymb[h]{V}{} 
-	&= 	M \Ax{x+h} - \pi \ax**{x+h} 
-	= 	M \left( 1 - \frac{\ax**{x+h}}{\ax**{x}} \right) 
-	= 	M \left( \frac{\Ax{x+h} - \Ax{x}}{1 - \Ax{x}} \right)
+	\Vx[h + s]{}[g]
+	&\approx	\left(\Vx[h]{}[g] + G_h - e_h\right)(1 - s) + \left(\Vx[h + 1]{}[g]\right)(s), \, s \in (0, 1)
 \end{align*}
- Remarque : ces formules fonctionnent aussi dans le cas d'un contrat d'assurance-vie entière continu.
- 
- \paragraph{Approximation classique pour les réserves à durées fractionnaires}
- \[\actsymb[h+s]{V}{} = (\actsymb[h]{V}{} + G_h - e_h)(1-s) + (\actsymb[h+1]{V}{})(s) \]
-
-
 
 \subsection*{Profit de l'assureur}
-\paragraph{Profit de l'assureur en changeant les 3 composantes}
-\begin{flalign*}
-\actsymb[k+1]{V}{}^A - \actsymb[k+1]{V}{}^E	& = N_k (\actsymb[k]{V}{} + G - e_k')(1+i') - (b_{k+1} + E_{k+1}' - \actsymb[k+1]{V}{}) N_k \qx[]{x+k}['] \\
-& - \left[N_k(\actsymb[k]{V}{} + G = e_k)(1+i) - (b_{k+1} + E_{k+1} - \actsymb[k+1]{V}{}) N_k \qx[]{x+k}[] \right]
-\end{flalign*}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[]	$N_{h}$: Nombre de contrats d'assurance vie (identiques) du portefeuille en vigueur au temps $h$.
+	\item[]	$\Vx[h + 1]{}[E]$: Réserve totale pour l'année $h + 1$ du portefeuille selon l'intérêt ($i$), la mortalité ($\qx{x + h}$) et les frais ($e_{h}$ et $E_{h}$) \textbf{espérés} (\textit{\textbf{E}}xpected) pour l'année $h$.
+	\item[]	$\Vx[h + 1]{}[A]$: Réserve totale pour l'année $h + 1$ du portefeuille selon l'intérêt ($i'$), la mortalité ($\qx{x + h}'$) et les frais ($e_{h}'$ et $E_{h}'$) \textbf{réellement} (\textit{\textbf{A}}ctually) encourus lors de l'année $h$.
+	\item	Le profit de l'assureur pour l'année $h$ sera donc $\Vx[h + 1]{}[A] - \Vx[h + 1]{}[E]$.
+\end{description}
+\end{distributions}
 
-\paragraph{Profit de l'assureur en changeant une seule composante} : 
-\\
+Si uniquement $\rule{1cm}{0.15mm}$ change(nt), alors le profit sur $\rule{1cm}{0.15mm}$ pour l'année $h$ est:
+\begin{description}
+	\item[les frais]	$N_{h}\left[ (e_{h} - e_{h}')(1 + i) + (E_{h + 1} - E_{h + 1}')\qx{x + h} \right]$.
+	\item[l'intérêt]	$N_{h} \left( \Vx[h]{}[g] + (G_{h} - e_{h}) \right) (i' - i)$.
+	\item[la mortalité]	$\left( b_{h + 1} + E_{h + 1} - \Vx[h + 1]{}[g] \right)(N_{h}\qx{x + h} - N_{h}\qx{x + h}')$
+\end{description}
 
-\begin{tabular}{|c|C|}
-\hline 
-Intérêt ($i$) & N_k(\actsymb[k]{V}{} + G - e_k)(i' - i) \\ 
-\hline 
-Frais $e_k$ ou $E_k$ & N_k(e_k - e'_k)(1 + i) + (E_{k+1} - E'_{k+1})N_k \qx[]{k+1}[] \\ 
-\hline 
-Mortalité $\qx{x+k}$ & (b_{k+1} + E_{k+1} - \actsymb[k+1]{V}{})(N_k \qx[]{x+k}[] - N_k \qx[]{x+k}['])\\ 
-\hline 
-\end{tabular} 
+S'il y a des différentes ordre, il suffit de remplacer les composantes par les nouvelles. \\
+Par exemple: 
+\begin{itemize}
+	\item	Si l'ordre est frais-intérêt-mortalité, le profit sur l'intérêt devient $N_{h} \left( \Vx[h]{}[g] + (G_{h} - e_{h}') \right) (i' - i)$.
+	\item	Si l'ordre est intérêt-frais-mortalité, le profit sur les frais devient $N_{h}\left[ (e_{h} - e_{h}')(1 + i') + (E_{h + 1} - E_{h + 1}')\qx{x + h} \right]$.
+\end{itemize}
 
-\subsection*{Quote-Part de l'actif (\emph{Asset shares})}
-Alors que la réserve $\actsymb[t]{V}{}$ nous dit le montant que l'assureur doit avoir de côté, la quote-part de l'actif nous indique plutôt le montant réel que l'assureur a de côté pour le contrat donné.
-\[AS_{K+1} = \frac{(AS_{k} + G_k - e'_k)(1 + i') - (b_{k+1} + E'_{k+1}) \qx[]{x+k}[']     }{\px[]{x+k}[']}\]
-
+%%%	--------------------------------
+%%%	NOTE
+%%%	+	Pas vu dans le cadre du cours à l'hiver 2020.
+%%%
+%\subsection*{Quote-Part de l'actif (\emph{Asset shares})}
+%Alors que la réserve $\actsymb[t]{V}{}$ nous dit le montant que l'assureur doit avoir de côté, la quote-part de l'actif nous indique plutôt le montant réel que l'assureur a de côté pour le contrat donné.
+%\[
+%	AS_{K + 1}
+%	= 	\frac{(AS_{k} + G_k - e'_k)(1 + i') - (b_{k + 1} + E'_{k + 1}) \qx[]{x + k}[']}
+%			 {\px[]{x + k}[']}
+%\]
+%%%	--------------------------------
 
 \subsection*{Équation de Thiele}
-Cette équation permet d'obtenir le \emph{taux instantanné d'accroissement} de $\actsymb[t]{V}{}$.
-\[\derivee{t} \left( \actsymb[t]{V}{} \right) =\delta_t \actsymb[t]{V}{} + G_t - e_t - (b_t + E_t) - \actsymb[t]{V}{} \mu_{[x] + t}  \]
-on peut approximer $\actsymb[t]{V}{}$ avec la \underline{Méthode d'Euler} : 
-\[\actsymb[t]{V}{} = \frac{\actsymb[t+h]{V}{} - h(G_t - e_t - (b_t + E_t)\mu_{[x] + t})}{1 + h \delta_t + h \mu_{[x] + t}}   \]
-
-\subsection*{Modification de contrat}
-\subsubsection*{Valeur de rachat (\textbf{Cash value at surrender})}
-
-\subsection*{Approximations}
-
-Woolhouse
+Cette équation permet d'obtenir le \emph{taux instantané d'accroissement} de $\actsymb[t]{V}{}$.
 \begin{align*}
-	\ax**{x}[(m)]	
-	&\approx	\ax**{x}	-	\frac{m - 1}{2m}	-	\frac{m^{2} - 1}{12m^{2}}(\delta + \mu_{x})\\
-	\ax**{x:\angln}[(m)]	
-	&\approx	\ax**{x:\angln}	-	\frac{m - 1}{2m}(1 - v^{n}\px[n]{x})	-	\frac{m^{2} - 1}{12m^{2}}(\delta + \mu_{x} - v^{n} \px[n]{x}(\delta + \mu_{x + n}))
+	\derivee{t} \Vx[t]{}[g]
+	&=	\textcolor{ao(english)}{\delta_t \Vx[t]{}[g]}	+	
+		\textcolor{amethyst}{(G_t - e_t)} 	- 
+		\textcolor{burntorange}{(b_t + E_t - \Vx[t]{}[g]) \mu_{[x] + t}}
+\end{align*}
+\begin{itemize}
+	\item	\textcolor{ao(english)}{Applique continûment l'intérêt à la réserve au temps $t$}.
+	\item	\textcolor{amethyst}{Le montant est fixe et payé au début de l'année $t$}.
+	\item	\textcolor{burntorange}{Applique continûment la mortalité au montant payable pour un décès à $t$}.
+\end{itemize}
+
+on peut approximer $\Vx[h]{}[g]$ avec la \underline{Méthode d'Euler} : 
+\begin{align*}
+	\Vx[h]{}[g]
+	&=	\frac{
+		\Vx[t + h]{}[g]	- 
+		h\left[ 
+			(G_h - e_h)	- 
+			(b_h + E_h)\mu_{[x] + h}
+		\right]}
+		{1 + h \delta_t + h \mu_{[x] + h}}
 \end{align*}
 
 \subsection*{Frais d'acquisition reportés}
 
 \begin{description}
-	\item	$\actsymb[t]{V}{}[g]$	Réserve de primes brutes;
-	\item	$\actsymb[t]{V}{}[n]$	Réserve de primes nettes;
-	\item	$\actsymb[t]{V}{}[FTP]$	Réserve de primes FTP;
+	\item	$\actsymb[h]{V}{}[e]$	Réserve pour les frais d'acquisition reportés (DAC).
+		\begin{align*}
+		\Vx[h]{}[e] =	DAC_{h}
+		&=	VPA_{@t}\left(\shortstack{frais}\right) - VPA_{@t}\left(\shortstack{primes pour les frais futurs}\right)	\\
+		&\equiv	\Vx[h]{}[g] - \Vx[h]{}[n]		
+		\end{align*}
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{expense reserve} \fg{} ou \og \textit{Deferred Acquisition Costs} \fg{}.
+		\item	Si $e_{0} > e_{h}$, c'est une réserve négative.
+		\item	Si $e_{0} = e_{h}$ alors $\Vx[h]{}[g] = \Vx[h]{}[n] = 0$ et $DAC_{h} = 0$.
+		\end{itemize}
+	\item	$P^{g}$:	Prime nivelée pour un contrat avec des frais (alias la prime brute $G$).
+	\item	$P^{n}$:	Prime nivelée pour un contrat sans frais (alias la prime nette $P$).
+	\item	$P^{e}$:	Prime pour les frais (\og \textit{expense premium} \fg{}).
+		\begin{align*}
+		P^{e}
+		&=	P^{g} - P^{n}
+		\end{align*}
 \end{description}
 
+\subsection*{FTP}
 
-\begin{itemize}[leftmargin = *]
-	\item	Habituellement, il y a plus de frais au temps d'acquisition;
-	\item	Ce frais supplémentaire est réparti sur la durée du contrat;
-	\item	en anglais c'est le \og \textit{Deferred Acquisition Cost (\textbf{DAC})} \fg{};
-	\item	Le frais est défini comme la différence entre la réserve pour un contrat avec primes brutes (avec des frais) et la réserve avec primes pures (sans frais):
-		\begin{align*}
-		DAC_{t}	
-		=	\actsymb[t]{V}{}[g] - \actsymb[t]{V}{}[n] 
-		= 	\actsymb[t]{V}{}[e]
-		\end{align*}
-	\item	La réserve est négative pour les frais si $e_{0} > e_{k}$.
-\end{itemize}
-
-\subsubsection*{Primes}
+ 
 \begin{description}
-	\item[$P^{e}$]	Chargement pour les frais;
-	\item[$P^{g}$]	Prime nivelée pour un contrat avec des frais;
-	\item[$P^{n}$]	Prime nivelée pour un contrat sans frais;
+	\item	$\Vx[h]{}[FTP]$	Réserve de primes FTP.
+	\item	$\pi_{0}^{FTP}$	Prime FTP pour la première année.
 		\begin{align*}
-		P^{e}	=	P^{g}	-	P^{n}
+		\pi_{0}^{FTP}
+		&=	\actsymb[1]{P}{[x]}	
+		\underset{\scriptsize{\shortstack{contrat\\ vie entière}}}{=}	bv\qx{[x]}
+		\end{align*}
+	\item	$\pi_{h}^{FTP}$	Prime nivelée FTP pour les $h = 1, 2, \dots$ autres années.
+		\begin{align*}
+		\pi_{h}^{FTP}
+		&=	\actsymb{P}{[x] + 1}	
+		\underset{\scriptsize{\shortstack{contrat\\ vie entière}}}{=}	b \frac{\Ax{[x] + 1}}{\ax**{[x] + 1}}
 		\end{align*}
 \end{description}
-
-
-\subsection*{Prime FTP}
-\begin{align*}
-	\pi_{0}^{\text{FTP}}
-	&=	v \qx{[x]}
-\end{align*}
-
-Contrat vie entière
-\begin{align*}
-	\pi^{\text{FTP}}	_{i}
-	&=	\frac{A_{[x] + 1}}{\ax**{[x] + 1}}, 	\,	i = 1, 2, 3, \dots	
-\end{align*}
-
-Contrat temporaire
-\begin{align*}
-	\pi^{\text{FTP}}	_{i}
-	&=	\frac{A_{\nthtop{1}{[x] + 1}:\angl{n - 1}}}{\ax**{\nthtop{1}{[x] + 1}:\angl{n - 1}}}, 	\,	i = 1, 2, 3, \dots	\\
-\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Habituellement, il y a plus de frais au temps d'acquisition.
+	\item	Ces frais supplémentaire sont répartis sur la durée du contra.
+	\item	Habituellement, on utilise la prime nette pour faire les calculs puisque c'est plus simple.
+	\item	Lorsqu'on établit l'équation pour la perte, utilisée les frais et la prime applicables à partir de la deuxième année et soustraire la différence pour la première.
+\end{itemize}
 
 \newpage
 
