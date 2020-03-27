@@ -16,6 +16,9 @@
 %% Reduce margin space
 \setlength{\abovedisplayskip}{-15pt}
 
+\newcommand{\bettershortstack}[2][c]{%
+  \begin{tabular}[b]{@{}#1@{}}#2\end{tabular}%
+}
 %% -----------------------------
 %% Début du document
 %% -----------------------------
@@ -334,18 +337,12 @@ on peut approximer $\Vx[h]{}[g]$ avec la \underline{Méthode d'Euler} :
 
 \section{Modèles à plusieurs états}
 
-\begin{description}
-	\item	$\px[k]{x + t}^{ij}$	probabilité qu'un individu d'âge $x$ dans l'état $i$ au temps $x + t$ soit dans l'état $j$ (où $j$ peut être égale à $i$) au temps $x + t + k$.
-		\begin{itemize}[leftmargin = *]
-		\item	De façon équivalente, $\actsymb[k]{Q}{t}[(i, j)]$.
-		\end{itemize}
-	\item	$\px[k]{x + t}^{\overline{ij}}$	probabilité qu'un individu d'âge $x$ dans l'état $i$ au temps $x + t$ reste dans dans l'état $i$ continument jusqu'au temps $x + t + k$.
-\end{description}
-
-Donc, où l'état $0$ est la vie et $1$ la mort, $\px[t]{x}$ devient $\px[t]{x}^{\overline{00}}$ (ou $\px[t]{x}^{00}$ puisque décéder est un état absorbant) avec la nouvelle notation et $\qx[t]{x}$ devient $\px[t]{x}^{01}$.
 
 \begin{description}
 	\item[$_{k}Q_{t}^{(i, j)}$]	Probabilité de transition de l'état $i$ au temps $t$ à l'état $j$ au temps $t + k$.
+		\begin{itemize}[leftmargin = *]
+		\item	De façon équivalente, $\px[k]{x + t}^{ij}$.
+		\end{itemize}
 	\item[$M_{t}$]	État au temps $t$ parmi les $\{1, 2, \dots, r\}$ ou $\{0, 1, \dots, r\}$ états.
 		\begin{itemize}[leftmargin = *]
 		\item	De façon équivalente, $M(t)$.
@@ -374,5 +371,75 @@ Donc, où l'état $0$ est la vie et $1$ la mort, $\px[t]{x}$ devient $\px[t]{x}^
 	&=	\sumz{r}{k = 1}\actsymb[m]{Q}{t}[(i, k)] \actsymb[n]{Q}{t + m}[(k, j)]
 \end{align*}
 
+\subsection*{En temps continu}
+\begin{description}
+	\item	$\px[k]{x + t}^{ij}$	probabilité qu'un individu d'âge $x$ dans l'état $i$ au temps $x + t$ soit dans l'état $j$ (où $j$ peut être égale à $i$) au temps $x + t + k$.
+		\begin{align*}
+		\px[k]{x + t}^{ij}
+		&=	\Pr(Y_{x}(t) = j | Y_{x} = i)
+		\end{align*}
+	\item	$\px[k]{x + t}^{\overline{ij}}$	probabilité qu'un individu d'âge $x$ dans l'état $i$ au temps $x + t$ reste dans dans l'état $i$ continument jusqu'au temps $x + t + k$.
+		\begin{align*}
+		\px[k]{x + t}^{\overline{ij}}
+		&=	\Pr(Y_{x}(s) = i, \underbrace{\forall s \in [0, t]}_{\text{sans sortir et revenir}} | Y_{x} = i)
+		\end{align*}
+	\item[$Y_{x}(t)$]	Processus stochastique $\{Y(s); s \ge 0\}$ de l'état dont les transitions peuvent se produire à n'importe quel moment $t \ge 0$ et donc pas seulement en fin d'année.
+		\begin{itemize}[leftmargin = *]
+		\item	De façon équivalente, $Y(x + t)$.
+		\item	$Y_{x}(t) = i$ si l'assuré d'âge $(x)$ est à l'état $i$ au temps $t$ (ou, à l'âge $x + t$).
+		\end{itemize}
+\end{description}
+
+Il s'ensuit que $\px[k]{x + t}^{ij} \geq \px[k]{x + t}^{\overline{ij}}$ car:
+\begin{align*}
+	\px[k]{x + t}^{ij}
+	&=	\px[k]{x + t}^{\overline{ij}} + \Pr(Y_{x}(t) = i, \text{après avoir sorti et revenu} | Y_{x} = i)	\\
+\end{align*}
+
+Donc, pour le modèle actif (0) décédé (1), on substitut $\px[t]{x}$ pour $\px[t]{x}^{\overline{00}}$ (ou $\px[t]{x}^{00}$ puisque décéder est un état absorbant) et $\qx[t]{x}$ pour $\px[t]{x}^{01}$ avec la nouvelle notation.
+
+\begin{conceptgen}{Hypothèses}
+\begin{enumerate}
+	\item	Le processus stochastique $Y_{t}$ est une chaîne de Markov.
+		\begin{align*}
+		\Pr(Y_{t + s} = j | Y_{t} = i, Y_{u}, 0 \leq u < 1) &= \Pr(Y_{t + s} = j | Y_{t} = i)
+		\end{align*}
+	\item	Pour toute intervalle de longueur $h$,
+		\begin{align*}
+		\Pr\left( \shortstack{2, ou plus, transitions\\ pendant une période de longueur $h$} \right)	&=	o(h)	\\
+		\end{align*}
+		\begin{itemize}[leftmargin = *]
+		\item	Une fonction $g \in o(h)$ si $\underset{h \rightarrow 0}{\lim} \frac{g(h)}{h} = 0$.
+		\end{itemize}
+	\item	Pour tous les états $i$ et $j$ et toute âge $x \geq 0$, $\px[t]{x}[ij]$ est différentiable par rapport à $t$.
+\end{enumerate}
+\end{conceptgen}
+
+\begin{description}
+	\item[$\mu_{x}^{ij}$]	\textbf{Force de transition} de l'état $i$ à l'état $j$ pour un assuré d'âge $(x)$.
+		\begin{align*}
+		\mu_{x}^{ij}
+		&=	\limz{h}{0^{+}} \frac{\px[h]{x}[ij]}{h}, \: i \neq j
+		\end{align*}
+		\begin{itemize}[leftmargin = *]
+		\item	Il s'ensuit que $\px[h]{x}[ij] = h\mu_{x}^{ij} + o(h)$.\\
+				Donc, $\px[h]{x}[ij] \approx h\mu_{x}^{ij}, i \neq j$ pour $h > 0$ très petit.
+		\item	Pour le modèle actif (0) décédé (1), $\mu_{x}^{01}$ est la force de mortalité $\mu_{x}$.
+		\end{itemize}
+\end{description}
+
+\begin{conceptgen}{Remarques}
+\begin{enumerate}[leftmargin = *]
+	\item	$\px[h]{x}[ii] = \px[h]{x}[\overline{ij}] + o(h)$ où $o(h)$ est la probabilité de sortir et revenir de l'hypothèse 2.
+	\item	\[
+		\px[h]{x}[ij] 
+		\geq \px[h]{x}[\overline{ii}] 	\\
+		= 1 - \sumz{n}{j \neq i, j = 0} \px[h]{x}[ij] + o(h) 	\\
+		= 1 - h \sumz{n}{j \neq i, j = 0} \mu_{x}^{ij} + o(h)
+			\]
+\end{enumerate}
+\end{conceptgen}
+
 \end{multicols*}
 \end{document}
+

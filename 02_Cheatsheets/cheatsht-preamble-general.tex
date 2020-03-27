@@ -89,6 +89,8 @@
 \DeclareMathSymbol{\shortminus}{\mathbin}{AMSa}{"39}
 %%	Example usage:	\sumz{n}{i = 1} <=> \overset{n}{\underset{i = 1}{\sum}}
 \newcommand{\sumz}[2]{\overset{#1}{\underset{#2}{\sum}}}
+%%	Example usage:	\limz{h}{0} <=> \underset{h \rightarrow 0}{\lim}
+\newcommand{\limz}[2]{\underset{#1 \rightarrow #2}{\lim}}
 %%	Example usage:	\LVx{h}	<=>	\actsymb[h]{L}{}[]
 %%					\LVx[n]{h}	<=>	\actsymb[h]{L}{}[n]
 \newcommand{\LVx}[2][]{\actsymb[#2]{L}{}[#1]}
