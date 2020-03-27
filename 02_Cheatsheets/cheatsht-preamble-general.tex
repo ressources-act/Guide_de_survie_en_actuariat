@@ -144,6 +144,17 @@
 	before title = {\faBook \quad },
 	breakable
 }
+%%
+%% Coloured box "definition2" for definitions
+%%
+\DeclareTColorBox{definitionNOHFILLsub}{ o }				% #1 parameter
+{
+	colframe=blue!40!green,colback=blue!5!white, % color of the box
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	before title = {\faNavicon \quad }, %faBars  faGetPocket
+	breakable
+}
 
 
 %%
