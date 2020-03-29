@@ -2355,11 +2355,13 @@ Il suffit de remplacer $-\beta(m)$ par $+\gamma(m)$ pour obtenir les formules de
 \subsubsection*{Approximation de Woolhouse}
 
 \begin{align*}
-	\ddot{a}_{x}^{(m)}
-	&\approx	\ddot{a}_{x} - \frac{m - 1}{2m} \textcolor{arsenic}{- \frac{m^{2} - 1}{12m^{2}} (\delta + \mu_{x})}	\\
+	\ax**{x\color{airforceblue}{:\angln}}[(m)]	
+	&\approx	\ax**{x\textcolor{airforceblue}{:\angln}}	-	
+		\frac{m - 1}{2m} \textcolor{airforceblue}{\left( 1 - \Ex[n]{x} \right)}	-	
+		\frac{m^{2} - 1}{12m^{2}}(\delta + \mu_{x} \textcolor{airforceblue}{- \Ex[n]{x} (\delta + \mu_{x + n})})		\\
 	\mu_{x}
 	&\approx		-	\frac{1}{2} \left( \ln \px{x - 1} + \ln \px{x} \right)
-\end{align*}
+\end{align*}	
 
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Autres rentes payables m fois l'an}}

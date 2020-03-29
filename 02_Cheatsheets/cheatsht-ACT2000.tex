@@ -61,7 +61,15 @@
 
 \subsection*{Vraisemblance}
 
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\mathcal{L}(\theta; x)$]	Fonction de vraisemblance de $\theta$ en fonction de $x$.
+\end{description}
+\end{distributions}
+
 On peut voir la fonction de densité $f(x; \theta)$ comme étant une fonction du paramètre inconnu $\theta$ avec $x$ fixé; ceci est la fonction de vraisemblance $\mathcal{L}(\theta; x)$.
+Pour bien saisir ce que représente la fonction de vraisemblance $\mathcal{L}(\theta; x)$, il faut songer à ce que représente $f(x; \theta)$. \\
+$f(x; \theta)$ est une fonction qui fait varier $x$ pour un paramètre $\theta$ fixe. Alors, $\mathcal{L}(\theta; x)$ est une fonction qui fait varier $\theta$ pour un "paramètre" $x$ fixé; ce que l'on considère habituellement comme étant "$x$" est en fait $\theta$ pour la fonction de vraisemblance!
 
 \subsection*{Qualité de l'estimateur}
 
@@ -74,34 +82,73 @@ Le type principal d'\textit{estimateur par intervalle} est \textit{l'intervalle 
 
 \subsubsection*{Estimation ponctuelle}
 
-Lorsque nous avons un estimateur $\hat\theta$ pour un paramètre inconnu $\theta$ on espère que, \textbf{en moyenne}, ses erreurs de prévision seront nulles. 
-On peut alors trouver $\text{E}[\hat\theta | \theta]$; soit, l'espérance de l'estimateur lorsque $\theta$ est la vraie valeur du paramètre.
-Par la suite, on calcule son \textbf{biais} $\text{B}(\hat\theta)$ dans la prévision de cette vraie valeur du paramètre:
+\begin{distributions}[Notation]
+\begin{description}[font = \normalfont]
+	\item[$\theta$]	Paramètre inconnu à estimer;
+	\item[$\hat{\theta}$]	Estimateur de $\theta$;
+	\item[$\hat{\theta}_{n}$]	Estimateur de $\theta$ basé sur $n$ observations;
+	\item[$\text{B}(\hat{\theta}_{n})$]	Biais d'un estimateur $\theta_{n}$.
+\end{description}
+\end{distributions}
+
+Lorsque nous avons un estimateur $\hat{\theta}_{n}$ pour un paramètre inconnu $\theta$ on espère que, \textbf{en moyenne}, ses erreurs de prévision seront nulles. 
+On peut alors trouver $\text{E}[\hat{\theta}_{n} | \theta]$; soit, l'espérance de l'estimateur lorsque $\theta$ est la vraie valeur du paramètre.	\\
+Par la suite, on calcule son \textbf{biais} $\text{B}(\hat{\theta}_{n})$ dans la prévision de cette vraie valeur du paramètre:
 \begin{algo}{Biais d'un estimateur}
 \begin{align*}
-	\text{B}(\hat\theta) 
-	&= 	\text{E}[\hat\theta | \theta] - \theta
+	\text{B}(\hat{\theta}_{n}) 
+	&= 	\text{E}[\hat{\theta}_{n} | \theta] - \theta
 \end{align*}
+\tcbline
+\begin{description}
+	\item[Estimateur sans biais]	lorsque le biais d'un estimateur est nul:
+		 \[
+		 	\text{B}(\hat{\theta}_{n}) = 0
+		 \]
+	\item[Estimateur asymptotiquement sans biais]	lorsque le biais d'un estimateur tends vers 0 alors que le nombre d'observations sur lequel il est basé tends vers l'infini: 
+		\[
+			\limz{n}{\infty}\text{B}(\hat{\theta}_{n}) = 0
+		\]
+\end{description}
 \end{algo}
 
-Cependant, le biais n'indique pas la variabilité de l'estimateur $\hat\theta$ dans sa prévision. Ceci est plutôt calculé avec la variance de l'estimateur $\text{Var}(\hat{\theta})$. 
-Nous pouvons alors définir la \hyperlink{cramer-rao}{\textbf{borne inférieure de Cramèr-Rao}} de la variance de l'estimateur $\text{Var}(\hat{\theta})$ avec \textbf{la matrice d'information de Fisher} $I(\theta)$:
+Cependant, le biais n'indique pas la variabilité des prévisions de l'estimateur $\hat{\theta}_{n}$. Ceci est plutôt calculé avec la variance de l'estimateur $\text{Var}(\hat{\theta}_{n})$. 
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\bm{I}(\theta)$]	Matrice d'information de Fisher;
+	\item[$\hat{\theta}^{EMV}$]	Estimateur du maximum de vraisemblance de $\theta$.
+\end{description}
+\end{distributions}
+
+Lorsque l'on analyse la variance d'un estimateur, on débute par définir la \hyperlink{cramer-rao}{\textbf{borne inférieure de Cramèr-Rao}} de sa variance $\text{Var}(\hat{\theta}_{n})$. Cette borne utilise \textbf{la matrice d'information de Fisher} $\bm{I}(\theta)$:
 
 \begin{algo}{\hypertarget{cramer-rao}{Borne inférieure Cramèr-Rao}}
 \begin{align*}
-	\text{Var}(\hat{\theta}) \ge \frac{1}{n\text{E}\left[\Big(\deriv{\theta}\ln f(x ; \theta)\Big)^{2}\right]}, \quad \text{où } I(\theta) = \text{E}\left[\Big(\deriv{\theta}\ln f(x ; \theta)\Big)^{2}\right]
+	\text{Var}(\hat{\theta}) 
+	&\geq	\frac{1}{\bm{I}(\theta)}
+\end{align*}
+où
+\begin{align*}
+	\bm{I}(\theta) 
+	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln \mathcal{L}(\theta; x)\Big)^{2}\right]	\\
+	&\equiv	{\color{red}\shortminus}\text{E}\left[\deriv[2]{\theta}{\ln \mathcal{L}(\theta; x)}\right]
 \end{align*}
 \end{algo}
 
-Cette borne est rarement comprise et sur la base de \hyperlink{https://www.youtube.com/watch?v=igQIsYAlKlY}{ce vidéo} et \hyperlink{https://www.youtube.com/watch?v=i0JiSddCXMM}{ce vidéo} je me lance dans l'explication de l'intuition derrière cette borne. Si vous ne comprenez pas, allez les regarder puisqu'elle va régulièrement réapparaître plus tard dans le bac.
+Cette borne est rarement comprise et sur la base de \hyperlink{https://www.youtube.com/watch?v=igQIsYAlKlY}{\color{blue}ce vidéo} et \hyperlink{https://www.youtube.com/watch?v=i0JiSddCXMM}{\color{blue}ce vidéo} je me lance dans l'explication de son intuition. Si vous ne comprenez pas à partir de mes explications, je vous suggère fortement d'allez regarder les vidéos puisque c'est un concept qui va réapparaître plus tard dans le bac.\\
 
 Premièrement, on définit l'utilité des deux premières dérivées:
 \begin{description}
-	\item[$\frac{\partial}{\partial\theta} \mathcal{L}(\theta)$]: Représente le \og rate of change \fg{} \textit{(angl.)} de la fonction.
-	\item[$\frac{\partial^{2}}{\partial\theta^{2}} \mathcal{L}(\theta)$]: Représente la concavité de la fonction; on peut y penser comme sa \og curve \fg{}.
+	\item[$\frac{\partial}{\partial\theta} \mathcal{L}(\theta)$]: Représente le \og \textit{rate of change}\fg{} de la fonction;
+	\item[$\frac{\partial^{2}}{\partial\theta^{2}} \mathcal{L}(\theta)$]: Représente la concavité de la fonction; on peut y penser comme sa forme.
 \end{description}
 
-On sait que la dérivée sera de 0 au point $\hat\theta^{\texttt{EMV}}$, mais juste passé ce point elle sera négative! On ajoute alors un négatif pour évaluer la décroissance pareillement à l'augmentation de la dérivée. Le twist est que beaucoup de fonctions peuvent avoir le même point où elles sont maximisées, mais avoir l'air complètement différents. 
+L'estimateur $\hat\theta^{\texttt{EMV}}$ du paramètre $\theta$ d'une distribution est obtenu en posant la première dérivée de sa fonction de vraisemblance $\mathcal{L}(\theta ; x)$ égale à 0. Alors, la première dérivée de $\mathcal{L}(\theta ;x)$ est nulle au point $\theta = \hat\theta^{\texttt{EMV}}$. \\
+
+Puisque ce point maximise la fonction, la dérivée va augmenter avant et diminuer après.
+%Puisque ce point maximise la fonction, la dérivée sera négative par la suite! \\
+%On ajoute alors un négatif à la définition de la matrice d'information fisher (la deuxième forme) pour plus facilement comparer la décroissance (négative) et la croissance (positive) de la dérivée. \\
+Cependant, plusieurs fonctions peuvent avoir le même \textbf{point} où elles sont maximisées tout en étant complètement différentes:
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -125,69 +172,111 @@ On sait que la dérivée sera de 0 au point $\hat\theta^{\texttt{EMV}}$, mais ju
 
 \end{tikzpicture}
 
-Clairement, la courbe \textcolor{purple}{en mauve} aura plus de points près de $\hat{\theta}^{\text{EMV}}$ que la courbe en \textcolor{orange}{orange}. On évalue cette différence avec la deuxième dérivée, soit la concavité ou \og curve \fg{}. Ce faisant, la deuxième dérivée permet d'être plus certain d'avoir le bon estimateur. Il est alors logique que la variance ne puisse pas être moins que l'estimateur du maximum de vraisemblance évalué au point où la concavité est maximisée. 
+Clairement, la courbe \textcolor{amethyst}{en mauve} aura plus de points près de $\hat{\theta}^{\text{EMV}}$ que la courbe en \textcolor{orange}{orange}. Afin de comparer les différents estimateurs, on cherche à quantifier l'étendu, ou la variance, de leurs formes. 
+La deuxième dérivée sert donc à mesurer la \textit{forme}, ou \textbf{concavité}, de la fonction de vraisemblance et comparer des estimateurs plus adéquatement. \\
 
-Finalement, on veut comprendre pourquoi $1/\text{\og curve \fg{}}$ et non juste $\text{\og curve \fg{}}$. On déduit que plus la concavité est élevée, alors plus la variance sera faible. Il aura forcément moins de points près de $\hat\theta^{\text{EMV}}$ et donc:
+Ce faisant, la deuxième dérivée permet d'être plus certain d'avoir le bon estimateur. Il s'ensuit que \hl{la variance ne peut pas être moins que l'estimateur du maximum de vraisemblance évalué au point où la concavité est maximisée}. Alors on peut penser à la forme à ce point comme $\bm{I}(\theta) =$ \og courbe \fg{}. \\
+
+Finalement, on veut comprendre pourquoi $1/\text{\og curve \fg{}}$ et non juste $\text{\og courbe \fg{}}$. On déduit de la fraction que plus la concavité \og courbe \fg{} est élevée, alors plus la variance sera faible. Si la concavité de la fonction est très large, et donc il y a un grand étendue, il y a moins de points près de $\hat\theta^{\text{EMV}}$. Donc:
 \begin{equation*}
-	\text{Var}(\hat\theta^{\text{EMV}}) \overset{\text{dépend}}{\sim} \frac{1}{\text{\og curve \fg{}}}
+	\text{Var}(\hat\theta^{\text{EMV}}) 
+	\overset{\text{dépend}}{\sim} \frac{1}{\text{\og courbe \fg{}}}	\\
 \end{equation*}
-On observe alors que la limite lorsque la \og curve \fg{} tend vers l'infini implique une variance nulle. On dit donc que la distribution de l'estimateur est "asymptotiquement normale" tel que $\hat\theta^{\text{EMV}} \overset{a.s.}{\rightarrow} \mathcal{N}\Big(\theta, \big(\bm{I}(\theta)\big)^{-1}\Big)$ où a.s. veut dire \hyperlink{asympto}{asymptotiquement}.
 
-Il s'ensuit alors que \textbf{l'efficacité d'un estimateur} est le ratio de la borne Cramèr-Rao sur la variance de l'estimateur:
+On observe alors que la limite lorsque la \og courbe \fg{} tend vers l'infini implique une variance nulle. On dit donc que la distribution de l'estimateur est "asymptotiquement normale" tel que $\hat\theta^{\text{EMV}} \overset{a.s.}{\rightarrow} \mathcal{N}\Big(\mu = \theta, \sigma^{2} = \frac{1}{\bm{I}(\theta)}\Big)$ où a.s. veut dire \hyperlink{asympto}{asymptotiquement}.
+
+\columnbreak
+
+\begin{distributions}[Notation]
+\begin{description}[font = \normalfont]
+	\item[$\text{eff}(\hat{\theta}_{n})$]	Efficacité d'un estimateur $\hat{\theta}_{n}$;
+	\item[$\text{eff}(\hat\theta_{n}, \tilde\theta_{n})$]	Efficacité de l'estimateur $\hat{\theta}_{n}$ relatif à l'estimateur $\tilde{\theta}_{n}$.
+\end{description}
+\end{distributions}
+
+Avec le concept de l'information de Fisher, on défini \textbf{l'efficacité d'un estimateur} comme le ratio de la borne Cramèr-Rao sur la variance de l'estimateur:
 \begin{algo}{Efficacité d'un estimateur}
 \begin{align*}
-	\text{eff}(\theta)
-	&=	\frac{\text{Var}(\hat{\theta})^{\text{Rao}}}{\text{Var}(\hat{\theta})} 
-	=	\frac{1}{n\text{E}\left[\Big(\deriv{\theta}\ln f(x ; \theta)\Big)^{2}\right]\text{Var}(\hat{\theta})}
+	\text{eff}(\hat{\theta}_{n})
+	&=	\frac{\text{Var}(\hat{\theta}_{n})^{\text{Rao}}}{\text{Var}(\hat{\theta})} 
+	=	\frac{1}{\bm{I}(\theta)\text{Var}(\hat{\theta})}
 \end{align*}
+\tcbline
+\begin{description}
+	\item[Estimateur \og \textit{efficient} \fg{}]	Lorsque la variance de l'estimateur $\text{Var}(\hat{\theta}_{n})$ est égale à la borne de Cramér-Rao.
+		\begin{align*}
+		\text{eff}(\hat{\theta}_{n}) = 1
+		\end{align*}
+	\begin{itemize}[leftmargin = *]
+	\item	Étant égale à la borne, il \textit{doit} être l'estimateur avec la plus petite de tous les estimateurs sans biais.\\
+	 		On dit qu'il est le \og \textbf{\textit{Minimum Variance Unbiased Estimator (MVUE)}} \fg{}. 
+	\end{itemize}
+\end{description}
 \end{algo}
 
-Si ce ratio est de 1, $\text{eff}(\theta) = 1$, alors l'estimateur est à la borne. On dit qu'il est un estimateur \og \textbf{efficient} \fg{} \textit{(angl.)}. Du fait, parmi les estimateurs sans biais il doit être celui avec la \textbf{variance minimale}; on dit que l'estimateur est le \og \textbf{Minimum Variance Unbiased Estimator (MVUE)} \fg{} \textit{(angl.)}. 
-
-De plus, on peut généraliser cette formulation pour obtenir l'efficacité relative d'un estimateur comparativement à un autre:
+De plus, on peut généraliser cette formulation pour obtenir l'efficacité relative d'un estimateur à un autre:
 \begin{algo}{Efficacité relative}
-Soit les estimateurs non biaisés $\hat\theta_{n}$ et $\tilde\theta_{n}$, l'efficacité de $\hat\theta_{n}$ relativement à $\tilde\theta_{n}$ est:
 \begin{align*}
 	\text{eff}(\hat\theta_{n}, \tilde\theta_{n})
-	&=	\frac{\text{Var}(\hat\theta_{n})}{\text{Var}(\tilde\theta_{n})}	
+	&=	\frac{\text{Var}(\hat\theta_{n})}{\text{Var}(\tilde\theta_{n})}		\\
 \end{align*}
+où les estimateurs $\hat\theta_{n}$ et $\tilde\theta_{n}$ sont sans biais.
+\tcbline
+Lorsque:
+\begin{description}[font = \normalfont]
+	\item[$\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) < 1$:]	L'estimateur $\hat{\theta}_{n}$ est plus efficace que l'estimateur $\tilde{\theta}_{n}$, \\
+	et vice-versa si $\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) > 1$.
+\end{description}
 \end{algo}
-Si $\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) < 1$ alors $\hat\theta_{n}$ est plus efficace et vice-versa.
 
-Nous pouvons également évaluer si un estimateur est cohérent, ou converge, avec des très grands échantillons; un estimateur $\hat\theta$ est \textbf{consistent} \textit{(angl.)} si la probabilité qu'il diffère de la vraie valeur du paramètre $\theta$ par une erreur $\epsilon$ près de 0 tend vers 0 alors que la taille de l'échantillon $n$ tend vers l'infini:
+\columnbreak
+
+Nous pouvons également évaluer si un estimateur converge avec des très grands échantillons; ceci évalue si un estimateur est cohérent. Un estimateur $\hat{\theta}_{n}$ est dit d'être \og \textit{\textbf{consistent}} \fg{} si la probabilité que sa prévision $\hat{\theta}$ du paramètre $\theta$ diffère de la vraie valeur par une erreur, près de 0, $\epsilon$ tend vers 0 alors que la taille de l'échantillon $n$ tend vers l'infini:
 \begin{algo}{Convergence (\textbf{consistency}) d'un estimateur}
 \begin{align*}
-	\underset{n \rightarrow \infty}{\lim} \Pr(\big| \hat\theta - \theta \big| > \epsilon) = 0, \quad \epsilon > 0
+	\underset{n \rightarrow \infty}{\lim} \Pr(\big| \hat{\theta} - \theta \big| > \epsilon) = 0, \quad \epsilon > 0
 \end{align*}
 \end{algo}
 
-Ce critère peut être rencontré lorsque l'estimateur $\hat\theta$ est \hypertarget{asympto}{\textbf{asymptotiquement sans biais}} \textbf{\textit{et}} que la \textbf{variance de l'estimateur} tend vers 0. D'ailleurs, nous avons déjà raisonné ceci avec \hyperlink{cramer-rao}{la borne inférieure Cramèr-Rao}.
+Ce critère pour qu'un estimateur $\hat{\theta}_{n}$ soit \og \textit{consistent} \fg{} peut être satisfait lorsque: 
+\begin{enumerate}
+	\item	l'estimateur est \hypertarget{asympto}{\textbf{asymptotiquement sans biais}};
+		\begin{align*}
+		\limz{n}{\infty} \text{B}(\hat{\theta}_{n}) = 0
+		\end{align*}
+	\item	la \textbf{variance de l'estimateur tend vers 0}.
+		\begin{align*}
+		\limz{n}{\infty} \text{Var}(\hat{\theta}_{n}) = 0
+		\end{align*}
+\end{enumerate}
 
+D'ailleurs, nous avons déjà raisonné ceci avec \hyperlink{cramer-rao}{la borne inférieure Cramèr-Rao}.
 
-On définit proprement ce qu'est un estimateur \textbf{asymptotiquement sans biais}:
-\begin{algo}{Estimateur asymptotiquement sans biais}
-\begin{align*}
-	\underset{n \rightarrow \infty}{\lim} \text{B}(\hat\theta) &= 0
-\end{align*}
-\end{algo}
-
-Donc si $\underset{n \rightarrow \infty}{\lim} \text{Var}(\hat\theta) = 0$ et que $\underset{n \rightarrow \infty}{\lim} \text{B}(\hat\theta) = 0$ alors l'estimateur est \textbf{consistent}. 
-Cependant, l'inverse n'est pas vrai; un estimateur qui est \textbf{consistent} n'implique pas que la variance et le biais tendent vers 0.
+Cependant, l'inverse n'est pas vrai---qu'un estimateur soit \og \textit{consistent} \fg{} n'implique pas que sa variance ni que son biais tendent vers 0.\\
 
 Malgré la nature plaisante de la convergence d'un estimateur, beaucoup d'estimateurs ont cette propriété. 
 Nous voulons alors une mesure qui n'indique pas seulement qu'un estimateur arrive près de la bonne valeur souvent \textit{(alias, une très petite variance)}, mais qu'il est mieux que d'autres estimateurs.
-De plus, dût à la sélection arbitraire de l'erreur $\epsilon$ pour la \textit{consistency} d'un estimateur, il est possible de malicieusement la sélectionner pour faire parler les données comme on le souhaite. 
+De plus, dût à la sélection arbitraire de l'erreur $\epsilon$ pour la \textit{consistency} d'un estimateur, il est possible de la choisir malicieusement afin de faire parler les données comme on le souhaite. 
 
-Nous définissons alors l'\textbf{Erreur Quadratique Moyenne} (EQM), ou \textbf{Mean Squared Error (MSE)}, permettant de comparer les différents estimateurs ayant tous une bonne \textit{consistency} en assurant une cohérence d'interprétation.
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\text{MSE}_{\hat{\theta}_{n}}(\theta)$]	Erreur quadratique moyenne d'un estimateur $\hat{\theta}_{n}$
+\end{description}
+\end{distributions}
+
+On défini alors l'\textbf{Erreur Quadratique Moyenne} (EQM), ou \textbf{Mean Squared Error (MSE)}, permettant de comparer les différents estimateurs ayant tous une bonne \textit{consistency} en assurant une cohérence d'interprétation. Cette mesure permet de quantifier l'écart entre un estimateur $\hat{\theta}_{n}$ et le vrai paramètre $\theta$.
+
 \begin{algo}{Erreur Quadratique Moyenne (Mean Squared Error)}
 \begin{align*}
 	\text{MSE}_{\hat\theta}(\theta)
-	&=	\text{E}[(\hat\theta - \theta)^{2} | \theta]
-	\Leftrightarrow	\text{Var}(\hat\theta) + \left[\text{B}(\hat\theta)\right]^{2}
+	&=	\text{E}[(\hat{\theta}_{n} - \theta)^{2}]
+	\Leftrightarrow	\text{Var}(\hat{\theta}_{n}) + \left[\text{B}(\hat{\theta}_{n})\right]^{2}
 \end{align*}
 \end{algo}
 
-En combinant tous ces critères, le meilleur estimateur est alors l'estimateur \textbf{sans biais} ayant la \textbf{plus petite variance} possible parmi tous les estimateurs \textit{sans biais} possible; c'est-à-dire, le \textbf{Uniformly Minimum Variance Unbiased Estimator \textit{(UMVUE)}}.
+En combinant tous ces critères, le meilleur estimateur est alors l'estimateur \textbf{sans biais} ayant la \textbf{plus petite variance} possible parmi tous les estimateurs \textit{sans biais}. C'est-à-dire, le \textbf{Uniformly Minimum Variance Unbiased Estimator \textit{(UMVUE)}}.
+
+\columnbreak
 
 \subsubsection*{Estimation par intervalles}
 
@@ -511,7 +600,9 @@ Finalement, on définit la distribution conjointe du minimum et du maximum $\for
 \begin{definitionNOHFILL}[Modèle de régression linéaire simple]
 \begin{align*}
 	Y_{i} 
-	&=	\beta_{0} + \beta_{1} x_{i} + \varepsilon_{i}
+	&=	\beta_{0} + \beta_{1} x_{i} + \varepsilon_{i}	\\
+	\hat{Y}_{i} 
+	&=	\hat{\beta}_{0} + \hat{\beta}_{1} x_{i} 
 \end{align*}
 \end{definitionNOHFILL}
 
@@ -603,7 +694,7 @@ Finalement la droite elle-même est le coût que le modèle devine $\hat{Y}$. Le
 
 Par exemple, le modèle devine que le prix d'une télé de 50" est de 300\$; soit, $\hat{Y} = \beta_{0} + \beta_{1} x = 200 + (2) \cdot (50) = 300$. Selon le modèle, on estime que le coût de la télé est de 300\$.
 
-Maintenant, si tu connais le \textit{vrai} coût réel $Y$ tu peux mesurer à quel point tu est dans le champ. Supposons que le vrai coût est de $Y = 400\$$. Alors, l'erreur dans ta prédiction est de $\varepsilon = 400 - 300 = 100\$$. 
+Supposons que tu connais le \textit{vrai} coût $Y$, alors tu peux mesurer à quel point tu est dans le champ. Supposons que le vrai coût est de $Y = 400\$$. Alors, l'erreur dans ta prédiction est de $\varepsilon = 400 - 300 = 100\$$. 
 
 Graphiquement:
 
