@@ -19,6 +19,8 @@
 \newcommand{\bettershortstack}[2][c]{%
   \begin{tabular}[b]{@{}#1@{}}#2\end{tabular}%
 }
+\usepackage{stackengine}
+\newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
 %% -----------------------------
 %% Début du document
 %% -----------------------------
@@ -46,6 +48,12 @@
 \end{align*}	
 
 \subsubsection*{Hypothèse DUD}
+\textbf{Mortalité}
+\begin{align*}
+	\qx[s]{x}
+	&=	s \qx{x}, \;	s\in (0, 1)
+\end{align*}
+
 \textbf{Assurance}
 \begin{align*}
 	\Ax*{x\textcolor{airforceblue}{:\angln}}
@@ -82,6 +90,8 @@ où:
 
 \textbf{Rente}
 \begin{align*}
+	\ax**{x}	
+	&=	1 + v\px{x} \ax**{x + 1}		\\
 	\ax**[n|]{x}
 	&=	\Ex[n]{x} \ax**{x + n}	\\
 	&=	\ax**{x} - \ax**{x:\angln}	\\
@@ -92,6 +102,15 @@ où:
 		\underbrace{v^{\textcolor{airforceblue}{\frac{1}{m}}} 
 		\px[\textcolor{airforceblue}{\frac{1}{m}}]{x}}_{\Ex[\textcolor{airforceblue}{\frac{1}{m}}]{x}} \:
 		\ax**{x + \frac{1}{\textcolor{airforceblue}{m}}:\angl{n - \frac{1}{\color{airforceblue}{m}}}}[\textcolor{airforceblue}{(m)}]	\\
+\end{align*}
+
+\textbf{Note rente différée}:	pas faire l'erreur d'oublier de soustraire les $n$ années sans paiements de la rente:
+\begin{align*}
+	\prescript{}{n|}{\cumlaut[cyan]{Y}}_{x} 
+	&= 	\begin{cases}
+			0	& , K = 0, 1, \dots, n - 1 \\
+			v^{n} \cumlaut[cyan]{a}_{\angl{K \textcolor{cyan}{+ 1} - n}}			& , K = n, n + 1 \\
+		\end{cases} 	\\
 \end{align*}
 
 \subsubsection*{Mortalité}
@@ -114,12 +133,6 @@ où:
 	&=	\int_{0}^{n - h} \textrm{e}^{-\delta t} \px[t]{[x] + h} \mu_{[x] + h + t} dt	\\
 	&=	\int_{h}^{n} \textrm{e}^{-\delta (s - h)} \frac{\px[s]{[x]}}{\px[h]{[x]}} \mu_{[x] + s} ds
 \end{align*}
-
-\begin{align*}
-	\qx[s]{x}
-	&=	s \qx{x}, \;	s\in (0, 1)
-\end{align*}
-
 \pagebreak
 
 \section{Calcul de réserve}
@@ -386,10 +399,11 @@ on peut approximer $\Vx[h]{}[g]$ avec la \underline{Méthode d'Euler} :
 		\end{align*}
 \end{description}
 \begin{itemize}[leftmargin = *]
-	\item	Habituellement, il y a plus de frais au temps d'acquisition.
-	\item	Ces frais supplémentaire sont répartis sur la durée du contra.
-	\item	Habituellement, on utilise la prime nette pour faire les calculs puisque c'est plus simple.
-	\item	Lorsqu'on établit l'équation pour la perte, utilisée les frais et la prime applicables à partir de la deuxième année et soustraire la différence pour la première.
+	\item	Habituellement, il y a plus de frais au temps d'acquisition;
+	\item	Ces frais supplémentaire sont répartis sur la durée du contrat;
+	\item	Habituellement, on utilise la prime nette pour faire les calculs puisque c'est plus simple;
+	\item	Lorsqu'on établit l'équation pour la perte, utilisée les frais et la prime applicables à partir de la deuxième année et soustraire la différence pour la première;
+	\item	\textbf{Note}:	Lorsqu'on calcule la réserve FTP $\Vx[h]{}[\text{FTP}]$ on n'a pas besoin de calculer $\pi_{0}^{\text{FTP}}$, on y va directement avec $\pi_{h}^{\text{FTP}}$.
 \end{itemize}
 
 \newpage
@@ -408,7 +422,7 @@ on peut approximer $\Vx[h]{}[g]$ avec la \underline{Méthode d'Euler} :
 		\item	Le processus $M_{t}$ est une "Chaine de Markov" ssi $\forall t = 0, 1, 2, \dots$:
 		\begin{align*}
 		Q_{t}^{(i, j)}
-		&=	\Pr(M_{t + 1} = j | M_{t} = i, M_{t - 1}, \dots, M_{0})
+		&=	\Pr(M_{t + 1} = j | M_{t} = i, M_{t - 1}, \dots, M_{0})	\\
 		&=	\Pr(M_{t + 1} = j | M_{t} = i)
 		\end{align*}
 		\end{itemize}
