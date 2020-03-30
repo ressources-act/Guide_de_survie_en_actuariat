@@ -112,7 +112,8 @@ Par la suite, on calcule son \textbf{biais} $\text{B}(\hat{\theta}_{n})$ dans la
 \end{description}
 \end{algo}
 
-Cependant, le biais n'indique pas la variabilité des prévisions de l'estimateur $\hat{\theta}_{n}$. Ceci est plutôt calculé avec la variance de l'estimateur $\text{Var}(\hat{\theta}_{n})$. 
+Cependant, le biais n'indique pas la variabilité des prévisions de l'estimateur $\hat{\theta}_{n}$. Une bonne analogie pour comprendre ce qui nous manque est d’imaginer une personne ayant ses pieds dans de l'eau bouillante et sa tête dans un congélateur; \textbf{en moyenne}, il est correct, mais \textbf{en réalité} il est très inconfortable. Des estimateurs non biaisés seront toujours proches de la vraie valeur, mais ce n'est pas suffisant qu'ils soient bons \textit{en moyenne}. On évalue donc la variabilité d'un estimateur avec sa variance $\text{Var}(\hat{\theta}_{n})$.
+
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\bm{I}(\theta)$]	Matrice d'information de Fisher;
