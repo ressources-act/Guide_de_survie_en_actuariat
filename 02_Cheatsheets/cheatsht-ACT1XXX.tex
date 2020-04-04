@@ -72,6 +72,85 @@
 
 \section*{Compléments de mathématiques}
 
+\subsection*{Intégrales utiles à connaître}
+\begin{conceptgen}{Polynômes}
+\begin{align*}
+	\int \frac{1}{ax + b} dx 
+	&=	\frac{1}{a} \ln(ax + b) + C	&
+	\int x^{\frac{p}{q}}dx
+	&=	\frac{q}{p + q} x^{\frac{p + q}{q}} + C	
+\end{align*}
+\end{conceptgen}
+
+\begin{conceptgen}{Fonctions exponentielles et logarithmiques}
+\begin{align*}
+	\int a^{x} dx 
+	&=	\frac{a^{x}}{\ln(a)} + C	&
+	\int \ln(x) dx 
+	&=	x \ln(x) - x + C	
+\end{align*}
+\end{conceptgen}
+
+\subsection*{Dérivées utiles à connaître}
+
+\begin{align*}
+	\derivee{x}(a^{x})
+	&=	a^{x}\ln(a)	\\
+	\derivee{x}(\sin(x))
+	&=	\cos(x)	&
+	\derivee{x}(\cos(x))
+	&=	-\sin(x)	\\	
+\end{align*}
+
+\subsection*{Aires de formes}
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Parallelogram [id:dp190851926021818] 
+\draw   (123,67.67) -- (208.17,67.67) -- (171.67,137.19) -- (86.5,137.19) -- cycle ;
+%Straight Lines [id:da028760448720356768] 
+\draw    (66,66.33) -- (66,135.67) ;
+\draw [shift={(66,135.67)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(66,66.33)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da16729889993203217] 
+\draw    (86.5,144.67) -- (208.17,144.67) ;
+\draw [shift={(208.17,144.67)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(86.5,144.67)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da8024064344696678] 
+\draw    (425,66.33) -- (425,135.67) ;
+\draw [shift={(425,135.67)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(425,66.33)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Shape: Trapezoid [id:dp7515796089887394] 
+\draw   (274.75,138) -- (295.85,67.67) -- (376.73,67.67) -- (397.83,138) -- cycle ;
+
+% Text Node
+\draw (140,148) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle b$};
+% Text Node
+\draw (52,88.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle h$};
+% Text Node
+\draw (94,88.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle a$};
+% Text Node
+\draw (134,34) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle A\ =\ \frac{1}{2} bh$};
+% Text Node
+\draw (328,140) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle b$};
+% Text Node
+\draw (409,88.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle h$};
+% Text Node
+\draw (275,88.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle d$};
+% Text Node
+\draw (299,34) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle A\ =\ h\frac{a+b}{2}$};
+% Text Node
+\draw (370,88.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle c$};
+
+
+\end{tikzpicture}
+\end{center}
+
+
 \subsection*{Sommations}
 \begin{align*}
 \sum_{k = m}^{n} r^k &= r^{m} \frac{1 - r^{n - m + 1}}{1 - r} &
@@ -95,10 +174,12 @@ Soit:
 \end{itemize}
 Alors,
 
+	\setlength{\mathindent}{-.24cm}
 \begin{equation*}
-	\deriv{\alpha} \int_{u(\alpha)}^{v(\alpha)} f(x, \alpha) dx = 
-	\int_{u(\alpha)}^{v(\alpha)} \deriv{\alpha}  f(x, \alpha) dx + f(v(\alpha), \alpha) \deriv{\alpha} v(\alpha) - f(u(\alpha), \alpha) \deriv{\alpha} u(\alpha)
+	\deriv{\alpha}{} \int_{u(\alpha)}^{v(\alpha)} f(x, \alpha) dx = 
+	\int_{u(\alpha)}^{v(\alpha)} \deriv{\alpha}{}  f(x, \alpha) dx + f(v(\alpha), \alpha) \deriv{\alpha}{} v(\alpha) - f(u(\alpha), \alpha) \deriv{\alpha}{} u(\alpha)
 \end{equation*}
+	\setlength{\mathindent}{1cm}
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Domaines]
