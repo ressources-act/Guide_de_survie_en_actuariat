@@ -22,6 +22,7 @@
 %% -----------------------------
 \def\auteur{\href{https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/contributeurs/contributeurs-cheatshts.pdf}{\faGithub \ Liste des contributeurs}}
 \def\BackgroundColor{white}
+\usepackage{xargs} % for more logical new function creation
 
 %% -----------------------------
 %% Margin and layout
@@ -69,7 +70,7 @@
 \usepackage{empheq}
 \usepackage{numprint}
 \usepackage{dsfont} % Pour avoir le symbole du domaine Z
-
+%\usepackage{bigints} % pour des gros intégrales
 % Mathematics shortcuts
 
 \newcommand{\reels}{\mathbb{R}}
@@ -96,7 +97,9 @@
 \newcommand{\LVx}[2][]{\actsymb[#2]{L}{}[#1]}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
-
+%%%	\icbox{<frame color>}{<background color>}{<text>}
+\newcommandx{\icbox}[3][1 = bleudefrance, 2 = beaublue]{\fcolorbox{#1}{#2}{#3}}
+%%	other good color combo is azure(colorwheel) arsenic
 
 
 
@@ -349,6 +352,7 @@
 \definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}			% light green-beige-ish gray
 \definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
 \definecolor{brickred}{rgb}{0.8, 0.25, 0.33}
+\definecolor{palechestnut}{rgb}{0.87, 0.68, 0.69}
 \definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}
 \definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
 \definecolor{forestgreen(traditional)}{rgb}{0.0, 0.27, 0.13}
