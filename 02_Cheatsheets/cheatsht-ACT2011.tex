@@ -3396,20 +3396,21 @@ Nous illustrons ceci avec 2 stratégies:
 \begin{definitionNOHFILL}[Achat et revente d'une option d'achat]
 Crée en :
 \begin{itemize}[leftmargin = *]
-	\item	Achetant l'option d'achat au temps $t_{1}$
-	\item	Vendant l'option d'achat au temps $t_{2}$
+	\item	Achetant l'option d'achat au temps $t_{1}$;
+	\item	Vendant l'option d'achat au temps $t_{2}$ avant l'échéance ($t_{2} < T$).
 \end{itemize}
 
 \begin{description}
 	\item[Valeur à $t_{2}$]	
 		\begin{align*}
 		&=	\text{Prix de revente}	\\
-		&=	C(S_{t_{2}}, K, \sigma, r, T - t_{2}, \delta)
+		&=	C(S_{t_{2}}, K, \sigma, r, T, \delta)
 		\end{align*}
 	\item[Profit à $t_{2}$]	
 		\begin{align*}
 		&=	\text{Prix de revente} - \text{Prix d'achat à $t_{1}$ accumulé à $t_{2}$}	\\
-		&=	C(S_{t_{2}}, K, \sigma, r, T - t_{2}, \delta) - C(S_{t_{1}}, K, \sigma, r, T - t_{1}, \delta) \textrm{e}^{r(t_{2} - t_{1})}
+		&=	C(S_{t_{2}}, K, \sigma, r, T, \delta) - C(S_{t_{1}}, K, \sigma, r, T, \delta) \textrm{e}^{r(t_{2} - t_{1})}
+%%%		maybe mistake with T should be T  - t_{1}????
 		\end{align*}
 \end{description}
 \end{definitionNOHFILL}
@@ -3417,7 +3418,7 @@ Crée en :
 \begin{definitionNOHFILL}[Écart horizontal]
 Crée en :
 \begin{itemize}[leftmargin = *]
-	\item	Vendant une option venant à échéance à $t_{1}$.
+	\item	Vendant une option venant à échéance à $t_{1}$;
 	\item	Achetant une option identique sauf pour la date d'échéance de $t_{2}$.
 \end{itemize}
 
@@ -3436,38 +3437,27 @@ Crée en :
 \textbf{Notes}
 \begin{itemize}[leftmargin = *]
 	\item	Permet de spéculer sur la volatilité de l'action.\\
-			Typiquement utilisé lorsqu'un investisseur croit que, entre deux prix d'exercice, le prix va rester fixe.
-	\item	\og \textit{calendar spread} \fg{}.
+			Typiquement utilisé lorsqu'un investisseur croit que, entre deux prix d'exercice, le prix va rester fixe;
+	\item	en anglais \og \textit{calendar spread} \fg{}.
 \end{itemize}
 \end{definitionNOHFILL}
 
 \subsection*{Volatilité implicite}
-\hl{à compléter}
-%%%	---------------
-%%%	NOTE
-%%%	+	Manque volatility skew, etc.
-%%%	+	Plus de détails sur le contexte général.
-%%%	+	Utilité.
-%%%	---------------
-
+\begin{description}
+	\item[Volatilité implicite]	La valeur $\sigma$ tel que la formule de Black-Scholes reproduit le prix de l’option observé sur le marché.
+\end{description}
 \begin{itemize}[leftmargin = *]
-	\item	La volatilité n'est pas observable et sont estimation est problématique.
-	\item	La volatilité \textit{historique} ne prévoit pas le futur.
-	\item	On peut donc isoler la volatilité \textit{implicite} avec le prix observé de l'action et la formule de Black-Scholes.
-%	\item	Malgré que la volatilité est supposée constante dans la formule, elle varie avec le prix d'exercice $K$ et la date d'échéance $T$.
+	\item	La volatilité tel quel n'est pas observable et son estimation est problématique;
+	\item	La volatilité \textit{historique} (vue au chapitre 10) n'est pas adéquate car elle ne prévoit pas le futur;
+	\item	On peut en lieu isoler la volatilité \textit{implicite} $\hat{\sigma}$ avec le prix observé de l'action et la formule de Black-Scholes.	\\
+			Elle représente donc l'appréciation de la volatilité faite par le marché;
+	\item	Malgré que la volatilité est supposée constante dans la formule, en réalité elle varie selon le prix d'exercice $K$ et la date d'échéance $T$;
+	\item	On peut l'utiliser pour évaluer une option qui n'existe pas encore;
+	\item	Également, on peut valider ou invalider le modèle de Black-Scholes;
+	\item	Finalement, on peut comparer des options par leur volatilité implicite au lieu de leurs prix.
 %	\item	En voyant le marché des options comme un marché qui transige la volatilité, on peut la révéler.\\
 %			Selon cette théorie, les prix d'options révèlent les attentes du marché de la distribution des prix d'actions dans le futur.
 \end{itemize}
-\begin{description}
-	\item[Volatilité implicite]	La valeur de $\sigma$ telle que la formule de Black-Scholes reproduit le prix de l’option observé sur le marché.
-\end{description}
-
-%%%	--------------------
-%%%	PAS CADRE DU COURS
-%\subsection*{Perpetual american options}
-%\hl{à compléter}
-%%%	--------------------
-
 
 \newpage
 
@@ -3492,6 +3482,8 @@ Notes
 	\item	Si on fait référence au \og Delta \fg{} d'une option, on suppose la position longue.\\
 			De même pour tous les autres grecs.
 \end{itemize}
+
+\columnbreak
 
 \subsection*{Grecs}
 
@@ -3537,12 +3529,12 @@ Mesure la variation du prix de l'option correspondante à une augmentation du pr
 	\textbf{Notes}
 \end{center}
 \begin{itemize}[leftmargin = *]
-	\item	Le Delta $\Delta_{C}$ ($\Delta_{P}$) peut être interprété comme le nombre d'actions à acheter (vendre) pour répliquer une option d'achat (de vente).
+	\item	Le Delta $\Delta_{C}$ ($\Delta_{P}$) peut être interprété comme le nombre d'actions à acheter (vendre) pour répliquer une option d'achat (de vente);
 	\item	Une option d'achat devient de plus en plus profitable lorsque le prix de l'action sous-jacente augmente. \\
 			Alors, $\Delta_{C}$ se rapproche de 0 lorsque l'option est hors du cours ($S_{T} < K$) et de 1 lorsqu'elle est dans le cours ($S_{T} > K$).\\
 			Cependant, le $\Delta_{C}$ ne sera jamais négatif car l'option d'achat a un seuil minimal de 0 pour sa valeur à l'échéance.\\
-			De même, $\Delta_{P}$ ne sera jamais positif.
-	\item	Dans les deux cas, le $\Delta$ augmente avec le prix de l'action.
+			De même, $\Delta_{P}$ ne sera jamais positif;
+	\item	Dans les deux cas, le $\Delta$ augmente avec le prix de l'action;
 	\item	Mathématiquement, le domaine est restreint puisque $0 \le N(x) \le 1, \forall x$ et $0 \le e^{-\delta T} \le 1$.
 \end{itemize}
 \end{definitionNOHFILL}
@@ -3560,7 +3552,7 @@ Mesure la variation du Delta de l'option correspondante à une augmentation du p
 \begin{align*}
 	\Gamma_{C}
 	&=	\Gamma_{P}
-	=	\textrm{e}^{-\delta T} N'(d_{1}) \frac{1}{S \sigma \sqrt{T}}	
+	=	\frac{\textrm{e}^{-\delta T} N'(d_{1})}{S_{0} \sigma \sqrt{T}}	
 \end{align*}
 \end{gather}
 \end{minipage}
@@ -3570,7 +3562,7 @@ Mesure la variation du Delta de l'option correspondante à une augmentation du p
 \end{center}
 \begin{gather}
 \begin{align*}
-	0 \le \Gamma_{C} = \Gamma_{P}
+	\Gamma_{P}	=	\Gamma_{C}	>	0
 \end{align*}
 \end{gather}
 \end{minipage}
@@ -3582,7 +3574,7 @@ Mesure la variation du Delta de l'option correspondante à une augmentation du p
 \end{center}
 \begin{itemize}[leftmargin = *]
 	\item	Le $\Gamma$ mesure le \textit{taux} de variation du $\Delta$.\\
-			Puisque le $\Delta$ augmente toujours, le $\Gamma$ est toujours positif.
+			Puisque le $\Delta$ augmente toujours, le $\Gamma$ est toujours positif;
 	\item	Le $\Gamma$ est maximisé au cours du marché car c'est où le $\Delta$ connait le plus de variation.
 		\begin{center}
 		\includegraphics[scale=0.4]{src/ACT-2011/gamma-delta-greek.png}
@@ -3592,6 +3584,8 @@ Mesure la variation du Delta de l'option correspondante à une augmentation du p
 
 \begin{definitionNOHFILL}[Theta $\theta	=	\deriv{t}{V}$]
 Mesure la variation du prix de l'option correspondante à l'écoulement du temps.
+
+\paragraph{Note}	Selon si on dérive par rapport au point de départ $t$ ou à l'échéance $T$ on a que \icbox[red][palechestnut]{$\theta	=	\deriv{t}{V}	=	-\deriv{T}{V}$}
 
 \tcbline
 
@@ -3617,29 +3611,41 @@ Mesure la variation du prix de l'option correspondante à l'écoulement du temps
 	\textbf{Notes}
 \end{center}
 \begin{itemize}[leftmargin = *]
+	\item	Pour obtenir la variation en valeur par jour---\textbf{la notation de Claire}---il suffit de diviser par 365: \icbox{$\frac{\theta}{365}$};
 	\item	La valeur d'une option décroît avec le temps. \\
-			$\theta$ estime de combien, ceteris paribus, la valeur décroît par jour.
+			$\theta$ estime de combien, ceteris paribus, la valeur décroît par jour;
 	\item	Ce faisant, $\theta$ est habituellement \textbf{négatif}.\\
-			Il est \textit{possible} qu'il soit négatif pour une option \underline{profondément} dans le cours du marché ayant un taux de dividende \underline{très} élevé.
-	\item	Pour obtenir la variation en valeur par jour, il suffit de diviser $\theta$ par 365.
+			Il est \textit{possible} qu'il soit négatif pour une option \underline{profondément} dans le cours du marché ayant un taux de dividende \underline{très} élevé;
 	\item	\textbf{T}heta pour \textbf{t}emps.
 \end{itemize}
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILL}[Vega $Vega	=	\deriv{\sigma}{V}$]
+\begin{definitionNOHFILL}[Vega alias Lambda $\Lambda	=	\deriv{\sigma}{V}$]
 Mesure la variation du prix de l'option correspondante à une augmentation de la volatilité de l'action.
 \tcbline
 
+\begin{minipage}[ht]{0.5\linewidth}
 \begin{center}
 	\textbf{Expression du Vega pour les options}
 \end{center}
 \begin{gather}
 \begin{align*}
-	Vega_{C}
-	&=	Vega_{P}
-	=	S \textrm{e}^{-\delta T} N'(d_{1}) \sqrt{T}
+	\Lambda_{C}
+	&=	\Lambda_{P}
+	=	S_{0} \textrm{e}^{-\delta T} N'(d_{1}) \sqrt{T}
 \end{align*}
 \end{gather}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Domaine}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Lambda_{P}	=	\Lambda_{C}	>	0
+\end{align*}
+\end{gather}
+\end{minipage}
 
 \tcbline
 
@@ -3647,9 +3653,9 @@ Mesure la variation du prix de l'option correspondante à une augmentation de la
 	\textbf{Notes}
 \end{center}
 \begin{itemize}[leftmargin = *]
+	\item	Pour obtenir la variation en pourcentage---\textbf{la notation de Claire}---il suffit de diviser par 100: \icbox{$\frac{\Lambda}{100}$};
 	\item	Une augmentation de la volatilité mène toujours à une augmentation des prix d'options.\\
-			Il s'ensuit que le Vega sera toujours positif et augmente avec la volatilité.
-	\item	Pour obtenir la variation en pourcentage, il suffit de diviser $Vega$ par 100.
+			Il s'ensuit que le Vega sera toujours positif et augmente avec la volatilité;
 	\item	\textbf{V}ega pour \textbf{v}olatilité.
 \end{itemize}
 \end{definitionNOHFILL}
@@ -3659,17 +3665,31 @@ Mesure la variation du prix de l'option correspondante à une augmentation du ta
 
 \tcbline
 
+\begin{minipage}[ht]{0.5\linewidth}
 \begin{center}
 	\textbf{Expression du Rho pour les options}
 \end{center}
 \begin{gather}
 \begin{align*}
 	\rho_{C}
-	&=	T K \textrm{e}^{-r T} N(d_{2})	&
+	&=	T K \textrm{e}^{-r T} N(d_{2})	\\
 	\rho_{P}
 	&=	-T K \textrm{e}^{-r T} N(-d_{2})
 \end{align*}
 \end{gather}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Domaine}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\rho_{C}	&>	0	\\
+	\rho_{P}	&<	0
+\end{align*}
+\end{gather}
+\end{minipage}
+
 
 \tcbline
 
@@ -3677,10 +3697,10 @@ Mesure la variation du prix de l'option correspondante à une augmentation du ta
 	\textbf{Notes}
 \end{center}
 \begin{itemize}[leftmargin = *]
+	\item	Pour obtenir la variation en pourcentage---\textbf{la notation de Claire}---il suffit de diviser par 100: \icbox{$\frac{\rho}{100}$};
 	\item	Une augmentation du taux sans risque $r$ fait baisser la valeur actualisée du prix d'exercice $K\textrm{e}^{-rT}$.\\
 			Selon la formule de Black-Scholes, baisser $K\textrm{e}^{-rT}$ fait \textbf{augmenter} la valeur d'une option d'achat mais \textbf{baisser} celle d'une option de vente.\\
-			Donc, $\rho_{C} > 0$ et $\rho_{P} < 0$.
-	\item	Pour obtenir la variation en pourcentage, il suffit de diviser $\rho$ par 100.
+			Donc, $\rho_{C} > 0$ et $\rho_{P} < 0$;
 	\item	\textbf{R}ho pour taux sans \textbf{r}isque.
 \end{itemize}
 \end{definitionNOHFILL}
@@ -3690,17 +3710,31 @@ Mesure la variation du prix de l'option correspondante à une augmentation du ta
 
 \tcbline
 
+
+\begin{minipage}[ht]{0.5\linewidth}
 \begin{center}
 	\textbf{Expression du Psi pour les options}
 \end{center}
 \begin{gather}
 \begin{align*}
 	\psi_{C}
-	&=	- T S \textrm{e}^{-\delta T} N(d_{1})	&
+	&=	- T S \textrm{e}^{-\delta T} N(d_{1})	\\
 	\psi_{P}
 	&=	T S \textrm{e}^{-\delta T} N(-d_{1})
 \end{align*}
 \end{gather}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Domaine}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\psi_{C}	&<	0	\\
+	\psi_{P}	&>	0
+\end{align*}
+\end{gather}
+\end{minipage}
 
 \tcbline
 
@@ -3708,14 +3742,12 @@ Mesure la variation du prix de l'option correspondante à une augmentation du ta
 	\textbf{Notes}
 \end{center}
 \begin{itemize}[leftmargin = *]
+	\item	Pour obtenir la variation en pourcentage---\textbf{la notation de Claire}---il suffit de diviser par 100: \icbox{$\frac{\psi}{100}$};
 	\item	Une augmentation du taux de dividendes $\delta$ fait baisser la valeur actualisée du prix de l'action $S\textrm{e}^{-\delta T}$.\\
 			Selon la formule de Black-Scholes, baisser $S\textrm{e}^{-\delta T}$ fait \textbf{baisser} la valeur d'une option d'achat mais \textbf{augmenter} celle d'une option de vente.\\
 			Donc, $\psi_{C} < 0$ et $\psi_{P} > 0$.
-	\item	Pour obtenir la variation en pourcentage, il suffit de diviser $\psi$ par 100.
 \end{itemize}
 \end{definitionNOHFILL}
-
-\columnbreak
 
 \subsubsection*{Portefeuille}
 
@@ -3724,6 +3756,8 @@ Le grecque d'un portefeuille composé de $N$ options sur une même action, avec 
 	\text{Grec}_{\text{ptf.}}
 	&=	\overset{N}{\underset{i = 1}{\sum}} n_{i} \text{Grec}_{i}	
 \end{align*}
+
+\columnbreak
 
 \subsection*{Élasticité}
 
@@ -3741,7 +3775,7 @@ Mesure le pourcentage de variation du prix de l'option correspondante au pourcen
 		&=	\frac{\text{\% variation du prix de l'option}}{\text{\% variation du prix de l'action}}	
 		=	\frac{{\color{teal}(V_{t} - V_{0})}/V_{0}}{{\color{teal}(S_{t} - S_{0})}/S_{0}}	\\
 		&=	{\color{teal}\Delta} \cdot \frac{S_{0}}{V_{0}}
-		=	\frac{\Delta S}{V}
+		=	\frac{\Delta S_{0}}{V}
 \end{align*}
 
 \begin{center}
@@ -3760,10 +3794,23 @@ Mesure le pourcentage de variation du prix de l'option correspondante au pourcen
 	\textbf{Notes}
 \end{center}
 \begin{itemize}[leftmargin = *]
-	\item	Pour obtenir l'élasticité par augmentation de 1\% du prix de l'action, diviser par 100---$\Omega/100$.
-	\item	Le $\Delta$ peut être vu comme $\Delta = \frac{\text{variation du prix de l'option}}{\text{variation du prix de l'action}}$ et donc l'Omega évalue le \% au lieu du montant.
+	\item	Pour obtenir la variation par augmentation de 1\% du prix de l'action---\textbf{la notation de Claire}---il suffit de diviser par 100: \icbox{$\frac{\Omega}{100}$};
+	\item	Le $\Delta$ peut être vu comme le risque \textit{absolu} d'une action: \[\Delta = \frac{\text{variation du prix de l'option}}{\text{variation du prix de l'action}}\]
+			L'élasticité évalue plutôt le risque \textit{relatif} au montant.
 \end{itemize}
 \end{definitionNOHFILL}
+
+\subsubsection*{Volatilité}
+Puisqu'un actif sans risque n'a aucune volatilité, la volatilité de l'option va seulement dépendre sur celle de l'action.\\
+Pour l'obtenir, on pondère la volatilité de l'action par la valeur absolue de $\Omega$:
+\begin{align*}
+	\sigma_{\text{option}}
+	&=	| \Omega | \sigma_{\text{action}}
+\end{align*}
+
+\begin{itemize}
+	\item	La valeur absolue assure une volatilité positive.
+\end{itemize}
 
 \subsubsection*{Rendement sur l'option $\gamma$}
 Pour un portefeuille réplicatif on a que $V = \Delta S + B$. \\
@@ -3778,23 +3825,24 @@ Avec ceci on trouve:
 		&=	\Omega \alpha + (1 - \Omega) r
 		\end{align*}
 \end{description}
+\begin{itemize}[leftmargin = *]
+	\item	Ceci est l'équivalent continu de $\textrm{e}^{\gamma h} = \frac{\delta S}{\delta S + B}\textrm{e}^{\alpha h} + \frac{B}{\delta S + B}\textrm{e}^{r h}$.
+\end{itemize}
 
-\subsubsection*{Prime de risque}
+\begin{definitionNOHFILLsub}[Prime de risque]
 Une \textbf{prime de risque} est l'excès du rendement espéré d'un actif au taux sans risque.
 \begin{description}
 	\item[Prime de risque sur l'action]	$\alpha - r$
-	\item[Prime de risque sur l'option]	$\gamma - r \equiv \Omega (\alpha - r)$
+	\item[Prime de risque sur l'option]	$\gamma - r$
 \end{description}
+\begin{itemize}[leftmargin = *]
+	\item	Avec la définition du rendement $\gamma$ espéré instantané sur l'option on trouve: \icbox{$	\gamma - r \equiv \Omega (\alpha - r)$};
+	\item	Dans le modèle d'évaluation des actifs financiers, \icbox{$\alpha - r = \beta_{\text{action}}(\mu_{m} - r)$} alias $\beta_{\text{option}}	=	\beta_{\text{action}} \Omega_{\text{option}}$;
+	\item	Si $\alpha > r$ alors $\gamma_{C} \geq \alpha$ et $\gamma_{P} \leq r$.
+\end{itemize}
+\end{definitionNOHFILLsub}
 
-\subsubsection*{Volatilité}
-Puisqu'un actif sans risque n'a aucune volatilité, la volatilité de l'option va seulement dépendre sur celle de l'action.\\
-Pour l'obtenir, on pondère la volatilité de l'action par la valeur absolue de $\Omega$:
-\begin{align*}
-	\sigma_{\text{option}}
-	&=	| \Omega | \sigma_{\text{action}}
-\end{align*}
-
-\subsubsection*{Ratio de Sharpe}
+\begin{definitionNOHFILL}[Ratio de Sharpe \o]
 Le \textbf{ratio de Sharpe} d'un actif est le ratio de sa prime de risque à sa volatilité.
 \begin{description}
 	\item[Ratio de Sharpe de l'action]	
@@ -3814,13 +3862,14 @@ Puisque $\Omega$ est positif pour les option d'achat et négatif pour les option
 	\text{\o}_{C}	&=	\text{\o}_{\text{action}}	&
 	\text{\o}_{P}	&=	-\text{\o}_{\text{action}}
 \end{align*}
+\end{definitionNOHFILL}
 
 \subsubsection*{Portefeuille}
 
-L'élasticité d'un portefeuille composé de $n$ options est simplement la moyenne pondérée de l'élasticité de chaque type d'option. Donc, avec $\omega_{i}$\% du portefeuille investi dans l'option $i$, on a:
+L'élasticité d'un portefeuille composé de $N$ options avec $n_{i}$ de chaque type est la moyenne pondérée de l'élasticité de chaque type d'option. Donc, avec $\omega_{i}$\% du portefeuille investi dans l'option $i$, on a:
 \begin{align*}
 	\Omega_{\text{ptf.}}
-	&=	\overset{n}{\underset{i = 1}{\sum}} \omega_{i} \Omega_{i}, \: \text{où } \omega_{i} = \text{\# acheté} \times \frac{V_{i}}{V_{\text{ptf}}}
+	&=	\overset{N}{\underset{i = 1}{\sum}} \omega_{i} \Omega_{i}, \: \text{où } \omega_{i} = n_{i} \times \frac{V_{i}}{V_{\text{ptf.}}}
 \end{align*}
 
 On peut également le calculer avec les paramètres du portefeuille $\Omega_{\text{ptf.}} = \frac{\Delta_{\text{ptf.}}S}{V_{\text{ptf.}}}$.
