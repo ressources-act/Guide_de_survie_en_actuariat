@@ -24,6 +24,7 @@
 \input{contributeurs/contrib-ACT2011}
 
 \newpage
+\raggedcolumns
 
 \begin{multicols*}{2}
 
@@ -3049,7 +3050,7 @@ Rappel que les deux premiers moments sont obtenus de la FGM de la distribution n
 \end{enumerate}
 \end{rappel}
 
-%\columnbreak
+\columnbreak
 
 \subsection*{Modèle lognormale pour le prix d'une action}
 
@@ -3094,7 +3095,7 @@ On obtient la deuxième équation en traitant $\ln(S_{0})$ comme une constante c
 On obtient la troisième équation avec la relation $X = m + vZ$.
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILL}[Moyenne variance et covariance]
+\begin{definitionNOHFILLsub}[Moyenne variance et covariance]
 Avec la distribution lognormale, on obtient:
 \begin{align*}
 	\text{E}[S_{t}]
@@ -3105,7 +3106,7 @@ Avec la distribution lognormale, on obtient:
 	&=	\text{E}\left[\frac{S_{t}}{S_{t}}\right] \cdot \text{Var}(S_{t})	
 	=	\textrm{e}^{(\alpha - \delta)(T - t)} \text{Var}(S_{t})
 \end{align*}
-\end{definitionNOHFILL}
+\end{definitionNOHFILLsub}
 
 \begin{distributions}[Trouver le $p$-ème percentile de $S_{t}$]
 \begin{enumerate}[leftmargin = *]
@@ -3116,7 +3117,7 @@ Avec la distribution lognormale, on obtient:
 \paragraph{Note}	Utiliser la même approche pour trouver un intervalle de prévision.
 \end{distributions}
 
-%\columnbreak
+\columnbreak
 
 \subsection*{Tarification d'options avec une action lognormale}
 
@@ -3246,7 +3247,7 @@ En remplaçant $\gamma$ et $\alpha$ par ${\color{teal}r}$ on obtient la \textbf{
 \end{itemize}
 \end{conceptgen}
 
-%\columnbreak
+\columnbreak
 
 \subsection*{Estimation du rendement et de la volatilité}
 
@@ -3292,21 +3293,21 @@ On obtient les estimations des paramètres avec $n + 1$ observations de prix his
 \begin{center}
 	\textbf{Sur la distribution de l'action sous-jacente}
 \end{center}
-\begin{itemize}[leftmargin = *]
-	\item	Le rendement composé continûment sur l'action a une distribution normale et est indépendant avec le temps.
-	\item	La volatilité est connue et constante.
-	\item	Les futurs dividendes sont connus.
-\end{itemize}
+\begin{enumerate}[leftmargin = *, label = \alph*)]
+	\item	Les rendements (composés continûment) sur l'action ont une distribution normale et sont indépendants à travers le temps.
+	\item	La volatilité des rendements (composés continûment) est connue et constante.
+	\item	Les dividendes futurs sont connus.
+\end{enumerate}
 \tcbline
 \begin{center}
 	\textbf{Sur l'environnement économique}
 \end{center}
-\begin{itemize}[leftmargin = *]
-	\item	Le taux sans risque est connu et constant.
+\begin{enumerate}[leftmargin = *, label = \alph*)]
+	\item	Le taux (force) sans risque est connu et constant.
 	\item	Il n'y a pas d'impôt	 ni de frais de transactions.
-	\item	Il n'y a aucun coût relié à la vente à découvert.
-	\item	Les investisseurs peuvent emprunter et prêter au taux sans risque.
-\end{itemize}
+	\item	Il n'y a pas de frais de vente à découvert.
+	\item	Les investisseurs peuvent emprunter au taux sans risque.
+\end{enumerate}
 \end{conceptgen}
 
 \begin{definitionNOHFILL}[Formule de Black-Scholes généralisée]
@@ -3329,10 +3330,10 @@ On obtient les estimations des paramètres avec $n + 1$ observations de prix his
 Prix d'options \textbf{européennes} selon la formule de Black-Scholes:
 
 \begin{align*}
-	C(K)
-	&=	F^{P}(S) N(d_{1}) - F^{P}(K) N(d_{2})	\\
-	P(K)
-	&=	F^{P}(K) N(-d_{2}) - F^{P}(S) N(-d_{1})	
+	C(S_{0}, K, \sigma, r, T, \delta)
+	&=	F^{P}_{0, T}(S) N(d_{1}) - F^{P}_{0, T}(K) N(d_{2})	\\
+	P(S_{0}, K, \sigma, r, T, \delta)
+	&=	F^{P}_{0, T}(K) N(-d_{2}) - F^{P}_{0, T}(S) N(-d_{1})	
 \end{align*}
 
 \tcbline
@@ -3353,6 +3354,11 @@ Prix d'options \textbf{européennes} selon la formule de Black-Scholes:
 
 Avec la formule généralisée, on peut appliquer la formule de Black-Scholes à d'autres sous-jacents. Il y a quelques considérations à prendre dans un tel cas pour option sur:
 \begin{description}
+	\item[Actions avec dividendes discrets proportionnels]	On trouve le nombre $n$ de fois que le dividende sera versé entre $0$ et l'échéance de $T$ de l'option.
+		\begin{align*}
+		F^{P}_{0, T}(S)
+		&=	S_{0} (1 - txdiv)^{n}
+		\end{align*}
 	\item[Contrats à terme standardisés]	Il peut arriver que la date d'échéance---$T$---de l'option ne soit pas la même que la date d'échéance---$T'$---du contrat à terme standardisé sur un actif quelconque $Q$. \\
 			Dans un tel cas, il faut que $T' \ge T$ et qu'on actualise le prix à terme $F_{0, T'}(Q)$ à partir de $T$ (et non $T'$).
 			\begin{align*}
@@ -3363,7 +3369,7 @@ Avec la formule généralisée, on peut appliquer la formule de Black-Scholes à
 			\end{align*}
 	\item[Devises]	Les prix à terme prépayés doivent être dans la même devise que l'option.
 		\begin{align*}
-		C(x_{0}, K, \sigma, r_{\text{DD}}, T, r_{\text{DÉ}})
+		C(S_{0} = x_{0}, K, \sigma, r = r_{\text{DD}}, T, \delta = r_{\text{DÉ}})
 		&=	x_{0} \textrm{e}^{-r_{\text{DÉ}} T}N(d_{1}) - K \textrm{e}^{r_{\text{DD}}T} N(d_{2})	
 		\end{align*}
 \end{description}
@@ -3374,6 +3380,9 @@ Avec la formule généralisée, on peut appliquer la formule de Black-Scholes à
 %%%	+	Compléter pour devises lorsque les notes de cours seront rendues disponibles.
 %%%	-------------------------
 
+
+
+\columnbreak
 
 \subsection*{Diagrammes du profit avant échéance}
 Nous avons précédemment tracé des diagrammes de profit de valeur à l'échéance pour les options \textbf{à l'expiration}. Nous allons maintenant étendre ceci pour tracer les diagrammes \textbf{avant expiration}.
@@ -3589,17 +3598,17 @@ Mesure la variation du prix de l'option correspondante à l'écoulement du temps
 \begin{center}
 	\textbf{Expressions du Theta pour les options}
 \end{center}
+	\setlength{\mathindent}{0cm}
 \begin{gather}
 \begin{align*}
 	\theta_{C}
-	&=	\delta S \textrm{e}^{-\delta (T - t)} N(d_{1}) - 
-		r K \textrm{e}^{-r (T - t)} N(d_{2})	-
+	&=	\left(Kr \textrm{e}^{-r (T - t)} N(d_{2})	-	S_{0}\delta \textrm{e}^{-\delta (T - t)} N(d_{1})\right) +
 		\frac{K\textrm{e}^{-r (T - t)} N'(d_{2}) \sigma}{2\sqrt{T - t}}	\\
 	\theta_{P}
-	&=	\theta_{C} + 
-		r K \textrm{e}^{-r (T - t)}	-
-		\delta S \textrm{e}^{-\delta (T - t)} 
+	&=	\left(S_{0}\delta \textrm{e}^{-\delta (T - t)} N(-d_{1})	-	Kr \textrm{e}^{-r (T - t)} N(-d_{2})\right) +
+		\frac{K\textrm{e}^{-r (T - t)} N'(d_{2}) \sigma}{2\sqrt{T - t}}	\\
 \end{align*}
+	\setlength{\mathindent}{1cm}
 \end{gather}
 
 \tcbline
