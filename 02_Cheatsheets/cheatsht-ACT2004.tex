@@ -46,6 +46,7 @@
 
 \newpage
 
+\raggedcolumns
 \footnotesize % Écrire petit (peut être modifié)
 \begin{multicols*}{3} 	% Nombre de colonnes (peut être changé plus tard.)
 \section*{Rappel de Math. financière}
@@ -281,6 +282,8 @@ Pour un individu d'âge $x$, la variable aléatoire \textbf{discrète} $J^{(m)}_
 \end{align*}
 
 
+\columnbreak
+
 \subsection{Lois de mortalité}
 \subsubsection*{Loi de Moivre}
 Pas très réaliste car assume une chance \textbf{uniforme} de mourir n'importe quand alors qu'en réalité une personne âgée de 90 ans a des plus grandes chances de mourir qu'un jeune de 30 ans.
@@ -352,6 +355,7 @@ $T_x \sim	\text{Unif}(0, \omega - x)$
 \end{align*}
 
 
+\columnbreak
 \subsection{Tables de mortalité}
 \begin{itemize}
 \item[$\ell_0$ : ] Nombre d'individus initial dans une cohorte.
@@ -380,38 +384,84 @@ $T_x \sim	\text{Unif}(0, \omega - x)$
 \end{align*}
 \end{itemize}
 
+\columnbreak
 \subsection{Hypothèses pour les âges fractionnaires}
-Pour $t \in [0,1]$ et $x \in \entiers$.
+Si nous avons uniquement de l'information sur la mortalité en temps discret (alias, $K_{x}$) on peut estimer la mortalité $T_x$ avec des hypothèse pour les âges fractionnaires.\\
 
-\textbf{Distribution uniforme des décès (DUD)} \\
-Décès répartis uniformément sur l'année.
+%Pour $x \in \entiers$.
 
+\begin{definitionNOHFILL}[Distribution uniforme des décès (DUD)]
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{Uniform Distribution of Deaths (UDD)} \fg{};
+	\item	Les décès sont répartis uniformément sur l'année;
+	\item	Une mortalité qui suit la loi de De Moivre implique une DUD, mais une DUD n'implique pas une mortalité qui suit la loi de De Moivre.
+\end{itemize}
+\tcbline
+L'hypothèse d'une DUD est en fait l'interpolation linéaire, \icbox[red][palechestnut]{$\forall t \in [0, 1]$}:
 \begin{align*}
-S_X(x + t) &= (1 - t) \times S_X(x) + t \times S_X(x + 1),  &t \in [0, 1] \\
-S_X(x + t) &= \frac{(c - t)}{c} \times S_X(x) + \frac{t}{c} \times S_X(x + 1),  &t \in [0, c] \\
-\end{align*}
-\text{les conditions pour t et x appliquent aux 3 équations suivantes}
-\begin{align*}
-\qx[t]{x} &= \left(\frac{t}{c}\right) \qx[c]{x},  &t \in [0, c] \\
-\mu_{x + t} &= \frac{\frac{1}{c} \qx[c]{x}}{1 - \frac{t}{c} \qx[c]{x}}, &x \in \{0, c, 2c, \dots\} \\
-%&\Leftrightarrow \frac{\frac{\partial}{\partial t}\qx[t]{x}}{\px[t]{x}} \\
-\qx[y]{x + t} &= \frac{\left(\frac{y}{c}\right) \qx[c]{x}}{1 -\left(\frac{t}{c}\right) \qx[c]{x}}, &y \in [0, c - t] 
+	S_{X}(x + t) 
+	&=	(1 - t) \times S_X(x) + t \times S_X(x + 1)	\\
 \end{align*}
 
-On note que la force de mortalité à la même formule que la \\ fonction de survie car avec \textbf{DUD}, la force est uniformément \\ appliquée.
-
-On note que la force de mortalité à la même formule que la \\ fonction de survie car avec \textbf{DUD}, la force est uniformément \\ appliquée.
-
-\textbf{Force constante (FC)}
+On peut généraliser l'interpolation pour un intervalle $c$ de plus d'un an, \icbox[red][palechestnut]{$\forall t \in [0, c]$} :
 \begin{align*}
-S_X(x + t) &= S_X(x)^{(1 - t)} + S_X(x + 1)^t,  &t \in [0, 1] \\
-S_X(x + t) &= S_X(x)^{\frac{(c - t)}{c}} + S_X(x + 1)^{\frac{t}{c}},  &t \in [0, c] \\
+	S_{X}(x + t) 
+	&=	\frac{(c - t)}{c} \times S_X(x) + \frac{t}{c} \times S_X(x + 1)	
 \end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Par exemple, si la mortalité est disponible en groupes d'âges quinquennaux, on pose $c = 5$.
+\end{itemize}
+\end{definitionNOHFILL}
+
+On trouve les formules types où habituellement $\textcolor{teal}{c = 1}$:
 \begin{align*}
-%\ell_{x+t} &= \ell_x^{(1-t)} \ell_{x+1}^{(t)} \\
-\mu_{x + t} &= -\frac{1}{c}ln(\px[c]{x}), & t \in[0, c] \\
-\qx[y]{x + t} &= 1 - (\px[c]{x})^{\frac{y}{c}}, & t \in[0, c],  y \in [0, c - t] \\
+	\qx[t]{x} 
+	&=	\left(\frac{t}{\textcolor{teal}{c}}\right) \qx[\textcolor{teal}{c}]{x}	\\
+	\mu_{x + t} 
+	&=	\frac{\frac{1}{\textcolor{teal}{c}} \qx[\textcolor{teal}{c}]{x}}{1 - \frac{t}{\textcolor{teal}{c}} \qx[\textcolor{teal}{c}]{x}}	\\
+	%&\Leftrightarrow \frac{\frac{\partial}{\partial t}\qx[t]{x}}{\px[t]{x}} \\
+	\qx[y]{x + t} 
+	&=	\frac{\left(\frac{y}{\textcolor{teal}{c}}\right) \qx[\textcolor{teal}{c}]{x}}{1 -\left(\frac{t}{\textcolor{teal}{c}}\right) \qx[\textcolor{teal}{c}]{x}}
 \end{align*}
+sous condition que $t \in [0, \textcolor{teal}{c}]$, $x \in \{0, \textcolor{teal}{c}, 2\textcolor{teal}{c}, \dots\}$, et $y \in [0, \textcolor{teal}{c} - t]$.
+
+\begin{itemize}[leftmargin = *]
+	\item	La force de mortalité à la même formule que la fonction de survie sous \textbf{DUD} car la \textit{force de mortalité est appliquée \underline{uniformément}}.
+\end{itemize}
+
+\begin{definitionNOHFILL}[Force constante de mortalité (FC)]
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{Constant Force of Mortality} \fg{};
+	\item	On peut visualiser la force de mortalité comme étant une fonction en escalier---elle peut uniquement changer aux années entières;
+	\item	La force de mortalité est donc dite d'être "constante localement sur chaque année d'âge".
+\end{itemize}
+
+\tcbline
+
+L'hypothèse d'une FC est en fait l'interpolation exponentielle, \icbox[red][palechestnut]{$\forall t \in [0, 1]$}:
+\begin{align*}
+	S_{X}(x + t) 
+	&=	\left(S_{x}(x)\right)^{1 - t} + \left(S_{x}(x + 1)\right)^{t}	\\
+\end{align*}
+
+On peut généraliser l'interpolation pour un intervalle $c$ de plus d'un an, \icbox[red][palechestnut]{$\forall t \in [0, c]$} :
+\begin{align*}
+	S_{X}(x + t) 
+	&=	\left(S_{x}(x)\right)^{\frac{(c - t)}{c}} + \left(S_{x}(x + c)\right)^{\frac{t}{c}}	
+\end{align*}
+\end{definitionNOHFILL}
+
+On trouve les formules types où habituellement $\textcolor{teal}{c = 1}$:
+\begin{align*}
+%	\ell_{x + t} 
+%	&=	\ell_{x}^{(1 - t)} \ell_{x + 1}^{(t)} \\
+	\mu_{x + t} 
+	&=	-\frac{1}{\textcolor{teal}{c}} \ln(\px[\textcolor{teal}{c}]{x})	\\
+	\qx[y]{x + t} 
+	&=	1 - (\px[\textcolor{teal}{c}]{x})^{\frac{y}{\textcolor{teal}{c}}}	\\
+\end{align*}
+sous condition que $t \in[0, \textcolor{teal}{c}]$, $x \in \{0, \textcolor{teal}{c}, 2\textcolor{teal}{c}, \dots\}$, et $y \in [0, \textcolor{teal}{c} - t]$.
+
 % Tableau repris de Nicholas Langevin dans l'ancienne feuille de formules
 %\textbf{Tableau résumé lorsque} $c = 1$\\
 %\[
@@ -432,82 +482,124 @@ S_X(x + t) &= S_X(x)^{\frac{(c - t)}{c}} + S_X(x + 1)^{\frac{t}{c}},  &t \in [0,
 %\end{array}
 %\]
 %\\
-Sous: 
+
+\subsubsection*{Notes sur les durées de vies}
+
+Sous l'hypothèse de \textbf{DUD}, on pose que la mortalité au courant d'une année est uniforme; la probabilité de décéder est la même peu importe le moment de l'année. Puisque $R_{x}$ est la mortalité au courant de l'année, il s'ensuit qu'elle est indépendante de $K_{x}$; alias, \icbox[red][palechestnut]{$K_{x} \overset{DUD}{\bot} R_{x}$}.
+
+Sous l'hypothèse de la \textbf{force constante}, on peut penser à la force de mortalité comme une fonction en forme d'escalier. Elle peut uniquement changer aux années entières. Alors, $K_{x}$ et $R_{x}$ seront uniquement indépendantes si la probabilité de décès est la même peu importe l'âge atteint (par exemple, si la mortalité suit une loi géométrique). Dans ce cas rare, on dit que \icbox[red][palechestnut]{si $\px{x + k}	=	\px{x}, \ \forall k \in \{0, 1, ... \}$} alors \icbox[red][palechestnut]{$K_{x} \overset{FC}{\bot} R_{x}$}.
+
+\columnbreak
+\subsection{Caractéristiques individuelles}
+%Lorsque $0 \leq x < \omega $, défini les fonctions suivantes pour 2 cas possible.
+
+\subsubsection{Cas continu ($T_{x}$)}
+Dans le cas où l'on connaît la fonction de densité ou répartition, on peut obtenir l'information "complète" (alias, continu) sur la mortalité d'un assuré d'âge $x$.
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\eringx{x}$]	Espérance de vie complète pour un individu d'âge $x$;
+		\begin{itemize}[leftmargin = *]
+		\item	En anglais, \og \textit{complete-expectation-of-life} \fg{};
+		\item	On dit "complète" puisqu'on intègre sur la durée de vie future continue ("complète") $T_{x}$ de l'assuré.
+		\end{itemize}
+	\item[$m(x)$]	La durée médiane de vie future pour un individu d'âge $x$.
+		\begin{itemize}[leftmargin = *]
+		\item	En anglais, \og \textit{median future lifetime} \fg{};
+		\item	$m(x)$ représente alors dans combien de temps la population âgée de $x$ aujourd'hui aura diminue de moitié. 
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{align*}
+	\eringx{x}
+	=	\esp{T_{x}}
+	&=	\int_{0}^{\omega - x} t \px[t]{x} \mu_{x + t} dt	\\
+	&=	\int_{0}^{\omega - x} \px[t]{x} dt	\qquad\qquad\quad\quad	\text{si } \limz{t}{\infty} t \px[t]{x} = 0
+\end{align*}
+		
+\begin{align*}
+	\text{Var}(T_{x})
+	&=	\int_{0}^{\omega - x} t^{2} \px[t]{x} \mu_{x + t} dt	\\
+	&=	\int_{0}^{\omega - x} 2t  \px[t]{x} dt - \left(\eringx{x}\right)^{2}	\qquad\quad	\text{si } \limz{t}{\infty} t \px[t]{x} = 0
+\end{align*}
+
+\textbf{Médiane} : 
+Pour trouver la médiane $m(x)$, on l'isole de l'égalité suivante:
+\begin{align*}
+	\Pr\left(T_{x} \leq m(x)\right)
+	&=	\qx[m(x)]{x} 
+	=	\frac{1}{2}
+\end{align*}
+
+\textbf{Mode} : Le moment $t$ où la population âgée de $x$ aujourd'hui ($\ell_{x}$) connaissent le plus de décès.\\
+On cherche donc le moment $t$ qui va maximiser $f_{T_{x}}(t) \equiv \px[t]{x} \mu_{x + t}$, alias \icbox[red][palechestnut]{$\argmax_t \px[t]{x} \mu_{x + t}$}.\\
+
+Donc, on pose la dérivée égale à 0:
+\begin{align*}
+	\deriv{t}{} f_{T_{x}}(t) 
+	&=	0
+\end{align*}
+
+Mais, il faut tenir en compte: 
 \begin{enumerate}
-	\item[\textbf{DUD} : ] $K_x \bot R_x$
-	\item[\textbf{FC} : ] $K_x \bot R_x$ ssi $p_{x + k} = p_{x} \ \forall k \in \{0, 1, ... \}$
+	\item	Les \textit{bornes} pour s'assurer que le $t$ en fait parti;
+	\item	Que le résultat est un \textit{maximum}.
 \end{enumerate}
 
-\subsection{Caractéristiques individuelles}
+\subsubsection{Cas discret ($K_{x}$)}
+En pratique, il est rare d'avoir une fonction qui décrit la mortalité en temps continu. Ce qui est plutôt disponible est la mortalité à des intervalles de temps sous forme d'une table; les "caractéristiques" disponibles sont celles de $K_{x}$. 
 
-Lorsque $0 \leq x < \omega $, défini les fonctions suivantes pour 2 cas possible.
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$e_{x}$]	Espérance de vie abrégée pour un individu d'âge $x$.
+		\begin{itemize}[leftmargin = *]
+		\item	En anglais, \og \textit{curtate-expectation-of-life} \fg{};
+		\item	On dit "abrégé" puisqu'on somme aux années entières la mortalité $K_{x}$ de l'assuré.
+		\end{itemize}
+\end{description}
+\end{distributions}
 
-\subsubsection*{Utilisant $T_x$}
-Si nous connaissons déjà la fonction de répartition/densité de $T_x$ on peut trouver:\\
+\begin{align*}
+	e_{x}
+	=	\esp{K_{x}}
+	&=	\sum_{k = 0}^{\omega - x - 1} k \ \qx[k | ]{x}	\\
+	&=	\sum_{k = 1}^{\omega - x} \px[k]{x} 	\qquad\qquad\qquad\qquad\;	\text{si } \limz{k}{\infty} (k + 1) \px[k + 1]{x} = 0
+\end{align*}
+\begin{align*}
+	\text{Var}(K_{x}) 
+	&=	\sum_{k = 0}^{\omega - x - 1}\left\{ k^{2} \ \qx[k | ]{x} \right\} - \left(e_{x}\right)^2	\\
+	&=	\sum_{k = 0}^{\omega - x - 1}\left\{ (2k - 1) \ \px[k]{x} \right\} - \left(e_{x}\right)^2 \quad \text{si } \limz{k}{\infty} (k + 1)^{2} \px[k + 1]{x} = 0	\\
+\end{align*}
 
-\textbf{Espérance} : Espérance de la durée de vie future complète d'une personne d'âge x.
-	\[	
-		\esp{T_x} = 
-		\eringx{x} =  
-		\int_{0}^{\omega - x} t \px[t]{x} \mu_{x+t} dt = 
-		\int_{0}^{\omega - x} \px[t]{x} d
-	\]
-\textbf{Variance}
-	\begin{align*}
-		V(T_x) &= 
-		\int_{0}^{\omega - x} t^2 \px[t]{x} \mu_{x+t} dt = 
-		\int_{0}^{\omega - x} 2 t  \px[t]{x} dt - \left(\eringx{x}\right)^2 
-	\end{align*}
-\textbf{Médiane} : Le nombre d'années avant que la population d'âge $x$ aujourd'hui diminue de moitié. \\
-	Pour la trouver il suffit d'isoler:
-	\[
-		Pr[T_x \leq m(x)] = \qx[m(x)]{x} = \frac{1}{2}
-	\]
-\textbf{Mode} : Le moment où la population d'âge $x$ aujourd'hui connaisse le plus de décès.\\
-	Pour le trouver, il faut le: 
-	\[ \argmax_t \px[t]{x} \mu_{x + t} \]
-	On peut uiliser la dérivée pour le trouver, mais il faut se méfier \textbf{des bornes} et que le résultat est un \textbf{maximum}.
-	\[
-		\derivee{t} f_{T_x}(t) = 0
-	\]	
-
-\subsubsection*{Utilisant $K_x$}
-Si nous connaissons que la table de mortalité, les seules caractéristiques disponibles sont celles de $K_x$. \\
-Pour obtenir celles de $T_x$ il faut poser un hypothèse pour les âges fractionnaires.\\
-
-\textbf{Espérance} : Espérance du nombre d'années entières à vivre pour une personne d'âge x \textit{(espérance de vie abrégée)}.
-	\[	
-		\esp{K_x} = 
-		e_{x} =  
-		\sum_{k = 0}^{\omega - x - 1} k \ \qx[k | ]{x} =  
-		\sum_{k = 1}^{\omega - x} \px[k]{x} 
-	\]
-
-\textbf{Variance} :  
-	\begin{align*}
-		V(K_x) &= 
-		\sum_{k = 0}^{\omega - x - 1} k^2 \ \qx[k | ]{x} - \left(e_{x}\right)^2 
-	\end{align*}
-
-\textbf{Médiane} : Solution tel que:
-	\begin{align*}
-		Pr[K_x < m] &< \frac{1}{2} &
-		Pr[K_x \leq m] &\geq \frac{1}{2} 
-	\end{align*}
+\textbf{Médiane} : Isoler $m(x)$ des égalités suivantes:
+\begin{align*}
+	Pr[K_{x} 	<	 m(x)] 
+	&<		\frac{1}{2}	&
+	Pr[K_{x} 	\leq	 m(x)] 
+	&\geq	\frac{1}{2} 
+\end{align*}
 
 \textbf{Mode} : 
-	\[ \argmax_k \text{Pr}[K_x = k] \]
+\begin{align*}
+	\argmax_k \text{Pr}[K_x = k]
+\end{align*}
 
+\subsubsection*{Hypothèses fractionnaires}
 
 Liens entre les fonctions pour $K_x$ et $T_x$:\\
 \begin{align*}
-	\eringx{x} &= E[T_x] = E[K_x] + E[R_x] \\
-	&\stackrel{DUD}= e_x + \frac{1}{2} \\
-	V(T_x) = &V(K_x + R_x) \stackrel{\bot}= V(K_x) + V(R_x) \\
-	\stackrel{DUD}= &V(K_x) + \frac{1}{12} 
+	\eringx{x} 
+	&=	\esp{T_{x}} 
+	=	E[K_x] + E[R_x]	\\
+	&\overset{DUD}{=}	e_x + \frac{1}{2}	\\
+	\text{Var}(T_{x})
+	&=	V(K_x + R_x) 
+	\overset{\bot}{=}	V(K_x) + V(R_x) \\
+	&\overset{DUD}{=}	V(K_x) + \frac{1}{12} 
 \end{align*}
 
-\subsubsection*{Variables censurées}
+\subsubsection{Variables censurées}
 L'espérance de vie future \textbf{d'ici} $n$ années d'un assuré d'âge $x$ (\textit{entre les âges $x$ et $x+n$}).\\
 
 Espérance de vie \textbf{complète} temporaire \textit{n} années .
@@ -526,7 +618,7 @@ e_{x:\angln} &= \esp{K_x \wedge n} \\
 && n \in \{0, 1, \dots, \omega - x - 1\}
 \end{align*}
 
-\subsubsection*{Variables tronquées}
+\subsubsection{Variables tronquées}
 L'espérance de vie future \textbf{conditionnelle} au \textbf{décès} dans les $n$ prochaines années d'un assuré d'âge $x$ (\textit{entre les âges $x$ et $x+n$}).
 
 \begin{align*}
@@ -542,7 +634,7 @@ Lien entre espérance tronquée et censurée.
 		&\stackrel{\bot}= e_{x:\angln} + \frac{\qx[n]{x}}{2} 
 \end{align*}
 
-\subsubsection*{Formules de récurrence}
+\subsubsection{Formules de récurrence}
 
 \begin{align*}
 	\eringx{x:\angln} &= \eringx{x:\angl{m}} + \px[m]{x} \eringx{x + m:\angl{n - m}}, & 0 \leq m \leq n \leq \omega - x  \\
@@ -557,6 +649,7 @@ Lien entre espérance tronquée et censurée.
 %	\text{et } e_{\omega - 1} &= 0 \ \text{comme valeur de départ}
 \end{align*}
 
+\columnbreak
 \subsection{Caractéristiques de groupe}
 \begin{itemize}
 %\item[$I_j(x)$ : ] Indicateur de survie du $j$\up{e} individu jusqu'à l'âge $x$.
@@ -641,6 +734,7 @@ $\text{Cov}( \text{A}, \text{B} ) = \esp{A \cap B} - \frac{\esp{A}\esp{B}}{\ell{
 %	\ell_x &= \ell_a S_{T_a}(x - a) = \ell_a \ \px[x - a]{a}
 %\end{align*}
 
+\newpage
 
 \section{Contrats d'assurance-vie}
 %Le paiement est soit en continu, soit à la fin de l'année ou à la fin de la $\frac{1}{m}$ d'année.
@@ -1831,6 +1925,8 @@ Généralisation avec multiple de la force d'intérêt
 		\right]
 \end{align*}
 
+\newpage
+
 \section{Contrats de rente}
 
 On note que pour les contrats de rente, chaque paiement est conditionnel à la survie du rentier jusqu'au moment du paiement \textit{(à moins de se trouver dans une période garantie)}.
@@ -2473,6 +2569,8 @@ Il suffit de remplacer $-\beta(m)$ par $+\gamma(m)$ pour obtenir les formules de
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Autres rentes payables m fois l'an}}
 
+
+\newpage
 
 \section{Primes nivelées}
 
