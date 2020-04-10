@@ -91,7 +91,7 @@ Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a cau
 		\begin{itemize}
 		\item	\og \textit{end-user} \fg{}.
 		\end{itemize}
-	\item[Teneur de marché]	"crée" le marché en tant qu'intermédiaire;
+	\item[\hypertarget{market_holder}{Teneur de marché}]	"crée" le marché en tant qu'intermédiaire;
 		\begin{itemize}[leftmargin = *]
 		\item	Il cherche à faire un profit, une "cote", sur la transaction;
 		\item	\og \textit{Market-makers} \fg{}.
@@ -3462,7 +3462,7 @@ Crée en :
 \newpage
 
 
-\section*{Les grecs de l'option}
+\section*{Les Grecs de l'option}
 
 \begin{center}
 \begin{tabular}{|	>{\columncolor{airforceblue}}c	| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}m{0.5\columnwidth}  |}
@@ -3532,7 +3532,7 @@ Mesure la variation du prix de l'option correspondante à une augmentation du pr
 	\item	Le Delta $\Delta_{C}$ ($\Delta_{P}$) peut être interprété comme le nombre d'actions à acheter (vendre) pour répliquer une option d'achat (de vente);
 	\item	Une option d'achat devient de plus en plus profitable lorsque le prix de l'action sous-jacente augmente. \\
 			Alors, $\Delta_{C}$ se rapproche de 0 lorsque l'option est hors du cours ($S_{T} < K$) et de 1 lorsqu'elle est dans le cours ($S_{T} > K$).\\
-			Cependant, le $\Delta_{C}$ ne sera jamais négatif car l'option d'achat a un seuil minimal de 0 pour sa valeur à l'échéance.\\
+			Cependant, le $\Delta_{C}$ ne sera jamais négatif, car l'option d'achat a un seuil minimal de 0 pour sa valeur à l'échéance.\\
 			De même, $\Delta_{P}$ ne sera jamais positif;
 	\item	Dans les deux cas, le $\Delta$ augmente avec le prix de l'action;
 	\item	Mathématiquement, le domaine est restreint puisque $0 \le N(x) \le 1, \forall x$ et $0 \le e^{-\delta T} \le 1$.
@@ -3575,7 +3575,7 @@ Mesure la variation du Delta de l'option correspondante à une augmentation du p
 \begin{itemize}[leftmargin = *]
 	\item	Le $\Gamma$ mesure le \textit{taux} de variation du $\Delta$.\\
 			Puisque le $\Delta$ augmente toujours, le $\Gamma$ est toujours positif;
-	\item	Le $\Gamma$ est maximisé au cours du marché car c'est où le $\Delta$ connait le plus de variation.
+	\item	Le $\Gamma$ est maximisé au cours du marché, car c'est où le $\Delta$ connaît le plus de variation.
 		\begin{center}
 		\includegraphics[scale=0.4]{src/ACT-2011/gamma-delta-greek.png}
 		\end{center}
@@ -3751,7 +3751,7 @@ Mesure la variation du prix de l'option correspondante à une augmentation du ta
 
 \subsubsection*{Portefeuille}
 
-Le grecque d'un portefeuille composé de $N$ options sur une même action, avec $n_{i}$ options de chaque type, est simplement la somme des grecques:
+Le grec d'un portefeuille composé de $N$ options sur une même action, avec $n_{i}$ options de chaque type, est simplement la somme des grecques:
 \begin{align*}
 	\text{Grec}_{\text{ptf.}}
 	&=	\overset{N}{\underset{i = 1}{\sum}} n_{i} \text{Grec}_{i}	
@@ -3854,10 +3854,10 @@ Le \textbf{ratio de Sharpe} d'un actif est le ratio de sa prime de risque à sa 
 		\begin{align*}
 		\text{\o}_{\text{option}}	
 		&=	\frac{\gamma - r}{\sigma_{\text{option}}}	
-		\equiv	\frac{\Omega}{|\Omega|}\sigma_{\text{option}}	
+		\equiv	\frac{\Omega (\alpha - r)}{|\Omega|\sigma_{\text{action}}}	
 		\end{align*}
 \end{description}
-Puisque $\Omega$ est positif pour les option d'achat et négatif pour les options de vente:
+Puisque $\Omega$ est positif pour les options d'achat et négatif pour les options de vente:
 \begin{align*}
 	\text{\o}_{C}	&=	\text{\o}_{\text{action}}	&
 	\text{\o}_{P}	&=	-\text{\o}_{\text{action}}
@@ -3874,20 +3874,23 @@ L'élasticité d'un portefeuille composé de $N$ options avec $n_{i}$ de chaque 
 
 On peut également le calculer avec les paramètres du portefeuille $\Omega_{\text{ptf.}} = \frac{\Delta_{\text{ptf.}}S}{V_{\text{ptf.}}}$.
 
-
 \subsection*{Approximation}
 
 \begin{itemize}[leftmargin = *]
-	\item	On peut approximer la variation du prix de l'option avec les grecques. 
-	\item	Le Delta \textit{varie avec le prix} et donc est seulement valide comme approximation du prix pour des très petites variations. \\
-			En considérant le Gamma, l'approximation devient valide pour des plus grandes variations.
-	\item	Cependant, la meilleure approximation se fait en incluant Theta pour considérer \textit{l'effet du temps}.
+	\item	On peut approximer la variation du prix de l'option avec les grecques;
+	\item	Le Delta \textit{varie avec le prix}: 
+		\begin{itemize}
+		\item	Le Delta \textit{sous-estime} l'\textit{augmentation} du prix de l'option d'achat quand le prix de l'action augmente et \textit{surestime} la \textit{diminution};
+		\item	Alors, le Delta est seulement valide comme approximation du prix pour des très petites variations
+		\end{itemize}
+	\item	En considérant le Gamma, l'approximation devient valide pour des plus grandes variations;
+	\item	Cependant, la meilleure approximation se fait en incluant Theta pour considérer \textit{l'effet du temps} \icbox[red][palechestnut]{mais ce n'est pas dans le cadre du cours}.
 \end{itemize}
 
 \begin{definitionNOHFILL}[Approximation Delta-Gamma-Theta]
 \begin{align*}
-	V_{t + h}
-	&\approx	V_{t} + \Delta_{t} \varepsilon + \frac{1}{2} \Gamma_{t} \varepsilon^{2} + \theta_{t} h	
+	C(S_{t} + \varepsilon)
+	&\approx	C(S_{t}) + \Delta_{t} \varepsilon + \frac{1}{2} \Gamma_{t} \varepsilon^{2} + \theta_{t} h
 \end{align*}
 
 \tcbline
@@ -3896,12 +3899,96 @@ On peut également le calculer avec les paramètres du portefeuille $\Omega_{\te
 \begin{itemize}[leftmargin = *]
 	\item	$\varepsilon$ est la variation du prix.
 	\item	$h$ et $\theta$ doivent être dans la même unité de temps.
-	\item	$\theta$ diminue l'approximation car il est habituellement négatif.
+	\item	$\theta$ diminue l'approximation, car il est habituellement négatif.
 \end{itemize}
 \end{definitionNOHFILL}
 
+%Pour un nœud $\eta$, on va avoir:
+%\begin{align*}
+%	(\Delta_{\eta u} - \Delta_{\eta})S_{\eta u} + (B_{\eta u} - B_{\eta}\textrm{e}^{rh})	\\
+%	(\Delta_{\eta d} - \Delta_{\eta})S_{\eta d} + (B_{\eta d} - B_{\eta}\textrm{e}^{rh})
+%\end{align*}
+
+\newpage
+
+\section{Tenue de marché et couverture en delta neutre}
+
+\begin{definitionNOHFILL}[Opérations pour compte propre]
+Opérations effectuées par une institution financière pour son propre compte afin de suivre une stratégie d'investissement.
+
+\begin{itemize}[leftmargin = *]
+\item	En anglais \og \textit{proprietary trading} \fg{};
+\item	On distingue les opérations pour compte propre de la tenue de marché:
+	\begin{itemize}[leftmargin = *]
+	\item	Les clients et opérateurs pour compte propre profitent des mouvements des marchés;
+	\item	Les \hyperlink{market_holder}{\color{blue}teneurs de marché} profitent des frais de transactions.
+	\end{itemize}
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Couverture en delta neutre]
+Une position couverte en delta neutre a un $\Delta = 0$ et permet aux teneurs de marché de se protéger contre le risque d'une chute du prix de l'action.
+
+\begin{rappel_enhanced}[Contexte]
+\begin{itemize}[leftmargin = *]
+	\item	Les teneurs de marchés ne souhaitent pas profiter du marché mais plutôt des transactions;
+	\item	La couverture en delta neutre est une donc façon de minimiser le risque de leurs positions.
+\end{itemize}
+\end{rappel_enhanced}
+
+Pour avoir une couverture en delta neutre, les teneurs de marché calculent le $\Delta$ de l'option puis prennent la position inverse dans le sous-jacent pour compenser. 
+\begin{itemize}[leftmargin = *]
+	\item	Le delta d'une action est de 1 car $\Delta_{\text{action}}	=	\deriv{S}{S} = 1$.
+	\item	Il s'ensuit que la couverture comporte des coûts et requiert du capital;
+	\item	De plus, l'idée importante à retenir est qu'une position couverte \textbf{devrait avoir un rendement égal au taux sans risque}.
+\end{itemize}
+
+\paragraph{Exemple}	Un teneur de marché vend 100 options d'achat à un $\Delta_{C} = 0.55$ et souhaite avoir une couverture en delta neutre. Alors, il achète $100 \times \Delta_{C} = 55$ actions. L'investissement net est de $ + 100 \times C(K) - 55 \times S_{0}$. S'il souhaite avoir un flux monétaire initial de zéro, il va emprunter (ou prêter si c'est positif) ce montant au taux sans risque.
+\end{definitionNOHFILLsub}
+
+\begin{conceptgen}{Profit sur 2 jours d'un portefeuille couvert en delta neutre}
+\textbf{Composantes du portefeuille}
+\begin{enumerate}
+	\item	Achat ou vente d'options.
+	\item	Achat ou vente d'actions.
+	\item	Emprunt ou prêt d'argent.
+\end{enumerate}
+\tcbline
+\textbf{Composantes du profit}
+\begin{enumerate}
+	\item	Profit sur les options.
+	\item	Profit sur les actions.
+	\item	Profit sur l'obligation.
+\end{enumerate}
+\tcbline
+\begin{itemize}[leftmargin = *]
+	\item	Par exemple, le profit sur les options le lendemain serait $100 \times (C_{0}\textrm{e}^{r(\frac{1}{365})} - C_{1/365})$;
+	\item	Si le teneur de marché veut recouvrir sa position le lendemain, il achète (ou vend) $100 \times (C_{1/365} - C_{0})$.
+\end{itemize}
+\end{conceptgen}
+
+Selon la structure de Black-Scholes, le teneur de marché demeure rentable après un période de temps $h$ pour \icbox{$S\pm S\sigma \sqrt{h}$}.\\
+
+Pour un teneur de marché qui vend une option et couvre sa position en delta neutre, il a:
+\begin{enumerate}
+	\item	Une position courte sur l'option;
+	\item	Une position longue sur $\Delta_{t}$ actions;
+	\item	Une position sur une obligation zéro-coupon sans risque.
+\end{enumerate}
+
+Son profit de $t$ à $t + h$ est la somme des variations des composantes \icbox{$[+V_{t}\textrm{e}^{rh} - V_{t + h}][-\Delta_{t}S_{t}\textrm{e}^{rh} + \Delta_{t}S_{t + h}]$}.\\
+
+\paragraph{Note sur les autres grecs}	Si un teneur de marché souhaite couvrir avec de multiples grecs, il suffit de poser les grecs du portefeuille égaux à 0. 
+
+\paragraph{Note sur $\theta$} Thêta mesure la \textit{variation du prix} à l'écoulement \textit{du temps} et n'a pas lié au risque de l'action. Il en résulte que le delta et le gamma d'un dépôt sans risque sont nuls, mais pas le thêta. Pour un dépôt de 1\$, la valeur accumulée $t$ années plus tard est $\textrm{e}^{rt}$. Le thêta de ce dépôt est $\theta_{\text{sans risque}}	=	\deriv{t}{r\textrm{e}^{rt}}	=	r\textrm{e}^{rt}$. 
 
 
+%%%	--------------------
+%%%	NOTES:
+%%%	+	Chapitre suppose aucun dividendes, que le sous-jacent est une action;
+%%%	+	Quel le marché ne contient qu'une seule action;
+%%%	+	Que toutes les options sont européennes.
+%%%	--------------------
 
 \end{multicols*}
 
