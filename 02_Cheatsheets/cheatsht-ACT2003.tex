@@ -18,6 +18,7 @@
 %% Definition of LaTex math commands
 %% -----------------------------
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\setlist[itemize]{leftmargin=*}
 
 % 
 % Débute numérotation des chapitres à 2 pour suivre les notes de Marie-Piere.
@@ -36,6 +37,7 @@
 
 \newpage
 
+\raggedcolumns
 % \small
 \begin{multicols*}{3} 
 \section*{Rappels algèbre linéaire}
@@ -74,6 +76,8 @@
 	\frac{\partial}{\partial \matr{b}} \matr{b^{\top}} \matr{A} \matr{b} &= 2 \matr{A}\matr{b}	\\
 	\frac{\partial}{\partial \matr{b}} f(\matr{b})^{\top} \matr{A} f(\matr{b}) &= 2 \left(\frac{\partial}{\partial \matr{b}} f(\matr{b}) \right)^{\top} \matr{A} f(\matr{b})	\\
 \end{align*}
+
+\columnbreak
 
 \section{Régression linéaire simple}
 \begin{algo2}[Postulats]
@@ -1220,6 +1224,7 @@ Alias, le théorème de la fonction quantile pour une fonction monotone:
 	\text{Pr}(a \le g(Y) \le b) &= \text{Pr}(g^{-1}(a) \le Y \le g^{-1}(b)) 
 \end{align*}
 
+\newpage
 
 \section{Régression linéaire multiple}
 % \mathrm{•} utilise la notation matricielle
@@ -1483,7 +1488,7 @@ r_{jk} &= \sum_{i = 1}^{n}\frac{(x_{ji} - \bar{x}_{j})(x_{ki} - \bar{x}_{k})}{s_
 \begin{align*}
 VIF_j = \frac{1}{1 - R_j^2}
 \end{align*}
-\item[$VIF_j$ :] Pour évaluer le degré de dépendance de chaque variable exogène sur les autres variables exogènes.\\
+\item	$VIF_j$:	Pour évaluer le degré de dépendance de chaque variable exogène sur les autres variables exogènes.\\
 Pour la $j$\up{e} variable exogène ($x_j$), on mesure le niveau de dépendance en effectuant une régression ayant $x_j$ comme variable explicative (\textit{endogène}) et les $(p - 1)$ variables restantes comme variables explicatives (\textit{exogènes}).\\
 $R_j^2$ mesurera la proportion de la variabilité de $x_j$ expliquée par les autres variables explicatives, s'il est élevé il semblerait avoir un problème.\\
 Le nom "\textit{facteur d'inflation}" vient du fait que la variance de $\hat{\beta}_j$ s'exprime en fonction du VIF :
@@ -1697,6 +1702,9 @@ On peut contruire une table d'\textbf{analyse de la variance} avec la décomposi
 \begin{align*}
 	\underset{SST_V}{\underbrace{\matr{Y^{\top}V^{-1}Y}}} &= \underset{SSR_V}{\underbrace{\bm{\widehat{\beta}} \ \matr{X^{\top}V^{-1}Y}}} + \underset{SSE_V}{\underbrace{(\matr{Y - X}\bm{\widehat{\beta}})^{\top}\matr{V^{-1}}(\matr{Y - X}\bm{\widehat{\beta}}) }}
 \end{align*}
+
+
+\newpage
 
 \section{Sélection de modèle et régression régularisée}
 En présence de beaucoup de variable exogènes, on court le danger d'en garder trop ou pas assez
@@ -1974,7 +1982,7 @@ S^{L}(\bm{\beta}) &=
 Afin de bien saisir la différence en méthode de Ridge et Lasso, il est suggéré de faire l'exercice 4.2. 
 On obtient que \textbf{Ridge modifie l'échelle} des prévisions alors que \textbf{Lasso} va \textbf{modifier la prévision} d'une pénalité (avec une addition ou soustraction).
 
-\vfill\null
+\newpage
 
 \section{Modèles linéaires généralisés (GLM)}
 
@@ -1984,7 +1992,7 @@ On obtient que \textbf{Ridge modifie l'échelle} des prévisions alors que \text
 
 Une loi de probabilité fait partie de la famille exponentielle linéaire si:
 
-\begin{enumerate}[label=\faAngleRight]
+\begin{itemize}
 	\item	Sa fonction de densité \textit{(ou de masse)} de probabilité peut être exprimée comme:
 \begin{formula}{Densité de la famille exponentielle}
 	\[
@@ -2007,7 +2015,7 @@ Une loi de probabilité fait partie de la famille exponentielle linéaire si:
 		Si chaque donnée à un $\phi_i$ différent, on réécrit la fonction de dispersion comme $\alpha_i = \phi/\omega_i \; \forall i \in \{1, \dots, n \}$. 
 		
 		Ceci est la \textbf{famille exponentielle \textit{pondérée}}.
-\end{enumerate}
+\end{itemize}
 
 \subsubsection*{Propriétés}
 
@@ -2046,10 +2054,10 @@ Et l'information de Fisher peut être réécrite comme:
 \subsection*{Fonctions de lien}
 
 Le but est de relier l'espérance de $Y$ aux variables exogènes au lieu de $Y$ elle-même; soit :
-\begin{enumerate}
-	\item[$\matr{x}_{1 \times p'}$: ] une ligne de la matrice d'incidence; et
-	\item[$\bm{\beta}_{p' \times 1}$: ] paramètre sur lequel $\esp{Y | \matr{x}}$ dépend.
-\end{enumerate}
+\begin{description}
+	\item[$\matr{x}_{1 \times p'}$] une ligne de la matrice d'incidence; et
+	\item[$\bm{\beta}_{p' \times 1}$] paramètre sur lequel $\esp{Y | \matr{x}}$ dépend.
+\end{description}
 
 Alors, 
 \begin{align*}
@@ -2095,7 +2103,7 @@ La \textbf{fonction de lien} est donc la transformation appliquée à $\eta$ afi
 
 \subsection*{Estimation des paramètres}
 
-\begin{enumerate}[label=\faAngleRight]
+\begin{itemize}
 	\item	Estimer $\hat{\beta}$ avec la méthode de l'\textbf{EMV} \textit{(\textbf{MLE})}.
 	
 	\item	L'EMV est \textbf{convergent},
@@ -2115,7 +2123,7 @@ La \textbf{fonction de lien} est donc la transformation appliquée à $\eta$ afi
 	\end{align*}
 	
 	\item	On peut estimer la matrice d'information de Fisher avec \textbf{l'information observée} lorsque $\beta$ est inconnu:
-\end{enumerate}
+\end{itemize}
 \begin{align*}
 	\mathcal{I}(\hat{\bm{\beta}}) 
 %		&=	-\sum_{i = 1}^{n} \deriv[1]{\bm{\beta}} \ell(\bm{\beta} ; y_i) \left\{\deriv{\bm{\beta}}\dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)\right\}^{\top} \eval_{\hat{\bm{\beta}}} \\
@@ -2195,7 +2203,7 @@ On teste la statistique:
 On rejete l'hypothèse nulle $\textrm{H}_0$ lorsque $\lambda(y) \leq \text{valeur critique}$.
 
 Si $\textrm{H}_0$ spécifie
-\begin{enumerate}[label=\faAngleRight]
+\begin{itemize}
 	\item	\textbf{\textit{tous}} les paramètres du modèle, on a:
 	\[
 		\shortminus 2 \ln \lambda(Y) \underset{\textrm{H}_0}{\approx} \chi_{p'}^2
@@ -2209,7 +2217,7 @@ Si $\textrm{H}_0$ spécifie
 	\item[$k_1$: ] Nombre de paramètres non-spécifiés dans $H_0$;
 	\item[$k_2$: ] Nombre de paramètres non-spécifiés dans $H_1$ ($k_2 > k_1$).
 	\end{enumerate}
-\end{enumerate}
+\end{itemize}
 
 \textbf{Note: }Avec le \textbf{TRV}, on peut seulement comparer des modèles qui sont \textbf{emboités}. C'est-à-dire, que tous les paramètres sous $\textrm{H}_0$ doivent être inclus sous $\textrm{H}_1$.
 
@@ -2418,8 +2426,8 @@ où
 
 On peut également ajouter une pénalité de type Ridge ou Lasso \textit{(sélection de variables)} comme en modèles linéaires.
 
+\newpage
 
-% --- DÉBUT CHAPITRE 6 : MODÉLISATION DE DONNÉES DE COMPTAGE
 \section{Modélisation de données de comptage}
 
 \subsection*{Terme \emph{offset}}
@@ -2549,6 +2557,8 @@ On peut faire un TRV pour valider si le modèle Poisson est une bonne simplifica
 \subsection*{Modèle Poisson gonflée à zéro}
 Lorsqu'on a une masse de probabilité à zéro plus importante à 0, on peut utiliser la loi de Poisson \emph{gonflée à zéro}, en modélisant à la fois la probabilité $\pi_i$ que la fréquence soit égale à zéro (avec un modèle binomial logistique) et $\lambda_i$ la fréquence avec un modèle Poisson avec fonction de lien log.
 
+
+\newpage
 
 \section{Modélisation de données binomiales}
 
