@@ -34,7 +34,6 @@
 %
 % thin space, limits underneath in displays
 %
-\DeclareMathOperator*{\argmax}{arg\,max} 
 
 %% -----------------------------
 %% 	Colour setup for sections
@@ -150,6 +149,26 @@
 \end{tikzpicture}
 \end{center}
 
+\subsection*{Moyennes}
+La moyenne de $n$ chiffres $x_{1}, x_{2}, \dots, x_{n}$.
+
+\begin{rappel_enhanced}[Moyenne arithmétique]
+\begin{align*}
+	A(x)
+	&=	\frac{1}{n}\sumz{n}{i = 1} x_{i}
+	=	\frac{x_{1} + x_{2} + \hdots + x_{n}}{n}
+\end{align*}
+\end{rappel_enhanced}
+
+\begin{rappel_enhanced}[Moyenne géométrique]
+\begin{align*}
+	G(x)
+	&=	\left(\prod^{n}_{i = 1} x_{i}\right)^{1/n}
+	=	\left(x_{1} \times x_{2} \times \hdots \times x_{n}\right)^{1/n}
+\end{align*}
+\end{rappel_enhanced}
+
+\paragraph{Note:}	\icbox[red][palechestnut]{$G(x)	\leq		A(x)$}.
 
 \subsection*{Sommations}
 \begin{align*}
