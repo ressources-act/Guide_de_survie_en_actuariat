@@ -3939,7 +3939,7 @@ Une position couverte en delta neutre a un $\Delta = 0$ et permet aux teneurs de
 Pour avoir une couverture en delta neutre, les teneurs de marché calculent le $\Delta$ de l'option puis prennent la position inverse dans le sous-jacent pour compenser. 
 \begin{itemize}[leftmargin = *]
 	\item	Le delta d'une action est de 1 car $\Delta_{\text{action}}	=	\deriv{S}{S} = 1$.
-	\item	Il s'ensuit que la couverture comporte des coûts et requiert du capital;
+	\item	La couverture comporte des coûts et requiert du capital;
 	\item	De plus, l'idée importante à retenir est qu'une position couverte \textbf{devrait avoir un rendement égal au taux sans risque}.
 \end{itemize}
 
@@ -3976,12 +3976,37 @@ Pour un teneur de marché qui vend une option et couvre sa position en delta neu
 	\item	Une position sur une obligation zéro-coupon sans risque.
 \end{enumerate}
 
-Son profit de $t$ à $t + h$ est la somme des variations des composantes \icbox{$[+V_{t}\textrm{e}^{rh} - V_{t + h}][-\Delta_{t}S_{t}\textrm{e}^{rh} + \Delta_{t}S_{t + h}]$}.\\
+Son profit de $t$ à $t + h$ est la somme des variations des composantes \icbox{$[+V_{t}\textrm{e}^{rh} - V_{t + h}]+ [-\Delta_{t}S_{t}\textrm{e}^{rh} + \Delta_{t}S_{t + h}]$}.\\
 
-\paragraph{Note sur les autres grecs}	Si un teneur de marché souhaite couvrir avec de multiples grecs, il suffit de poser les grecs du portefeuille égaux à 0. 
+\paragraph{Note sur les autres grecs}	Si un teneur de marché souhaite couvrir avec de multiples grecs, il suffit de poser les grecs du portefeuille égaux à 0. Cependant, puisque tous les grecques autre que le $\Delta$ d'une action sont 0, on nécessite une deuxième option. Par exemple pour l'achat de 100 options d'achat de type 1, on achète $y$ options d'achat de type 2 et x actions pour obtenir un portefeuille couvert en delta et gamma neutre:
+\begin{align*}
+	\Delta_{\text{ptf.}}
+	&=	-100 \Delta_{C^{I}} + (x)\Delta_{\text{action}} + (y)\Delta_{C^{II}}	\\
+	&=	-100 \Delta_{C^{I}} + (x)(1) + (y)\Delta_{C^{II}}	\\
+	\Gamma_{\text{ptf.}}
+	&=	-100 \Gamma_{C^{I}} + (x)(0) + (y)\Gamma_{C^{II}}	
+\end{align*}
 
 \paragraph{Note sur $\theta$} Thêta mesure la \textit{variation du prix} à l'écoulement \textit{du temps} et n'a pas lié au risque de l'action. Il en résulte que le delta et le gamma d'un dépôt sans risque sont nuls, mais pas le thêta. Pour un dépôt de 1\$, la valeur accumulée $t$ années plus tard est $\textrm{e}^{rt}$. Le thêta de ce dépôt est $\theta_{\text{sans risque}}	=	\deriv{t}{r\textrm{e}^{rt}}	=	r\textrm{e}^{rt}$. 
 
+\subsubsection*{Analyse de Black-Scholes}
+\begin{align*}
+	r S_{t} \deriv{S_{t}}{C_{t}} + \frac{1}{2}\sigma^{2}S_{t}^{2}\deriv[2]{S_{t}}{C_{t}} + \deriv{t}{C_{t}}	
+	&=	r C_{t}	
+\end{align*}
+
+\begin{description}
+	\item[$R_{h, i}$]	Le rendement de la période $i$ avec une durée $h$ entre les ajustements, en  supposant que la position d'une option d'achat achetée est delta-neutre au départ;
+		\begin{align*}
+		R_{h, i}	
+		&=	\frac{1}{2} S^{2}\sigma^{2}\Gamma(x_{i}^{2} - 1)h
+		\end{align*}
+	\item[$x_{i}$]	Nombre d'écarts-types dont le prix de l'action se déplace dans la période.
+\end{description}
+\begin{align*}
+	\text{Var}(R_{h, i})
+	&=	\frac{1}{2}(S^{2}\sigma^{2}\Gamma h)^{2}
+\end{align*}
 
 %%%	--------------------
 %%%	NOTES:
@@ -3989,6 +4014,606 @@ Son profit de $t$ à $t + h$ est la somme des variations des composantes \icbox{
 %%%	+	Quel le marché ne contient qu'une seule action;
 %%%	+	Que toutes les options sont européennes.
 %%%	--------------------
+
+\newpage
+
+\section{Options exotiques: I}
+\subsection*{Options asiatiques}
+\begin{definitionNOHFILL}[Options asiatiques]
+La valeur à l'échéance dépend du prix moyen du sous-jacent sur une certaine période de temps.
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	On les surnomme aussi des \textit{options sur moyenne};
+	\item	Contrairement aux options classiques, les options asiatiques dépendent de la trajectoire que le prix a suivi.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsubsection*{Options sur la moyenne}
+
+Il y a huit versions de base des options sur moyenne:
+\begin{itemize}[leftmargin = *]
+	\item	Option d'achat ou de vente;
+	\item	Moyenne arithmétique $A(S)$ ou géométrique $G(S)$ où \icbox[red][palechestnut]{$G(S) \leq A(S)$};
+		\begin{align*}
+		A(S)	
+		&=	\frac{1}{N}\sumz{N}{t = 1}S_{t}	&
+		G(S)	
+		&=	\left(\prod_{t = 1}^{N} S_{t}\right)^{1/n}
+		\end{align*}
+	\item	Moyenne du sous-jacent ou du prix d'exercice.
+\end{itemize}
+
+Pour des options ordinaires:
+\begin{align*}
+	\shortstack{valeur à l'échéance\\ d'une option d'achat}
+	&=	\max[0, S_{T}	-	K]	\\
+	\shortstack{valeur à l'échéance\\ d'une option de vente}
+	&=	\max[0, 	K	-	S_{T}]
+\end{align*}
+
+\begin{definitionNOHFILLsub}[Option asiatique sur le prix moyen]
+On remplace $S_{t}$ par le prix moyen $\bar{S}$ pour la valeur à l'échéance des options:
+\begin{align*}
+	\shortstack{valeur à l'échéance\\ d'une option d'achat}
+	&=	\max[0, \bar{S}	-	K]	\\
+	\shortstack{valeur à l'échéance\\ d'une option de vente}
+	&=	\max[0, 	K	-	\bar{S}]
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Option asiatique sur le prix d'exercice moyen]
+On remplace $K$ par le prix moyen $\bar{S}$ pour la valeur à l'échéance des options:
+\begin{align*}
+	\shortstack{valeur à l'échéance\\ d'une option d'achat}
+	&=	\max[0, S_{T}	-	\bar{S}]	\\
+	\shortstack{valeur à l'échéance\\ d'une option de vente}
+	&=	\max[0, 	\bar{S}	-	S_{T}]
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\paragraph{Note:}	Deux erreurs fréquentes sont d'inclure le prix initiale dans la moyenne et ne pas calculer $V_{ud}$ \textit{et} $V_{du}$ lorsqu'on utilise la moyenne géométrique.
+
+\subsubsection*{Points importants}
+\begin{enumerate}
+	\item	La valeur d'une option asiatique sur le prix moyen est inférieure ou égale à la valeur d'une option européenne équivalente.
+		\begin{itemize}[leftmargin = *]
+		\item	Le plus faible la volatilité d'une action, le moins il est probable qu'elle ait une valeur à l'échéance positive;
+		\item	Le prix moyen d'une action $\bar{S}$ est moins volatile que le prix final de l'action $S_{t}$;
+		\item	Il s'ensuit que l'option asiatique a une valeur à l'échéance plus faible.
+		\end{itemize}
+	\item	La valeur d'une option asiatique sur le prix moyen baisse lorsque la fréquence d'échantillonnage $N$ augmente.
+		\begin{itemize}[leftmargin = *]
+		\item	De façon semblable, augmenter $N$ diminue la moyenne et donc la valeur à l'échéance de l'option asiatique.
+		\end{itemize}
+	\item	La valeur d'une option asiatique sur le prix d'exercice moyen augmente lorsque la fréquence d'échantillonnage $N$ augmente.
+		\begin{itemize}[leftmargin = *]
+		\item	Puisque l'on soustrait le prix moyen de l'action $\bar{S}$, il s'ensuit que l'écart avec le prix à l'échéance $S_{t}$ augmente.
+		\end{itemize}
+\end{enumerate}
+
+\columnbreak
+\subsection*{Options à barrière}
+\begin{definitionNOHFILL}[Options à barrière]
+Une option qui peut \textbf{désactiver ou activer} si le prix de l'actif sous-jacent atteint une \textbf{barrière} précise alors que l'option est en vigueur.
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	Les options à barrière dépendent de la trajectoire que le prix a suivi.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsubsection*{Types d'options à barrière}
+
+Il y a trois types d'options à barrière:
+\begin{definitionNOHFILLsub}[Options à barrière activante]
+S'active si la barrière est atteinte.\\
+
+Si la barrière est:
+\begin{description}
+	\item	\textbf{Dessous} le prix initial de l'action, c'est une option dite \og \textit{down-and-in} \fg{}: le prix doit baisser pour atteindre la barrière;
+	\item	\textbf{Dessus} le prix initial de l'action, c'est une option dite \og \textit{up-and-in} \fg{}: le prix doit augmenter pour atteindre la barrière.
+\end{description}
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+\item	En anglais, \og \textit{Knock-in option} \fg{} car l'option est \og \textit{knocked-in} si la barrière est atteinte \fg{};
+	\item	Si l'option est activée alors la valeur à l'échéance est identique à une option européenne ordinaire sinon elle est nulle.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[Options à barrière désactivante]
+Se désactive si la barrière est atteinte.\\
+
+Si la barrière est:
+\begin{description}
+	\item	\textbf{Dessous} le prix initial de l'action, c'est une option dite \og \textit{down-and-out} \fg{};
+	\item	\textbf{Dessus} le prix initial de l'action, c'est une option dite \og \textit{up-and-out} \fg{}.
+\end{description}
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{Knock-out option} \fg{} car l'option est \og \textit{knocked-out} si la barrière est atteinte \fg{};
+	\item	Si l'option est désactivée alors la valeur à l'échéance est nulle sinon il est identique  à une option européenne ordinaire.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[Options à barrière avec remise]
+Paye un montant fixe si la barrière est atteinte.\\
+
+Si la barrière est:
+\begin{description}
+	\item	\textbf{Dessous} le prix initial de l'action, on l'appelle un \og \textit{down rebate} \fg{};
+	\item	\textbf{Dessus} le prix initial de l'action, on l'appelle un \og \textit{up rebate} \fg{}.
+\end{description}
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{Rebate option} \fg{};
+	\item	Si le paiement se fait uniquement à l'échéance, c'est une remise différée (\og \textit{deferred rebate} \fg{}).
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\subsubsection*{Parité}
+Pour des options à barrière désactivante et activante, autrement équivalentes, on a:
+\begin{align*}
+	\shortstack{option à barrière\\ activante}	+ \shortstack{option à barrière\\ désactivante}
+	&=	\shortstack{option régulière}	\\
+	\Rightarrow
+	\shortstack{option à barrière}	
+	&\leq	\shortstack{option régulière}	
+\end{align*} 
+\begin{itemize}[leftmargin = *]
+	\item	Donc l'option régulière ne dépend pas de la barrière ce qui peut être utile pour certaines questions.
+\end{itemize}
+
+\subsubsection*{Cas particuliers}
+
+Dans le cas où $S_{0} \leq \text{barrière} \leq K$, l'option d'achat \og \textit{up-and-in} \fg{} est équivalente à l'option d'achat ordinaire. 
+\begin{itemize}[leftmargin = *]
+	\item	Dans les deux cas, le prix doit monter passé la barrière pour obtenir une valeur à l'échéance positive;
+	\item	Par l'équation de parité, on déduit que l'option d'achat \og \textit{up-and-out} \fg{} a une valeur nulle.
+\end{itemize}
+
+Le même cas se produit où $K \leq \text{barrière} \leq S_{0}$ pour une option de vente \og \textit{down-and-in} \fg{}.
+
+
+\columnbreak
+\subsection*{Options sur option}
+\begin{definitionNOHFILL}[Options sur option]
+Option qui permet à son détenteur \textbf{d'acheter ou de vendre une autre option} au prix d'exercice précisé.
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	On les surnomme aussi des \textit{options composées};
+	\item	En anglais, \og \textit{compound option} \fg{};
+	\item	Ils ont deux prix d'exercice et deux dates d'échéance (pour l'option composée et l'option sous-jacente).
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsubsection*{Types d'options sur options}
+Pour calculer la valeur à l'échéance dans les deux cas, on compare le prix d'exercice $x$ à la valeur de l'option sous-jacente à l'échéance dans $T - t_{1}$ temps. On peut donc voir s'il est profitable d'acheter l'option sous-jacente maintenant à $t_{1}$.
+
+\begin{definitionNOHFILLsub}[Option d'achat composée]
+Permet au détenteur d'acheter une autre option au prix d'exercice.\\
+L'option peut être soit un \og \textit{call on call} \fg{} ou un \og \textit{call on put} \fg{}.
+
+\tcbline
+
+On achète une option d'achat composée au temps 0 à un prix d'exercice de $x$ expirant à $t_{1}$.\\ L'option sous-jacente a un prix d'exercice de $K$ et expire à $T$.
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp11598225207048363] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (48,51.33) -- (401.83,51.33) -- (401.83,201.33) -- (48,201.33) -- cycle ;
+%Shape: Rectangle [id:dp7987614739910429] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (48,51.33) -- (401.83,51.33) -- (401.83,80.13) -- (48,80.13) -- cycle ;
+%Straight Lines [id:da5349553147510435] 
+\draw [line width=1.5]    (86.83,134) -- (359.83,134) ;
+\draw [shift={(359.83,134)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(223.33,134)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(86.83,134)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+%Shape: Brace [id:dp0246391130029624] 
+\draw   (358.83,124) .. controls (358.83,119.33) and (356.5,117) .. (351.83,117) -- (301.42,117) .. controls (294.75,117) and (291.42,114.67) .. (291.42,110) .. controls (291.42,114.67) and (288.09,117) .. (281.42,117)(284.42,117) -- (231,117) .. controls (226.33,117) and (224,119.33) .. (224,124) ;
+
+% Text Node
+\draw (224.92,65.73) node   [align=left] {Déroulement d'une option d'achat composée};
+% Text Node
+\draw (49,84.13) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{Achat}\\\textcolor[rgb]{0.29,0.56,0.89}{option d'achat }\\ \textcolor[rgb]{0.29,0.56,0.89}{composée}};
+% Text Node
+\draw (184,163.63) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {
+\textbf{Expiration}\\\textcolor[rgb]{0.29,0.56,0.89}{option d'achat }\\\textcolor[rgb]{0.29,0.56,0.89}{composée}};
+% Text Node
+\draw (321,163.63) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{Expiration}\\\textcolor[rgb]{0.29,0.56,0.89}{option d'achat }\\\textcolor[rgb]{0.29,0.56,0.89}{sous-jacente }};
+% Text Node
+\draw (83,144) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (218,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t_{1}$};
+% Text Node
+\draw (355,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t_{2}$};
+% Text Node
+\draw (274,97) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle T\ -\ t_{1}$};
+\end{tikzpicture}
+\end{center}
+La valeur à l'échéance de l'option \textit{sous-jacente} à $t_{1}$ est dénotée \icbox{$V[S_{t_{1}}, K, \underbrace{T - t_{1}}_{\scriptsize{\shortstack{temps restant\\ avant échéance}}}]$}.\\
+La valeur à l'échéance de l'option d'achat \textit{composée} à $t_{1}$ est \icbox{$\max(0, \underbrace{V\left[S_{t_{1}}, K, T - t_{1}\right]}_{\small{\shortstack{$S_{T}$ pour des\\ options classiques}}} - x)$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Option de vente composée]
+Permet au détenteur de vendre une autre option au prix d'exercice.\\
+L'option peut être soit un \og \textit{put on call} \fg{} ou un \og \textit{put on put} \fg{}.
+
+\tcbline
+On achète une option de vente composée au temps 0 à un prix d'exercice de $x$ expirant à $t_{1}$.\\ L'option sous-jacente a un prix d'exercice de $K$ et expire à $T$.
+
+\begin{center}
+	
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp2947812762155695] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (415,51.33) -- (770.5,51.33) -- (770.5,201.33) -- (415,201.33) -- cycle ;
+%Shape: Rectangle [id:dp8558379846670114] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (415,51.33) -- (768.83,51.33) -- (768.83,80.13) -- (415,80.13) -- cycle ;
+%Straight Lines [id:da28206871093985453] 
+\draw [line width=1.5]    (456.5,134) -- (726.83,134) ;
+\draw [shift={(726.83,134)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(591.67,134)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(456.5,134)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+%Shape: Brace [id:dp12017435484156325] 
+\draw   (725.83,124) .. controls (725.83,119.33) and (723.5,117) .. (718.83,117) -- (668.42,117) .. controls (661.75,117) and (658.42,114.67) .. (658.42,110) .. controls (658.42,114.67) and (655.09,117) .. (648.42,117)(651.42,117) -- (598,117) .. controls (593.33,117) and (591,119.33) .. (591,124) ;
+
+% Text Node
+\draw (591.92,65.73) node   [align=left] {Déroulement d'une option de vente composée};
+% Text Node
+\draw (416,83.13) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{Achat}\\\textcolor[rgb]{0.29,0.56,0.89}{option de vente }\\\textcolor[rgb]{0.29,0.56,0.89}{composée}};
+% Text Node
+\draw (550,163.63) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{Expiration}\\\textcolor[rgb]{0.29,0.56,0.89}{option de vente }\\\textcolor[rgb]{0.29,0.56,0.89}{composée}};
+% Text Node
+\draw (686,164.63) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{Expiration}\\\textcolor[rgb]{0.29,0.56,0.89}{option de vente }\\\textcolor[rgb]{0.29,0.56,0.89}{sous-jacente }};
+% Text Node
+\draw (454,144) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (588,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t_{1}$};
+% Text Node
+\draw (724,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t_{2}$};
+% Text Node
+\draw (641,97) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle T\ -\ t_{1}$};
+\end{tikzpicture}
+\end{center}
+La valeur à l'échéance de l'option de vente \textit{composée} à $t_{1}$ est \icbox{$\max(0, x - V\left[S_{t_{1}}, K, T - t_{1}\right])$}.
+\end{definitionNOHFILLsub}
+
+\subsubsection*{Parité}
+On généralise l'équation de parité des options vente-achat:
+\begin{align*}
+	\text{CallonStock}	-	\text{PutonStock}	
+	&=	F^{P}(S)	-	K\textrm{e}^{-rT}	\\
+	\Rightarrow
+	\text{CallonCall}	-	\text{PutonCall}	
+	&=	C_{\text{eur}}	-	x\textrm{e}^{-r t_{1}}	\\
+	\text{CallonPut}	-	\text{PutonPut}	
+	&=	P_{\text{eur}}	-	x\textrm{e}^{-r t_{1}}	\\
+\end{align*}
+
+
+\columnbreak
+\subsection*{Options avec écart}
+\begin{definitionNOHFILL}[Options avec écart]
+Contrairement au options classiques qui ont un seul prix pour déterminer le \underline{moment d'exercice} et \underline{la valeur à l'échéance}, les options avec écart ont un prix pour chacune des fonctions créant alors un \textit{écart}.
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$K_{1}$]	Prix \textit{d'exercice} utilisé pour calculer la valeur à l'échéance;
+	\item[$K_{2}$]	Prix \textit{déclencheur} utilisé pour décider s'il y a exercice ou pas.
+\end{description}
+\end{distributions}
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{gap option} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Option d'achat avec écart]
+\begin{align*}
+	\shortstack{Valeur à l'échéance}
+	&=	\begin{cases}
+		0,	&	S_{T}	\leq		K_{2}	\\
+		S_{T}	-	K_{1},	&	S_{T}	>		K_{2}	\\
+		\end{cases}
+\end{align*}
+
+\begin{center}	
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp619089624226296] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (47,11.6) -- (335.17,11.6) -- (335.17,199.33) -- (47,199.33) -- cycle ;
+%Shape: Rectangle [id:dp7223985052529034] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (47,11.6) -- (335.17,11.6) -- (335.17,40.4) -- (47,40.4) -- cycle ;
+%Shape: Rectangle [id:dp33113580306042034] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (47,39.8) -- (334.83,39.8) -- (334.83,68.64) -- (47,68.64) -- cycle ;
+
+%Straight Lines [id:da9695087678158307] 
+\draw    (225.42,172.67) -- (225.42,163.67) ;
+%Shape: Axis 2D [id:dp6076884557308353] 
+\draw  (120.92,168.33) -- (317.25,168.33)(120.92,89) -- (120.92,168.33) -- cycle (310.25,163.33) -- (317.25,168.33) -- (310.25,173.33) (115.92,96) -- (120.92,89) -- (125.92,96)  ;
+%Straight Lines [id:da45528019553931376] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (228.17,124.92) -- (264.42,88.67) ;
+\draw [shift={(225.08,128)}, rotate = 315] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da22765443723573076] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (120.25,168) -- (225.42,168) ;
+\draw [shift={(225.42,168)}, rotate = 0] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da7647427977294252] 
+\draw    (114.92,127) -- (126.92,127) ;
+%Straight Lines [id:da9490135961447259] 
+\draw    (186.08,173) -- (186.08,164) ;
+%Shape: Brace [id:dp5902887164439852] 
+\draw   (232.08,168.33) .. controls (236.75,168.33) and (239.08,166) .. (239.08,161.33) -- (239.08,158.83) .. controls (239.08,152.16) and (241.41,148.83) .. (246.08,148.83) .. controls (241.41,148.83) and (239.08,145.5) .. (239.08,138.83)(239.08,141.83) -- (239.08,136.33) .. controls (239.08,131.66) and (236.75,129.33) .. (232.08,129.33) ;
+
+
+% Text Node
+\draw (313.08,181.67) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (87.08,123.67) node   [align=left] {$\displaystyle K_{2} -K_{1}$};
+% Text Node
+\draw (100.08,82.67) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (186.08,182.67) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (230.08,182.67) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (246.08,136) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize écart}};
+% Text Node
+\draw (160.42,45.22) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle K_{2}  >K_{1}$};
+% Text Node
+\draw (105.58,17.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {Option d'achat avec écart};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[]
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp02824851841091225] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (341,40) -- (629.17,40) -- (629.17,236.33) -- (341,236.33) -- cycle ;
+%Shape: Rectangle [id:dp874148547303963] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (341,39.8) -- (628.83,39.8) -- (628.83,68.64) -- (341,68.64) -- cycle ;
+%Straight Lines [id:da24846864702899407] 
+\draw    (480.08,172) -- (480.08,163) ;
+%Shape: Axis 2D [id:dp21245115433709816] 
+\draw  (414.92,167.33) -- (611.25,167.33)(414.92,88) -- (414.92,229.33) (604.25,162.33) -- (611.25,167.33) -- (604.25,172.33) (409.92,95) -- (414.92,88) -- (419.92,95)  ;
+%Straight Lines [id:da8962117343156981] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (483.14,204.55) -- (579.92,105.83) ;
+\draw [shift={(480.08,207.67)}, rotate = 314.43] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da9684164695925033] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (414.25,167) -- (480.08,167) ;
+\draw [shift={(480.08,167)}, rotate = 0] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da33212462417226885] 
+\draw    (408.92,207.67) -- (420.92,207.67) ;
+%Shape: Brace [id:dp4820221483417275] 
+\draw   (472.92,168.33) .. controls (468.25,168.33) and (465.92,170.66) .. (465.92,175.33) -- (465.92,177.5) .. controls (465.92,184.17) and (463.59,187.5) .. (458.92,187.5) .. controls (463.59,187.5) and (465.92,190.83) .. (465.92,197.5)(465.92,194.5) -- (465.92,199.67) .. controls (465.92,204.34) and (468.25,206.67) .. (472.92,206.67) ;
+%Straight Lines [id:da6332672296521837] 
+\draw    (519.42,171.67) -- (519.42,162.67) ;
+
+
+% Text Node
+\draw (607.08,180.67) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (381.08,205.67) node   [align=left] {$\displaystyle K_{2} -K_{1}$};
+% Text Node
+\draw (395.08,82.67) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (482.08,150.67) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (519.08,150.67) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (425.36,180.17) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize écart}};
+% Text Node
+\draw (454.42,45.22) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle K_{2}  < K_{1}$};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Option de vente avec écart]
+\begin{align*}
+	\shortstack{Valeur à l'échéance}
+	&=	\begin{cases}
+		K_{1}	-	S_{T},	&	S_{T}	<		K_{2}	\\
+		0,	&	S_{T}	\geq		K_{2}	\\
+		\end{cases}
+\end{align*}
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da6880212768068523] 
+\draw    (186.08,210.99) -- (186.08,197.92) ;
+%Shape: Rectangle [id:dp533040316964958] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (47,11.6) -- (335.17,11.6) -- (335.17,268.33) -- (47,268.33) -- cycle ;
+%Shape: Rectangle [id:dp3644703127950564] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (47,11.6) -- (335.17,11.6) -- (335.17,40.4) -- (47,40.4) -- cycle ;
+%Shape: Rectangle [id:dp2786749091172711] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (47,39.8) -- (334.83,39.8) -- (334.83,68.64) -- (47,68.64) -- cycle ;
+%Straight Lines [id:da8012392898190628] 
+\draw    (229.42,208.67) -- (229.42,199.67) ;
+%Shape: Axis 2D [id:dp20357657984540478] 
+\draw  (120.92,204.21) -- (317.25,204.21)(120.92,89) -- (120.92,204.21) -- cycle (310.25,199.21) -- (317.25,204.21) -- (310.25,209.21) (115.92,96) -- (120.92,89) -- (125.92,96)  ;
+%Straight Lines [id:da27804562364712426] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (182,163.92) -- (121.17,103.08) ;
+\draw [shift={(185.08,167)}, rotate = 225] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da8757420270721892] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (302.17,204) -- (186.42,204) ;
+\draw [shift={(186.42,204)}, rotate = 180] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da5995103411343021] 
+\draw    (114.92,104) -- (126.92,104) ;
+%Shape: Brace [id:dp27149992922353494] 
+\draw   (178.92,166.67) .. controls (174.25,166.7) and (171.93,169.04) .. (171.96,173.71) -- (171.97,175.21) .. controls (172.02,181.88) and (169.71,185.23) .. (165.04,185.26) .. controls (169.71,185.23) and (172.06,188.54) .. (172.11,195.21)(172.09,192.21) -- (172.12,196.71) .. controls (172.15,201.38) and (174.5,203.7) .. (179.17,203.67) ;
+%Straight Lines [id:da023586524348984783] 
+\draw    (114.92,164) -- (126.92,164) ;
+
+% Text Node
+\draw (313.08,223.57) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (106.08,103.67) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (100.08,82.67) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (186.08,223.03) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (230.08,223.03) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (160.42,45.22) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle K_{2} < K_{1}$};
+% Text Node
+\draw (105.58,17.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {Option de vente avec écart};
+% Text Node
+\draw (136.36,176.17) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize écart}};
+% Text Node
+\draw (91.08,165.67) node   [align=left] {$\displaystyle K_{1} -K_{2}$};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[]
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp6381171616290457] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (340.67,39.8) -- (628.83,39.8) -- (628.83,236.13) -- (340.67,236.13) -- cycle ;
+%Shape: Rectangle [id:dp7978813517508636] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (341,39.8) -- (628.83,39.8) -- (628.83,68.64) -- (341,68.64) -- cycle ;
+%Straight Lines [id:da9673151320044195] 
+\draw    (480.08,172) -- (480.08,163) ;
+%Shape: Axis 2D [id:dp9572879435153827] 
+\draw  (414.92,167.33) -- (611.25,167.33)(414.92,88) -- (414.92,229.33) (604.25,162.33) -- (611.25,167.33) -- (604.25,172.33) (409.92,95) -- (414.92,88) -- (419.92,95)  ;
+%Straight Lines [id:da1159285531737253] 
+\draw    (408.92,207.67) -- (420.92,207.67) ;
+%Shape: Brace [id:dp46981450240901546] 
+\draw   (486.08,207.33) .. controls (490.75,207.33) and (493.08,205) .. (493.08,200.33) -- (493.08,197.83) .. controls (493.08,191.16) and (495.41,187.83) .. (500.08,187.83) .. controls (495.41,187.83) and (493.08,184.5) .. (493.08,177.83)(493.08,180.83) -- (493.08,175.33) .. controls (493.08,170.66) and (490.75,168.33) .. (486.08,168.33) ;
+%Straight Lines [id:da44587483028780883] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (477,204.92) -- (415.17,143.08) ;
+\draw [shift={(480.08,208)}, rotate = 225] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da40306089301904247] 
+\draw    (409.92,144) -- (421.92,144) ;
+%Straight Lines [id:da8412289279627245] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (601.83,167) -- (480.08,167) ;
+\draw [shift={(480.08,167)}, rotate = 180] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da13309232440240026] 
+\draw    (439.42,171.67) -- (439.42,162.67) ;
+
+% Text Node
+\draw (607.08,180.67) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (381.08,205.67) node   [align=left] {$\displaystyle K_{1} -K_{2}$};
+% Text Node
+\draw (395.08,82.67) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (443.08,152.67) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (483.08,151.67) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (454.42,45.22) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle K_{2}  >K_{1}$};
+% Text Node
+\draw (500.08,177) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize écart}};
+% Text Node
+\draw (401.08,142.67) node   [align=left] {$\displaystyle K_{1}$};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{itemize}[leftmargin = *]
+	\item	Il est possible d'avoir une valeur à l'échéance \textit{négative} si le prix déclencheur $K_{2}$ est inférieur au prix  d'exercice $K_{1}$ pour une option d'achat (ou si $K_{1} < K_{2}$ pour une option de vente);
+	\item	Cependant, même si la valeur à l'échéance est négative, l'exercice est obligatoire lorsque le prix déclencheur est atteint;
+	\item	Cela dit, il est en revanche possible d'avoir une \textbf{prime négative}.
+\end{itemize}
+
+\subsubsection*{Formule de Black-Scholes}
+On substitue le $K$ dans l'équation principale pour le prix d'exercice $K_{1}$ et le $K$ dans l'équation de $d_{1}$ pour le prix déclencheur $K_{2}$.
+\begin{align*}
+	\text{GapCall}
+	&=	S_{0} \textrm{e}^{- \delta T} N(d_{1}) - K_{1}\textrm{e}^{-rT} N(d_{2})	\\
+	\text{GapPut}
+	&=	K_{1}\textrm{e}^{-rT} N(-d_{2}) - S_{0}\textrm{e}^{-\delta T}N(-d_{1})	
+\end{align*}
+où $d_{1}	=	\frac{\ln\left(\frac{S_{0}}{K_{2}}\right) + \left( r - \delta + \frac{1}{2} \sigma^{2} \right)T}{\sigma \sqrt{T}}$ et $d_{2}	=	d_{1} - \sigma \sqrt{T}$.\\
+
+Pour se rappeler quel $K$ remplacer:
+\begin{itemize}[leftmargin = *]
+	\item	Le prix d'exercice $K_{1}$ détermine le montant de la valeur à l'échéance et est donc associé avec $K\textrm{e}^{-rT}$ dans l'équation principale;
+	\item	Le prix déclencheur $K_{2}$ détermine si l'exercice a lieu et est donc associé avec le calcul d'une probabilité $N(d_{2})$.
+\end{itemize}
+
+\subsubsection*{Relation avec les options classiques}
+\begin{align*}
+	\text{GapCall}	\pm	K_{2}\textrm{e}^{-rT} N(d_{2})
+	&=	C_{\text{eur}}(K_{2})	+	(K_{2}	-	K_{1})\textrm{e}^{-rT} N(d_{2})	\\
+	\text{GapPut}	\pm	K_{2}\textrm{e}^{-rT} N(-d_{2})
+	&=	P_{\text{eur}}(K_{2})	+	(K_{1}	-	K_{2})\textrm{e}^{-rT} N(-d_{2})
+\end{align*}
+
+\subsubsection*{Parité}
+\begin{align*}
+	\text{GapCall}	-	\text{GapPut}
+	&=	S_{0}\textrm{e}^{-\delta T}	-	K_{1}\textrm{e}^{-rT}
+\end{align*}
+
+\columnbreak
+\subsection*{Options d'échange}
+\begin{definitionNOHFILL}[Options d'échange]
+Permet au détenteur d'échanger un actif pour un autre.
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{exchange option} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsubsection*{Formule de Black-Scholes}
+\begin{align*}
+	C(A, B)
+	&=	F^{P}(A)N(d_{1})	-	F^{P}(A)N(d_{2})	\\
+	P(A, B)
+	&=	F^{P}(B)N(-d_{2})	-	F^{P}(A)N(-d_{1})	
+\end{align*}
+
+où $d_{1}	=	\frac{\ln\left(\frac{F^{P}(A)}{F^{P}(B)}\right) + \frac{1}{2} \sigma^{2} T}{\sigma \sqrt{T}}$, $d_{2}	=	d_{1} - \sigma \sqrt{T}$ et \icbox{$\sigma	=	\sqrt{\sigma^{2}_{A} + \sigma^{2}_{B}	-	2\rho\sigma_{A}\sigma_{B}}$}.
 
 \end{multicols*}
 
