@@ -72,7 +72,9 @@
 \usepackage{dsfont} % Pour avoir le symbole du domaine Z
 %\usepackage{bigints} % pour des gros intégrales
 % Mathematics shortcuts
-
+\usepackage{scalerel,stackengine,amsmath}
+\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
+    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
 \newcommand{\reels}{\mathbb{R}}
 \newcommand{\entiers}{\mathbb{Z}}
 \newcommand{\naturels}{\mathbb{N}}
