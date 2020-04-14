@@ -4017,6 +4017,7 @@ Son profit de $t$ à $t + h$ est la somme des variations des composantes \icbox{
 
 \newpage
 
+\setcounter{section}{13}
 \section{Options exotiques: I}
 \subsection*{Options asiatiques}
 \begin{definitionNOHFILL}[Options asiatiques]
@@ -4606,14 +4607,132 @@ Permet au détenteur d'échanger un actif pour un autre.
 \end{definitionNOHFILL}
 
 \subsubsection*{Formule de Black-Scholes}
+Formule en format simple et selon la notation de Claire où l'on achète $k$ du titre $Q$ par unité du titre $S$
 \begin{align*}
 	C(A, B)
 	&=	F^{P}(A)N(d_{1})	-	F^{P}(A)N(d_{2})	\\
+	&=	S_{0} \textrm{e}^{-\delta_{S}T}N(d_{1})	-	kQ_{0} \textrm{e}^{-\delta_{Q}T}N(d_{2})	\\
 	P(A, B)
-	&=	F^{P}(B)N(-d_{2})	-	F^{P}(A)N(-d_{1})	
+	&=	F^{P}(B)N(-d_{2})	-	F^{P}(A)N(-d_{1})	\\
+	&=	kQ_{0} \textrm{e}^{-\delta_{Q}T}N(d_{1})	-	S_{0} \textrm{e}^{-\delta_{S}T}N(d_{2})	\\	
 \end{align*}
 
 où $d_{1}	=	\frac{\ln\left(\frac{F^{P}(A)}{F^{P}(B)}\right) + \frac{1}{2} \sigma^{2} T}{\sigma \sqrt{T}}$, $d_{2}	=	d_{1} - \sigma \sqrt{T}$ et \icbox{$\sigma	=	\sqrt{\sigma^{2}_{A} + \sigma^{2}_{B}	-	2\rho\sigma_{A}\sigma_{B}}$}.
+
+
+\pagebreak
+\setcounter{section}{17}
+\section{La loi lognormale}
+
+
+\pagebreak
+\section{Évaluation par la méthode de Monte Carlo}
+
+
+\pagebreak
+\setcounter{section}{22}
+\section{Options exotiques: II}
+\subsection*{Options tout ou rien}
+
+\begin{definitionNOHFILL}[Options tout ou rien]
+Paient un montant (1\$ par défaut) ou une action (1 unité par défaut) si une condition est remplie mais rien sinon.\\
+
+Si la condition de paiement est :
+\begin{description}
+	\item[$S_{T}	>	K$] c'est une option \textbf{d'achat} tout ou rien.
+	\item[$S_{T}	<	K$]	c'est une option \textbf{de vente} tout ou rien.
+\end{description}
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	Le cours se limite aux options tout ou rien dont la condition de paiement ne dépend que de la valeur de l'action \underline{à l'échéance};
+	\item	En réalité, on peut avoir des \textit{options tout ou rien à barrière} dont le paiement dépend de \underline{l'atteinte} ou non d'un certain prix pendant que l'option est en vigueur;
+	\item	Alias, options binaires.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\subsection*{Types d'options tout ou rien}
+\begin{definitionNOHFILLsub}[Options comptant ou rien]
+La valeur à l'échéance est de 1\$ si la condition est satisfaite.\\
+
+\begin{align*}
+	CC(S_{0}, K, \sigma, r, T, \delta)
+	&=	\text{E}^{*}[\textrm{e}^{-rT} \times 1	\times	\bm{I}_{\{S_{t}	>	K\}}]
+	=	\textrm{e}^{-rT} \Pr(S_{T}	>	K)	\\
+	&=	\textrm{e}^{-rT} N(d_{2})	\\
+	CP(S_{0}, K, \sigma, r, T, \delta)
+	&=	\text{E}^{*}[\textrm{e}^{-rT} \times	1	\times	\bm{I}_{\{S_{t}	<	K\}}]
+	=	\textrm{e}^{-rT} \Pr(S_{T}	<	K)	\\
+	&=	\textrm{e}^{-rT} N(-d_{2})	
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Options actif ou rien]
+La valeur à l'échéance est de $S_{T}$ si la condition est satisfaite.\\
+
+\begin{align*}
+	AC(S_{0}, K, \sigma, r, T, \delta)
+	&=	\text{E}^{*}[\textrm{e}^{-rT} \times S_{T}	\times	\bm{I}_{\{S_{t}	>	K\}}]	
+	=	\textrm{e}^{-rT} \text{E}^{*}[S_{T}	\times	\bm{I}_{\{S_{t}	>	K\}}]	\\
+	&=	\textrm{e}^{-rT} S_{0} \textrm{e}^{(r	-	\delta)T}N(d_{1})	\\
+	&=	S_{0} \textrm{e}^{-\delta T}N(d_{1})	\\
+	AP(S_{0}, K, \sigma, r, T, \delta)
+	&=	\text{E}^{*}[\textrm{e}^{-rT} \times S_{T}	\times	\bm{I}_{\{S_{t}	<	K\}}]	
+	=	\textrm{e}^{-rT} \text{E}^{*}[S_{T}	\times	\bm{I}_{\{S_{t}	<	K\}}]	\\
+	&=	\textrm{e}^{-rT} S_{0} \textrm{e}^{(r	-	\delta)T}N(-d_{1})	\\
+	&=	S_{0} \textrm{e}^{-\delta T}N(-d_{1})	
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{itemize}
+	\item	Une option d'achat classique correspond donc à acheter une option d'achat actif ou rien et vendre $K$ options comptant ou rien;
+	\item	Une option d'achat avec écart équivaut à acheter une option d'achat actif ou rien et vendre $K_{1}$ options d'achat comptant ou rien.
+\end{itemize}
+
+\columnbreak
+\subsection*{Option rétroviseur}
+\begin{definitionNOHFILL}[Option rétroviseur]
+La valeur à l'échéance dépend du prix de l'action maximal ou minimal atteint lorsque l'option était en vigueur.\\
+
+Il y a 4 version de l'option rétroviseur:
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Type}}	&	\textcolor{white}{\textbf{Valeur à l'échéance}}		\\\specialrule{0.1em}{0em}{0em} 
+Standard Lookback Call	&	$S_{T}	-	\min(S)$	\\\hline
+Standard Lookback Put	&	$\max(S)	-	S_{T}$	\\\hline
+Extrema Lookback Call	&	$\max(\max(S)	-	K, 0)$	\\\hline
+Extrema Lookback Put		&	$\max(K	-	\min(S), 0)	-	S_{T}$	\\\hline
+\end{tabular}
+\end{center}
+\textbf{Notes:}
+\begin{itemize}[leftmargin = *]
+	\item	La valeur à l'échéance d'une option rétroviseur standard est non-négative puisque $\min(S)	\leq 	S_{T}$ et $\max(S)	\geq 	S_{T}$;
+	\item	Une option rétroviseur standard n'a pas de "prix d'exercice", plutôt on le défini comme \icbox[red][palechestnut]{la valeur de l'action sous-jacente qui maximise} \icbox[red][palechestnut]{la valeur à l'échéance}.\\
+			Pour une option d'achat, c'est le minimum $\min(S)$ et une option de vente le maximum $\max(S)$;
+	\item	Puisque ces derniers sont inconnus jusqu'à l'échéance de l'option, on surnomme aussi une option rétroviseur standard \icbox[red][palechestnut]{une option rétroviseur avec un prix d'exercice \textbf{flottant}};
+	\item	De façon semblable, une option rétroviseur extrême se surnomme \icbox[red][palechestnut]{une option rétroviseur avec un prix d'exercice \textbf{fixe}}.
+\end{itemize}
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{lookback option} \fg{};
+	\item	La tarification des options rétroviseurs avec la formule de Black-Scholes est compliquée, on peut plutôt utiliser soit les principes actuariels de base ou le modèle binomial selon le contexte.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\columnbreak
+\subsection*{Options qui ne sont pas dans le cadre du cours, mais qui font partie de l'examen IFM}
+\begin{definitionNOHFILLsub}[Options \og \textit{forward start} \fg{}]
+Fourni au détenteur une option à un temps futur déterminé. À l'échéance de l'option \og \textit{forward start} \fg{}, le détenteur reçoit une option dont le prix d'exercice dépend du prix de l'action à ce moment.	
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Options \og \textit{chooser} \fg{}]
+Permet au détenteur de choisir à un moment futur déterminé si l'option sera une option d'achat ou de vente européenne.
+\end{definitionNOHFILLsub}
 
 \end{multicols*}
 
