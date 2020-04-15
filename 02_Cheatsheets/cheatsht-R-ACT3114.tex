@@ -567,7 +567,7 @@
 	\texttt{form	}	&	formule du modèle	&	 	&	 	\\
 	\texttt{data}	&	jeu de données	&		&	\texttt{data = dataset}	 \\
 	\texttt{method}	&	famille de modèle à entraîner	&	\texttt{Adaboost.M1}, \texttt{gbm} (boosting), \texttt{rf} (forêt aléatoire), \texttt{rpart} (CART)	&	\texttt{method = "gbm"}	 \\
-	\texttt{preProcess}	&	permet de transformer les données avant l'entraînement. Les données doivent être une matrice ou un tableau.	&		&		 \\
+	\texttt{preProcess}	&	permet de transformer les données avant l'entraînement. Les données doivent être une matrice ou un tableau.	&		&	\texttt{preProcess = "scale"}	 \\
 	\texttt{tuneLength}	&	Nombre maximal de combinaisons des paramètres à tester dans l'optimisation.	&		&	\texttt{tuneLength = 8}	 \\
 	\texttt{tuneGrid}	&	Grille d'hyperparamètres à tester au lieu d'une recherche aléatoire.	&		&	
 		\texttt{tuneGrid = expand.grid(
@@ -665,9 +665,9 @@
 	\texttt{p}	&	Proportion des données à utiliser par itération de l'entraînement.	&	chiffre. 	&	 \texttt{p = 0.6}	\\
 	\texttt{number}	&	Nombre de plis (cv) ou de groupes d'entraînement (LGOCV).	&	chiffre. 	&	 \texttt{number = 2}	\\
 	\texttt{repeats}	&	Nombre d'itérations complètes de l'entraînement (pour la validation croisée répétée rcv)	&	chiffre. 	&	 \texttt{repeats = 4}	\\
-	\texttt{summaryFunction}	&	Précise le type de problème pour affficher les mesures de performance pertinentes.	&	twoClassSummary pour une classification binaire. 	&	\texttt{method = "LGOC"} 	\\
+	\texttt{summaryFunction}	&	Précise le type de problème pour affficher les mesures de performance pertinentes.	&	twoClassSummary pour une classification binaire. 	&	\texttt{summaryFunction = "twoClassSummary"} 	\\
 	\texttt{classProbs}	&	Si vrai, le modèle retourne la probabilité d'être dans chacune des classes ainsi que la prévision.	&	Booléen. 	&	\texttt{classProbs = TRUE} 	\\
-	\texttt{search}	&	Spécifie la méthode de création de la grille d'hyperparamètres.	&	"grid" ou "random". 	&	\texttt{method = "LGOC"} 	\\
+	\texttt{search}	&	Spécifie la méthode de création de la grille d'hyperparamètres.	&	"grid" ou "random". 	&	\texttt{search = "grid"} 	\\
 };
     \node[fit=(m-1-1)(m-1-4)]{\texttt{caret::trainControl()}};
 \end{tikzpicture}
