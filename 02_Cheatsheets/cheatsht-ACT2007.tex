@@ -974,18 +974,22 @@ Puis:
 
 	\setlength{\mathindent}{-1cm}
 \begin{align*}
-	\Pr\left(\shortstack{(x) et (y) sont en vie au temps u,\\ mais qu'au moins l'un décède au cours\\ des $t$ prochaines années}\right)
+	\Pr\left(\shortstack{(x) et (y) sont en vie\\ au temps u, mais qu'au moins\\ l'un décède au cours\\ des $t$ prochaines années}\right)
 		&=	\Pr(u	<	T_{xy}	\leq		u + t)	
 		=	\qx[u | t]{xy}	\\
 	\Pr\left(\shortstack{(x) meurt avant le temps $t$\\ et avant $(y)$}\right)	
 		&=	\Pr(T_{x}	\leq		t, T_{x}	<	T_{y})	
 		=	\qx[t]{\nthtop{1}{xy}}	\\
+		&=	\int_{0}^{t} (\px[s]{xy}[00])(\mu_{x + s : y + s}^{02})ds	\\
+		&\overset{T_{x}	\perp	T_{y}}{=}	\int_{0}^{t}(\px[s]{x})(\px[s]{y})\mu_{x + s}ds 	\\
 	\Pr\left(\shortstack{(x) meurt avant le temps $t$\\ et après le décès de $(y)$}\right)	
 		&=	\Pr(T_{x}	\leq		t, T_{y}	<	T_{x})	
 		=	\qx[t]{\nthtop{2}{xy}}	\\
+		&=	\int_{0}^{t} (\px[s]{xy}[01])(\mu_{x + s}^{13})ds	\\
+		&\overset{T_{x}	\perp	T_{y}}{=}	\int_{0}^{t}(\px[s]{x})(\qx[s]{y})\mu_{x + s}ds	\\
 	\Pr\left(\shortstack{(x) meurt avant (y)}\right)	
-		&=	\Pr(T_{y}	<	T_{x})	
-		=	\qx[\infty]{\nthtop{1}{xy}}	\\
+		&=	\Pr(T_{x}	<	T_{y})	
+		=	\qx[\infty]{\nthtop{1}{xy}}	
 \end{align*}
 	\setlength{\mathindent}{1cm}
 
@@ -996,6 +1000,7 @@ Puis:
 	&=	\frac{f_{T_{xy}}(t)}{S_{T_{xy}}(t)}	\\
 	\mu_{\overline{xy}}(t)
 	&=	\frac{f_{T_{\overline{xy}}}(t)}{S_{T_{\overline{xy}}}(t)}
+	=	\frac{f_{T_{x}}(t) + f_{T_{y}}(t) - f_{T_{xy}}(t)}{\px[t]{\overline{xy}}}
 \end{align*}
 
 Si $T_{x} \perp T_{y}$, 
@@ -1016,6 +1021,151 @@ Puis (voir la preuve à la page 15 des notes de cours du chapitre 11)
 	&=	\px[s]{x}\px[s]{y}		\\
 	\mu_{xy}(t)
 	&=	\mu_{x + t} + \mu_{y + t}	
+\end{align*}
+
+\subsection*{Contrats d'assurance et de rente}
+\subsubsection*{Contrat de rente continue vie entière émis à $(x, y)$}
+
+La rente de 1\$ est versée jusqu'au premier décès parmi $(x)$ et $(y)$.
+\begin{align*}
+	\ax*{xy}
+	&=	\int_{0}^{\infty} \textrm{e}^{-\delta t} \px[t]{xy} dt	\\
+\end{align*}
+
+La rente de 1\$ est versée jusqu'au deuxième décès parmi $(x)$ et $(y)$.
+\begin{align*}
+	\ax*{\overline{xy}}
+	&=	\int_{0}^{\infty} \textrm{e}^{-\delta t} \px[t]{\overline{xy}} dt	
+\end{align*}
+
+
+\subsubsection*{Contrat d'assurance continue vie entière émis au statut $(x, y)$}
+La prestation de décès de 1\$ est versée au moment du deuxième décès parmi $(x)$ et $(y)$.
+\begin{align*}
+	\Ax*{xy}
+	&=	\int_{0}^{\infty} \textrm{e}^{-\delta t} \px[t]{\overline{xy}} \mu_{\overline{x + t : y + t}} dt	\\
+\end{align*}
+
+\subsubsection*{Contrat d'assurance continue temporaire $n$ années émis au statut $(x, y)$}
+La prestation de décès de 1\$ est versée au moment du premier décès parmi $(x)$ et $(y)$.
+\begin{align*}
+	\Ax*{\nthtop{1}{xy}:\angln}
+	&=	\int_{0}^{n} \textrm{e}^{-\delta t} \px[t]{xy} \mu_{xy}(t) dt	\\
+\end{align*}
+
+La prestation de décès de 1\$ est versée au moment du deuxième décès parmi $(x)$ et $(y)$.
+\begin{align*}
+	\Ax*{\nthtop{1}{\overline{xy}}:\angln}
+	&=	\int_{0}^{n} \textrm{e}^{-\delta t} \px[t]{\overline{xy}} \mu_{\overline{xy}}(t) dt	\\
+\end{align*}
+
+%Dans le cas discret, on peut ramener la valeur actualisée des coûts à être une fonction de $K(xy)$ (ou $K(\overline{xy})$):
+%\begin{align*}
+%	\esp{g(K(xy))}
+%	&=	\sumz{\infty}{k = 0} g(k) \underbrace{\Pr(K(xy) = k)}_{\qx[k|]{xy}}	\\
+%	\esp{g(K(\overline{xy}))}
+%	&=	\sumz{\infty}{k = 0} g(k) \underbrace{\Pr(K(\overline{xy}) = k)}_{\qx[k|]{\overline{xy}}}
+%\end{align*}
+
+\subsubsection*{Contrat d'assurance discret vie entière émis au statut $(x, y)$}
+La prestation de décès de 1\$ est versée à la fin de l'année du premier décès parmi $(x)$ et $(y)$.
+\begin{align*}
+	\Ax{xy}
+	&=	\sumz{\infty}{k = 0} v^{k + 1} \underbrace{\Pr(K(xy) = k)}_{\qx[k|]{xy}}	\\
+\end{align*}
+
+La prestation de décès de 1\$ est versée à la fin de l'année du deuxième décès parmi $(x)$ et $(y)$.
+\begin{align*}
+	\Ax{\overline{xy}}
+	&=	\sumz{\infty}{k = 0} v^{k + 1} \underbrace{\Pr(K(\overline{xy}) = k)}_{\qx[k|]{\overline{xy}}}	\\
+\end{align*}
+
+
+\subsubsection*{Contrat de rente discret vie entière émis à $(x, y)$}
+La rente de 1\$ est versée jusqu'au premier décès parmi $(x)$ et $(y)$.
+\begin{align*}
+	\ax*{xy}
+	&=	\sumz{\infty}{k = 0}	v^{k} \px[k]{xy}	\\
+\end{align*}
+
+La rente de 1\$ est versée jusqu'au deuxième décès parmi $(x)$ et $(y)$.
+\begin{align*}
+	\ax*{\overline{xy}}
+	&=	\sumz{\infty}{k = 0}	v^{k} \px[k]{\overline{xy}}	\\
+\end{align*}
+
+\subsubsection*{Relations}
+	\setlength{\mathindent}{-1cm}
+\begin{align*}
+	\qx[k|]{xy}
+	&=	\qx[k + 1]{xy}	-	\qx[k]{xy}	\\
+	&=	\px[k]{xy}	-	\px[k + 1]{xy}	\\
+	&=	(\px[k]{xy})(\qx{x + k : y + k})		\because		\px[m + n]{xy} = (\px[m]{xy})(\px[n]{x + m : y + m})	\\
+	\qx[k|]{\overline{xy}}
+	&=	\qx[k + 1]{\overline{xy}}	-	\qx[k]{\overline{xy}}	\\
+	&=	\px[k]{\overline{xy}}	-	\px[k + 1]{\overline{xy}}	\\
+	&\neq	(\px[k]{\overline{xy}})(\qx{\overline{x + k : y + k}})	\because		\px[m + n]{\overline{xy}} \neq (\px[m]{\overline{xy}})(\px[n]{\overline{x + m : y + m}})	\\
+\end{align*}
+	\setlength{\mathindent}{1cm}
+
+\columnbreak
+
+\subsection*{Contingent Insurance}
+\subsubsection*{Discret}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\Ax*{\nthtop{1}{x}y}$]	Prime unique nette d'un contrat d'assurance vie entière continue versant 1\$ au décès de $(x)$ s'il advient avant celui de $(y)$.
+	\item[$\Ax*{x\nthtop{2}{y}}$]	Prime unique nette d'un contrat d'assurance vie entière continue versant 1\$ au décès de $(y)$ s'il advient après celui de $(x)$.
+\end{description}
+\end{distributions}
+\begin{align*}
+	\Ax*{\nthtop{1}{x}y}
+	&=	\esp{v^{T_{x}} \times \bm{1}_{\{T_{x} < T_{y}\}}}
+	=	\int_{0}^{\infty} v^{t} (\px[t]{x})(\px[t]{y})(\mu_{x + t})dt	\\
+	\Ax*{x\nthtop{2}{y}}
+	&=	\esp{v^{T_{y}} \times \bm{1}_{\{T_{x} < T_{y}\}}}
+	=	\int_{0}^{\infty} v^{s} (\qx[s]{x})(\px[s]{y})(\mu_{y + s})ds
+\end{align*}
+
+\subsubsection*{Relations}
+\begin{align*}
+	\Ax*{xy}
+	&=	\Ax*{\nthtop{1}{x}y} + \Ax*{x\nthtop{1}{y}}	\\
+	\Ax*{\overline{xy}}
+	&=	\Ax*{\nthtop{2}{x}y} + \Ax*{x\nthtop{2}{y}}	\\
+	\Ax*{x}
+	&=	\Ax*{\nthtop{1}{x}y} + \Ax*{x\nthtop{2}{y}}	\\
+\end{align*}
+
+
+\subsubsection*{Continue}
+	\begin{align*}
+	\Ax{\nthtop{1}{x}y}
+	&=	\esp{v^{K_{x} + 1} \times \bm{1}_{\{T_{x} < T_{y}\}}}
+	=	\sumz{\infty}{k = 0} v^{k + 1} (\px[k]{xy})(\qx{\nthtop{1}{x + k} : y + k})
+	\end{align*}
+
+\columnbreak
+
+\subsection*{Reversionary Annuity (pension de réversion)}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\ax*{y | x}$]	Valeur actualisée d'une \textit{pension de réversion} dont la rente est versée à un taux continue de 1\$ au statut $(x)$ à compter de la déchéance du statut $(y)$.
+\end{description}
+\end{distributions}
+
+\begin{align*}
+	\ax*{y | x}
+	&=	\int_{0}^{\infty} v^{t} (\px[t]{x:y})(\mu_{y + t}) \ax*{x + t} dt	\\
+	&=	\int_{0}^{\infty} v^{t} (\px[t]{x})(1 - \px[t]{y}) dt	
+	=	\ax*{x}	-	\ax*{y}
+\end{align*}
+
+\begin{align*}
+	\ax{y | x}
+	&=	\sumz{\infty}{k = 1} v^{k} \px[k]{x} (1 - \px[k]{y})	\\
+	&=	\ax{x}	-	\ax{xy}
+	\equiv	\ax**{x}		-	\ax**{xy}
 \end{align*}
 
 \end{multicols*}
