@@ -800,7 +800,7 @@ Donc:
 
 Il s'ensuit que \icbox[red][palechestnut]{$\px[t]{x}[(\tau)] \leq \px[t]{x}'^{(j)}, \forall j = 1, 2, \dots, m$} et \icbox[red][palechestnut]{$\qx[t]{x}'^{(j)} \geq \qx[t]{x}[(j)], \forall j = 1, 2, \dots, m$}.
 
-\subsection{Interrelations}
+\subsection*{Interrelations}
 \begin{rappel_enhanced}[Hypothèses]
 Pour $x \in \mathbb{Z}^{+}, t \in [0, 1], j = 1, 2, \dots, m$,
 \begin{description}
@@ -869,6 +869,154 @@ Sachant $\qx[t]{x}[(1)], \dots, \qx[t]{x}[(m)]$,
 \end{align*}
 \end{distributions}
 \end{conceptgen}
+
+\pagebreak
+
+\section{Contrats d'assurance et de rente sur plusieurs têtes}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$T_{x}$ et $T_{y}$]	Durée de vie future pour les individus d'âges $(x)$ et $(y)$;
+		\begin{itemize}[leftmargin = *]
+		\item	Nous étudions le cas le plus simple où $T_{x}	\perp	T_{y}$.
+		\end{itemize}
+	\item[$f_{T_{x}, T_{y}}$ et $F_{T_{x}, T_{y}}$]	Fonction de densité (répartition) du couple $(x, y)$;
+		\begin{align*}
+		F_{T_{x}, T_{y}}(t, s)
+		&=	\Pr(T_{x}	\leq	t, T_{y}	\leq	s)	
+		=	\int_{u = 0}^{t}\int_{v = 0}^{s} f_{T_{x}, T_{y}}(u, v) dvdu	\\
+		&\overset{T_{x}\perp T_{y}}{=}	\Pr(T_{x}	\leq	t)\Pr(T_{y}	\leq	s)	
+		=	F_{T_{x}}(t)F_{T_{y}}(s)
+		\end{align*}
+\end{description}
+\end{distributions}
+
+Souvent, les contrats d'assurance (ou de rente) d'un couple $(x, y)$ sont définis selon ces deux statuts:
+\begin{enumerate}[leftmargin = *]
+	\item	Statut conjoint (ou premier décès).
+	\item	Statut dernier survivant (ou dernier décès).
+\end{enumerate}
+
+\begin{definitionNOHFILLsub}[Statut conjoint]
+\begin{itemize}[leftmargin = *]
+	\item	Dénoté $xy$, $(xy)$ ou $x : y$;
+	\item	Demeure actif tant que $(x)$ \textit{et} $(y)$ sont en vie et donc cesse au premier décès parmi $(x)$ et $(y)$.
+\end{itemize}
+\begin{align*}
+	T_{xy}
+	&=	\min\{T_{x}, T_{y}\}	
+\end{align*}
+
+De plus:
+\begin{align*}
+	\px[t]{xy}
+	&=	S_{T_{xy}}(t)
+	=	\Pr(\min\{T_{x}, T_{y}\}	>	t)	\\
+	&=	\Pr(T_{x} > t, T_{y}	>	t)	
+	=	S_{T_{x}, T_{y}}(t, t)	\\
+	\qx[t]{xy}
+	&=	1 - \px[t]{xy}
+	=	\Pr(T_{x} \leq t \cup T_{y}	\leq	t)	
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Statut dernier survivant]
+\begin{itemize}[leftmargin = *]
+	\item	Dénoté $\overline{xy}$, $(\overline{xy})$ ou $\overline{x : y}$.
+\end{itemize}
+\begin{align*}
+	T_{\overline{xy}}
+	&=	\max\{T_{x}, T_{y}\}	
+\end{align*}
+
+De plus:
+\begin{align*}
+	\qx[t]{\overline{xy}}
+	&=	F_{T_{\overline{xy}}}(t)
+	=	\Pr(\max\{T_{x}, T_{y}\}	\leq	t)	\\
+	&=	\Pr(T_{x} \leq t, T_{y}	\leq	t)	
+	=	F_{T_{x}, T_{y}}(t, t)	\\
+	\px[t]{\overline{xy}}
+	&=	1 - \qx[t]{\overline{xy}}
+	=	\Pr(T_{x} > t \cup T_{y}	>	t)	
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\subsubsection*{Relations entre probabilités}
+\begin{align*}
+	\qx[t]{xy}
+	&=	\Pr(T_{x} \leq t \cup T_{y}	\leq	t)	
+	=	\Pr(T_{x} \leq t) + \Pr(T_{y}	\leq	t)	 - \Pr(T_{x} \leq t, T_{y}	\leq	t)	\\
+	&=	\qx[t]{x} + \qx[t]{y} - \qx[t]{\overline{xy}}	\\
+	\px[t]{\overline{xy}}
+	&=	\px[t]{x} + \px[t]{y} - \px[t]{xy}	\\
+\end{align*}
+
+\subsubsection*{Relations entre variables aléatoires}
+En gros, $(xy)$ plus $(\overline{xy})$ est égale à la somme de $(x)$ et $(y)$ avec ces 3 relations principales:
+\begin{align*}
+	T_{xy} \times T_{\overline{xy}}
+	&=	T_{x} \times T_{y}	\\
+	T_{xy} + T_{\overline{xy}}
+	&=	T_{x} + T_{y}	\\
+	a^{T_{xy}} + a^{T_{\overline{xy}}}
+	&=	a^{T_{x}} + a^{T_{y}}	\\
+\end{align*}
+
+Puis:
+\begin{align*}
+	\qx[t]{xy} + \qx[t]{\overline{xy}}	&=	\qx[t]{x} + \qx[t]{y}	\\
+	\eringx{xy} + \eringx{\overline{xy}}	&=	\eringx{x} + \eringx{y}	\\
+	\Ax*{xy} + \Ax*{\overline{xy}}	&=	\Ax*{x} + \Ax*{y}	\\
+	\ax*{xy} + \ax*{\overline{xy}}	&=	\ax*{x} + \ax*{y}	\\
+\end{align*}
+
+\subsubsection*{D'autres notations}
+
+	\setlength{\mathindent}{-1cm}
+\begin{align*}
+	\Pr\left(\shortstack{(x) et (y) sont en vie au temps u,\\ mais qu'au moins l'un décède au cours\\ des $t$ prochaines années}\right)
+		&=	\Pr(u	<	T_{xy}	\leq		u + t)	
+		=	\qx[u | t]{xy}	\\
+	\Pr\left(\shortstack{(x) meurt avant le temps $t$\\ et avant $(y)$}\right)	
+		&=	\Pr(T_{x}	\leq		t, T_{x}	<	T_{y})	
+		=	\qx[t]{\nthtop{1}{xy}}	\\
+	\Pr\left(\shortstack{(x) meurt avant le temps $t$\\ et après le décès de $(y)$}\right)	
+		&=	\Pr(T_{x}	\leq		t, T_{y}	<	T_{x})	
+		=	\qx[t]{\nthtop{2}{xy}}	\\
+	\Pr\left(\shortstack{(x) meurt avant (y)}\right)	
+		&=	\Pr(T_{y}	<	T_{x})	
+		=	\qx[\infty]{\nthtop{1}{xy}}	\\
+\end{align*}
+	\setlength{\mathindent}{1cm}
+
+
+\subsubsection*{Force de mortalité}
+\begin{align*}
+	\mu_{xy}(t)
+	&=	\frac{f_{T_{xy}}(t)}{S_{T_{xy}}(t)}	\\
+	\mu_{\overline{xy}}(t)
+	&=	\frac{f_{T_{\overline{xy}}}(t)}{S_{T_{\overline{xy}}}(t)}
+\end{align*}
+
+Si $T_{x} \perp T_{y}$, 
+\begin{align*}
+	\mu_{x + t : y + t}^{01}
+	&=	\mu_{y + t}^{23}
+	=	\mu_{y + t}	\\
+	\mu_{x + t : y + t}^{02}
+	&=	\mu_{x + t}^{13}
+	=	\mu_{x + t}	\\
+	\mu_{x + t : y + t}^{03}
+	&=	0
+\end{align*}
+
+Puis (voir la preuve à la page 15 des notes de cours du chapitre 11)
+\begin{align*}
+	\px[s]{xy}
+	&=	\px[s]{x}\px[s]{y}		\\
+	\mu_{xy}(t)
+	&=	\mu_{x + t} + \mu_{y + t}	
+\end{align*}
 
 \end{multicols*}
 \end{document}
