@@ -285,13 +285,16 @@ Pour un individu d'âge $x$, la variable aléatoire \textbf{discrète} $J^{(m)}_
 \columnbreak
 
 \subsection{Lois de mortalité}
-\subsubsection*{Loi de Moivre}
-Pas très réaliste car assume une chance \textbf{uniforme} de mourir n'importe quand alors qu'en réalité une personne âgée de 90 ans a des plus grandes chances de mourir qu'un jeune de 30 ans.
- 
+\begin{rappel_enhanced}[Loi de Moivre]
+Pas très réaliste car on suppose que la chance de mourir est \textbf{uniforme} alors qu'en réalité une personne âgée de 90 ans a de plus grandes chances de mourir qu'un jeune de 30 ans.	\\
 C'est la seule loi avec un \textbf{support fini}. 
 
-\begin{center}
-$T_x \sim	\text{Unif}(0, \omega - x)$
+\begin{gather}
+\begin{align*}
+	T_{x} 
+	&\sim	\text{Unif}(0, \omega - x)
+\end{align*}
+\end{gather}
 
 \begin{align*}
 %	X &\sim \text{Unif}(0, \omega) \\
@@ -304,48 +307,69 @@ $T_x \sim	\text{Unif}(0, \omega - x)$
 	\qx[k |]{x} 
 		&=	\frac{1}{\omega - x}
 \end{align*}
-\end{center}
+
+\tcbline
 
 \textbf{Généralisation}:
 
 \begin{align*}
 	\px[t]{x} 
-		&= \left( 1 - \frac{t}{\omega - x} \right)^{\alpha} &
-	\mu_x &=	\frac{\alpha}{\omega - x}	&
-	\eringx{x}	&=	\frac{\omega - x}{\alpha + 1}
+	&= \left( 1 - \frac{t}{\omega - x} \right)^{\alpha} &
+	\mu_x 
+	&=	\frac{\alpha}{\omega - x}	
 \end{align*}
+\begin{align*}
+	\eringx{x}	
+	&=	\frac{\omega - x}{\alpha + 1}
+\end{align*}
+\end{rappel_enhanced}
 
-\subsubsection*{Loi Exponentielle}
 
+\begin{rappel_enhanced}[Loi Exponentielle]
 \begin{center}
 \begin{align*}
-	T_x 			&\sim 	\mathrm{Exp}(\mu) &
-	\px[t]{x} 	&= 		e^{-\mu t}	
+	T_x 			
+	&\sim 	\mathrm{Exp}(\mu) &
+	\px[t]{x} 	
+	&= 		e^{-\mu t}	\\
 \end{align*}
 \begin{align*}
 	T_x \sim \text{Exp}(\mu) &\Rightarrow K_x \sim \text{Géo}(p = 1 - e^{-\mu}) 
 \end{align*}
 \end{center}
+\end{rappel_enhanced}
 
-\subsubsection*{Loi de Makeham}
+
+\begin{rappel_enhanced}[Loi de Makeham]
 \begin{align*}
-	X &\sim \text{Makeham}(A, B, c) \\
-	A &: \text{risque d'accident} \\
-	Bc^x &: \text{risque  lié au vieillissement} 
+	X &\sim \text{Makeham}(A, B, c) 
 \end{align*}
+\begin{description}
+	\item[$A$]	risque d'accident;
+	\item[$Bc^{x}$]	risque lié au vieillissement.
+\end{description}
+
 \begin{align*}
-	\mu_x &= A + B c^x &
+	\mu_x 
+	&=	A + B c^{x} &
 %	,\: x \geq 0 \\
-	\px[t]{x} &= e^{-At - \frac{B c^x}{ln(c)}(c^t - 1)}
+	\px[t]{x}
+	&=	\textrm{e}^{-At - \frac{B c^{x}}{\ln(c)}(c^{t} - 1)}
 %	,\: t \geq 0 
 \end{align*}
-	
-\subsubsection*{Loi de Gompertz}
+
+\tcbline
+
+\begin{rappel_enhanced}[Loi de Gompertz]
+	\setlength{\mathindent}{-1cm}
 \begin{align*}
 	X \sim \text{Makeham}(A = 0, B, c) &\Leftrightarrow X \sim \text{Gompertz}(B, c) 
 \end{align*}
+	\setlength{\mathindent}{1cm}
+\end{rappel_enhanced}
+\end{rappel_enhanced}
 
-\subsubsection*{Loi de Weibull}
+\begin{rappel_enhanced}[Loi de Weibull]
 \begin{align*}
 	X &\sim \text{Weibull}(k, n) \\
 	\mu_x &= k x^n	&
@@ -353,36 +377,46 @@ $T_x \sim	\text{Unif}(0, \omega - x)$
 	\px[t]{x} &= e^{-\frac{k}{n + 1}[(x + t)^{n + 1} - x^{n + 1}]}
 %	,\: t \geq 0 
 \end{align*}
+\end{rappel_enhanced}
 
 
 \columnbreak
 \subsection{Tables de mortalité}
-\begin{itemize}
-\item[$\ell_0$ : ] Nombre d'individus initial dans une cohorte.
-\item[$\ell_x$ : ] Nombre d'individus de la cohorte ayant survécu jusqu'à l'âge $x$.
-\item[$\prescript{}{n}d_{x}$ : ] Nombre de décès entre l'âge $x$ et $x+n$.
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\ell_{0}$]	Nombre d'individus initial dans une cohorte;
+	\item[$\ell_{x}$]	Nombre d'individus de la cohorte ayant survécu jusqu'à l'âge $x$;
+	\item[$\prescript{}{n}d_{x}$]	Nombre de décès entre l'âge $x$ et $x + n$.
+\end{description}
+\end{distributions}
 
 \begin{align*}
-\ell{x} = \sum_{y = x}^{\omega - 1} \dx{y} \\
-\qx[t]{x} = \frac{\ell_x - \ell_{x+t}}{\ell_x} &
-\px[t]{x} = \frac{\ell_{x+t}}{\ell_x} \\
-\qx[t|u]{x} = \frac{\dx[u]{x+t}}{\ell_x}
+	\ell{x} 
+	&=	\sum_{y = x}^{\omega - 1} \dx{y}	\\
+	\qx[t]{x} 
+	&=	\frac{\ell_x - \ell_{x+t}}{\ell_x}	&
+	\px[t]{x} 
+	&=	\frac{\ell_{x+t}}{\ell_x}	\\
+	\qx[t|u]{x} 
+	&=	\frac{\dx[u]{x+t}}{\ell_x}
 \end{align*}
 
-
-\end{itemize}
 
 
 \subsection{Mortalité sélecte et ultime}
-\begin{itemize}
-\item[${[}x{]}$ : ] âge de la sélection \textit{(pas une valeur entière)}.
-\item[${[}x{]} + j$ : ] âge atteint où $j$ est le temps écoulé depuis la sélection.
-\item[$r$: ] \textbf{Période sélecte} de durée $r$ durant laquelle les effets de la sélection sont significatifs après laquelle:
-\begin{align*}
-	\qx{[x] + j} &= \qx{x + j} \forall j = r, r + 1, r + 2, \dots \\
-	\ell_{[x] + r + j} &= \ell_{[x]} \px[r + j]{[x]} = \ell_{[x]} \px[r]{[x]} \px[j]{x + r}
-\end{align*}
-\end{itemize}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[${[}x{]}$]	Âge à la sélection \textit{(pas une valeur entière)};
+%\item[${[}x{]} + j$ : ] âge atteint où $j$ est le temps écoulé depuis la sélection.
+	\item[$r$]	\textbf{Période sélecte} de durée $r$ durant laquelle les effets de la sélection sont significatifs après laquelle:
+		\begin{align*}
+		\qx{[x] + j} 
+		&= \qx{x + j} \forall j = r, r + 1, r + 2, \dots	\\
+		\ell_{[x] + r + j} 
+		&= \ell_{[x]} \px[r + j]{[x]} = \ell_{[x]} \px[r]{[x]} \px[j]{x + r}
+		\end{align*}
+\end{description}
+\end{distributions}
 
 \columnbreak
 \subsection{Hypothèses pour les âges fractionnaires}
