@@ -1,0 +1,161 @@
+\documentclass[10pt, french]{article}
+
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Introduction à l'actuariat II}
+\def\sigle{ACT-2001}
+\def\SectionColor{burntorange}
+\def\SubSectionColor{burntsienna}
+\def\SubSubSectionColor{burntsienna}
+
+%% Reduce margin space
+\setlength{\abovedisplayskip}{-15pt}
+
+\newcommand{\bettershortstack}[2][c]{%
+  \begin{tabular}[b]{@{}#1@{}}#2\end{tabular}%
+}
+\usepackage{stackengine}
+\newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+%\input{contributeurs/contrib-ACT2001}
+
+\newpage
+
+\raggedcolumns
+\begin{multicols*}{2} 
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$S$]	Les coûts d'un portefeuille.
+	\item[$\rho(S)$]	Une mesure de risque.
+\end{description}
+\end{distributions}
+
+\section{Mesures de risque}
+
+\begin{description}
+	\item[Capital économique]	Allocation de surplus de la compagnie;
+		\begin{align*}
+		CE(S)	
+		&=	\rho(S)	-	\esp{S}
+		\end{align*}
+	\item[Marge de risque]	associée à une prime $P(X)$;
+		\begin{align*}
+		MR(X)
+		&=	\rho(X)	-	\esp{X}
+		\end{align*}
+\end{description}
+
+$\rho$ introduit une marge de risque:
+\begin{description}
+	\item[positive]	lorsque \icbox{$\rho(X)	\geq		\esp{X}$} pour une v.a. $X$ avec \icbox[red][palechestnut]{$\esp{X} < \infty$};
+	\item[justifiée]	lorsque \icbox{$\rho(X)	=	\rho(a)	=	a$} pour une v.a. $X$ avec \icbox[red][palechestnut]{$\Pr(X	=	a)	=	1, \alpha > 0$};
+	\item[non-excessive]	lorsque \icbox{$\rho(X)	\leq		a_{\max}$} pour une v.a. $X$ \icbox[red][palechestnut]{s'il existe $a_{\max}	<	\infty$} \icbox[red][palechestnut]{tel que $\Pr(X	\leq		a_{\max})	=	1$};
+\end{description}
+
+\subsection{Propriétés désirables d'une mesure de risque}
+\begin{definitionNOHFILLsub}[Homogénéité]
+Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$c	>	0$}, la mesure de risque $\rho$ est dite homogène si \icbox{$\rho(cX)	=	c\rho(X)$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Invariance à la translation]
+Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$c	\in	\mathbb{R}$}, la mesure de risque $\rho$ satisfait la propriété d'invariance à la translation si \icbox{$\rho(X + c)	=	\rho(X) + c$}.	\\
+
+Ajouter un montant positif à un risque ajoute un montant équivalent à la mesure de risque.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Monotonicité]
+Soit les v.a. $X_{1}$ et $X_{2}$ \icbox[red][palechestnut]{tel que $\Pr(X	\leq	X_{2})	=	1$}, la mesure de risque $\rho$ satisfait la propriété de monotonicité si \icbox{$\rho(X_{1})	\leq	\rho(X_{2})$} ou si \icbox[red][palechestnut]{$\forall	u	\in	(0, 1)$}, \icbox{$F_{X_{1}}^{-1}(u)	\leq	F_{X_{2}}^{-1}(u)$}.
+
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Sous-additivité]
+Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de sous-additivité si \icbox{$\rho(X_{1}	+	X_{2})	\leq	\rho(X_{1})	+	\rho(X_{2})$}.
+
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Convexité]
+Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de convexité si \icbox{$\rho(\alpha X_{1}	+	(1	-	\alpha)X_{2})	\leq	\alpha\rho(X_{1})	+	(1	-	\alpha)\rho(X_{2})$}.
+
+\end{definitionNOHFILLsub}
+
+\subsection{TVaR et VaR}
+
+\begin{itemize}
+	\item	La \textbf{Value-at-Risk} correspond au $100\alpha^{\text{e}}$ pourcentile;
+	\item	Si $X$ représente les gains, on s'intéresse à l'extrémité inférieure de la distribution des gains et \icbox{$TVaR_{\alpha}(X)	=	\esp{X | X \leq \alpha}	=	\frac{1}{\alpha} \int_{-\infty}^{VaR_{\alpha}} x f_{X}(x)dx$};
+	\item	Si $X$ représente les pertes, on s'intéresse à l'extrémité supérieure de la distribution des gains et \icbox{$TVaR_{\alpha}(X)	=	\esp{X | X > \alpha}	=	\frac{1}{1 - \alpha} \int_{VaR_{\alpha}}^{\infty} x f_{X}(x)dx$};
+\end{itemize}
+
+\pagebreak
+
+\section{Modèles de risques non-vie}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$M$]	Variable aléatoire du nombre de sinistres pour un risque;
+	\item[$B_{k}$]	Variable aléatoire du montant du $k^{\text{e}}$ sinistre.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Modèle fréquence-sinistre]
+On défini la v.a. $X$ comme étant les coûts (pertes) pour un risque tel que \icbox[red][palechestnut]{$\forall	M	>	0$}:
+\begin{align*}
+	X
+	&=	\sum_{k	=	1}^{M} B_{k}
+\end{align*}
+
+\tcbline
+
+\begin{align*}
+	\esp{X}
+	&=	\text{E}_{\text{M}}\left[\text{E}_{\text{B}}[X | M]\right]	\\
+	&=	\text{E}[M]	\times	\text{E}[B]	\\
+	\text{Var}(X)
+	&=	\underbrace{\text{Var}_{\text{M}}(\text{E}_{\text{B}}[X | M])}_{\text{variabilité du \textit{nombre} de sinistres}}	+	\underbrace{\text{E}_{\text{M}}\left[\text{Var}_{\text{B}}(X | M)\right]}_{\text{variabilité du \textit{coût} par sinistre}}	\\
+	&=	\text{E}[M]\text{Var}(B)	+	\text{E}^{2}[B]\text{Var}(M)	\\
+\end{align*}
+
+\tcbline
+
+\begin{align*}
+	F_{X}(x)
+	&=	\Pr(M	=	0)	+	\sum_{k	=	1}^{\infty} \Pr(M	=	k)F_{B_{1}	+	\dots	+	B_{k}}(x)
+\end{align*}
+
+Par exemple, pour $B_{k}	\sim	\Gamma(\alpha,	\beta)$:
+\begin{align*}
+	F_{X}(x)
+	&=	\Pr(M	=	0)	+	\sum_{k	=	1}^{\infty} \Pr(M	=	k)H(x;	\alpha k, \beta)
+\end{align*}
+
+\tcbline
+
+\begin{align*}
+	\mathcal{L}_{X}(t)
+	&=	P_{M}\left(\mathcal{L}_{B}(t)\right), \quad	t > 0	\\
+	\esp{X	\times	\bm{1}_{\{X	>	b\}}}
+	&=	\sum_{k	=	1}^{\infty} \Pr(M	=	k)E\left[(B_{1}	+	\dots	+	B_{k})	\times	\bm{1}_{\{B_{1}	+	\dots	+	B_{k} > b\}}\right]
+\end{align*}
+
+Par exemple, pour $B_{k}	\sim	\Gamma(\alpha,	\beta)$:
+\begin{align*}
+	\esp{X	\times	\bm{1}_{\{X	>	b\}}}
+	&=	\sum_{k	=	1}^{\infty} \Pr(M	=	k) \frac{k\alpha}{\beta} \overline{H}(b;	\alpha k + 1, \beta)
+\end{align*}
+\end{definitionNOHFILL}
+
+\end{multicols*}
+\end{document}
+

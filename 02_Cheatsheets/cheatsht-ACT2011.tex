@@ -4626,7 +4626,90 @@ où $d_{1}	=	\frac{\ln\left(\frac{F^{P}(A)}{F^{P}(B)}\right) + \frac{1}{2} \sigm
 
 
 \pagebreak
+\section*{Risque d'investissement}
+\paragraph{Note}	\hl{Chapitre 10.1 des notes de Coaching Actuaries pour IFM.}
+\begin{description}
+	\item[Variance]	Mesure de risque symétrique qui prend en compte les rendements au-dessus et en dessous de la moyenne;
+	\item[Semi-variance]	Écart-type moyen en dessous de la moyenne.
+		\begin{itemize}[leftmargin = *]
+		\item	En anglais, \og \textit{semi-variance} \fg{};
+		\item	\icbox{$\sigma^{2}_{SV}	=	\esp{\min(0, R - \esp{R})^{2}}$};
+		\item	Le \og \textit{downside semi-variance} \fg{} est la racine $\sigma_{SV}$ de la semi-variance.
+		\end{itemize}
+	\item[Value-at-Risk ($VaR$)]	$100\alpha^{\text{e}}$ pourcentile;
+	\item[Tail Value-at-Risk ($VaR$)]	
+		\begin{itemize}[leftmargin = *]
+		\item	Alias, \og \textit{expected shortfall} \fg{} ou \og \textit{conditional tail expectation} \fg{};
+		\item	Si $X$ représente les gains, on s'intéresse à l'extrémité inférieure de la distribution des gains et \icbox{$TVaR_{\alpha}(X)	=	\esp{X | X \leq \alpha}	=	\frac{1}{\alpha} \int_{-\infty}^{VaR_{\alpha}} x f_{X}(x)dx$};
+		\item	Si $X$ représente les pertes, on s'intéresse à l'extrémité supérieure de la distribution des gains et \icbox{$TVaR_{\alpha}(X)	=	\esp{X | X > \alpha}	=	\frac{1}{1 - \alpha} \int_{VaR_{\alpha}}^{\infty} x f_{X}(x)dx$};
+		\end{itemize}
+\end{description}
+
+\subsection*{Mesure de risque cohérente}
+Une mesure de risque $\rho$ est dite "\textbf{cohérente}" si elle rencontre ces 4 caractéristiques:
+\begin{enumerate}[leftmargin = *]
+	\item	Invariance à la translation si pour un \icbox[red][palechestnut]{scalaire $c	>	0$}, la mesure de risque \icbox{$\rho(X + c)	=	\rho(X) + c$};
+		\begin{itemize}[leftmargin = *]
+		\item	Ajouter un montant positif à un risque ajoute un montant équivalent à la mesure de risque.
+		\end{itemize}
+	\item	Homogénéité positive si pour un \icbox[red][palechestnut]{scalaire $c	>	0$}, la mesure de risque \icbox{$\rho(cX)	=	c\rho(X)$};
+		\begin{itemize}[leftmargin = *]
+		\item	Multiplier le risque $X$ par un montant positif $c$ ajuste la mesure de risque $\rho$ proportionnellement.
+		\end{itemize}
+	\item	Sous-additivité si la mesure de risque \icbox{$\rho(X + Y)	=	\rho(X) + \rho(Y)$};
+		\begin{itemize}[leftmargin = *]
+		\item	Combiner des risques mène à des bénéfices de mutualisation tant qu'ils ne sont pas parfaitement corrélés.
+		\end{itemize}
+	\item	Monotonicité si pour \icbox[red][palechestnut]{$X	\leq	Y$}, la mesure de risque \icbox{$\rho(X)	\leq	\rho(Y)$}.
+		\begin{itemize}[leftmargin = *]
+		\item	Si un risque $X$ est moins risqué qu'un autre risque $Y$, les mesures de risques doivent également suivent l'ordre.
+		\end{itemize}
+\end{enumerate}
+
+\columnbreak
+
+\section*{Analyse du risque d'un projet}
+\paragraph{Note}	\hl{Chapitre 10.2 des notes de Coaching Actuaries pour IFM.}
+
+On souhaite toujours maximiser la valeur actualisée nette (VAN) d'un projet avec \icbox{$VAN	=	\sum_{t	=	1}^{n}\frac{CF_{t}}{(1	+	i_{t})^{t}}$}.\\
+Pour ce faire, on doit estimer les flux monétaires futurs ainsi que le coût du capital. Nous voyons 4 façons d'évaluer l'impact de cette incertitude et d'identifier les principaux facteurs sous-jacents à la VAN d'un projet.
+
+\subsection*{Analyse de rentabilité (\og \textit{break-even analysis} \fg{})}
+Lorsque la valeur actualisée nette (VAN) est nulle, un projet devient rentable.\\
+Une analyse de rentabilité calcule la valeur de chaque paramètre tel que la VAN du projet est nulle. \\
+Notamment, on isole le \og \textit{internal rate of return (IRR)} \fg{}:
+\begin{align*}
+	VAN
+	&=	\sum_{t	=	1}^{n}\frac{CF_{t}}{(1	+	IRR)^{t}}
+	=	0
+\end{align*}
+
+On peut aussi isoler la seuil de rentabilité pour le nombre d'unités à vendre, le prix par unité, le coût par unité de marchandise, etc.
+
+\subsection*{Analyse de sensibilité (\og \textit{sensitivity analysis} \fg{})}
+Une analyse de sensibilité évalue la sensibilité de la VAN à chacune des variables en les faisant varier une à la fois. Ceci permet d'identifier les variables les plus importantes selon leurs effets sur la VAN.\\
+
+On débute par calculer la VAN d'un scénario de référence. Puis, on calcule la VAN en variant une des variables par un pourcentage fixe. 
+
+\subsection*{Analyse de scénarios (\og \textit{scenario analysis} \fg{})}
+L'analyse de scénarios est semblable à l'analyse de sensibilité sauf que l'on fait varier plusieurs variables à la fois. Le plus la VAN varie selon les différents scénarios, plus le risque du projet est élevé.
+
+\subsection*{Simulation Monte-Carlo}
+On estime la distribution de probabilité d'une quantité d'intérêt (e.g., la VAN).
+
+Les étapes générales sont:
+\begin{enumerate}[leftmargin = *]
+	\item	Construire le modèle d'intérêt;
+	\item	Simuler des nombres aléatoires d'une distribution supposée pour chacune des variables;
+	\item	Déterminer la valeur de la quantité d'intérêt avec les variables calculées précédemment;
+	\item	Répéter les 2 étapes précédentes un grand nombre de fois;
+	\item	Calculer des mesures d'intérêt (moyenne, variance, etc.) puis tracer les valeurs simulées comme une distribution de probabilité.
+\end{enumerate}
+
+
+\pagebreak
 \section{Évaluation par la méthode de Monte Carlo}
+
 
 
 \pagebreak
