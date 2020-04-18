@@ -102,8 +102,40 @@
 %%%	\icbox{<frame color>}{<background color>}{<text>}
 \newcommandx{\icbox}[3][1 = bleudefrance, 2 = beaublue]{\fcolorbox{#1}{#2}{#3}}
 %%	other good color combo is azure(colorwheel) arsenic
-
-
+\usepackage{longfbox}
+%	voir cette page, paquetage avec CSS https://ctan.math.illinois.edu/macros/latex/contrib/longfbox/longfbox.html
+\newfboxstyle{rappel}{
+	background-color = tealblue!20!white, 
+	border-style = outset,
+	breakable = true,
+%	
+	border-color = tealblue,
+	border-radius = 1ex, 
+%
+	padding-bottom = 0.2ex,
+	padding-top = 0.2ex,
+	padding-left = 0.4ex,
+	padding-right = 0.4ex,
+%	
+	border-top-width = 0.3ex,
+	border-bottom-width = 0.3ex,
+%
+	border-left-width = 1ex, 
+	border-bottom-left-radius = 0.2ex,
+%	
+	border-right-width = 1ex, 
+	border-top-right-radius = 0.2ex,
+%	
+}
+\newfboxstyle{formula}{ 
+	background-color = beaublue, 
+	border-color = bleudefrance
+}
+\newfboxstyle{conditions}{ 
+	background-color = palechestnut, 
+	border-color = red
+}
+\newcommandx{\rcbox}[3][1 = bleudefrance, 2 = beaublue]{\lfbox[border-radius = 0.5ex, background-color = #2, border-color = #1]{#3}}
 
 % To indicate equation number on a specific line in align environment
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
@@ -186,6 +218,22 @@
 	colframe = airforceblue,
 	title=#1,
 	fonttitle = \bfseries
+}
+%%
+%% Coloured box "rappel" pour rappel de formules
+%%
+\DeclareTColorBox{conceptgen_enhanced}{ o }
+{
+	enhanced,
+	title = #1,
+	colback=beaublue, % color of the box
+%	colframe=blue(pigment),
+%	colframe=arsenic,	
+	colbacktitle=airforceblue,
+	fonttitle = \bfseries,
+	breakable,
+	boxed title style={size=small,colframe=arsenic} ,
+	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
 }
 %%
 %% Coloured box "probch3" pour formules relatives au 3ème chapitre de prob
@@ -316,6 +364,8 @@
 \definecolor{calpolypomonagreen}{rgb}{0.12, 0.3, 0.17}
 \definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
 
+\definecolor{antiquebrass}{rgb}{0.8, 0.58, 0.46}	% brown-ish light
+
 \definecolor{blue(munsell)}{rgb}{0.0, 0.5, 0.69}
 \definecolor{blue(matcha)}{rgb}{0.596, 0.819, 1.00}
 \definecolor{blue(munsell)-light}{rgb}{0.5, 0.8, 0.9}
@@ -350,8 +400,14 @@
 \definecolor{red_rectangle}{RGB}{241,112,113}		% ACT-2004
 \definecolor{amethyst}{rgb}{0.6, 0.4, 0.8}
 \definecolor{amethyst-light}{rgb}{0.6, 0.4, 0.8}
+
+\definecolor{tealblue}{rgb}{0.21, 0.46, 0.53}
+
+\definecolor{battleshipgrey}{rgb}{0.52, 0.52, 0.51}  % lilght ish gray
 \definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}			% dark grey-black-ish
 \definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}			% light green-beige-ish gray
+\definecolor{gray(x11gray)}{rgb}{0.75, 0.75, 0.75}
+
 \definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
 \definecolor{brickred}{rgb}{0.8, 0.25, 0.33}
 \definecolor{chestnut}{rgb}{0.8, 0.36, 0.36}

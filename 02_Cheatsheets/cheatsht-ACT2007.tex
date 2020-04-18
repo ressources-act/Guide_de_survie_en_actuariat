@@ -887,6 +887,7 @@ Sachant $\qx[t]{x}[(1)], \dots, \qx[t]{x}[(m)]$,
 		&\overset{T_{x}\perp T_{y}}{=}	\Pr(T_{x}	\leq	t)\Pr(T_{y}	\leq	s)	
 		=	F_{T_{x}}(t)F_{T_{y}}(s)
 		\end{align*}
+	\item[]	$\qx[t]{\overset{1}{x}y}$	On mets le chiffre sur la personne qui meurt et le chiffre représente l'ordre; dans ce cas-ci, $(x)$ meurt avant $(y)$ avant le temps $t$.
 \end{description}
 \end{distributions}
 
@@ -974,24 +975,32 @@ Puis:
 
 	\setlength{\mathindent}{-1cm}
 \begin{align*}
-	\Pr\left(\shortstack{(x) et (y) sont en vie\\ au temps u, mais qu'au moins\\ l'un décède au cours\\ des $t$ prochaines années}\right)
+	\Pr\left(\parbox[1cm]{4.2cm}{(x) et (y) sont en vie au temps u, mais qu'au moins l'un décède au cours des $t$ prochaines années}\right)
 		&=	\Pr(u	<	T_{xy}	\leq		u + t)	
 		=	\qx[u | t]{xy}	\\
-	\Pr\left(\shortstack{(x) meurt avant le temps $t$\\ et avant $(y)$}\right)	
+	\Pr\left(\parbox[1cm]{4cm}{(x) meurt avant le temps $t$\\ et avant $(y)$}\right)	
 		&=	\Pr(T_{x}	\leq		t, T_{x}	<	T_{y})	
 		=	\qx[t]{\nthtop{1}{xy}}	\\
 		&=	\int_{0}^{t} (\px[s]{xy}[00])(\mu_{x + s : y + s}^{02})ds	\\
-		&\overset{T_{x}	\perp	T_{y}}{=}	\int_{0}^{t}(\px[s]{x})(\px[s]{y})\mu_{x + s}ds 	\\
-	\Pr\left(\shortstack{(x) meurt avant le temps $t$\\ et après le décès de $(y)$}\right)	
+	&\overset{T_{x}	\perp	T_{y}}{=}	\int_{0}^{t}\underbrace{(\px[s]{x})(\px[s]{y})}_{\small\shortstack{$(x)$ et $(y)$\\ survivent}} \; \underbrace{\mu_{x + s}}_{\small\shortstack{$(x)$ meurt}}ds 	\\
+	\Pr\left(\parbox[1cm]{4cm}{(x) meurt avant le temps $t$\\ et après le décès de $(y)$}\right)	
 		&=	\Pr(T_{x}	\leq		t, T_{y}	<	T_{x})	
 		=	\qx[t]{\nthtop{2}{xy}}	\\
 		&=	\int_{0}^{t} (\px[s]{xy}[01])(\mu_{x + s}^{13})ds	\\
-		&\overset{T_{x}	\perp	T_{y}}{=}	\int_{0}^{t}(\px[s]{x})(\qx[s]{y})\mu_{x + s}ds	\\
+		&\overset{T_{x}	\perp	T_{y}}{=}	\int_{0}^{t}\underbrace{(\px[s]{x})\mu_{x + s}}_{\small\shortstack{$(x)$ survie jusqu'à\\ $s$ puis décède}} \; \underbrace{(\qx[s]{y})}_{\small\shortstack{$(y)$ décède\\ avant $s$}}ds	\\
 	\Pr\left(\shortstack{(x) meurt avant (y)}\right)	
 		&=	\Pr(T_{x}	<	T_{y})	
 		=	\qx[\infty]{\nthtop{1}{xy}}	
 \end{align*}
 	\setlength{\mathindent}{1cm}
+
+\subsubsection*{Relations}
+\begin{align*}
+	\underbrace{\qx[t]{\nthtop{1}{x}y}}_{\shortstack{probabilité que $(x)$\\ décède en premier\\ d'ici $t$ années}}	+	\underbrace{\qx[t]{\nthtop{2}{x}y}}_{\shortstack{probabilité que $(x)$\\ décède en deuxième\\ d'ici $t$ années}}
+	&=	\underbrace{\qx[t]{x}}_{\shortstack{la probabilité que\\ $(x)$ décède\\ d'ici $t$ années}}	\\
+	\underbrace{\qx[t]{\nthtop{1}{x}y}}_{\shortstack{probabilité que $(x)$\\ décède en premier\\ d'ici $t$ années}}	+	\underbrace{\qx[t]{x\nthtop{1}{y}}}_{\shortstack{probabilité que $(y)$\\ décède en premier\\ d'ici $t$ années}}
+	&=	\underbrace{\qx[t]{xy}}_{\shortstack{la probabilité que\\ un parmis $(x)$ et $(y)$\\ décède d'ici $t$ années}}	\\
+\end{align*}
 
 
 \subsubsection*{Force de mortalité}
@@ -1019,6 +1028,8 @@ Puis (voir la preuve à la page 15 des notes de cours du chapitre 11)
 \begin{align*}
 	\px[s]{xy}
 	&=	\px[s]{x}\px[s]{y}		\\
+	\qx[s]{\overline{xy}}
+	&=	\qx[s]{x}\qx[s]{y}		\\
 	\mu_{xy}(t)
 	&=	\mu_{x + t} + \mu_{y + t}	
 \end{align*}
@@ -1042,7 +1053,7 @@ La rente de 1\$ est versée jusqu'au deuxième décès parmi $(x)$ et $(y)$.
 \subsubsection*{Contrat d'assurance continue vie entière émis au statut $(x, y)$}
 La prestation de décès de 1\$ est versée au moment du deuxième décès parmi $(x)$ et $(y)$.
 \begin{align*}
-	\Ax*{xy}
+	\Ax*{\overline{xy}}
 	&=	\int_{0}^{\infty} \textrm{e}^{-\delta t} \px[t]{\overline{xy}} \mu_{\overline{x + t : y + t}} dt	\\
 \end{align*}
 
@@ -1148,25 +1159,71 @@ La rente de 1\$ est versée jusqu'au deuxième décès parmi $(x)$ et $(y)$.
 \columnbreak
 
 \subsection*{Reversionary Annuity (pension de réversion)}
+\begin{rappel_enhanced}[Historique]
+Produit originalement créé dans le temps que les hommes travaillent et les femmes restaient à la maison. C'était une assurance contre le risque que le mari décède et que la femme ne se retrouve avec aucune source de revenus. Le produit fournissait donc une rente afin que la femme puisse continuer de survivre sans le salaire de son mari.
+\end{rappel_enhanced}
+
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$\ax*{y | x}$]	Valeur actualisée d'une \textit{pension de réversion} dont la rente est versée à un taux continue de 1\$ au statut $(x)$ à compter de la déchéance du statut $(y)$.
+	\item[$\ax*{x | y}$]	Valeur actualisée d'une \textit{pension de réversion} dont la rente est versée à un taux continue de 1\$ au statut $(y)$ à compter de la déchéance du statut $(x)$.
 \end{description}
 \end{distributions}
 
 \begin{align*}
-	\ax*{y | x}
-	&=	\int_{0}^{\infty} v^{t} (\px[t]{x:y})(\mu_{y + t}) \ax*{x + t} dt	\\
-	&=	\int_{0}^{\infty} v^{t} (\px[t]{x})(1 - \px[t]{y}) dt	
-	=	\ax*{x}	-	\ax*{y}
+	\ax*{x | y}
+	&=	\int_{0}^{\infty} v^{s} (\px[s]{x:y})(\mu_{x + s}) \ax*{y + s} ds	\\
+	&=	\int_{0}^{\infty} v^{s} (\px[s]{y})(\qx[s]{x}) ds	\\
+	&=	\ax*{y}	-	\ax*{x}
 \end{align*}
 
 \begin{align*}
-	\ax{y | x}
-	&=	\sumz{\infty}{k = 1} v^{k} \px[k]{x} (1 - \px[k]{y})	\\
-	&=	\ax{x}	-	\ax{xy}
-	\equiv	\ax**{x}		-	\ax**{xy}
+	\ax{x | y}
+	&=	\sumz{\infty}{k = 1} v^{k} \px[k]{y} (\qx[k]{x})	\\
+	&=	\ax{y}	-	\ax{xy}
+	\equiv	\ax**{y}		-	\ax**{xy}	\\
 \end{align*}
+
+Une annuité ayant une pension de 1\$ payable à $(y)$ à compter du décès de $(x)$ s'il survient avant $n$:
+\begin{align*}
+	\ax*{x | y:\angln}
+	&=	\int_{0}^{n} v^{s} (\px[s]{x})(\mu_{x + s}) (\px[s]{y})\ax*{y + s}  ds	\\
+	&=	\ax*{x | y}	-	v^{n} \px[n]{x} \px[n]{y} \ax*{x + n | y + n}
+\end{align*}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da6856049917337241] 
+\draw [line width=1.5]    (99,119) -- (295.17,119) ;
+\draw [shift={(295.17,119)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(99,119)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+%Straight Lines [id:da6451112232837601] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=1.5]    (99,90) -- (153.17,90) -- (167.17,90) ;
+\draw [shift={(171.17,90)}, rotate = 180] [fill={rgb, 255:red, 65; green, 117; blue, 5 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (11.61,-5.58) -- (0,0) -- (11.61,5.58) -- cycle    ;
+%Straight Lines [id:da7705877456695056] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (172.17,101) -- (268.17,101) ;
+\draw [shift={(268.17,101)}, rotate = 180] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(172.17,101)}, rotate = 180] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+%Straight Lines [id:da8192385110842837] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (171.17,80) -- (225.33,80) -- (291.17,80) ;
+\draw [shift={(295.17,80)}, rotate = 180] [fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (11.61,-5.58) -- (0,0) -- (11.61,5.58) -- cycle    ;
+%Shape: Brace [id:dp44682577336929397] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]  (172,124) .. controls (172,128.67) and (174.33,131) .. (179,131) -- (210.08,131) .. controls (216.75,131) and (220.08,133.33) .. (220.08,138) .. controls (220.08,133.33) and (223.41,131) .. (230.08,131)(227.08,131) -- (261.17,131) .. controls (265.84,131) and (268.17,128.67) .. (268.17,124) ;
+
+% Text Node
+\draw (95,127) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (99,70) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle xy$};
+% Text Node
+\draw (172,49) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0.96,0.65,0.14}{$\displaystyle y$ survives}\\\textcolor[rgb]{0.25,0.46,0.02}{$\displaystyle x$ dies}};
+% Text Node
+\draw (216,142) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle n$};
+
+
+\end{tikzpicture}
+\end{center}
 
 \end{multicols*}
 \end{document}
