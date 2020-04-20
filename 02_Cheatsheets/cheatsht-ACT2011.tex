@@ -3614,7 +3614,7 @@ On peut également le calculer avec les paramètres du portefeuille $\Omega_{\te
 		\item	Alors, le Delta est seulement valide comme approximation du prix pour des très petites variations
 		\end{itemize}
 	\item	En considérant le Gamma, l'approximation devient valide pour des plus grandes variations;
-	\item	Cependant, la meilleure approximation se fait en incluant Theta pour considérer \textit{l'effet du temps} \icbox[red][palechestnut]{mais ce n'est pas dans le cadre du cours}.
+	\item	Cependant, la meilleure approximation se fait en incluant Theta pour considérer \textit{l'effet du temps}.
 \end{itemize}
 
 \begin{definitionNOHFILL}[Approximation Delta-Gamma-Theta]
@@ -3651,7 +3651,8 @@ Opérations effectuées par une institution financière pour son propre compte a
 \item	On distingue les opérations pour compte propre de la tenue de marché:
 	\begin{itemize}[leftmargin = *]
 	\item	Les clients et opérateurs pour compte propre profitent des mouvements des marchés;
-	\item	Les \hyperlink{market_holder}{\color{blue}teneurs de marché} profitent des frais de transactions.
+	\item	Les \hyperlink{market_holder}{\color{blue}teneurs de marché} profitent des frais de transactions;
+	\item	Ils \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{offrent l'immédiateté et se tiennent prêt à acheter et à vendre des} \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{produits dérivés selon les ordres des clients ou investisseurs.}
 	\end{itemize}
 \end{itemize}
 \end{definitionNOHFILL}
@@ -3662,7 +3663,8 @@ Une position couverte en delta neutre a un $\Delta = 0$ et permet aux teneurs de
 \begin{rappel_enhanced}[Contexte]
 \begin{itemize}[leftmargin = *]
 	\item	Les teneurs de marchés ne souhaitent pas profiter du marché mais plutôt des transactions;
-	\item	La couverture en delta neutre est une donc façon de minimiser le risque de leurs positions.
+	\item	La couverture en delta neutre est une donc façon de minimiser le risque de leurs positions;
+	\item	Cette couverture est couramment utilisée en pratique.
 \end{itemize}
 \end{rappel_enhanced}
 
@@ -3719,11 +3721,31 @@ Son profit de $t$ à $t + h$ est la somme des variations des composantes \icbox{
 
 \paragraph{Note sur $\theta$} Thêta mesure la \textit{variation du prix} à l'écoulement \textit{du temps} et n'a pas lié au risque de l'action. Il en résulte que le delta et le gamma d'un dépôt sans risque sont nuls, mais pas le thêta. Pour un dépôt de 1\$, la valeur accumulée $t$ années plus tard est $\textrm{e}^{rt}$. Le thêta de ce dépôt est $\theta_{\text{sans risque}}	=	\deriv{t}{r\textrm{e}^{rt}}	=	r\textrm{e}^{rt}$. 
 
+\begin{definitionNOHFILL}[Autofinançant]
+Portefeuille dont la couverture, même si elle existe un rééquilibrage, entraîne uniquement des flux monétaires intermédiaires nuls est dit autofinançant.
+\end{definitionNOHFILL}
+
+
+\columnbreak
 \subsubsection*{Analyse de Black-Scholes}
+\textbf{Équation de Black-Scholes}:
 \begin{align*}
 	r S_{t} \deriv{S_{t}}{C_{t}} + \frac{1}{2}\sigma^{2}S_{t}^{2}\deriv[2]{S_{t}}{C_{t}} + \deriv{t}{C_{t}}	
 	&=	r C_{t}	
 \end{align*}
+\begin{itemize}
+	\item	Valide pour les options d'achat et de vente;
+	\item	L'équation suppose aucun dividendes et que les paramètres $r$ et $\sigma$ sont constants;
+	\item	Elle est valide pour les options d'achat et de vente américaines à tout instant où il n'est pas optimal d'exercer l'option avant l'échéance;
+	\item	En théorie, le rééquilibrage devrait se faire en continu;
+	\item	En pratique, les frais de transactions sont trop élevés et c'est plutôt lorsque le delta change;
+	\item	Augmenter la fréquence du rééquilibrage (pour ramener le delta à zéro):
+		\begin{itemize}
+		\item	Réduit la variabilité du rendement;
+		\item	Permet de tirer avantage de la diversification temporelle;
+		\item	N'affecte pas la moyenne du rendement sur une période donnée.
+		\end{itemize}
+\end{itemize}
 
 \begin{description}
 	\item[$R_{h, i}$]	Le rendement de la période $i$ avec une durée $h$ entre les ajustements, en  supposant que la position d'une option d'achat achetée est delta-neutre au départ;
