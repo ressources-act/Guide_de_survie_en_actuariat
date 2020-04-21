@@ -15,6 +15,7 @@
 
 %% Reduce margin space
 \setlength{\abovedisplayskip}{-15pt}
+\setlist{leftmargin=*}
 
 \newcommand{\bettershortstack}[2][c]{%
   \begin{tabular}[b]{@{}#1@{}}#2\end{tabular}%
@@ -35,6 +36,74 @@
 
 \raggedcolumns
 \begin{multicols*}{2} 
+
+\section{Terminologie}
+\begin{description}
+	\item[$\argmax$]	Si on pose que $\hat{\theta}	=	\argmax L(\theta; \bm{X})$ on dit que la valeur maximale de $L(\theta; \bm{X})$ est au point $\hat{\theta}$.
+\end{description}
+
+Paramètre
+\begin{description}
+%%%	https://www.statisticshowto.com/shape-parameter/
+	\item[de forme]	Affecte la forme générale de la distribution;
+		\begin{itemize}
+		\item	\og \textit{shape parameter} \fg{};
+		\item	Il est important de saisir que le paramètre de forme n'a aucune incidence sur l'emplacement de la densité (paramètre de l'emplacement) ni sur l'échelle de la densité (paramètre d'échelle);
+		\item	Par exemple, la distribution Gamma a un paramètre de forme qui impact comment qu'elle est représentée;
+		\item	Par exemple, la distribution exponentielle n'a pas de paramètre de forme et bien que l'échelle de la distribution peut être modifiée, la forme générale est constante.
+		\end{itemize}
+%%%		
+	\item[d'échelle]	Sert à déterminer la forme et l'emplacement de la distribution en étirant ou compressant la densité;
+		\begin{itemize}
+		\item	\og \textit{scale parameter} \fg{};
+		\item	Le plus gros le paramètre d'échelle, le plus rependue la distribution;
+		\item	On peut voir ceci visuellement où avec un paramètre d'échelle de 1, la distribution est inchangée:
+		\end{itemize}
+		\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp18693685040272978] 
+\draw [line width=1.5]  (119.83,151.67) -- (199.83,151.67)(159.83,27.4) -- (159.83,151.67) (192.83,146.67) -- (199.83,151.67) -- (192.83,156.67) (154.83,34.4) -- (159.83,27.4) -- (164.83,34.4)  ;
+%Shape: Wave [id:dp5641937191696826] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=2.25]  (146.41,149.77) .. controls (146.59,150.04) and (146.77,150.18) .. (146.95,150.18) .. controls (149.38,150.18) and (151.47,124.5) .. (153.66,97.51) .. controls (155.85,70.53) and (157.94,44.84) .. (160.37,44.84) .. controls (162.8,44.84) and (164.89,70.53) .. (167.08,97.51) .. controls (169.1,122.49) and (171.05,146.35) .. (173.25,149.77) ;
+%Shape: Wave [id:dp9736357574926828] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  (139.7,149.94) .. controls (139.97,150.1) and (140.23,150.18) .. (140.5,150.18) .. controls (144.08,150.18) and (147.17,135.46) .. (150.39,119.99) .. controls (153.62,104.52) and (156.71,89.8) .. (160.29,89.8) .. controls (163.87,89.8) and (166.96,104.52) .. (170.19,119.99) .. controls (173.38,135.28) and (176.43,149.85) .. (179.96,150.18) ;
+%Shape: Wave [id:dp9806953027168039] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]  (130.98,150.05) .. controls (131.36,150.14) and (131.74,150.18) .. (132.12,150.18) .. controls (137.28,150.18) and (141.73,142) .. (146.38,133.41) .. controls (151.03,124.82) and (155.48,116.64) .. (160.64,116.64) .. controls (165.8,116.64) and (170.25,124.82) .. (174.9,133.41) .. controls (179.4,141.74) and (183.72,149.68) .. (188.68,150.16) ;
+%Shape: Rectangle [id:dp4682062525043522] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 203; green, 202; blue, 202 }  ,fill opacity=1 ] (176,26.67) -- (216.83,26.67) -- (216.83,94.67) -- (176,94.67) -- cycle ;
+
+% Text Node
+\draw (178.42,29.67) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {Échelle};
+% Text Node
+\draw (186.92,43.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {0.5};
+% Text Node
+\draw (190.92,58.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {1};
+% Text Node
+\draw (190.92,78.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {2};
+
+
+\end{tikzpicture}
+		\end{center}
+	\item[de fréquence]	L'interprétation dépend du contexte.
+		\begin{itemize}
+		\item	\og \textit{rate parameter} \fg{};
+		\item	Dans le cas d'un processus de Poisson, le paramètre de fréquence décrit le taux auquel les événements se produisent;
+		\item	Souvent, il est défini comme le réciproque du paramètre d'échelle pour indiquer le taux de déclin d'une fonction exponentielle;
+		\item	Des valeurs près de 1 impliquent un déclin lent alors que des valeurs près de 0 impliquent un déclin rapide.
+		\end{itemize}
+%%%		https://www.statisticshowto.com/location-parameter/
+	\item[d'emplacement]	Stipule où la densité est située.
+		\begin{itemize}
+		\item	\og \textit{location parameter} \fg{};
+		\item	Plus précisément, indique où sur l'axe des $x$ la distribution est centrée relatif à la distribution normale standard;
+		\item	Une distribution normale standard est centrée à 0 donc un paramètre d'emplacement de 5 implique que la densité est centrée à $x	=	5$.
+		\end{itemize}
+\end{description}
+
 
 \begin{distributions}[Notation]
 \begin{description}
