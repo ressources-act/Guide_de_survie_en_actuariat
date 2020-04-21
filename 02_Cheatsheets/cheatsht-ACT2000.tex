@@ -1,6 +1,5 @@
 % Template pour faire aide-mémoire
 \documentclass[10pt, french]{article}
-
 %% -----------------------------
 %% Préambule
 %% -----------------------------
@@ -14,6 +13,7 @@
 % 	Save more space than default
 %
 \setlength{\abovedisplayskip}{-15pt}
+\setlist{leftmargin=*}
 %
 %	Extra math symbols
 %
@@ -27,6 +27,8 @@
 \def\SectionColor{cobalt}
 \def\SubSectionColor{azure(colorwheel)}
 \def\SubSubSectionColor{azure(colorwheel)}
+%%%	depth
+\setcounter{secnumdepth}{0}
 %% -----------------------------
 
 %% -----------------------------
@@ -51,18 +53,29 @@
 \end{center}
 \input{contributeurs/contrib-ACT2000}
 
+\begin{rappel_enhanced}[Motivation]
+Inspiré par la chaîne de vidéos YouTube \href{https://www.youtube.com/user/joshstarmer}{\color{azure(colorwheel)}StatQuest} et mon étude pour MAS-I, je crée cette feuille dans le but de simplifier tous les obstacles que j'ai encourus dans mon apprentissage des statistiques et ainsi simplifier la vie des étudiants en actuariat.
+
+L'objectif est d'expliquer les concepts statistiques de façon claire et concise. Je vous prie de me faire part de tous commentaires et de me signaler toute erreur que vous trouvez! 
+\end{rappel_enhanced}
+
 \newpage
 
 \raggedcolumns
 \begin{multicols*}{2}
 
-\section*{Analyse statistique des risques actuariels}
+\part{Analyse statistique des risques actuariels}
 
-\subsection*{Vraisemblance}
+\section*{Vraisemblance}
 
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$\mathcal{L}(\theta; x)$]	Fonction de vraisemblance de $\theta$ en fonction de $x$.
+	\item[$\mathcal{L}(\theta; x)$]	Fonction de vraisemblance de $\theta$ en fonction de $x$;
+	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon de $n$ observations.
+		\begin{itemize}[leftmargin = *]
+		\item	Si les $n$ observations sont indépendantes entres-elles et proviennent de la même distribution paramétrique (identiquement distribué) c'est un \textbf{échantillon aléatoire} \textbf{(iid)};
+		\item	On peut le dénoter comme $\{X_{n}\}$.
+		\end{itemize}
 \end{description}
 \end{distributions}
 
@@ -70,22 +83,36 @@ On peut voir la fonction de densité $f(x; \theta)$ comme étant une fonction du
 Pour bien saisir ce que représente la fonction de vraisemblance $\mathcal{L}(\theta; x)$, il faut songer à ce que représente $f(x; \theta)$. \\
 $f(x; \theta)$ est une fonction qui fait varier $x$ pour un paramètre $\theta$ fixe. Alors, $\mathcal{L}(\theta; x)$ est une fonction qui fait varier $\theta$ pour un "paramètre" $x$ fixé; ce que l'on considère habituellement comme étant "$x$" est en fait $\theta$ pour la fonction de vraisemblance!
 
-\subsection*{Qualité de l'estimateur}
+\section{Qualité de l'estimateur}
 
 La première section traite de \guillemotleft \textbf{estimateurs ponctuels} \guillemotright. 
 C'est-à-dire, on produit une seule valeur comme notre meilleur essai pour déterminer la valeur de la population inconnue.
-Intrinsèquement, on ne s'attend pas à ce que cette valeur (même si c'en est une bonne) soit la vraie valeur exacte.
+Intrinsèquement, on ne s'attend pas à ce que cette valeur (même si c'en est une bonne) soit la vraie valeur exacte.\\
 
 Une hypothèse plus utile à des fins d'interprétation est plutôt un \textbf{estimateur par intervalle}; au lieu d'une seule valeur, il retourne un intervalle de valeurs plausibles qui peuvent toutes être la vraie valeur. 
-Le type principal d'\textit{estimateur par intervalle} est \textit{l'intervalle de confiance} traité dans la deuxième sous-section.
+Le type principal d'\textit{estimateur par intervalle} est \textit{l'intervalle de confiance} traité dans la deuxième sous-section.\\
 
-\subsubsection*{Estimation ponctuelle}
+En bref:
+\begin{description}
+	\item[Estimateur ponctuel]	L'estimateur $\hat{\theta}_{n}$ assigne une valeur précise à $\theta$ selon l'échantillon.
+	\item[Estimateur par intervalle]	Un \textit{intervalle aléatoire}, construit avec l'échantillon aléatoire, ayant une certaine probabilité de contenir la vraie valeur $\theta$.
+\end{description}
 
+
+\subsection{Estimation ponctuelle}
+
+\subsubsection{Biais}
 \begin{distributions}[Notation]
 \begin{description}[font = \normalfont]
 	\item[$\theta$]	Paramètre inconnu à estimer;
-	\item[$\hat{\theta}$]	Estimateur de $\theta$;
+		\begin{itemize}
+		\item	Dans le cas multivarié, on a un vecteur $\bm{\theta}$ et on défini un ensemble des valeurs possibles $\bm{\Theta}$;
+		\item	Par exemple, pour une loi Gamma $\bm{\theta}	=	\{\alpha, \beta\}$ et puisque ces paramètres sont strictement positif $\bm{\Theta}	=	\{\mathbb{R}^{+}, \mathbb{R}^{+}\}$.
+		\end{itemize}
 	\item[$\hat{\theta}_{n}$]	Estimateur de $\theta$ basé sur $n$ observations;
+		\begin{itemize}[leftmargin = *]
+		\item	Souvent, on simplifie et écrit $\hat{\theta}$.
+		\end{itemize}
 	\item[$\text{B}(\hat{\theta}_{n})$]	Biais d'un estimateur $\theta_{n}$.
 \end{description}
 \end{distributions}
@@ -113,28 +140,40 @@ Par la suite, on calcule son \textbf{biais} $\text{B}(\hat{\theta}_{n})$ dans la
 
 Cependant, le biais n'indique pas la variabilité des prévisions de l'estimateur $\hat{\theta}_{n}$. Une bonne analogie pour comprendre ce qui nous manque est d’imaginer une personne ayant ses pieds dans de l'eau bouillante et sa tête dans un congélateur; \textbf{en moyenne}, il est correct, mais \textbf{en réalité} il est très inconfortable. Des estimateurs non biaisés seront toujours proches de la vraie valeur, mais ce n'est pas suffisant qu'ils soient bons \textit{en moyenne}. On évalue donc la variabilité d'un estimateur avec sa variance $\text{Var}(\hat{\theta}_{n})$.
 
+%\columnbreak
+\subsubsection{Borne Cramér-Rao}
+\label{sec:cramer_rao}
+
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$\bm{I}(\theta)$]	Matrice d'information de Fisher;
+	\item[$\bm{I}_{n}(\theta)$]	Matrice d'information de Fisher d'un échantillon aléatoire $\bm{X}$;
+		\begin{itemize}
+		\item	La matrice d'information Fisher pour un seule observation sera donc dénotée $\bm{I}(\theta)$.
+		\end{itemize}
 	\item[$\hat{\theta}^{EMV}$]	Estimateur du maximum de vraisemblance de $\theta$.
 \end{description}
 \end{distributions}
 
-Lorsque l'on analyse la variance d'un estimateur, on débute par définir la \hyperlink{cramer-rao}{\textbf{borne inférieure de Cramèr-Rao}} de sa variance $\text{Var}(\hat{\theta}_{n})$. Cette borne utilise \textbf{la matrice d'information de Fisher} $\bm{I}(\theta)$:
+Lorsque l'on analyse la variance d'un estimateur \underline{sans biais}, on débute par définir la \hyperlink{cramer-rao}{\textbf{borne inférieure de Cramér-Rao}} de sa variance $\text{Var}(\hat{\theta}_{n})$. Cette borne utilise \textbf{la matrice d'information de Fisher} $\bm{I}_{n}(\theta)$:
 
-\begin{algo}{\hypertarget{cramer-rao}{Borne inférieure Cramèr-Rao}}
+\begin{algo}{\hypertarget{cramer-rao}{Borne inférieure Cramér-Rao}}
 \begin{align*}
-	\text{Var}(\hat{\theta}) 
-	&\geq	\frac{1}{\bm{I}(\theta)}
+	\text{Var}(\hat{\theta}_{n}) 
+	&\geq	\frac{1}{\bm{I}_{n}(\theta)}
 \end{align*}
 où
 \begin{align*}
 	\bm{I}(\theta) 
-	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln \mathcal{L}(\theta; x)\Big)^{2}\right]	\\
-	&\equiv	{\color{red}\shortminus}\text{E}\left[\deriv[2]{\theta}{\ln \mathcal{L}(\theta; x)}\right]
+	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln f(\theta; x)\Big)^{2}\right]	
+	\overset{\text{iid}}{\equiv}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln f(\theta; x)}	\right]	\\
+	\bm{I}_{n}(\theta) 
+	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln \mathcal{L}(\theta; x)\Big)^{2}\right]	
+	\overset{\text{iid}}{\equiv}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln \mathcal{L}(\theta; x)}\right]	
 \end{align*}
+\paragraph{Note}	Dans le cas d'un échantillon aléatoire (alias, les données sont iid) on obtient la deuxième équation et \lfbox[formula]{$\bm{I}_{n}(\theta)	=	n\bm{I}(\theta)$.}
 \end{algo}
 
+\subsubsection*{Détails sur la borne Cramér-Rao}
 Cette borne est rarement comprise et sur la base de \hyperlink{https://www.youtube.com/watch?v=igQIsYAlKlY}{\color{blue}ce vidéo} et \hyperlink{https://www.youtube.com/watch?v=i0JiSddCXMM}{\color{blue}ce vidéo} je me lance dans l'explication de son intuition. Si vous ne comprenez pas à partir de mes explications, je vous suggère fortement d'allez regarder les vidéos puisque c'est un concept qui va réapparaître plus tard dans le bac.\\
 
 Premièrement, on définit l'utilité des deux premières dérivées:
@@ -175,7 +214,7 @@ Cependant, plusieurs fonctions peuvent avoir le même \textbf{point} où elles s
 Clairement, la courbe \textcolor{amethyst}{en mauve} aura plus de points près de $\hat{\theta}^{\text{EMV}}$ que la courbe en \textcolor{orange}{orange}. Afin de comparer les différents estimateurs, on cherche à quantifier l'étendu, ou la variance, de leurs formes. 
 La deuxième dérivée sert donc à mesurer la \textit{forme}, ou \textbf{concavité}, de la fonction de vraisemblance et comparer des estimateurs plus adéquatement. \\
 
-Ce faisant, la deuxième dérivée permet d'être plus certain d'avoir le bon estimateur. Il s'ensuit que \hl{la variance ne peut pas être moins que l'estimateur du maximum de vraisemblance évalué au point où la concavité est maximisée}. Alors on peut penser à la forme à ce point comme $\bm{I}(\theta) =$ \og courbe \fg{}. \\
+Ce faisant, la deuxième dérivée permet d'être plus certain d'avoir le bon estimateur. Il s'ensuit que \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{la variance ne peut pas être moins que l'estimateur du maximum} \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{de vraisemblance évalué au point où la concavité est maximisée}. Alors on peut penser à la forme à ce point comme $\bm{I}(\theta) =$ \og courbe \fg{}. \\
 
 Finalement, on veut comprendre pourquoi $1/\text{\og curve \fg{}}$ et non juste $\text{\og courbe \fg{}}$. On déduit de la fraction que plus la concavité \og courbe \fg{} est élevée, alors plus la variance sera faible. Si la concavité de la fonction est très large, et donc il y a un grand étendue, il y a moins de points près de $\hat\theta^{\text{EMV}}$. Donc:
 \begin{equation*}
@@ -186,7 +225,7 @@ Finalement, on veut comprendre pourquoi $1/\text{\og curve \fg{}}$ et non juste 
 On observe alors que la limite lorsque la \og courbe \fg{} tend vers l'infini implique une variance nulle. On dit donc que la distribution de l'estimateur est "asymptotiquement normale" tel que $\hat\theta^{\text{EMV}} \overset{a.s.}{\rightarrow} \mathcal{N}\Big(\mu = \theta, \sigma^{2} = \frac{1}{\bm{I}(\theta)}\Big)$ où a.s. veut dire \hyperlink{asympto}{asymptotiquement}.
 
 \columnbreak
-
+\subsubsection{Efficacité}
 \begin{distributions}[Notation]
 \begin{description}[font = \normalfont]
 	\item[$\text{eff}(\hat{\theta}_{n})$]	Efficacité d'un estimateur $\hat{\theta}_{n}$;
@@ -194,7 +233,7 @@ On observe alors que la limite lorsque la \og courbe \fg{} tend vers l'infini im
 \end{description}
 \end{distributions}
 
-Avec le concept de l'information de Fisher, on défini \textbf{l'efficacité d'un estimateur} comme le ratio de la borne Cramèr-Rao sur la variance de l'estimateur:
+Avec le concept de l'information de Fisher, on défini \textbf{l'efficacité d'un estimateur} comme le ratio de la borne Cramér-Rao sur la variance de l'estimateur:
 \begin{algo}{Efficacité d'un estimateur}
 \begin{align*}
 	\text{eff}(\hat{\theta}_{n})
@@ -230,11 +269,11 @@ Lorsque:
 \end{algo}
 
 \columnbreak
-
+\subsubsection{Convergence}
 Nous pouvons également évaluer si un estimateur converge avec des très grands échantillons; ceci évalue si un estimateur est cohérent. Un estimateur $\hat{\theta}_{n}$ est dit d'être \og \textit{\textbf{consistent}} \fg{} si la probabilité que sa prévision $\hat{\theta}$ du paramètre $\theta$ diffère de la vraie valeur par une erreur, près de 0, $\epsilon$ tend vers 0 alors que la taille de l'échantillon $n$ tend vers l'infini:
 \begin{algo}{Convergence (\textbf{consistency}) d'un estimateur}
 \begin{align*}
-	\underset{n \rightarrow \infty}{\lim} \Pr(\big| \hat{\theta} - \theta \big| > \epsilon) = 0, \quad \epsilon > 0
+	\underset{n \rightarrow \infty}{\lim} \Pr(\big| \hat{\theta}_{n} - \theta \big| > \epsilon) = 0, \quad \epsilon > 0
 \end{align*}
 \end{algo}
 
@@ -250,7 +289,7 @@ Ce critère pour qu'un estimateur $\hat{\theta}_{n}$ soit \og \textit{consistent
 		\end{align*}
 \end{enumerate}
 
-D'ailleurs, nous avons déjà raisonné ceci avec \hyperlink{cramer-rao}{la borne inférieure Cramèr-Rao}.
+D'ailleurs, nous avons déjà raisonné ceci avec \hyperlink{cramer-rao}{la borne inférieure Cramér-Rao}.
 
 Cependant, l'inverse n'est pas vrai---qu'un estimateur soit \og \textit{consistent} \fg{} n'implique pas que sa variance ni que son biais tendent vers 0.\\
 
@@ -258,6 +297,70 @@ Malgré la nature plaisante de la convergence d'un estimateur, beaucoup d'estima
 Nous voulons alors une mesure qui n'indique pas seulement qu'un estimateur arrive près de la bonne valeur souvent \textit{(alias, une très petite variance)}, mais qu'il est mieux que d'autres estimateurs.
 De plus, dût à la sélection arbitraire de l'erreur $\epsilon$ pour la \textit{consistency} d'un estimateur, il est possible de la choisir malicieusement afin de faire parler les données comme on le souhaite. 
 
+\subsubsection*{Détails sur la convergence}
+On reprend les résultats de la section précédente en expliquant plus en détails la mathématique sous-jacente.\\
+
+\begin{definitionNOHFILLsub}[Convergence en probabilité]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\{Y_{n}\}$]	Séquence de variables aléatoires;
+	\item[$Y$]	Variable aléatoire comprise dans $\{Y_{n}\}$.
+\end{description}
+\end{distributions}
+
+On dit que $Y_{n}$ converge en probabilité à $Y$ si \lfbox[conditions]{$\forall \varepsilon > 0$}, 
+\begin{align*}
+	\limz{n}{\infty} \Pr\left[|Y_{n}	-	Y|	\geq	\varepsilon\right]	
+	&=	0
+\end{align*}
+%%%	--------------------
+%%%	NOTES:
+%%%	+	\geq ou > ???
+%%%	--------------------
+ou de façon équivalente,
+\begin{align*}
+	\limz{n}{\infty} \Pr\left[|Y_{n}	-	Y|<	\varepsilon\right]	
+	&=	1
+\end{align*}
+
+On dénote la convergence en probabilité par: \lfbox[formula]{$Y_{n}	\overset{P}{\rightarrow}	Y$.}
+\end{definitionNOHFILLsub}
+
+\paragraph{Note:}	La convergence en probabilité est d'ailleurs le théorème sous-jacent à la loi faible des grands nombres vue en prob.
+
+\begin{rappel}{Loi faible des grands nombres}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\{Y_{n}\}$]	Séquence de variables aléatoires iid avec moyenne $\mu$ et variance $\sigma^{2}$ où \lfbox[conditions]{$\sigma^{2}	<	\infty$};
+	\item[$\overline{X}_{n}$]	Moyenne empirique.
+\end{description}
+\end{distributions}
+
+On pose que \lfbox[formula]{$\overline{X}_{n}	\overset{P}{\rightarrow}	\mu$.}
+\end{rappel}
+
+\begin{definitionNOHFILLsub}[Théorèmes résultant de la convergence en probabilité]
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et \lfbox[conditions]{$Y_{n}	\overset{P}{\rightarrow}	Y$}. Alors \lfbox[formula]{$X_{n} + Y_{n}	\overset{P}{\rightarrow}	X + Y$}.\\
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et une \lfbox[conditions]{constante $a$}. Alors \lfbox[formula]{$aX_{n}	\overset{P}{\rightarrow}	aX$}.\\
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	a$} et la \lfbox[conditions]{fonction $g(\cdot)$ continue à $a$}. Alors \lfbox[formula]{$g(X_{n})	\overset{P}{\rightarrow}	g(a)$}.\\
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et la \lfbox[conditions]{fonction continue $g(\cdot)$}. Alors \lfbox[formula]{$g(X_{n})	\overset{P}{\rightarrow}	g(X)$}.\\
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et \lfbox[conditions]{$Y_{n}	\overset{P}{\rightarrow}	Y$}. Alors \lfbox[formula]{$X_{n}Y_{n}	\overset{P}{\rightarrow}	XY$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILL}[\og \textit{Consistency} \fg{}]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$Y$]	Variable aléatoire avec une distribution paramétrique de paramètre $\theta$;
+	\item[$\{Y_{1}, Y_{2}, \dots, Y_{n}\}$]	Échantillon de la distribution de $Y$;
+	\item[$\hat{\theta}_{n}$]	Estimateur de $\theta$.
+\end{description}
+\end{distributions}
+
+On dit que $\hat{\theta}_{n}$ est une estimateur \og \textit{consistent} \fg{} si \lfbox[formula]{$\hat{\theta}_{n}	\overset{P}{\rightarrow}	\theta$}.
+\end{definitionNOHFILL}
+
+
+\subsubsection{Erreur quadratique moyenne}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\text{MSE}_{\hat{\theta}_{n}}(\theta)$]	Erreur quadratique moyenne d'un estimateur $\hat{\theta}_{n}$
@@ -278,20 +381,25 @@ En combinant tous ces critères, le meilleur estimateur est alors l'estimateur \
 
 \columnbreak
 
-\subsubsection*{Estimation par intervalles}
+\subsection{Estimation par intervalles}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\hat{\theta}_{L}$ et $\hat{\theta}_{U}$]	Fonctions de l'échantillon aléatoire $\{X_{1}, \dots, X_{n}\}$ où \icbox[red][palechestnut]{$\hat{\theta}_{L} < \hat{\theta}_{U}$};
+	\item[$(\hat{\theta}_{L}, \hat{\theta}_{U})$]	Intervalle de confiance de $100(1 - \alpha)\%$ de $\theta$ si \icbox[red][palechestnut]{$\Pr(\hat{\theta}_{L} \leq \theta \leq \hat{\theta}_{U}) = 1 - \alpha$}.
+\end{description}
+\end{distributions}
 
 Un type d'estimateur par intervalle est l'\textbf{intervalle de confiance}:
 \begin{algo}{Intervalle de confiance}
-Soit le paramètre à estimer $\theta$, alors nous sommes confiants à un niveau de 100$(1 - \alpha)$\% qu'il est contenu entre $(L, U)$. 
+Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que le paramètre inconnu $\theta$ est entre $(\hat{\theta}_{L}, \hat{\theta}_{U})$. 
 
-De façon équivalente, nous sommes confiant à un seuil de $\alpha$\% qu'il est contenu entre $(L, U)$: 
-\begin{equation*}
-	\theta \in \left[ L, U\right].
-\end{equation*}
-Nous pouvons alors dire que $\Pr(L \le \theta \le U) \ge (1 - \alpha)$ pour tout $\theta$.
+De façon équivalente, nous sommes confiant à un seuil de $\alpha$\% que $\theta$ est entre $(\hat{\theta}_{L}, \hat{\theta}_{U})$.\\
+
+Donc, \icbox{$\theta \in (\hat{\theta}_{L}, \hat{\theta}_{U})$} et nous pouvons dire que \icbox{$\Pr( \hat{\theta}_{L} \le \theta \le  \hat{\theta}_{U}) \ge (1 - \alpha)$} \icbox[red][palechestnut]{pour tout $\theta$}.
 \end{algo}
 
-Par exemple, dans le cas d'une population avec distribution normale et moyenne $\mu$ inconnue, on a la moyenne échantillonnale $\bar{x}$ (qui est l'estimateur \textit{MVUE}).
+Par exemple, dans le cas d'une population avec distribution normale et moyenne $\mu	=	\theta$ inconnue, on a comme estimateur (MVUE) la moyenne échantillonnale $\bar{x}	=	\hat{\theta}$.
 \begin{formula}{Intervalle de confiance sur la moyenne \textit{(distribution normale)}} 
 Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
@@ -303,7 +411,8 @@ Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que :
 %%%	Méthode du pivot
 %%%
 
-\subsection*{Construction d'estimateurs}
+\columnbreak
+\section{Construction d'estimateurs}
 
 Dans la section précédente, on évalue les méthodes pour évaluer la \textbf{qualité} de l'estimateur. 
 Cependant, comment obtenons-nous des estimateurs pour les évaluer?
@@ -312,65 +421,70 @@ Plusieurs méthodes existent pour établir des estimateurs, de plus plusieurs m�
 La méthode vu dans le cadre du cours de statistique est la \textbf{méthode fréquentiste}, le cours de mathématiques IARD 1 (ACT-2005) présente \textbf{l'estimation bayésienne}.
 
 Avant de le faire, nous présentons quelques concepts:
+\begin{distributions}[Terminologie]
 \begin{description}
-	\item[échantillon aléatoire:] Échantillon d'observations indépendantes provenant de la même distribution paramétrique (identiquement distribué); c'est-à-dire, un échantillon \textbf{(iid)}.
-	\item[k-ème moment centré à 0:]  $\mu_{k}' = \text{E}[X^{k}]$.
-	\item[$100g^{\text{ème}}$ pourcentile:]  $\pi_{g}(\theta) = F^{-1}_{\theta}(g)$.
+	\item[$\mu_{k}'(\hat{\theta})$]	$k^{\text{e}}$ moment centré à 0, \icbox{$\mu_{k}' = \text{E}[X^{k}]$};
+	\item[$\pi_{g}(\theta)$]	$100g^{\text{e}}$ pourcentile, \icbox{$\pi_{g}(\theta) = F^{-1}_{\theta}(g)$}, \icbox[red][palechestnut]{$g \in [0, 1]$};
+	\item[$F_{e}(x)$]	Fonction de répartition \textbf{e}mpirique;
+	\item[]	$\equalhat$	Notation pour poser une égalité.
 \end{description}
+\end{distributions}
 
 Les deux premiers estimateurs ci-dessous sont les plus faciles à obtenir, mais sont aussi les moins performants puisqu'ils n'utilisent que quelques traits des données au lieu de l'entièreté des données comme la troisième méthode.
 
 Cette distinction devient particulièrement importante dans le cas d'une distribution avec une queue lourde à la droite (Pareto, Weibull, etc.) où il devient plus essentiel de connaître les valeurs extrêmes pour bien estimer le paramètre de forme ($\alpha$ pour une Pareto).
 
-Un autre désavantage est que les deux premières méthodes nécessitent que les données proviennent toutes de la même distribution, autrement les moments et quantiles ne seraient pas clairs.
+Un autre désavantage est que les deux premières méthodes nécessitent que les données proviennent toutes de la même distribution. Sinon, les moments et quantiles ne seraient pas clairs.
 
 Finalement, sous les deux premières méthodes la décision de quels moments et percentiles à utiliser est arbitraire.
 
-\subsubsection*{Méthode des moments (MoM)}
+\subsection{Méthode des moments (MoM)}
 
-Soit un échantillon aléatoire de taille $n$ (iid), on pose $\hat\mu_{k}' = \mu_{k}'$.
 \begin{algo}{Estimation de $\theta$ par la méthode des moments}
+Pour ajuster une distribution de $p$ paramètres, on pose égale les $p$ premiers moments empiriques $\hat\mu_{k}'$ au $p$ premiers moments de la distribution $\mu_{k}'$.\\
 L'estimation de $\theta$ est alors toute solution des $p$ équations:
 \begin{equation*}
-	\mu_{k}'(\theta) = \hat\mu_{k}', \quad	k = 1, 2, \dots, p
+	\hat{\mu}_{k}' 
+	\equiv	\frac{1}{n}\sum_{i = 1}^{n} x_{i}^{k}
+	\equalhat	\esp{X^{k}}
+	\equiv	\mu_{k}'(\theta), \quad	k = 1, 2, \dots, p
 \end{equation*}
 \end{algo}
 
 La raison pour cet estimateur est que la distribution empirique aura les mêmes $p$ premiers moments centrés à 0 que la distribution paramétrique.
 
-\subsubsection*{Méthode du \guillemotleft Percentile Matching \guillemotright}
+\subsection{Méthode du \guillemotleft Percentile Matching \guillemotright}
 
-Soit un échantillon aléatoire de taille $n$ (iid), on pose $\hat\pi_{g}(\theta) = \pi_{g}(\theta)$.
-
-\begin{algo}{Estimation de $\theta$ par la méthode du \guillemotleft Percentile Matching \guillemotright}
+\begin{algo}{Estimation de $\theta$ par la méthode du \og \textit{Percentile Matching} \fg{}}
+Pour ajuster une distribution de $p$ paramètres, on pose égale $p$ pourcentiles $\hat{\pi}_{g}(\hat{\theta})$ de l'échantillon à ceux de la distribution $\pi_{g}(\theta)$.\\
 L'estimation de $\theta$ est alors toute solution des $p$ équations:
 \begin{equation*}
-	F(\hat\pi_{g_{k}} | \theta)	=	g_{k}, \quad	k = 1, 2, \dots, p
+	F_{e}(\hat\pi_{g_{k}} | \theta)	=	g_{k}, \quad	k = 1, 2, \dots, p
 \end{equation*}
 \end{algo}
 
-La raison pour cet estimateur est que le modèle produit aura $p$ percentiles qui vont \guillemotleft matcher \guillemotright les données.
+La raison pour cet estimateur est que le modèle produit aura $p$ percentiles qui vont \og \textit{matcher} \fg{} les données.
 
 Il peut arriver que les percentiles de distributions ne soient pas uniques, par exemple dans le cas de données discrètes lorsque le quantile recherché peut tomber entre 2 \emph{marches} de la fonction empirique, ou mal-définis.
 Il est alors utile de définir une méthode d'interpolation des quantiles (bien qu'il n'en existe pas une d'officielle).
 
-Soit le \guillemotleft \textbf{smoothed empirical estimate} \guillemotright d'un percentile:
+Soit le \og \textit{smoothed empirical estimate} \fg{} d'un pourcentile:
 
 \begin{algo}{Smoothed empirical estimate}
-On utilise les statistiques d'ordre de l'échantillon $x_{(1)} \le x_{(2)} \le \dots \le x_{(n)}$ pour l'interpolation suivant:
+On utilise les statistiques d'ordre de l'échantillon $x_{(1)} \le x_{(2)} \le \dots \le x_{(n)}$ pour l'\textbf{interpolation} suivant:
 \begin{align*}
 	\hat\pi_{g}
 	&=	(1 - h)x_{(j)} + h x_{(j + 1)}, \quad \text{ où }	\\
 	j
-	&=	\lfloor (n + 1) g \rfloor	&
-	&\text{ et }	&
+	&=	\lfloor (n + 1) g \rfloor	\quad
+	\text{ et }	\quad
 	h
-	&=	(n + 1) g - j
+	=	(n + 1) g - j
 \end{align*}
 \end{algo}
 
 
-\subsubsection*{Méthode du maximum de vraisemblance}
+\subsection{Méthode du maximum de vraisemblance}
 
 Nous cherchons à maximiser la probabilité d'observer les données.
 Ceci est fait par la vraisemblance $\mathcal{L}(\theta; x)$ ou, puisque le logarithme ne change pas le maximum, la log-vraisemblance $\ell(\theta; x)$ où:
@@ -386,10 +500,93 @@ Ceci est fait par la vraisemblance $\mathcal{L}(\theta; x)$ ou, puisque le logar
 et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qui maximise la fonction de vraisemblance.
 \end{algo}
 
-%%	Propriétés de l'EMV
-%%		invariance, convergence, non-biais, Cramèr-Rao, ...
+De façon formelle, on dit que \lfbox[formula]{$\hat{\theta}^{\text{EMV}}	=	\underset{\theta}{\max}\{\mathcal{L}(\theta; \bm{x})\}	\equiv	\underset{\theta}{\max}\{\ln\mathcal{L}(\theta; \bm{x})\}$.}
 
-%\subsection*{Autres critères}
+\subsubsection{Propriétés}
+\begin{definitionNOHFILL}[Propriété d'invariance]
+Soit une fonction bijective $g(\cdot)$ et l'EMV $\hat{\theta}^{\text{EMV}}$ de $\theta$.\\
+Alors, selon le principe d'invariance \lfbox[formula]{$g(\hat{\theta}^{\text{EMV}})$ est l'EMV de $g(\theta)$.}\\
+
+L'EMV satisfait cette propriété.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Convergence en distribution de l'EMV]
+\textbf{Théorème}:	\lfbox[formula]{$\hat{\theta}^{\text{EMV}}	\approx	\mathcal{N}\left(0, \frac{1}{\bm{I}_{n}(\theta)}\right)$.}
+
+\tcbline
+
+Sous certaines conditions de régularité, la distribution de $\sqrt{n}\left( \hat{\theta}	-	\theta \right)$ converge en distribution vers une distribution normale avec une moyenne nulle et une variance égale à la \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}borne de Cramér-Rao}.
+\begin{align*}
+	\sqrt{n}\left( \hat{\theta}	-	\theta \right)
+	&\overset{D}{\rightarrow}
+	\mathcal{N}\left( 0, \frac{1}{\bm{I}_{n}(\theta)} \right)
+\end{align*}
+
+Ce qui implique:
+\begin{enumerate}
+	\item	$\hat{\theta}$ est \lfbox[imphl]{asymptotiquement sans biais.}
+	\item	$\hat{\theta}$ est \lfbox[imphl]{\og \textit{consistent} \fg{}.}
+	\item	$\hat{\theta}$ est \lfbox[imphl]{approximativement normalement distribué avec moyenne $\theta$ et} \lfbox[imphl]{variance $1/\bm{I}_{n}(\theta)$ pour des grands échantillons.}
+	\item	$\hat{\theta}$ est \lfbox[imphl]{asymptotiquement efficace} puisque sa variance tend vers la borne Cramér-Rao.
+\end{enumerate}
+\end{definitionNOHFILL}
+	
+	
+
+\subsubsection{Cas multivarié}
+On généralise du cas où $\theta$ est un scalaire (un seul paramètre) au cas multivarié avec $k$ paramètres et le vecteur $\bm{\theta}	=	(\theta_{1}, \cdots, \theta_{k})^{\top}$.\\
+
+
+\begin{distributions}[Notation]
+En notation matricielle, on multiple le vecteur $\bm{\theta}$ par la transposée $\bm{\theta}^{\top}$ au lieu de mettre $\theta$ au carré. 
+\begin{itemize}
+	\item	La matrice d'information Fisher \underline{d'\textit{une} observation} est donc une matrice $k \times k$:
+\begin{align*}
+	\bm{I}(\bm{\theta})
+	&=	\text{E}\left[	
+			\frac{\partial \ln f(X; \bm{\theta})}{\partial \bm{\theta}}
+			\frac{\partial \ln f(X; \bm{\theta})}{\partial \bm{\theta}^{\top}}
+		\right]
+	\overset{iid}{\equiv}	\text{E}\left[	
+			\frac{\partial^{2} \ln f(X; \bm{\theta})}{\partial \bm{\theta}\bm{\theta}^{\top}}
+		\right]
+\end{align*}
+%%%	------------------------
+%%%	NOTES
+%%%	+	Vérifier les X pour voir où les majuscules vont avec matrice d'information Fisher!!! vs f(x; \theta), f(X; \theta) ,,......\bm{X}?
+%%%	------------------------
+	\item	Pour la matrice d'information Fisher d'un échantillon aléatoire de $n$ observation, on utilise la relation $\bm{I}_{n}(\bm{\theta})	=	n\bm{I}(\bm{\theta})$.
+\end{itemize}
+\begin{description}
+	\item[$\bm{I}^{-1}_{n}(\bm{\theta})$]	Inverse de la matrice d'information Fisher $\bm{I}_{n}(\bm{\theta})$.
+\end{description}
+\end{distributions}
+
+Soit $\tilde{\bm{\theta}}$ un estimateur sans bais de $\bm{\theta}$. 
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\text{Var}(\tilde{\bm{\theta}})$]	Matrice de variance de $\tilde{\bm{\theta}}$.
+		\begin{itemize}
+		\item	Le $(i, j)^{\text{e}}$ élément est donc $\text{Cov}(\tilde{\bm{\theta}}_{i}, \tilde{\bm{\theta}}_{j})$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+La version multivariée de l'inégalité Cramér-Rao stipule que \lfbox[formula]{$\text{Var}(\tilde{\bm{\theta}})	-	\bm{I}^{-1}_{n}(\bm{\theta})$} est une \lfbox[conditions]{matrice \og \textit{nonnegative definite} \fg{}.}
+\begin{itemize}
+	\item	Puisque les éléments de la diagonale doivent être positifs, la borne inférieure de $\text{Var}(\tilde{\bm{\theta}}_{i})$ est le $i^{\text{e}}$ élément de la diagonale de $\bm{I}^{-1}_{n}(\bm{\theta})$.
+\end{itemize}
+	
+En bref, on trouve que sous certaines conditions de régularité, la distribution de $\sqrt{n}\left( \hat{\bm{\theta}}	-	\bm{\theta} \right)$ converge en distribution vers une distribution normale multivariée (de $k$ dimensions) avec une moyenne nulle et une variance égale à la borne de Cramér-Rao.
+\begin{align*}
+	\sqrt{n}\left( \hat{\bm{\theta}}	-	\bm{\theta} \right)
+	&\overset{D}{\rightarrow}
+	\mathcal{N}_{k}\left( 0, \bm{I}^{-1}_{n}(\bm{\theta}) \right)
+\end{align*}
+
+
+%\subsection{Autres critères}
 %	Quantile-Quantile
 %	AIC
 %	BIC
@@ -430,7 +627,7 @@ et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qu
 %%%%		À rajouter éventuellement	%%%%	
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 
-%\subsection*{Tests d'hypothèses}
+%\subsection{Tests d'hypothèses}
 %%	Contenu à y inclure
 %	Hypothèse nulle et alternative
 %	Statistique de test
@@ -465,7 +662,7 @@ et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qu
 %		Test d'indépendance du khi-carré
 
 
-%\subsection*{Distributions d'échantillonnage}
+%\subsection{Distributions d'échantillonnage}
 %%	Contenu à y inclure
 %	Postulat de normalité
 %		Moyenne échantillonnale
@@ -475,7 +672,7 @@ et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qu
 %	Échantillons de distribution inconnue
 %		Théorème centrale limite
 
-%\subsection*{Exhaustivité}
+%\subsection{Exhaustivité}
 %%	Contenu à y inclure
 %	Définition de l'exhaustivité
 %	Théorème de factorisation de Fisher-Neymann
@@ -490,7 +687,7 @@ et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qu
 %		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
 \columnbreak	
 
-\subsection*{Statistiques d'ordre}
+\section{Statistiques d'ordre}
 
 Soit un échantillon aléatoire de taille $n$.
 Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.\\
@@ -593,9 +790,9 @@ Finalement, on définit la distribution conjointe du minimum et du maximum $\for
 
 \pagebreak
 
-\section*{Modèles linéaires en actuariat}
+\part{Modèles linéaires en actuariat}
 
-\subsection*{Régression linéaire simple}
+\section{Régression linéaire simple}
 
 \begin{definitionNOHFILL}[Modèle de régression linéaire simple]
 \begin{align*}
@@ -606,7 +803,7 @@ Finalement, on définit la distribution conjointe du minimum et du maximum $\for
 \end{align*}
 \end{definitionNOHFILL}
 
-\subsubsection*{Exemple de compréhension}
+\subsection{Exemple de compréhension}
 
 On illustre le concept et la signification des paramètres de régression avec cet exemple illustratif
 
@@ -749,9 +946,7 @@ On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" th
 	\item	Une erreur aléatoire $\varepsilon$ inconnue.
 \end{itemize}
 
-\end{multicols*}
-
-\subsection*{Erreur}
+\section{Erreur}
 
 \begin{description}
 	\item[Écart-type]	Mesure la variation \underline{entre les observations} d'\textbf{un} ensemble de données.
@@ -810,7 +1005,7 @@ On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" th
 
 \end{tikzpicture}
 
-%\subsection*{Valeurs p}
+%\subsection{Valeurs p}
 %%	https://www.youtube.com/watch?v=JQc3yx0-Q9E
 %Les valeurs p ont 3 composantes:
 %\begin{itemize}
@@ -822,9 +1017,285 @@ On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" th
 %	\item[]	e.g., probabilité d'observer 4 faces.
 %\end{itemize}
 
-\subsection*{Intervalles de confiance}
+\section{Intervalles de confiance}
+
+\pagebreak
+
+\part{Mathématiques IARD I}
+\section{Estimations et types de données}
+\subsection{Distributions empiriques}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X$]	Variable aléatoire de perte;
+	\item[$\theta$]	Paramètre de la distribution de $X$;
+		\begin{itemize}[leftmargin = *]
+		\item	Le paramètre peut être un scalaire $\theta$ ou un vecteur $\bm{\theta}$;
+		\item	Par exemple, pour une loi Gamma $\bm{\theta} = \{\alpha,	\beta\}$;
+		\item	Pour simplifier la notation, on le traite comme un scalaire $\theta$.
+		\end{itemize}
+	\item[$F_{X}(x; \theta)$]	Fonction de répartition de $X$ avec paramètre $\theta$;
+		\begin{itemize}[leftmargin = *]
+		\item	Pour simplifier la notation, on écrit $F(x; \theta)$ sauf s'il faut être plus spécifique.
+		\end{itemize}
+	\item[$f_{X}(x; \theta)$]	Fonction de densité de $X$ avec paramètre $\theta$;
+		\begin{itemize}[leftmargin = *]
+		\item	Pour simplifier la notation, on écrit $f(x; \theta)$ sauf s'il faut être plus spécifique.
+		\end{itemize}
+	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon aléatoire de $n$ observations de $X$;
+	\item[$\hat{\theta}$]	Estimateur de $\theta$ établit avec l'échantillon aléatoire $\{X_{1}, \dots, X_{n}\}$;
+	\item[$F(x; \hat{\theta})$]	Estimation \textit{paramétrique} de la fonction de répartition de $X$;
+	\item[$f(x; \hat{\theta})$]	Estimation \textit{paramétrique} de la fonction de densité de $X$;
+\end{description}
+\end{distributions}
+\begin{itemize}[leftmargin = *]
+	\item	Si $\theta$ est connu, la distribution de $X$ est complètement spécifiée;\\
+			En pratique, $\theta$ est inconnu et doit être estimé avec les données observées.
+	\item	On peut estimer $F_{X}(x)$ et $f_{X}(x)$ directement pour toute valeur $x$ sans présumer une forme paramétrique;\\
+			Par exemple, un histogramme est une estimation \textit{non-paramétrique}.
+\end{itemize}
+
+
+\columnbreak
+\subsection{Données complètes}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X$]	Variable d'intérêt (e.g., la durée de vie ou la perte);
+	\item[$\{X_{1}, \dots, X_{n}\}$]	Valeurs de $X$ pour n individus;
+	\item[$\{x_{1}, \dots, x_{n}\}$]	$n$ valeurs observées de l'échantillon;
+		\begin{itemize}[leftmargin = *]
+		\item	Il peut y avoir des valeurs dupliquées dans les valeurs observées.
+		\end{itemize}
+	\item[$0	<	y_{1}	<	\hdots	<	y_{m}$]	$m$ valeurs distincts où \icbox[red][palechestnut]{$m \leq n$};
+	\item[$w_{j}$]	Nombre de fois que la valeur $y_{j}$ apparaît dans l'échantillon pour \icbox[red][palechestnut]{$j = 1, \dots, m$};
+		\begin{itemize}[leftmargin = *]
+		\item	Il s'ensuit que \icbox[red][palechestnut]{$\sumz{m}{j = 1}w_{j}	=	n$};
+		\item	Pour des données de mortalité, $w_{j}$ individus décèdent à l'âge $y_{j}$;
+		\item	Si tous les individus sont observés de la naissance jusqu'à la mort c'est un \og \textit{complete individual data set} \fg{}.
+		\end{itemize}
+	\item[$r_{j}$]	\og \textit{risk set} \fg{} au \textit{temps} $y_{j}$;
+		\begin{itemize}[leftmargin = *]
+		\item	Le nombre d'individus exposés à la possibilité de mourir au temps $y_{j}$;
+		\item	Par exemple, $r_{1}	=	n$ car tous les individus sont exposés à la risque de décéder juste avant le temps $y_{1}$;
+		\item	On déduit que \icbox[red][palechestnut]{$r_{j}	=	\sumz{m}{i = j}w_{i}$}, alias le nombre d'individus qui survivent juste avant le temps $y_{j}$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\columnbreak
+\subsection{Données incomplètes}
+
+\begin{rappel_enhanced}[Exemple]
+Soit une étude sur le nombre d'années nécessaire pour obtenir un diplôme universitaire. L'étude commence cette année et tient compte de tous les étudiants présentement inscrits, ainsi que ceux qui vont s'inscrire au courant de l'étude. Tous les étudiants sont observés jusqu'à la fin de l'étude et on note le nombre d'années nécessaire pour ceux qui complètent leurs diplômes. \\
+
+Si un étudiant a commencé son cursus scolaire avant l'étude et suit présentement des cours, le chercheur a de l'information sur le nombre d'années qu'il a déjà investi. Cependant, d'autres étudiants qui se sont inscrits en même temps, mais ont cessé leurs études ne seront pas observés dans cet échantillon. Alors, l'individu est observé d'une population \lfbox[imphl]{\textbf{tronquée à la gauche}} puisque l'information sur les étudiants qui ont quitté l'université avant le début de l'étude n'est \textit{pas disponible}.\\
+
+Si un étudiant n'est pas encore diplômé lorsque l'étude prend fin, le chercheur ne peut pas savoir combien d'années supplémentaire seront nécessaires. Cet individu fait donc partie d'une population \lfbox[imphl]{\textbf{censurée à la droite}} puisque le chercheur a de l'information \textit{partielle} (le nombre d'années minimale) sans savoir le nombre exact.
+\end{rappel_enhanced}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$d_{i}$]	État de troncature de l'individu $i$ de l'échantillon;
+		\begin{itemize}[leftmargin = *]
+		\item	$d_{i}	=	0$ s'il n'y a pas de troncature;
+		\item	Par exemple, un étudiant à commencé son programme universitaire $d_{i}$ années avant le début de l'étude.
+		\end{itemize}
+	\item[$x_{i}$]	Temps de "survie" de l'individu $i$;
+		\begin{itemize}[leftmargin = *]
+		\item	Par exemple, le nombre d'années avant d'obtenir son diplôme;
+		\item	Si l'étude prend fin avant que $x_{i}$ soit observé, on dénote le temps de survie jusqu'à ce moment \icbox{$u_{i}$};
+		\item	Donc chaque individu a \textit{soit} une valeur $x_{i}$ \underline{ou} $u_{i}$ mais \textit{pas les deux}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\columnbreak
+\subsection{Données groupées}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[]	$(c_{0}, c_{1}], (c_{1}, c_{2}], \dots, (c_{k - 1}, c_{k}]$	$k$ intervalles regroupant les observations;
+	\item[$0	\leq	c_{0}	<	c_{1}	<	\hdots	<	c_{k}$]	Extrémités des $k$ intervalles;
+	\item[$n$]	Nombre d'observations de $x_{i}$ dans l'échantillon;
+	\item[$n_{j}$]	Nombre d'observations de $x_{i}$ dans l'intervalle $(c_{j - 1}, c_{j}]$;
+		\begin{itemize}[leftmargin = *]
+		\item	Il s'ensuit que \icbox[red][palechestnut]{$\sumz{k}{j = 1}n_{j}	=	n$}.
+		\end{itemize}
+	\item[$r_{j}$]	\og \textit{risk set} \fg{} de l'intervalle $(c_{j - 1}, c_{j}]$ lorsque les données sont complètes;
+		\begin{itemize}[leftmargin = *]
+		\item	Il s'ensuit que \icbox[red][palechestnut]{$r_{j}	=	\sumz{k}{i = j}n_{i}$}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\columnbreak
+\section{Estimation de modèles non paramétriques}
+\subsection{Distribution empirique}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$g_{h}$]	Somme partielle du nombre d'observations inférieur, ou égale, à $y_{j}$;
+		\begin{itemize}[leftmargin = *]
+		\item	Il s'ensuit que \icbox[red][palechestnut]{$g_{j}	=	\sumz{j}{h = 1}w_{h}$}.
+		\end{itemize}
+	\item[Distribution empirique]	Distribution discrète prenant comme valeurs $y_{1}, \dots, y_{m}$ avec probabilités $\frac{w_{1}}{n}, \dots, \frac{w_{m}}{n}$;
+		\begin{itemize}[leftmargin = *]
+		\item	On peut également la définir comme la distribution discrète équiprobable des valeurs $x_{1}, \dots, x_{n}$.
+		\end{itemize}
+	\item[$\hat{f}()$]	Fonction de densité empirique;	
+		\begin{align*}
+		\hat{f}(y)
+		&=	\begin{cases}
+			\frac{w_{j}}{n},	&	\text{si } y = y_{j} \, \forall j	\\
+			0,	\text{sinon}
+			\end{cases}
+		\end{align*}			
+	\item[$\hat{F}()$]	Fonction de répartition empirique;
+		\begin{align*}
+		\hat{F}(y)
+		&=	\begin{cases}
+			0,	&	y	<	y_{1},	\\
+			\frac{g_{j}}{n},	&	y_{j}	\leq	y	<	y_{j + 1}, \, j	=	1, \dots, m - 1	\\
+			1,	&	y_{m}	\leq	y
+			\end{cases}
+		\end{align*}		
+%	\item[Moyenne de la distribution empirique]
+%		\begin{align*}
+%		\sumz{m}{j = 1} \frac{w_{j}}{n} y_{j}
+%		&=	\frac{1}{n} \sumz{n}{i = 1} x_{i}
+%		\end{align*}
+%	\item[Variance de la distribution empirique]
+%		\begin{align*}
+%		\sumz{m}{j = 1} \frac{w_{j}}{n} (y_{j} - \bar{x})^{2}
+%		&=	\frac{1}{n} \sumz{n}{i = 1} (y_{i} - \bar{x})^{2}
+%		\end{align*}
+	\item[$\tilde{F}()$]	Fonction de répartition lissée;
+		\begin{itemize}[leftmargin = *]
+		\item	En anglais, \og \textit{smoothed empirical distribution function} \fg{};
+		\item	Estimation de la fonction de répartition \textit{lissée} pour une valeur de $y$ pas dans l'ensemble $y_{1}, \dots, y_{m}$;
+		\item	Lorsque \icbox[red][palechestnut]{$y_{j} \leq y < y_{j + 1}$} et \icbox[red][palechestnut]{$j \in \{1, 2, \dots, m - 1\}$}, $\tilde{F}(y)$ est une interpolation linéaire de $\hat{F}(y_{j + 1})$ et $\hat{F}(y_{j})$:
+		\end{itemize}
+		\begin{align*}
+		\tilde{F}(y)
+		&=	\frac{y	-	y_{j	}}{y_{j + 1}	-	y_{j}}\hat{F}(y_{j + 1})  + 
+				\frac{y_{j + 1}	-	y_{j	}}{y_{j + 1}	-	y_{j}}\hat{F}(y_{j})
+		\end{align*}
+\end{description}
+\end{distributions}
+
+\columnbreak
+\subsection{Estimation par noyaux}
+
+La fonction de répartition empirique résume les données d'une distribution discrète. Cependant, lorsque la variable d'intérêt $X$ est continue on souhaite estimer une fonction de densité.
+
+Pour une observation $x_{i}$ de l'échantillon, la fonction de répartition empirique assigne une masse de probabilité de $1/n$ au point $x_{i}$.
+Puisque $X$ est continue, il est normal que l'on souhaite \underline{\textit{distribuer}} cette masse \textit{autour} de $x_{i}$.
+
+Si l'on souhaite distribuer cette masse de façon égale, on le fait sur l'intervalle \icbox{$[x_{i}  - b, x_{i} + b]$} avec la fonction de $x_{i}$ $f_{i}(x)$:
+\begin{align*}
+	f_{i}(x)
+	&=	\begin{cases}
+		\frac{0.5}{b},	&	x_{i} - b	\leq		x	\leq		x_{i} + b,	\\
+		0,	&	\text{sinon}
+		\end{cases}	
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Cette fonction est rectangulaire avec une base de longueur $2b$ et une hauteur de $0.5/b$ pour avoir une aire de 1.
+	\item	On peut l'interpréter comme la fonction de densité contribué par l'observation $x_{i}$;
+	\item	On note que ceci correspond à la fonction de densité d'une distribution uniforme $U(x_{i} -  b, x_{i} + b)$;
+	\item	Alors, seulement les valeurs de $x$ contenues dans l'intervalle $(x_{i} -  b, x_{i} + b)$ reçoivent une "contribution" de $x_{i}$;
+	\item	La fonction de densité de $X$ est donc la somme des masses de probabilité contribuées \icbox[red][palechestnut]{$\tilde{f}(x)	=	\frac{1}{n} \sumz{n}{i = 1}(x)$}.
+\end{itemize}
+
+On défini $\phi_{i}	=	\frac{x - x_{i}}{b}$ et $K_{R}(\phi)$:
+\begin{align*}
+	K_{R}(\phi)
+	&=	\begin{cases}
+		\frac{1}{2},	&	-1	\leq		\phi	\leq		1,	\\
+		0,	&	\text{sinon}
+		\end{cases}	
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	On trouve donc que \icbox[red][palechestnut]{$f_{i}(x)	=	\frac{1}{b}K_{R}(\phi_{i})$} et \icbox[red][palechestnut]{$\tilde{f}(x)	=	\frac{1}{nb}\sumz{n}{i = 1}K_{R}(\phi_{i})$}.
+\end{itemize}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$b$]	\og \textit{bandwith} \fg{} où \icbox[red][palechestnut]{$b > 0$};
+	\item[$K_{R}(\phi)$]	\og \textit{rectangular (box, uniform) kernel function} \fg{};
+	\item[$\tilde{f}(x)$]	Estimation de la fonction de densité selon le noyaux rectangulaire;
+	\item[$K_{T}(\phi)$]	\og \textit{triangular kernel} \fg{};
+	\begin{align*}
+		K_{R}(\phi)
+		&=	\begin{cases}
+			1 - |\phi|,	&	-1	\leq		\phi	\leq		1,	\\
+			0,	&	\text{sinon}
+			\end{cases}	
+	\end{align*}
+	\item[$K_{G}(\phi)$]	\og \textit{Gaussian kernel} \fg{};
+		\begin{align*}
+		K_{G}(\phi)
+		&=	\frac{1}{\sqrt{2\pi}} \textrm{e}^{-\frac{\phi^{2}}{2}}, -\infty	<	\phi	<	\infty
+		\end{align*}
+\end{description}
+\end{distributions}
+
+%%%
+%%%	+	section sur données incomplètes individuelles (11.2)
+%%%	+	section sur données groupées (11.3)
+
+\pagebreak
+\section{Estimation de modèles paramétriques}
+\subsection*{Estimation par maximum de vraisemblance pour des données incomplètes et groupées}
+Lorsque les données sont groupées et/ou incomplètes, les observations ne sont plus iid mais on peut quand même formuler la fonction de vraisemblance et trouver l'EMV.
+
+1ère étape est d'écrire la fonction de (log) vraisemblance adéquate pouur la méthode d'échantillonnage des données.
+
+%Par exemple, soit des données complètes groupées en $k$ intervalles $(c_{0}, c_{1}], (c_{1}, c_{2}], \dots, (c_{k - 1}, c_{k}]$ où $0	\leq	c_{0}	<	c_{1}	<	\hdots	<	c_{k}	=	\infty	$.
+On trouve avec la fonction de répartition $F(\cdot; \theta)$ que la probabilité d'être dans l'intervalle $(c_{j - 1}, c_{j}]$ est $F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)$.
+
+On pose que les observations individuelles sont iid et donc la vraisemblance de d'avoir $n_{j}$ observations dans l'intervalle $(c_{j - 1}, c_{j}]$, \lfbox[conditions]{pour $j	=	1, \dots, k$ et $\bm{n}	=	(n_{1}, \cdots, n_{k})$} est :
+\begin{align*}
+	\mathcal{L}(\theta; \bm{n})
+	&=	\prod^{k}_{j	=	1} \left[F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)\right]^{n_{j}}
+\end{align*}
 
 
 
+\setlength{\mathindent}{-0.75cm}
+\begin{algo}{Fonction de vraisemblance}
+\begin{align*}
+	\mathcal{L}(\theta; \bm{x})
+	&=	\prod^{k}_{j	=	1} \underbrace{f(x_{j}; \theta)}_{\shortstack{probabilité de chaque\\ observation à la\\ valeur observée}}	&
+	\shortstack{données complètes}	
+\end{align*}
+
+\tcbline
+
+Données groupées en $k$ intervalles:\\
+\begin{align*}
+	\mathcal{L}(\theta; \bm{n})
+	&=	\prod^{k}_{j	=	1} \underbrace{\left[F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)\right]^{n_{j}}}_{\shortstack{probabilité d'une\\ observation dans\\ l'intervalle}}		&
+	\shortstack{données groupées}	
+\end{align*}
+
+\tcbline
+
+Données censurées vers la droite avec $n_{1}$ observations complètes et $n_{2}$ observations censurées à la limite de $u$:\\
+\begin{align*}
+	\mathcal{L}(\theta; \bm{x}, n_{2})
+	&=	\underbrace{\left[\prod^{n_{1}}_{i	=	1} f(x_{i}; \theta) \right]}_{\shortstack{probabilité de chaque\\ observation à la\\ valeur observée}} \overbrace{\left[1	-	F(u; \theta)\right]^{n_{2}}}^{\shortstack{probabilité qu'une\\ observation soit\\ d'au moins $u$}}		&
+	\shortstack{données censurées\\ vers la droite}	\\
+\end{align*}
+
+\tcbline
+
+Données tronquées vers la gauche avec un déductible de $d$:\\
+\begin{align*}
+	\mathcal{L}(\theta; \bm{x})
+	&=	\underbrace{\frac{1}{\left[1	-	F(d; \theta)\right]^{n}}}_{\shortstack{pondère par la\\ probabilité d'être\\ supérieur au déductible}} \prod^{n}_{i	=	1} f(x_{i}; \theta)	&
+	\shortstack{données censurées\\ vers la droite}	\\
+\end{align*}
+\end{algo}
+\setlength{\mathindent}{1cm}
+
+\end{multicols*}
 
 \end{document}
