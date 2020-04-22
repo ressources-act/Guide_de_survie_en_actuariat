@@ -657,7 +657,7 @@ avec la condition initiale $\forall i \neq j$:
 		=	\sumz{m}{j = 1} \qx[t]{x}[(j)]	
 		\end{align*}
 		\begin{itemize}[leftmargin = *]
-		\item	En parallèle, \icbox{$\px[t]{x}[(\tau)]$} est la probabilité de survivre pendant $t$ années à toutes les causes de décroissance;
+		\item	En parallèle, \icbox{$\px[t]{x}[(\tau)]$} est la probabilité de survivre pendant $t$ années à toutes les causes de décroissance et \lfbox[formula]{$\px[t]{x}[(\tau)]	=	1	-	\qx[t]{x}[(\tau)]$};	
 		\item	Cependant, $\px[t]{x}[(j)]$ \textbf{n'existe pas} et $\px[t]{x}[(j)] \neq 1 - \qx[t]{x}[(j)]$.
 		\end{itemize}
 \end{description}
@@ -680,6 +680,8 @@ avec la condition initiale $\forall i \neq j$:
 	&=	\frac{f_{T_{x}, J}(t, j)}{f_{T_{x}}(t)}
 	\equiv	\frac{\mu_{x +  t}^{(j)}}{\mu_{x +  t}^{(\tau)}}
 \end{align*}
+
+\paragraph{Note}	La relation tient avec $\qx[\infty]{x}[(\tau)]	=	\sumz{m}{j	=	1}\qx[\infty]{x}[(j)]$.
 
 \subsubsection*{Force de décroissance totale}
 \begin{align*}
@@ -775,7 +777,8 @@ Si $\mu_{x + t}^{(1)}, \dots, \mu_{x + t}^{(m)}$ sont des constantes $\mu^{(1)},
 		\end{itemize}
 	\item[]	$\qx[t]{x}'^{(j)}$:	Probabilité de décroissance d'ici $t$ années pour un assuré d'âge $x$ en raison de la $j$e cause \underline{\textbf{en supposant}} qu'il est uniquement exposé à la cause $j$;
 		\begin{itemize}[leftmargin = *]
-		\item	Puisque c'est le modèle actif-décédé, il s'ensuit que \icbox{$\px[t]{x}'^{(j)}	=	1	-	\qx[t]{x}'^{(j)}$}.
+		\item	Puisque c'est le modèle actif-décédé, il s'ensuit que \icbox{$\px[t]{x}'^{(j)}	=	1	-	\qx[t]{x}'^{(j)}$};
+		\item	\lfbox[formula]{$\qx[t]{x}'^{(j)}	=	1	-	\textrm{e}^{-\int_{0}^{t}\mu_{x + s}^{(j)}ds}$}.
 		\end{itemize}
 \end{description}
 
@@ -824,8 +827,8 @@ Sachant $\qx[]{x}'^{(1)}, \dots, \qx[]{x}'^{(m)}$,
 
 \begin{distributions}[Sous DUD]
 \begin{align*}
-	\qx{x}[(j)]
-	&=	\qx{x}'^{(j)}	\int_{0}^{t} \left[ \underset{k \neq j, k = 1}{\overset{m}{\prod}}\left(1 - t \cdot \qx{x}'^{(k)}\right) \right] dt
+	\qx[t]{x}[(j)]
+	&=	\qx[t]{x}'^{(j)}	\int_{0}^{t} \left[ \underset{k \neq j, k = 1}{\overset{m}{\prod}}\left(1 - s \cdot \qx{x}'^{(k)}\right) \right] ds
 \end{align*}
 
 \tcbline
