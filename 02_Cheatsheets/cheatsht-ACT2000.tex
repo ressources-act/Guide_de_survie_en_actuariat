@@ -619,6 +619,119 @@ En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}c
 %	AIC
 %	BIC
 
+
+\columnbreak
+
+\section{Tests d'hypothèses}
+
+\subsection{Introduction}
+Soit la 
+\begin{description}
+	\item[$X$]	Variable aléatoire d'intérêt $X$ avec fonction de densité $f(x; \theta)$;
+	\item[$\Theta$]	Ensemble des valeurs possible pour le paramètre $\theta$ tel que \lfbox[formula]{$\theta \in \Theta$;}
+		\begin{itemize}
+		\item	Par exemple, pour une loi normale $\Theta	=	\{(\mu, \sigma^{2}): \sigma^{2} > 0, -\infty < \mu < \infty\}$.
+		\end{itemize}
+	\item[$\Theta_{0}$ et $\Theta_{1}$]	Sous-ensembles disjoints de $\Theta$ tel que \lfbox[formula]{$\Theta_{0} \cup \Theta_{1}	=	\Theta$;}
+	\item[$\textrm{H}_{0}$]	Hypothèse nulle;
+	\item[$\textrm{H}_{0}$]	Hypothèse alternative.
+\end{description}
+
+\begin{definitionNOHFILL}[Test d'hypothèse]
+\begin{align*}
+	\textrm{H}_{0}
+	&:	\theta \in \Theta_{0}	&
+	&\text{vs}	&
+	\textrm{H}_{1}
+	&:	\theta \in \Theta_{1}	&
+\end{align*}
+
+Habituellement l'hypothèse nulle représente le statu quo alors que l'hypothèse alternative représente un changement.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Région critique]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon aléatoire sur lequel le test se fait;
+	\item[$\mathcal{S}$]	"Ensemble" de tous les résultats possible pour l'échantillon aléatoire;
+	\item[$\mathcal{C}$]	\textbf{Région critique} qui est un sous-ensemble de $\mathcal{S}$.
+\end{description}
+\end{distributions}
+
+On rejet $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}$.\\
+On conserve $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}^{c}$.
+\end{definitionNOHFILLsub}
+
+On peut donc faire 2 types d'erreurs:
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,165); %set diagram left start at 0, and has height of 165
+
+%Shape: Rectangle [id:dp5658804967739193] 
+\draw  [fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (74,50.17) -- (163.83,50.17) -- (163.83,101.5) -- (74,101.5) -- cycle ;
+%Shape: Rectangle [id:dp933461228347003] 
+\draw  [fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (163.83,101.5) -- (253.67,101.5) -- (253.67,152.83) -- (163.83,152.83) -- cycle ;
+%Shape: Rectangle [id:dp24194313951746427] 
+\draw  [fill={rgb, 255:red, 148; green, 250; blue, 106 }  ,fill opacity=1 ] (163.83,50) -- (253.67,50) -- (253.67,101.33) -- (163.83,101.33) -- cycle ;
+%Shape: Rectangle [id:dp27324261874552724] 
+\draw  [fill={rgb, 255:red, 148; green, 250; blue, 106 }  ,fill opacity=1 ] (74,101.33) -- (163.83,101.33) -- (163.83,152.67) -- (74,152.67) -- cycle ;
+%Shape: Rectangle [id:dp9425087952138109] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (74,30.17) -- (163.83,30.17) -- (163.83,50) -- (74,50) -- cycle ;
+%Shape: Rectangle [id:dp40513736937576916] 
+\draw  [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (74,10.33) -- (253.67,10.33) -- (253.67,30.17) -- (74,30.17) -- cycle ;
+%Shape: Rectangle [id:dp4099498200973881] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (163.83,30.17) -- (253.67,30.17) -- (253.67,50) -- (163.83,50) -- cycle ;
+%Shape: Rectangle [id:dp35293578825776084] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (5.5,101.33) -- (74,101.33) -- (74,152.67) -- (5.5,152.67) -- cycle ;
+%Shape: Rectangle [id:dp2841127241620307] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (5.5,50.17) -- (74,50.17) -- (74,101.5) -- (5.5,101.5) -- cycle ;
+%Shape: Rectangle [id:dp5918283025493905] 
+\draw  [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (5.5,30.33) -- (74,30.33) -- (74,50.17) -- (5.5,50.17) -- cycle ;
+
+% Text Node
+\draw (138.33,13) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Vrai état};
+% Text Node
+\draw (110.92,35) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$ \text{H}_{0}$};
+% Text Node
+\draw (200.75,35) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$ \text{H}_{1}$};
+% Text Node
+\draw (18.25,112) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Accepter\\ $\text{H}_{0}$}};
+% Text Node
+\draw (23.25,60.83) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Rejeter\\ $\text{H}_{0}$}};
+% Text Node
+\draw (13.25,32.75) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Décision};
+% Text Node
+\draw (91.42,65.83) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] 
+{\shortstack{Erreur\\ de type I}};
+% Text Node
+\draw (181.25,117) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Erreur\\ de type II}};
+% Text Node
+\draw (95.92,117) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Bonne\\ décision}};
+% Text Node
+\draw (185.75,65.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Bonne\\ décision}};
+
+
+
+\end{tikzpicture}
+\end{center}
+
+%Nous avons trois termes qui représentent la même chose:
+%\begin{description}
+%	\item[Probabilité d'une erreur de type I]	Donc la probabilité de rejeter $\text{H}_{0}$ alors qu'elle est vraie.
+%	\item[taille]	La taille $\alpha$ de la région critique $\mathcal{C}$;
+%	\item[taux de signifiance] $\alpha$
+%\end{description}
+%
+%C'est à dire, \lfbox[formula]{$\alpha	=	\underset{\theta \in \Theta_{0}}{\max} \Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \right\}$}.
+%\begin{itemize}
+%	\item	On note que ceci correspond à $1	-	\Pr\{\text{erreur de type II}\}$.
+%\end{itemize}
+%
+%La fonction de puissance est $\gamma_{C}(\theta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \in \Theta_{1} \right\}$.
+
+
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%%		À rajouter éventuellement	%%%%	
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
@@ -657,6 +770,17 @@ En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}c
 %		Tableau de contingence
 %		Test d'indépendance du khi-carré
 
+%%%	Différence de moyennes
+%\begin{align*}
+%	(\bar{x}	-	\bar{y})
+%	&\pm	t_{\alpha/2, n - 2} s_{p}\sqrt{\frac{1}{n_{1}} + frac{1}{n_{2}}}
+%\end{align*}
+
+%%%	Différence de proportions
+%\begin{align*}
+%	\hat{p}_{1}	-	\hat{p}_{2}
+%	&\pm	z_{\alpha/2} \sqrt{\frac{\hat{p}_{1}(1 - \hat{p}_{1}}{n_{1}} + frac{\hat{p}_{2}(1 - \hat{p}_{2}}{n_{2}}}
+%\end{align*}
 
 %\subsection{Distributions d'échantillonnage}
 %%	Contenu à y inclure
@@ -681,7 +805,7 @@ En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}c
 
 %%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
 %		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
-\columnbreak	
+\columnbreak
 
 \section{Statistiques d'ordre}
 
