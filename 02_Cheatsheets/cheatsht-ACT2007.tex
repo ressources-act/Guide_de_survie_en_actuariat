@@ -526,6 +526,7 @@ On généralise la notation utilisée auparavant (le \textit{modèle actif-déc�
 \end{enumerate}
 \end{conceptgen}
 
+\columnbreak
 \subsubsection*{Formules}
 Nous pouvons exprimer toutes les probabilités en fonction des forces de transitions. 
 %On peut relier directement les forces de transition aux probabilités $\px[t]{x}[\overline{ii}]$ et $\px[t]{x}[ii]$. La probabilité que l'assuré d'âge $x$ présentement dans l'état $i$ restera dans l'état $i$ sans jamais en sortir est:
@@ -538,9 +539,10 @@ Nous pouvons exprimer toutes les probabilités en fonction des forces de transit
 Transition d'un état au prochain pour un \textbf{modèle d'invalidité permanente}:
 \begin{align*}
 	\px[u]{x}[01] 
-	&=	\int_{t = 0}^{u} (\px[t]{x}[\overline{00}]) \textcolor{teal}{(\mu_{x + t}^{01})} (\px[u - t]{x + t}[\overline{11}]) \textcolor{teal}{dt}
-	\approx	\int_{t = 0}^{u} (\px[t]{x}[\overline{00}]) (\px[u - t]{x + t}[\overline{11}]) \textcolor{teal}{(\px[dt]{x + t}[01])}
+	&=	\int_{t = 0}^{u} (\px[t]{x}[\overline{00}]) \textcolor{teal}{(\mu_{x + t}^{01})} (\px[u - t]{x + t}[\overline{11}]) \textcolor{teal}{dt}	\\
+	&{\color{teal}\approx}	\int_{t = 0}^{u} (\px[t]{x}[\overline{00}]) (\px[u - t]{x + t}[\overline{11}]) \textcolor{teal}{(\px[dt]{x + t}[01])}
 \end{align*}
+\paragraph{Note}	On \textbf{\color{teal}approxime} la mortalité instantanée $\color{teal}\mu_{x + t}^{01}dt$ par la mortalité au moment infiniment petit $dt$ $\color{teal}\px[dt]{x + t}[01]$.\\
 
 Transition d'un état à un état supérieur:
 \begin{align*}
@@ -803,8 +805,11 @@ Donc:
 
 Il s'ensuit que \icbox[red][palechestnut]{$\px[t]{x}[(\tau)] \leq \px[t]{x}'^{(j)}, \forall j = 1, 2, \dots, m$} et \icbox[red][palechestnut]{$\qx[t]{x}'^{(j)} \geq \qx[t]{x}[(j)], \forall j = 1, 2, \dots, m$}.
 
+\columnbreak
 \subsection*{Interrelations}
 \begin{rappel_enhanced}[Hypothèses]
+Dans le cas de décroissances uniques avec $T_{x}'^{(j)}$:\\
+
 Pour $x \in \mathbb{Z}^{+}, t \in [0, 1], j = 1, 2, \dots, m$,
 \begin{description}
 	\item[DUD]	$\qx[t]{x}'^{(j)} = t \times \qx[]{x}'^{(j)}$;
@@ -812,7 +817,8 @@ Pour $x \in \mathbb{Z}^{+}, t \in [0, 1], j = 1, 2, \dots, m$,
 \end{description}
 
 \begin{itemize}[leftmargin = *]
-	\item	Si les mortalités $T_{x}'^{(j)}$ suivent des lois DeMoivre, alors DUD est exact.
+	\item	Si les mortalités $T_{x}'^{(j)}$ suivent des lois DeMoivre, alors DUD est exact;
+	\item	Pour les décroissances $T_{x}^{(j)}$ on pose l'hypothèse sur $\qx[t]{x}^{(j)}$ au lieu de $\qx[t]{x}'^{(j)}$.
 \end{itemize}
 \end{rappel_enhanced}
 
@@ -951,9 +957,12 @@ De plus:
 	&=	\Pr(T_{x} \leq t \cup T_{y}	\leq	t)	
 	=	\Pr(T_{x} \leq t) + \Pr(T_{y}	\leq	t)	 - \Pr(T_{x} \leq t, T_{y}	\leq	t)	\\
 	&=	\qx[t]{x} + \qx[t]{y} - \qx[t]{\overline{xy}}	\\
+	&\overset{\perp}{\equiv}	\qx[t]{x}\px[t]{y} + \px[t]{x}\qx[t]{y}	\\
 	\px[t]{\overline{xy}}
 	&=	\px[t]{x} + \px[t]{y} - \px[t]{xy}	\\
 \end{align*}
+
+On peut borner $\px[t]{\overline{xy}}$, \lfbox[conditions]{$\max\{\px[t]{x}, \px[t]{y}\}	\leq	\px[t]{\overline{xy}}	\leq	\min\{\px[t]{x} + \px[t]{y}, 1\}$}
 
 \subsubsection*{Relations entre variables aléatoires}
 En gros, $(xy)$ plus $(\overline{xy})$ est égale à la somme de $(x)$ et $(y)$ avec ces 3 relations principales:
@@ -983,17 +992,17 @@ Puis:
 		=	\qx[u | t]{xy}	\\
 	\Pr\left(\parbox[1cm]{4cm}{(x) meurt avant le temps $t$\\ et avant $(y)$}\right)	
 		&=	\Pr(T_{x}	\leq		t, T_{x}	<	T_{y})	
-		=	\qx[t]{\nthtop{1}{xy}}	\\
+		=	\qx[t]{\nthtop{1}{x}y}	\\
 		&=	\int_{0}^{t} (\px[s]{xy}[00])(\mu_{x + s : y + s}^{02})ds	\\
 	&\overset{T_{x}	\perp	T_{y}}{=}	\int_{0}^{t}\underbrace{(\px[s]{x})(\px[s]{y})}_{\small\shortstack{$(x)$ et $(y)$\\ survivent}} \; \underbrace{\mu_{x + s}}_{\small\shortstack{$(x)$ meurt}}ds 	\\
 	\Pr\left(\parbox[1cm]{4cm}{(x) meurt avant le temps $t$\\ et après le décès de $(y)$}\right)	
 		&=	\Pr(T_{x}	\leq		t, T_{y}	<	T_{x})	
-		=	\qx[t]{\nthtop{2}{xy}}	\\
+		=	\qx[t]{\nthtop{2}{x}y}	\\
 		&=	\int_{0}^{t} (\px[s]{xy}[01])(\mu_{x + s}^{13})ds	\\
 		&\overset{T_{x}	\perp	T_{y}}{=}	\int_{0}^{t}\underbrace{(\px[s]{x})\mu_{x + s}}_{\small\shortstack{$(x)$ survie jusqu'à\\ $s$ puis décède}} \; \underbrace{(\qx[s]{y})}_{\small\shortstack{$(y)$ décède\\ avant $s$}}ds	\\
 	\Pr\left(\shortstack{(x) meurt avant (y)}\right)	
 		&=	\Pr(T_{x}	<	T_{y})	
-		=	\qx[\infty]{\nthtop{1}{xy}}	
+		=	\qx[\infty]{\nthtop{1}{x}y}	
 \end{align*}
 	\setlength{\mathindent}{1cm}
 
@@ -1003,6 +1012,8 @@ Puis:
 	&=	\underbrace{\qx[t]{x}}_{\shortstack{la probabilité que\\ $(x)$ décède\\ d'ici $t$ années}}	\\
 	\underbrace{\qx[t]{\nthtop{1}{x}y}}_{\shortstack{probabilité que $(x)$\\ décède en premier\\ d'ici $t$ années}}	+	\underbrace{\qx[t]{x\nthtop{1}{y}}}_{\shortstack{probabilité que $(y)$\\ décède en premier\\ d'ici $t$ années}}
 	&=	\underbrace{\qx[t]{xy}}_{\shortstack{la probabilité que\\ un parmis $(x)$ et $(y)$\\ décède d'ici $t$ années}}	\\
+	\qx[t]{\nthtop{2}{x}y}	+	\qx[t]{x\nthtop{2}{y}}
+	&=	\qx[t]{\overline{xy}}
 \end{align*}
 
 
@@ -1029,15 +1040,53 @@ Si $T_{x} \perp T_{y}$,
 
 Puis (voir la preuve à la page 15 des notes de cours du chapitre 11)
 \begin{align*}
-	\px[s]{xy}
-	&=	\px[s]{x}\px[s]{y}		\\
-	\qx[s]{\overline{xy}}
-	&=	\qx[s]{x}\qx[s]{y}		\\
+	\underbrace{\px[s]{xy}}_{\Pr(\small\shortstack{deux sont en vie à $s$})}
+	&=	\underbrace{\px[s]{x}\px[s]{y}}_{\Pr(\small\shortstack{chacun est vivant à $s$})}		\\
+	\underbrace{\qx[s]{\overline{xy}}}_{\Pr(\small\shortstack{deux sont décédés rendu à $s$})}
+	&=	\underbrace{\qx[s]{x}\qx[s]{y}}_{\Pr(\small\shortstack{chacun est décédé rendu à $s$})}		\\
 	\mu_{xy}(t)
 	&=	\mu_{x + t} + \mu_{y + t}	
 \end{align*}
 
-\subsection*{Contrats d'assurance et de rente}
+\subsubsection*{Relations}
+	\setlength{\mathindent}{-1cm}
+\begin{align*}
+	\qx[k|]{xy}
+	&=	\qx[k + 1]{xy}	-	\qx[k]{xy}	\\
+	&=	\px[k]{xy}	-	\px[k + 1]{xy}	\\
+	&=	(\px[k]{xy})(\qx{x + k : y + k})		\because		\px[m + n]{xy} = (\px[m]{xy})(\px[n]{x + m : y + m})	\\
+	\qx[k|]{\overline{xy}}
+	&=	\qx[k + 1]{\overline{xy}}	-	\qx[k]{\overline{xy}}	\\
+	&=	\px[k]{\overline{xy}}	-	\px[k + 1]{\overline{xy}}	\\
+	&\neq	(\px[k]{\overline{xy}})(\qx{\overline{x + k : y + k}})	\because		\px[m + n]{\overline{xy}} \neq (\px[m]{\overline{xy}})(\px[n]{\overline{x + m : y + m}})	\\
+\end{align*}
+	\setlength{\mathindent}{1cm}
+
+\subsubsection*{Approximation de Woolhouse}
+\begin{align*}
+	\ax**{\color{teal}xy}[(m)]
+	&\approx	\ax**{\color{teal}xy}	-	\frac{m	-	1}{2m}	-	\frac{m^{2}	-	1}{12m^{2}}(\delta + \mu_{\color{teal}xy})	
+\end{align*}
+
+\columnbreak
+
+\subsection*{Contingent Insurance}
+
+\paragraph*{Continue}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\Ax*{\nthtop{1}{x}y}$]	Prime unique nette d'un contrat d'assurance vie entière continue versant 1\$ au décès de $(x)$ s'il advient avant celui de $(y)$.
+	\item[$\Ax*{x\nthtop{2}{y}}$]	Prime unique nette d'un contrat d'assurance vie entière continue versant 1\$ au décès de $(y)$ s'il advient après celui de $(x)$.
+\end{description}
+\end{distributions}
+\begin{align*}
+	\Ax*{\nthtop{1}{x}y}
+	&=	\esp{v^{T_{x}} \times \bm{1}_{\{T_{x} < T_{y}\}}}
+	=	\int_{0}^{\infty} v^{t} (\px[t]{x})(\px[t]{y})(\mu_{x + t})dt	\\
+	\Ax*{x\nthtop{2}{y}}
+	&=	\esp{v^{T_{y}} \times \bm{1}_{\{T_{x} < T_{y}\}}}
+	=	\int_{0}^{\infty} v^{s} (\qx[s]{x})(\px[s]{y})(\mu_{y + s})ds
+\end{align*}
 \subsubsection*{Contrat de rente continue vie entière émis à $(x, y)$}
 
 La rente de 1\$ est versée jusqu'au premier décès parmi $(x)$ et $(y)$.
@@ -1073,6 +1122,24 @@ La prestation de décès de 1\$ est versée au moment du deuxième décès parmi
 	&=	\int_{0}^{n} \textrm{e}^{-\delta t} \px[t]{\overline{xy}} \mu_{\overline{xy}}(t) dt	\\
 \end{align*}
 
+\paragraph*{Relations}
+\begin{align*}
+	\Ax*{xy}
+	&=	\Ax*{\nthtop{1}{x}y} + \Ax*{x\nthtop{1}{y}}	\\
+	\Ax*{\overline{xy}}
+	&=	\Ax*{\nthtop{2}{x}y} + \Ax*{x\nthtop{2}{y}}	\\
+	\Ax*{x}
+	&=	\Ax*{\nthtop{1}{x}y} + \Ax*{x\nthtop{2}{y}}	\\
+\end{align*}
+
+
+\paragraph*{Discret}
+	\begin{align*}
+	\Ax{\nthtop{1}{x}y}
+	&=	\esp{v^{K_{x} + 1} \times \bm{1}_{\{T_{x} < T_{y}\}}}
+	=	\sumz{\infty}{k = 0} v^{k + 1} (\px[k]{xy})(\qx{\nthtop{1}{x + k} : y + k})
+	\end{align*}
+
 %Dans le cas discret, on peut ramener la valeur actualisée des coûts à être une fonction de $K(xy)$ (ou $K(\overline{xy})$):
 %\begin{align*}
 %	\esp{g(K(xy))}
@@ -1098,66 +1165,15 @@ La prestation de décès de 1\$ est versée à la fin de l'année du deuxième d
 \subsubsection*{Contrat de rente discret vie entière émis à $(x, y)$}
 La rente de 1\$ est versée jusqu'au premier décès parmi $(x)$ et $(y)$.
 \begin{align*}
-	\ax*{xy}
+	\ax**{xy}
 	&=	\sumz{\infty}{k = 0}	v^{k} \px[k]{xy}	\\
 \end{align*}
 
 La rente de 1\$ est versée jusqu'au deuxième décès parmi $(x)$ et $(y)$.
 \begin{align*}
-	\ax*{\overline{xy}}
+	\ax**{\overline{xy}}
 	&=	\sumz{\infty}{k = 0}	v^{k} \px[k]{\overline{xy}}	\\
 \end{align*}
-
-\subsubsection*{Relations}
-	\setlength{\mathindent}{-1cm}
-\begin{align*}
-	\qx[k|]{xy}
-	&=	\qx[k + 1]{xy}	-	\qx[k]{xy}	\\
-	&=	\px[k]{xy}	-	\px[k + 1]{xy}	\\
-	&=	(\px[k]{xy})(\qx{x + k : y + k})		\because		\px[m + n]{xy} = (\px[m]{xy})(\px[n]{x + m : y + m})	\\
-	\qx[k|]{\overline{xy}}
-	&=	\qx[k + 1]{\overline{xy}}	-	\qx[k]{\overline{xy}}	\\
-	&=	\px[k]{\overline{xy}}	-	\px[k + 1]{\overline{xy}}	\\
-	&\neq	(\px[k]{\overline{xy}})(\qx{\overline{x + k : y + k}})	\because		\px[m + n]{\overline{xy}} \neq (\px[m]{\overline{xy}})(\px[n]{\overline{x + m : y + m}})	\\
-\end{align*}
-	\setlength{\mathindent}{1cm}
-
-\columnbreak
-
-\subsection*{Contingent Insurance}
-\subsubsection*{Discret}
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$\Ax*{\nthtop{1}{x}y}$]	Prime unique nette d'un contrat d'assurance vie entière continue versant 1\$ au décès de $(x)$ s'il advient avant celui de $(y)$.
-	\item[$\Ax*{x\nthtop{2}{y}}$]	Prime unique nette d'un contrat d'assurance vie entière continue versant 1\$ au décès de $(y)$ s'il advient après celui de $(x)$.
-\end{description}
-\end{distributions}
-\begin{align*}
-	\Ax*{\nthtop{1}{x}y}
-	&=	\esp{v^{T_{x}} \times \bm{1}_{\{T_{x} < T_{y}\}}}
-	=	\int_{0}^{\infty} v^{t} (\px[t]{x})(\px[t]{y})(\mu_{x + t})dt	\\
-	\Ax*{x\nthtop{2}{y}}
-	&=	\esp{v^{T_{y}} \times \bm{1}_{\{T_{x} < T_{y}\}}}
-	=	\int_{0}^{\infty} v^{s} (\qx[s]{x})(\px[s]{y})(\mu_{y + s})ds
-\end{align*}
-
-\subsubsection*{Relations}
-\begin{align*}
-	\Ax*{xy}
-	&=	\Ax*{\nthtop{1}{x}y} + \Ax*{x\nthtop{1}{y}}	\\
-	\Ax*{\overline{xy}}
-	&=	\Ax*{\nthtop{2}{x}y} + \Ax*{x\nthtop{2}{y}}	\\
-	\Ax*{x}
-	&=	\Ax*{\nthtop{1}{x}y} + \Ax*{x\nthtop{2}{y}}	\\
-\end{align*}
-
-
-\subsubsection*{Continue}
-	\begin{align*}
-	\Ax{\nthtop{1}{x}y}
-	&=	\esp{v^{K_{x} + 1} \times \bm{1}_{\{T_{x} < T_{y}\}}}
-	=	\sumz{\infty}{k = 0} v^{k + 1} (\px[k]{xy})(\qx{\nthtop{1}{x + k} : y + k})
-	\end{align*}
 
 \columnbreak
 
@@ -1176,7 +1192,7 @@ Produit originalement créé dans le temps que les hommes travaillent et les fem
 	\ax*{x | y}
 	&=	\int_{0}^{\infty} v^{s} (\px[s]{x:y})(\mu_{x + s}) \ax*{y + s} ds	\\
 	&=	\int_{0}^{\infty} v^{s} (\px[s]{y})(\qx[s]{x}) ds	\\
-	&=	\ax*{y}	-	\ax*{x}
+	&=	\ax*{y}	-	\ax*{xy}
 \end{align*}
 
 \begin{align*}
@@ -1227,6 +1243,48 @@ Une annuité ayant une pension de 1\$ payable à $(y)$ à compter du décès de 
 
 \end{tikzpicture}
 \end{center}
+
+\end{multicols*}
+
+\pagebreak
+\raggedcolumns
+\begin{multicols*}{2}
+\section{Preuves}
+\begin{center}
+	\lfbox[rappel]{Preuve de la fonction de densité du couple $(x, y)$}
+\end{center}
+\begin{formula}{}
+\begin{align*}
+	f_{T_{x, y}}(t)
+	&=	\deriv{t}{F_{T_{x, y}}(t)}	
+	\equiv	-\deriv{t}{S_{T_{x, y}}(t)}	\\
+	&=	\left(-\deriv{t}{\px[t]{x}}\right) \px[t]{y}	+	\left(-\deriv{t}{\px[t]{y}}\right) \px[t]{x}	\\
+	&=	\left(-\deriv{t}{\px[t]{x}}\right) {\color{teal} \times \left( \frac{\px[t]{x}}{\px[t]{x}} \right)} \px[t]{y}	+	\left(-\deriv{t}{\px[t]{y}}\right) {\color{teal} \times \left( \frac{\px[t]{y}}{\px[t]{y}} \right)}\px[t]{x}	\\
+	&=	{\color{cyan}\left(\frac{-\deriv{t}{\px[t]{x}}}{{\px[t]{x}}}\right)} \times \px[t]{x} \px[t]{y}	+	{\color{cyan}\left(\frac{-\deriv{t}{\px[t]{y}}}{{\px[t]{y}}}\right)} \times \px[t]{x} \px[t]{y}	\\
+	&=	{\color{cyan} \mu_{x + t}} \times {\color{teal}\px[t]{x} \px[t]{y}}	+	{\color{cyan} \mu_{y + t}} \times {\color{teal}\px[t]{x} \px[t]{y}}	\\
+	&\overset{T_{x} \perp T_{y}}{=}	\mu_{x + t} \times {\color{teal} \px[t]{xy}} + \mu_{y + t} \times {\color{teal} \px[t]{xy}}	\\
+	&=	\px[t]{xy}(\mu_{x + t} + \mu_{y + t})
+\end{align*}
+\end{formula}
+
+
+\begin{center}
+	\lfbox[rappel]{Preuve de la covariance pour deux vies indépendantes $(x)$ et $(y)$}
+\end{center}
+\begin{formula}{}
+\begin{align*}
+	\text{Cov}(v^{T_{\overline{xy}}}, v^{T_{xy}})
+	&=	\text{E}[v^{T_{\overline{xy}}}v^{T_{xy}}]	-	{\color{airforceblue}\text{E}[v^{T_{\overline{xy}}}]\text{E}[v^{T_{xy}}]}	\\
+	&=	\text{E}[v^{\color{teal}T_{\overline{xy}} + T_{xy}}]	-	{\color{airforceblue}\Ax*{\overline{xy}}\Ax*{xy}}	\\
+	&=	\text{E}[v^{\color{teal}T_{x} + T_{y}}]	-	\Ax*{\overline{xy}}\Ax*{xy}	\\
+	&\overset{T_{x}\perp T_{y}}{=}	{\color{airforceblue}\text{E}[v^{T_{x}}]\text{E}[v^{T_{y}}]}	-	\Ax*{\overline{xy}}\Ax*{xy}	\\
+	&=	{\color{airforceblue}\Ax*{x}\Ax*{y}}	-	{\color{teal}\left(\Ax*{\overline{xy}}\right)}\Ax*{xy}	\\
+	&=	\Ax*{x}\Ax*{y}	-	{\color{teal}\left(\Ax*{x} + \Ax*{y} - \Ax*{xy}\right)}\Ax*{xy}	\\
+	&=	\Ax*{x}(\Ax*{y}	-	\Ax*{xy})	-	\Ax*{xy}(\Ax*{y}	-	\Ax*{xy})	\\
+	&=	(\Ax*{x}	-	\Ax*{xy})(\Ax*{y}	-	\Ax*{xy})	\\
+\end{align*}
+\end{formula}
+
 
 \end{multicols*}
 \end{document}
