@@ -8,23 +8,27 @@
 %% -----------------------------
 %% Variable definition
 %% -----------------------------
-\def\cours{Mathématiques actuarielles IARD1}
+\def\cours{Mathématiques actuarielles IARD I}
 \def\sigle{ACT-2005}
 %% -----------------------------
 %% Colour setup for sections
 %% -----------------------------
 \def\SectionColor{red!80!white}
 \def\SubSectionColor{red!30!black}
-%\def\SubSubSection{burntsienna}
-%
-% Redefine authors
-%
-\def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin et Alec James van Rassel}
+\def\SubSubSectionColor{red!30!black}
 %% -----------------------------
 %% Début du document
 %% -----------------------------
 \begin{document}
 
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT2005}
+
+\newpage
+
+\raggedcolumns
 \small
 \begin{multicols*}{3} % Nombre de colonnes (peut être changé plus tard.)
 
@@ -183,6 +187,7 @@ CV				& = \frac{\sigma}{\mu} \\
 \end{itemize}
 
 \setcounter{section}{7}
+\columnbreak
 \section{Fréquence et sévérité avec modifications aux contrats}
 
 \subsubsection*{Déductible ordinaire}
@@ -315,6 +320,7 @@ Y^{(L\textcolor{blue}{|P)}}_{(O)} &=
 \end{align*}
 
 \setcounter{section}{13}
+\columnbreak
 \section{Estimation non-paramétrique des fonctions de répartition et de survie}
 
 \subsection*{Distribution empirique avec données complètes}
@@ -479,6 +485,7 @@ Il est bon de noter que le résulat pour la variance de XXX à été obtenu avec
 
 \setcounter{section}{5}
 
+\columnbreak
 \section{Création de nouvelles lois}
 
 \begin{algo}{Multiplication par une constante}
@@ -558,6 +565,7 @@ On dit donc que $Y$ est la \textit{log-loi} où $\ln Y = X$ est la loi.
 
 \setcounter{section}{8}
 
+\columnbreak
 \section{Fonction génératrice cumulante}
 Soit la fonction génératrice des moments $M_X(t)$, telle que
 \[M_X(t) = \esp{e^{tX}}\]
@@ -570,6 +578,7 @@ K''(t) \eval_{t=0} & = \variance{X} \\
 \end{align*}
 
 \setcounter{section}{9}
+\columnbreak
 \section{Frequentist estimation}
 \subsection*{Méthode des moments}
 
@@ -738,6 +747,7 @@ où $\bm{h}$ est le vecteur des dérivées partielle de $h(\theta)$ :
 
 
 \setcounter{section}{14}
+\columnbreak
 \section{Sélection de modèles}
 
 Il est essentiel de ne pas oublier que peu importe le modèle sélectionné, il sera une \textbf{approximation} de la réalité; \guillemotleft all models are wrong, but some are more useful than others \guillemotright.
@@ -976,6 +986,7 @@ L'AIC prend en compte à la fois la qualité des prédictions du modèle et sa c
 \end{itemize}
 
 \setcounter{section}{12}
+\columnbreak
 \section{Estimation bayésienne}
 
 Avec l'estimation fréquentielle, on pose une distribution pour les données \textbf{fixée} \textit{\textbf{mais}} \textbf{inconnue}. De plus, nos décisions sont axées plus avec les possibilités liés à d'autres échantillons pouvant être obtenus qu'avec notre échantillon de données.
@@ -1048,6 +1059,7 @@ En d'autres mots, on veut l'espérance de la distribution \emph{a posteriori} :
 \end{algo}
 
 \setcounter{section}{-1}
+\columnbreak
 \section{Rappel de probabilité}
 \subsection*{Certaines lois à savoir}
 \begin{tabular}{|a| * {4}{C|}}
@@ -1090,7 +1102,7 @@ d	& -c \\
 \end{align*}
 où on multiple par la matrice adjointe de $\bm{A}$. Il faut normalement calculer les cofacteurs, mais le cas à 2 dimensions est un cas simplifié.
 
-
+\pagebreak
 
 \end{multicols*}
 

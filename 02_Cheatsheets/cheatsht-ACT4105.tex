@@ -4,10 +4,6 @@
 %% -----------------------------
 \input{cheatsht-preamble-general.tex}
 %% -----------------------------
-%% Redefine from template
-%% -----------------------------
-\def\auteur{Gabriel Crépeault-Cauchon}
-%% -----------------------------
 %% Variable definition
 %% -----------------------------
 \def\cours{Tarification en assurance IARD}
@@ -15,9 +11,9 @@
 %% -----------------------------
 %% Colour setup for sections
 %% -----------------------------
-\def\SectionColor{greenforest}
-\def\SubSectionColor{greenforest!50!black}
-\def\SubSubSection{greenforest!75!black}
+\def\SectionColor{forestgreen(traditional)}
+\def\SubSectionColor{forestgreen(traditional)!50!black}
+\def\SubSubSectionColor{forestgreen(traditional)!75!black}
 
 % 
 % Débute numérotation où on est rendu pour l'examen final
@@ -28,6 +24,13 @@
 %% Début du document
 %% -----------------------------
 \begin{document}
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT4105}
+
+\newpage
 
 \begin{multicols*}{2}
 
@@ -43,8 +46,20 @@
 %TODO : rendu ici 9/12/2019
 
 
-
-
+%
+%\section{Chain Ladder Reserving Method}
+%Policies are sold \underline{before} costs are actually known and thus we need to have \underline{reserves} to pay claims.
+%
+%\begin{distributions}[Terminology]
+%\begin{description}
+%	\item[Case Reserves]	Money set aside for a \underline{specific} \textit{known} claim.
+%	\item[Paid Loss]	Money paid to indemnify the insured after a claim is made.
+%	\item[Incurred Loss]	Total amount of money the insurance company expects to pay for a specific claim, \icbox[red][palechestnut]{Incurred Lost	=	Case Reserves	+	Paid Loss}.
+%\end{description}
+%\end{distributions}
+%
+%For example a car has an accident and the adjuster sets aside 2,000\$ in case reserves. Suppose we get more information and pay out 700\$ on the claim then the case reserves are of 1,300\$ and the paid loss is 700\$. In both cases, the incurred loss is 2,000\$.
+%
 
 
 

@@ -71,6 +71,7 @@
 	\item[xcolor]
 	\item[tikz]
 	\item[tcolorbox]
+	\item[xargs]	Simplifie énormément la création de fonctions en \LaTeX.
 \end{description}
 \end{formula}
 
@@ -101,6 +102,16 @@
 \end{algo2}
 
 \begin{algo2}[tcolorbox]
+\end{algo2}
+
+\begin{algo2}[xargs]
+\textbf{Fonctions}
+\begin{itemize}[leftmargin = *]
+	\item	\texttt{newcommandx\{<nom de la commande>\}[<number of parameters>][1 = <default arg>, 2 = <default arg>, ...]\{<définition>\}}
+		\begin{itemize}[leftmargin = *]
+		\item	On fait référence aux arguments avec \#1, \#2, \dots
+		\end{itemize}
+\end{itemize}
 \end{algo2}
 
 

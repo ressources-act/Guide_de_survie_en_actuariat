@@ -4,6 +4,8 @@
 \usepackage{array, multirow}
 \usepackage{booktabs}
 \usepackage{eurosym}
+\setlist{leftmargin=*}
+
 %% -----------------------------
 %% Préambule
 %% -----------------------------
@@ -13,12 +15,18 @@
 \def\SubSubSectionColor{armygreen}
 \def\cours{GRF-II}
 \def\sigle{ACT-2011}
-\def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin, Alec James van Rassel}
 %% -----------------------------
 %% Début du document
 %% -----------------------------
-
+%%	Feuille basé sur 
 \begin{document}
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT2011}
+
+\newpage
+\raggedcolumns
 
 \begin{multicols*}{2}
 
@@ -85,7 +93,7 @@ Après 1971, le président Nixon a voulu défaire le standard de l'or (qui a cau
 		\begin{itemize}
 		\item	\og \textit{end-user} \fg{}.
 		\end{itemize}
-	\item[Teneur de marché]	"crée" le marché en tant qu'intermédiaire;
+	\item[\hypertarget{market_holder}{Teneur de marché}]	"crée" le marché en tant qu'intermédiaire;
 		\begin{itemize}[leftmargin = *]
 		\item	Il cherche à faire un profit, une "cote", sur la transaction;
 		\item	\og \textit{Market-makers} \fg{}.
@@ -108,6 +116,8 @@ Création de produits dérivés à partir de d'autres produits.\\
 		\end{itemize}		 
 \end{itemize}
 \end{definitionNOHFILL}
+
+\columnbreak
 
 \subsection*{Marchés financiers}
 \begin{definitionNOHFILL}[Transaction gré à gré] 
@@ -247,17 +257,12 @@ Ceci correspond à la \textbf{marge de profit} que le teneur de marché conserve
 %\end{description}
 %%%	-----
 
+\columnbreak
+
 \subsection*{Vente à découvert}
 
 \begin{definitionNOHFILL}[Vente à découvert \og \textit{(short-sell)} \fg{}] 
 La vente d'un actif qu'on ne possède pas. On peut y penser comme l'inverse d'un achat.\\
-
-\textbf{Utilités:}
-\begin{description}
-	\item[Spéculation]	Tirer profit d'une baisse de valeur de l'actif;
-	\item[Financement]	Aller chercher de l'argent tout de suite comme un emprunt;
-	\item[Couverture]	Se protéger contre la baisse de la valeur d'un actif que vous possédez.
-\end{description}
 
 \begin{algo2}[Étapes d'une vente à découvert]
 \begin{multicols*}{2}
@@ -334,6 +339,7 @@ L'\textbf{investisseur} est le \textit{short-seller} et le \textbf{prêteur} le 
 		\item	Puisque le détenteur de l'action sera celui à qui l'investisseur a vendu les actions, l'investisseur et le prêteur ne vont pas les recevoir;
 		\item	Du point de vue du prêteur, les dividendes sont des paiements en espèce qu'il aurait reçus s'il n'avait pas prêté l'action;
 		\item	Ce faisant, l'investisseur va payer ces dividendes au prêteur s'il y en a;
+		\item	Pour le prêteur ils sont imposables alors que pour l'investisseur ils sont déductibles d'impôts;
 		\item	Ce paiement se nomme le \textbf{taux de location} (\og \textit{lease rate} \fg{}) de l'actif.
 		\end{itemize}
 \end{description}
@@ -374,6 +380,8 @@ L'\textbf{investisseur} est le \textit{short-seller} et le \textbf{prêteur} le 
 	\item[$T$]	date d'échéance.
 \end{description}
 \end{distributions}
+
+\columnbreak
 
 \subsection*{Contrats à terme de gré à gré}
 
@@ -1030,7 +1038,7 @@ On achète une option d'achat pour garantir un prix maximal d'achat et couvrir u
 \end{center}
 \end{definitionNOHFILL}
 
-\newpage
+\columnbreak
 
 \subsection*{Écarts et tunnels}
 
@@ -1579,12 +1587,14 @@ La largeur du tunnel est $K_{2} - K_{1}$.
 	\text{tunnel}
 	&= 	P(K_1) - C(K_2)	\\
 	\text{\textcolor{burntorange}{action couverte} par un tunnel}
-	&= 	P(K_1) - C(K_2)	+ \textcolor{burntorange}{S_{T}} 
+	&= 	P(K_1) - C(K_2)	+ \textcolor{burntorange}{S_{T}} \\
 \end{align*}
+
+Si l'on achète deux options ayant la même prime, on obtient un tunnel à prime zéro. Par exemple, on vend une option d'achat $C(120) = 5$ et achète une option de vente $-P(120) = -5$ ayant donc un coût initial nul.
 \end{definitionNOHFILL}
 
-\subsection*{Spéculations sur la volatilité}
-
+\columnbreak
+\subsection*{Spéculation sur la volatilité}
 \begin{definitionNOHFILL}[\textbf{Stellage} \og \textit{straddle} \fg{}]
 Créé en achetant une option de vente et une option d'achat avec un prix d'exercice $K$.
 
@@ -1839,20 +1849,22 @@ Pour chaque option avec un prix d'exercice de $K_{2}$ vendue, on achète $\lambd
 \setcounter{section}{4}
 \section{Contrats à terme}
 \subsection*{4 façons d'acheter une action}
-
+Il y a plusieurs façons d'acheter une action et le prix va dépendre du \textbf{moment de paiement} et du \textbf{moment de la livraison}.
+\begin{center}
 \begin{tabular}{|>{\columncolor{airforceblue}}c	|	>{\columncolor{beaublue}}c	|	>{\columncolor{beaublue}}c	|	c	|}
 \hline
 \rowcolor{blue(matcha)}
-	Contrat	&	\shortstack{Moment de\\ paiement}	&	\shortstack{Moment de\\ d'achat}	&	Paiement	\\\hline
+	Contrat	&	\shortstack{Moment de\\ paiement}	&	\shortstack{Moment de\\ la livraison}	&	Paiement	\\\hline
 	\textcolor{white}{\textbf{Outright purchase}}	&	0	&	0	&	$S_{0}$	\\\hline
 	\textcolor{white}{\textbf{Forward contract}}		&	$T$	&	$T$	&	$F_{0, T}$	\\\hline
 	\textcolor{white}{\textbf{Prepaid forward contract}}	&	0	&	$T$	&	$F_{0, T}^{P}$	\\\hline
 	\textcolor{white}{\textbf{Fully leveraged purchase}}	&	$T$	&	0	&	$S_{0}\textrm{e}^{rT}$	\\\hline
 \end{tabular}
+\end{center}
 
 \begin{description}
-	\item[Achat pleinement par emprunt \og \textit{fully leveraged purchase} \fg{}]	emprunte de l'argent pour acheter l'actif maintenant ($t = 0$) et rembourse l'argent au temps $T$;
-	\item[Contrat à terme de gré à gré prépayé \og \textit{prepaid forward contract} \fg{}]	Au lieu de payer plus tard, on paye au début (à $t = 0$) au prix $F_{0, T}^{P}$, mais on reçoit quand même l'actif plus tard.
+	\item[Achat pleinement par emprunt \og \textit{fully leveraged purchase} \fg{}]	On emprunte de l'argent pour obtenir l'actif immédiatement (à $t = 0$) en différant le paiement (remboursement) au temps $T$;
+	\item[Contrat à terme de gré à gré prépayé \og \textit{prepaid forward contract} \fg{}]	On paye immédiatement (à $t = 0$) au prix $F_{0, T}^{P}$, mais on reçoit quand même l'actif plus tard.
 \end{description}
 Ce faisant, on s'attend à ce que $F_{0, T} = F_{0, T}^{P} \textrm{e}^{rT}$.
 
@@ -1869,19 +1881,21 @@ Stipule que deux portefeuilles avec les mêmes profits doivent avoir le même pr
 Nous tarifions des contrats à terme de gré à gré \textit{prépayé}s et utilisons ces prix pour dériver les prix des contrats à terme de gré à gré. 
 \end{definitionNOHFILL}
 
+\columnbreak
+
 \subsection*{Tarification d'un \textbf{contrat à terme de gré à gré prépayé}}
 
 Sans dividendes, le prix du contrat à terme de gré à gré prépayé est le prix de l'actif sous-jacent aujourd'hui---$S_{0}$. 
 
-Si une action a des dividendes, elles seront payables au propriétaire de l'action. Puisque l'acheteur du contrat (position longue) va seulement posséder le contrat au temps $T$, il ne recevra pas de dividendes. Cela va donc faire baisser la valeur de l'action et le prix du contrat devra le tenir en compte.
+Si une action a des dividendes, elles seront payables au propriétaire de l'action. Puisque l'acheteur du contrat (position longue) va seulement posséder le contrat au temps $T$, il ne recevra pas de \textbf{dividendes}. Cela va donc faire \textbf{baisser la valeur de l'action} et le prix à terme du contrat devra le tenir en compte. Également, on présume que le \textbf{droit de vote n'a aucune valeur} pour calculer le prix à terme.\\
 
-Dans le cas de \textbf{dividendes discrets}, il suffit de soustraire la valeur actualisée des dividendes: $F_{0, T}^{P} = S_{0} - PV(div)$.
+Dans le cas de \textbf{dividendes discrets}, il suffit de soustraire la valeur actualisée des dividendes: $F_{0, T}^{P} = S_{0} - PV(div)$. Ces dividendes sont supposés d'être réinvestis dans des obligations zéro coupon.
 
 Un modèle de \textbf{dividendes payés continûment} suppose un taux de dividendes continûment composé $\delta$. Une part de l'action au temps initial devient $\textrm{e}^{\delta T}$ parts au temps $T$. Cependant, nous souhaitons avoir seulement une part au temps $T$ et donc achetons $\textrm{e}^{-\delta T}$ parts au début. Le prix du contrat est donc $F_{0, T}^{P} = S_{0} e^{-\delta T}$.
 
+Dans le cas de dividendes \textbf{proportionnels}, on suppose qu'ils sont réinvestis dans le sous-jacent.
 \begin{center}
 	En bref:
-\end{center}
 \begin{tabular}{| >{\columncolor{beaublue}}c |	 >{\columncolor{beaublue}}c |	 >{\columncolor{beaublue}}c |}
 \hline\rowcolor{airforceblue} 
 	\textcolor{white}{\textbf{Dividendes}}	&	\textcolor{white}{\textbf{Prix à terme prépayé}}	&	\textcolor{white}{\textbf{Prix à terme}}	\\\specialrule{0.1em}{0em}{0.0em} 
@@ -1889,6 +1903,7 @@ Sans dividendes				&	$S_{0}$					&	$S_{0} e^{r T}$	\\\hline
 Dividendes payés continument	&	$S_{0}e^{-\delta T}$		&	$S_{0} e^{(r - \delta) T}$	\\\hline
 Dividendes discrets			&	$S_{0} - PV(div.)$	&	$S_{0} e^{r T} - FV(div.)$	\\\hline
 \end{tabular}
+\end{center}
 
 \begin{definitionNOHFILL}[\textbf{Prime à terme} \og \textit{forward premium} \fg{} ]
 Défini comme le ratio du prix à terme au prix courant de l'actif sous-jacent:
@@ -1898,6 +1913,63 @@ Défini comme le ratio du prix à terme au prix courant de l'actif sous-jacent:
 
 La prime à terme annualisée (\og \textit{annualized forward premium} \fg{}) est $\frac{1}{T} \ln \left( \frac{F_{0, T}}{S_{0}}\right)$.
 
+\end{definitionNOHFILL}
+
+\begin{center}
+	Est-ce de l'arbitrage?
+	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
+	\hline\rowcolor{airforceblue} 
+		\textcolor{white}{\textbf{Flux monétaires}}	&	\textcolor{white}{\textbf{Oui}}	&	\textcolor{white}{\textbf{Non}}	\\
+		Au temps $0$, est-ce que le flux monétaire net est $\ge 0$?	&	X	&		\\\hline
+		Est-ce que tous les flux monétaires nets futurs sont $\ge 0$?	&	X	&		\\\hline
+		Est-ce qu'au moins un des flux monétaires nets futurs est $> 0$?	&	X	&		\\\hline
+	\end{tabular}
+\end{center}
+Si la réponse à toutes les questions est oui, alors il y a une opportunité d'arbitrage. Pour identifier les flux monétaires, on utilise l'approche à deux étapes:
+\begin{enumerate}
+	\item	Écrire, sous forme d'inégalité, ce qui est observé;
+	\item	Déplacer tout ce qui est sur le côté inférieur ($<$) au côté supérieur ou égal ($\ge$);
+	\item[]	Nous avons les signes appropriés pour les transactions.
+\end{enumerate}
+
+\begin{definitionNOHFILL}[\textbf{Position synthétique}]
+Une position synthétique réplique la valeur à l'échéance d'une autre position.
+
+\tcbline
+
+\begin{center}
+	\textbf{Achat d'action synthétique}
+\end{center}
+
+On peut synthétiquement répliquer l'achat d'une action en prêtant de l'argent et achetant un contrat à terme de gré à gré.
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c |	c	|	c	|}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{$t = 0$}}	&	\textcolor{white}{\textbf{$t = T$}}	\\\specialrule{0.1em}{0em}{0.0em} 
+Prêt de $S_{0}\textrm{e}^{-\delta T}$	&	$-S_{0}\textrm{e}^{-\delta T}$	&	$+S_{0}\textrm{e}^{(r - \delta) T} = F_{0, T}$	\\\hline
+\shortstack{Achat d'un contrat à\\ terme de gré à gré}	&	$0$	&	$S_{T} - F_{0, T}$	\\\specialrule{0.1em}{0em}{0.0em} 
+Net	&	$-S_{0}\textrm{e}^{-\delta T}$	&	$S_{T}$	\\\specialrule{0.1em}{0em}{0.0em} 
+\end{tabular}
+\end{center}
+
+\tcbline
+
+\begin{center}
+	\textbf{Obligation zéro-coupon synthétique}
+\end{center}
+
+On peut créer une obligation zéro-coupon synthétique en achetant une action et vendant un contrat à terme de gré à gré.
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c |	c	|	c	|}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{$t = 0$}}	&	\textcolor{white}{\textbf{$t = T$}}	\\\specialrule{0.1em}{0em}{0.0em} 
+Achat de $\textrm{e}^{-\delta T}$ actions	&		$-S_{0}\textrm{e}^{-\delta T}$	&	$+S_{T}$	\\\hline
+\shortstack{Vente d'un contrat à\\ terme de gré à gré}	&	$0$	&	$F_{0, T} - S_{T}$	\\\specialrule{0.1em}{0em}{0.0em} 
+Net	&	$0$	&	$F_{0, T} = S_{0}\textrm{e}^{(r - \delta)T}$	\\\specialrule{0.1em}{0em}{0.0em} 
+\end{tabular}
+\end{center}
+
+Le rendement de cette stratégie s'appelle le \textbf{taux de mise en pension implicite} (\og \textit{implied repo rate} \fg{}). Cela signifie le taux implicite dans cette stratégie pour répliquer un rendement équivalent à une obligation zéro-coupon.
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[\textbf{Contrat à terme synthétique} \og \textit{synthetic forward} \fg{}]
@@ -1922,40 +1994,37 @@ En bref, on \textbf{achète l'actif} et \textbf{emprunte de l'argent}:
 	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
 	\hline\rowcolor{airforceblue} 
 		\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{Flux au temps $0$}}	&	\textcolor{white}{\textbf{Flux au temps $T$}}	\\
-		Acheter un actif	&	$-S(0)$	&	$+S(T)$	\\
-		Emprunter de l'argent	&	$+S(0)$	&	$-S(0)\textrm{e}^{rT} = -F_{0, T}$	\\\hline
-		Net des flux monétaires	&	$0$	&	$S(T) - F_{0, T}$	\\\hline
+		Acheter un actif			&	$-S_{0}$	&	$+S_{t}$	\\
+		Emprunter de l'argent	&	$+S_{0}$	&	$-S_{0}\textrm{e}^{rT} = -F_{0, T}$	\\\hline
+		Net des flux monétaires	&	$0$	&	$S_{t} - F_{0, T}$	\\\hline
 	\end{tabular}
 \end{center}
+
+Le montant du prêt n'a pas besoin d'être $S_{0}$ puisque le contrat est synthétique. Ce faisant, si le montant emprunté d'un contrat est de $S_{0}$ on qu'il est au cours du marché.
 \end{definitionNOHFILL}
 
+\begin{definitionNOHFILL}[Comptant terme \og \textit{\textbf{Cash-and-carry}} \fg{}]
+Dans un comptant terme, alias l'achat au comptant - vente à terme, achète une action avec un emprunt et vend un contrat à terme de gré à gré.\\
+
+La stratégie s'apparente à une obligation zéro coupon financé par une obligation zéro coupon. Il s'ensuit que, sans arbitrage, le profit sera nul.
 \begin{center}
-	Est-ce de l'arbitrage?
-	\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
-	\hline\rowcolor{airforceblue} 
-		\textcolor{white}{\textbf{Flux monétaires}}	&	\textcolor{white}{\textbf{Oui}}	&	\textcolor{white}{\textbf{Non}}	\\
-		Au temps $0$, est-ce que le flux monétaire net est $\ge 0$?	&	X	&		\\\hline
-		Est-ce que tous les flux monétaires nets futurs sont $\ge 0$?	&	X	&		\\\hline
-		Est-ce qu'au moins un des flux monétaires nets futurs est $> 0$?	&	X	&		\\\hline
-	\end{tabular}
+\begin{tabular}{| >{\columncolor{beaublue}}c |	c	|	c	|}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{Transaction}}	&	\textcolor{white}{\textbf{$t = 0$}}	&	\textcolor{white}{\textbf{$t = T$}}	\\\specialrule{0.1em}{0em}{0.0em} 
+Achat de $\textrm{e}^{-\delta T}$ actions	&		$-S_{0}\textrm{e}^{-\delta T}$	&	$+S_{T}$	\\\hline
+\shortstack{Vente d'un contrat à\\ terme de gré à gré}	&	$0$	&	$F_{0, T} - S_{T}$	\\\hline
+Emprunt de $S_{0}\textrm{e}^{-\delta T}$	&	$+S_{0}\textrm{e}^{-\delta T}$	&	$-S_{0}\textrm{e}^{(r - \delta) T}$	\\\specialrule{0.1em}{0em}{0.0em} 
+Net	&	$0$	&	$F_{0, T} - S_{0}\textrm{e}^{(r - \delta) T}$	\\\specialrule{0.1em}{0em}{0.0em} 
+\end{tabular}
 \end{center}
-Si la réponse à toutes les questions est oui, alors il y a une opportunité d'arbitrage. Pour identifier les flux monétaires, on utilise l'approche à deux étapes:
-\begin{enumerate}
-	\item	Écrire, sous forme d'inégalité, ce qui est observé;
-	\item	Déplacer tout ce qui est sur le côté inférieur ($<$) au côté supérieur ou égal ($\ge$);
-	\item[]	Nous avons les signes appropriés pour les transactions.
-\end{enumerate}
 
-\begin{definitionNOHFILL}[\textbf{Position synthétique}]
-Une position synthétique réplique la valeur à l'échéance d'une autre position.
-\end{definitionNOHFILL}
+Sans arbitrage, la dernière ligne s'annule.
 
-
-\begin{definitionNOHFILL}[Achat au comptant - vente à terme \og \textit{\textbf{Cash-and-carry}} \fg{}]
-L'investisseur reçoit de l'argent d'un emprunt qu'il utilise pour acheter l'action qu'il porte à terme au futur.
 \tcbline
 L'inverse arrive lorsque le marché offre un contrat à terme de gré à gré sous-évalué.
 \end{definitionNOHFILL}
+
+\columnbreak
 
 \subsection*{Contrats de change}
 \begin{distributions}[Notation de devises]
@@ -2009,25 +2078,31 @@ La valeur à l'échéance sera $x_t - x_0 \left(\frac{1 + i_D}{1 + i_{\text{É}}
 %où $\alpha$ est la prime de risque 	qu'on enlève pour obtenir le prix du Forward, tel que
 %\[\alpha = \underbrace{r}_{\text{Taux sans risque}} + \underbrace{(\alpha - r)}_{\text{Prime de risque}}\]
 %%%	------------------------------------------------------------
+\columnbreak
+
 \subsection*{Contrat à terme standardisé}
+
+Les contrats à terme standardisés sont transigés à la bourse. Ces transactions peuvent avoir lieu soit sur le plancher ou électroniquement.
 
 \begin{definitionNOHFILL}[Contrat à terme standardisé \og \textit{future contract} \fg{}]
 Différences des contrats à terme standardisés aux contrats à terme de gré à gré:
 \begin{enumerate}[leftmargin = *]
 	\item	\textbf{Personnalisable};
 		\begin{itemize}[leftmargin = *]
-		\item	Pour un \og \textit{forward} \fg{}, l'acheteur et le vendeur peuvent choisir n'importe quel prix, montant, date d'échéance ou actif sous-jacent;	
-		\item	Pour un \og \textit{future} \fg{}, ces composantes sont prédéterminées et ont dit donc qu'il est \textbf{standardisé}.
+		\item	Les contrats \og \textit{forwards} \fg{} peuvent être \textbf{faits de gré à gré} sur n'importe quel actif avec n'importe quelle clause et/ou condition;
+		\item[]	L'acheteur et le vendeur peuvent choisir n'importe quel prix, montant, date d'échéance ou actif sous-jacent;	
+		\item	Les contrats \og \textit{futures} \fg{} sont \textbf{surveillés et contrôlés} par des instances officielles au même titre que la bourse;
+		\item[]	On dit donc qu'ils sont \textbf{standardisés}.
 		\end{itemize}
 	\item	\textbf{Valorisation au prix du marché} \og \textit{Marked-to-Market} \fg{};
 		\begin{itemize}[leftmargin = *]
 		\item	Pour un \og \textit{forward} \fg{}, toutes les échanges d'argent se produisent à l'échéance (le contrat est réglé à l'échéance);	
-		\item	Pour un \og \textit{future} \fg{}, les pertes et profits sont réglés tous les jours (processus de valorisation au prix du marché).
+		\item	Pour un \og \textit{future} \fg{}, les pertes et profits sont réglés tous les jours (processus de valorisation au prix du marché) en espèces.
 		\end{itemize}
 	\item	\textbf{Risque de défaut};
 		\begin{itemize}[leftmargin = *]
 		\item	Pour un \og \textit{forward} \fg{}, le contrat est pleinement exposé au risque de défaut; 
-		\item	Pour un \og \textit{future} \fg{}, avec le règlement quotidien des pertes et de profit le risque de défaut est minimisé.
+		\item	Pour un \og \textit{future} \fg{}, avec le règlement quotidien des pertes et profits, le risque de défaut est minimisé.
 		\end{itemize}
 	\item	\textbf{Liquidité}: fait référence à l'aise d'acheter ou de vendre un actif ou, de façon équivalente, de sortir ou entrer de leur position;
 		\begin{itemize}[leftmargin = *]
@@ -2037,11 +2112,12 @@ Différences des contrats à terme standardisés aux contrats à terme de gré �
 	\item	\textbf{Limite de prix};
 		\begin{itemize}[leftmargin = *]
 		\item	Pour un \og \textit{forward} \fg{}, il n'y a aucune limite de prix sur l'actif sous-jacent et il peut varier sans limites;
-		\item	Pour un \og \textit{future} \fg{}, il y a des limites incluses dans le contrat.
+		\item	Pour un \og \textit{future} \fg{}, il y a des limites incluses dans le contrat sur la variation du prix du sous-jacent;
+		\item	Par exemple, s'il y a une baisse de 13\% au S \& P 500, il y a un \og \textit{circuit breaker} \fg{} qui arrête temporairement l'échange.
 		\end{itemize}
 \end{enumerate}
 
-Puisque le règlement des contrats à terme standardisé est différent des contrats à terme de gré à gré, le prix à terme sera également différent.
+Puisque le règlement des contrats à terme standardisé est quotidien alors que le règlement des contrats à terme de gré à gré s'effectue à l'échéance, le prix à terme est différent.
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Marges initiales et de maintien \og \textit{initial and maintenance margins} \fg{}]
@@ -2076,19 +2152,20 @@ Ce faisant, la \colorbox{bleudefrance}{\textbf{balance de la marge}} \textit{dan
 \setlength{\mathindent}{1cm}
 \end{algo2}
 
+\paragraph*{Note}	Le S \& P 500 a 250 parts sous-jacentes.
+
 \newpage
 
 % --- Chapitre 9 ---
 \setcounter{section}{8}
 \section{Parité et autres liens entre les options}
-
 \begin{rappel}{Équation de parité des options vente-achat}
 \begin{align*}
 	C_{\text{Eur}}(K, T) - P_{\text{Eur}}(K, T)
 	&=	F_{0, T}^{P}(S) - K\textrm{e}^{-rT}\\
 \end{align*}
 
-En anglais c'est le \og \textit{\textbf{Put-Call Parity Equation}} \fg{}.
+En anglais c'est le \og \textit{\textbf{Put-Call Parity Equation}} \fg{}. Cette équation vaut pour les options européennes seulement puisque les américaines peuvent être exercées à n'importe quel moment.
 \end{rappel}
 
 \subsection*{Positions synthétiques}
@@ -2126,6 +2203,8 @@ Avec l'équation de parité, on peut créer des options, actions ou obligations 
 		\underset{\text{\shortstack{achat d'une\\ option de vente}}}{\underbrace{-P(S; K)}} \;
 		\underset{\text{\shortstack{achat de $e^{-\delta T}$\\ parts de l'action}}}{\underbrace{-S_{0}\textrm{e}^{-\delta T}}}
 \end{align*}
+
+%\columnbreak
 
 \subsection*{Parité des options}
 
@@ -2207,6 +2286,8 @@ On peut penser à cette notation comme $C(\text{Receive}, \text{Give up})$ et $P
 \end{align*}
 
 \paragraph{Note}	Si le prix d'exercice est dans la même devise que le prix de l'option.
+
+%\columnbreak
 
 \subsection*{Comparaison de différentes options}
 
@@ -2325,6 +2406,8 @@ Ce faisant, \textcolor{cobalt}{la borne supérieure d'une option de vente europ�
 	\geq	\max\left(K\textrm{e}^{-rT} - F_{0, T}^{P}(S); 0\right)
 \end{align*}
 
+%\columnbreak
+
 \subsection*{Exercice hâtif des options américaines}
 \subsubsection*{Notions d'intérêt et d'escompte}
 La valeur actualisée de l'intérêt accumulé sur le prix d'exercice $K$ est $PV(\text{intérêt sur le prix d'exercice}) = K(1 - \textrm{e}^{-rT})$.\\
@@ -2339,6 +2422,7 @@ L'avantage d'exercer l'option d'achat immédiatement est la \textbf{réception d
 Cependant, l'avantage de repousser l'exercice est \textbf{l'intérêt accumulé sur le prix d'exercice} $K$ et la protection, ou \textit{assurance}, \textbf{contre le risque d'une baisse du prix de l'action}. Une protection contre ce risque de baisse correspond donc à une \textbf{option de vente}.\\
 
 Il est donc important de retenir:
+\begin{conceptgen}{}
 \begin{enumerate}
 	\item	Il est rationnel d'effectuer un exercice hâtif si\\
 	 $PV(\text{dividendes}) > PV(\text{intérêt sur $K$}) - PV(\text{assurance})$;
@@ -2348,6 +2432,7 @@ Il est donc important de retenir:
 	\item	Il est \textbf{\textit{possiblement} rationnel} d'effectuer un exercice hâtif si \\
 	$PV(\text{dividendes}) > PV(\text{intérêt sur $K$})$.
 \end{enumerate}
+\end{conceptgen}
 
 \subsubsection*{Options de vente américaines}
 L'avantage d'exercer l'option d'achat immédiatement est la réception de prix d'exercice $K$ et \textbf{l'intérêt qu'on peut accumuler avec}.\\
@@ -2355,6 +2440,7 @@ L'avantage d'exercer l'option d'achat immédiatement est la réception de prix d
 Cependant, l'avantage de repousser l'exercice est de \textbf{continuer à recevoir des dividendes}. Également, la protection contre le risque de \textbf{ne \textit{pas} vendre l'action à un prix plus élevé}. Une protection contre ce risque d'une hausse de prix correspond donc à une \textbf{option d'achat}.\\
 
 Il est donc important de retenir:
+\begin{conceptgen}{}
 \begin{enumerate}
 	\item	Il est rationnel d'effectuer un exercice hâtif si\\
 	 $PV(\text{intérêt sur $K$}) > PV(\text{dividendes}) + PV(\text{assurance})$;
@@ -2363,7 +2449,9 @@ Il est donc important de retenir:
 	$PV(\text{intérêt sur $K$}) > PV(\text{dividendes})$;
 	\item	Il s'ensuit qu'il est \textbf{\textit{possiblement} rationnel} d'effectuer un \textbf{exercice hâtif} sur une \textbf{option d'achat} américaine \textbf{sans dividendes}.
 \end{enumerate}
+\end{conceptgen}
 
+%\columnbreak
 
 \subsection*{Effet du prix d'exercice}
 Trois arguments sur comment différents prix d'exercices font varier les prix d'options. Ces arguments, ou \textit{propositions} expliquent le lien:
@@ -2435,7 +2523,7 @@ Si la différence en prix d'option était supérieure à la différence en prix 
 \section{Introduction au modèle binomial d'évaluation des options}
 
 \begin{description}
-	\item[Modèle binomial d'évaluation des options]	le prix de l'actif sous-jacent au début d'une période devient un de deux prix possibles à la fin de la période;
+	\item[Modèle binomial d'évaluation des options]	le prix de l'actif sous-jacent au début d'une période devient un de deux prix possibles à la fin de la période.
 		\begin{itemize}[leftmargin = *]
 		\item	en anglais c'est le \og \textit{Binomial Option Pricing Model} \fg{}.
 		\end{itemize}
@@ -2739,6 +2827,23 @@ L'équation pour un arbre standard suffit de remplacer les paramètres:
 \end{align*}
 	
 	
+\subsection*{Rendements composés continûment}
+\begin{itemize}
+	\item	La fonction \textbf{logarithmique} calcule des rendements composés continûment à partir des prix.
+		\begin{align*}
+		r_{t, t + h} &= \log\left(\frac{S_{t + h}}{S_{t}}\right)
+		\end{align*}
+	\item	La fonction \textbf{exponentielle} calcul des prix à partir des rendements composés continûment.
+		\begin{align*}
+		S_{t + h}	&=	S_{t}\textrm{e}^{r_{t, t + h}}
+		\end{align*}
+	\item	Les rendements composés continûment sont \textbf{additifs}.
+		\begin{align*}
+		r_{t, t + nh}	&=	\overset{n}{\underset{i = 1}{\sum}} r_{t + (i - 1)h, t + ih}
+		\end{align*}
+\end{itemize}	
+
+	
 \subsection*{Volatilité}
 %\begin{align*}
 %	r_{t, t + h}
@@ -2748,11 +2853,16 @@ L'équation pour un arbre standard suffit de remplacer les paramètres:
 \begin{distributions}[Notation]
 \begin{description}[leftmargin = *]
 	\item[$R$]	variable aléatoire de la force du rendement (sous base annuelle);
-	\item[Hypothèse]	Les rendements composés continûment sur des périodes disjointes, mais de même longueur $h$, sont i.i.d.
+	\item[Hypothèse]	Les rendements composés continûment sur des périodes disjointes, mais de même longueur $h$, sont i.i.d.;
+	\item[$r_{t, t + h}$]	le \textbf{rendement composé continûment entre $t$ et $t + h$}.
+		\begin{align*}
+		r_{t, t + h} &= \ln\left(\frac{S_{t + h}}{S_{t}}\right)
+		\end{align*}
 \end{description}
 \end{distributions}
 
-On suppose $n$ rendements, sur une période de $h$ années, composés continûment $r_{t, t + h}, r_{t + h, t + 2h}, \dots, r_{t + (n - 1)h, t + nh}$. On peut estimer la volatilité historique avec:
+On suppose $n$ rendements, sur une période de $h$ années, composés continûment $r_{t, t + h}, r_{t + h, t + 2h}, \dots, r_{t + (n - 1)h, t + nh}$. \\
+On peut estimer la volatilité historique avec:
 
 \begin{align*}
 	s_{h}
@@ -2773,6 +2883,2110 @@ Donc $s_{h}$ estime $\sigma_{h}$ et $\bar{r}_{h}$ estime $\mu_{h}$ où:
 
 Pour changer d'une base annuelle (le défaut de $h$) à une base quelconque, on divise par $h$ puisqu'il faut additionner $\frac{1}{h}$ rendements. \\
 Par exemple, sous base mensuelle $h = \frac{1}{12}$ on a $\sigma = s_{1/12}\sqrt{12}$ ou sous base hebdomadaire $h = \frac{1}{52}$ on a $\sigma = s_{1/52}\sqrt{52}$.
+
+\newpage
+
+\section{Modèle binomial d’évaluation des options: sujets sélectionnés}
+
+\subsection*{Compréhension de l'exercice hâtif}
+
+Avec un exercice hâtif, le détenteur d'une option d'achat:
+\begin{enumerate}[leftmargin = *]
+	\item	Reçoit l'action et donc les dividendes futurs.	\\
+			Donc, on souhaite que $\delta$ augmente.
+	\item	Paie le prix d'exercice avant expiration et donc subit des coûts d'intérêt.	\\
+			Donc, on ne souhaite pas que $r$ augmente.
+	\item	Perd l'assurance implicite à l'option.	\\
+			Donc, on ne souhaite pas que $\sigma$ augmente.
+\end{enumerate}
+
+Le plus la volatilité $\sigma$ est élevée, le plus élevé (faible) le prix de l'action auquel on va exercer l'option d'achat (de vente).\\
+
+Si la valeur de l'assurance est nulle ($\sigma = 0$) et que $T \rightarrow \infty$, on lève l'option d'achat si $\delta S_{T} > r K$; c'est-à-dire, si la valeur des dividendes est supérieure à l'intérêt accumulé sur le prix d'exercice.\\
+
+Pour une option de vente, c'est l'inverse.
+
+\subsection*{Compréhension de l'évaluation neutre au risque}
+
+\begin{distributions}[Notation]
+\begin{itemize}[leftmargin = *]
+	\item[$r$]	force d'intérêt sans risque;
+	\item[$\delta$]	force de dividendes;
+	\item[$\alpha$]	force de rendement espéré sur l'action;
+%	\item[]	$\alpha > r$ gain en capital + dividendes
+%	\item[$p$]	vraie probabilité (que $S_{T}$ passe à $u^{*}S_{T}$).
+\end{itemize}
+\end{distributions}
+
+\begin{description}
+	\item[Aversion au risque]	Souhaite maximiser le rendement espéré $\text{E}[R]$ tout en \textit{minimisant} le risque $\sigma^{2}_{R}$.
+	\item[Indifférence au risque]	Souhaite maximiser le rendement espéré $\text{E}[R]$ et est \textit{indifférent} au risque $\sigma^{2}_{R}$.
+	\item[Exemple]	Soit 2 investissements: 1 000\$ assuré ou 2 000\$ avec une probabilité de 50\% et 0\$ avec une probabilité de 50\%.\\
+					Un investisseur avec une \textit{aversion} au risque préfère la première option, car elle est moins risquée.	\\
+					Un investisseur avec une \textit{indifférence} au risque est indifférent à la première ou la deuxième option, car le rendement espéré des deux options est égal.
+\end{description}
+
+Donc une évaluation neutre au risque suppose que les investisseurs sont indifférents au risque \textbf{même s'ils ne le sont pas}.
+
+%%%	------------------------------------
+%%%	NOTE
+%%%	+	Pas couvert le bout sur \gamma puisque pas jugé nécessaire.
+%%%	------------------------------------
+
+\subsection*{L'arbre binomial et la lognormalité}
+
+Il y a 3 problèmes qui empêchent la modélisation du prix de l'action avec une marche aléatoire:
+\begin{conceptgen}{Problèmes}
+\begin{enumerate}[leftmargin = *]
+	\item	Le prix de l'action \textbf{peut devenir négatif} s'il y a suffisamment de mouvements vers le bas. 
+	\item	La magnitude d'un mouvement devrait dépendre de: la \textbf{fréquence} des mouvements et le \textbf{niveau} du prix de l'action.
+		\begin{itemize}[leftmargin = *]
+		\item	Il n'est pas réaliste d'avoir le prix d'une action monter ou baisser de 60\$ en une journée.
+		\end{itemize}
+	\item	Le \textbf{rendement} sur l'action devrait, en moyenne, \textbf{être positif}.
+\end{enumerate}
+\end{conceptgen}
+
+%%%	------------------------------------
+%%%	NOTE
+%%%	+	Pas couvert la distance carrée du point du départ qui est de n.
+%%%	------------------------------------
+
+
+Le modèle binomial est une variante du modèle de marche aléatoire qui résout ces problèmes; il suppose que les rendements composés continûment sont une \textbf{marche aléatoire avec dérive}. 
+Le rendement a 2 composantes: une \textit{certaine} $(r - \delta)h$ et une \textit{incertaine} $\pm \sigma \sqrt{h}$.
+
+Le modèle règle donc les problèmes :
+\begin{conceptgen}{Problèmes}
+\begin{enumerate}[leftmargin = *]
+	\item	Le \textbf{prix} de l'action \textbf{ne peut pas être négatif}.
+	\item	Si les \textbf{mouvements} du prix de l'action sont \textbf{plus fréquents}, $h$ se rapetisse et les mouvements du prix deviennent \textbf{plus petits}. 
+	\item	On peut garantir un \textbf{prix positif}. 
+		\begin{itemize}[leftmargin = *]
+		\item	Ceci, car il y a une composante certaine et que l'on choisit la probabilité d'une augmentation du prix.
+		\end{itemize}
+\end{enumerate}
+\end{conceptgen}
+
+\subsubsection*{Lognormalité}
+
+%%%	------------------------------------
+%%%	NOTE
+%%%	+	Pas couvert la probabilité de la i-ème node qui est une distribution binomial.
+%%%	------------------------------------
+
+Lorsqu'on traverse un arbre binomial, on additionne implicitement les composantes de rendements $(r - \delta)h \pm \sigma \sqrt{h}$. Cette somme de variables aléatoires binomiales tend, lorsque $n \rightarrow \infty$ (ou, de façon équivalente, $h \rightarrow 0$), vers une normale.
+Il en résulte que les rendements composés continûment sont approximativement normalement distribués et donc que le prix de l'action a une distribution (approximativement) lognormale.
+
+\subsubsection*{Arbres binomiaux alternatifs}
+Il y existe d'autres façons de construire un arbre binomial qui mènent à des mouvements de $u$ et $d$ différents:
+
+\begin{center}
+\begin{tabular}{|	>{\columncolor{airforceblue}}c	| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Méthode}}	&	\textcolor{white}{\textbf{Mouvement}}	&	\textcolor{white}{\textbf{Notes}}		\\\specialrule{0.1em}{0em}{0.0em} 
+\textcolor{white}{Arbre à terme}		&	$\textrm{e}^{(r - \delta)h \pm \sigma \sqrt{h}}$	&	$u > \textrm{e}^{(r - \delta)h} > d$	\\\hline
+\textcolor{white}{\shortstack{Arbre de\\ Cox-Ross-Rubenstein}}	&	$\textrm{e}^{\pm \sigma \sqrt{h}}$	&	$ud = 1$	\\\hline
+\textcolor{white}{Arbre lognormal}	&	$\textrm{e}^{(r - \delta - \frac{1}{2}\sigma^{2})h \pm \sigma \sqrt{h}}$	&	$p^{*} \approx \frac{1}{2}$	\\\hline
+\end{tabular}
+\end{center}
+\paragraph{Note}	Il est possible qu'avec un arbre de Cox-Ross-Rubenstein, si $h$ est gros et $\sigma$ petit, $\textrm{e}^{rh} > \textrm{e}^{\sigma\sqrt{h}}$.
+
+Malgré que toutes les différentes méthodes mènent à des prix différents lorsque $n$ est fini, elles tendent vers le même prix lorsque $n \rightarrow \infty$. De plus, malgré que les mouvements $u$ et $d$ sont différents, le ratio des facteurs $\frac{u}{d}$ est le même:
+\begin{align*}
+	\frac{u}{d}
+	&=	\textrm{e}^{2\sigma\sqrt{h}}
+\end{align*}
+
+Alors, peu importe la méthode utilisée pour construire l'arbre, la distance proportionnelle entre $u$ et $d$ mesure la volatilité.
+
+\subsubsection*{Est-ce un modèle réaliste?}
+\begin{conceptgen}{Hypothèses}
+Il y a des hypothèses douteuses à la distribution lognormale des prix:
+\begin{enumerate}[label = \alph*), leftmargin = *]
+	\item	Volatilité $\sigma$ constante.
+	\item	Pas de grandes variations spontanées.
+	\item	Indépendance entre les rendements composés continûment.
+\end{enumerate}
+
+\tcbline
+
+En pratique, aucune de ces hypothèses n'est vérifiée. Le modèle n'est pas parfait, mais sert plutôt de bon point de départ.
+\end{conceptgen}
+
+\newpage
+
+\section{La formule de Black-Scholes}
+
+\subsection*{Formule de Black-Scholes généralisée}
+\begin{conceptgen}{Hypothèses de la formule de Black-Scholes}
+\begin{center}
+	\textbf{Sur la distribution de l'action sous-jacente}
+\end{center}
+\begin{enumerate}[leftmargin = *, label = \alph*)]
+	\item	Les rendements (composés continûment) sur l'action ont une distribution normale et sont indépendants à travers le temps.
+	\item	La volatilité des rendements (composés continûment) est connue et constante.
+	\item	Les dividendes futurs sont connus.
+\end{enumerate}
+\tcbline
+\begin{center}
+	\textbf{Sur l'environnement économique}
+\end{center}
+\begin{enumerate}[leftmargin = *, label = \alph*)]
+	\item	Le taux (force) sans risque est connu et constant.
+	\item	Il n'y a pas d'impôt	 ni de frais de transactions.
+	\item	Il n'y a pas de frais de vente à découvert.
+	\item	Les investisseurs peuvent emprunter au taux sans risque.
+\end{enumerate}
+\end{conceptgen}
+
+\begin{definitionNOHFILL}[Formule de Black-Scholes généralisée]
+Équations généralisées :
+
+\begin{align*}
+	d_{1}
+	&=	\left(
+			\frac{\ln\frac{F^{P}(S)}{F^{P}(K)} {\color{blue}{+}} \frac{1}{2} \sigma^{2} T}
+	 			 {\sigma\sqrt{T}}
+		\right)	&
+	d_{2}
+	&=	\left(
+			\frac{\ln\frac{F^{P}(S)}{F^{P}(K)} {\color{red}{-}} \frac{1}{2} \sigma^{2} T}
+	 			 {\sigma\sqrt{T}}
+		\right)	
+	\equiv	d_{1} - \sigma \sqrt{t}	\\
+\end{align*}
+
+Prix d'options \textbf{européennes} selon la formule de Black-Scholes:
+
+\begin{align*}
+	C(S_{0}, K, \sigma, r, T, \delta)
+	&=	F^{P}_{0, T}(S) N(d_{1}) - F^{P}_{0, T}(K) N(d_{2})	\\
+	P(S_{0}, K, \sigma, r, T, \delta)
+	&=	F^{P}_{0, T}(K) N(-d_{2}) - F^{P}_{0, T}(S) N(-d_{1})	
+\end{align*}
+
+\tcbline
+\textbf{Notes}
+\begin{align*}
+	\sigma
+	&=	\sqrt{\frac{\text{Var}(\ln F^{P}_{t, T}(S))}{t}}	
+	\equiv	\sqrt{\frac{\text{Var}(\ln F_{t, T}(S))}{t}}	
+	\equiv	\sqrt{\frac{\text{Var}(\ln S_{t})}{t}}, \, \forall 0 < t \le T	\\
+\end{align*}
+
+\begin{description}
+	\item[$\ln S_{t}$]	\textbf{Volatilité de l'action} ou, de façon équivalente, volatilité du rendement sur l'action composé continûment.
+\end{description}
+\end{definitionNOHFILL}
+
+\subsection*{Options sur d'autres sous-jacents}
+
+Avec la formule généralisée, on peut appliquer la formule de Black-Scholes à d'autres sous-jacents. Il y a quelques considérations à prendre dans un tel cas pour option sur:
+\begin{description}
+	\item[Actions avec dividendes discrets proportionnels]	On trouve le nombre $n$ de fois que le dividende sera versé entre $0$ et l'échéance de $T$ de l'option.
+		\begin{align*}
+		F^{P}_{0, T}(S)
+		&=	S_{0} (1 - txdiv)^{n}
+		\end{align*}
+	\item[Contrats à terme standardisés]	Il peut arriver que la date d'échéance---$T$---de l'option ne soit pas la même que la date d'échéance---$T'$---du contrat à terme standardisé sur un actif quelconque $Q$. \\
+			Dans un tel cas, il faut que $T' \ge T$ et qu'on actualise le prix à terme $F_{0, T'}(Q)$ à partir de $T$ (et non $T'$).
+			\begin{align*}
+			F^{P}_{0, T}(F)	
+			&=	F_{0, T'}(Q) \textrm{e}^{-rT}	&
+			F^{P}_{0, T}(K)
+			&=	K \textrm{e}^{-rT}	\\
+			\end{align*}
+	\item[Devises]	Les prix à terme prépayés doivent être dans la même devise que l'option.
+		\begin{align*}
+		C(S_{0} = x_{0}, K, \sigma, r = r_{\text{DD}}, T, \delta = r_{\text{DÉ}})
+		&=	x_{0} \textrm{e}^{-r_{\text{DÉ}} T}N(d_{1}) - K \textrm{e}^{r_{\text{DD}}T} N(d_{2})	
+		\end{align*}
+\end{description}
+
+%%%	-------------------------
+%%%	NOTE
+%%%	+	Ajouter clarification sur le K =/= nécessairment à F_{0, T'}(Q) et r =/= nécessairement \delta.
+%%%	+	Compléter pour devises lorsque les notes de cours seront rendues disponibles.
+%%%	-------------------------
+
+
+
+\columnbreak
+
+\subsection*{Diagrammes du profit avant échéance}
+Nous avons précédemment tracé des diagrammes de profit de valeur à l'échéance pour les options \textbf{à l'expiration}. Nous allons maintenant étendre ceci pour tracer les diagrammes \textbf{avant expiration}.
+
+L'idée est la même qu'auparavant mais on remplace la valeur à l'échéance par la valeur de revente de l'option
+
+Pour tracer les diagrammes, on fait varier les prix en maintenant fixe les dates.
+
+Nous illustrons ceci avec 2 stratégies:
+
+\begin{definitionNOHFILL}[Achat et revente d'une option d'achat]
+Crée en :
+\begin{itemize}[leftmargin = *]
+	\item	Achetant l'option d'achat au temps $t_{1}$;
+	\item	Vendant l'option d'achat au temps $t_{2}$ avant l'échéance ($t_{2} < T$).
+\end{itemize}
+
+\begin{description}
+	\item[Valeur à $t_{2}$]	
+		\begin{align*}
+		&=	\text{Prix de revente}	\\
+		&=	C(S_{t_{2}}, K, \sigma, r, T, \delta)
+		\end{align*}
+	\item[Profit à $t_{2}$]	
+		\begin{align*}
+		&=	\text{Prix de revente} - \text{Prix d'achat à $t_{1}$ accumulé à $t_{2}$}	\\
+		&=	C(S_{t_{2}}, K, \sigma, r, T, \delta) - C(S_{t_{1}}, K, \sigma, r, T, \delta) \textrm{e}^{r(t_{2} - t_{1})}
+%%%		maybe mistake with T should be T  - t_{1}????
+		\end{align*}
+\end{description}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Écart horizontal]
+Crée en :
+\begin{itemize}[leftmargin = *]
+	\item	Vendant une option venant à échéance à $t_{1}$;
+	\item	Achetant une option identique sauf pour la date d'échéance de $t_{2}$.
+\end{itemize}
+
+\begin{description}
+	\item[Coût initial]	Pour des options d'achat on obtient:
+		\begin{align*}
+		&=	C(S, K, \sigma, r, T_{2}, \delta) - C(S, K, \sigma, r, T_{1}, \delta) 
+		\end{align*}
+\end{description}
+
+\tcbline
+%%%	--------------------
+%%%	NOTE
+%%%	+	Détailler davantage le contexte / profit / raisons pour
+%%%	--------------------
+\textbf{Notes}
+\begin{itemize}[leftmargin = *]
+	\item	Permet de spéculer sur la volatilité de l'action.\\
+			Typiquement utilisé lorsqu'un investisseur croit que, entre deux prix d'exercice, le prix va rester fixe;
+	\item	en anglais \og \textit{calendar spread} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsection*{Volatilité implicite}
+\begin{description}
+	\item[Volatilité implicite]	La valeur $\sigma$ tel que la formule de Black-Scholes reproduit le prix de l’option observé sur le marché.
+\end{description}
+\begin{itemize}[leftmargin = *]
+	\item	La volatilité tel quel n'est pas observable et son estimation est problématique;
+	\item	La volatilité \textit{historique} (vue au chapitre 10) n'est pas adéquate car elle ne prévoit pas le futur;
+	\item	On peut en lieu isoler la volatilité \textit{implicite} $\hat{\sigma}$ avec le prix observé de l'action et la formule de Black-Scholes.	\\
+			Elle représente donc l'appréciation de la volatilité faite par le marché;
+	\item	Malgré que la volatilité est supposée constante dans la formule, en réalité elle varie selon le prix d'exercice $K$ et la date d'échéance $T$;
+	\item	On peut l'utiliser pour évaluer une option qui n'existe pas encore;
+	\item	Également, on peut valider ou invalider le modèle de Black-Scholes;
+	\item	Finalement, on peut comparer des options par leur volatilité implicite au lieu de leurs prix.
+%	\item	En voyant le marché des options comme un marché qui transige la volatilité, on peut la révéler.\\
+%			Selon cette théorie, les prix d'options révèlent les attentes du marché de la distribution des prix d'actions dans le futur.
+\end{itemize}
+
+\newpage
+
+
+\section*{Les Grecs de l'option}
+
+\begin{center}
+\begin{tabular}{|	>{\columncolor{airforceblue}}c	| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}m{0.5\columnwidth}  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Grec}}	&	\textcolor{white}{\textbf{Définition}}	&	\textcolor{white}{\textbf{Mesure le changement de la valeur ($V$)}}		\\\specialrule{0.1em}{0em}{0.0em} 
+$\Delta$	&	$\deriv{S}{V}$	&	de l'option par une augmentation (de 1\$) du prix de l'action.	\\
+$\Gamma$	&	$\deriv{S}{\Delta} \equiv \deriv[2]{S}{V}$	&	du Delta par une augmentation (de 1\$) du prix de l'action.	\\
+$\theta/365$	&	$\deriv{t}{V}$	&	de l'option par une baisse (d'un jour) de la date d'échéance.	\\
+\textbf{Vega}	&	$\deriv{\sigma}{V}$	&	de l'option par une augmentation (de 1\%) de la volatilité.	\\
+$\rho/100$	&	$\deriv{r}{V}$	&	de l'option par une augmentation (de 1\%) du taux sans risque.	\\
+$\psi/100$	&	$\deriv{\delta}{V}$	&	de l'option par une augmentation (de 1\%) de la force de dividende.	\\
+\end{tabular}
+\end{center}
+
+Notes
+\begin{itemize}[leftmargin = *]
+	\item	Si on fait référence au \og Delta \fg{} d'une option, on suppose la position longue.\\
+			De même pour tous les autres grecs.
+\end{itemize}
+
+\columnbreak
+
+\subsection*{Grecs}
+
+\begin{definitionNOHFILL}[Delta $\Delta	=	\deriv{S}{V}$]
+Mesure la variation du prix de l'option correspondante à une augmentation du prix de l'action.
+
+\tcbline
+
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Expressions du Delta pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Delta_{C}
+	&=	\textrm{e}^{-\delta T} N(d_{1})	\\
+	\Delta_{P}
+	&=	-\textrm{e}^{-\delta T} N(-d_{1})	
+\end{align*}
+\end{gather}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Domaine}
+\end{center}
+\begin{gather}
+\begin{align*}
+	0 \le \Delta_{C} \le 1	\\
+	-1 \le \Delta_{P} \le 0	
+\end{align*}
+\end{gather}
+\end{minipage}
+
+\tcbline
+%Lien entre delta d'options de vente et d'achat:
+%\begin{align*}
+%	C - P	&=	S\textrm{e}^{-\delta T} - K\textrm{e}^{-rT}	\\
+%	\deriv{S}{C} - \deriv{S}{P}	&=	\deriv{S}{} (S\textrm{e}^{-\delta T}) - \deriv{S}{} (K\textrm{e}^{-rT})	\\
+%	\Delta_{C} - \Delta_{P}	&=	\textrm{e}^{-\delta T}
+%\end{align*}
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Le Delta $\Delta_{C}$ ($\Delta_{P}$) peut être interprété comme le nombre d'actions à acheter (vendre) pour répliquer une option d'achat (de vente);
+	\item	Une option d'achat devient de plus en plus profitable lorsque le prix de l'action sous-jacente augmente. \\
+			Alors, $\Delta_{C}$ se rapproche de 0 lorsque l'option est hors du cours ($S_{T} < K$) et de 1 lorsqu'elle est dans le cours ($S_{T} > K$).\\
+			Cependant, le $\Delta_{C}$ ne sera jamais négatif, car l'option d'achat a un seuil minimal de 0 pour sa valeur à l'échéance.\\
+			De même, $\Delta_{P}$ ne sera jamais positif;
+	\item	Dans les deux cas, le $\Delta$ augmente avec le prix de l'action;
+	\item	Mathématiquement, le domaine est restreint puisque $0 \le N(x) \le 1, \forall x$ et $0 \le e^{-\delta T} \le 1$.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Gamma $\Gamma = \deriv{S}{\Delta} \equiv \deriv[2]{S}{V}$]
+Mesure la variation du Delta de l'option correspondante à une augmentation du prix de l'action.
+
+\tcbline
+
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Expressions du Gamma pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Gamma_{C}
+	&=	\Gamma_{P}
+	=	\frac{\textrm{e}^{-\delta T} N'(d_{1})}{S_{0} \sigma \sqrt{T}}	
+\end{align*}
+\end{gather}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Domaine}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Gamma_{P}	=	\Gamma_{C}	>	0
+\end{align*}
+\end{gather}
+\end{minipage}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Le $\Gamma$ mesure le \textit{taux} de variation du $\Delta$.\\
+			Puisque le $\Delta$ augmente toujours, le $\Gamma$ est toujours positif;
+	\item	Le $\Gamma$ est maximisé au cours du marché, car c'est où le $\Delta$ connaît le plus de variation.
+		\begin{center}
+		\includegraphics[scale=0.4]{src/ACT-2011/gamma-delta-greek.png}
+		\end{center}
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Theta $\theta	=	\deriv{t}{V}$]
+Mesure la variation du prix de l'option correspondante à l'écoulement du temps.
+
+\paragraph{Note}	Selon si on dérive par rapport au point de départ $t$ ou à l'échéance $T$ on a que \icbox[red][palechestnut]{$\theta	=	\deriv{t}{V}	=	-\deriv{T}{V}$}
+
+\tcbline
+
+\begin{center}
+	\textbf{Expressions du Theta pour les options}
+\end{center}
+	\setlength{\mathindent}{0cm}
+\begin{gather}
+\begin{align*}
+	\theta_{C}
+	&=	\left(Kr \textrm{e}^{-r (T - t)} N(d_{2})	-	S_{0}\delta \textrm{e}^{-\delta (T - t)} N(d_{1})\right) +
+		\frac{K\textrm{e}^{-r (T - t)} N'(d_{2}) \sigma}{2\sqrt{T - t}}	\\
+	\theta_{P}
+	&=	\left(S_{0}\delta \textrm{e}^{-\delta (T - t)} N(-d_{1})	-	Kr \textrm{e}^{-r (T - t)} N(-d_{2})\right) +
+		\frac{K\textrm{e}^{-r (T - t)} N'(d_{2}) \sigma}{2\sqrt{T - t}}	\\
+\end{align*}
+	\setlength{\mathindent}{1cm}
+\end{gather}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Pour obtenir la variation en valeur par jour---\textbf{la notation de Claire}---il suffit de diviser par 365: \icbox{$\frac{\theta}{365}$};
+	\item	La valeur d'une option décroît avec le temps. \\
+			$\theta$ estime de combien, ceteris paribus, la valeur décroît par jour;
+	\item	Ce faisant, $\theta$ est habituellement \textbf{négatif}.\\
+			Il est \textit{possible} qu'il soit négatif pour une option \underline{profondément} dans le cours du marché ayant un taux de dividende \underline{très} élevé;
+	\item	\textbf{T}heta pour \textbf{t}emps.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Vega alias Lambda $\Lambda	=	\deriv{\sigma}{V}$]
+Mesure la variation du prix de l'option correspondante à une augmentation de la volatilité de l'action.
+\tcbline
+
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Expression du Vega pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Lambda_{C}
+	&=	\Lambda_{P}
+	=	S_{0} \textrm{e}^{-\delta T} N'(d_{1}) \sqrt{T}
+\end{align*}
+\end{gather}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Domaine}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Lambda_{P}	=	\Lambda_{C}	>	0
+\end{align*}
+\end{gather}
+\end{minipage}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Pour obtenir la variation en pourcentage---\textbf{la notation de Claire}---il suffit de diviser par 100: \icbox{$\frac{\Lambda}{100}$};
+	\item	Une augmentation de la volatilité mène toujours à une augmentation des prix d'options.\\
+			Il s'ensuit que le Vega sera toujours positif et augmente avec la volatilité;
+	\item	\textbf{V}ega pour \textbf{v}olatilité.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Rho $\rho	=	\deriv{r}{V}$]
+Mesure la variation du prix de l'option correspondante à une augmentation du taux sans risque.
+
+\tcbline
+
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Expression du Rho pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\rho_{C}
+	&=	T K \textrm{e}^{-r T} N(d_{2})	\\
+	\rho_{P}
+	&=	-T K \textrm{e}^{-r T} N(-d_{2})
+\end{align*}
+\end{gather}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Domaine}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\rho_{C}	&>	0	\\
+	\rho_{P}	&<	0
+\end{align*}
+\end{gather}
+\end{minipage}
+
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Pour obtenir la variation en pourcentage---\textbf{la notation de Claire}---il suffit de diviser par 100: \icbox{$\frac{\rho}{100}$};
+	\item	Une augmentation du taux sans risque $r$ fait baisser la valeur actualisée du prix d'exercice $K\textrm{e}^{-rT}$.\\
+			Selon la formule de Black-Scholes, baisser $K\textrm{e}^{-rT}$ fait \textbf{augmenter} la valeur d'une option d'achat mais \textbf{baisser} celle d'une option de vente.\\
+			Donc, $\rho_{C} > 0$ et $\rho_{P} < 0$;
+	\item	\textbf{R}ho pour taux sans \textbf{r}isque.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Psi $\psi	=	\deriv{\delta}{V}$]
+Mesure la variation du prix de l'option correspondante à une augmentation du taux de dividendes.
+
+\tcbline
+
+
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Expression du Psi pour les options}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\psi_{C}
+	&=	- T S \textrm{e}^{-\delta T} N(d_{1})	\\
+	\psi_{P}
+	&=	T S \textrm{e}^{-\delta T} N(-d_{1})
+\end{align*}
+\end{gather}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{center}
+	\textbf{Domaine}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\psi_{C}	&<	0	\\
+	\psi_{P}	&>	0
+\end{align*}
+\end{gather}
+\end{minipage}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Pour obtenir la variation en pourcentage---\textbf{la notation de Claire}---il suffit de diviser par 100: \icbox{$\frac{\psi}{100}$};
+	\item	Une augmentation du taux de dividendes $\delta$ fait baisser la valeur actualisée du prix de l'action $S\textrm{e}^{-\delta T}$.\\
+			Selon la formule de Black-Scholes, baisser $S\textrm{e}^{-\delta T}$ fait \textbf{baisser} la valeur d'une option d'achat mais \textbf{augmenter} celle d'une option de vente.\\
+			Donc, $\psi_{C} < 0$ et $\psi_{P} > 0$.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsubsection*{Portefeuille}
+
+Le grec d'un portefeuille composé de $N$ options sur une même action, avec $n_{i}$ options de chaque type, est simplement la somme des grecques:
+\begin{align*}
+	\text{Grec}_{\text{ptf.}}
+	&=	\overset{N}{\underset{i = 1}{\sum}} n_{i} \text{Grec}_{i}	
+\end{align*}
+
+\columnbreak
+
+\subsection*{Élasticité}
+
+
+\begin{definitionNOHFILL}[Élasticité $\Omega	=	\frac{\Delta S}{V}$]
+Mesure le pourcentage de variation du prix de l'option correspondante au pourcentage d'augmentation du prix de l'action.
+
+\tcbline
+
+\begin{center}
+	\textbf{Élasticité}
+\end{center}
+\begin{align*}
+		\Omega
+		&=	\frac{\text{\% variation du prix de l'option}}{\text{\% variation du prix de l'action}}	
+		=	\frac{{\color{teal}(V_{t} - V_{0})}/V_{0}}{{\color{teal}(S_{t} - S_{0})}/S_{0}}	\\
+		&=	{\color{teal}\Delta} \cdot \frac{S_{0}}{V_{0}}
+		=	\frac{\Delta S_{0}}{V}
+\end{align*}
+
+\begin{center}
+	\textbf{Bornes}
+\end{center}
+\begin{gather}
+\begin{align*}
+	\Omega_{C}	&\ge		1	&
+	\Omega_{P}	&\le		0
+\end{align*}
+\end{gather}
+
+\tcbline
+
+\begin{center}
+	\textbf{Notes}
+\end{center}
+\begin{itemize}[leftmargin = *]
+	\item	Pour obtenir la variation par augmentation de 1\% du prix de l'action---\textbf{la notation de Claire}---il suffit de diviser par 100: \icbox{$\frac{\Omega}{100}$};
+	\item	Le $\Delta$ peut être vu comme le risque \textit{absolu} d'une action: \[\Delta = \frac{\text{variation du prix de l'option}}{\text{variation du prix de l'action}}\]
+			L'élasticité évalue plutôt le risque \textit{relatif} au montant.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsubsection*{Volatilité}
+Puisqu'un actif sans risque n'a aucune volatilité, la volatilité de l'option va seulement dépendre sur celle de l'action.\\
+Pour l'obtenir, on pondère la volatilité de l'action par la valeur absolue de $\Omega$:
+\begin{align*}
+	\sigma_{\text{option}}
+	&=	| \Omega | \sigma_{\text{action}}
+\end{align*}
+
+\begin{itemize}
+	\item	La valeur absolue assure une volatilité positive.
+\end{itemize}
+
+\subsubsection*{Rendement sur l'option $\gamma$}
+Pour un portefeuille réplicatif on a que $V = \Delta S + B$. \\
+Avec ceci on trouve:
+\begin{description}
+	\item[\% investit dans l'action sous-jacente]	$\% \text{ action} = \frac{\Delta S}{V} = \Omega$.
+	\item[\% investit dans l'actif sans risque]	$\% \text{ actif} = \frac{B}{V} = 1 - \Omega$.
+	\item[Rendement espéré instantané sur l'option $\gamma$]	On pondère les rendements sur l'action et l'actif:
+		\begin{align*}
+		\gamma 
+		&=	(\% \text{ action}) \alpha + (\% \text{ actif}) r	\\
+		&=	\Omega \alpha + (1 - \Omega) r
+		\end{align*}
+\end{description}
+\begin{itemize}[leftmargin = *]
+	\item	Ceci est l'équivalent continu de $\textrm{e}^{\gamma h} = \frac{\delta S}{\delta S + B}\textrm{e}^{\alpha h} + \frac{B}{\delta S + B}\textrm{e}^{r h}$.
+\end{itemize}
+
+\begin{definitionNOHFILLsub}[Prime de risque]
+Une \textbf{prime de risque} est l'excès du rendement espéré d'un actif au taux sans risque.
+\begin{description}
+	\item[Prime de risque sur l'action]	$\alpha - r$
+	\item[Prime de risque sur l'option]	$\gamma - r$
+\end{description}
+\begin{itemize}[leftmargin = *]
+	\item	Avec la définition du rendement $\gamma$ espéré instantané sur l'option on trouve: \icbox{$	\gamma - r \equiv \Omega (\alpha - r)$};
+	\item	Dans le modèle d'évaluation des actifs financiers, \icbox{$\alpha - r = \beta_{\text{action}}(\mu_{m} - r)$} alias $\beta_{\text{option}}	=	\beta_{\text{action}} \Omega_{\text{option}}$;
+	\item	Si $\alpha > r$ alors $\gamma_{C} \geq \alpha$ et $\gamma_{P} \leq r$.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILL}[Ratio de Sharpe \o]
+Le \textbf{ratio de Sharpe} d'un actif est le ratio de sa prime de risque à sa volatilité.
+\begin{description}
+	\item[Ratio de Sharpe de l'action]	
+		\begin{align*}
+		\text{\o}_{\text{action}}	
+		&=	\frac{\alpha - r}{\sigma_{\text{action}}}
+		\end{align*}
+	\item[Ratio de Sharpe de l'option]	
+		\begin{align*}
+		\text{\o}_{\text{option}}	
+		&=	\frac{\gamma - r}{\sigma_{\text{option}}}	
+		\equiv	\frac{\Omega (\alpha - r)}{|\Omega|\sigma_{\text{action}}}	
+		\end{align*}
+\end{description}
+Puisque $\Omega$ est positif pour les options d'achat et négatif pour les options de vente:
+\begin{align*}
+	\text{\o}_{C}	&=	\text{\o}_{\text{action}}	&
+	\text{\o}_{P}	&=	-\text{\o}_{\text{action}}
+\end{align*}
+\end{definitionNOHFILL}
+
+\subsubsection*{Portefeuille}
+
+L'élasticité d'un portefeuille composé de $N$ options avec $n_{i}$ de chaque type est la moyenne pondérée de l'élasticité de chaque type d'option. Donc, avec $\omega_{i}$\% du portefeuille investi dans l'option $i$, on a:
+\begin{align*}
+	\Omega_{\text{ptf.}}
+	&=	\overset{N}{\underset{i = 1}{\sum}} \omega_{i} \Omega_{i}, \: \text{où } \omega_{i} = n_{i} \times \frac{V_{i}}{V_{\text{ptf.}}}
+\end{align*}
+
+On peut également le calculer avec les paramètres du portefeuille $\Omega_{\text{ptf.}} = \frac{\Delta_{\text{ptf.}}S}{V_{\text{ptf.}}}$.
+
+\subsection*{Approximation}
+
+\begin{itemize}[leftmargin = *]
+	\item	On peut approximer la variation du prix de l'option avec les grecques;
+	\item	Le Delta \textit{varie avec le prix}: 
+		\begin{itemize}
+		\item	Le Delta \textit{sous-estime} l'\textit{augmentation} du prix de l'option d'achat quand le prix de l'action augmente et \textit{surestime} la \textit{diminution};
+		\item	Alors, le Delta est seulement valide comme approximation du prix pour des très petites variations
+		\end{itemize}
+	\item	En considérant le Gamma, l'approximation devient valide pour des plus grandes variations;
+	\item	Cependant, la meilleure approximation se fait en incluant Theta pour considérer \textit{l'effet du temps}.
+\end{itemize}
+
+\begin{definitionNOHFILL}[Approximation Delta-Gamma-Theta]
+\begin{align*}
+	C(S_{t} + \varepsilon)
+	&\approx	C(S_{t}) + \Delta_{t} \varepsilon + \frac{1}{2} \Gamma_{t} \varepsilon^{2} + \theta_{t} h
+\end{align*}
+
+\tcbline
+
+\textbf{Notes}
+\begin{itemize}[leftmargin = *]
+	\item	$\varepsilon$ est la variation du prix.
+	\item	$h$ et $\theta$ doivent être dans la même unité de temps.
+	\item	$\theta$ diminue l'approximation, car il est habituellement négatif.
+\end{itemize}
+\end{definitionNOHFILL}
+
+%Pour un nœud $\eta$, on va avoir:
+%\begin{align*}
+%	(\Delta_{\eta u} - \Delta_{\eta})S_{\eta u} + (B_{\eta u} - B_{\eta}\textrm{e}^{rh})	\\
+%	(\Delta_{\eta d} - \Delta_{\eta})S_{\eta d} + (B_{\eta d} - B_{\eta}\textrm{e}^{rh})
+%\end{align*}
+
+\newpage
+
+\section{Tenue de marché et couverture en delta neutre}
+
+\begin{definitionNOHFILL}[Opérations pour compte propre]
+Opérations effectuées par une institution financière pour son propre compte afin de suivre une stratégie d'investissement.
+
+\begin{itemize}[leftmargin = *]
+\item	En anglais \og \textit{proprietary trading} \fg{};
+\item	On distingue les opérations pour compte propre de la tenue de marché:
+	\begin{itemize}[leftmargin = *]
+	\item	Les clients et opérateurs pour compte propre profitent des mouvements des marchés;
+	\item	Les \hyperlink{market_holder}{\color{blue}teneurs de marché} profitent des frais de transactions;
+	\item	Ils \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{offrent l'immédiateté et se tiennent prêt à acheter et à vendre des} \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{produits dérivés selon les ordres des clients ou investisseurs.}
+	\end{itemize}
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Couverture en delta neutre]
+Une position couverte en delta neutre a un $\Delta = 0$ et permet aux teneurs de marché de se protéger contre le risque d'une chute du prix de l'action.
+
+\begin{rappel_enhanced}[Contexte]
+\begin{itemize}[leftmargin = *]
+	\item	Les teneurs de marchés ne souhaitent pas profiter du marché mais plutôt des transactions;
+	\item	La couverture en delta neutre est une donc façon de minimiser le risque de leurs positions;
+	\item	Cette couverture est couramment utilisée en pratique.
+\end{itemize}
+\end{rappel_enhanced}
+
+Pour avoir une couverture en delta neutre, les teneurs de marché calculent le $\Delta$ de l'option puis prennent la position inverse dans le sous-jacent pour compenser. 
+\begin{itemize}[leftmargin = *]
+	\item	Le delta d'une action est de 1 car $\Delta_{\text{action}}	=	\deriv{S}{S} = 1$.
+	\item	La couverture comporte des coûts et requiert du capital;
+	\item	De plus, l'idée importante à retenir est qu'une position couverte \textbf{devrait avoir un rendement égal au taux sans risque}.
+\end{itemize}
+
+\paragraph{Exemple}	Un teneur de marché vend 100 options d'achat à un $\Delta_{C} = 0.55$ et souhaite avoir une couverture en delta neutre. Alors, il achète $100 \times \Delta_{C} = 55$ actions. L'investissement net est de $ + 100 \times C(K) - 55 \times S_{0}$. S'il souhaite avoir un flux monétaire initial de zéro, il va emprunter (ou prêter si c'est positif) ce montant au taux sans risque.
+\end{definitionNOHFILLsub}
+
+\begin{conceptgen}{Profit sur 2 jours d'un portefeuille couvert en delta neutre}
+\textbf{Composantes du portefeuille}
+\begin{enumerate}
+	\item	Achat ou vente d'options.
+	\item	Achat ou vente d'actions.
+	\item	Emprunt ou prêt d'argent.
+\end{enumerate}
+\tcbline
+\textbf{Composantes du profit}
+\begin{enumerate}
+	\item	Profit sur les options.
+	\item	Profit sur les actions.
+	\item	Profit sur l'obligation.
+\end{enumerate}
+\tcbline
+\begin{itemize}[leftmargin = *]
+	\item	Par exemple, le profit sur les options le lendemain serait $100 \times (C_{0}\textrm{e}^{r(\frac{1}{365})} - C_{1/365})$;
+	\item	Si le teneur de marché veut recouvrir sa position le lendemain, il achète (ou vend) $100 \times (C_{1/365} - C_{0})$.
+\end{itemize}
+\end{conceptgen}
+
+Selon la structure de Black-Scholes, le teneur de marché demeure rentable après un période de temps $h$ pour \icbox{$S\pm S\sigma \sqrt{h}$}.\\
+
+Pour un teneur de marché qui vend une option et couvre sa position en delta neutre, il a:
+\begin{enumerate}
+	\item	Une position courte sur l'option;
+	\item	Une position longue sur $\Delta_{t}$ actions;
+	\item	Une position sur une obligation zéro-coupon sans risque.
+\end{enumerate}
+
+Son profit de $t$ à $t + h$ est la somme des variations des composantes \icbox{$[+V_{t}\textrm{e}^{rh} - V_{t + h}]+ [-\Delta_{t}S_{t}\textrm{e}^{rh} + \Delta_{t}S_{t + h}]$}.\\
+
+\paragraph{Note sur les autres grecs}	Si un teneur de marché souhaite couvrir avec de multiples grecs, il suffit de poser les grecs du portefeuille égaux à 0. Cependant, puisque tous les grecques autre que le $\Delta$ d'une action sont 0, on nécessite une deuxième option. Par exemple pour l'achat de 100 options d'achat de type 1, on achète $y$ options d'achat de type 2 et x actions pour obtenir un portefeuille couvert en delta et gamma neutre:
+\begin{align*}
+	\Delta_{\text{ptf.}}
+	&=	-100 \Delta_{C^{I}} + (x)\Delta_{\text{action}} + (y)\Delta_{C^{II}}	\\
+	&=	-100 \Delta_{C^{I}} + (x)(1) + (y)\Delta_{C^{II}}	\\
+	\Gamma_{\text{ptf.}}
+	&=	-100 \Gamma_{C^{I}} + (x)(0) + (y)\Gamma_{C^{II}}	
+\end{align*}
+
+\paragraph{Note sur $\theta$} Thêta mesure la \textit{variation du prix} à l'écoulement \textit{du temps} et n'a pas lié au risque de l'action. Il en résulte que le delta et le gamma d'un dépôt sans risque sont nuls, mais pas le thêta. Pour un dépôt de 1\$, la valeur accumulée $t$ années plus tard est $\textrm{e}^{rt}$. Le thêta de ce dépôt est $\theta_{\text{sans risque}}	=	\deriv{t}{r\textrm{e}^{rt}}	=	r\textrm{e}^{rt}$. 
+
+\begin{definitionNOHFILL}[Autofinançant]
+Portefeuille dont la couverture, même si elle existe un rééquilibrage, entraîne uniquement des flux monétaires intermédiaires nuls est dit autofinançant.
+\end{definitionNOHFILL}
+
+
+\columnbreak
+\subsubsection*{Analyse de Black-Scholes}
+\textbf{Équation de Black-Scholes}:
+\begin{align*}
+	r S_{t} \deriv{S_{t}}{C_{t}} + \frac{1}{2}\sigma^{2}S_{t}^{2}\deriv[2]{S_{t}}{C_{t}} + \deriv{t}{C_{t}}	
+	&=	r C_{t}	
+\end{align*}
+\begin{itemize}
+	\item	Valide pour les options d'achat et de vente;
+	\item	L'équation suppose aucun dividendes et que les paramètres $r$ et $\sigma$ sont constants;
+	\item	Elle est valide pour les options d'achat et de vente américaines à tout instant où il n'est pas optimal d'exercer l'option avant l'échéance;
+	\item	En théorie, le rééquilibrage devrait se faire en continu;
+	\item	En pratique, les frais de transactions sont trop élevés et c'est plutôt lorsque le delta change;
+	\item	Augmenter la fréquence du rééquilibrage (pour ramener le delta à zéro):
+		\begin{itemize}
+		\item	Réduit la variabilité du rendement;
+		\item	Permet de tirer avantage de la diversification temporelle;
+		\item	N'affecte pas la moyenne du rendement sur une période donnée.
+		\end{itemize}
+\end{itemize}
+
+\begin{description}
+	\item[$R_{h, i}$]	Le rendement de la période $i$ avec une durée $h$ entre les ajustements, en  supposant que la position d'une option d'achat achetée est delta-neutre au départ;
+		\begin{align*}
+		R_{h, i}	
+		&=	\frac{1}{2} S^{2}\sigma^{2}\Gamma(x_{i}^{2} - 1)h
+		\end{align*}
+	\item[$x_{i}$]	Nombre d'écarts-types dont le prix de l'action se déplace dans la période.
+\end{description}
+\begin{align*}
+	\text{Var}(R_{h, i})
+	&=	\frac{1}{2}(S^{2}\sigma^{2}\Gamma h)^{2}
+\end{align*}
+
+%%%	--------------------
+%%%	NOTES:
+%%%	+	Chapitre suppose aucun dividendes, que le sous-jacent est une action;
+%%%	+	Quel le marché ne contient qu'une seule action;
+%%%	+	Que toutes les options sont européennes.
+%%%	--------------------
+
+\newpage
+
+\setcounter{section}{13}
+\section{Options exotiques: I}
+\subsection*{Options asiatiques}
+\begin{definitionNOHFILL}[Options asiatiques]
+La valeur à l'échéance dépend du prix moyen du sous-jacent sur une certaine période de temps.
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	On les surnomme aussi des \textit{options sur moyenne};
+	\item	Contrairement aux options classiques, les options asiatiques dépendent de la trajectoire que le prix a suivi.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsubsection*{Options sur la moyenne}
+
+Il y a huit versions de base des options sur moyenne:
+\begin{itemize}[leftmargin = *]
+	\item	Option d'achat ou de vente;
+	\item	Moyenne arithmétique $A(S)$ ou géométrique $G(S)$ où \icbox[red][palechestnut]{$G(S) \leq A(S)$};
+		\begin{align*}
+		A(S)	
+		&=	\frac{1}{N}\sumz{N}{t = 1}S_{t}	&
+		G(S)	
+		&=	\left(\prod_{t = 1}^{N} S_{t}\right)^{1/n}
+		\end{align*}
+	\item	Moyenne du sous-jacent ou du prix d'exercice.
+\end{itemize}
+
+Pour des options ordinaires:
+\begin{align*}
+	\shortstack{valeur à l'échéance\\ d'une option d'achat}
+	&=	\max[0, S_{T}	-	K]	\\
+	\shortstack{valeur à l'échéance\\ d'une option de vente}
+	&=	\max[0, 	K	-	S_{T}]
+\end{align*}
+
+\begin{definitionNOHFILLsub}[Option asiatique sur le prix moyen]
+On remplace $S_{t}$ par le prix moyen $\bar{S}$ pour la valeur à l'échéance des options:
+\begin{align*}
+	\shortstack{valeur à l'échéance\\ d'une option d'achat}
+	&=	\max[0, \bar{S}	-	K]	\\
+	\shortstack{valeur à l'échéance\\ d'une option de vente}
+	&=	\max[0, 	K	-	\bar{S}]
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Option asiatique sur le prix d'exercice moyen]
+On remplace $K$ par le prix moyen $\bar{S}$ pour la valeur à l'échéance des options:
+\begin{align*}
+	\shortstack{valeur à l'échéance\\ d'une option d'achat}
+	&=	\max[0, S_{T}	-	\bar{S}]	\\
+	\shortstack{valeur à l'échéance\\ d'une option de vente}
+	&=	\max[0, 	\bar{S}	-	S_{T}]
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\paragraph{Note:}	Deux erreurs fréquentes sont d'inclure le prix initiale dans la moyenne et ne pas calculer $V_{ud}$ \textit{et} $V_{du}$ lorsqu'on utilise la moyenne géométrique.
+
+\subsubsection*{Points importants}
+\begin{enumerate}
+	\item	La valeur d'une option asiatique sur le prix moyen est inférieure ou égale à la valeur d'une option européenne équivalente.
+		\begin{itemize}[leftmargin = *]
+		\item	Le plus faible la volatilité d'une action, le moins il est probable qu'elle ait une valeur à l'échéance positive;
+		\item	Le prix moyen d'une action $\bar{S}$ est moins volatile que le prix final de l'action $S_{t}$;
+		\item	Il s'ensuit que l'option asiatique a une valeur à l'échéance plus faible.
+		\end{itemize}
+	\item	La valeur d'une option asiatique sur le prix moyen baisse lorsque la fréquence d'échantillonnage $N$ augmente.
+		\begin{itemize}[leftmargin = *]
+		\item	De façon semblable, augmenter $N$ diminue la moyenne et donc la valeur à l'échéance de l'option asiatique.
+		\end{itemize}
+	\item	La valeur d'une option asiatique sur le prix d'exercice moyen augmente lorsque la fréquence d'échantillonnage $N$ augmente.
+		\begin{itemize}[leftmargin = *]
+		\item	Puisque l'on soustrait le prix moyen de l'action $\bar{S}$, il s'ensuit que l'écart avec le prix à l'échéance $S_{t}$ augmente.
+		\end{itemize}
+\end{enumerate}
+
+\columnbreak
+\subsection*{Options à barrière}
+\begin{definitionNOHFILL}[Options à barrière]
+Une option qui peut \textbf{désactiver ou activer} si le prix de l'actif sous-jacent atteint une \textbf{barrière} précise alors que l'option est en vigueur.
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	Les options à barrière dépendent de la trajectoire que le prix a suivi.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsubsection*{Types d'options à barrière}
+
+Il y a trois types d'options à barrière:
+\begin{definitionNOHFILLsub}[Options à barrière activante]
+S'active si la barrière est atteinte.\\
+
+Si la barrière est:
+\begin{description}
+	\item	\textbf{Dessous} le prix initial de l'action, c'est une option dite \og \textit{down-and-in} \fg{}: le prix doit baisser pour atteindre la barrière;
+	\item	\textbf{Dessus} le prix initial de l'action, c'est une option dite \og \textit{up-and-in} \fg{}: le prix doit augmenter pour atteindre la barrière.
+\end{description}
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+\item	En anglais, \og \textit{Knock-in option} \fg{} car l'option est \og \textit{knocked-in} si la barrière est atteinte \fg{};
+	\item	Si l'option est activée alors la valeur à l'échéance est identique à une option européenne ordinaire sinon elle est nulle.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[Options à barrière désactivante]
+Se désactive si la barrière est atteinte.\\
+
+Si la barrière est:
+\begin{description}
+	\item	\textbf{Dessous} le prix initial de l'action, c'est une option dite \og \textit{down-and-out} \fg{};
+	\item	\textbf{Dessus} le prix initial de l'action, c'est une option dite \og \textit{up-and-out} \fg{}.
+\end{description}
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{Knock-out option} \fg{} car l'option est \og \textit{knocked-out} si la barrière est atteinte \fg{};
+	\item	Si l'option est désactivée alors la valeur à l'échéance est nulle sinon il est identique  à une option européenne ordinaire.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[Options à barrière avec remise]
+Paye un montant fixe si la barrière est atteinte.\\
+
+Si la barrière est:
+\begin{description}
+	\item	\textbf{Dessous} le prix initial de l'action, on l'appelle un \og \textit{down rebate} \fg{};
+	\item	\textbf{Dessus} le prix initial de l'action, on l'appelle un \og \textit{up rebate} \fg{}.
+\end{description}
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{Rebate option} \fg{};
+	\item	Si le paiement se fait uniquement à l'échéance, c'est une remise différée (\og \textit{deferred rebate} \fg{}).
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\subsubsection*{Parité}
+Pour des options à barrière désactivante et activante, autrement équivalentes, on a:
+\begin{align*}
+	\shortstack{option à barrière\\ activante}	+ \shortstack{option à barrière\\ désactivante}
+	&=	\shortstack{option régulière}	\\
+	\Rightarrow
+	\shortstack{option à barrière}	
+	&\leq	\shortstack{option régulière}	
+\end{align*} 
+\begin{itemize}[leftmargin = *]
+	\item	Donc l'option régulière ne dépend pas de la barrière ce qui peut être utile pour certaines questions.
+\end{itemize}
+
+\subsubsection*{Cas particuliers}
+
+Dans le cas où $S_{0} \leq \text{barrière} \leq K$, l'option d'achat \og \textit{up-and-in} \fg{} est équivalente à l'option d'achat ordinaire. 
+\begin{itemize}[leftmargin = *]
+	\item	Dans les deux cas, le prix doit monter passé la barrière pour obtenir une valeur à l'échéance positive;
+	\item	Par l'équation de parité, on déduit que l'option d'achat \og \textit{up-and-out} \fg{} a une valeur nulle.
+\end{itemize}
+
+Le même cas se produit où $K \leq \text{barrière} \leq S_{0}$ pour une option de vente \og \textit{down-and-in} \fg{}.
+
+
+\columnbreak
+\subsection*{Options sur option}
+\begin{definitionNOHFILL}[Options sur option]
+Option qui permet à son détenteur \textbf{d'acheter ou de vendre une autre option} au prix d'exercice précisé.
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	On les surnomme aussi des \textit{options composées};
+	\item	En anglais, \og \textit{compound option} \fg{};
+	\item	Ils ont deux prix d'exercice et deux dates d'échéance (pour l'option composée et l'option sous-jacente).
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsubsection*{Types d'options sur options}
+Pour calculer la valeur à l'échéance dans les deux cas, on compare le prix d'exercice $x$ à la valeur de l'option sous-jacente à l'échéance dans $T - t_{1}$ temps. On peut donc voir s'il est profitable d'acheter l'option sous-jacente maintenant à $t_{1}$.
+
+\begin{definitionNOHFILLsub}[Option d'achat composée]
+Permet au détenteur d'acheter une autre option au prix d'exercice.\\
+L'option peut être soit un \og \textit{call on call} \fg{} ou un \og \textit{call on put} \fg{}.
+
+\tcbline
+
+On achète une option d'achat composée au temps 0 à un prix d'exercice de $x$ expirant à $t_{1}$.\\ L'option sous-jacente a un prix d'exercice de $K$ et expire à $T$.
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp11598225207048363] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (48,51.33) -- (401.83,51.33) -- (401.83,201.33) -- (48,201.33) -- cycle ;
+%Shape: Rectangle [id:dp7987614739910429] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (48,51.33) -- (401.83,51.33) -- (401.83,80.13) -- (48,80.13) -- cycle ;
+%Straight Lines [id:da5349553147510435] 
+\draw [line width=1.5]    (86.83,134) -- (359.83,134) ;
+\draw [shift={(359.83,134)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(223.33,134)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(86.83,134)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+%Shape: Brace [id:dp0246391130029624] 
+\draw   (358.83,124) .. controls (358.83,119.33) and (356.5,117) .. (351.83,117) -- (301.42,117) .. controls (294.75,117) and (291.42,114.67) .. (291.42,110) .. controls (291.42,114.67) and (288.09,117) .. (281.42,117)(284.42,117) -- (231,117) .. controls (226.33,117) and (224,119.33) .. (224,124) ;
+
+% Text Node
+\draw (224.92,65.73) node   [align=left] {Déroulement d'une option d'achat composée};
+% Text Node
+\draw (49,84.13) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{Achat}\\\textcolor[rgb]{0.29,0.56,0.89}{option d'achat }\\ \textcolor[rgb]{0.29,0.56,0.89}{composée}};
+% Text Node
+\draw (184,163.63) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {
+\textbf{Expiration}\\\textcolor[rgb]{0.29,0.56,0.89}{option d'achat }\\\textcolor[rgb]{0.29,0.56,0.89}{composée}};
+% Text Node
+\draw (321,163.63) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{Expiration}\\\textcolor[rgb]{0.29,0.56,0.89}{option d'achat }\\\textcolor[rgb]{0.29,0.56,0.89}{sous-jacente }};
+% Text Node
+\draw (83,144) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (218,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t_{1}$};
+% Text Node
+\draw (355,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t_{2}$};
+% Text Node
+\draw (274,97) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle T\ -\ t_{1}$};
+\end{tikzpicture}
+\end{center}
+La valeur à l'échéance de l'option \textit{sous-jacente} à $t_{1}$ est dénotée \icbox{$V[S_{t_{1}}, K, \underbrace{T - t_{1}}_{\scriptsize{\shortstack{temps restant\\ avant échéance}}}]$}.\\
+La valeur à l'échéance de l'option d'achat \textit{composée} à $t_{1}$ est \icbox{$\max(0, \underbrace{V\left[S_{t_{1}}, K, T - t_{1}\right]}_{\small{\shortstack{$S_{T}$ pour des\\ options classiques}}} - x)$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Option de vente composée]
+Permet au détenteur de vendre une autre option au prix d'exercice.\\
+L'option peut être soit un \og \textit{put on call} \fg{} ou un \og \textit{put on put} \fg{}.
+
+\tcbline
+On achète une option de vente composée au temps 0 à un prix d'exercice de $x$ expirant à $t_{1}$.\\ L'option sous-jacente a un prix d'exercice de $K$ et expire à $T$.
+
+\begin{center}
+	
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp2947812762155695] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (415,51.33) -- (770.5,51.33) -- (770.5,201.33) -- (415,201.33) -- cycle ;
+%Shape: Rectangle [id:dp8558379846670114] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (415,51.33) -- (768.83,51.33) -- (768.83,80.13) -- (415,80.13) -- cycle ;
+%Straight Lines [id:da28206871093985453] 
+\draw [line width=1.5]    (456.5,134) -- (726.83,134) ;
+\draw [shift={(726.83,134)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(591.67,134)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(456.5,134)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+%Shape: Brace [id:dp12017435484156325] 
+\draw   (725.83,124) .. controls (725.83,119.33) and (723.5,117) .. (718.83,117) -- (668.42,117) .. controls (661.75,117) and (658.42,114.67) .. (658.42,110) .. controls (658.42,114.67) and (655.09,117) .. (648.42,117)(651.42,117) -- (598,117) .. controls (593.33,117) and (591,119.33) .. (591,124) ;
+
+% Text Node
+\draw (591.92,65.73) node   [align=left] {Déroulement d'une option de vente composée};
+% Text Node
+\draw (416,83.13) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{Achat}\\\textcolor[rgb]{0.29,0.56,0.89}{option de vente }\\\textcolor[rgb]{0.29,0.56,0.89}{composée}};
+% Text Node
+\draw (550,163.63) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{Expiration}\\\textcolor[rgb]{0.29,0.56,0.89}{option de vente }\\\textcolor[rgb]{0.29,0.56,0.89}{composée}};
+% Text Node
+\draw (686,164.63) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{Expiration}\\\textcolor[rgb]{0.29,0.56,0.89}{option de vente }\\\textcolor[rgb]{0.29,0.56,0.89}{sous-jacente }};
+% Text Node
+\draw (454,144) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (588,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t_{1}$};
+% Text Node
+\draw (724,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t_{2}$};
+% Text Node
+\draw (641,97) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle T\ -\ t_{1}$};
+\end{tikzpicture}
+\end{center}
+La valeur à l'échéance de l'option de vente \textit{composée} à $t_{1}$ est \icbox{$\max(0, x - V\left[S_{t_{1}}, K, T - t_{1}\right])$}.
+\end{definitionNOHFILLsub}
+
+\subsubsection*{Parité}
+On généralise l'équation de parité des options vente-achat:
+\begin{align*}
+	\text{CallonStock}	-	\text{PutonStock}	
+	&=	F^{P}(S)	-	K\textrm{e}^{-rT}	\\
+	\Rightarrow
+	\text{CallonCall}	-	\text{PutonCall}	
+	&=	C_{\text{eur}}	-	x\textrm{e}^{-r t_{1}}	\\
+	\text{CallonPut}	-	\text{PutonPut}	
+	&=	P_{\text{eur}}	-	x\textrm{e}^{-r t_{1}}	\\
+\end{align*}
+
+
+\columnbreak
+\subsection*{Options avec écart}
+\begin{definitionNOHFILL}[Options avec écart]
+Contrairement au options classiques qui ont un seul prix pour déterminer le \underline{moment d'exercice} et \underline{la valeur à l'échéance}, les options avec écart ont un prix pour chacune des fonctions créant alors un \textit{écart}.
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$K_{1}$]	Prix \textit{d'exercice} utilisé pour calculer la valeur à l'échéance;
+	\item[$K_{2}$]	Prix \textit{déclencheur} utilisé pour décider s'il y a exercice ou pas.
+\end{description}
+\end{distributions}
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{gap option} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Option d'achat avec écart]
+\begin{align*}
+	\shortstack{Valeur à l'échéance}
+	&=	\begin{cases}
+		0,	&	S_{T}	\leq		K_{2}	\\
+		S_{T}	-	K_{1},	&	S_{T}	>		K_{2}	\\
+		\end{cases}
+\end{align*}
+
+\begin{center}	
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp619089624226296] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (47,11.6) -- (335.17,11.6) -- (335.17,199.33) -- (47,199.33) -- cycle ;
+%Shape: Rectangle [id:dp7223985052529034] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (47,11.6) -- (335.17,11.6) -- (335.17,40.4) -- (47,40.4) -- cycle ;
+%Shape: Rectangle [id:dp33113580306042034] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (47,39.8) -- (334.83,39.8) -- (334.83,68.64) -- (47,68.64) -- cycle ;
+
+%Straight Lines [id:da9695087678158307] 
+\draw    (225.42,172.67) -- (225.42,163.67) ;
+%Shape: Axis 2D [id:dp6076884557308353] 
+\draw  (120.92,168.33) -- (317.25,168.33)(120.92,89) -- (120.92,168.33) -- cycle (310.25,163.33) -- (317.25,168.33) -- (310.25,173.33) (115.92,96) -- (120.92,89) -- (125.92,96)  ;
+%Straight Lines [id:da45528019553931376] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (228.17,124.92) -- (264.42,88.67) ;
+\draw [shift={(225.08,128)}, rotate = 315] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da22765443723573076] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (120.25,168) -- (225.42,168) ;
+\draw [shift={(225.42,168)}, rotate = 0] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da7647427977294252] 
+\draw    (114.92,127) -- (126.92,127) ;
+%Straight Lines [id:da9490135961447259] 
+\draw    (186.08,173) -- (186.08,164) ;
+%Shape: Brace [id:dp5902887164439852] 
+\draw   (232.08,168.33) .. controls (236.75,168.33) and (239.08,166) .. (239.08,161.33) -- (239.08,158.83) .. controls (239.08,152.16) and (241.41,148.83) .. (246.08,148.83) .. controls (241.41,148.83) and (239.08,145.5) .. (239.08,138.83)(239.08,141.83) -- (239.08,136.33) .. controls (239.08,131.66) and (236.75,129.33) .. (232.08,129.33) ;
+
+
+% Text Node
+\draw (313.08,181.67) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (87.08,123.67) node   [align=left] {$\displaystyle K_{2} -K_{1}$};
+% Text Node
+\draw (100.08,82.67) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (186.08,182.67) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (230.08,182.67) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (246.08,136) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize écart}};
+% Text Node
+\draw (160.42,45.22) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle K_{2}  >K_{1}$};
+% Text Node
+\draw (105.58,17.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {Option d'achat avec écart};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[]
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp02824851841091225] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (341,40) -- (629.17,40) -- (629.17,236.33) -- (341,236.33) -- cycle ;
+%Shape: Rectangle [id:dp874148547303963] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (341,39.8) -- (628.83,39.8) -- (628.83,68.64) -- (341,68.64) -- cycle ;
+%Straight Lines [id:da24846864702899407] 
+\draw    (480.08,172) -- (480.08,163) ;
+%Shape: Axis 2D [id:dp21245115433709816] 
+\draw  (414.92,167.33) -- (611.25,167.33)(414.92,88) -- (414.92,229.33) (604.25,162.33) -- (611.25,167.33) -- (604.25,172.33) (409.92,95) -- (414.92,88) -- (419.92,95)  ;
+%Straight Lines [id:da8962117343156981] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (483.14,204.55) -- (579.92,105.83) ;
+\draw [shift={(480.08,207.67)}, rotate = 314.43] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da9684164695925033] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (414.25,167) -- (480.08,167) ;
+\draw [shift={(480.08,167)}, rotate = 0] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da33212462417226885] 
+\draw    (408.92,207.67) -- (420.92,207.67) ;
+%Shape: Brace [id:dp4820221483417275] 
+\draw   (472.92,168.33) .. controls (468.25,168.33) and (465.92,170.66) .. (465.92,175.33) -- (465.92,177.5) .. controls (465.92,184.17) and (463.59,187.5) .. (458.92,187.5) .. controls (463.59,187.5) and (465.92,190.83) .. (465.92,197.5)(465.92,194.5) -- (465.92,199.67) .. controls (465.92,204.34) and (468.25,206.67) .. (472.92,206.67) ;
+%Straight Lines [id:da6332672296521837] 
+\draw    (519.42,171.67) -- (519.42,162.67) ;
+
+
+% Text Node
+\draw (607.08,180.67) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (381.08,205.67) node   [align=left] {$\displaystyle K_{2} -K_{1}$};
+% Text Node
+\draw (395.08,82.67) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (482.08,150.67) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (519.08,150.67) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (425.36,180.17) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize écart}};
+% Text Node
+\draw (454.42,45.22) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle K_{2}  < K_{1}$};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Option de vente avec écart]
+\begin{align*}
+	\shortstack{Valeur à l'échéance}
+	&=	\begin{cases}
+		K_{1}	-	S_{T},	&	S_{T}	<		K_{2}	\\
+		0,	&	S_{T}	\geq		K_{2}	\\
+		\end{cases}
+\end{align*}
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da6880212768068523] 
+\draw    (186.08,210.99) -- (186.08,197.92) ;
+%Shape: Rectangle [id:dp533040316964958] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (47,11.6) -- (335.17,11.6) -- (335.17,268.33) -- (47,268.33) -- cycle ;
+%Shape: Rectangle [id:dp3644703127950564] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (47,11.6) -- (335.17,11.6) -- (335.17,40.4) -- (47,40.4) -- cycle ;
+%Shape: Rectangle [id:dp2786749091172711] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (47,39.8) -- (334.83,39.8) -- (334.83,68.64) -- (47,68.64) -- cycle ;
+%Straight Lines [id:da8012392898190628] 
+\draw    (229.42,208.67) -- (229.42,199.67) ;
+%Shape: Axis 2D [id:dp20357657984540478] 
+\draw  (120.92,204.21) -- (317.25,204.21)(120.92,89) -- (120.92,204.21) -- cycle (310.25,199.21) -- (317.25,204.21) -- (310.25,209.21) (115.92,96) -- (120.92,89) -- (125.92,96)  ;
+%Straight Lines [id:da27804562364712426] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (182,163.92) -- (121.17,103.08) ;
+\draw [shift={(185.08,167)}, rotate = 225] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da8757420270721892] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (302.17,204) -- (186.42,204) ;
+\draw [shift={(186.42,204)}, rotate = 180] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da5995103411343021] 
+\draw    (114.92,104) -- (126.92,104) ;
+%Shape: Brace [id:dp27149992922353494] 
+\draw   (178.92,166.67) .. controls (174.25,166.7) and (171.93,169.04) .. (171.96,173.71) -- (171.97,175.21) .. controls (172.02,181.88) and (169.71,185.23) .. (165.04,185.26) .. controls (169.71,185.23) and (172.06,188.54) .. (172.11,195.21)(172.09,192.21) -- (172.12,196.71) .. controls (172.15,201.38) and (174.5,203.7) .. (179.17,203.67) ;
+%Straight Lines [id:da023586524348984783] 
+\draw    (114.92,164) -- (126.92,164) ;
+
+% Text Node
+\draw (313.08,223.57) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (106.08,103.67) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (100.08,82.67) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (186.08,223.03) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (230.08,223.03) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (160.42,45.22) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle K_{2} < K_{1}$};
+% Text Node
+\draw (105.58,17.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {Option de vente avec écart};
+% Text Node
+\draw (136.36,176.17) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize écart}};
+% Text Node
+\draw (91.08,165.67) node   [align=left] {$\displaystyle K_{1} -K_{2}$};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[]
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp6381171616290457] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (340.67,39.8) -- (628.83,39.8) -- (628.83,236.13) -- (340.67,236.13) -- cycle ;
+%Shape: Rectangle [id:dp7978813517508636] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (341,39.8) -- (628.83,39.8) -- (628.83,68.64) -- (341,68.64) -- cycle ;
+%Straight Lines [id:da9673151320044195] 
+\draw    (480.08,172) -- (480.08,163) ;
+%Shape: Axis 2D [id:dp9572879435153827] 
+\draw  (414.92,167.33) -- (611.25,167.33)(414.92,88) -- (414.92,229.33) (604.25,162.33) -- (611.25,167.33) -- (604.25,172.33) (409.92,95) -- (414.92,88) -- (419.92,95)  ;
+%Straight Lines [id:da1159285531737253] 
+\draw    (408.92,207.67) -- (420.92,207.67) ;
+%Shape: Brace [id:dp46981450240901546] 
+\draw   (486.08,207.33) .. controls (490.75,207.33) and (493.08,205) .. (493.08,200.33) -- (493.08,197.83) .. controls (493.08,191.16) and (495.41,187.83) .. (500.08,187.83) .. controls (495.41,187.83) and (493.08,184.5) .. (493.08,177.83)(493.08,180.83) -- (493.08,175.33) .. controls (493.08,170.66) and (490.75,168.33) .. (486.08,168.33) ;
+%Straight Lines [id:da44587483028780883] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (477,204.92) -- (415.17,143.08) ;
+\draw [shift={(480.08,208)}, rotate = 225] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da40306089301904247] 
+\draw    (409.92,144) -- (421.92,144) ;
+%Straight Lines [id:da8412289279627245] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (601.83,167) -- (480.08,167) ;
+\draw [shift={(480.08,167)}, rotate = 180] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=2.25]      (0, 0) circle [x radius= 5.36, y radius= 5.36]   ;
+%Straight Lines [id:da13309232440240026] 
+\draw    (439.42,171.67) -- (439.42,162.67) ;
+
+% Text Node
+\draw (607.08,180.67) node   [align=left] {$\displaystyle S_{T}$};
+% Text Node
+\draw (381.08,205.67) node   [align=left] {$\displaystyle K_{1} -K_{2}$};
+% Text Node
+\draw (395.08,82.67) node  [font=\small,rotate=-0.4] [align=left] {{\footnotesize Valeur à T }\\{\footnotesize (payoff)}};
+% Text Node
+\draw (443.08,152.67) node   [align=left] {$\displaystyle K_{1}$};
+% Text Node
+\draw (483.08,151.67) node   [align=left] {$\displaystyle K_{2}$};
+% Text Node
+\draw (454.42,45.22) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle K_{2}  >K_{1}$};
+% Text Node
+\draw (500.08,177) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize écart}};
+% Text Node
+\draw (401.08,142.67) node   [align=left] {$\displaystyle K_{1}$};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{itemize}[leftmargin = *]
+	\item	Il est possible d'avoir une valeur à l'échéance \textit{négative} si le prix déclencheur $K_{2}$ est inférieur au prix  d'exercice $K_{1}$ pour une option d'achat (ou si $K_{1} < K_{2}$ pour une option de vente);
+	\item	Cependant, même si la valeur à l'échéance est négative, l'exercice est obligatoire lorsque le prix déclencheur est atteint;
+	\item	Cela dit, il est en revanche possible d'avoir une \textbf{prime négative}.
+\end{itemize}
+
+\subsubsection*{Formule de Black-Scholes}
+On substitue le $K$ dans l'équation principale pour le prix d'exercice $K_{1}$ et le $K$ dans l'équation de $d_{1}$ pour le prix déclencheur $K_{2}$.
+\begin{align*}
+	\text{GapCall}
+	&=	S_{0} \textrm{e}^{- \delta T} N(d_{1}) - K_{1}\textrm{e}^{-rT} N(d_{2})	\\
+	\text{GapPut}
+	&=	K_{1}\textrm{e}^{-rT} N(-d_{2}) - S_{0}\textrm{e}^{-\delta T}N(-d_{1})	
+\end{align*}
+où $d_{1}	=	\frac{\ln\left(\frac{S_{0}}{K_{2}}\right) + \left( r - \delta + \frac{1}{2} \sigma^{2} \right)T}{\sigma \sqrt{T}}$ et $d_{2}	=	d_{1} - \sigma \sqrt{T}$.\\
+
+Pour se rappeler quel $K$ remplacer:
+\begin{itemize}[leftmargin = *]
+	\item	Le prix d'exercice $K_{1}$ détermine le montant de la valeur à l'échéance et est donc associé avec $K\textrm{e}^{-rT}$ dans l'équation principale;
+	\item	Le prix déclencheur $K_{2}$ détermine si l'exercice a lieu et est donc associé avec le calcul d'une probabilité $N(d_{2})$.
+\end{itemize}
+
+\subsubsection*{Relation avec les options classiques}
+\begin{align*}
+	\text{GapCall}	\pm	K_{2}\textrm{e}^{-rT} N(d_{2})
+	&=	C_{\text{eur}}(K_{2})	+	(K_{2}	-	K_{1})\textrm{e}^{-rT} N(d_{2})	\\
+	\text{GapPut}	\pm	K_{2}\textrm{e}^{-rT} N(-d_{2})
+	&=	P_{\text{eur}}(K_{2})	+	(K_{1}	-	K_{2})\textrm{e}^{-rT} N(-d_{2})
+\end{align*}
+
+\subsubsection*{Parité}
+\begin{align*}
+	\text{GapCall}	-	\text{GapPut}
+	&=	S_{0}\textrm{e}^{-\delta T}	-	K_{1}\textrm{e}^{-rT}
+\end{align*}
+
+\columnbreak
+\subsection*{Options d'échange}
+\begin{definitionNOHFILL}[Options d'échange]
+Permet au détenteur d'échanger un actif pour un autre.
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{exchange option} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\subsubsection*{Formule de Black-Scholes}
+Formule en format simple et selon la notation de Claire où l'on achète $k$ du titre $Q$ par unité du titre $S$
+\begin{align*}
+	C(A, B)
+	&=	F^{P}(A)N(d_{1})	-	F^{P}(A)N(d_{2})	\\
+	&=	S_{0} \textrm{e}^{-\delta_{S}T}N(d_{1})	-	kQ_{0} \textrm{e}^{-\delta_{Q}T}N(d_{2})	\\
+	P(A, B)
+	&=	F^{P}(B)N(-d_{2})	-	F^{P}(A)N(-d_{1})	\\
+	&=	kQ_{0} \textrm{e}^{-\delta_{Q}T}N(d_{1})	-	S_{0} \textrm{e}^{-\delta_{S}T}N(d_{2})	\\	
+\end{align*}
+
+où $d_{1}	=	\frac{\ln\left(\frac{F^{P}(A)}{F^{P}(B)}\right) + \frac{1}{2} \sigma^{2} T}{\sigma \sqrt{T}}$, $d_{2}	=	d_{1} - \sigma \sqrt{T}$ et \icbox{$\sigma	=	\sqrt{\sigma^{2}_{A} + \sigma^{2}_{B}	-	2\rho\sigma_{A}\sigma_{B}}$}.
+
+
+\pagebreak
+\setcounter{section}{17}
+\section{La loi lognormale}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$N(d)$]	Représente $Pr(Z \leq d)$.
+\end{description}
+\end{distributions}
+
+
+\subsection*{La distribution normale}
+\begin{itemize}[leftmargin = *]
+	\item	Si $X \sim \mathcal{N}(\mu, \sigma^{2})$ alors \lfbox[formula]{$Z = \frac{X - \mu}{\sigma} \sim \mathcal{N}(0, 1)$};
+	\item	La loi normale est symétrique donc \lfbox[formula]{$N(-d) = 1 - N(d)$}, \lfbox[conditions]{$\forall d \in \mathbb{R}$} et \lfbox[formula]{$\Pr(-d \leq Z \leq d)	=	2N(d)	-	1$}, \lfbox[conditions]{$\forall d \in \mathbb{R}_{+}$};
+	\item	\lfbox[formula]{$aX_{1} + bX_{2}	\sim	\mathcal{N}(a\mu_{1} + b\mu_{2}, a^{2}\sigma^{2}_{1} + b^{2}\sigma^{2}_{2} + 2ab\rho\sigma_{1}\sigma_{2})$}.
+\end{itemize}
+
+
+\subsection*{La distribution lognormale}
+Lorsque $Y = \textrm{e}^{X}$ alors $Y \sim LN(\mu,\sigma^{2})$.
+
+\begin{itemize}
+	\item	Les deux premiers moments sont obtenus de la FGM de la distribution normale et ne sont \textbf{\textit{pas}} les paramètres:
+		\begin{align*}
+		\text{E}[Y]
+		&=	\textrm{e}^{\mu + \frac{1}{2}\sigma^{2}}	&
+		\text{Var}(Y)
+		&=	\left(\text{E}[Y]\right)^{2} \left(\textrm{e}^{\sigma^{2}} - 1\right)	
+		\end{align*}
+	\item	\lfbox[formula]{$F_{Y}(y)	=	N\left(\frac{\ln(y) - \mu}{\sigma}\right)$}, \lfbox[conditions]{$\forall y \in \mathbb{R}_{+}$}.
+\end{itemize}
+
+La distribution lognormale a 2 propriétés intéressantes:
+\begin{enumerate}[leftmargin = *]
+	\item	Elle est asymétrique à droite et donc \textbf{\textit{non-négative}} puisque $\textrm{e}^{X} \ge 0$:
+		\begin{align*}
+		\text{E}[Y]
+		=	\text{E}[\textrm{e}^{X}]
+		\geq
+		\textrm{e}^{\text{E}[X]}
+		=	\textrm{e}^{\text{E}[\ln(Y)]}
+		\end{align*}
+		\begin{itemize}[leftmargin = *]
+		\item	Alors supposer que le prix d'une action suit une distribution lognormale suppose qu'il ne peut pas être négatif (une hypothèse réaliste).
+		\end{itemize}
+	\item	Le \textit{\textbf{produit}} \underline{(et non la somme)} de deux variables aléatoires lognormales est une variable aléatoire.
+		\begin{itemize}[leftmargin = *]
+		\item	$X_{1} + X_{2} \sim \mathcal{N}$
+		\item	$\textrm{e}^{X_{1}} 	\times \textrm{e}^{X_{2}} \sim LN$
+		\end{itemize}
+\end{enumerate}
+
+
+\columnbreak
+\subsection*{Un modèle lognormale des prix de l'action}
+\subsubsection*{Introduction}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$R(0, t)$]	Rendement composé continûment entre $0$ et $t$ sur un titre donné;
+		\begin{itemize}
+		\item	Par définition, \lfbox[formula]{$R(0, T)	=	\ln\left(\frac{S_{t}}{S_{0}}\right)$};
+		\item	On suppose que $R_{0, t}$ suit une loi normale et donc il s'ensuit que $S_{t}$ suit une loi lognormale.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{itemize}
+	\item	Avec les propriétés des exposants, on trouve que $S_{t_{2}}	=	S_{t_{1}}\textrm{e}^{R(t_{1}, t_{2})}	=	S_{t_{0}}\textrm{e}^{R(t_{0}, t_{1}) + R(t_{1}, t_{2})}$;
+	\item	Avec la propriété de la loi normale, on trouve que \lfbox[formula]{$R(0, T)	=	\sumz{n}{i	=	1}R\left((i	-	1)h, ih\right)$} où les rendements sont (i.i.d.) pour $i	=	1, 2, \dots, n$;
+	\item	Avec $R\left((i	-	1)h, ih\right) \sim \mathcal{N}(\mu_{h}, \sigma^{2}_{h})$ pour $i	=	1, 2, \dots, n$, $R(0, T) \sim \mathcal{N}(n\mu_{h}, n\sigma^{2}_{h})$.	\\
+			C'est-à-dire que la moyenne et la variance des rendements sont \textit{proportionnels au temps};	
+	\item	Sous base annuelle, $\mu =	\frac{\mu_{h}}{h}$ et $\sigma =	\frac{\sigma_{h}}{\sqrt{h}}$ donc \lfbox[formula]{$R(0, T) \sim \mathcal{N}(\mu_{h}T, \sigma^{2}_{h}T)$}.
+\end{itemize}
+
+De façon générale, on suppose que le \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{temps $t$ est mesuré en années}, que \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{la moyenne $\alpha$ et la volatilité (variance) $\sigma^{2}$ sont sous base annuelle} puis que le \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{taux de dividendes sur l'action $\delta$ est sous base annuelle} aussi.
+
+\subsubsection*{Modèle}
+On cherche $\text{E}[S_{t}]	=	S_{0}\textrm{e}^{(\alpha - \delta)t}$
+
+
+\begin{definitionNOHFILL}[Distribution]
+On pose que le gain en capital composé continûment de $0$ à $t$ $\ln\left(\frac{S_{t}}{S_{0}}\right)$ est normalement distribué: \\
+\begin{align*}
+	\ln\left(\frac{S_{t}}{S_{0}}\right) 
+	&\sim	\mathcal{N}\left(\Big(\alpha - \delta - \frac{1}{2}\sigma^{2}\Big)t, \sigma^{2}t\right)	\\
+\end{align*}
+
+On écrit donc:
+\begin{align*}
+	S_{t} 
+	&=	S_{0}\textrm{e}^{(\alpha - \delta - \frac{1}{2}\sigma^{2})t + \sigma\sqrt{t}Z}
+\end{align*}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Moyenne variance et covariance]
+Avec cette distribution, on obtient:
+\begin{align*}
+	\text{E}[S_{t}]
+	&=	S_{0}\textrm{e}^{(\alpha - \delta)t}		\\
+	\Rightarrow
+	\ln\text{E}\left[\frac{S_{t}}{S_{0}}\right]
+	&=	(\alpha - \delta)t
+\end{align*}
+\begin{itemize}
+	\item	Il est désirable que l'espérance ne dépend pas de la volatilité $\sigma$;
+	\item	En fait, on soustrait $\frac{1}{2}\sigma^{2}$ dans le paramètre $\mu$ afin qu'il s'annule dans le calcul de l'espérance de la loi lognormale;
+	\item	La quantité $\alpha	-	\delta$ est le \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{taux d'appréciation de l'action composé continûment}.
+\end{itemize}
+\begin{align*}
+	\text{Var}(S_{t})
+	&=	\left(\text{E}[S_{t}]\right)^{2} \left(\textrm{e}^{\sigma^{2}t} - 1\right)	\\
+	Cov(S_{t}, S_{t})
+	&=	\text{E}\left[\frac{S_{t}}{S_{t}}\right] \cdot \text{Var}(S_{t})	
+	=	\textrm{e}^{(\alpha - \delta)(T - t)} \text{Var}(S_{t})
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{distributions}[Trouver le $p$-ème percentile de $S_{t}$]
+\begin{enumerate}[leftmargin = *]
+	\item	Trouver le percentile correspondant $z_{\alpha}$ de la loi normale standard $Z$.
+	\item	Insérer le percentile correspondant de $Z$ dans l'équation pour $S_{t}$.
+\end{enumerate}
+\end{distributions}
+
+\textbf{La médiane}:
+\begin{itemize}
+	\item	La médiane \lfbox[formula]{$\text{E}[S_{t}]\textrm{e}^{-\frac{1}{2}\sigma^{2}t}$} est inférieure à la moyenne;
+	\item	Alors, une action distribuée selon la loi lognormale aura des rendements inférieurs à la moyenne plus que la moité du temps;
+	\item	Il s'ensuit qu'augmenter $\sigma$ ne va pas impacter la moyenne mais va faire \textit{baisser la médiane}.
+\end{itemize}
+
+\textbf{Déplacement d'un écart type}:\\
+En posant $Z_{i}	=	\pm 1$, on trouve qu'un déplacement d'un écart type de $S_{(i - 1)h}$ est $S_{ih}	=	S_{(i - 1)h}\textrm{e}^{(\alpha	-	\delta	-	\frac{1}{2}\sigma^{2})h \pm \sigma \sqrt{h}}$
+
+
+\columnbreak
+\subsection*{Calculs de probabilités lognormales}
+On pose:
+\begin{align*}
+	\hat{d}_{1}
+	&=	\left(
+			\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta {\color{blue}+} \frac{1}{2}\sigma^{2})t}
+	 			 {\sigma\sqrt{t}}
+		\right)	&
+	\hat{d}_{2}
+	&=	\left(
+			\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta {\color{red}-} \frac{1}{2}\sigma^{2})t}
+	 			 {\sigma\sqrt{t}}
+		\right)
+\end{align*}
+
+\begin{distributions}[Trouver une probabilité pour $S_{t}$]
+\begin{align*}
+	\Pr(S_{t}	\leq		K) 
+	&=	N(-\hat{d_{2}})	&
+	\Pr(S_{t}	>		K) 
+	&=	N(\hat{d_{2}})	\\
+	\text{Pr}^{*}(S_{t}	\leq		K) 
+	&=	N(-d_{2})	&
+	\text{Pr}^{*}(S_{t}	>		K) 
+	&=	N(d_{2})	
+\end{align*}
+\end{distributions}
+
+%%%	----------------------------------------------------------
+%%%	Je juge un peu trop pour le cadre de la cheathseet (AJVR)
+%\begin{algo}{Comment trouver une probabilité avec $S_{t}$}
+%\begin{enumerate}[leftmargin = *]
+%	\item	Isoler la distribution normale $\ln\left(\frac{S_{t}}{S_{0}}\right)$;
+%		\begin{align*}
+%		\Pr(S_{t} < K)
+%		&\equiv	\Pr\left( \ln\frac{S_{t}}{S_{0}} < \ln\frac{S_{t}}{S_{0}} \right)
+%		\end{align*}
+%	\item	Centrer et réduire pour obtenir la distribution normale standard $Z$.
+%		\begin{align*}
+%		\Pr(S_{t} < K)
+%		&\equiv	\Pr\left( \frac{\ln\frac{S_{t}}{S_{0}} - m}{v} < \frac{\ln\frac{K}{S_{0}} - (\alpha - \delta - \frac{1}{2}\sigma^{2})t}{\sigma\sqrt{t}}\right)	\\
+%		&=	\Pr\left( Z < - {\color{teal}\left(
+%				\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta - \frac{1}{2}\sigma^{2})t}{\sigma\sqrt{t}}\right)}
+%				\right)	\\
+%		&=	\Pr\left( Z < - {\color{teal}\hat{d_{2}}}\right)	\\
+%		&=	N(-\hat{d_{2}})
+%		\end{align*}
+%\end{enumerate}
+%\end{algo}
+%%%	----------------------------------------------------------
+
+\begin{distributions}[Trouver un intervalle de prévision de $S_{t}$ de niveau $1 - \alpha$]
+\begin{enumerate}[leftmargin = *]
+	\item	Trouver le percentile correspondant de la loi normale standard $Z$ \lfbox[formula]{$\textcolor{burntorange}{z_{\alpha/2}}	=	N^{-1}\left(1		-	\frac{\alpha}{2}\right)$}.
+	\item	Insérer le percentile correspondant dans l'équation pour \lfbox[formula]{$S_{t}	\in	S_{0}\textrm{e}^{(\alpha - \delta - \frac{1}{2}\sigma^{2})t \textcolor{burntorange}{\pm z_{\alpha/2}}\sigma\sqrt{t}}$}.
+\end{enumerate}
+\end{distributions}
+
+\begin{conceptgen_enhanced}[Espérance conditionnelle du prix de l'action]
+%Nous avons l'espérance du prix lorsque l'action est hors-du-cours et dans le cours
+\begin{align*}
+	\text{E}[S_{t} | S_{t} \leq K]
+	&=	\frac{\text{E}\left[S_{t} \times \bm{1}_{\{ S_{t} \leq K \}}\right]}{\Pr(S_{t} \leq K)}
+	=	S_{0}\textrm{e}^{(\alpha - \delta)t} \frac{N(-\hat{d}_{1})}{N(-\hat{d}_{2})}	\\
+	\text{E}[S_{t} | S_{t} > K]
+	&=	\frac{\text{E}\left[S_{t} \times \bm{1}_{\{ S_{t} > K \}}\right]}{\Pr(S_{t} > K)}
+	=	S_{0}\textrm{e}^{(\alpha - \delta)t} \frac{N(\hat{d}_{1})}{N(\hat{d}_{2})}		\\
+\end{align*}
+\begin{align*}
+	\text{E}^{*}[S_{t} | S_{t} \leq K]
+	&=	S_{0}\textrm{e}^{(r - \delta)t} \frac{N(-d_{1})}{N(-d_{2})}	&
+	\text{E}^{*}[S_{t} | S_{t} > K]
+	&=	S_{0}\textrm{e}^{(r - \delta)t} \frac{N(d_{1})}{N(d_{2})}	
+\end{align*}
+\end{conceptgen_enhanced}
+
+\begin{definitionNOHFILL}[Formule de Black-Scholes pour le prix d'options européennes]
+Avec ces espérances, on trouve maintenant:
+\begin{align*}
+	C(K)
+	&=	\textrm{e}^{-r T}\text{E}^{*}[\text{valeur à l'échéance de l'option d'achat}]	\\
+	&=	S_{0} \textrm{e}^{-\delta T}N(d_{1}) - K\textrm{e}^{-r T} N(d_{2})	\\
+	P(K)
+	&=	\textrm{e}^{-r T}\text{E}^{*}[\text{valeur à l'échéance de l'option de vente}]	\\
+	&=	K\textrm{e}^{-r T} N(-d_{2}) - S_{0} \textrm{e}^{-\delta T}N(-d_{1})	
+\end{align*}
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Énoncés équivalents}
+\begin{itemize}[leftmargin = *]
+	\item	Le modèle de Black-Scholes s'applique.
+	\item	Le prix de l'action suit un modèle lognormale.
+	\item	$\ln\left(\frac{S_{t}}{S_{0}}\right) \sim \mathcal{N}\left(m = \Big(\alpha - \delta - \frac{1}{2}\sigma^{2}\Big)t, v^{2} = \sigma^{2}t\right)$.
+	\item	$S_{t} =	S_{0}\textrm{e}^{(\alpha - \delta - \frac{1}{2}\sigma^{2})t + \sigma\sqrt{t}Z}$.
+\end{itemize}
+\end{conceptgen}
+
+\columnbreak
+\subsection*{Estimation des paramètres (le rendement et la volatilité) de la loi lognormale}
+Soit $n + 1$ prix observés $S_{0}, S_{1}, \dots, S_{n}$ à un intervalle régulier de longueur $h$.
+
+\begin{definitionNOHFILL}[Estimation des paramètres de la distribution lognormale]
+\begin{enumerate}
+	\item	Calculer le rendement composé continûment, non annualisé, pour chacune des $i$ périodes:
+		\begin{align*}
+		r_{i}
+		&=	\ln\left(\frac{S_{ih}}{S_{(i - 1)}}\right), \, \forall i = 1, 2, \dots, n
+		\end{align*}
+	\item	Calculer la moyenne de l'échantillon des rendements.
+		\begin{align*}
+		\bar{r}
+		&=	\frac{\overset{n}{\underset{i = 1}{\sum}} r_{i}}{n}	
+		\underset{\tiny{\shortstack{propriété\\ des log.}}}{\equiv}	\frac{\ln\left(\frac{S_{n}}{S_{0}}\right)}{n}
+		\end{align*}
+	\item	Estimer l'écart-type des rendements.
+		\begin{align*}
+		s_{r}
+		&=	\sqrt{\frac{\overset{n}{\underset{i = 1}{\sum}} (r_{i} - \bar{r})^{2}}{n - 1}}
+		\end{align*}
+	\item	Mettre l'estimation de la volatilité sous base annuelle.
+		\begin{align*}
+		\hat{\sigma}
+		&=	\frac{s_{r}}{\sqrt{h}}
+		\end{align*}
+	\item	Mettre l'estimation du rendement espéré sous base annuelle.
+		\begin{align*}
+		\text{E}\left[\ln\left(\frac{S_{t + h}}{S_{t}}\right)\right]
+		&=
+		\left(\hat{\alpha} - \delta - \frac{1}{2} \hat{\sigma}^{2}\right)h	
+		=	\bar{r}	\\
+		\therefore \hat{\alpha}	&=	\frac{\bar{r}}{h} + \delta + \frac{1}{2} \hat{\sigma}^{2}
+		\end{align*}
+\end{enumerate}
+\end{definitionNOHFILL}
+
+
+\pagebreak
+\section*{Risque d'investissement}
+\paragraph{Note}	\hl{Chapitre 10.1 des notes de Coaching Actuaries pour IFM. Pas dans le cadre du cours de GRF II.}
+\begin{description}
+	\item[Variance]	Mesure de risque symétrique qui prend en compte les rendements au-dessus et en dessous de la moyenne;
+	\item[Semi-variance]	Écart-type moyen en dessous de la moyenne.
+		\begin{itemize}[leftmargin = *]
+		\item	En anglais, \og \textit{semi-variance} \fg{};
+		\item	\icbox{$\sigma^{2}_{SV}	=	\esp{\min(0, R - \esp{R})^{2}}$};
+		\item	Le \og \textit{downside semi-variance} \fg{} est la racine $\sigma_{SV}$ de la semi-variance.
+		\end{itemize}
+	\item[Value-at-Risk ($VaR$)]	$100\alpha^{\text{e}}$ pourcentile;
+	\item[Tail Value-at-Risk ($VaR$)]	
+		\begin{itemize}[leftmargin = *]
+		\item	Alias, \og \textit{expected shortfall} \fg{} ou \og \textit{conditional tail expectation} \fg{};
+		\item	Si $X$ représente les gains, on s'intéresse à l'extrémité inférieure de la distribution des gains et \icbox{$TVaR_{\alpha}(X)	=	\esp{X | X \leq \alpha}	=	\frac{1}{\alpha} \int_{-\infty}^{VaR_{\alpha}} x f_{X}(x)dx$};
+		\item	Si $X$ représente les pertes, on s'intéresse à l'extrémité supérieure de la distribution des gains et \icbox{$TVaR_{\alpha}(X)	=	\esp{X | X > \alpha}	=	\frac{1}{1 - \alpha} \int_{VaR_{\alpha}}^{\infty} x f_{X}(x)dx$};
+		\end{itemize}
+\end{description}
+
+\subsection*{Mesure de risque cohérente}
+Une mesure de risque $\rho$ est dite "\textbf{cohérente}" si elle rencontre ces 4 caractéristiques:
+\begin{enumerate}[leftmargin = *]
+	\item	Invariance à la translation si pour un \icbox[red][palechestnut]{scalaire $c	>	0$}, la mesure de risque \icbox{$\rho(X + c)	=	\rho(X) + c$};
+		\begin{itemize}[leftmargin = *]
+		\item	Ajouter un montant positif à un risque ajoute un montant équivalent à la mesure de risque.
+		\end{itemize}
+	\item	Homogénéité positive si pour un \icbox[red][palechestnut]{scalaire $c	>	0$}, la mesure de risque \icbox{$\rho(cX)	=	c\rho(X)$};
+		\begin{itemize}[leftmargin = *]
+		\item	Multiplier le risque $X$ par un montant positif $c$ ajuste la mesure de risque $\rho$ proportionnellement.
+		\end{itemize}
+	\item	Sous-additivité si la mesure de risque \icbox{$\rho(X + Y)	=	\rho(X) + \rho(Y)$};
+		\begin{itemize}[leftmargin = *]
+		\item	Combiner des risques mène à des bénéfices de mutualisation tant qu'ils ne sont pas parfaitement corrélés.
+		\end{itemize}
+	\item	Monotonicité si pour \icbox[red][palechestnut]{$X	\leq	Y$}, la mesure de risque \icbox{$\rho(X)	\leq	\rho(Y)$}.
+		\begin{itemize}[leftmargin = *]
+		\item	Si un risque $X$ est moins risqué qu'un autre risque $Y$, les mesures de risques doivent également suivent l'ordre.
+		\end{itemize}
+\end{enumerate}
+
+\columnbreak
+
+\section*{Analyse du risque d'un projet}
+\paragraph{Note}	\hl{Chapitre 10.2 des notes de Coaching Actuaries pour IFM. Pas dans le cadre du cours de GRF II.}
+
+On souhaite toujours maximiser la valeur actualisée nette (VAN) d'un projet avec \icbox{$VAN	=	\sum_{t	=	1}^{n}\frac{CF_{t}}{(1	+	i_{t})^{t}}$}.\\
+Pour ce faire, on doit estimer les flux monétaires futurs ainsi que le coût du capital. Nous voyons 4 façons d'évaluer l'impact de cette incertitude et d'identifier les principaux facteurs sous-jacents à la VAN d'un projet.
+
+\subsection*{Analyse de rentabilité (\og \textit{break-even analysis} \fg{})}
+Lorsque la valeur actualisée nette (VAN) est nulle, un projet devient rentable.\\
+Une analyse de rentabilité calcule la valeur de chaque paramètre tel que la VAN du projet est nulle. \\
+Notamment, on isole le \og \textit{internal rate of return (IRR)} \fg{}:
+\begin{align*}
+	VAN
+	&=	\sum_{t	=	1}^{n}\frac{CF_{t}}{(1	+	IRR)^{t}}
+	=	0
+\end{align*}
+
+On peut aussi isoler la seuil de rentabilité pour le nombre d'unités à vendre, le prix par unité, le coût par unité de marchandise, etc.
+
+\subsection*{Analyse de sensibilité (\og \textit{sensitivity analysis} \fg{})}
+Une analyse de sensibilité évalue la sensibilité de la VAN à chacune des variables en les faisant varier une à la fois. Ceci permet d'identifier les variables les plus importantes selon leurs effets sur la VAN.\\
+
+On débute par calculer la VAN d'un scénario de référence. Puis, on calcule la VAN en variant une des variables par un pourcentage fixe. 
+
+\subsection*{Analyse de scénarios (\og \textit{scenario analysis} \fg{})}
+L'analyse de scénarios est semblable à l'analyse de sensibilité sauf que l'on fait varier plusieurs variables à la fois. Le plus la VAN varie selon les différents scénarios, plus le risque du projet est élevé.
+
+\subsection*{Simulation Monte-Carlo}
+On estime la distribution de probabilité d'une quantité d'intérêt (e.g., la VAN).
+
+Les étapes générales sont:
+\begin{enumerate}[leftmargin = *]
+	\item	Construire le modèle d'intérêt;
+	\item	Simuler des nombres aléatoires d'une distribution supposée pour chacune des variables;
+	\item	Déterminer la valeur de la quantité d'intérêt avec les variables calculées précédemment;
+	\item	Répéter les 2 étapes précédentes un grand nombre de fois;
+	\item	Calculer des mesures d'intérêt (moyenne, variance, etc.) puis tracer les valeurs simulées comme une distribution de probabilité.
+\end{enumerate}
+
+
+\pagebreak
+\section{Évaluation par la méthode de Monte Carlo}
+Lorsque la valeur à l'échéance dépend de la trajectoire du prix, le modèle binomiale devient trop compliqué et nous utilisons plutôt la méthode de Monte Carlo; on simule des prix pour estimer le prix (alias la valeur espérée actualisée) de l'option.
+
+La méthode de Monte Carlo utilise la distribution neutre au risque et le taux sans risque.
+
+\subsection*{Calcul du prix de l'option comme une valeur espérée actualisée}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\text{E}_{0}^{*}$]	Espérance calculée à $t	=	0$ en utilisant la distribution neutre au risque;
+	\item[$V(S_{T}, T)$]	Valeur à l'échéance d'une option dont la valeur du sous-jacent à $T$ est $S_{T}$;
+	\item[$V(S_{0}, 0)$]	Prix de l'option;
+		\begin{itemize}[leftmargin = *]
+		\item	On calcul le prix de l'option avec une évaluation neutre au risque et donc on pose que le rendement est égale au taux sans risque.
+		\end{itemize}
+		\begin{align*}
+		V(S_{0}, 0)	
+		&=	\textrm{e}^{-rT}\text{E}_{0}^{*}[V(S_{T}, T)]
+		\end{align*}
+\end{description}
+\end{distributions}
+
+\subsubsection*{Évaluation avec des probabilités neutres au risque}
+Pour évaluer une option avec la méthode binomiale, on calcule la valeur à l'échéance à chacun des nœuds sur $n$ périodes puis on pondère par la probabilité d'y arriver et actualise:
+\begin{align*}
+	C
+	&=	\textrm{e}^{-rT} \sum_{i	=	0}^{n} \binom{n}{i} (p^{*})^{n	-	i}(1	-	p^{*})^{i} \max(0;	S_{0}u^{n	-	i}d^{i}	-	K)	\\
+	P
+	&=	\textrm{e}^{-rT} \sum_{i	=	0}^{n} \binom{n}{i} (p^{*})^{n	-	i}(1	-	p^{*})^{i} \max(0;	K	-	S_{0}u^{n	-	i}d^{i})	
+\end{align*}
+
+\subsubsection*{Évaluation des vraies probabilités}
+On remplace $p^{*}$ par $p$ cependant, au lieu d'appliquer $\textrm{e}^{-rT}$ à tous, il faut utiliser un différent rendement pour chaque trajectoire.
+
+
+\columnbreak
+\subsection*{Génération de nombres aléatoires}
+On simule des chiffres $u$ provenant d'une distribution uniforme $U(a, b)$. Lorsque la distribution est $U(0, 1)$, on peut interpréter les chiffres $u$ comme des quantiles et obtenir des valeurs $F^{-1}(u)$ pour une distribution (Méthode de l'inverse).
+
+\subsection*{Simulation de prix lognormaux}
+On rappel que \lfbox[rappel]{$S_{T}	=	S_{0}\textrm{exp}\left\{ (\alpha - \delta - \frac{1}{2}\sigma^{2})T + \sigma\sqrt{T} Z \right\}$.}
+Pour simuler des prix lognormaux $S_{T}$ on insère des valeurs aléatoire de $Z \sim \mathcal{N}(0, 1)$ dans la formule.
+
+\subsubsection*{Simulation d'une séquence de prix d'action}
+Si la valeur à l'échéance d'une option dépend de celle du sous-jacent à différents moments dans le temps, il faut simuler des trajectoires pour trouver le prix.\\
+
+Soit une option venant à échéance à $T$ dont la valeur dépend de celle du sous-jacent à $n$ moments (également espacés entre $0$ et $T$). 
+\begin{align*}
+	S_{h}	
+	&=	S_{0}\textrm{exp}\left\{ (\alpha - \delta - \frac{1}{2}\sigma^{2})T + \sigma\sqrt{T} Z_{1} \right\}	\\
+	S_{jh}	
+	&=	S_{(j - 1)h}\textrm{exp}\left\{ (\alpha - \delta - \frac{1}{2}\sigma^{2})T + \sigma\sqrt{T} Z_{j} \right\},	\quad	\lfbox[conditions]{$j	=	2, 3, \dots, n$}
+\end{align*}
+
+Donc, \lfbox[formula]{$S_{nh}	=	S_{T}	=	S_{0}\textrm{exp}\left\{ (\alpha - \delta - \frac{1}{2}\sigma^{2})T + \sqrt{T}\sigma\frac{1}{\sqrt{n}} \sumz{n}{j	=	1}Z_{j} \right\}$} où \lfbox[conditions]{$\frac{1}{\sqrt{n}} \sumz{n}{j	=	1}Z_{j}	\sim	\mathcal{N}(0, 1)$.}
+
+
+\columnbreak
+\subsection*{Évaluation par la méthode de Monte Carlo}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$S_{T}(i)$]	Prix du sous-jacent à $T$ généré aléatoirement avec la distribution neutre au risque;
+		\begin{itemize}
+		\item	On pose que le prix du sous-jacent suit une distribution neutre au risque en posant 
+ \lfbox[conditions]{$\alpha	=	r$}.
+		\end{itemize}
+	\item[$V(S_{T}(i), T)$]	Valeur à l'échéance de l'option selon la simulation $i$, \lfbox[formula]{$V(S_{T}(i), T)	=	\max(0; S_{T}(i)	-	K)$}.
+\end{description}
+\end{distributions}
+
+On trouve que selon la méthode de Monte Carlo, \lfbox[formula]{$V(S_{0}, 0)	=	\textrm{e}^{-rT}  \frac{1}{N} \sumz{N}{i	=	1} V(S_{T}(i), T)$.}
+
+\subsubsection*{Évaluation par la méthode de Monte Carlo d'une option d'achat européenne}
+L'estimation du prix de l'option est donc:
+\begin{align*}
+	\overline{C}
+	&=	\textrm{e}^{-rT} \frac{1}{N} \sumz{N}{i	=	1} \max(0; S_{T}(i)	-	K)
+\end{align*}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\sigma_{C}$]	Écart-type de $C$ basé sur une seule simulation;
+	\item[$\sigma_{\overline{C}}$]	Écart-type de $C$ basé sur $N$ simulations, $\sigma_{\overline{C}}	=	\frac{1}{\sqrt{N}}\sigma_{C}$.
+		\begin{itemize}
+		\item	On peut l'estimer par \lfbox[formula]{$s_{c}	=	\sqrt{\frac{1}{N	-	1}\sumz{N}{i	=	1} \left\{ C(S_{T}(i))	-	\overline{C} \right\}^{2}}$}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\subsubsection*{Option sur moyenne (\og \textit{asian} \fg{}) arithmétique}
+On estime le prix tel que illustré à la section 19.3 puis on trouve que l'estimé du prix de l'option est \lfbox[formula]{$\overline{AC}	=	\textrm{e}^{-rT} \times \frac{1}{N} \sumz{N}{i	=	1} \max\left(0; \frac{1}{n} \sumz{n}{j	=	1}S_{jh}(i)	-	K\right)$}.
+
+
+\columnbreak
+\subsection*{Évaluation par la méthode efficace de Monte Carlo}
+La méthode décrite jusqu'ici est la méthode simple (alias, naïve) de Monte Carlo. Il existe des méthodes pour améliorer la précision, et donc réduire la variance de l'estimé.
+
+\subsubsection*{Variable de contrôle}
+L'idée de la variable de contrôle est d'estimer l'erreur à chaque itération avec le prix d'une option reliée dont le prix peut être calculé par la formule. On peut ensuite appliquer cette erreur pour améliorer la précision du prix Monte Carlo.
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$A(i)$ et $G(i)$]	Prix de l'option avec moyenne arithmétique et géométrique calculé avec la $i^{\text{e}}$ trajectoire simulée;
+	\item[$\overline{A}$ et $\overline{G}$]	Estimé du prix de l'option;
+	\item[$G$]	Vrai prix de l'option utilisant la moyenne géométrique selon la formule connue;
+		\begin{itemize}
+		\item	On peut donc obtenir l'erreur \lfbox[conditions]{$G	-	\overline{G}$}.
+		\end{itemize}
+	\item[$A^{*}$]	Estimé ajusté du prix de l'option utilisant la moyenne arithmétique.
+		\begin{align*}
+		A^{*}
+		&=	\overline{A}	+	\beta	(G	-	\overline{G})
+		\end{align*}
+		\begin{itemize}
+%		\item	On trouve que $\text{Var}(A^{*})	=	\text{Var}(A) + \beta^{2}\text{Var}(\overline{G})	-	2\beta\text{Cov}(\overline{A}, \overline{G})$
+		\item	On trouve que $\text{Var}(A^{*})	=	\text{Var}(A)(1	-	\rho^{2})$ où $\rho	=	\text{Corr}(\overline{A}, \overline{G})$;
+		\item	On trouve que $\hat{\beta}	=	\frac{\text{Cov}(\overline{A}, \overline{G})}{\text{Var}(\overline{G})}$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\subsubsection*{Autres méthodes}
+\begin{definitionNOHFILLsub}[Variable antithétique]
+L'idée est que pour chaque simulation, il y a une simulation opposée qui est tout aussi probable.\\
+
+Une série de nombre aléatoires suivant une loi normale est tout aussi probable que la même série avec des signes contraires.
+\begin{itemize}
+	\item	Si on prend $U$, on peut aussi prendre $1 - U$;
+	\item	Si on prend $Z$, on peut aussi prendre $-Z$.
+\end{itemize}
+
+Par exemple, on génère 50 valeurs de $U$ puis 50 valeurs de $1	-	U$ pour faire 100 simulations.
+\\
+
+Théoriquement, il y a un gain possible vu que les deux simulations sont négativement corrélées. En pratique, le gain est modeste.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Échantillonnage stratifié]
+Au lieu de simuler des nombres $u \sim U(0, 1)$, on simule des nombres $u$ sur des \underline{sous-intervalles} de $[0, 1]$.\\
+
+Par exemple, pour faire 100 simulations on simule un nombre uniforme par centile. On simule un nombre uniforme $u \sim U(0, 0.01)$, puis un nombre $u \sim U(0.01, 0.02)$, etc jusqu'à $u \sim U(0.99, 1)$.\\
+
+\begin{itemize}
+	\item	On peut faire plus ou moins de sous-intervalles égaux et répéter la procédure;
+	\item	L'idée est d'éviter la sous-représentation ou la sur-représentation de certaines portions.
+\end{itemize}
+
+\begin{definitionNOHFILLsub}[Échantillonnage préférentiel]
+C'est un raffinement de l'échantillonnage stratifié qui concentre la génération de nombres dans le sous-intervalle le plus critique. Donc, on ne génère plus la même quantité de nombres aléatoires pour tous les sous-intervalles.
+\end{definitionNOHFILLsub}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Suites à discrépance faible]
+Elles sont obtenues de façon déterministe et visent à bien couvrir l'ensemble d'une distribution. Elles ont un intérêt particulier pour des problèmes de grande dimension.
+\end{definitionNOHFILLsub}
+
+
+\pagebreak
+\setcounter{section}{22}
+\section{Options exotiques: II}
+\subsection*{Options tout ou rien}
+
+\begin{definitionNOHFILL}[Options tout ou rien]
+Paient un montant (1\$ par défaut) ou une action (1 unité par défaut) si une condition est remplie mais rien sinon.\\
+
+Si la condition de paiement est :
+\begin{description}
+	\item[$S_{T}	>	K$] c'est une option \textbf{d'achat} tout ou rien.
+	\item[$S_{T}	<	K$]	c'est une option \textbf{de vente} tout ou rien.
+\end{description}
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	Le cours se limite aux options tout ou rien dont la condition de paiement ne dépend que de la valeur de l'action \underline{à l'échéance};
+	\item	En réalité, on peut avoir des \textit{options tout ou rien à barrière} dont le paiement dépend de \underline{l'atteinte} ou non d'un certain prix pendant que l'option est en vigueur;
+	\item	Alias, options binaires.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\subsection*{Types d'options tout ou rien}
+\begin{definitionNOHFILLsub}[Options comptant ou rien]
+La valeur à l'échéance est de 1\$ si la condition est satisfaite.\\
+
+\begin{align*}
+	CC(S_{0}, K, \sigma, r, T, \delta)
+	&=	\text{E}^{*}[\textrm{e}^{-rT} \times 1	\times	\bm{I}_{\{S_{t}	>	K\}}]
+	=	\textrm{e}^{-rT} \Pr(S_{T}	>	K)	\\
+	&=	\textrm{e}^{-rT} N(d_{2})	\\
+	CP(S_{0}, K, \sigma, r, T, \delta)
+	&=	\text{E}^{*}[\textrm{e}^{-rT} \times	1	\times	\bm{I}_{\{S_{t}	<	K\}}]
+	=	\textrm{e}^{-rT} \Pr(S_{T}	<	K)	\\
+	&=	\textrm{e}^{-rT} N(-d_{2})	
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Options actif ou rien]
+La valeur à l'échéance est de $S_{T}$ si la condition est satisfaite.\\
+
+\begin{align*}
+	AC(S_{0}, K, \sigma, r, T, \delta)
+	&=	\text{E}^{*}[\textrm{e}^{-rT} \times S_{T}	\times	\bm{I}_{\{S_{t}	>	K\}}]	
+	=	\textrm{e}^{-rT} \text{E}^{*}[S_{T}	\times	\bm{I}_{\{S_{t}	>	K\}}]	\\
+	&=	\textrm{e}^{-rT} S_{0} \textrm{e}^{(r	-	\delta)T}N(d_{1})	\\
+	&=	S_{0} \textrm{e}^{-\delta T}N(d_{1})	\\
+	AP(S_{0}, K, \sigma, r, T, \delta)
+	&=	\text{E}^{*}[\textrm{e}^{-rT} \times S_{T}	\times	\bm{I}_{\{S_{t}	<	K\}}]	
+	=	\textrm{e}^{-rT} \text{E}^{*}[S_{T}	\times	\bm{I}_{\{S_{t}	<	K\}}]	\\
+	&=	\textrm{e}^{-rT} S_{0} \textrm{e}^{(r	-	\delta)T}N(-d_{1})	\\
+	&=	S_{0} \textrm{e}^{-\delta T}N(-d_{1})	
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{itemize}
+	\item	Une option d'achat classique correspond donc à acheter une option d'achat actif ou rien et vendre $K$ options comptant ou rien;
+	\item	Une option d'achat avec écart équivaut à acheter une option d'achat actif ou rien et vendre $K_{1}$ options d'achat comptant ou rien.
+\end{itemize}
+
+\columnbreak
+\subsection*{Option rétroviseur}
+\begin{definitionNOHFILL}[Option rétroviseur]
+La valeur à l'échéance dépend du prix de l'action maximal ou minimal atteint lorsque l'option était en vigueur.\\
+
+Il y a 4 version de l'option rétroviseur:
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Type}}	&	\textcolor{white}{\textbf{Valeur à l'échéance}}		\\\specialrule{0.1em}{0em}{0em} 
+Standard Lookback Call	&	$S_{T}	-	\min(S)$	\\\hline
+Standard Lookback Put	&	$\max(S)	-	S_{T}$	\\\hline
+Extrema Lookback Call	&	$\max(\max(S)	-	K, 0)$	\\\hline
+Extrema Lookback Put		&	$\max(K	-	\min(S), 0)	-	S_{T}$	\\\hline
+\end{tabular}
+\end{center}
+\textbf{Notes:}
+\begin{itemize}[leftmargin = *]
+	\item	La valeur à l'échéance d'une option rétroviseur standard est non-négative puisque $\min(S)	\leq 	S_{T}$ et $\max(S)	\geq 	S_{T}$;
+	\item	Une option rétroviseur standard n'a pas de "prix d'exercice", plutôt on le défini comme \icbox[red][palechestnut]{la valeur de l'action sous-jacente qui maximise} \icbox[red][palechestnut]{la valeur à l'échéance}.\\
+			Pour une option d'achat, c'est le minimum $\min(S)$ et une option de vente le maximum $\max(S)$;
+	\item	Puisque ces derniers sont inconnus jusqu'à l'échéance de l'option, on surnomme aussi une option rétroviseur standard \icbox[red][palechestnut]{une option rétroviseur avec un prix d'exercice \textbf{flottant}};
+	\item	De façon semblable, une option rétroviseur extrême se surnomme \icbox[red][palechestnut]{une option rétroviseur avec un prix d'exercice \textbf{fixe}}.
+\end{itemize}
+
+\tcbline
+
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{lookback option} \fg{};
+	\item	La tarification des options rétroviseurs avec la formule de Black-Scholes est compliquée, on peut plutôt utiliser soit les principes actuariels de base ou le modèle binomial selon le contexte.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\columnbreak
+\subsection*{Options qui ne sont pas dans le cadre du cours, mais qui font partie de l'examen IFM}
+\begin{definitionNOHFILLsub}[Options \og \textit{forward start} \fg{}]
+Fourni au détenteur une option à un temps futur déterminé. À l'échéance de l'option \og \textit{forward start} \fg{}, le détenteur reçoit une option dont le prix d'exercice dépend du prix de l'action à ce moment.	
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Options \og \textit{chooser} \fg{}]
+Permet au détenteur de choisir à un moment futur déterminé si l'option sera une option d'achat ou de vente européenne.
+\end{definitionNOHFILLsub}
 
 \end{multicols*}
 

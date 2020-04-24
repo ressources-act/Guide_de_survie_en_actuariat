@@ -13,14 +13,12 @@
 %% -----------------------------
 \def\SectionColor{green!50!black}
 \def\SubSectionColor{green!20!black}
+\def\SubSubSectionColor{green!20!black}
 %% -----------------------------
 %% Definition of LaTex math commands
 %% -----------------------------
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-%
-% Redefine authors
-%
-\def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin et Alec James van Rassel}
+\setlist[itemize]{leftmargin=*}
 
 % 
 % Débute numérotation des chapitres à 2 pour suivre les notes de Marie-Piere.
@@ -32,6 +30,14 @@
 %% -----------------------------
 \begin{document}
 
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT2003}
+
+\newpage
+
+\raggedcolumns
 % \small
 \begin{multicols*}{3} 
 \section*{Rappels algèbre linéaire}
@@ -71,29 +77,43 @@
 	\frac{\partial}{\partial \matr{b}} f(\matr{b})^{\top} \matr{A} f(\matr{b}) &= 2 \left(\frac{\partial}{\partial \matr{b}} f(\matr{b}) \right)^{\top} \matr{A} f(\matr{b})	\\
 \end{align*}
 
+\columnbreak
+
 \section{Régression linéaire simple}
-\subsection*{Postulats}
+\begin{algo2}[Postulats]
 \begin{enumerate}[label=$\mathbf{H}_{\arabic*}$]
 \item Linéarité : $\esp{\varepsilon_i} = 0$
 \item Homoscédasticité : $\variance{\varepsilon_i}= \sigma^2$
 \item Indépendance : $\covar{\varepsilon_i, \varepsilon_j} = 0$
 \item Normalité : $\varepsilon_i \sim \mathcal{N} (0, \sigma^2)$
 \end{enumerate}
+\end{algo2}
 \subsection*{Modèle}
 
-\begin{enumerate}
+\begin{definitionNOHFILL}[Modèle de régression linéaire simple]
+\begin{align*}
+	Y_{i} 
+	&=	\beta_{0} + \beta_{1} x_{i} + \varepsilon_{i}
+\end{align*}
+\end{definitionNOHFILL}
+
+\begin{distributions}[Composantes du modèle de régression]
+\begin{description}
 	\item[$Y_i$ : ] Valeurs observées d'une variable \textcolor{red}{aléatoire}.
-%	\\On peut dire qu'elles sont distribuées de façon aléatoire autour de la \textbf{droite} \textit{(de régression)} qui représente la \textbf{moyenne}.
-	\item[$x_i$ : ] Valeurs \textcolor{black}{\textbf{connues}}
-	\item[$\beta_i$ : ] Paramètres \textbf{fixés} mais \textcolor{blue}{inconnus} à \textit{\textbf{estimer}}
-	\item[$\epsilon_i$ : ] Réalisations \textcolor{blue}{inconnues} d'une variable \textcolor{red}{aléatoire}.
-%	\\On peut dire que ces termes d'erreurs sont la différence entre les valeurs observées de Y et la droite (les prévisions).
-%\\
-%\begin{align*}
-%Y_{i} &= \beta_{0} + \beta_{1}x_{i} + \epsilon_{i}\\
-%\hat{Y}_{i} &= \hat{\beta}_{0} + \hat{\beta}_{1}x_{i}
-%\end{align*}
-\end{enumerate}
+		\begin{itemize}[leftmargin = *]
+		\item	Comporte plusieurs noms: Variable dépendate, endogène, réponse, etc.
+		\end{itemize}
+	\item[$x_i$ : ] Valeurs \textcolor{black}{\textbf{connues}}.
+		\begin{itemize}[leftmargin = *]
+		\item	Comporte plusieurs noms: Variables indépendates, exogènes, explicatives, covariables, facteurs, etc.
+		\end{itemize}
+	\item[$\beta_i$ : ] Paramètres \textbf{fixés} mais \textcolor{blue}{inconnus} à \textit{\textbf{estimer}}.
+	\item[$\varepsilon_i$ : ] Réalisations \textcolor{blue}{inconnues} d'une variable \textcolor{red}{aléatoire}.
+		\begin{itemize}[leftmargin = *]
+		\item	La fluctuation aléatoire qui représente l'erreur dans la prévision de $Y_{i}$.
+		\end{itemize}
+\end{description}
+\end{distributions}
 
 \begin{align*}
 \esp{Y_i | x_i} 	& = \beta_0 + \beta_1 x_i \\
@@ -169,11 +189,11 @@ $\therefore$ rejete $H_0$ si $| t_{obs} | > \left| t_{(n - 2), \alpha/2} \right|
 
 	\item Prévoir la 'vraie' valeur de $Y_0$
 \[
-		Y_0 = \beta_0 + \beta_1 x_0 + \epsilon
+		Y_0 = \beta_0 + \beta_1 x_0 + \varepsilon
 \]
 
 \end{enumerate}
-$\because \esp{\epsilon} = 0  \therefore \widehat{\esp{Y | x_0 }} = \widehat{Y}_0 = \widehat{\beta}_0 + \widehat{\beta}_1 x_0$ 
+$\because \esp{\varepsilon} = 0  \therefore \widehat{\esp{Y | x_0 }} = \widehat{Y}_0 = \widehat{\beta}_0 + \widehat{\beta}_1 x_0$ 
 
 % clear column and go to the next one
 %\vfill\null
@@ -223,7 +243,7 @@ $\because \esp{\epsilon} = 0  \therefore \widehat{\esp{Y | x_0 }} = \widehat{Y}_
 \end{tikzpicture}
 
 	\item \textbf{Process risk} pour $Y_0$. \\
-		\textit{alias $\epsilon$} qui est la fluctuation des valeurs de la variable endogène $Y$ autour de sa moyenne.
+		\textit{alias $\varepsilon$} qui est la fluctuation des valeurs de la variable endogène $Y$ autour de sa moyenne.
 
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
@@ -374,16 +394,16 @@ F_{obs} &= \frac{MSR}{MSE} \geq F_{p, n-p'}(1 - \alpha)
 \subsection*{Distribution d'un résidu $\varepsilon$}
 \begin{tabular}{| >{\columncolor[gray]{.8}}c |c | c|}
 \hline
-$E[\widehat{\epsilon}_i]$ & $0$ & $\mathcal{H}_{1}$\\\hline
-$V(\widehat{\epsilon}_i)$ & $\sigma^2(1 - h_{ii})$& $\mathcal{H}_{2}$ \\\hline
-$Cov(\widehat{\epsilon}_i, \widehat{\epsilon}_j)$ & $-\sigma^2 \bigg( \frac{1}{n} + \frac{(x_i - \bar{x})(x_j - \bar{x})}{S_{xx}}\bigg)$ & $\mathcal{H}_{3}$ \\\hline
-$\widehat{\epsilon}_i$ & $\sim \mathcal{N}(0, \sigma^2(1 - h_{ii}))$& $\mathcal{H}_{4}$ \\\hline
+$E[\widehat{\varepsilon}_i]$ & $0$ & $\mathcal{H}_{1}$\\\hline
+$V(\widehat{\varepsilon}_i)$ & $\sigma^2(1 - h_{ii})$& $\mathcal{H}_{2}$ \\\hline
+$Cov(\widehat{\varepsilon}_i, \widehat{\varepsilon}_j)$ & $-\sigma^2 \bigg( \frac{1}{n} + \frac{(x_i - \bar{x})(x_j - \bar{x})}{S_{xx}}\bigg)$ & $\mathcal{H}_{3}$ \\\hline
+$\widehat{\varepsilon}_i$ & $\sim \mathcal{N}(0, \sigma^2(1 - h_{ii}))$& $\mathcal{H}_{4}$ \\\hline
 \end{tabular} \\
 où $h_{ii} = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{S_{XX}}$.\\
 On peut interpréter $h_{ii}$ comme étant la \textit{"proportion"} de la variabilité du modèle \textit{$\sigma^{2}$} \textit{"expliquée"} par la $\text{i}^{\text{e}}$ observation. \\
 Pour mieux le voir:
 $h_{ii} = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum_{j = 1}^{n}(x_j - \bar{x})^2}$.\\
-Donc, $h_{ii}$ est une des $n$ observations et $(x_{i} - \bar{x})^{2}$ est une des $n$ erreurs au carré; en multipliant par $\sigma^{2}$ on obtient la \textit{"proportion"} de la variabilité du résidu attribué au $\text{i}^{\text{e}}$ résidu $\hat\epsilon_{i}$.
+Donc, $h_{ii}$ est une des $n$ observations et $(x_{i} - \bar{x})^{2}$ est une des $n$ erreurs au carré; en multipliant par $\sigma^{2}$ on obtient la \textit{"proportion"} de la variabilité du résidu attribué au $\text{i}^{\text{e}}$ résidu $\hat\varepsilon_{i}$.
 %On peut aussi prouver que
 %\begin{align*}
 %\mathrm{Cov}(\hat{\varepsilon}_i, \hat{\varepsilon}_j) = - \sigma^2 \left( \frac{1}{n} + \frac{(x_i - \bar{x})(x_j - \bar{x})}{S_{XX}} \right)
@@ -391,13 +411,13 @@ Donc, $h_{ii}$ est une des $n$ observations et $(x_{i} - \bar{x})^{2}$ est une d
 
 \subsection*{Vérification des postulats}
 %
-%Les \textbf{résidus ordinaires} $\epsilon_{i} = Y_{i} - \hat{Y}_{i}$
+%Les \textbf{résidus ordinaires} $\varepsilon_{i} = Y_{i} - \hat{Y}_{i}$
 %Si l'hypothèse
 %\begin{enumerate}
-%	\item[$\mathcal{H}_{1}$] est vérifié, $\esp{\hat{\epsilon_{i}}} = 0$.
-%	\item[$\mathcal{H}_{2}$] est vérifié, $\text{V}(\hat{\epsilon_{i}}) = \sigma^2(1 - h_{ii})$.
-%	\item[$\mathcal{H}_{3}$] est vraie, $\text{Cov}(\hat{\epsilon_{i}}, \hat{\epsilon_{j}}) = -h_{ij}\sigma^2$.
-%	\item[$\mathcal{H}_{4}$] est vérifié, $\hat{\epsilon_{i}} \sim \mathcal{N}(0, \sigma^2(1 - h_{ii}))$.
+%	\item[$\mathcal{H}_{1}$] est vérifié, $\esp{\hat{\varepsilon_{i}}} = 0$.
+%	\item[$\mathcal{H}_{2}$] est vérifié, $\text{V}(\hat{\varepsilon_{i}}) = \sigma^2(1 - h_{ii})$.
+%	\item[$\mathcal{H}_{3}$] est vraie, $\text{Cov}(\hat{\varepsilon_{i}}, \hat{\varepsilon_{j}}) = -h_{ij}\sigma^2$.
+%	\item[$\mathcal{H}_{4}$] est vérifié, $\hat{\varepsilon_{i}} \sim \mathcal{N}(0, \sigma^2(1 - h_{ii}))$.
 %\end{enumerate}
 
 Les résidus studentisés sont définis par
@@ -658,13 +678,13 @@ Il ne devrait pas avoir de tendances discernables du nuage de points \textit{(il
 \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (238.89,61.03) .. controls (238.58,60.04) and (239.13,58.98) .. (240.12,58.67) .. controls (241.11,58.35) and (242.17,58.9) .. (242.49,59.89) .. controls (242.8,60.89) and (242.25,61.95) .. (241.26,62.26) .. controls (240.27,62.58) and (239.21,62.03) .. (238.89,61.03) -- cycle ;
 
 % Text Node
-\draw (26.26,11.18) node  [align=left] {$\displaystyle \epsilon _{i}$};
+\draw (26.26,11.18) node  [align=left] {$\displaystyle \varepsilon _{i}$};
 % Text Node
 \draw (133.65,91.02) node  [align=left] {$\displaystyle Y_{i}$};
 % Text Node
 \draw (250.65,92.02) node  [align=left] {$\displaystyle Y_{i}$};
 % Text Node
-\draw (143.26,20.18) node  [align=left] {$\displaystyle \epsilon _{i}$};
+\draw (143.26,20.18) node  [align=left] {$\displaystyle \varepsilon _{i}$};
 % Text Node
 \draw (88,16) node [scale=0.7] [align=left] {$\displaystyle y\ =\ \beta _{0} +\beta _{1} x$};
 % Text Node
@@ -1182,13 +1202,13 @@ Puisque c'est difficile à tester, on peut faire la graphique des résidus en fo
 
 \subsection*{Transformation des données}
 \begin{enumerate}
-	\item $V(\epsilon_i) \propto \esp{Y_i}$ et les données de type Poisson.
+	\item $V(\varepsilon_i) \propto \esp{Y_i}$ et les données de type Poisson.
 	\[g(Y) = \sqrt{Y}\]
-	\item $V(\epsilon_i) \propto (\esp{Y_i})^2$ avec la situation la plus efficace étant si $Y$ possède une très grande étendue.
+	\item $V(\varepsilon_i) \propto (\esp{Y_i})^2$ avec la situation la plus efficace étant si $Y$ possède une très grande étendue.
 	\[g(Y) = log(Y)\]
-	\item $V(\epsilon_i) \propto (\esp{Y_i})^4$. 
+	\item $V(\varepsilon_i) \propto (\esp{Y_i})^4$. 
 	\[g(Y) = 1/Y\]
-	\item $V(\epsilon_i) \propto \esp{Y_i}(1 - \esp{Y_i})$, $Y \in [0, 1]$ et $Y \sim \text{Bern}$. 
+	\item $V(\varepsilon_i) \propto \esp{Y_i}(1 - \esp{Y_i})$, $Y \in [0, 1]$ et $Y \sim \text{Bern}$. 
 	\[g(Y) = \text{arcsin}(\sqrt{Y})\]
 \end{enumerate}
 
@@ -1204,6 +1224,7 @@ Alias, le théorème de la fonction quantile pour une fonction monotone:
 	\text{Pr}(a \le g(Y) \le b) &= \text{Pr}(g^{-1}(a) \le Y \le g^{-1}(b)) 
 \end{align*}
 
+\newpage
 
 \section{Régression linéaire multiple}
 % \mathrm{•} utilise la notation matricielle
@@ -1240,10 +1261,10 @@ Y_n\\
 \end{pmatrix}}}
 +
 \underset{n\times 1}{\underbrace{\begin{pmatrix}
-\epsilon_1\\ 
-\epsilon_2\\ 
+\varepsilon_1\\ 
+\varepsilon_2\\ 
 \vdots\\ 
-\epsilon_n\\ 
+\varepsilon_n\\ 
 \end{pmatrix}}}
 \]
 \\
@@ -1276,7 +1297,7 @@ où $v_{jj}$ est l'élément $(j,j)$ de la matrice $\matr{(X^\top X)^{-1}}$.
 %Il peut être démontré que cet estimateur est sans biais et indépendant de $\bm{\hat{\beta}}$.
 À noter que $s^{2}\bot \bm{\beta}$ et le $\text{Biais}(s^{2}) = 0$.\\
 \begin{align*}
-s^2 &= \frac{\hat{\bm{\varepsilon}}^\top \hat{\bm{\varepsilon}}}{n-p'} &\text{où } \frac{\bm{\hat\epsilon}^{\top}\bm{\hat\epsilon}}{\sigma^{2}} &\sim \chi^{2}_{n - p'}
+s^2 &= \frac{\hat{\bm{\varepsilon}}^\top \hat{\bm{\varepsilon}}}{n-p'} &\text{où } \frac{\bm{\hat\varepsilon}^{\top}\bm{\hat\varepsilon}}{\sigma^{2}} &\sim \chi^{2}_{n - p'}
 \end{align*}
 
 \subsubsection*{Test d'hypothèse sur un paramètre du modèle}
@@ -1362,11 +1383,11 @@ Même test qu'en régression linéaire simple.
 \subsubsection*{Test F partiel pour la réduction du modèle}
 Avec $k < p$, on va rejeter le modèle réduit:
 \begin{align*}
-H_0 : Y_i &= \beta_0 + \beta_1 x_{i1} + ... + \beta_{ik} x_{ik} + \epsilon_i 
+H_0 : Y_i &= \beta_0 + \beta_1 x_{i1} + ... + \beta_{ik} x_{ik} + \varepsilon_i 
 \end{align*}
 Pour le modèle complet:
 \begin{align*}
-H_1 : Y_i &= \beta_0 + \beta_1 x_{i1} + ... \beta_{ip} x_{ip} + \epsilon_i 
+H_1 : Y_i &= \beta_0 + \beta_1 x_{i1} + ... \beta_{ip} x_{ip} + \varepsilon_i 
 \end{align*}
 Si
 \begin{align*}
@@ -1467,7 +1488,7 @@ r_{jk} &= \sum_{i = 1}^{n}\frac{(x_{ji} - \bar{x}_{j})(x_{ki} - \bar{x}_{k})}{s_
 \begin{align*}
 VIF_j = \frac{1}{1 - R_j^2}
 \end{align*}
-\item[$VIF_j$ :] Pour évaluer le degré de dépendance de chaque variable exogène sur les autres variables exogènes.\\
+\item	$VIF_j$:	Pour évaluer le degré de dépendance de chaque variable exogène sur les autres variables exogènes.\\
 Pour la $j$\up{e} variable exogène ($x_j$), on mesure le niveau de dépendance en effectuant une régression ayant $x_j$ comme variable explicative (\textit{endogène}) et les $(p - 1)$ variables restantes comme variables explicatives (\textit{exogènes}).\\
 $R_j^2$ mesurera la proportion de la variabilité de $x_j$ expliquée par les autres variables explicatives, s'il est élevé il semblerait avoir un problème.\\
 Le nom "\textit{facteur d'inflation}" vient du fait que la variance de $\hat{\beta}_j$ s'exprime en fonction du VIF :
@@ -1521,14 +1542,14 @@ Le nom "\textit{facteur d'inflation}" vient du fait que la variance de $\hat{\be
 \begin{itemize}
 \item Graphique $\hat{\varepsilon}_i | i$
 \item Test de Durbin-Watson pour détecter la présence d'autocorrélation positive entres les résdius.
-\item S'il y a autocorrélation, alors $\text{V}(\epsilon) \not= \sigma^{2} \matr{I_n}$ puisque les éléments autres que la diagonale ne sont pas toutes 0. \\
+\item S'il y a autocorrélation, alors $\text{V}(\varepsilon) \not= \sigma^{2} \matr{I_n}$ puisque les éléments autres que la diagonale ne sont pas toutes 0. \\
 Toutes nos procédure (test d'hypothèses, intervalles de confiance, etc.) dépendent sur ce fait et donc des conclusions erronées pourraient être obtenues.
 \end{itemize}
 
 \subsection*{Hétéroscédasticité et régression pondérée}
 
-Jusqu'à dâte, les procédure sont adéquates seulement si $\epsilon_i, \dots, \epsilon_n$ sont (iid) telle que $\epsilon \sim \mathcal{N}(\matr{0}, \sigma^{2}\matr{I_n})$.\\
-Que doit on faire si $\epsilon \sim \mathcal{N}(\matr{0}, 
+Jusqu'à dâte, les procédure sont adéquates seulement si $\varepsilon_i, \dots, \varepsilon_n$ sont (iid) telle que $\varepsilon \sim \mathcal{N}(\matr{0}, \sigma^{2}\matr{I_n})$.\\
+Que doit on faire si $\varepsilon \sim \mathcal{N}(\matr{0}, 
 \text{diag}(\sigma^{2}_{1}, \dots, \sigma^{2}_{n}))$?\\
 On appelle ceci l'\textbf{hétéroscédasticité}, c'est à dire que la variance n'est pas la même pour tous les résidus.
 
@@ -1655,7 +1676,7 @@ On appelle ceci l'\textbf{hétéroscédasticité}, c'est à dire que la variance
 
 On utilise la méthode du \textbf{moindre carré pondéré} (MCP) pour trouver $\widehat{\bm{\beta}}$ tel que:
 \[
-	\sum_{i = 1}^{n} \omega_{i}(Y_{i} - \widehat{Y}_i)^{2} \Leftrightarrow \widehat{\bm{\epsilon}}^{\top} \matr{V}^{-1} \widehat{\bm{\epsilon}}
+	\sum_{i = 1}^{n} \omega_{i}(Y_{i} - \widehat{Y}_i)^{2} \Leftrightarrow \widehat{\bm{\varepsilon}}^{\top} \matr{V}^{-1} \widehat{\bm{\varepsilon}}
 	\]
 est minimale et qu'on pose :
 \begin{align*}
@@ -1681,6 +1702,9 @@ On peut contruire une table d'\textbf{analyse de la variance} avec la décomposi
 \begin{align*}
 	\underset{SST_V}{\underbrace{\matr{Y^{\top}V^{-1}Y}}} &= \underset{SSR_V}{\underbrace{\bm{\widehat{\beta}} \ \matr{X^{\top}V^{-1}Y}}} + \underset{SSE_V}{\underbrace{(\matr{Y - X}\bm{\widehat{\beta}})^{\top}\matr{V^{-1}}(\matr{Y - X}\bm{\widehat{\beta}}) }}
 \end{align*}
+
+
+\newpage
 
 \section{Sélection de modèle et régression régularisée}
 En présence de beaucoup de variable exogènes, on court le danger d'en garder trop ou pas assez
@@ -1958,7 +1982,7 @@ S^{L}(\bm{\beta}) &=
 Afin de bien saisir la différence en méthode de Ridge et Lasso, il est suggéré de faire l'exercice 4.2. 
 On obtient que \textbf{Ridge modifie l'échelle} des prévisions alors que \textbf{Lasso} va \textbf{modifier la prévision} d'une pénalité (avec une addition ou soustraction).
 
-\vfill\null
+\newpage
 
 \section{Modèles linéaires généralisés (GLM)}
 
@@ -1968,7 +1992,7 @@ On obtient que \textbf{Ridge modifie l'échelle} des prévisions alors que \text
 
 Une loi de probabilité fait partie de la famille exponentielle linéaire si:
 
-\begin{enumerate}[label=\faAngleRight]
+\begin{itemize}
 	\item	Sa fonction de densité \textit{(ou de masse)} de probabilité peut être exprimée comme:
 \begin{formula}{Densité de la famille exponentielle}
 	\[
@@ -1991,7 +2015,7 @@ Une loi de probabilité fait partie de la famille exponentielle linéaire si:
 		Si chaque donnée à un $\phi_i$ différent, on réécrit la fonction de dispersion comme $\alpha_i = \phi/\omega_i \; \forall i \in \{1, \dots, n \}$. 
 		
 		Ceci est la \textbf{famille exponentielle \textit{pondérée}}.
-\end{enumerate}
+\end{itemize}
 
 \subsubsection*{Propriétés}
 
@@ -2030,10 +2054,10 @@ Et l'information de Fisher peut être réécrite comme:
 \subsection*{Fonctions de lien}
 
 Le but est de relier l'espérance de $Y$ aux variables exogènes au lieu de $Y$ elle-même; soit :
-\begin{enumerate}
-	\item[$\matr{x}_{1 \times p'}$: ] une ligne de la matrice d'incidence; et
-	\item[$\bm{\beta}_{p' \times 1}$: ] paramètre sur lequel $\esp{Y | \matr{x}}$ dépend.
-\end{enumerate}
+\begin{description}
+	\item[$\matr{x}_{1 \times p'}$] une ligne de la matrice d'incidence; et
+	\item[$\bm{\beta}_{p' \times 1}$] paramètre sur lequel $\esp{Y | \matr{x}}$ dépend.
+\end{description}
 
 Alors, 
 \begin{align*}
@@ -2079,7 +2103,7 @@ La \textbf{fonction de lien} est donc la transformation appliquée à $\eta$ afi
 
 \subsection*{Estimation des paramètres}
 
-\begin{enumerate}[label=\faAngleRight]
+\begin{itemize}
 	\item	Estimer $\hat{\beta}$ avec la méthode de l'\textbf{EMV} \textit{(\textbf{MLE})}.
 	
 	\item	L'EMV est \textbf{convergent},
@@ -2099,12 +2123,12 @@ La \textbf{fonction de lien} est donc la transformation appliquée à $\eta$ afi
 	\end{align*}
 	
 	\item	On peut estimer la matrice d'information de Fisher avec \textbf{l'information observée} lorsque $\beta$ est inconnu:
-\end{enumerate}
+\end{itemize}
 \begin{align*}
 	\mathcal{I}(\hat{\bm{\beta}}) 
-		&=	-\sum_{i = 1}^{n} \deriv{\bm{\beta}} \ell(\bm{\beta} ; y_i) \left\{\deriv{\bm{\beta}}\dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)\right\}^{\top} \eval_{\hat{\bm{\beta}}} \\
-		&\Leftrightarrow		-\sum_{i = 1}^{n} \deriv[2]{\bm{\beta}} \ell(\bm{\beta} ; y_i)  \eval_{\hat{\bm{\beta}}} 
-	\end{align*}
+%		&=	-\sum_{i = 1}^{n} \deriv[1]{\bm{\beta}} \ell(\bm{\beta} ; y_i) \left\{\deriv{\bm{\beta}}\dot{\ell}(\bm{\beta} ; Y_1, ..., Y_n)\right\}^{\top} \eval_{\hat{\bm{\beta}}} \\
+		&\Leftrightarrow		-\sum_{i = 1}^{n} \deriv[2]{\bm{\beta}} \ell(\bm{\beta} ; y_i)  \_{\hat{\bm{\beta}}} 
+\end{align*}
 
 \subsubsection*{Algorithme de Newton-Raphson}
 Afin d'évaluer $\hat{\bm{\beta}}$, on utilise l'approximation de Taylor du premier ordre avec cet algorithme itératif:
@@ -2179,7 +2203,7 @@ On teste la statistique:
 On rejete l'hypothèse nulle $\textrm{H}_0$ lorsque $\lambda(y) \leq \text{valeur critique}$.
 
 Si $\textrm{H}_0$ spécifie
-\begin{enumerate}[label=\faAngleRight]
+\begin{itemize}
 	\item	\textbf{\textit{tous}} les paramètres du modèle, on a:
 	\[
 		\shortminus 2 \ln \lambda(Y) \underset{\textrm{H}_0}{\approx} \chi_{p'}^2
@@ -2193,7 +2217,7 @@ Si $\textrm{H}_0$ spécifie
 	\item[$k_1$: ] Nombre de paramètres non-spécifiés dans $H_0$;
 	\item[$k_2$: ] Nombre de paramètres non-spécifiés dans $H_1$ ($k_2 > k_1$).
 	\end{enumerate}
-\end{enumerate}
+\end{itemize}
 
 \textbf{Note: }Avec le \textbf{TRV}, on peut seulement comparer des modèles qui sont \textbf{emboités}. C'est-à-dire, que tous les paramètres sous $\textrm{H}_0$ doivent être inclus sous $\textrm{H}_1$.
 
@@ -2402,8 +2426,8 @@ où
 
 On peut également ajouter une pénalité de type Ridge ou Lasso \textit{(sélection de variables)} comme en modèles linéaires.
 
+\newpage
 
-% --- DÉBUT CHAPITRE 6 : MODÉLISATION DE DONNÉES DE COMPTAGE
 \section{Modélisation de données de comptage}
 
 \subsection*{Terme \emph{offset}}
@@ -2533,6 +2557,8 @@ On peut faire un TRV pour valider si le modèle Poisson est une bonne simplifica
 \subsection*{Modèle Poisson gonflée à zéro}
 Lorsqu'on a une masse de probabilité à zéro plus importante à 0, on peut utiliser la loi de Poisson \emph{gonflée à zéro}, en modélisant à la fois la probabilité $\pi_i$ que la fréquence soit égale à zéro (avec un modèle binomial logistique) et $\lambda_i$ la fréquence avec un modèle Poisson avec fonction de lien log.
 
+
+\newpage
 
 \section{Modélisation de données binomiales}
 

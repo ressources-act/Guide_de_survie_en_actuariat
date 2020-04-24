@@ -4,10 +4,6 @@
 %% -----------------------------
 \input{cheatsht-preamble-general.tex}
 %% -----------------------------
-%% Redefine from template
-%% -----------------------------
-\def\auteur{Alec James van Rassel}
-%% -----------------------------
 %% Variable definition
 %% -----------------------------
 \def\cours{Apprentissage statistique en actuariat}
@@ -17,22 +13,36 @@
 %% -----------------------------
 \def\SectionColor{green!50!black}
 \def\SubSectionColor{green!20!black}
-\def\SubSubSection{burntsienna}
+\def\SubSubSectionColor{burntsienna}
 
 %	"to-do" list
 \newlist{todolist}{itemize}{2}
 \setlist[todolist]{label=$\square$}
+%%%
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
+\definecolor{rstudioblue}{HTML}{F7F7F7}
+
+
 %% -----------------------------
 %% Début du document
 %% -----------------------------
 \begin{document}
 
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT3114}
+
+\newpage
+
+\raggedcolumns
 \begin{multicols*}{3} 
 
 \section{Préparation de données}
 
 \begin{algo2}[Repères visuels]
-\begin{enumerate}
+\begin{enumerate}[leftmargin = *]
 	\item	La \textbf{position} sur une \textbf{même échelle} (variable numérique), souvent à l’aide de points ou de boîte à moustache;
 	\item	La \textbf{position} sur une \textbf{échelle identique}, mais \textbf{non alignée} (variable numérique);
 		\begin{itemize}
@@ -67,40 +77,40 @@
 Cette liste n'est pas séquentielle, il est surtout important de \textit{tout} le faire.
 \begin{todolist}[leftmargin = *]
 	\item	\textbf{Comprendre} la structure des données;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	dimensions, types de variables, \texttt{str} et \texttt{summary}.
 		\end{itemize}
 	\item	\textbf{Visualiser} les données;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	\texttt{head}, \texttt{summary} et graphiques exploratoires.
 		\end{itemize}
 	\item	\textbf{Mettre en forme \textit{(format)}} les données;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Chaque ligne est une observation;
 		\item	Chaque colonne est une variable;
 		\item	Supprimer les doublons;
 		\end{itemize}
 	\item	Vérifier et corriger les \textbf{types} de variables;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	booléens, entiers, numériques, facteurs, chaînes de caractères, dates, etc.
 		\end{itemize}
 	\item	\textbf{Manipuler} les \textbf{chaînes} de caractères;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Corriger les typos;
 		\item	Changer la casse avec \texttt{tolower};
 		\item	Extraire des informations avec les expressions régulières.
 		\end{itemize}
 	\item	Identifier les \textbf{données aberrantes};
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Mettre \texttt{NA} et gérer plus tard.
 		\end{itemize}
 	\item	\textbf{Détecter} les \textbf{erreurs} flagrantes ou les changements structurels dans les données;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Prendre compte des réformes;
 		\item	Constater les structures importantes.
 		\end{itemize}
 	\item	\textbf{Augmenter} les données à l'aide d'autres sources;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	optionnel.
 		\end{itemize}
 \end{todolist}
@@ -111,7 +121,7 @@ Les jeux de données peuvent être:
 \begin{description}[leftmargin = *]
 	\item[Structuré:]	Données ayant une structure prédéfinie.\\
 		Pour exemple:
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Tableaux;
 		\item	\og spreadsheet \fg{};
 		\item	\og Relational databases \fg{}.
@@ -119,7 +129,7 @@ Les jeux de données peuvent être:
 	\item[Non structuré:]	Données sans structure prédéfinie venant en toute forme et ne pouvant pas être facilement résumées à un tableau.\\
 		Pour exemple:
 		\begin{multicols*}{3}
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Texte;
 		\item	Images;
 		\item	Audio;
@@ -133,17 +143,17 @@ Les jeux de données peuvent être:
 Types de variables:
 \begin{description}
 	\item[Quantitatives:]	Données numériques pouvant être:
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Discrète, pour exemple des données de comptage; 
 		\item	Continue, pour exemple des montants de sinistre.
 		\end{itemize}
 	\item[Qualitatives:]	Données catégorielles pouvant être:
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Nominales, pour exemple le sexe; 
 		\item	Ordinales, pour exemple des groupes d'âge.
 		\end{itemize}
 	\item[Temporelles]Données chronologiques représentant un état dans le temps;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Pour exemple, la quantité totale de pluie au Canada le 1er juillet 1990.
 		\end{itemize}
 	\item[Spatiales]	Données géographiques avec des coordonnées (pour exemple, la latitude et longitude).
@@ -151,10 +161,10 @@ Types de variables:
 \end{conceptgen}
 
 \begin{algo2}[Conseils]
-\begin{itemize}
+\begin{itemize}[leftmargin = *]
 	\item	Conserver un script séparé pour le traitement des données;
 	\item	Documenter nos choix;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Si l'on omet quelques observations en raison de données aberrantes, il faut être conscients que ça peut biaiser les résultats.
 		\end{itemize}
 	\item	Effacer l'encre superflue 
@@ -201,14 +211,16 @@ Types de variables:
 \end{description}
 \end{conceptgen}
 
+\newpage
+
 \section{Données manquantes}
 
 Le chapitre utilise la \textbf{mise en contexte} suivante:
-\begin{itemize}
+\begin{itemize}[leftmargin = *]
 	\item	Il y a une réclamation pour un accident d'auto en Ontario;
 	\item	Le contrat d'assurance couvre les frais médicaux;
 	\item	On désire calculer la probabilité de paiement (variable réponse) en fonction de:
-		\begin{enumerate}
+		\begin{enumerate}[leftmargin = *]
 		\item	La gravité de l'accident (variable explicative);
 		\item[]	3 niveaux: mineur-majeur-catastrophique;
 		\item	La souffrance du réclamant;
@@ -217,7 +229,7 @@ Le chapitre utilise la \textbf{mise en contexte} suivante:
 \end{itemize}
 
 \textbf{Problèmes} de modélisation:
-\begin{itemize}
+\begin{itemize}[leftmargin = *]
 	\item	Comment analyser les données malgré les valeurs manquantes?
 	\item	Quels enjeux ou problèmes devrait-on considérer dans la modélisation?
 \end{itemize}
@@ -225,11 +237,11 @@ Le chapitre utilise la \textbf{mise en contexte} suivante:
 \subsection*{Terminologie}
 
 \begin{definition}[Notation]
-\begin{itemize}
+\begin{itemize}[leftmargin = *]
 	\item[$Y_{ij}$:] Valeur de la variable explicative $j$ pour l'observation $i$ où	$j \in \left\{ 1, \dots, p \right\}$ et $i \in \{1, \dots, n\}$;
 	\item[$\matr{Y}_{n \times p}$:] Matrice contenant les données \textbf{complètes};
 	\item[]	$\matr{Y}$ est partitionné en deux, $\matr{Y} = \left\{ \matr{Y}_{obs}, \matr{Y}_{mis} \right\}$
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item[$\matr{Y}_{obs}$:] matrice avec les données ayant toutes les valeurs observées;
 		\item[$\matr{Y}_{mis}$:] matrice avec les données comportant des valeurs manquantes;
 		\end{itemize}
@@ -271,7 +283,7 @@ Le chapitre utilise la \textbf{mise en contexte} suivante:
 La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
 
 \textbf{Types de données manquantes}:
-\begin{enumerate}
+\begin{enumerate}[leftmargin = *]
 	\item	\textbf{MCAR}: Missing Completely at Random;
 		\begin{itemize}[leftmargin = *]
 		\item	Le patron de non-réponse (pattern of missing values) est indépendant des données $\matr{Y}$;
@@ -299,7 +311,7 @@ La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
 			&\left\{ p_{\text{Maj, mis}} - p_{\text{Maj, obs}} = 0 \right\}
 			\end{align*}
 		\setlength{\mathindent}{1cm}
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item[]	Est équivalent à tester: 
 		\end{itemize}	
 		\setlength{\mathindent}{-2cm}
@@ -308,12 +320,12 @@ La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
 			&:	\text{les données sont MCAR}
 			\end{align*}
 		\setlength{\mathindent}{1cm}
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item[]	avec un test du khi-carré de Pearson;
 		\item[]	C'est-à-dire que le test est équivalent, mais \textbf{pas} le hypothèses.
 		\end{itemize}	
 \end{enumerate}
-\begin{enumerate}
+\begin{enumerate}[leftmargin = *]
 	\setcounter{enumi}{1}
 	\item	\textbf{MAR}: Missing at Random;
 	\item[]	Can think of it as Missing \textit{Conditionally} at Random;
@@ -337,7 +349,7 @@ La distribution de $\matr{R}$ est le \textit{mécanisme de non-réponse};
 \end{enumerate}
 
 Visuellement on peut comparer les 3 patrons de non-réponse:
-\begin{itemize}
+\begin{itemize}[leftmargin = *]
 	\item	On observe (MCAR) que la variable \textit{indépendante} $S$ ne dépend pas du patron de non-réponse $R$;
 	\item	On observe (MAR) que $G$ influe la variable réponse $S$ et le patron de non-réponse $R$;
 	\item	On observe (NMAR) qu'il y a un lien direct entre $S$ et $R$;
@@ -355,7 +367,7 @@ Pour exemple, si on cherchait à supprimer des valeurs d'une BD:
 \end{description}
 
 Ordre de restriction des différents patrons
-\begin{enumerate}
+\begin{enumerate}[leftmargin = *]
 	\item	MCAR: plus \og restrictif \fg{}, car les données doivent être manquantes complètement aléatoirement;
 	\item[]	Même idée que l'hypothèse de normalité est restrictive puisque les données \textit{doivent} l'être, \textbf{mais} cela nous permet d'utiliser plein de tests;
 	\item[]	Comme une Bernoulli, il n'y a pas de paramètres;
@@ -366,7 +378,7 @@ Ordre de restriction des différents patrons
 
 \subsection*{Visualisation et détection}
 \begin{algo}{Traiter les données manquantes}
-\begin{enumerate}
+\begin{enumerate}[leftmargin = *]
 	\item	Détectez, visualisez et documentez les données manquantes;
 	\item	Identifier le patron de non-réponse;
 	\item[]	Pour exemple, voici quelques patrons de non-réponse pour quelques variables:
@@ -378,7 +390,7 @@ Ordre de restriction des différents patrons
 \end{algo}
 
 \subsection*{Identification des types de non-réponses}
-\begin{itemize}
+\begin{itemize}[leftmargin = *]
 	\item	Pour les variables continues, on fait un \textbf{test $t$ sur les différences de moyenne} au lieu du khi-carré de Pearson comme pour MCAR;
 	\item	Problème de comparaisons multiples;
 	\item	Le test MCAR de Little est peu utile, mais peut adresser le problème de comparaisons multiple avec une hypothèse testant toutes les variables;
@@ -390,15 +402,15 @@ En continuant la mise en contexte, on suppose qu'on veut estimer le vecteur $\ma
 Une question valide est si les options pour le traitement des données manquantes dépendent du \textbf{type} de non-réponse
 
 \textbf{Options} de traitement:
-\begin{enumerate}
+\begin{enumerate}[leftmargin = *]
 	\item	Utiliser seulement les \textbf{cas complets} \textit{(complete-case analysis)};
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	L'option par défaut pour les fonctions :
 			\begin{center}
 			\texttt{lm, glm, na.rm, na.omit}
 			\end{center}
 		\item	\textbf{Impact}:
-			\begin{itemize}
+			\begin{itemize}[leftmargin = *]
 			\item[$\color{red}\downarrow$]	taille de l'échantillon	\\
 			\item[$\color{red}\downarrow$]	taille de la corrélation des variables	\\
 			\item[$\color{blue}\uparrow$]	variance des estimateurs	\\
@@ -407,24 +419,24 @@ Une question valide est si les options pour le traitement des données manquante
 		\item	Uniquement valide sous \textcolor{ao(english)}{MCAR};
 		\end{itemize}
 	\item	Utiliser seulement les \textbf{cas disponibles} \textit{(available-case analysis)};
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Utilise uniquement les données observées pour l'analyse;
 		\item	Rarement applicable;
 		\item	$\color{red}\downarrow$ la taille de l'échantillon \textbf{moins} qu'en utilisant d'uniquement les cas complets;
 		\item	\textcolor{ao(english)}{Sans biais} \textbf{uniquement} sous \textcolor{ao(english)}{MCAR};
 		\end{itemize}
 	\item	\textbf{Imputation} simple par la \textbf{moyenne ou} la \textbf{médiane}
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Substitue les \texttt{NA} par la moyenne ou médiane de la variable;
 		\item	\textbf{Impact}:
-			\begin{itemize}
+			\begin{itemize}[leftmargin = *]
 			\item[$\color{red}\downarrow$]	variabilité de la variable	\\
 			\item[$\color{red}\downarrow$]	corrélation de la variable avec les autres	\\
 			\end{itemize}
 		\item	Même sous MCAR, les données sont \textbf{sévèrement} \og distorted \fg{};
 		\end{itemize}
 	\item	Imputation simple par une régression;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Substitue les \texttt{NA} par la prévision d'une régression de la variable sur les autres avec les cas complets;
 		\item	Si plusieurs variables ont des données manquantes, leurs patrons doivent être traités séparément;
 		\item	L'inter \textbf{corrélation} des variables est \textbf{conservée}, mais est \textcolor{blue}{\textbf{surestimée}} (même si MCAR);
@@ -437,7 +449,7 @@ Une question valide est si les options pour le traitement des données manquante
 %%%	-------------------------------
 		\end{itemize}
 	\item	Imputation stochastique par une régression;
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Ajoute un terme d'erreur $\varepsilon$ (normalement distribué) à la prévision de la régression;
 %%%	-------------------------------
 %%%	NOTE:
@@ -459,7 +471,7 @@ Une question valide est si les options pour le traitement des données manquante
 			\end{center}
 		\end{itemize}
 	\item	Imputation simple \textit{hot-deck};
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Substitue les valeurs \texttt{NA} d'une observation par les valeurs observées d'une autre observation choisie aléatoirement;;
 		\item	Habituellement, cette observation fait parmi d'un sous-ensemble d'observations \textit{proches} (pensez au $K$-NN, clustering, etc.);
 		\item	Souvent utilisée pour les sondages;
@@ -473,7 +485,7 @@ Une question valide est si les options pour le traitement des données manquante
 		\item	Biais des estimations des coefficients $\matr{\beta}$ de régression;
 		\end{itemize}
 	\item	Imputation \textbf{multiple};
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	Répète l'imputation stochastique et agrège les résultats;
 %%%	-------------------------------
 %%%	NOTE:
@@ -485,23 +497,44 @@ Une question valide est si les options pour le traitement des données manquante
 \end{enumerate}
 
 Autres méthodes:
-\begin{itemize}
+\begin{itemize}[leftmargin = *]
 	\item	MLE avec données manquantes;
 	\item	Algorithme EM (expectation-maximisation)
 	\item	Inférence bayésienne;
 \end{itemize}
 
 \subsection*{Conseils}
-\begin{itemize}
+\begin{itemize}[leftmargin = *]
 	\item	Conserver un script pour le traitement de données manquantes et ne \textbf{pas hard-coder};
 	\item	\textit{Utiliser une méthode d'imputation qui respecte le format de la variable;}
 	\item	Plus la proportion de non-réponses est élevée, plus l'impact sur l'analyse sera important;
 	\item	S'il y a plusieurs patrons de non-réponse différents, l'ordre dans lequel les données sont imputées est important;
 \end{itemize}
 
+\newpage
+
 \section{Analyse en composantes principales}
 
-\section{Classification non supervisée}
+\begin{definitionNOHFILLsub}[Fonctions \texttt{R}]
+\texttt{PCA(X = , scale = T)}
+\begin{itemize}
+	\item	On donne la BD en premier argument et standardise avec le deuxième.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\newpage
+
+\section{Apprentissage non supervisée}
+
+\begin{definitionNOHFILLsub}[Liaisons]
+\begin{description}
+	\item[Complete linkage]	Mesure la distance maximale (les deux points les plus éloignés) des groupes et on choisit la plus petite distance.
+	\item[Single linkage]	Mesure la distance minimale (les deux points les plus proches) des groupes et on choisit la plus petite distance.
+	\item[Average linkage]	Mesure la moyenne des distances entre les points de chacun des groupes puis on choisit la plus petite distance.
+	\item[Centroid linkage]	Assigne un centroïd à chaque groupe ayant comme coordonnées la moyenne des observations du groupe.
+	\item[Ward]	La distance correspond à l'augmentation de l'EQM suite à la fusion d'un groupe. L'EQM commence à zéro puisque chaque observation à son propre groupe. Ceci est utile lorsque l'on croit que l'EQM devrait être petite.
+\end{description}
+\end{definitionNOHFILLsub}
 
 \subsection*{Concepts de distance et similarité}
 
@@ -578,7 +611,7 @@ De plus, l'indice de similarité peut être obtenu d'une mesure de distance $s(i
 		\item	Par exemple, qu'une personne soit un homme ou une femme.
 		\end{itemize}
 	\item[asymétrique]	Si une variable binaire est \textbf{asymétrique}, c'est qu'un niveau est plus rare que l'autre.
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	On dénote le niveau plus rare par 1;
 		\item	Par exemple, deux personnes ayant brisé leur orteil sont plus semblables que deux personnes ayant un mal de tête.
 		\end{itemize}
@@ -639,6 +672,8 @@ Un exemple d'application de la similarité du Cosinus est l'analyse de texte. On
 \end{align*}
 \end{conceptgen}
 
+%\columnbreak
+
 \subsection*{$K$-means clustering}
 \begin{distributions}[Notation]
 \begin{itemize}[leftmargin = *]
@@ -652,6 +687,548 @@ Un exemple d'application de la similarité du Cosinus est l'analyse de texte. On
 \end{distributions}
 
 \subsection*{Hierarchical clustering}
+
+\begin{definitionNOHFILLsub}[Fonctions \texttt{R}]
+\texttt{hclust(d = dist(data), method = "complete")}.
+\begin{itemize}
+	\item	On spécifie la méthode de liaison avec \texttt{method = };
+	\item	On donne en argument une matrice de distance pour \texttt{d = }.
+\end{itemize}
+
+On peut élaguer avec \texttt{cutree(tree = , k = , h = ))}.
+\begin{itemize}
+	\item	On donne en premier argument le dendrogramme;
+	\item	On peut soit spécifier un nombre de groupes avec \texttt{k = } ou une hauteur avec \texttt{h = }.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\subsection*{Paramètres}
+Un paramètre est appris par l'entraînement.\\
+Un hyperparamètre informe l'entraînement comme tel et est fixé à l'avance. \\
+Par exemple, $k$ est un hyperparamètre dans le $K$-NN, et c'est le seul.
+
+\subsection*{Échantillonage}
+Pour atténuer le problème de débalancement:
+\begin{description}
+	\item[sur-échantillonnage]	dupliquer au hasard des observations sous observées.
+	\item[sous-échantillonnage]	ignorer une partie des observations ayant l'étiquette plus fréquemment rencontrée.
+\end{description}
+D'une manière ou l'autre, le jeu de données étudié est alors plus balancé.
+
+\pagebreak
+
+\section{Apprentissage supervisé}
+\begin{definitionNOHFILL}[Inférence]
+Comprendre le lien entre les prédicteurs et la \textit{variable réponse}. Par exemple, tests d'hypothèses, intervalles de confiance et interprétations.\\
+
+De façon générale, on préfère des modèles moins flexible puisqu'ils sont plus interprétables pour  faire de l'inférence.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Prévisions]
+Prédire le plus précisément possible la valeur de $Y$ étant donné les valeurs des covariables.\\
+
+Si $\hat{f}$ peut estimer $f$, une prévision pour la variable d'intérêt $Y$ étant donné les valeurs de $x_{1}, \dots, x_{p}$ est $\hat{Y} = \hat{f}(x_{1}, \dots, x_{p})$. \\
+
+Il y a deux types de techniques qui servent à estimer $f$:
+\begin{enumerate}
+	\item	L'apprentissage automatique et
+	\item	La modélisation statistique.
+\end{enumerate}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILLsub}[Apprentissage automatique]
+\begin{description}
+	\item[But principal]	Prédire la valeur de $Y$;
+	\item[$Y$]	On ne cherche pas à explicitement estimer ni interpréter l'effet de la valeur des variables $x_{j}$ sur $Y$;
+	\item[Fluctuation aléatoire]	N'est \textbf{pas} un intérêt majeur;
+	\item[hypothèses à priori sur $f$]	Peu d'hypothèses à priori, on se base sur les données.
+\end{description}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Modélisation statistique]
+\begin{description}
+	\item[But principal]	Estimer explicitement et interpréter l'effet de la valeur des variables $x_{j}$ sur $Y$;
+	\item[$Y$]	Peut prédire $Y$ avec le modèle;
+	\item[Fluctuation aléatoire]	Est un intérêt puisqu'on veut parfois simuler de nouvelles observations de $Y$;
+	\item[hypothèses à priori sur $f$]	Sont requises afin d'estimer seulement ce qui est inconnu de $f$ (c.-à-d., les paramètres).
+\end{description}
+\end{definitionNOHFILLsub}
+
+Flexible vs inflexible:
+\begin{itemize}
+	\item	With alot of data and few predictors, a flexible approach would perform better. The amount of data permits us to fit more accurate predictors and the variance is limited by the number off parameters. 
+	\item	With a small number of observations and many predictors, an inflexible approach would perform better. The small number of observations leads to worse parameter estimates and the combined large number of predictors leads to the possiblity of overfitting.
+	\item	A flexible approach would fit better when there is a non-linear relationship between the predictors and the response variable. An inflexible is more restrained and can't capture it.
+	\item	A flexible approach would fit worse when there is high variance amongst the error terms. The flexible model would try to fit this error and drastically increase variance.
+\end{itemize}
+
+
+\begin{center}
+	\textbf{Décomposition Biais-Variance}\\
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Curve Lines [id:da5387525772336879] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ]   (96.72,145.8) .. controls (162.17,145) and (315.17,127) .. (335.17,90) ;
+%Shape: Axis 2D [id:dp3627700228658668] 
+\draw  (98.17,148) -- (338.17,148)(99.17,12) -- (99.17,164) (331.17,143) -- (338.17,148) -- (331.17,153) (94.17,19) -- (99.17,12) -- (104.17,19)  ;
+%Curve Lines [id:da8647605952322346] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (98.17,60) .. controls (188.81,59.16) and (211.71,119.46) .. (281.17,138) .. controls (294.46,141.55) and (312.97,141) .. (330.17,141) ;
+%Curve Lines [id:da4811730718241043] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ]   (100.17,53) .. controls (190.81,52.16) and (206.71,90.46) .. (276.17,109) .. controls (289.46,112.55) and (312.97,112) .. (330.17,112) ;
+%Curve Lines [id:da8073024446675301] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (100.17,32) .. controls (161.17,32) and (245.17,77) .. (275.17,81) .. controls (305.17,85) and (331.17,68) .. (337.17,56) ;
+%Straight Lines [id:da4343589431923036] 
+\draw [color={rgb, 255:red, 139; green, 87; blue, 42 }  ,draw opacity=1 ][line width=1.5]    (99.17,106) -- (332.17,106) ;
+
+% Text Node
+\draw (283,153) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\small flexibilité}};
+% Text Node
+\draw (54,8) node [anchor=north west][inner sep=0.75pt]   [align=left] {MSE};
+% Text Node
+\draw (332,128) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize \textcolor[rgb]{0.29,0.56,0.89}{biais}}};
+% Text Node
+\draw (330,99) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {{\footnotesize \shortstack{erreur\\ d'entraînement}}};
+% Text Node
+\draw (334.17,77) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0.96,0.65,0.14}{{\footnotesize \shortstack{variance de\\ l'estimateur}}}};
+% Text Node
+\draw (337,42) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {{\footnotesize \textcolor[rgb]{0.82,0.01,0.11}{\shortstack{erreur de\\ test}}}};
+% Text Node
+\draw (100.17,93) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 139; green, 87; blue, 42 }  ,opacity=1 ] [align=left] {erreur irréductible};
+\end{tikzpicture}
+\end{center}
+
+\pagebreak
+
+\section{Arbres de classification et de régression}
+
+\begin{description}
+	\item[CART]	Classification and Regression Tree.
+\end{description}
+
+\begin{center}
+	\includegraphics[scale=0.4]{src/ACT-3114/CART-criteria.png}
+\end{center}
+
+\begin{definitionNOHFILL}[Indice de Gini]
+Mesure de la variance totale entre les $K$ classes:
+\begin{align*}
+	G	
+	&=	\underset{k = 1}{\overset{K}{\sum}} \hat{p}_{mk} (1 - \hat{p}_{mk})
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	L'indice de Gini mesure la \textbf{pureté des nœuds}, si les proportions échantillonnales sont près de 0 ou 1, $G$ sera très petit.
+	\item	C'est la mesure par défaut avec la fonction pour une classification \texttt{rpart(method = "class")}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Déviance, ou entropie croisée]
+
+\begin{align*}
+D	
+	&=	-\underset{k = 1}{\overset{K}{\sum}} \hat{p}_{mk} \log(\hat{p}_{mk})
+\end{align*}
+%\begin{itemize}[leftmargin = *]
+%	\item	
+%\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Élagage par coût-complexité]
+\begin{description}
+	\item[cp]	Paramètre de complexité.
+	\item[|T|]	Nombre de feuilles (\og \textit{terminal nodes} \fg{}).
+	\item[Critère de coût-complexité]
+\end{description}
+\begin{align*}
+	C_{cp}(T)	
+	&=	\underset{m = 1}{\overset{| T |}{\sum}}\underset{i:\bm{x}_{i} \in R_{m}}{\sum} (y_{i} - \hat{y}_{R_{m}})^{2} + cp | T |
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Le critère permet d'ajuster le modèle en balancant la \textbf{complexité} de l'arbre \textbf{\textit{et}} la \textbf{qualité} de l'ajustement.
+\end{itemize}
+\end{definitionNOHFILL}
+
+Le seul point négatif des CART est leur précision qui a tendance à être mauvaise.
+
+\paragraph{Note}	Le point de séparation doit être un qui parmi l'ensemble donné. Par exemple, pour $\{1, 3\}$  on ne peut pas stipuler un point de séparation à 2.
+
+\begin{definitionNOHFILLsub}[Fonction \texttt{R}]
+Paquetage \texttt{rpart} (Recursive Partioning And Regression Trees) dont la fonction \texttt{rpart()}.
+\begin{itemize}
+	\item	On utilise \texttt{weights = } si on veut pondérer des observations.
+	\item	On utilise \texttt{cost = } pour spécifier un vecteur de coûts associés à chaque variable dans la séparation des données. \\
+			Cela peut s'avérer utile pour pénaliser une variable qu'on voudrait idéalement utiliser seulement si son pouvoir prédictif est très grand.
+	\item	\texttt{method = } permet de spécifier si l'arbre doit retourner une réponse de type "class" ou "numeric".
+	\item	\texttt{control = list(maxdepth = )} permet de spécifier la profondeur de l'arbre $d$.
+\end{itemize}
+%%	voir labo sur apprentissage supervisé pour exemple avec CARET
+%%	confusionMatrix() pour un tableau de confusion avec les statistiques en plus
+
+Élagage: \texttt{cv.tree(tree, FUN = )}
+\begin{itemize}
+	\item	Pour un arbre de régression, on utilise \texttt{FUN = prune.tree};
+	\item	Pour un arbre de classification, on utilise \texttt{FUN = prune.misclass}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\newpage
+
+\section{Bagging et forêts aléatoires}
+En raison du nombre faible d'observations dans plusieurs des nœuds:
+\begin{itemize}[leftmargin = *]
+	\item	La variance des prévisions est très élevée.
+	\item	L'arbre n'est pas robuste---des différents échantillons mènent à des points de séparation différents et donc des prévisions différentes.
+\end{itemize}
+
+Pour aider à atténuer ce problème, nous voyons deux \textbf{méthodes d'ensemble}.
+\begin{definitionNOHFILL}[Méthode d'ensemble]
+Algorithme de prévision qui agrège les prévisions de plusieurs modèles différents.
+
+\begin{itemize}[leftmargin = *]
+\item	Cela est particulièrement utile si les modèles ont une \textbf{grande variance} et donc est rarement utilisé avec des GLMs.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Bagging]
+Méthode d'ensemble générale qui permet de réduire la variance d'un modèle d'apprentissage statistique.
+\begin{itemize}[leftmargin = *]
+	\item	Bien que le bagging peut être appliqué à n'importe quel modèle, on le voit uniquement dans le contexte d'arbres;
+	\item	Prendre la moyenne des prévision obtenues avec différents échantillons d'entrainement permet de réduire la variance des prévisions;
+	\item	Il s'ensuit que les prévisions sont améliorées: 
+	\setlength{\mathindent}{-1.5cm}
+		\begin{align*}
+		\text{E}\left[\shortstack{erreur quadratique\\ de prévision}\right]
+		&=	biais^{2} + \text{variance} + \varepsilon
+		\end{align*}
+	\setlength{\mathindent}{1cm}
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{algo2}[Algorithme de bagging sur les arbres]
+Pour $b = 1, 2, \dots, B$,
+\begin{enumerate}
+	\item	Générer un \textbf{échantillon bootstrap} $\mathcal{D}^{b}$ de l'échantillon d'entrainement;
+		\begin{itemize}[leftmargin = *]
+		\item	L'échantillon est de la même taille que l'échantillon d'entrainement initial.
+		\end{itemize}
+	\item	Ajuster un (gros) arbre de régression sur $\mathcal{D}^{b}$ pour obtenir la prévision $f^{b}(\bm{x})$.
+		\begin{itemize}[leftmargin = *]
+		\item	Il n'y a pas d'élagage avec $cp = 0$;
+		\item	Les arbres ont une grande variance et un faible biais;
+		\item	La taille de l'arbre est contrôlée avec \texttt{maxdepth} (nombre maximal de niveaux) et \texttt{minbucket} (taille minimale d'un nœud).
+		\end{itemize}
+		\begin{align*}
+		f_{\text{bag}}(\bm{x})
+		&=	\frac{1}{B} \sumz{B}{b = 1} f^{b}(\bm{x})
+		\end{align*}
+\end{enumerate}
+
+\paragraph{Note}	Le nombre d'arbres $B$ doit être assez gros (100, 1 000, etc.) et \textbf{une grande valeur ne mène pas à un sur ajustement} \textit{habituellement}; c'est les autres paramètres qui vont contrôler le sur ajustement.
+\end{algo2}
+
+\subsubsection*{Prévision}
+\begin{itemize}[leftmargin = *]
+	\item	La probabilité de ne pas piger une observation parmi $n$, avec remise, est $1 - \frac{1}{n}$.\\
+			La probabilité qu'elle ne soit pas dans l'échantillon de taille $n$ du tout est $(1 - \frac{1}{n})^{n}$.\\
+			Lorsque $n \rightarrow \infty$, $\limz{n}{\infty}(1 - \frac{1}{n})^{n} = \textrm{e}^{-1} = 36.79\% \approx 1/3$.\\
+			On dit donc que, en moyenne, chaque arbre dans le bagging n'utilise pas environ 1/3 des données;
+	\item	Les observations qui ne sont pas utilisées sont les observations dites "Out-Of-Bag" (OOB);
+	\item	Pour chaque itération du bagging, on calcule la prévision pour les observations OOB.\\
+			Pour chaque observation $i$, on calcule la moyenne des prévision pour en obtenir une seule;
+	\item	L'EQM des ces prévisions calculée à la fin est \textbf{l'erreur OOB}.\\
+			Lorsque $B$ est suffisamment grand, elle se stabilise pour être équivalente à l'erreur obtenue avec LOOCV.
+\end{itemize}
+
+Limitations
+\begin{itemize}
+	\item[$\color{blue}+$]	Les prévisions sont beaucoup plus "lisses" (voir p. 24);
+	\item[$\color{red}-$]	Les prévisions sont beaucoup moins interprétables.
+		\begin{itemize}[leftmargin = *]
+		\item	Notamment, avec plus de 2 variables, on ne peut pas visualiser les prévisions et donc on ne peut pas comprendre pourquoi l'algorithme fait ses décisions.
+		\end{itemize}
+\end{itemize}
+
+\begin{definitionNOHFILLsub}[Forêts aléatoires]
+Méthode d'ensemble qui s'inspire du bagging mais qui permet de \textbf{décorréler les arbres} en:
+\begin{itemize}[leftmargin = *]
+	\item	On choisit un échantillon bootstrap d'une plus petite taille \texttt{sampsize}, par exemple 	50\% ou 75\% de la taille de l'échantillon d'entrainement;
+		\begin{itemize}[leftmargin = *]
+		\item	On note que logiquement le plus il y a de prédicteurs alors le plus les arbres seront corrélés entre eux (voir p. 31 des NDC).
+		\end{itemize}
+	\item	À chacun des nœuds de chacune des itérations dans la construction de l'arbre, on choisit aléatoirement $m$ prédicteurs à considérer pour la séparation.
+		\begin{itemize}[leftmargin = *]
+		\item	La valeur de $m \in \{1, \dots, d\}$ est un hyperparamètre mais on choisit souvent $m \approx \lfloor d / 3\rfloor$ en régression et $m \approx \sqrt{d}$ en classification.
+		\end{itemize}
+\end{itemize}
+
+Les améliorations apportées par la forêt sont plus utiles lorsqu'ils y a beaucoup de prédicteurs corrélés dans les données. La corrélation sera encore plus importante s'il y a certaines variables qui très importantes puisque tous les arbres vont l'avoir ce qui augmente la corrélation.
+
+\end{definitionNOHFILLsub}
+
+\subsubsection*{Mesure de l'importance des variables}
+
+\begin{description}
+	\item[Permutation]	On substitue aléatoirement la variable $j$ pour une observation et effectue une prévision avec cette substitution qui n'a aucun rapport avec le restant de la ligne.
+		\begin{itemize}[leftmargin = *]
+		\item	Si la nouvelle prévision est mauvaise alors la variable est importante, et vice-versa;
+		\item	En \texttt{R} cette méthode s'appelle \og \textit{mean decrease in accuracy} \fg{}.
+		\end{itemize}
+	\item[Diminution totale]	dans la fonction de perte due à une séparation sur la variable $j$, et on compare pour $j = 1, 2, \dots, d$.
+		\begin{itemize}[leftmargin = *]
+		\item	Pour chaque séparation qui a lieu sur la variable $j$, je vais calculer la diminution de la fonction de perte (donc à tous les nœuds de tous les arbres);
+		\item	Souvent on divise par la valeur maximale pour avoir des importances entre 0 et 1;
+		\item	En \texttt{R} cette méthode s'appelle \og \textit{mean decrease in node impurity} \fg{}.
+		\end{itemize}
+\end{description}
+On peut les visualiser en \texttt{R} avec \texttt{varImpPlot}.
+
+La mise en garde des arbres est que le modèle est beaucoup moins interprétable et beaucoup plus lourd à calculer.
+
+\newpage
+
+\section{Boosting et Gradient Boosting}
+
+\begin{distributions}[Terminologie]
+\begin{description}
+	\item[$\lambda$]	Taux d'apprentissage (alias, le paramètre de régularisation).
+\end{description}
+		\begin{itemize}[leftmargin = *]
+		\item	Le diminuer mène toujours à une meilleur performance, au prix d'un plus grand nombre d'arbres $T$.
+		\item	En pratique, on choisit la plus petite valeur de $\lambda$ qui permet un temps de calcul raissonable.
+		\end{itemize}
+\begin{description}
+	\item[$T$]	Nombre d'itérations.
+\end{description}
+\begin{itemize}[leftmargin = *]
+	\item	Normalement assez grand mais peut mener à un surajustement.
+\end{itemize}
+\begin{description}
+	\item[$d$]	Profondeur des arbres à chaque itération.
+\end{description}
+\begin{itemize}[leftmargin = *]
+	\item	Souvent, $d = 1$ pour des souches ce qui mène à un modèle additif;
+	\item	Plus $d$ est élevé, plus les interactions d'ordre élevé peuvent être captées mais il est rare que $d > 7$ soit utile.
+\end{itemize}
+\begin{description}
+	\item[$\delta$]	Pourcentage de sous-échantillonnage.
+\end{description}
+\begin{itemize}[leftmargin = *]
+	\item	Souvent 50\% ou 75\%.
+\end{itemize}
+\end{distributions}
+
+\subsection*{Boosting}
+Le boosting permet de combiner plusieurs modèles faibles en un prédicteur puissant.
+\begin{itemize}[leftmargin = *]
+	\item	À chaque itération, un arbre tente d'améliorer ce que le modèle ne prédit pas bien.
+	\item	Le boosting est itératif et donc, en contraste aux forêts aléatoires, l'ajustement des arbres est impacté par l'ordre.
+\end{itemize}
+
+\begin{algo2}[Algorithme de boosting (arbres de régression)]
+On initialise:
+
+\begin{align*}
+	\hat{f}_{0}(\bm{x})	&=	0	&
+	&\text{et}	&
+	\rho_{i, 0}	&=	y_{i}, \forall i = 1, \dots, n	\\
+\end{align*}
+
+Pour chaque itération de $t = 1, \dots, T$,
+\begin{enumerate}[leftmargin  = *]
+	\item	Ajuster un arbre de régression de profondeur $d$ sur les résidus $(\bm{x}, \rho_{t})$.
+		\begin{itemize}[leftmargin = *]
+		\item	Donc, on contrôle le nombre maximal de feuilles avec $2^{d}$ feuilles;
+		\item	Par exemple, si $d = 1$ c'est une souche avec 2 feuilles;
+		\item	La fonction de prévision est notée \icbox{$\hat{f}^{t}_{\text{arbre}}$}.
+		\end{itemize}
+	\item	Mettre à jour $\hat{f}$ en ajoutant une version rapetissée de l'arbre:
+		\begin{align*}
+		\hat{f}_{t}(\bm{x})	&=	\hat{f}_{t - 1}(\bm{x}) + \lambda \hat{f}^{t}_{\text{arbre}}(\bm{x})
+		\end{align*}
+		\begin{itemize}[leftmargin = *]
+		\item	Donc on ne prend pas directement la prévision de l'arbre $\hat{f}^{t}_{\text{arbre}}$ mais plutôt une fraction de la prévision selon le taux d'apprentissage $\lambda$.
+		\end{itemize}
+	\item	Mettre à jour les résidus:
+		\begin{align*}
+		\rho_{i, t}	&=	\rho_{i, t - 1} - \lambda \hat{f}^{t}_{\text{arbre}}(\bm{x}_{i})	
+		\end{align*}
+\end{enumerate}
+
+La prévision du boosting pour un arbre de régression est:
+\begin{align*}
+	f_{\text{boost}}(\bm{x})	
+	&=	\hat{f}_{T}(\bm{x})
+	=	\sumz{T}{t = 1} \lambda f_{\text{arbre}}^{t}(\bm{x})	
+\end{align*}
+\end{algo2}
+
+\columnbreak
+
+\subsection*{Adaptive Boosting (Adaboost)}
+Puisque les résidus n'ont pas de sens en classification, on défini la méthode Adaboost. \\
+
+Au lieu d'avoir un même taux d'apprentissage pour tous les arbres, chacun des arbres aura une contribution différente dans la prévision finale.
+
+\begin{algo2}[Algorithme Adaboost (arbres de classification)]
+On initialise les poids des observations :
+\begin{align*}
+	w_{i}	
+	&=	\frac{1}{n}, \;	\forall i = 1, \dots, n	\\
+\end{align*}
+
+Pour chaque itération de $t = 1, \dots, T$,
+\begin{enumerate}[leftmargin  = *]
+	\item	Ajuster un arbre de classification $\hat{f}_{t}(\bm{x})$ de profondeur $d$ sur les données d'entraînement en utilisant l'indice de Gini pondéré par les poids $w_{i}$.
+	\item	Calculer le taux d'erreur:
+		\begin{align*}
+		\text{err}_{t}	
+		&=	\frac{\sumz{n}{i = 1} w_{i} \times \bm{1}_{\{ y_{i} \neq \hat{f}_{t}(\bm{x}_{i}) \}}}{\sumz{n}{i = 1} w_{i}}	\\
+		&=	\frac{\shortstack{la somme des poids pour\\ les observations mal classées}}{\text{la somme totale des poids}}
+		\end{align*}
+	\item	Calculer la contribution de l'arbre:
+		\begin{align*}
+			\alpha_{t}	
+			&=	\log\left(\frac{1 - \text{err}_{t}}{\text{err}_{t}}\right)
+		\end{align*}
+	\item	Réajuster, alias \textit{\textbf{ada}}pter, les poids $\forall i = 1, \dots, n$,
+		\begin{align*}
+		w_{i}
+		&\leftarrow	w_{i}\, \text{exp}\left\{\alpha_{i} \bm{1}_{\{ y_{i} \neq \hat{f}_{t}(\bm{x}_{i}) \}}\right\}
+		\end{align*}
+\end{enumerate}
+
+Le classificateur est:
+\begin{align*}
+	\hat{f}_{\text{ada}}(\bm{x})	
+	&=	\text{signe}\left\{ \sumz{t = 1}{T} \alpha_{t} \hat{f}_{t} (\bm{x}) \right\}
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	On traite les prévisions $\hat{f}_{t}$ comme étant soit -1 ou 1 représentant les classes et la classe la plus présente sera la prédiction.
+\end{itemize}
+\end{algo2}
+
+
+\begin{definitionNOHFILLsub}[Fonctions \texttt{R}]
+\texttt{boosting(boos = F, coeflearn = "Freund")} du paquetage \texttt{adabag}.\\
+\texttt{Adaboost.M1} de \texttt{caret}. 
+\begin{itemize}[leftmargin = *]
+	\item	\texttt{coeflearn} est la formula pour $\alpha$.
+	\item	\texttt{boos = F} utilise l'indice de Gini pondéré.
+	\item	\texttt{boos = T} (utilisé par StatQuest) utilise un algorithme qui est comme un boosting pondéré.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\columnbreak
+
+\subsection*{Boosting de Gradient}
+Peut généraliser l'idée du boosting pour toute fonction de perte $\mathcal{L}$ d'intérêt (e.g., la déviance pour des lois Bernoulli, Poisson ou Tweedie).\\
+
+L'idée est qu'à l'itération $t$, on essaie d'améliorer le plus possible (de façon \og \textit{greedy} \fg{}) la prévision en trouvant l'arbre $\hat{f}_{\text{arbre}}^{t}$ qui minimise:
+	\begin{align*}
+	\sumz{n}{i = 1}\mathcal{L}\{y_{i}, \hat{f}_{t - 1}(\bm{x}_{i}) + \hat{f}_{\text{arbre}}^{t}(\bm{x}_{i}) \}
+	\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Cette fonction de perte pourrait être l'EQM, la déviance, etc.;
+	\item	Les deux arguments sont la valeur observée et la prévision à l'itération $t$.
+\end{itemize}
+
+\subsubsection*{Descente la plus à pic}
+L'idée est qu'à l'itération $t$, on fait un pas dans la direction du gradient \underline{négatif} menant à une baisse de la valeur de la fonction de perte.\\
+Le gradient pour l'itération $t$ est:
+\begin{align*}
+	\left[
+		\deriv{f(\bm{x}_{i})}{\mathcal{L}\{y_{i}, f(\bm{x}_{u})\}}
+	\right]_{f = \hat{f}_{t - 1}}
+\end{align*}
+\begin{itemize}
+	\item	En anglais, \og \textit{steepest descent} \fg{};
+	\item	Le gradient est seulement défini sur les observations est donc on trouve un arbre dont les prévisions sont les plus proches possible du gradient négatif, qu'on surnomme pseudo-résidus, en utilisant l'EQM;
+	\item	On ajoute une erreur aléatoire et sélectionne un nouveau sous-échantillon de taille $\delta n$ pour ajuster l'arbre afin d'obtenir le boosting de gradient \textbf{stochastique}
+\end{itemize}
+
+\begin{algo2}[Algorithme de Gradient boosting (arbres de régression)]
+On initialise :
+\begin{align*}
+	\hat{f}_{0}(\bm{x})	&=	\argmin_{a} \sumz{n}{i = 1} \mathcal{L}(y_{i}, a)
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Donc on trouve la constante $a$ qui minimise la fonction de perte;
+	\item	Pour une déviance d'une poisson ou l'EQM, ce serait la moyenne des observations $\bar{y}$;
+	\item	Dans la majorité des cas, $a$ est facile à trouver.
+\end{itemize}
+
+Pour chaque itération $t = 1, \dots, T$,
+\begin{enumerate}[leftmargin  = *]
+	\item	Échantillonner aléatoirement \underline{sans remise} $\delta n$ observations notées $\mathcal{D}^{t}$.
+	\item	Calculer le pseudo-résidu pour chaque observation $i$ dans l'échantillon $\mathcal{D}^{t}$:
+		\begin{align*}
+		\rho_{i, t}
+		&=	-\left[ 
+				\deriv{f(\bm{x}_{i})}{} \mathcal{L}\{y_{i}, f(\bm{x}_{i})\}
+			\right]_{f = \hat{f}_{t - 1}}
+		\end{align*}
+	\item	Ajuster un arbre de régression (perte EQM peu importe la fonction de perte  $\mathcal{L}$) de profondeur $d$ aux pseudo-résidus $\rho_{i, t}$ pour obtenir les régions (alias les feuilles) $\mathcal{R}_{j, t}, \forall j = 1, \dots, J_{t}$.
+		\begin{itemize}[leftmargin = *]
+		\item	Donc, souvent $J_{t} = 2^{d}$ mais peut être un peu plus petit;
+		\item	Donc cette étape sert à trouver les points de coupure.
+		\end{itemize}
+	\item	Pour $j = 1, \dots, J_{t}$, trouver \icbox{$\hat{a}_{j, t}	=	\argmin_{a} \sumz{}{i: \bm{x}_{i} \in \mathcal{R}_{j, t}} \mathcal{L}\{y_{i}, \hat{f}_{t - 1}(\bm{x}_{i}) + a\}$};
+	\item	Mettre à jour $\hat{f}$ en ajoutant une version rapetissée de l'arbre:
+		\begin{align*}
+		\rho_{i, t}	&=	\rho_{i, t - 1} - \lambda \hat{f}^{t}_{\text{arbre}}(\bm{x}_{i})	\\
+		\end{align*}
+	\item	Mettre à jour:
+		\begin{align*}
+		\hat{f}_{t}(\bm{x})	
+		&=	\hat{f}_{t - 1}(\bm{x}) + \lambda \sumz{J_{t}}{j = 1} \hat{a}_{j, t} \times \bm{1}_{\{x \in \mathbb{R}_{j, t}\}}
+		\end{align*}
+\end{enumerate}
+
+La prévision est:
+\begin{align*}
+	f_{\text{gbm}}(\bm{x})	
+	&=	\hat{f}_{T}(\bm{x})
+\end{align*}
+\end{algo2}
+
+\begin{definitionNOHFILLsub}[Fonctions \texttt{R}]
+Paquetage \texttt{gbm} ou \texttt{method = "gbm"} dans le paquetage \texttt{caret} pour régler les hyperparamètres suivants:
+\begin{itemize}[leftmargin = *]
+	\item	Nombre d'itérations dans le boosting \texttt{n.trees};
+	\item	Profondeur maximal de l'arbre \texttt{interaction.depth};
+	\item	Le taux d'apprentissage $\lambda$ \texttt{shrinkage};
+	\item	Nombre d'observations minimal dans un nœud \texttt{n.minobsinnode};
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+XGBoost
+\begin{itemize}
+	\item	Traite les valeurs manquante correctement si elles sont MAR;
+	\item	Comportement des prévisions peut être inattendu parfois;
+	\item	Pour la plupart des problèmes, la méthode boosting par gradient stochastique est la plus précise et la plus complexe.
+\end{itemize}
+
+%tdboost avec tweedie
+
+\section{Communication et interprétations}
+Les \textbf{graphiques de dépendance partielle (PDP)} nous permettent de mieux comprendre l'effet \textit{global} d'une variable explicative sur la prévision.
+\begin{itemize}[leftmargin = *]
+	\item	Peut être utilisé avec n'importe quel modèle de prévision (Boosting, Arbres, etc.)
+\end{itemize}
+
+On évalue la prévision pour une variable d'intérêt $x_{\ell}$ avec $\ell \in \{1, \dots, p\}$ et on prend la moyenne sur les valeurs possibles des autres variables:
+\begin{align*}
+	\bar{f}_{\ell}(x_{\ell})
+	&=	\frac{1}{n} \sumz{n}{i = 1} f_{\text{model}}(x_{\ell}, 	\bm{x}_{i}^{(-\ell)})
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Le vecteur $\bm{x}_{i}^{(-\ell)}$ contient les valeurs observées de toutes les variables explicatives pour l'observation $i$ sauf $x_{\ell}$.
+\end{itemize}
+
+Les \textbf{graphiques d'espérance conditionnelle individuelle (ICE)} nous permettent de comprendre l'effet d'une variable explicative sur \textit{une prévision en particulier} et de \textit{détecter des interactions}.
 
 \end{multicols*}
 %% -----------------------------

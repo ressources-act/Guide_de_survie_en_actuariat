@@ -32,11 +32,15 @@
 %
 % Redefine authors
 %
-\def\auteur{Alec James van Rassel}
-
 \definecolor{burgundy}{rgb}{0.5, 0.0, 0.13}
 
 \begin{document}
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT1002}
+
+\newpage
 
 \center % Center everything on the page
 
@@ -48,7 +52,7 @@
 \begin{rappel}{Domaine et définition}
 \begin{description}
 	\item[Random Process:]	Famille de variable aléatoires $\{X_{t}: t \in T\}$ qui associe un espace d'états $\Omega$ à un ensemble $S$.
-	\begin{enumerate}
+	\begin{enumerate}[leftmargin = *]
 		\item[$\Omega$: ] L'espace d'états $\Omega$ est composé des événements possible de la variable aléatoire $X$.
 		\item[] Par exemple, lorsqu'on lance une pièce de monnaie $\Omega = \{\textsf{Face}, \texttt{Pile} \}$.
 		\item[$S$: ] L'ensemble $S$ est l'ensemble des probabilités des événements dans $\Omega$.

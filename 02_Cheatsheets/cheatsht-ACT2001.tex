@@ -1,0 +1,230 @@
+\documentclass[10pt, french]{article}
+
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Introduction à l'actuariat II}
+\def\sigle{ACT-2001}
+\def\SectionColor{burntorange}
+\def\SubSectionColor{burntsienna}
+\def\SubSubSectionColor{burntsienna}
+
+%% Reduce margin space
+\setlength{\abovedisplayskip}{-15pt}
+\setlist{leftmargin=*}
+
+\newcommand{\bettershortstack}[2][c]{%
+  \begin{tabular}[b]{@{}#1@{}}#2\end{tabular}%
+}
+\usepackage{stackengine}
+\newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+%\input{contributeurs/contrib-ACT2001}
+
+\newpage
+
+\raggedcolumns
+\begin{multicols*}{2} 
+
+\section{Terminologie}
+\begin{description}
+	\item[$\argmax$]	Si on pose que $\hat{\theta}	=	\argmax L(\theta; \bm{X})$ on dit que la valeur maximale de $L(\theta; \bm{X})$ est au point $\hat{\theta}$.
+\end{description}
+
+Paramètre
+\begin{description}
+%%%	https://www.statisticshowto.com/shape-parameter/
+	\item[de forme]	Affecte la forme générale de la distribution;
+		\begin{itemize}
+		\item	\og \textit{shape parameter} \fg{};
+		\item	Il est important de saisir que le paramètre de forme n'a aucune incidence sur l'emplacement de la densité (paramètre de l'emplacement) ni sur l'échelle de la densité (paramètre d'échelle);
+		\item	Par exemple, la distribution Gamma a un paramètre de forme qui impact comment qu'elle est représentée;
+		\item	Par exemple, la distribution exponentielle n'a pas de paramètre de forme et bien que l'échelle de la distribution peut être modifiée, la forme générale est constante.
+		\end{itemize}
+%%%		
+	\item[d'échelle]	Sert à déterminer la forme et l'emplacement de la distribution en étirant ou compressant la densité;
+		\begin{itemize}
+		\item	\og \textit{scale parameter} \fg{};
+		\item	Le plus gros le paramètre d'échelle, le plus rependue la distribution;
+		\item	On peut voir ceci visuellement où avec un paramètre d'échelle de 1, la distribution est inchangée:
+		\end{itemize}
+		\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp18693685040272978] 
+\draw [line width=1.5]  (119.83,151.67) -- (199.83,151.67)(159.83,27.4) -- (159.83,151.67) (192.83,146.67) -- (199.83,151.67) -- (192.83,156.67) (154.83,34.4) -- (159.83,27.4) -- (164.83,34.4)  ;
+%Shape: Wave [id:dp5641937191696826] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=2.25]  (146.41,149.77) .. controls (146.59,150.04) and (146.77,150.18) .. (146.95,150.18) .. controls (149.38,150.18) and (151.47,124.5) .. (153.66,97.51) .. controls (155.85,70.53) and (157.94,44.84) .. (160.37,44.84) .. controls (162.8,44.84) and (164.89,70.53) .. (167.08,97.51) .. controls (169.1,122.49) and (171.05,146.35) .. (173.25,149.77) ;
+%Shape: Wave [id:dp9736357574926828] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  (139.7,149.94) .. controls (139.97,150.1) and (140.23,150.18) .. (140.5,150.18) .. controls (144.08,150.18) and (147.17,135.46) .. (150.39,119.99) .. controls (153.62,104.52) and (156.71,89.8) .. (160.29,89.8) .. controls (163.87,89.8) and (166.96,104.52) .. (170.19,119.99) .. controls (173.38,135.28) and (176.43,149.85) .. (179.96,150.18) ;
+%Shape: Wave [id:dp9806953027168039] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]  (130.98,150.05) .. controls (131.36,150.14) and (131.74,150.18) .. (132.12,150.18) .. controls (137.28,150.18) and (141.73,142) .. (146.38,133.41) .. controls (151.03,124.82) and (155.48,116.64) .. (160.64,116.64) .. controls (165.8,116.64) and (170.25,124.82) .. (174.9,133.41) .. controls (179.4,141.74) and (183.72,149.68) .. (188.68,150.16) ;
+%Shape: Rectangle [id:dp4682062525043522] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 203; green, 202; blue, 202 }  ,fill opacity=1 ] (176,26.67) -- (216.83,26.67) -- (216.83,94.67) -- (176,94.67) -- cycle ;
+
+% Text Node
+\draw (178.42,29.67) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {Échelle};
+% Text Node
+\draw (186.92,43.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {0.5};
+% Text Node
+\draw (190.92,58.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {1};
+% Text Node
+\draw (190.92,78.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {2};
+
+
+\end{tikzpicture}
+		\end{center}
+	\item[de fréquence]	L'interprétation dépend du contexte.
+		\begin{itemize}
+		\item	\og \textit{rate parameter} \fg{};
+		\item	Dans le cas d'un processus de Poisson, le paramètre de fréquence décrit le taux auquel les événements se produisent;
+		\item	Souvent, il est défini comme le réciproque du paramètre d'échelle pour indiquer le taux de déclin d'une fonction exponentielle;
+		\item	Des valeurs près de 1 impliquent un déclin lent alors que des valeurs près de 0 impliquent un déclin rapide.
+		\end{itemize}
+%%%		https://www.statisticshowto.com/location-parameter/
+	\item[d'emplacement]	Stipule où la densité est située.
+		\begin{itemize}
+		\item	\og \textit{location parameter} \fg{};
+		\item	Plus précisément, indique où sur l'axe des $x$ la distribution est centrée relatif à la distribution normale standard;
+		\item	Une distribution normale standard est centrée à 0 donc un paramètre d'emplacement de 5 implique que la densité est centrée à $x	=	5$.
+		\end{itemize}
+\end{description}
+
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$S$]	Les coûts d'un portefeuille.
+	\item[$\rho(S)$]	Une mesure de risque.
+\end{description}
+\end{distributions}
+
+\section{Mesures de risque}
+
+\begin{description}
+	\item[Capital économique]	Allocation de surplus de la compagnie;
+		\begin{align*}
+		CE(S)	
+		&=	\rho(S)	-	\esp{S}
+		\end{align*}
+	\item[Marge de risque]	associée à une prime $P(X)$;
+		\begin{align*}
+		MR(X)
+		&=	\rho(X)	-	\esp{X}
+		\end{align*}
+\end{description}
+
+$\rho$ introduit une marge de risque:
+\begin{description}
+	\item[positive]	lorsque \icbox{$\rho(X)	\geq		\esp{X}$} pour une v.a. $X$ avec \icbox[red][palechestnut]{$\esp{X} < \infty$};
+	\item[justifiée]	lorsque \icbox{$\rho(X)	=	\rho(a)	=	a$} pour une v.a. $X$ avec \icbox[red][palechestnut]{$\Pr(X	=	a)	=	1, \alpha > 0$};
+	\item[non-excessive]	lorsque \icbox{$\rho(X)	\leq		a_{\max}$} pour une v.a. $X$ \icbox[red][palechestnut]{s'il existe $a_{\max}	<	\infty$} \icbox[red][palechestnut]{tel que $\Pr(X	\leq		a_{\max})	=	1$};
+\end{description}
+
+\subsection{Propriétés désirables d'une mesure de risque}
+\begin{definitionNOHFILLsub}[Homogénéité]
+Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$c	>	0$}, la mesure de risque $\rho$ est dite homogène si \icbox{$\rho(cX)	=	c\rho(X)$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Invariance à la translation]
+Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$c	\in	\mathbb{R}$}, la mesure de risque $\rho$ satisfait la propriété d'invariance à la translation si \icbox{$\rho(X + c)	=	\rho(X) + c$}.	\\
+
+Ajouter un montant positif à un risque ajoute un montant équivalent à la mesure de risque.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Monotonicité]
+Soit les v.a. $X_{1}$ et $X_{2}$ \icbox[red][palechestnut]{tel que $\Pr(X	\leq	X_{2})	=	1$}, la mesure de risque $\rho$ satisfait la propriété de monotonicité si \icbox{$\rho(X_{1})	\leq	\rho(X_{2})$} ou si \icbox[red][palechestnut]{$\forall	u	\in	(0, 1)$}, \icbox{$F_{X_{1}}^{-1}(u)	\leq	F_{X_{2}}^{-1}(u)$}.
+
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Sous-additivité]
+Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de sous-additivité si \icbox{$\rho(X_{1}	+	X_{2})	\leq	\rho(X_{1})	+	\rho(X_{2})$}.
+
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Convexité]
+Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de convexité si \icbox{$\rho(\alpha X_{1}	+	(1	-	\alpha)X_{2})	\leq	\alpha\rho(X_{1})	+	(1	-	\alpha)\rho(X_{2})$}.
+
+\end{definitionNOHFILLsub}
+
+\subsection{TVaR et VaR}
+
+\begin{itemize}
+	\item	La \textbf{Value-at-Risk} correspond au $100\alpha^{\text{e}}$ pourcentile;
+	\item	Si $X$ représente les gains, on s'intéresse à l'extrémité inférieure de la distribution des gains et \icbox{$TVaR_{\alpha}(X)	=	\esp{X | X \leq \alpha}	=	\frac{1}{\alpha} \int_{-\infty}^{VaR_{\alpha}} x f_{X}(x)dx$};
+	\item	Si $X$ représente les pertes, on s'intéresse à l'extrémité supérieure de la distribution des gains et \icbox{$TVaR_{\alpha}(X)	=	\esp{X | X > \alpha}	=	\frac{1}{1 - \alpha} \int_{VaR_{\alpha}}^{\infty} x f_{X}(x)dx$};
+\end{itemize}
+
+\pagebreak
+
+\section{Modèles de risques non-vie}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$M$]	Variable aléatoire du nombre de sinistres pour un risque;
+	\item[$B_{k}$]	Variable aléatoire du montant du $k^{\text{e}}$ sinistre.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Modèle fréquence-sinistre]
+On défini la v.a. $X$ comme étant les coûts (pertes) pour un risque tel que \icbox[red][palechestnut]{$\forall	M	>	0$}:
+\begin{align*}
+	X
+	&=	\sum_{k	=	1}^{M} B_{k}
+\end{align*}
+
+\tcbline
+
+\begin{align*}
+	\esp{X}
+	&=	\text{E}_{\text{M}}\left[\text{E}_{\text{B}}[X | M]\right]	\\
+	&=	\text{E}[M]	\times	\text{E}[B]	\\
+	\text{Var}(X)
+	&=	\underbrace{\text{Var}_{\text{M}}(\text{E}_{\text{B}}[X | M])}_{\text{variabilité du \textit{nombre} de sinistres}}	+	\underbrace{\text{E}_{\text{M}}\left[\text{Var}_{\text{B}}(X | M)\right]}_{\text{variabilité du \textit{coût} par sinistre}}	\\
+	&=	\text{E}[M]\text{Var}(B)	+	\text{E}^{2}[B]\text{Var}(M)	\\
+\end{align*}
+
+\tcbline
+
+\begin{align*}
+	F_{X}(x)
+	&=	\Pr(M	=	0)	+	\sum_{k	=	1}^{\infty} \Pr(M	=	k)F_{B_{1}	+	\dots	+	B_{k}}(x)
+\end{align*}
+
+Par exemple, pour $B_{k}	\sim	\Gamma(\alpha,	\beta)$:
+\begin{align*}
+	F_{X}(x)
+	&=	\Pr(M	=	0)	+	\sum_{k	=	1}^{\infty} \Pr(M	=	k)H(x;	\alpha k, \beta)
+\end{align*}
+
+\tcbline
+
+\begin{align*}
+	\mathcal{L}_{X}(t)
+	&=	P_{M}\left(\mathcal{L}_{B}(t)\right), \quad	t > 0	\\
+	\esp{X	\times	\bm{1}_{\{X	>	b\}}}
+	&=	\sum_{k	=	1}^{\infty} \Pr(M	=	k)E\left[(B_{1}	+	\dots	+	B_{k})	\times	\bm{1}_{\{B_{1}	+	\dots	+	B_{k} > b\}}\right]
+\end{align*}
+
+Par exemple, pour $B_{k}	\sim	\Gamma(\alpha,	\beta)$:
+\begin{align*}
+	\esp{X	\times	\bm{1}_{\{X	>	b\}}}
+	&=	\sum_{k	=	1}^{\infty} \Pr(M	=	k) \frac{k\alpha}{\beta} \overline{H}(b;	\alpha k + 1, \beta)
+\end{align*}
+\end{definitionNOHFILL}
+
+\end{multicols*}
+\end{document}
+

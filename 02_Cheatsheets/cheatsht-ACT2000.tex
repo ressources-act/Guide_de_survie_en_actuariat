@@ -1,6 +1,5 @@
 % Template pour faire aide-mémoire
 \documentclass[10pt, french]{article}
-
 %% -----------------------------
 %% Préambule
 %% -----------------------------
@@ -14,21 +13,22 @@
 % 	Save more space than default
 %
 \setlength{\abovedisplayskip}{-15pt}
+\setlist{leftmargin=*}
 %
 %	Extra math symbols
 %
 \usepackage{mathrsfs}
 %
 % 	thin space, limits underneath in displays
-%
-\DeclareMathOperator*{\argmax}{arg\,max} 
 
 %% -----------------------------
 %% 	Colour setup for sections
 %% -----------------------------
 \def\SectionColor{cobalt}
 \def\SubSectionColor{azure(colorwheel)}
-\def\SubSubSection{azure(colorwheel)}
+\def\SubSubSectionColor{azure(colorwheel)}
+%%%	depth
+\setcounter{secnumdepth}{0}
 %% -----------------------------
 
 %% -----------------------------
@@ -40,7 +40,6 @@
 %% -----------------------------
 %% Variable definition
 %% -----------------------------
-\def\auteur{Alec James van Rassel}
 %%
 %% Matrix notation variable (bold style)
 %%
@@ -49,53 +48,147 @@
 
 \begin{document}
 
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT2000}
+
+\begin{rappel_enhanced}[Motivation]
+Inspiré par la chaîne de vidéos YouTube \href{https://www.youtube.com/user/joshstarmer}{\color{azure(colorwheel)}StatQuest} et mon étude pour MAS-I, je crée cette feuille dans le but de simplifier tous les obstacles que j'ai encourus dans mon apprentissage des statistiques et ainsi simplifier la vie des étudiants en actuariat.
+
+L'objectif est d'expliquer les concepts statistiques de façon claire et concise. Je vous prie de me faire part de tous commentaires et de me signaler toute erreur que vous trouvez! 
+\end{rappel_enhanced}
+
+\newpage
+
+\raggedcolumns
 \begin{multicols*}{2}
 
-\section*{Analyse statistique des risques actuariels}
+\part{Analyse statistique des risques actuariels}
 
-\subsection*{Vraisemblance}
+\section*{Vraisemblance}
 
-On peut voir la fonction de densité $f(x; \theta)$ comme étant une fonction du paramètre inconnu $\theta$ avec $x$ fixé; ceci est la fonction de vraisemblance $\mathcal{L}(\theta; x)$.
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\mathcal{L}(\theta; \bm{x})$]	Fonction de vraisemblance de $\theta$ en fonction des observations $\bm{x}$;
+	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon de $n$ observations.
+		\begin{itemize}[leftmargin = *]
+		\item	Si les $n$ observations sont indépendantes entres-elles et proviennent de la même distribution paramétrique (identiquement distribué) c'est un \textbf{échantillon aléatoire} \textbf{(iid)};
+		\item	On peut le dénoter comme $\{X_{n}\}$.
+		\end{itemize}
+\end{description}
+\end{distributions}
 
-\subsection*{Qualité de l'estimateur}
+On peut voir la fonction de densité $f(x; \theta)$ comme étant une fonction du paramètre inconnu $\theta$ avec $x$ fixé; ceci est la fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$.
+Pour bien saisir ce que représente la fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$, il faut songer à ce que représente $f(x; \theta)$. \\
+$f(x; \theta)$ est une fonction qui fait varier $x$ pour un (ou plusieurs) paramètre $\theta$ fixe. Alors, $\mathcal{L}(\theta; \bm{x})$ est une fonction qui fait varier $\theta$ pour un "paramètre" $\bm{x}$ fixé; ce que l'on considère habituellement comme étant "$x$" est en fait $\theta$ pour la fonction de vraisemblance!
+
+\section{Qualité de l'estimateur}
 
 La première section traite de \guillemotleft \textbf{estimateurs ponctuels} \guillemotright. 
 C'est-à-dire, on produit une seule valeur comme notre meilleur essai pour déterminer la valeur de la population inconnue.
-Intrinsèquement, on ne s'attend pas à ce que cette valeur (même si c'en est une bonne) soit la vraie valeur exacte.
+Intrinsèquement, on ne s'attend pas à ce que cette valeur (même si c'en est une bonne) soit la vraie valeur exacte.\\
 
 Une hypothèse plus utile à des fins d'interprétation est plutôt un \textbf{estimateur par intervalle}; au lieu d'une seule valeur, il retourne un intervalle de valeurs plausibles qui peuvent toutes être la vraie valeur. 
-Le type principal d'\textit{estimateur par intervalle} est \textit{l'intervalle de confiance} traité dans la deuxième sous-section.
+Le type principal d'\textit{estimateur par intervalle} est \textit{l'intervalle de confiance} traité dans la deuxième sous-section.\\
 
-\subsubsection*{Estimation ponctuelle}
+En bref:
+\begin{description}
+	\item[Estimateur ponctuel]	L'estimateur $\hat{\theta}_{n}$ assigne une valeur précise à $\theta$ selon l'échantillon.
+	\item[Estimateur par intervalle]	Un \textit{intervalle aléatoire}, construit avec l'échantillon aléatoire, ayant une certaine probabilité de contenir la vraie valeur $\theta$.
+\end{description}
 
-Lorsque nous avons un estimateur $\hat\theta$ pour un paramètre inconnu $\theta$ on espère que, \textbf{en moyenne}, ses erreurs de prévision seront nulles. 
-On peut alors trouver $\text{E}[\hat\theta | \theta]$; soit, l'espérance de l'estimateur lorsque $\theta$ est la vraie valeur du paramètre.
-Par la suite, on calcule son \textbf{biais} $\text{B}(\hat\theta)$ dans la prévision de cette vraie valeur du paramètre:
+
+\subsection{Estimation ponctuelle}
+
+\subsubsection{Biais}
+\begin{distributions}[Notation]
+\begin{description}[font = \normalfont]
+	\item[$\theta$]	Paramètre inconnu à estimer;
+		\begin{itemize}
+		\item	Dans le cas multivarié, on a un vecteur $\bm{\theta}$ et on défini un ensemble des valeurs possibles $\bm{\Theta}$;
+		\item	Par exemple, pour une loi Gamma $\bm{\theta}	=	\{\alpha, \beta\}$ et puisque ces paramètres sont strictement positif $\bm{\Theta}	=	\{\mathbb{R}^{+}, \mathbb{R}^{+}\}$.
+		\end{itemize}
+	\item[$\hat{\theta}_{n}$]	Estimateur de $\theta$ basé sur $n$ observations;
+		\begin{itemize}[leftmargin = *]
+		\item	Souvent, on simplifie et écrit $\hat{\theta}$.
+		\end{itemize}
+	\item[$\text{B}(\hat{\theta}_{n})$]	Biais d'un estimateur $\theta_{n}$.
+\end{description}
+\end{distributions}
+
+Lorsque nous avons un estimateur $\hat{\theta}_{n}$ pour un paramètre inconnu $\theta$ on espère que, \textbf{en moyenne}, ses erreurs de prévision seront nulles. 
+On peut alors trouver $\text{E}[\hat{\theta}_{n} | \theta]$; soit, l'espérance de l'estimateur lorsque $\theta$ est la vraie valeur du paramètre.	\\
+Par la suite, on calcule son \textbf{biais} $\text{B}(\hat{\theta}_{n})$ dans la prévision de cette vraie valeur du paramètre:
 \begin{algo}{Biais d'un estimateur}
 \begin{align*}
-	\text{B}(\hat\theta) 
-	&= 	\text{E}[\hat\theta | \theta] - \theta
+	\text{B}(\hat{\theta}_{n}) 
+	&= 	\text{E}[\hat{\theta}_{n} | \theta] - \theta
 \end{align*}
+\tcbline
+\begin{description}
+	\item[Estimateur sans biais]	lorsque le biais d'un estimateur est nul:
+		 \[
+		 	\text{B}(\hat{\theta}_{n}) = 0
+		 \]
+	\item[Estimateur asymptotiquement sans biais]	lorsque le biais d'un estimateur tends vers 0 alors que le nombre d'observations sur lequel il est basé tends vers l'infini: 
+		\[
+			\limz{n}{\infty}\text{B}(\hat{\theta}_{n}) = 0
+		\]
+\end{description}
 \end{algo}
 
-Cependant, le biais n'indique pas la variabilité de l'estimateur $\hat\theta$ dans sa prévision. Ceci est plutôt calculé avec la variance de l'estimateur $\text{Var}(\hat{\theta})$. 
-Nous pouvons alors définir la \hyperlink{cramer-rao}{\textbf{borne inférieure de Cramèr-Rao}} de la variance de l'estimateur $\text{Var}(\hat{\theta})$ avec \textbf{la matrice d'information de Fisher} $I(\theta)$:
+Cependant, le biais n'indique pas la variabilité des prévisions de l'estimateur $\hat{\theta}_{n}$. Une bonne analogie pour comprendre ce qui nous manque est d’imaginer une personne ayant ses pieds dans de l'eau bouillante et sa tête dans un congélateur; \textbf{en moyenne}, il est correct, mais \textbf{en réalité} il est très inconfortable. Des estimateurs non biaisés seront toujours proches de la vraie valeur, mais ce n'est pas suffisant qu'ils soient bons \textit{en moyenne}. On évalue donc la variabilité d'un estimateur avec sa variance $\text{Var}(\hat{\theta}_{n})$.
 
-\begin{algo}{\hypertarget{cramer-rao}{Borne inférieure Cramèr-Rao}}
+%\columnbreak
+\subsubsection{Borne Cramér-Rao}
+\label{sec:cramer_rao}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\bm{I}_{n}(\theta)$]	Matrice d'information de Fisher d'un échantillon aléatoire $\bm{X}$;
+		\begin{itemize}
+		\item	La matrice d'information Fisher pour un seule observation sera donc dénotée $\bm{I}(\theta)$.
+		\end{itemize}
+	\item[$\hat{\theta}^{EMV}$]	Estimateur du maximum de vraisemblance de $\theta$.
+\end{description}
+\end{distributions}
+
+Lorsque l'on analyse la variance d'un estimateur \underline{sans biais}, on débute par définir la \hyperlink{cramer-rao}{\textbf{borne inférieure de Cramér-Rao}} de sa variance $\text{Var}(\hat{\theta}_{n})$. Cette borne utilise \textbf{la matrice d'information de Fisher} $\bm{I}_{n}(\theta)$:
+
+\begin{algo}{\hypertarget{cramer-rao}{Borne inférieure Cramér-Rao}}
+Sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité},
 \begin{align*}
-	\text{Var}(\hat{\theta}) \ge \frac{1}{n\text{E}\left[\Big(\deriv{\theta}\ln f(x ; \theta)\Big)^{2}\right]}, \quad \text{où } I(\theta) = \text{E}\left[\Big(\deriv{\theta}\ln f(x ; \theta)\Big)^{2}\right]
+	\text{Var}(\hat{\theta}_{n}) 
+	&\geq	\frac{1}{\bm{I}_{n}(\theta)}
 \end{align*}
+où
+\begin{align*}
+	\bm{I}(\theta) 
+	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln f(\theta; x)\Big)^{2}\right]	
+	\overset{\text{iid}}{\equiv}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln f(\theta; x)}	\right]	\\
+	\bm{I}_{n}(\theta) 
+	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln \mathcal{L}(\theta; \bm{x})\Big)^{2}\right]	
+	\overset{\text{iid}}{\equiv}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln \mathcal{L}(\theta; \bm{x})}\right]	
+\end{align*}
+\paragraph{Note}	Dans le cas d'un échantillon aléatoire (alias, les données sont iid) on obtient la deuxième équation et \lfbox[formula]{$\bm{I}_{n}(\theta)	=	n\bm{I}(\theta)$.}
 \end{algo}
 
-Cette borne est rarement comprise et sur la base de \hyperlink{https://www.youtube.com/watch?v=igQIsYAlKlY}{ce vidéo} et \hyperlink{https://www.youtube.com/watch?v=i0JiSddCXMM}{ce vidéo} je me lance dans l'explication de l'intuition derrière cette borne. Si vous ne comprenez pas, allez les regarder puisqu'elle va régulièrement réapparaître plus tard dans le bac.
+\subsubsection*{Détails sur la borne Cramér-Rao}
+Cette borne est rarement comprise et sur la base de \hyperlink{https://www.youtube.com/watch?v=igQIsYAlKlY}{\color{blue}ce vidéo} et \hyperlink{https://www.youtube.com/watch?v=i0JiSddCXMM}{\color{blue}ce vidéo} je me lance dans l'explication de son intuition. Si vous ne comprenez pas à partir de mes explications, je vous suggère fortement d'allez regarder les vidéos puisque c'est un concept qui va réapparaître plus tard dans le bac.\\
 
 Premièrement, on définit l'utilité des deux premières dérivées:
 \begin{description}
-	\item[$\deriv{\theta} \mathcal{L}(\theta)$]: Représente le \og rate of change \fg{} \textit{(angl.)} de la fonction.
-	\item[$\frac{\partial^{2}}{\partial\theta^{2}} \mathcal{L}(\theta)$]: Représente la concavité de la fonction; on peut y penser comme sa \og curve \fg{}.
+	\item[$\frac{\partial}{\partial\theta} \mathcal{L}(\theta)$]: Représente le \og \textit{rate of change}\fg{} de la fonction;
+	\item[$\frac{\partial^{2}}{\partial\theta^{2}} \mathcal{L}(\theta)$]: Représente la concavité de la fonction; on peut y penser comme sa forme.
 \end{description}
 
-On sait que la dérivée sera de 0 au point $\hat\theta^{\texttt{EMV}}$, mais juste passé ce point elle sera négative! On ajoute alors un négatif pour évaluer la décroissance pareillement à l'augmentation de la dérivée. Le twist est que beaucoup de fonctions peuvent avoir le même point où elles sont maximisées, mais avoir l'air complètement différents. 
+L'estimateur $\hat\theta^{\texttt{EMV}}$ du paramètre $\theta$ d'une distribution est obtenu en posant la première dérivée de sa fonction de vraisemblance $\mathcal{L}(\theta ; x)$ égale à 0. Alors, la première dérivée de $\mathcal{L}(\theta; \bm{x})$ est nulle au point $\theta = \hat\theta^{\texttt{EMV}}$. \\
+
+Puisque ce point maximise la fonction, la dérivée va augmenter avant et diminuer après.
+%Puisque ce point maximise la fonction, la dérivée sera négative par la suite! \\
+%On ajoute alors un négatif à la définition de la matrice d'information fisher (la deuxième forme) pour plus facilement comparer la décroissance (négative) et la croissance (positive) de la dérivée. \\
+Cependant, plusieurs fonctions peuvent avoir le même \textbf{point} où elles sont maximisées tout en étant complètement différentes:
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -119,84 +212,195 @@ On sait que la dérivée sera de 0 au point $\hat\theta^{\texttt{EMV}}$, mais ju
 
 \end{tikzpicture}
 
-Clairement, la courbe \textcolor{purple}{en mauve} aura plus de points près de $\hat{\theta}^{\text{EMV}}$ que la courbe en \textcolor{orange}{orange}. On évalue cette différence avec la deuxième dérivée, soit la concavité ou \og curve \fg{}. Ce faisant, la deuxième dérivée permet d'être plus certain d'avoir le bon estimateur. Il est alors logique que la variance ne puisse pas être moins que l'estimateur du maximum de vraisemblance évalué au point où la concavité est maximisée. 
+Clairement, la courbe \textcolor{amethyst}{en mauve} aura plus de points près de $\hat{\theta}^{\text{EMV}}$ que la courbe en \textcolor{orange}{orange}. Afin de comparer les différents estimateurs, on cherche à quantifier l'étendu, ou la variance, de leurs formes. 
+La deuxième dérivée sert donc à mesurer la \textit{forme}, ou \textbf{concavité}, de la fonction de vraisemblance et comparer des estimateurs plus adéquatement. \\
 
-Finalement, on veut comprendre pourquoi $1/\text{\og curve \fg{}}$ et non juste $\text{\og curve \fg{}}$. On déduit que plus la concavité est élevée, alors plus la variance sera faible. Il aura forcément moins de points près de $\hat\theta^{\text{EMV}}$ et donc:
+Ce faisant, la deuxième dérivée permet d'être plus certain d'avoir le bon estimateur. Il s'ensuit que \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{la variance ne peut pas être moins que l'estimateur du maximum} \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{de vraisemblance évalué au point où la concavité est maximisée}. Alors on peut penser à la forme à ce point comme $\bm{I}(\theta) =$ \og courbe \fg{}. \\
+
+Finalement, on veut comprendre pourquoi $1/\text{\og curve \fg{}}$ et non juste $\text{\og courbe \fg{}}$. On déduit de la fraction que plus la concavité \og courbe \fg{} est élevée, alors plus la variance sera faible. Si la concavité de la fonction est très large, et donc il y a un grand étendue, il y a moins de points près de $\hat\theta^{\text{EMV}}$. Donc:
 \begin{equation*}
-	\text{Var}(\hat\theta^{\text{EMV}}) \overset{\text{dépend}}{\sim} \frac{1}{\text{\og curve \fg{}}}
+	\text{Var}(\hat\theta^{\text{EMV}}) 
+	\overset{\text{dépend}}{\sim} \frac{1}{\text{\og courbe \fg{}}}	\\
 \end{equation*}
-On observe alors que la limite lorsque la \og curve \fg{} tend vers l'infini implique une variance nulle. On dit donc que la distribution de l'estimateur est "asymptotiquement normale" tel que $\hat\theta^{\text{EMV}} \overset{a.s.}{\rightarrow} \mathcal{N}\Big(\theta, \big(\bm{I}(\theta)\big)^{-1}\Big)$ où a.s. veut dire \hyperlink{asympto}{asymptotiquement}.
 
-Il s'ensuit alors que \textbf{l'efficacité d'un estimateur} est le ratio de la borne Cramèr-Rao sur la variance de l'estimateur:
+On observe alors que la limite lorsque la \og courbe \fg{} tend vers l'infini implique une variance nulle. On dit donc que la distribution de l'estimateur est "asymptotiquement normale" tel que $\hat\theta^{\text{EMV}} \overset{a.s.}{\rightarrow} \mathcal{N}\Big(\mu = \theta, \sigma^{2} = \frac{1}{\bm{I}(\theta)}\Big)$ où a.s. veut dire \hyperlink{asympto}{asymptotiquement}.
+
+\columnbreak
+\subsubsection{Efficacité}
+\begin{distributions}[Notation]
+\begin{description}[font = \normalfont]
+	\item[$\text{eff}(\hat{\theta}_{n})$]	Efficacité d'un estimateur $\hat{\theta}_{n}$;
+	\item[$\text{eff}(\hat\theta_{n}, \tilde\theta_{n})$]	Efficacité de l'estimateur $\hat{\theta}_{n}$ relatif à l'estimateur $\tilde{\theta}_{n}$.
+\end{description}
+\end{distributions}
+
+Avec le concept de l'information de Fisher, on défini \textbf{l'efficacité d'un estimateur} comme le ratio de la borne Cramér-Rao sur la variance de l'estimateur:
 \begin{algo}{Efficacité d'un estimateur}
 \begin{align*}
-	\text{eff}(\theta)
-	&=	\frac{\text{Var}(\hat{\theta})^{\text{Rao}}}{\text{Var}(\hat{\theta})} 
-	=	\frac{1}{n\text{E}\left[\Big(\deriv{\theta}\ln f(x ; \theta)\Big)^{2}\right]\text{Var}(\hat{\theta})}
+	\text{eff}(\hat{\theta}_{n})
+	&=	\frac{\text{Var}(\hat{\theta}_{n})^{\text{Rao}}}{\text{Var}(\hat{\theta})} 
+	=	\frac{1}{\bm{I}(\theta)\text{Var}(\hat{\theta})}
 \end{align*}
+\tcbline
+\begin{description}
+	\item[Estimateur \og \textit{efficient} \fg{}]	Lorsque la variance de l'estimateur $\text{Var}(\hat{\theta}_{n})$ est égale à la borne de Cramér-Rao.
+		\begin{align*}
+		\text{eff}(\hat{\theta}_{n}) = 1
+		\end{align*}
+	\begin{itemize}[leftmargin = *]
+	\item	Étant égale à la borne, il \textit{doit} être l'estimateur avec la plus petite de tous les estimateurs sans biais.\\
+	 		On dit qu'il est le \og \textbf{\textit{Minimum Variance Unbiased Estimator (MVUE)}} \fg{}. 
+	\end{itemize}
+\end{description}
 \end{algo}
 
-Si ce ratio est de 1, $\text{eff}(\theta) = 1$, alors l'estimateur est à la borne. On dit qu'il est un estimateur \og \textbf{efficient} \fg{} \textit{(angl.)}. Du fait, parmi les estimateurs sans biais il doit être celui avec la \textbf{variance minimale}; on dit que l'estimateur est le \og \textbf{Minimum Variance Unbiased Estimator (MVUE)} \fg{} \textit{(angl.)}. 
-
-De plus, on peut généraliser cette formulation pour obtenir l'efficacité relative d'un estimateur comparativement à un autre:
+De plus, on peut généraliser cette formulation pour obtenir l'efficacité relative d'un estimateur à un autre:
 \begin{algo}{Efficacité relative}
-Soit les estimateurs non biaisés $\hat\theta_{n}$ et $\tilde\theta_{n}$, l'efficacité de $\hat\theta_{n}$ relativement à $\tilde\theta_{n}$ est:
 \begin{align*}
 	\text{eff}(\hat\theta_{n}, \tilde\theta_{n})
-	&=	\frac{\text{Var}(\hat\theta_{n})}{\text{Var}(\tilde\theta_{n})}	
+	&=	\frac{\text{Var}(\hat\theta_{n})}{\text{Var}(\tilde\theta_{n})}		\\
 \end{align*}
+où les estimateurs $\hat\theta_{n}$ et $\tilde\theta_{n}$ sont sans biais.
+\tcbline
+Lorsque:
+\begin{description}[font = \normalfont]
+	\item[$\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) < 1$:]	L'estimateur $\hat{\theta}_{n}$ est plus efficace que l'estimateur $\tilde{\theta}_{n}$, \\
+	et vice-versa si $\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) > 1$.
+\end{description}
 \end{algo}
-Si $\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) < 1$ alors $\hat\theta_{n}$ est plus efficace et vice-versa.
 
-Nous pouvons également évaluer si un estimateur est cohérent, ou converge, avec des très grands échantillons; un estimateur $\hat\theta$ est \textbf{consistent} \textit{(angl.)} si la probabilité qu'il diffère de la vraie valeur du paramètre $\theta$ par une erreur $\epsilon$ près de 0 tend vers 0 alors que la taille de l'échantillon $n$ tend vers l'infini:
+\columnbreak
+\subsubsection{Convergence}
+Nous pouvons également évaluer si un estimateur converge avec des très grands échantillons; ceci évalue si un estimateur est cohérent. Un estimateur $\hat{\theta}_{n}$ est dit d'être \og \textit{\textbf{consistent}} \fg{} si la probabilité que sa prévision $\hat{\theta}$ du paramètre $\theta$ diffère de la vraie valeur par une erreur, près de 0, $\epsilon$ tend vers 0 alors que la taille de l'échantillon $n$ tend vers l'infini:
 \begin{algo}{Convergence (\textbf{consistency}) d'un estimateur}
 \begin{align*}
-	\underset{n \rightarrow \infty}{\lim} \Pr(\big| \hat\theta - \theta \big| > \epsilon) = 0, \quad \epsilon > 0
+	\underset{n \rightarrow \infty}{\lim} \Pr(\big| \hat{\theta}_{n} - \theta \big| > \epsilon) = 0, \quad \epsilon > 0
 \end{align*}
 \end{algo}
 
-Ce critère peut être rencontré lorsque l'estimateur $\hat\theta$ est \hypertarget{asympto}{\textbf{asymptotiquement sans biais}} \textbf{\textit{et}} que la \textbf{variance de l'estimateur} tend vers 0. D'ailleurs, nous avons déjà raisonné ceci avec \hyperlink{cramer-rao}{la borne inférieure Cramèr-Rao}.
+Ce critère pour qu'un estimateur $\hat{\theta}_{n}$ soit \og \textit{consistent} \fg{} peut être satisfait lorsque: 
+\begin{enumerate}
+	\item	l'estimateur est \hypertarget{asympto}{\textbf{asymptotiquement sans biais}};
+		\begin{align*}
+		\limz{n}{\infty} \text{B}(\hat{\theta}_{n}) = 0
+		\end{align*}
+	\item	la \textbf{variance de l'estimateur tend vers 0}.
+		\begin{align*}
+		\limz{n}{\infty} \text{Var}(\hat{\theta}_{n}) = 0
+		\end{align*}
+\end{enumerate}
 
+D'ailleurs, nous avons déjà raisonné ceci avec \hyperlink{cramer-rao}{la borne inférieure Cramér-Rao}.
 
-On définit proprement ce qu'est un estimateur \textbf{asymptotiquement sans biais}:
-\begin{algo}{Estimateur asymptotiquement sans biais}
-\begin{align*}
-	\underset{n \rightarrow \infty}{\lim} \text{B}(\hat\theta) &= 0
-\end{align*}
-\end{algo}
-
-Donc si $\underset{n \rightarrow \infty}{\lim} \text{Var}(\hat\theta) = 0$ et que $\underset{n \rightarrow \infty}{\lim} \text{B}(\hat\theta) = 0$ alors l'estimateur est \textbf{consistent}. 
-Cependant, l'inverse n'est pas vrai; un estimateur qui est \textbf{consistent} n'implique pas que la variance et le biais tendent vers 0.
+Cependant, l'inverse n'est pas vrai---qu'un estimateur soit \og \textit{consistent} \fg{} n'implique pas que sa variance ni que son biais tendent vers 0.\\
 
 Malgré la nature plaisante de la convergence d'un estimateur, beaucoup d'estimateurs ont cette propriété. 
 Nous voulons alors une mesure qui n'indique pas seulement qu'un estimateur arrive près de la bonne valeur souvent \textit{(alias, une très petite variance)}, mais qu'il est mieux que d'autres estimateurs.
-De plus, dût à la sélection arbitraire de l'erreur $\epsilon$ pour la \textit{consistency} d'un estimateur, il est possible de malicieusement la sélectionner pour faire parler les données comme on le souhaite. 
+De plus, dût à la sélection arbitraire de l'erreur $\epsilon$ pour la \textit{consistency} d'un estimateur, il est possible de la choisir malicieusement afin de faire parler les données comme on le souhaite. 
 
-Nous définissons alors l'\textbf{Erreur Quadratique Moyenne} (EQM), ou \textbf{Mean Squared Error (MSE)}, permettant de comparer les différents estimateurs ayant tous une bonne \textit{consistency} en assurant une cohérence d'interprétation.
+\subsubsection*{Détails sur la convergence}
+On reprend les résultats de la section précédente en expliquant plus en détails la mathématique sous-jacente.\\
+
+\begin{definitionNOHFILLsub}[Convergence en probabilité]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\{Y_{n}\}$]	Séquence de variables aléatoires;
+	\item[$Y$]	Variable aléatoire comprise dans $\{Y_{n}\}$.
+\end{description}
+\end{distributions}
+
+On dit que $Y_{n}$ converge en probabilité à $Y$ si \lfbox[conditions]{$\forall \varepsilon > 0$}, 
+\begin{align*}
+	\limz{n}{\infty} \Pr\left[|Y_{n}	-	Y|	\geq	\varepsilon\right]	
+	&=	0
+\end{align*}
+%%%	--------------------
+%%%	NOTES:
+%%%	+	\geq ou > ???
+%%%	--------------------
+ou de façon équivalente,
+\begin{align*}
+	\limz{n}{\infty} \Pr\left[|Y_{n}	-	Y|<	\varepsilon\right]	
+	&=	1
+\end{align*}
+
+On dénote la convergence en probabilité par: \lfbox[formula]{$Y_{n}	\overset{P}{\rightarrow}	Y$.}
+\end{definitionNOHFILLsub}
+
+\paragraph{Note:}	La convergence en probabilité est d'ailleurs le théorème sous-jacent à la loi faible des grands nombres vue en prob.
+
+\begin{rappel}{Loi faible des grands nombres}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\{Y_{n}\}$]	Séquence de variables aléatoires iid avec moyenne $\mu$ et variance $\sigma^{2}$ où \lfbox[conditions]{$\sigma^{2}	<	\infty$};
+	\item[$\overline{X}_{n}$]	Moyenne empirique.
+\end{description}
+\end{distributions}
+
+On pose que \lfbox[formula]{$\overline{X}_{n}	\overset{P}{\rightarrow}	\mu$.}
+\end{rappel}
+
+\begin{definitionNOHFILLsub}[Théorèmes résultant de la convergence en probabilité]
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et \lfbox[conditions]{$Y_{n}	\overset{P}{\rightarrow}	Y$}. Alors \lfbox[formula]{$X_{n} + Y_{n}	\overset{P}{\rightarrow}	X + Y$}.\\
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et une \lfbox[conditions]{constante $a$}. Alors \lfbox[formula]{$aX_{n}	\overset{P}{\rightarrow}	aX$}.\\
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	a$} et la \lfbox[conditions]{fonction $g(\cdot)$ continue à $a$}. Alors \lfbox[formula]{$g(X_{n})	\overset{P}{\rightarrow}	g(a)$}.\\
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et la \lfbox[conditions]{fonction continue $g(\cdot)$}. Alors \lfbox[formula]{$g(X_{n})	\overset{P}{\rightarrow}	g(X)$}.\\
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et \lfbox[conditions]{$Y_{n}	\overset{P}{\rightarrow}	Y$}. Alors \lfbox[formula]{$X_{n}Y_{n}	\overset{P}{\rightarrow}	XY$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILL}[\og \textit{Consistency} \fg{}]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$Y$]	Variable aléatoire avec une distribution paramétrique de paramètre $\theta$;
+	\item[$\{Y_{1}, Y_{2}, \dots, Y_{n}\}$]	Échantillon de la distribution de $Y$;
+	\item[$\hat{\theta}_{n}$]	Estimateur de $\theta$.
+\end{description}
+\end{distributions}
+
+On dit que $\hat{\theta}_{n}$ est une estimateur \og \textit{consistent} \fg{} si \lfbox[formula]{$\hat{\theta}_{n}	\overset{P}{\rightarrow}	\theta$}.
+\end{definitionNOHFILL}
+
+
+\subsubsection{Erreur quadratique moyenne}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\text{MSE}_{\hat{\theta}_{n}}(\theta)$]	Erreur quadratique moyenne d'un estimateur $\hat{\theta}_{n}$
+\end{description}
+\end{distributions}
+
+On défini alors l'\textbf{Erreur Quadratique Moyenne} (EQM), ou \textbf{Mean Squared Error (MSE)}, permettant de comparer les différents estimateurs ayant tous une bonne \textit{consistency} en assurant une cohérence d'interprétation. Cette mesure permet de quantifier l'écart entre un estimateur $\hat{\theta}_{n}$ et le vrai paramètre $\theta$.
+
 \begin{algo}{Erreur Quadratique Moyenne (Mean Squared Error)}
 \begin{align*}
 	\text{MSE}_{\hat\theta}(\theta)
-	&=	\text{E}[(\hat\theta - \theta)^{2} | \theta]
-	\Leftrightarrow	\text{Var}(\hat\theta) + \left[\text{B}(\hat\theta)\right]^{2}
+	&=	\text{E}[(\hat{\theta}_{n} - \theta)^{2}]
+	\Leftrightarrow	\text{Var}(\hat{\theta}_{n}) + \left[\text{B}(\hat{\theta}_{n})\right]^{2}
 \end{align*}
 \end{algo}
 
-En combinant tous ces critères, le meilleur estimateur est alors l'estimateur \textbf{sans biais} ayant la \textbf{plus petite variance} possible parmi tous les estimateurs \textit{sans biais} possible; c'est-à-dire, le \textbf{Uniformly Minimum Variance Unbiased Estimator \textit{(UMVUE)}}.
+En combinant tous ces critères, le meilleur estimateur est alors l'estimateur \textbf{sans biais} ayant la \textbf{plus petite variance} possible parmi tous les estimateurs \textit{sans biais}. C'est-à-dire, le \textbf{Uniformly Minimum Variance Unbiased Estimator \textit{(UMVUE)}}.
 
-\subsubsection*{Estimation par intervalles}
+\columnbreak
+
+\subsection{Estimation par intervalles}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\hat{\theta}_{L}$ et $\hat{\theta}_{U}$]	Fonctions de l'échantillon aléatoire $\{X_{1}, \dots, X_{n}\}$ où \icbox[red][palechestnut]{$\hat{\theta}_{L} < \hat{\theta}_{U}$};
+	\item[$(\hat{\theta}_{L}, \hat{\theta}_{U})$]	Intervalle de confiance de $100(1 - \alpha)\%$ de $\theta$ si \icbox[red][palechestnut]{$\Pr(\hat{\theta}_{L} \leq \theta \leq \hat{\theta}_{U}) = 1 - \alpha$}.
+\end{description}
+\end{distributions}
 
 Un type d'estimateur par intervalle est l'\textbf{intervalle de confiance}:
 \begin{algo}{Intervalle de confiance}
-Soit le paramètre à estimer $\theta$, alors nous sommes confiants à un niveau de 100$(1 - \alpha)$\% qu'il est contenu entre $(L, U)$. 
+Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que le paramètre inconnu $\theta$ est entre $(\hat{\theta}_{L}, \hat{\theta}_{U})$. 
 
-De façon équivalente, nous sommes confiant à un seuil de $\alpha$\% qu'il est contenu entre $(L, U)$: 
-\begin{equation*}
-	\theta \in \left[ L, U\right].
-\end{equation*}
-Nous pouvons alors dire que $\Pr(L \le \theta \le U) \ge (1 - \alpha)$ pour tout $\theta$.
+De façon équivalente, nous sommes confiant à un seuil de $\alpha$\% que $\theta$ est entre $(\hat{\theta}_{L}, \hat{\theta}_{U})$.\\
+
+Donc, \icbox{$\theta \in (\hat{\theta}_{L}, \hat{\theta}_{U})$} et nous pouvons dire que \icbox{$\Pr( \hat{\theta}_{L} \le \theta \le  \hat{\theta}_{U}) \ge (1 - \alpha)$} \icbox[red][palechestnut]{pour tout $\theta$}.
 \end{algo}
 
-Par exemple, dans le cas d'une population avec distribution normale et moyenne $\mu$ inconnue, on a la moyenne échantillonnale $\bar{x}$ (qui est l'estimateur \textit{MVUE}).
+Par exemple, dans le cas d'une population avec distribution normale et moyenne $\mu	=	\theta$ inconnue, on a comme estimateur (MVUE) la moyenne échantillonnale $\bar{x}	=	\hat{\theta}$.
 \begin{formula}{Intervalle de confiance sur la moyenne \textit{(distribution normale)}} 
 Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
@@ -208,134 +412,331 @@ Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que :
 %%%	Méthode du pivot
 %%%
 
-\subsection*{Construction d'estimateurs}
+\columnbreak
+\section{Construction d'estimateurs}
 
 Dans la section précédente, on évalue les méthodes pour évaluer la \textbf{qualité} de l'estimateur. 
 Cependant, comment obtenons-nous des estimateurs pour les évaluer?
 
 Plusieurs méthodes existent pour établir des estimateurs, de plus plusieurs méthodes existent pour estimer des paramètres.
-La méthode vu dans le cadre du cours de statistique est la \textbf{méthode fréquentiste}, le cours de mathématiques IARD 1 (ACT-2005) présente \textbf{l'estimation Bayésienne}.
+La méthode vu dans le cadre du cours de statistique est la \textbf{méthode fréquentiste}, le cours de mathématiques IARD 1 (ACT-2005) présente \textbf{l'estimation bayésienne}.
 
 Avant de le faire, nous présentons quelques concepts:
+\begin{distributions}[Terminologie]
 \begin{description}
-	\item[échantillon aléatoire:] Échantillon d'observations indépendantes provenant de la même distribution paramétrique (identiquement distribué); c'est-à-dire, un échantillon \textbf{(iid)}.
-	\item[k-ème moment centré à 0:]  $\mu_{k}' = \text{E}[X^{k}]$.
-	\item[$100g^{\text{ème}}$ pourcentile:]  $\pi_{g}(\theta) = F^{-1}_{\theta}(g)$.
+	\item[$\mu_{k}'(\hat{\theta})$]	$k^{\text{e}}$ moment centré à 0, \icbox{$\mu_{k}' = \text{E}[X^{k}]$};
+	\item[$\pi_{g}(\theta)$]	$100g^{\text{e}}$ pourcentile, \icbox{$\pi_{g}(\theta) = F^{-1}_{\theta}(g)$}, \icbox[red][palechestnut]{$g \in [0, 1]$};
+	\item[$F_{e}(x)$]	Fonction de répartition \textbf{e}mpirique;
+	\item[]	$\equalhat$	Notation pour poser une égalité.
 \end{description}
+\end{distributions}
 
 Les deux premiers estimateurs ci-dessous sont les plus faciles à obtenir, mais sont aussi les moins performants puisqu'ils n'utilisent que quelques traits des données au lieu de l'entièreté des données comme la troisième méthode.
 
 Cette distinction devient particulièrement importante dans le cas d'une distribution avec une queue lourde à la droite (Pareto, Weibull, etc.) où il devient plus essentiel de connaître les valeurs extrêmes pour bien estimer le paramètre de forme ($\alpha$ pour une Pareto).
 
-Un autre désavantage est que les deux premières méthodes nécessitent que les données proviennent toutes de la même distribution, autrement les moments et quantiles ne seraient pas clairs.
+Un autre désavantage est que les deux premières méthodes nécessitent que les données proviennent toutes de la même distribution. Sinon, les moments et quantiles ne seraient pas clairs.
 
 Finalement, sous les deux premières méthodes la décision de quels moments et percentiles à utiliser est arbitraire.
 
-\subsubsection*{Méthode des moments (MoM)}
+\subsection{Méthode des moments (MoM)}
 
-Soit un échantillon aléatoire de taille $n$ (iid), on pose $\hat\mu_{k}' = \mu_{k}'$.
 \begin{algo}{Estimation de $\theta$ par la méthode des moments}
+Pour ajuster une distribution de $p$ paramètres, on pose égale les $p$ premiers moments empiriques $\hat\mu_{k}'$ au $p$ premiers moments de la distribution $\mu_{k}'$.\\
 L'estimation de $\theta$ est alors toute solution des $p$ équations:
 \begin{equation*}
-	\mu_{k}'(\theta) = \hat\mu_{k}', \quad	k = 1, 2, \dots, p
+	\hat{\mu}_{k}' 
+	\equiv	\frac{1}{n}\sum_{i = 1}^{n} x_{i}^{k}
+	\equalhat	\esp{X^{k}}
+	\equiv	\mu_{k}'(\theta), \quad	k = 1, 2, \dots, p
 \end{equation*}
 \end{algo}
 
 La raison pour cet estimateur est que la distribution empirique aura les mêmes $p$ premiers moments centrés à 0 que la distribution paramétrique.
 
-\subsubsection*{Méthode du \guillemotleft Percentile Matching \guillemotright}
+\subsection{Méthode du \guillemotleft Percentile Matching \guillemotright}
 
-Soit un échantillon aléatoire de taille $n$ (iid), on pose $\hat\pi_{g}(\theta) = \pi_{g}(\theta)$.
-
-\begin{algo}{Estimation de $\theta$ par la méthode du \guillemotleft Percentile Matching \guillemotright}
+\begin{algo}{Estimation de $\theta$ par la méthode du \og \textit{Percentile Matching} \fg{}}
+Pour ajuster une distribution de $p$ paramètres, on pose égale $p$ pourcentiles $\hat{\pi}_{g}(\hat{\theta})$ de l'échantillon à ceux de la distribution $\pi_{g}(\theta)$.\\
 L'estimation de $\theta$ est alors toute solution des $p$ équations:
 \begin{equation*}
-	F(\hat\pi_{g_{k}} | \theta)	=	g_{k}, \quad	k = 1, 2, \dots, p
+	F_{e}(\hat\pi_{g_{k}} | \theta)	=	g_{k}, \quad	k = 1, 2, \dots, p
 \end{equation*}
 \end{algo}
 
-La raison pour cet estimateur est que le modèle produit aura $p$ percentiles qui vont \guillemotleft matcher \guillemotright les données.
+La raison pour cet estimateur est que le modèle produit aura $p$ percentiles qui vont \og \textit{matcher} \fg{} les données.
 
 Il peut arriver que les percentiles de distributions ne soient pas uniques, par exemple dans le cas de données discrètes lorsque le quantile recherché peut tomber entre 2 \emph{marches} de la fonction empirique, ou mal-définis.
 Il est alors utile de définir une méthode d'interpolation des quantiles (bien qu'il n'en existe pas une d'officielle).
 
-Soit le \guillemotleft \textbf{smoothed empirical estimate} \guillemotright d'un percentile:
+Soit le \og \textit{smoothed empirical estimate} \fg{} d'un pourcentile:
 
 \begin{algo}{Smoothed empirical estimate}
-On utilise les statistiques d'ordre de l'échantillon $x_{(1)} \le x_{(2)} \le \dots \le x_{(n)}$ pour l'interpolation suivant:
+On utilise les statistiques d'ordre de l'échantillon $x_{(1)} \le x_{(2)} \le \dots \le x_{(n)}$ pour l'\textbf{interpolation} suivant:
 \begin{align*}
 	\hat\pi_{g}
 	&=	(1 - h)x_{(j)} + h x_{(j + 1)}, \quad \text{ où }	\\
 	j
-	&=	\lfloor (n + 1) g \rfloor	&
-	&\text{ et }	&
+	&=	\lfloor (n + 1) g \rfloor	\quad
+	\text{ et }	\quad
 	h
-	&=	(n + 1) g - j
+	=	(n + 1) g - j
 \end{align*}
 \end{algo}
 
 
-\subsubsection*{Méthode du maximum de vraisemblance}
+\columnbreak
+\subsection{Méthode du maximum de vraisemblance}
 
 Nous cherchons à maximiser la probabilité d'observer les données.
 Ceci est fait par la vraisemblance $\mathcal{L}(\theta; x)$ ou, puisque le logarithme ne change pas le maximum, la log-vraisemblance $\ell(\theta; x)$ où:
 
 \begin{algo}{Maximum de vraisemblance}
 \begin{align*}
-	\mathcal{L}(\theta; x)
+	\mathcal{L}(\theta; \bm{x})
 	&=	\prod_{i = 1}^{n}	f(x_{i}; \theta)	&
 	&\text{et}	&
-	\ell(\theta; x)
+	\ell(\theta; \bm{x})
 	&=	\sum_{i = 1}^{n} \ln	f(x_{i}; \theta)	&
 \end{align*}
 et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qui maximise la fonction de vraisemblance.
 \end{algo}
 
-%%	Propriétés de l'EMV
-%%		invariance, convergence, non-biais, Cramèr-Rao, ...
+De façon formelle, on dit que \lfbox[formula]{$\hat{\theta}^{\text{EMV}}	=	\underset{\theta}{\max}\{\mathcal{L}(\theta; \bm{x})\}	\equiv	\underset{\theta}{\max}\{\ln\mathcal{L}(\theta; \bm{x})\}$.}
 
-%\subsection*{Autres critères}
+\subsubsection{Propriétés}
+\begin{definitionNOHFILL}[Propriété d'invariance]
+Soit une fonction bijective $g(\cdot)$ et l'EMV $\hat{\theta}^{\text{EMV}}$ de $\theta$.\\
+Alors, selon le principe d'invariance \lfbox[formula]{$g(\hat{\theta}^{\text{EMV}})$ est l'EMV de $g(\theta)$.}\\
+
+L'EMV satisfait cette propriété.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Convergence en distribution de l'EMV]
+\textbf{Théorème}:	\lfbox[formula]{$\hat{\theta}^{\text{EMV}}	\approx	\mathcal{N}\left(0, \frac{1}{\bm{I}_{n}(\theta)}\right)$.}
+
+\tcbline
+
+Sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité}, la distribution de $\sqrt{n}\left( \hat{\theta}	-	\theta \right)$ converge en distribution vers une distribution normale avec une moyenne nulle et une variance égale à la \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}borne de Cramér-Rao}.
+\begin{align*}
+	\sqrt{n}\left( \hat{\theta}	-	\theta \right)
+	&\overset{D}{\rightarrow}
+	\mathcal{N}\left( 0, \frac{1}{\bm{I}_{n}(\theta)} \right)
+\end{align*}
+
+Ce qui implique:
+\begin{enumerate}
+	\item	$\hat{\theta}$ est \lfbox[imphl]{asymptotiquement sans biais.}
+	\item	$\hat{\theta}$ est \lfbox[imphl]{\og \textit{consistent} \fg{}.}
+	\item	$\hat{\theta}$ est \lfbox[imphl]{approximativement normalement distribué avec moyenne $\theta$ et} \lfbox[imphl]{variance $1/\bm{I}_{n}(\theta)$ pour des grands échantillons.}
+	\item	$\hat{\theta}$ est \lfbox[imphl]{asymptotiquement efficace} puisque sa variance tend vers la borne Cramér-Rao.
+\end{enumerate}
+\end{definitionNOHFILL}
+	
+Souvent les professeurs ne montrent pas ces conditions puisqu'elles sont compliquées. Alors, ne vous en faites pas si vous ne les comprenez pas complètement.
+
+\begin{definitionNOHFILLsub}[\hypertarget{reg_cond}{Conditions de régularité}]
+\begin{description}
+	\item[R0]	Les variables $X_{i}$ sont iid avec densité $f(x_{i}; \theta)$ pour $i	=	1, 2, \dots$.
+	\item[R1]	Les fonctions de densité ont tous le même support pour tout $\theta$.
+		\begin{itemize}
+		\item	C'est-à-dire que le support de $X_{i}$ ne dépend pas de $\theta$;
+		\item	C'est une condition restrictive que certains modèles ne respectent pas.
+		\end{itemize}
+	\item[R2]	La "vraie valeur" de $\theta$ est contenue dans l'ensemble des valeurs possibles $\Theta$.
+\end{description}
+\tcbline
+%%%	--------------------------------
+%%%	NOTES:
+%%%	+	FAUT AJOUTER DES DÉTAILS SUR LES CONDITIONS AVEC LES DÉRIVÉES D'INTÉGRALES ÉGAUX À ZÉRO!!!!!
+%%%	+	Ajouter des détails sur l'efficacité asymptotique;
+%%%	+	Intervalles de confiance
+%%%	--------------------------------
+%\begin{description}
+%	\item[R3]	La fonction de densité $f(x; \theta)$ est différentiable deux fois comme fonction de $\theta$.
+%	\item[R4]	L'intégrale $\int f(x; \theta) dx$ est différentiable deux fois sous l'intégrale en comme fonction de $\theta$.
+%	\item[R5]	La fonction de densité $f(x; \theta)$ est différentiable trois fois comme fonction de $\theta$. De plus, $\forall \theta \in \Theta$ il existe une constante $c$ and une fonction $g(x)$ tel que $\big| \deriv[3]{\theta}{} \ln f(x; \theta) \big| \leq g(x)$.
+%\end{description}
+%\paragraph{Note:}	Les conditions R3 et R4 sont additionnelles pour \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}la borne de Cramér-Rao}.
+\end{definitionNOHFILLsub}
+	
+
+\subsubsection{Cas multivarié}
+On généralise du cas où $\theta$ est un scalaire (un seul paramètre) au cas multivarié avec $k$ paramètres et le vecteur $\bm{\theta}	=	(\theta_{1}, \cdots, \theta_{k})^{\top}$.\\
+
+
+\begin{distributions}[Notation]
+En notation matricielle, on multiple le vecteur $\bm{\theta}$ par la transposée $\bm{\theta}^{\top}$ au lieu de mettre $\theta$ au carré. 
+\begin{itemize}
+	\item	La matrice d'information Fisher \underline{d'\textit{une} observation} est donc une matrice $k \times k$:
+\begin{align*}
+	\bm{I}(\bm{\theta})
+	&=	\text{E}\left[	
+			\frac{\partial \ln f(X; \bm{\theta})}{\partial \bm{\theta}}
+			\frac{\partial \ln f(X; \bm{\theta})}{\partial \bm{\theta}^{\top}}
+		\right]
+	\overset{iid}{\equiv}	\text{E}\left[	
+			\frac{\partial^{2} \ln f(X; \bm{\theta})}{\partial \bm{\theta}\bm{\theta}^{\top}}
+		\right]
+\end{align*}
+%%%	------------------------
+%%%	NOTES
+%%%	+	Vérifier les X pour voir où les majuscules vont avec matrice d'information Fisher!!! vs f(x; \theta), f(X; \theta) ,,......\bm{X}?
+%%%	------------------------
+	\item	Pour la matrice d'information Fisher d'un échantillon aléatoire de $n$ observation, on utilise la relation $\bm{I}_{n}(\bm{\theta})	=	n\bm{I}(\bm{\theta})$.
+\end{itemize}
+\begin{description}
+	\item[$\bm{I}^{-1}_{n}(\bm{\theta})$]	Inverse de la matrice d'information Fisher $\bm{I}_{n}(\bm{\theta})$.
+\end{description}
+\end{distributions}
+
+Soit $\tilde{\bm{\theta}}$ un estimateur sans bais de $\bm{\theta}$. 
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\text{Var}(\tilde{\bm{\theta}})$]	Matrice de variance de $\tilde{\bm{\theta}}$.
+		\begin{itemize}
+		\item	Le $(i, j)^{\text{e}}$ élément est donc $\text{Cov}(\tilde{\bm{\theta}}_{i}, \tilde{\bm{\theta}}_{j})$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+La version multivariée de l'inégalité Cramér-Rao stipule que \lfbox[formula]{$\text{Var}(\tilde{\bm{\theta}})	-	\bm{I}^{-1}_{n}(\bm{\theta})$} est une \lfbox[conditions]{matrice \og \textit{nonnegative definite} \fg{}.}
+\begin{itemize}
+	\item	Puisque les éléments de la diagonale doivent être positifs, la borne inférieure de $\text{Var}(\tilde{\bm{\theta}}_{i})$ est le $i^{\text{e}}$ élément de la diagonale de $\bm{I}^{-1}_{n}(\bm{\theta})$.
+\end{itemize}
+	
+En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité}, la distribution de $\sqrt{n}\left( \hat{\bm{\theta}}	-	\bm{\theta} \right)$ converge en distribution vers une distribution normale multivariée (de $k$ dimensions) avec une moyenne nulle et une variance égale à la borne de Cramér-Rao.
+\begin{align*}
+	\sqrt{n}\left( \hat{\bm{\theta}}	-	\bm{\theta} \right)
+	&\overset{D}{\rightarrow}
+	\mathcal{N}_{k}\left( 0, \bm{I}^{-1}_{n}(\bm{\theta}) \right)
+\end{align*}
+
+
+%\subsection{Autres critères}
 %	Quantile-Quantile
 %	AIC
 %	BIC
 
-%%%
-%%%
-%%% pas pertinent au cours de stats %%%
-%Cependant, il peut être pratique de généraliser cette fonction de vraisemblance pour les cas de données censurées ou tronquées.
+
+\columnbreak
+
+\section{Tests d'hypothèses}
+
+\subsection{Introduction}
+Soit la 
+\begin{description}
+	\item[$X$]	Variable aléatoire d'intérêt $X$ avec fonction de densité $f(x; \theta)$;
+	\item[$\Theta$]	Ensemble des valeurs possible pour le paramètre $\theta$ tel que \lfbox[formula]{$\theta \in \Theta$;}
+		\begin{itemize}
+		\item	Par exemple, pour une loi normale $\Theta	=	\{(\mu, \sigma^{2}): \sigma^{2} > 0, -\infty < \mu < \infty\}$.
+		\end{itemize}
+	\item[$\Theta_{0}$ et $\Theta_{1}$]	Sous-ensembles disjoints de $\Theta$ tel que \lfbox[formula]{$\Theta_{0} \cup \Theta_{1}	=	\Theta$;}
+	\item[$\textrm{H}_{0}$]	Hypothèse nulle;
+	\item[$\textrm{H}_{0}$]	Hypothèse alternative.
+\end{description}
+
+\begin{definitionNOHFILL}[Test d'hypothèse]
+\begin{align*}
+	\textrm{H}_{0}
+	&:	\theta \in \Theta_{0}	&
+	&\text{vs}	&
+	\textrm{H}_{1}
+	&:	\theta \in \Theta_{1}	&
+\end{align*}
+
+Habituellement l'hypothèse nulle représente le statu quo alors que l'hypothèse alternative représente un changement.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Région critique]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon aléatoire sur lequel le test se fait;
+	\item[$\mathcal{S}$]	"Ensemble" de tous les résultats possible pour l'échantillon aléatoire;
+	\item[$\mathcal{C}$]	\textbf{Région critique} qui est un sous-ensemble de $\mathcal{S}$.
+\end{description}
+\end{distributions}
+
+On rejet $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}$.\\
+On conserve $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}^{c}$.
+\end{definitionNOHFILLsub}
+
+On peut donc faire 2 types d'erreurs:
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,165); %set diagram left start at 0, and has height of 165
+
+%Shape: Rectangle [id:dp5658804967739193] 
+\draw  [fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (74,50.17) -- (163.83,50.17) -- (163.83,101.5) -- (74,101.5) -- cycle ;
+%Shape: Rectangle [id:dp933461228347003] 
+\draw  [fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (163.83,101.5) -- (253.67,101.5) -- (253.67,152.83) -- (163.83,152.83) -- cycle ;
+%Shape: Rectangle [id:dp24194313951746427] 
+\draw  [fill={rgb, 255:red, 148; green, 250; blue, 106 }  ,fill opacity=1 ] (163.83,50) -- (253.67,50) -- (253.67,101.33) -- (163.83,101.33) -- cycle ;
+%Shape: Rectangle [id:dp27324261874552724] 
+\draw  [fill={rgb, 255:red, 148; green, 250; blue, 106 }  ,fill opacity=1 ] (74,101.33) -- (163.83,101.33) -- (163.83,152.67) -- (74,152.67) -- cycle ;
+%Shape: Rectangle [id:dp9425087952138109] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (74,30.17) -- (163.83,30.17) -- (163.83,50) -- (74,50) -- cycle ;
+%Shape: Rectangle [id:dp40513736937576916] 
+\draw  [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (74,10.33) -- (253.67,10.33) -- (253.67,30.17) -- (74,30.17) -- cycle ;
+%Shape: Rectangle [id:dp4099498200973881] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (163.83,30.17) -- (253.67,30.17) -- (253.67,50) -- (163.83,50) -- cycle ;
+%Shape: Rectangle [id:dp35293578825776084] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (5.5,101.33) -- (74,101.33) -- (74,152.67) -- (5.5,152.67) -- cycle ;
+%Shape: Rectangle [id:dp2841127241620307] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (5.5,50.17) -- (74,50.17) -- (74,101.5) -- (5.5,101.5) -- cycle ;
+%Shape: Rectangle [id:dp5918283025493905] 
+\draw  [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (5.5,30.33) -- (74,30.33) -- (74,50.17) -- (5.5,50.17) -- cycle ;
+
+% Text Node
+\draw (138.33,13) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Vrai état};
+% Text Node
+\draw (110.92,35) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$ \text{H}_{0}$};
+% Text Node
+\draw (200.75,35) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$ \text{H}_{1}$};
+% Text Node
+\draw (18.25,112) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Accepter\\ $\text{H}_{0}$}};
+% Text Node
+\draw (23.25,60.83) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Rejeter\\ $\text{H}_{0}$}};
+% Text Node
+\draw (13.25,32.75) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Décision};
+% Text Node
+\draw (91.42,65.83) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] 
+{\shortstack{Erreur\\ de type I}};
+% Text Node
+\draw (181.25,117) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Erreur\\ de type II}};
+% Text Node
+\draw (95.92,117) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Bonne\\ décision}};
+% Text Node
+\draw (185.75,65.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Bonne\\ décision}};
+
+
+
+\end{tikzpicture}
+\end{center}
+
+%Nous avons trois termes qui représentent la même chose:
+%\begin{description}
+%	\item[Probabilité d'une erreur de type I]	Donc la probabilité de rejeter $\text{H}_{0}$ alors qu'elle est vraie.
+%	\item[taille]	La taille $\alpha$ de la région critique $\mathcal{C}$;
+%	\item[taux de signifiance] $\alpha$
+%\end{description}
 %
-%Soit un ensemble de données comportant n événements $A_{1}, \dots, A_{n}$ avec $A_{j}$ étant tout ce qui fut observé pour la $j^{\text{e}}$ observation; c'est-à-dire que $A_{j}$ pourrait être une observation unique ou un intervalle (par exemple, dans le cas de données groupées).
+%C'est à dire, \lfbox[formula]{$\alpha	=	\underset{\theta \in \Theta_{0}}{\max} \Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \right\}$}.
+%\begin{itemize}
+%	\item	On note que ceci correspond à $1	-	\Pr\{\text{erreur de type II}\}$.
+%\end{itemize}
 %
-%De plus, un suppose que $A_{j}$ est une observation de la variable aléatoire $X_{j}$ et que les variables aléatoires $X_{1}, \dots, X_{n}$ ne doivent pas obligatoirement avoir la même distribution paramétrique; cependant, elles doivent tous dépendent du même vecteur paramétrique $\bm\theta$.
-%Finalement, comme dans les deux autres cas, les variables aléatoires sont supposées indépendantes.
-%
-%\begin{align*}
-%	\mathcal{L}(\theta; x)
-%	&=	\prod_{j = 1}^{n}	\Pr(X_{j} \in A_{j} ; \theta)		
-%\end{align*}
-%
-%Pour faire le lien avec la définition précédente, dans le cas où $A_{j}$ est un point unique et que la distribution est continue $\Pr(X_{j} \in A_{j} | \theta) = f(x_{i}; \theta)$.
-%
-%\begin{algo}{Données modifiées}
-%Pour le cas de données groupées, les observations $c_{0} < c_{1} < \dots < c_{k}$ contiennent $n_{j}$ observations par intervalle $(c_{j - 1}, c_{j}]$, la fonction de vraisemblance est donc:
-%\setlength{\mathindent}{-1cm}
-%\begin{align*}
-%	\mathcal{L}(\theta; x)
-%	&=	\prod_{j = 1}^{n}	\left[ F(c_{j}|\theta) - F(c_{j-1}|\theta)\right]^{n_{j}},	\;	\text{données groupées}	\\
-%	&=	\prod_{j = 1}^{n}	S(x_{i} ; \theta),	\;	\text{données censurées}	\\
-%	&=	\prod_{j = 1}^{n}	\frac{f(x_{i}; \theta)}{S(x_{i} ; \theta)},	\;	\text{données tronquées}
-%\end{align*}
-%\setlength{\mathindent}{1cm}
-%\end{algo}
-%%% fin de pas pertinent au cours de stats %%%
-%%%
-%%%
+%La fonction de puissance est $\gamma_{C}(\theta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \in \Theta_{1} \right\}$.
+
 
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%%		À rajouter éventuellement	%%%%	
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 
-%\subsection*{Tests d'hypothèses}
+%\subsection{Tests d'hypothèses}
 %%	Contenu à y inclure
 %	Hypothèse nulle et alternative
 %	Statistique de test
@@ -369,8 +770,19 @@ et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qu
 %		Tableau de contingence
 %		Test d'indépendance du khi-carré
 
+%%%	Différence de moyennes
+%\begin{align*}
+%	(\bar{x}	-	\bar{y})
+%	&\pm	t_{\alpha/2, n - 2} s_{p}\sqrt{\frac{1}{n_{1}} + frac{1}{n_{2}}}
+%\end{align*}
 
-%\subsection*{Distributions d'échantillonnage}
+%%%	Différence de proportions
+%\begin{align*}
+%	\hat{p}_{1}	-	\hat{p}_{2}
+%	&\pm	z_{\alpha/2} \sqrt{\frac{\hat{p}_{1}(1 - \hat{p}_{1}}{n_{1}} + frac{\hat{p}_{2}(1 - \hat{p}_{2}}{n_{2}}}
+%\end{align*}
+
+%\subsection{Distributions d'échantillonnage}
 %%	Contenu à y inclure
 %	Postulat de normalité
 %		Moyenne échantillonnale
@@ -380,7 +792,7 @@ et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qu
 %	Échantillons de distribution inconnue
 %		Théorème centrale limite
 
-%\subsection*{Exhaustivité}
+%\subsection{Exhaustivité}
 %%	Contenu à y inclure
 %	Définition de l'exhaustivité
 %	Théorème de factorisation de Fisher-Neymann
@@ -393,12 +805,13 @@ et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qu
 
 %%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
 %		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
+\columnbreak
 
-\subsection*{Statistiques d'ordre}
+\section{Statistiques d'ordre}
 
 Soit un échantillon aléatoire de taille $n$.
-Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.
-Les crochets sont utilisés pour distinguer la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.
+Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.\\
+Les crochets sont utilisés pour différencier la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.\\
 
 Nous sommes habituellement intéressés au minimum $X_{(1)}$ et le maximum $X_{(n)}$.
 
@@ -436,18 +849,49 @@ De façon plus générale, on défini:
 	f_{X_{(k)}}(x)
 	&=	\frac{n!}{\textcolor{teal}{(k - 1)!} \textcolor{cobalt}{1!} \textcolor{cyan}{(n - k)!}} \textcolor{teal}{\underset{\text{observations } < \ k}{\underbrace{\big[ F_{X}(x) \big]^{k - 1}}}} \textcolor{cobalt}{\overset{\text{observation } = \ k}{\overbrace{f_{X}(x)}}} \textcolor{cyan}{\underset{\text{observations } > \ k}{\underbrace{\big[ S_{X}(x) \big]^{n - k}}}} \\
 	F_{X_{(k)}}(x)
-	&=	\underset{\text{Probabilité qu'au moins } k \text{ des } n \text{ observations } X_{k} \text{ sont } \le \ x}{\underbrace{\sum_{i = 1}^{n} \binom{n}{i} [F_{X}(x)]^{j} [1 - F_{X}(x)]^{n - j}}}
+	&=	\underset{\text{Probabilité qu'au moins } k \text{ des } n \text{ observations } X_{k} \text{ sont } \le \ x}{\underbrace{\sum_{i = r}^{n} \binom{n}{i} [F_{X}(x)]^{j} [1 - F_{X}(x)]^{n - j}}}
 \end{align*}
 \end{algo}
 
 Nous pouvons également définir quelques autres statistiques d'intérêt :
 
 \begin{description}
-	\item[$R = X_{(n)} - X_{(1)}$: ] Amplitude échantillonnale, où \textbf{l'étendue} (Range) est la différence entre le minimum et le maximum d'un échantillon.
+	\item[$R = X_{(n)} - X_{(1)}$: ] \textbf{L'étendu}e (range) est la différence entre le minimum et le maximum d'un échantillon.
+		\begin{itemize}[leftmargin = *]
+		\item	L'utilité de l'étendue est limitée puisqu'elle est très sensible aux données extrêmes.
+		\item	Par exemple, supposons qu’on observe des données historiques de température pour le 1er septembre. \\
+				En moyenne, la température est de $16\degree C$, mais nous avons un cas extrême de $-60\degree C$ en 1745.\\
+				L'étendue sera de $86\degree C$ ce qui n'est très représentatif des données.\\
+				Donc, dans ce contexte, la mesure n'est pas d'une très grande utilité.
+		\end{itemize}
 	\item[$M = \frac{X_{(n)} + X_{(1)}}{2}$: ] \textbf{mi-étendue} (Midrange), est la moyenne entre le minimum et le maximum d'un échantillon.
+		\begin{itemize}[leftmargin = *]
+		\item	Pour comprendre ce que représente la mi-étendue, on la compare à la moyenne arithmétique.
+		\item	La moyenne arithmétique considère les données observées et calcule leur moyenne.\\
+				Il s'ensuit qu'elle ne considère pas les chiffres qui ne sont pas observés.
+		\item	La mi-étendue considère \textbf{tous} les chiffres, observés ou non, entre la plus grande et la plus petite valeur d'un échantillon et en prend la moyenne.		
+		\end{itemize}
 \end{description}
 
-De plus, nous pouvons définir la \textbf{médiane} en termes de statistiques d'ordre:
+\begin{conceptgen}{Exemple sur les statistiques d'ordre}
+Soit un échantillon de données météorologiques $\{-30\degree, -24\degree, -7\degree, -23\degree, +5\degree\}$ (celsius).
+
+Je suppose que ce sont des températures du 4 février observées lors des dernières années.
+\begin{itemize}[leftmargin = *]
+	\item	La moyenne arithmétique ($-22.25\degree C$) m'intéresse, car je peux savoir, en moyenne, ce qu'est la température le 4 février.
+	\item	La mi-étendue ($-12.5\degree C$), tout comme l'étendue ($-35\degree C$), ne m'intéresse pas puisqu'elle ne prend pas en considération la vraisemblance des différentes températures.
+\end{itemize}
+
+Maintenant, je suppose que ces données sont des températures observées tout au long de l'hiver passé.
+\begin{itemize}[leftmargin = *]
+	\item	La moyenne arithmétique ne m'intéresse pas puisqu'elle est beaucoup trop biaisée par les températures de cette même journée. 
+	\item	Cependant, la mi-étendue et l'étendue me donnent maintenant une meilleure idée de la température de l'hiver.
+\end{itemize}
+
+L'important à retenir est que l'utilité des mesures dépend de la situation. Également, ceci est un exemple \textbf{très} simpliste et dans tous les cas on ne peut pas tirer de conclusions sur les températures de l'hiver à partir d'une seule journée.
+\end{conceptgen}
+
+Nous pouvons définir la \textbf{médiane} en termes de statistiques d'ordre:
 \begin{align*}
 	\text{Med}
 	&=	\left\{
@@ -463,6 +907,607 @@ Finalement, on définit la distribution conjointe du minimum et du maximum $\for
 	f_{X_{(1)}, X_{(n)}}(x, y)
 	&=	n (n - 1) [F_{X}(y) - F_{X}(x)]^{n - 2} f_{X}(x) f_{X}(y)
 \end{align*}
+
+\pagebreak
+
+\part{Modèles linéaires en actuariat}
+
+\section{Régression linéaire simple}
+
+\begin{definitionNOHFILL}[Modèle de régression linéaire simple]
+\begin{align*}
+	Y_{i} 
+	&=	\beta_{0} + \beta_{1} x_{i} + \varepsilon_{i}	\\
+	\hat{Y}_{i} 
+	&=	\hat{\beta}_{0} + \hat{\beta}_{1} x_{i} 
+\end{align*}
+\end{definitionNOHFILL}
+
+\subsection{Exemple de compréhension}
+
+On illustre le concept et la signification des paramètres de régression avec cet exemple illustratif
+
+\paragraph{Objectif}	On veut deviner le coût d'une télévision (télé) selon la taille de son écran.
+
+\
+
+L'idée de la "régression" est de deviner, ou "prédire" du mieux qu'on peut le coût d'une télé en fonction de la taille de son écran.
+
+Deviner le coût \textit{exact} d'une télé \textit{seulement} en fonction de la taille de son écran est impossible. Il y a de nombreuses raisons qui déterminent le prix d'une télé et un bon exercice est de réfléchir à ce qu'elles pourraient être. 
+J'inclus ci-dessous une liste de quelques raisons, ou "facteurs", qui me sont survenus:
+\begin{itemize}[leftmargin = *]
+	\item	La compagnie qui la produit (Sony vs LG, etc.).
+	\item	La résolution (4K vs 360p).
+	\item	L'année de fabrication (1990 vs 2020).
+	\item	L'endroit de l'achat (Amazon vs BestBuy, Mexique vs Canada, etc.).
+	\item	Le temps de l'année (été vs hiver, Boxing Day, etc.).
+\end{itemize}
+
+Maintenant supposons que tu joues à un jeu avec tes amis où qu'ils doivent deviner le coût d'une télé en fonction de sa taille. Ils vont probablement tous te donner des différentes réponses.
+
+Si tu crées un modèle de prévision, il doit être systématique et toujours deviner le même prix pour la même taille d'écran---même si la prévision est erronée. 
+
+Alors, supposons que tu changes le jeu un peu et stipules que la personne qui devine le prix le plus éloigné doit prendre une gorgée de sa bière. Les réponses de tes amis vont probablement se ressembler un peu plus, mais il y a un problème qui demeure---tu veux que les prévisions soient proportionnelles à la taille de l'écran. C'est-à-dire, si ton ami devine qu'une télé de 25" coûte 100\$, tu t'attends à ce qu'il devine qu'une télé de 50" coûte 200\$.
+
+La raison est qu'une régression \textbf{linéaire} \textit{simple} est simplement une ligne droite:
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp3720388407437436] 
+\draw  (50,144.67) -- (219.83,144.67)(75.83,33) -- (75.83,165) (212.83,139.67) -- (219.83,144.67) -- (212.83,149.67) (70.83,40) -- (75.83,33) -- (80.83,40)  ;
+%Straight Lines [id:da45260329028360524] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
+
+% Text Node
+\draw (246,142.67) node   [align=left] {\shortstack{taille de\\ l'écran $x$}};
+% Text Node
+\draw (48,34.67) node   [align=left] {\shortstack{coût de la \\ télé $Y$}};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+L'intuition est que ton ami se base uniquement sur la taille de l'écran comme information pour deviner le coût. Une régression \textbf{linéaire} simple applique un facteur \textbf{multiplicatif}. Il ne peut pas se dire que plus grand l'écran est grand, plus le prix va augmenter---ceci serait plutôt une régression avec un paramètre \textbf{exponentiel}. 
+
+On crée donc un facteur surnommé "paramètre". Dans le cas d'une régression linéaire simple, on a deux paramètres d'intérêts: un "niveau de base" pour le coût $\beta_{0}$ et un "multiplicateur" de la taille d'écran $\beta_{1}$:
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp3720388407437436] 
+\draw  (50,144.67) -- (219.83,144.67)(75.83,33) -- (75.83,165) (212.83,139.67) -- (219.83,144.67) -- (212.83,149.67) (70.83,40) -- (75.83,33) -- (80.83,40)  ;
+%Straight Lines [id:da45260329028360524] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
+
+% Text Node
+\draw (246,142.67) node   [align=left] {taille de\\ l'écran $x$};
+% Text Node
+\draw (54,34.67) node   [align=left] {\shortstack{coût de la \\ télé $Y$}};
+
+% Text Node
+\draw (64,115) node  [font=\footnotesize] [align=left] {$\beta _{0}$};
+% Text Node
+\draw (161,72) node  [font=\small,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\hat{Y} =\ \beta _{0} \ +\ \beta _{1} x$};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+On suppose qu'une télé doit coûter au moins un certain prix. Ce "niveau de base" est l'intercepte sur le graphique ci-dessus surnommé l'ordonnée $\beta_{0}$. De ton gré, tu supposes au moins $\beta_{0} = 200\$$ pour cet exemple. 
+
+Ensuite, le multiplicateur va multiplier la taille de l'écran pour obtenir un prix. Ce paramètre représente donc la pente $\beta_{1}$. De ton gré, tu suppose une pente de $\beta_{1} = 2\$$ pour cet exemple. 
+
+Le coût (l'axe des $Y$) est la variable qui dépend de la taille---c'est la variable "dépendante" $Y$. La taille (l'axe des $x$) est la variable que l'on connaît indépendamment du coût---c'est la variable "indépendante" $x$. 
+
+Finalement la droite elle-même est le coût que le modèle devine $\hat{Y}$. Le chapeau signifie que c'est une estimation, ou "prévision".
+
+Par exemple, le modèle devine que le prix d'une télé de 50" est de 300\$; soit, $\hat{Y} = \beta_{0} + \beta_{1} x = 200 + (2) \cdot (50) = 300$. Selon le modèle, on estime que le coût de la télé est de 300\$.
+
+Supposons que tu connais le \textit{vrai} coût $Y$, alors tu peux mesurer à quel point tu est dans le champ. Supposons que le vrai coût est de $Y = 400\$$. Alors, l'erreur dans ta prédiction est de $\varepsilon = 400 - 300 = 100\$$. 
+
+Graphiquement:
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp0590336014536994] 
+\draw  (50,141.82) -- (234.5,141.82)(77.7,28.33) -- (77.7,169.33) (227.5,136.82) -- (234.5,141.82) -- (227.5,146.82) (72.7,35.33) -- (77.7,28.33) -- (82.7,35.33) (102.7,136.82) -- (102.7,146.82)(127.7,136.82) -- (127.7,146.82)(152.7,136.82) -- (152.7,146.82)(177.7,136.82) -- (177.7,146.82)(202.7,136.82) -- (202.7,146.82)(72.7,116.82) -- (82.7,116.82)(72.7,91.82) -- (82.7,91.82)(72.7,66.82) -- (82.7,66.82) ;
+\draw   ;
+%Straight Lines [id:da6064475343931128] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
+%Flowchart: Connector [id:dp8477117117153217] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (173.73,93.81) .. controls (171.68,92.14) and (171.38,89.12) .. (173.05,87.07) .. controls (174.72,85.02) and (177.74,84.71) .. (179.79,86.39) .. controls (181.84,88.06) and (182.15,91.08) .. (180.48,93.13) .. controls (178.8,95.18) and (175.79,95.49) .. (173.73,93.81) -- cycle ;
+%Flowchart: Connector [id:dp4707804099581703] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (173.73,66.81) .. controls (171.68,65.14) and (171.38,62.12) .. (173.05,60.07) .. controls (174.72,58.02) and (177.74,57.71) .. (179.79,59.39) .. controls (181.84,61.06) and (182.15,64.08) .. (180.48,66.13) .. controls (178.8,68.18) and (175.79,68.49) .. (173.73,66.81) -- cycle ;
+%Shape: Brace [id:dp37242003440355953] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (171.5,63.33) .. controls (167.93,63.4) and (166.18,65.22) .. (166.25,68.79) -- (166.25,68.79) .. controls (166.35,73.89) and (164.61,76.47) .. (161.04,76.54) .. controls (164.61,76.47) and (166.45,78.99) .. (166.54,84.08)(166.5,81.79) -- (166.54,84.08) .. controls (166.61,87.65) and (168.43,89.4) .. (172,89.33) ;
+
+% Text Node
+\draw (275,142.67) node   [align=center] {taille de\\ l'écran $x$};
+% Text Node
+\draw (45,34.67) node   [align=center] {coût de la \\ télé $Y$};
+
+% Text Node
+\draw (262,99) node  [font=\footnotesize,color={rgb, 255:red, 189; green, 16; blue, 224 }  ,opacity=1 ] [align=left] {$\displaystyle \hat{Y} \ =\ 200\ +\ 2\cdot 50=300\$$};
+% Text Node
+\draw (55,117.33) node   [align=left] {$\displaystyle 200$};
+% Text Node
+\draw (56,92.33) node   [align=left] {$\displaystyle 300$};
+% Text Node
+\draw (55,66.33) node   [align=left] {$\displaystyle 400$};
+% Text Node
+\draw (211,50) node  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle Y\ =400\$$};
+% Text Node
+\draw (129,72.33) node  [font=\scriptsize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle  \begin{array}{{>{\displaystyle}l}}
+\varepsilon =400-300\\
+\ \ =100
+\end{array}$};
+% Text Node
+\draw (178,159.33) node   [align=left] {$\displaystyle 50$};
+
+
+\end{tikzpicture}
+
+On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" théorique pour obtenir une variable dépendante $Y$ en fonction de: 
+\begin{itemize}
+	\item	Une variable indépendante $x$ multipliée par un facteur $\beta_{1}$.
+	\item	Un niveau de base l'intercepte $\beta_{0}$.
+	\item	Une erreur aléatoire $\varepsilon$ inconnue.
+\end{itemize}
+
+\section{Erreur}
+
+\begin{description}
+	\item[Écart-type]	Mesure la variation \underline{entre les observations} d'\textbf{un} ensemble de données.
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{standard deviation} \fg{}.
+		\end{itemize}
+		\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,174); %set diagram left start at 0, and has height of 174
+
+%Straight Lines [id:da5554502737558269] 
+\draw [color={rgb, 255:red, 47; green, 59; blue, 164 }  ,draw opacity=1 ][line width=0.75]    (279.83,38) -- (547.83,38) (310.83,30.5) -- (310.83,45.5)(341.83,30.5) -- (341.83,45.5)(372.83,30.5) -- (372.83,45.5)(403.83,30.5) -- (403.83,45.5)(434.83,30.5) -- (434.83,45.5)(465.83,30.5) -- (465.83,45.5)(496.83,30.5) -- (496.83,45.5)(527.83,30.5) -- (527.83,45.5) ;
+\draw [shift={(550.83,38)}, rotate = 180] [fill={rgb, 255:red, 47; green, 59; blue, 164 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+\draw [shift={(276.83,38)}, rotate = 0] [fill={rgb, 255:red, 47; green, 59; blue, 164 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Straight Lines [id:da6666232383065853] 
+\draw [color={rgb, 255:red, 139; green, 87; blue, 42 }  ,draw opacity=1 ][line width=2.25]    (415.67,54.92) -- (415.67,21.42)(418.67,54.92) -- (418.67,21.42) ;
+%Flowchart: Connector [id:dp30389051575543746] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (320.71,33.09) .. controls (317.96,31.04) and (313.9,31.42) .. (311.65,33.93) .. controls (309.4,36.44) and (309.81,40.13) .. (312.57,42.17) .. controls (315.33,44.21) and (319.39,43.84) .. (321.63,41.33) .. controls (323.88,38.82) and (323.47,35.13) .. (320.71,33.09) -- cycle ;
+%Flowchart: Connector [id:dp8054636909486927] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (382.71,33.09) .. controls (379.96,31.04) and (375.9,31.42) .. (373.65,33.93) .. controls (371.4,36.44) and (371.81,40.13) .. (374.57,42.17) .. controls (377.33,44.21) and (381.39,43.84) .. (383.63,41.33) .. controls (385.88,38.82) and (385.47,35.13) .. (382.71,33.09) -- cycle ;
+%Flowchart: Connector [id:dp4481822183684774] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (361.71,33.09) .. controls (358.96,31.04) and (354.9,31.42) .. (352.65,33.93) .. controls (350.4,36.44) and (350.81,40.13) .. (353.57,42.17) .. controls (356.33,44.21) and (360.39,43.84) .. (362.63,41.33) .. controls (364.88,38.82) and (364.47,35.13) .. (361.71,33.09) -- cycle ;
+%Flowchart: Connector [id:dp9320426369464008] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (416.71,33.09) .. controls (413.96,31.04) and (409.9,31.42) .. (407.65,33.93) .. controls (405.4,36.44) and (405.81,40.13) .. (408.57,42.17) .. controls (411.33,44.21) and (415.39,43.84) .. (417.63,41.33) .. controls (419.88,38.82) and (419.47,35.13) .. (416.71,33.09) -- cycle ;
+%Flowchart: Connector [id:dp5645916521008547] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (395.71,33.09) .. controls (392.96,31.04) and (388.9,31.42) .. (386.65,33.93) .. controls (384.4,36.44) and (384.81,40.13) .. (387.57,42.17) .. controls (390.33,44.21) and (394.39,43.84) .. (396.63,41.33) .. controls (398.88,38.82) and (398.47,35.13) .. (395.71,33.09) -- cycle ;
+%Flowchart: Connector [id:dp9615392127090878] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (439.71,33.09) .. controls (436.96,31.04) and (432.9,31.42) .. (430.65,33.93) .. controls (428.4,36.44) and (428.81,40.13) .. (431.57,42.17) .. controls (434.33,44.21) and (438.39,43.84) .. (440.63,41.33) .. controls (442.88,38.82) and (442.47,35.13) .. (439.71,33.09) -- cycle ;
+%Flowchart: Connector [id:dp18343654664200626] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (427.71,33.09) .. controls (424.96,31.04) and (420.9,31.42) .. (418.65,33.93) .. controls (416.4,36.44) and (416.81,40.13) .. (419.57,42.17) .. controls (422.33,44.21) and (426.39,43.84) .. (428.63,41.33) .. controls (430.88,38.82) and (430.47,35.13) .. (427.71,33.09) -- cycle ;
+%Flowchart: Connector [id:dp49357374316679636] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (466.71,33.09) .. controls (463.96,31.04) and (459.9,31.42) .. (457.65,33.93) .. controls (455.4,36.44) and (455.81,40.13) .. (458.57,42.17) .. controls (461.33,44.21) and (465.39,43.84) .. (467.63,41.33) .. controls (469.88,38.82) and (469.47,35.13) .. (466.71,33.09) -- cycle ;
+%Flowchart: Connector [id:dp5732145021055151] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (451.78,33.16) .. controls (449.02,31.12) and (444.96,31.49) .. (442.71,34) .. controls (440.46,36.51) and (440.88,40.2) .. (443.63,42.24) .. controls (446.39,44.28) and (450.45,43.91) .. (452.7,41.4) .. controls (454.94,38.89) and (454.53,35.2) .. (451.78,33.16) -- cycle ;
+%Flowchart: Connector [id:dp9989913792112952] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (515.71,33.09) .. controls (512.96,31.04) and (508.9,31.42) .. (506.65,33.93) .. controls (504.4,36.44) and (504.81,40.13) .. (507.57,42.17) .. controls (510.33,44.21) and (514.39,43.84) .. (516.63,41.33) .. controls (518.88,38.82) and (518.47,35.13) .. (515.71,33.09) -- cycle ;
+%Flowchart: Connector [id:dp2709053942707078] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (482.71,33.09) .. controls (479.96,31.04) and (475.9,31.42) .. (473.65,33.93) .. controls (471.4,36.44) and (471.81,40.13) .. (474.57,42.17) .. controls (477.33,44.21) and (481.39,43.84) .. (483.63,41.33) .. controls (485.88,38.82) and (485.47,35.13) .. (482.71,33.09) -- cycle ;
+%Flowchart: Connector [id:dp7446426173106822] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (406.65,33.02) .. controls (403.89,30.97) and (399.84,31.35) .. (397.59,33.86) .. controls (395.34,36.36) and (395.75,40.05) .. (398.51,42.1) .. controls (401.27,44.14) and (405.32,43.77) .. (407.57,41.26) .. controls (409.82,38.75) and (409.41,35.06) .. (406.65,33.02) -- cycle ;
+%Straight Lines [id:da9789557877821047] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=2.25]    (383.17,54.92) -- (451.17,54.92) ;
+
+% Text Node
+\draw (417.58,12) node  [color={rgb, 255:red, 109; green, 61; blue, 19 }  ,opacity=1 ] [align=left] {{\small moyenne}};
+% Text Node
+\draw (417.58,65) node  [font=\small,color={rgb, 255:red, 109; green, 61; blue, 19 }  ,opacity=1 ] [align=left] {{\small \textcolor[rgb]{0.25,0.46,0.02}{écart-type}}};
+
+
+\end{tikzpicture}
+		\end{center}
+	\item[Erreur type]	Mesure la variation \underline{entre les moyennes} de \textbf{plusieurs} ensembles de données.
+		\begin{itemize}[leftmargin = *]
+		\item	\og \textit{standard error} \fg{}.
+		\end{itemize}
+		\begin{center}
+		
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,174); %set diagram left start at 0, and has height of 174
+
+%Straight Lines [id:da8220125436751056] 
+\draw [color={rgb, 255:red, 47; green, 59; blue, 164 }  ,draw opacity=1 ][line width=0.75]    (281.83,118) -- (549.83,118) (312.83,110.5) -- (312.83,125.5)(343.83,110.5) -- (343.83,125.5)(374.83,110.5) -- (374.83,125.5)(405.83,110.5) -- (405.83,125.5)(436.83,110.5) -- (436.83,125.5)(467.83,110.5) -- (467.83,125.5)(498.83,110.5) -- (498.83,125.5)(529.83,110.5) -- (529.83,125.5) ;
+\draw [shift={(552.83,118)}, rotate = 180] [fill={rgb, 255:red, 47; green, 59; blue, 164 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+\draw [shift={(278.83,118)}, rotate = 0] [fill={rgb, 255:red, 47; green, 59; blue, 164 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Straight Lines [id:da052261111869088106] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (415.83,132.67) -- (415.83,103.33) ;
+%Straight Lines [id:da25533101510311673] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (420.83,132.67) -- (420.83,103.33) ;
+%Straight Lines [id:da6426635244738363] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (426.83,132.67) -- (426.83,103.33) ;
+%Straight Lines [id:da6924171841728055] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (423.83,132.67) -- (423.83,103.33) ;
+%Straight Lines [id:da19673873838231448] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (428.83,132.67) -- (428.83,103.33) ;
+%Straight Lines [id:da9733057591182157] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (434.83,132.67) -- (434.83,103.33) ;
+%Straight Lines [id:da23648190125390167] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (394.83,132.67) -- (394.83,103.33) ;
+%Straight Lines [id:da1303046815942539] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (399.83,132.67) -- (399.83,103.33) ;
+%Straight Lines [id:da6128601437483194] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (405.83,132.67) -- (405.83,103.33) ;
+%Straight Lines [id:da36533401916878416] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (402.83,132.67) -- (402.83,103.33) ;
+%Straight Lines [id:da0761803178503282] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (407.83,132.67) -- (407.83,103.33) ;
+%Straight Lines [id:da4536124738403875] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (413.83,132.67) -- (413.83,103.33) ;
+%Straight Lines [id:da2518902010718611] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (459.83,132.67) -- (459.83,103.33) ;
+%Straight Lines [id:da6762200116514319] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (452.83,132.67) -- (452.83,103.33) ;
+%Straight Lines [id:da023011435062046726] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (452.83,132.67) -- (452.83,103.33) ;
+%Straight Lines [id:da5498951842262785] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (458.83,132.67) -- (458.83,103.33) ;
+%Straight Lines [id:da8590490011467546] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (455.83,132.67) -- (455.83,103.33) ;
+%Straight Lines [id:da8877231722848657] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (466.83,132.67) -- (466.83,103.33) ;
+%Straight Lines [id:da05542853037330375] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (426.83,132.67) -- (426.83,103.33) ;
+%Straight Lines [id:da12451183170415692] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (431.83,132.67) -- (431.83,103.33) ;
+%Straight Lines [id:da512024470962503] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (437.83,132.67) -- (437.83,103.33) ;
+%Straight Lines [id:da026634526507703926] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (434.83,132.67) -- (434.83,103.33) ;
+%Straight Lines [id:da04652506773140819] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (439.83,132.67) -- (439.83,103.33) ;
+%Straight Lines [id:da7028504306628334] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (445.83,132.67) -- (445.83,103.33) ;
+%Straight Lines [id:da3097660501000492] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (410.17,132.67) -- (410.17,103.33) ;
+%Straight Lines [id:da6597565804975323] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (416.83,132.67) -- (416.83,103.33) ;
+%Straight Lines [id:da9737145894752222] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (416.83,132.67) -- (416.83,103.33) ;
+%Straight Lines [id:da6435581383162627] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (369.83,132.67) -- (369.83,103.33) ;
+%Straight Lines [id:da02223066622835468] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (379.83,132.67) -- (379.83,103.33) ;
+%Straight Lines [id:da7453774361084684] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (388.83,132.67) -- (388.83,103.33) ;
+%Straight Lines [id:da06563886053491963] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (382.83,132.67) -- (382.83,103.33) ;
+%Straight Lines [id:da2951853152147781] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (385.83,132.67) -- (385.83,103.33) ;
+%Straight Lines [id:da10141149287438811] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (397.83,132.67) -- (397.83,103.33) ;
+%Straight Lines [id:da02602036790028661] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=2.25]    (397.17,136.92) -- (443.17,136.92) ;
+%Straight Lines [id:da5033909194183044] 
+\draw [color={rgb, 255:red, 139; green, 87; blue, 42 }  ,draw opacity=1 ][line width=2.25]    (416.08,134.92) -- (416.08,101.42)(419.08,134.92) -- (419.08,101.42) ;
+
+% Text Node
+\draw (417.58,145) node  [font=\small,color={rgb, 255:red, 109; green, 61; blue, 19 }  ,opacity=1 ] [align=left] {{\small \textcolor[rgb]{0.25,0.46,0.02}{erreur-type}}};
+% Text Node
+\draw (417.58,96) node  [color={rgb, 255:red, 109; green, 61; blue, 19 }  ,opacity=1 ] [align=left] {{\small moyenne des moyennes}};
+
+
+\end{tikzpicture}
+		\end{center}
+\end{description}
+
+%\subsection{Valeurs p}
+%%	https://www.youtube.com/watch?v=JQc3yx0-Q9E
+%Les valeurs p ont 3 composantes:
+%\begin{itemize}
+%	\item	Le probabilité que la chance résulte en l'observation.
+%	\item[]	e.g., probabilité d'observer 3 faces et 1 pile.
+%	\item	Le probabilité d'observer quelque-chose d'autre autant rare.
+%	\item[]	e.g., probabilité d'observer 3 piles et 1 face.
+%	\item	Le probabilité d'observer quelque-chose d'autre encore plus rare ou plus extrême.
+%	\item[]	e.g., probabilité d'observer 4 faces.
+%\end{itemize}
+
+\section{Intervalles de confiance}
+
+\pagebreak
+
+\part{Mathématiques IARD I}
+\section{Estimations et types de données}
+\subsection{Distributions empiriques}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X$]	Variable aléatoire de perte;
+	\item[$\theta$]	Paramètre de la distribution de $X$;
+		\begin{itemize}[leftmargin = *]
+		\item	Le paramètre peut être un scalaire $\theta$ ou un vecteur $\bm{\theta}$;
+		\item	Par exemple, pour une loi Gamma $\bm{\theta} = \{\alpha,	\beta\}$;
+		\item	Pour simplifier la notation, on le traite comme un scalaire $\theta$.
+		\end{itemize}
+	\item[$F_{X}(x; \theta)$]	Fonction de répartition de $X$ avec paramètre $\theta$;
+		\begin{itemize}[leftmargin = *]
+		\item	Pour simplifier la notation, on écrit $F(x; \theta)$ sauf s'il faut être plus spécifique.
+		\end{itemize}
+	\item[$f_{X}(x; \theta)$]	Fonction de densité de $X$ avec paramètre $\theta$;
+		\begin{itemize}[leftmargin = *]
+		\item	Pour simplifier la notation, on écrit $f(x; \theta)$ sauf s'il faut être plus spécifique.
+		\end{itemize}
+	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon aléatoire de $n$ observations de $X$;
+	\item[$\hat{\theta}$]	Estimateur de $\theta$ établit avec l'échantillon aléatoire $\{X_{1}, \dots, X_{n}\}$;
+	\item[$F(x; \hat{\theta})$]	Estimation \textit{paramétrique} de la fonction de répartition de $X$;
+	\item[$f(x; \hat{\theta})$]	Estimation \textit{paramétrique} de la fonction de densité de $X$;
+\end{description}
+\end{distributions}
+\begin{itemize}[leftmargin = *]
+	\item	Si $\theta$ est connu, la distribution de $X$ est complètement spécifiée;\\
+			En pratique, $\theta$ est inconnu et doit être estimé avec les données observées.
+	\item	On peut estimer $F_{X}(x)$ et $f_{X}(x)$ directement pour toute valeur $x$ sans présumer une forme paramétrique;\\
+			Par exemple, un histogramme est une estimation \textit{non-paramétrique}.
+\end{itemize}
+
+
+\columnbreak
+\subsection{Données complètes}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X$]	Variable d'intérêt (e.g., la durée de vie ou la perte);
+	\item[$\{X_{1}, \dots, X_{n}\}$]	Valeurs de $X$ pour n individus;
+	\item[$\{x_{1}, \dots, x_{n}\}$]	$n$ valeurs observées de l'échantillon;
+		\begin{itemize}[leftmargin = *]
+		\item	Il peut y avoir des valeurs dupliquées dans les valeurs observées.
+		\end{itemize}
+	\item[$0	<	y_{1}	<	\hdots	<	y_{m}$]	$m$ valeurs distincts où \icbox[red][palechestnut]{$m \leq n$};
+	\item[$w_{j}$]	Nombre de fois que la valeur $y_{j}$ apparaît dans l'échantillon pour \icbox[red][palechestnut]{$j = 1, \dots, m$};
+		\begin{itemize}[leftmargin = *]
+		\item	Il s'ensuit que \icbox[red][palechestnut]{$\sumz{m}{j = 1}w_{j}	=	n$};
+		\item	Pour des données de mortalité, $w_{j}$ individus décèdent à l'âge $y_{j}$;
+		\item	Si tous les individus sont observés de la naissance jusqu'à la mort c'est un \og \textit{complete individual data set} \fg{}.
+		\end{itemize}
+	\item[$r_{j}$]	\og \textit{risk set} \fg{} au \textit{temps} $y_{j}$;
+		\begin{itemize}[leftmargin = *]
+		\item	Le nombre d'individus exposés à la possibilité de mourir au temps $y_{j}$;
+		\item	Par exemple, $r_{1}	=	n$ car tous les individus sont exposés à la risque de décéder juste avant le temps $y_{1}$;
+		\item	On déduit que \icbox[red][palechestnut]{$r_{j}	=	\sumz{m}{i = j}w_{i}$}, alias le nombre d'individus qui survivent juste avant le temps $y_{j}$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\columnbreak
+\subsection{Données incomplètes}
+
+\begin{rappel_enhanced}[Exemple]
+Soit une étude sur le nombre d'années nécessaire pour obtenir un diplôme universitaire. L'étude commence cette année et tient compte de tous les étudiants présentement inscrits, ainsi que ceux qui vont s'inscrire au courant de l'étude. Tous les étudiants sont observés jusqu'à la fin de l'étude et on note le nombre d'années nécessaire pour ceux qui complètent leurs diplômes. \\
+
+Si un étudiant a commencé son cursus scolaire avant l'étude et suit présentement des cours, le chercheur a de l'information sur le nombre d'années qu'il a déjà investi. Cependant, d'autres étudiants qui se sont inscrits en même temps, mais ont cessé leurs études ne seront pas observés dans cet échantillon. Alors, l'individu est observé d'une population \lfbox[imphl]{\textbf{tronquée à la gauche}} puisque l'information sur les étudiants qui ont quitté l'université avant le début de l'étude n'est \textit{pas disponible}.\\
+
+Si un étudiant n'est pas encore diplômé lorsque l'étude prend fin, le chercheur ne peut pas savoir combien d'années supplémentaire seront nécessaires. Cet individu fait donc partie d'une population \lfbox[imphl]{\textbf{censurée à la droite}} puisque le chercheur a de l'information \textit{partielle} (le nombre d'années minimale) sans savoir le nombre exact.
+\end{rappel_enhanced}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$d_{i}$]	État de troncature de l'individu $i$ de l'échantillon;
+		\begin{itemize}[leftmargin = *]
+		\item	$d_{i}	=	0$ s'il n'y a pas de troncature;
+		\item	Par exemple, un étudiant à commencé son programme universitaire $d_{i}$ années avant le début de l'étude.
+		\end{itemize}
+	\item[$x_{i}$]	Temps de "survie" de l'individu $i$;
+		\begin{itemize}[leftmargin = *]
+		\item	Par exemple, le nombre d'années avant d'obtenir son diplôme;
+		\item	Si l'étude prend fin avant que $x_{i}$ soit observé, on dénote le temps de survie jusqu'à ce moment \icbox{$u_{i}$};
+		\item	Donc chaque individu a \textit{soit} une valeur $x_{i}$ \underline{ou} $u_{i}$ mais \textit{pas les deux}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\columnbreak
+\subsection{Données groupées}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[]	$(c_{0}, c_{1}], (c_{1}, c_{2}], \dots, (c_{k - 1}, c_{k}]$	$k$ intervalles regroupant les observations;
+	\item[$0	\leq	c_{0}	<	c_{1}	<	\hdots	<	c_{k}$]	Extrémités des $k$ intervalles;
+	\item[$n$]	Nombre d'observations de $x_{i}$ dans l'échantillon;
+	\item[$n_{j}$]	Nombre d'observations de $x_{i}$ dans l'intervalle $(c_{j - 1}, c_{j}]$;
+		\begin{itemize}[leftmargin = *]
+		\item	Il s'ensuit que \icbox[red][palechestnut]{$\sumz{k}{j = 1}n_{j}	=	n$}.
+		\end{itemize}
+	\item[$r_{j}$]	\og \textit{risk set} \fg{} de l'intervalle $(c_{j - 1}, c_{j}]$ lorsque les données sont complètes;
+		\begin{itemize}[leftmargin = *]
+		\item	Il s'ensuit que \icbox[red][palechestnut]{$r_{j}	=	\sumz{k}{i = j}n_{i}$}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\columnbreak
+\section{Estimation de modèles non paramétriques}
+\subsection{Distribution empirique}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$g_{h}$]	Somme partielle du nombre d'observations inférieur, ou égale, à $y_{j}$;
+		\begin{itemize}[leftmargin = *]
+		\item	Il s'ensuit que \icbox[red][palechestnut]{$g_{j}	=	\sumz{j}{h = 1}w_{h}$}.
+		\end{itemize}
+	\item[Distribution empirique]	Distribution discrète prenant comme valeurs $y_{1}, \dots, y_{m}$ avec probabilités $\frac{w_{1}}{n}, \dots, \frac{w_{m}}{n}$;
+		\begin{itemize}[leftmargin = *]
+		\item	On peut également la définir comme la distribution discrète équiprobable des valeurs $x_{1}, \dots, x_{n}$.
+		\end{itemize}
+	\item[$\hat{f}()$]	Fonction de densité empirique;	
+		\begin{align*}
+		\hat{f}(y)
+		&=	\begin{cases}
+			\frac{w_{j}}{n},	&	\text{si } y = y_{j} \, \forall j	\\
+			0,	\text{sinon}
+			\end{cases}
+		\end{align*}			
+	\item[$\hat{F}()$]	Fonction de répartition empirique;
+		\begin{align*}
+		\hat{F}(y)
+		&=	\begin{cases}
+			0,	&	y	<	y_{1},	\\
+			\frac{g_{j}}{n},	&	y_{j}	\leq	y	<	y_{j + 1}, \, j	=	1, \dots, m - 1	\\
+			1,	&	y_{m}	\leq	y
+			\end{cases}
+		\end{align*}		
+%	\item[Moyenne de la distribution empirique]
+%		\begin{align*}
+%		\sumz{m}{j = 1} \frac{w_{j}}{n} y_{j}
+%		&=	\frac{1}{n} \sumz{n}{i = 1} x_{i}
+%		\end{align*}
+%	\item[Variance de la distribution empirique]
+%		\begin{align*}
+%		\sumz{m}{j = 1} \frac{w_{j}}{n} (y_{j} - \bar{x})^{2}
+%		&=	\frac{1}{n} \sumz{n}{i = 1} (y_{i} - \bar{x})^{2}
+%		\end{align*}
+	\item[$\tilde{F}()$]	Fonction de répartition lissée;
+		\begin{itemize}[leftmargin = *]
+		\item	En anglais, \og \textit{smoothed empirical distribution function} \fg{};
+		\item	Estimation de la fonction de répartition \textit{lissée} pour une valeur de $y$ pas dans l'ensemble $y_{1}, \dots, y_{m}$;
+		\item	Lorsque \icbox[red][palechestnut]{$y_{j} \leq y < y_{j + 1}$} et \icbox[red][palechestnut]{$j \in \{1, 2, \dots, m - 1\}$}, $\tilde{F}(y)$ est une interpolation linéaire de $\hat{F}(y_{j + 1})$ et $\hat{F}(y_{j})$:
+		\end{itemize}
+		\begin{align*}
+		\tilde{F}(y)
+		&=	\frac{y	-	y_{j	}}{y_{j + 1}	-	y_{j}}\hat{F}(y_{j + 1})  + 
+				\frac{y_{j + 1}	-	y_{j	}}{y_{j + 1}	-	y_{j}}\hat{F}(y_{j})
+		\end{align*}
+\end{description}
+\end{distributions}
+
+\columnbreak
+\subsection{Estimation par noyaux}
+
+La fonction de répartition empirique résume les données d'une distribution discrète. Cependant, lorsque la variable d'intérêt $X$ est continue on souhaite estimer une fonction de densité.
+
+Pour une observation $x_{i}$ de l'échantillon, la fonction de répartition empirique assigne une masse de probabilité de $1/n$ au point $x_{i}$.
+Puisque $X$ est continue, il est normal que l'on souhaite \underline{\textit{distribuer}} cette masse \textit{autour} de $x_{i}$.
+
+Si l'on souhaite distribuer cette masse de façon égale, on le fait sur l'intervalle \icbox{$[x_{i}  - b, x_{i} + b]$} avec la fonction de $x_{i}$ $f_{i}(x)$:
+\begin{align*}
+	f_{i}(x)
+	&=	\begin{cases}
+		\frac{0.5}{b},	&	x_{i} - b	\leq		x	\leq		x_{i} + b,	\\
+		0,	&	\text{sinon}
+		\end{cases}	
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Cette fonction est rectangulaire avec une base de longueur $2b$ et une hauteur de $0.5/b$ pour avoir une aire de 1.
+	\item	On peut l'interpréter comme la fonction de densité contribué par l'observation $x_{i}$;
+	\item	On note que ceci correspond à la fonction de densité d'une distribution uniforme $U(x_{i} -  b, x_{i} + b)$;
+	\item	Alors, seulement les valeurs de $x$ contenues dans l'intervalle $(x_{i} -  b, x_{i} + b)$ reçoivent une "contribution" de $x_{i}$;
+	\item	La fonction de densité de $X$ est donc la somme des masses de probabilité contribuées \icbox[red][palechestnut]{$\tilde{f}(x)	=	\frac{1}{n} \sumz{n}{i = 1}(x)$}.
+\end{itemize}
+
+On défini $\phi_{i}	=	\frac{x - x_{i}}{b}$ et $K_{R}(\phi)$:
+\begin{align*}
+	K_{R}(\phi)
+	&=	\begin{cases}
+		\frac{1}{2},	&	-1	\leq		\phi	\leq		1,	\\
+		0,	&	\text{sinon}
+		\end{cases}	
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	On trouve donc que \icbox[red][palechestnut]{$f_{i}(x)	=	\frac{1}{b}K_{R}(\phi_{i})$} et \icbox[red][palechestnut]{$\tilde{f}(x)	=	\frac{1}{nb}\sumz{n}{i = 1}K_{R}(\phi_{i})$}.
+\end{itemize}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$b$]	\og \textit{bandwith} \fg{} où \icbox[red][palechestnut]{$b > 0$};
+	\item[$K_{R}(\phi)$]	\og \textit{rectangular (box, uniform) kernel function} \fg{};
+	\item[$\tilde{f}(x)$]	Estimation de la fonction de densité selon le noyaux rectangulaire;
+	\item[$K_{T}(\phi)$]	\og \textit{triangular kernel} \fg{};
+	\begin{align*}
+		K_{R}(\phi)
+		&=	\begin{cases}
+			1 - |\phi|,	&	-1	\leq		\phi	\leq		1,	\\
+			0,	&	\text{sinon}
+			\end{cases}	
+	\end{align*}
+	\item[$K_{G}(\phi)$]	\og \textit{Gaussian kernel} \fg{};
+		\begin{align*}
+		K_{G}(\phi)
+		&=	\frac{1}{\sqrt{2\pi}} \textrm{e}^{-\frac{\phi^{2}}{2}}, -\infty	<	\phi	<	\infty
+		\end{align*}
+\end{description}
+\end{distributions}
+
+%%%
+%%%	+	section sur données incomplètes individuelles (11.2)
+%%%	+	section sur données groupées (11.3)
+
+\pagebreak
+\section{Estimation de modèles paramétriques}
+\subsection*{Estimation par maximum de vraisemblance pour des données incomplètes et groupées}
+Lorsque les données sont groupées et/ou incomplètes, les observations ne sont plus iid mais on peut quand même formuler la fonction de vraisemblance et trouver l'EMV.
+
+1ère étape est d'écrire la fonction de (log) vraisemblance adéquate pouur la méthode d'échantillonnage des données.
+
+%Par exemple, soit des données complètes groupées en $k$ intervalles $(c_{0}, c_{1}], (c_{1}, c_{2}], \dots, (c_{k - 1}, c_{k}]$ où $0	\leq	c_{0}	<	c_{1}	<	\hdots	<	c_{k}	=	\infty	$.
+On trouve avec la fonction de répartition $F(\cdot; \theta)$ que la probabilité d'être dans l'intervalle $(c_{j - 1}, c_{j}]$ est $F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)$.
+
+On pose que les observations individuelles sont iid et donc la vraisemblance de d'avoir $n_{j}$ observations dans l'intervalle $(c_{j - 1}, c_{j}]$, \lfbox[conditions]{pour $j	=	1, \dots, k$ et $\bm{n}	=	(n_{1}, \cdots, n_{k})$} est :
+\begin{align*}
+	\mathcal{L}(\theta; \bm{n})
+	&=	\prod^{k}_{j	=	1} \left[F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)\right]^{n_{j}}
+\end{align*}
+
+
+
+\setlength{\mathindent}{-0.75cm}
+\begin{algo}{Fonction de vraisemblance}
+\begin{align*}
+	\mathcal{L}(\theta; \bm{x})
+	&=	\prod^{k}_{j	=	1} \underbrace{f(x_{j}; \theta)}_{\shortstack{probabilité de chaque\\ observation à la\\ valeur observée}}	&
+	\shortstack{données complètes}	
+\end{align*}
+
+\tcbline
+
+Données groupées en $k$ intervalles:\\
+\begin{align*}
+	\mathcal{L}(\theta; \bm{n})
+	&=	\prod^{k}_{j	=	1} \underbrace{\left[F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)\right]^{n_{j}}}_{\shortstack{probabilité d'une\\ observation dans\\ l'intervalle}}		&
+	\shortstack{données groupées}	
+\end{align*}
+
+\tcbline
+
+Données censurées vers la droite avec $n_{1}$ observations complètes et $n_{2}$ observations censurées à la limite de $u$:\\
+\begin{align*}
+	\mathcal{L}(\theta; \bm{x}, n_{2})
+	&=	\underbrace{\left[\prod^{n_{1}}_{i	=	1} f(x_{i}; \theta) \right]}_{\shortstack{probabilité de chaque\\ observation à la\\ valeur observée}} \overbrace{\left[1	-	F(u; \theta)\right]^{n_{2}}}^{\shortstack{probabilité qu'une\\ observation soit\\ d'au moins $u$}}		&
+	\shortstack{données censurées\\ vers la droite}	\\
+\end{align*}
+
+\tcbline
+
+Données tronquées vers la gauche avec un déductible de $d$:\\
+\begin{align*}
+	\mathcal{L}(\theta; \bm{x})
+	&=	\underbrace{\frac{1}{\left[1	-	F(d; \theta)\right]^{n}}}_{\shortstack{pondère par la\\ probabilité d'être\\ supérieur au déductible}} \prod^{n}_{i	=	1} f(x_{i}; \theta)	&
+	\shortstack{données censurées\\ vers la droite}	\\
+\end{align*}
+\end{algo}
+\setlength{\mathindent}{1cm}
 
 \end{multicols*}
 

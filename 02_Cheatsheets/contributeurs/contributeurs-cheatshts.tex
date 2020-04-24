@@ -1,0 +1,102 @@
+\documentclass[10pt, french]{article}
+%\input{cheatsht-preamble-general.tex}
+\usepackage[landscape, hmargin=1cm, vmargin=1.7cm]{geometry}
+\usepackage{multicol}
+
+
+\usepackage{tikz}
+\usepackage{xcolor}
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\definecolor{gray(x11gray)}{rgb}{0.75, 0.75, 0.75}
+\definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
+\definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}
+
+%% -----------------------------
+%% tcolorbox configuration
+%% -----------------------------
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cobalt,
+}
+\tcbuselibrary{xparse}
+\tcbuselibrary{breakable}
+
+%%
+%% Coloured box "vie" for vie contributors box
+%%
+\newtcolorbox{contrib}[ 1 ]
+{
+	colback = babyblueeyes,
+	colframe = airforceblue,
+	fonttitle = \bfseries,
+	title = {#1},
+	valign = center
+}
+\DeclareTColorBox{terminologie}{ o }			% #1 parameter
+{
+	enhanced,
+	title = #1,
+	colback=gray(x11gray), % color of the box
+	colframe=arsenic,	
+	colbacktitle=aurometalsaurus,
+	fonttitle = \bfseries,
+	boxed title style={size=small,colframe=arsenic} ,
+	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
+}
+
+\begin{document}
+
+\center % Center everything on the page
+
+\textsc{\LARGE Feuilles de formules}\\[0.5cm]
+\textsc{\Large Contributeurs}\\[0.5cm] 
+
+\begin{terminologie}[Rôles]
+Selon \href{https://journal.r-project.org/archive/2012-1/RJournal_2012-1_Hornik~et~al.pdf}{cet article} sur la contribution en \texttt{R}, les rôles sont définis comme suit:
+\begin{description}
+	\item[Author (aut.)]	Personne ayant fait de larges contributions importantes;
+	\item[Creator or maintainer (cre.)]	Personne présentement en charge de la mise-à-jour du document;
+	\item[Contributor (ctb.)]	Personne ayant fait des contributions, ou de la révision / correction d'erreurs;
+	\item[Proofreader (pfr.)]	Personne effectuant des corrections;
+	\item[Source (src.)]	Sources des notes de cours (professeurs, écrivains, chargés de cours, etc.).
+\end{description}
+\end{terminologie}
+
+\begin{multicols*}{2}
+
+\input{contrib-ACT1XXX}
+
+\input{contrib-ACT1002}
+
+\input{contrib-ACT1005}
+
+\input{contrib-ACT2000}
+
+\input{contrib-ACT2003}
+
+\input{contrib-ACT2005}
+
+\input{contrib-ACT2007}
+
+\input{contrib-ACT2008}
+
+\input{contrib-ACT2009}
+
+\input{contrib-ACT2011}
+
+\input{contrib-ACT3000}
+
+\input{contrib-ACT3114}
+
+\input{contrib-ACT4105}
+
+\end{multicols*}
+
+\end{document}

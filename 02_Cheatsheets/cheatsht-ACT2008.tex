@@ -9,7 +9,6 @@
 %% -----------------------------
 \def\cours{Mathématiques actuarielles IARD II}
 \def\sigle{ACT-2008}
-\def\auteur{Gabriel Crépeault-Cauchon // Nicholas Langevin // Alexandre Turcotte}
 \def\SubSectionColor{blue!50!white}
 \def\SectionColor{blue}
 %
@@ -21,8 +20,14 @@
 %% Begin document
 %% -----------------------------
 \begin{document}
-% j'enlève le footnotesize temporairement, sinon je ne vois rien! GCC
-% \footnotesize % Écrire petit (peut être modifié)
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT2008}
+
+\raggedcolumns
+\newpage
 \begin{multicols*}{3} % Permet d'écrire dans plusieurs colonnes l'entièreté du document
 % -------------------------------------------------------------
 \section{Introduction et perspective historique}
@@ -30,7 +35,7 @@ Section plus qualitative, à compléter plus tard (sous forme de checklist)
 
 
 
-
+\columnbreak
 \section{Crédibilité de stabilité}
 \subsection*{Définition de la crédibilité totale}
 \begin{definition}[Crédibilité complète]
@@ -75,6 +80,8 @@ z = \frac{n}{n+K}
 \item \textbf{Complément de crédibilité} : en pratique, le complément de crédibilité ($1-z$) n'est pas donné entièrement à la prime collective $m$. Il peut y avoir une proportion reliée à autre chose.
 \end{itemize}
 
+
+\columnbreak
 \section{Tarification Bayésienne}
 \subsection*{Modèle d'hétérogénéité}
 \begin{description}
@@ -158,6 +165,8 @@ Il existe 5 combinaisons de distribution qui résultent en une prime Bayésienne
 \item Lorsqu'une fonction de vraisemblance $f(x|\theta)$ de la famille exponentielle univariée est combinée avec sa conjugée naturelle, alors la prime Bayésienne est toujours une prime de crédibilité exacte.
 \end{itemize}
 
+
+\columnbreak
 \section{Modèle de crédibilité de \\ Bühlmann}
 \subsection*{Notation et relation de covariance}
 \begin{itemize}
