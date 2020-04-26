@@ -3225,27 +3225,29 @@ Le modèle n'est donc pas parfait, mais sert plutôt de bon point de départ.
 \newpage
 \section{La formule de Black-Scholes}
 
-\subsection*{Formule de Black-Scholes généralisée}
+\subsection{Formule de Black-Scholes généralisée}
 \begin{conceptgen}{Hypothèses de la formule de Black-Scholes}
 \begin{center}
 	\textbf{Sur la distribution de l'action sous-jacente}
 \end{center}
 \begin{enumerate}[leftmargin = *, label = \alph*)]
 	\item	Les rendements (composés continûment) sur l'action ont une distribution normale et sont indépendants à travers le temps.
-	\item	La volatilité des rendements (composés continûment) est connue et constante.
-	\item	Les dividendes futurs sont connus.
+	\item	La volatilité $\sigma$ des rendements (composés continûment) est connue et constante.
+	\item	Les dividendes $\delta$ futurs sont connus.
 \end{enumerate}
 \tcbline
 \begin{center}
 	\textbf{Sur l'environnement économique}
 \end{center}
 \begin{enumerate}[leftmargin = *, label = \alph*)]
-	\item	Le taux (force) sans risque est connu et constant.
+	\item	Le taux (force $r$) sans risque est connu et constant.
 	\item	Il n'y a pas d'impôt	 ni de frais de transactions.
 	\item	Il n'y a pas de frais de vente à découvert.
 	\item	Les investisseurs peuvent emprunter au taux sans risque.
 \end{enumerate}
 \end{conceptgen}
+
+Lorsque le nombre de périodes $n$ d'un arbre binomial augmente, le prix de l'option tend vers la valeur donnée par la formule de Black-Scholes.
 
 \begin{definitionNOHFILL}[Formule de Black-Scholes généralisée]
 Équations généralisées :
@@ -3287,16 +3289,18 @@ Prix d'options \textbf{européennes} selon la formule de Black-Scholes:
 \end{description}
 \end{definitionNOHFILL}
 
-\subsection*{Options sur d'autres sous-jacents}
 
-Avec la formule généralisée, on peut appliquer la formule de Black-Scholes à d'autres sous-jacents. Il y a quelques considérations à prendre dans un tel cas pour option sur:
+\subsection{Options sur d'autres sous-jacents}
+
+Avec la formule généralisée, on peut appliquer la formule de Black-Scholes à d'autres sous-jacents.\\ 
+Dans un tel cas, il y a quelques considérations à prendre pour une option sur:
 \begin{description}
 	\item[Actions avec dividendes discrets proportionnels]	On trouve le nombre $n$ de fois que le dividende sera versé entre $0$ et l'échéance de $T$ de l'option.
 		\begin{align*}
 		F^{P}_{0, T}(S)
 		&=	S_{0} (1 - txdiv)^{n}
 		\end{align*}
-	\item[Contrats à terme standardisés]	Il peut arriver que la date d'échéance---$T$---de l'option ne soit pas la même que la date d'échéance---$T'$---du contrat à terme standardisé sur un actif quelconque $Q$. \\
+	\item[Contrat à terme standardisé]	Il peut arriver que la date d'échéance---$T$---de l'option ne soit pas la même que la date d'échéance---$T'$---du contrat à terme standardisé sur un actif quelconque $Q$. \\
 			Dans un tel cas, il faut que $T' \ge T$ et qu'on actualise le prix à terme $F_{0, T'}(Q)$ à partir de $T$ (et non $T'$).
 			\begin{align*}
 			F^{P}_{0, T}(F)	
@@ -3321,12 +3325,12 @@ Avec la formule généralisée, on peut appliquer la formule de Black-Scholes à
 
 \columnbreak
 
-\subsection*{Diagrammes du profit avant échéance}
+\subsection{Diagrammes du profit avant échéance}
 Nous avons précédemment tracé des diagrammes de profit de valeur à l'échéance pour les options \textbf{à l'expiration}. Nous allons maintenant étendre ceci pour tracer les diagrammes \textbf{avant expiration}.
-
-L'idée est la même qu'auparavant mais on remplace la valeur à l'échéance par la valeur de revente de l'option
-
-Pour tracer les diagrammes, on fait varier les prix en maintenant fixe les dates.
+\begin{itemize}
+	\item	L'idée est la même qu'auparavant mais on remplace la valeur à l'échéance par la valeur de revente de l'option
+	\item	Pour tracer les diagrammes, on fait varier les prix en maintenant fixe les dates.
+\end{itemize}
 
 Nous illustrons ceci avec 2 stratégies:
 
@@ -3373,13 +3377,14 @@ Crée en :
 %%%	--------------------
 \textbf{Notes}
 \begin{itemize}[leftmargin = *]
-	\item	Permet de spéculer sur la volatilité de l'action.\\
-			Typiquement utilisé lorsqu'un investisseur croit que, entre deux prix d'exercice, le prix va rester fixe;
+	\item	Permet de spéculer sur la volatilité de l'action;
+	\item	Typiquement utilisé lorsqu'un investisseur croit que, entre deux prix d'exercice, le prix va rester fixe;
+	\item	L'écart est d'ailleurs bâtit afin d'avoir un thêta positif et implique la dissolution du portefeuille avant ou à la première des deux échéances;
 	\item	en anglais \og \textit{calendar spread} \fg{}.
 \end{itemize}
 \end{definitionNOHFILL}
 
-\subsection*{Volatilité implicite}
+\subsection{Volatilité implicite}
 \begin{description}
 	\item[Volatilité implicite]	La valeur $\sigma$ tel que la formule de Black-Scholes reproduit le prix de l’option observé sur le marché.
 \end{description}
@@ -3400,13 +3405,18 @@ Crée en :
 
 
 \section*{Les Grecs de l'option}
+\addcontentsline{toc}{section}{Les Grecs de l'option}
+Les grecs servent à mesurer l'exposition au risque en considérant un paramètre de la formule de Black-Scholes à la fois.
+\begin{itemize}
+	\item	Par défaut, on calcule les grecs en supposant l'achat (et non la vente) d'une option.
+\end{itemize}
 
 \begin{center}
 \begin{tabular}{|	>{\columncolor{airforceblue}}c	| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}m{0.5\columnwidth}  |}
 \hline\rowcolor{airforceblue} 
 \textcolor{white}{\textbf{Grec}}	&	\textcolor{white}{\textbf{Définition}}	&	\textcolor{white}{\textbf{Mesure le changement de la valeur ($V$)}}		\\\specialrule{0.1em}{0em}{0.0em} 
-$\Delta$	&	$\deriv{S}{V}$	&	de l'option par une augmentation (de 1\$) du prix de l'action.	\\
-$\Gamma$	&	$\deriv{S}{\Delta} \equiv \deriv[2]{S}{V}$	&	du Delta par une augmentation (de 1\$) du prix de l'action.	\\
+$\Delta$	&	$\deriv{S_{0}}{V}$	&	de l'option par une augmentation (de 1\$) du prix de l'action.	\\
+$\Gamma$	&	$\deriv{S_{0}}{\Delta} \equiv \deriv[2]{S_{0}}{V}$	&	du Delta par une augmentation (de 1\$) du prix de l'action.	\\
 $\theta/365$	&	$\deriv{t}{V}$	&	de l'option par une baisse (d'un jour) de la date d'échéance.	\\
 \textbf{Vega}	&	$\deriv{\sigma}{V}$	&	de l'option par une augmentation (de 1\%) de la volatilité.	\\
 $\rho/100$	&	$\deriv{r}{V}$	&	de l'option par une augmentation (de 1\%) du taux sans risque.	\\
@@ -3414,17 +3424,18 @@ $\psi/100$	&	$\deriv{\delta}{V}$	&	de l'option par une augmentation (de 1\%) de 
 \end{tabular}
 \end{center}
 
-Notes
-\begin{itemize}[leftmargin = *]
-	\item	Si on fait référence au \og Delta \fg{} d'une option, on suppose la position longue.\\
-			De même pour tous les autres grecs.
-\end{itemize}
+\begin{distributions}[Termes financiers]
+\begin{description}
+	\item[point de pourcentage]	$1\%$.
+	\item[point de base]	$0.01\%$.
+\end{description}
+\end{distributions}
 
 \columnbreak
 
-\subsection*{Grecs}
+\subsection{Grecs}
 
-\begin{definitionNOHFILL}[Delta $\Delta	=	\deriv{S}{V}$]
+\begin{definitionNOHFILL}[Delta $\Delta	=	\deriv{S_{0}}{V}$]
 Mesure la variation du prix de l'option correspondante à une augmentation du prix de l'action.
 
 \tcbline
@@ -3476,7 +3487,7 @@ Mesure la variation du prix de l'option correspondante à une augmentation du pr
 \end{itemize}
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILL}[Gamma $\Gamma = \deriv{S}{\Delta} \equiv \deriv[2]{S}{V}$]
+\begin{definitionNOHFILL}[Gamma $\Gamma = \deriv{S_{0}}{\Delta} \equiv \deriv[2]{S_{0}}{V}$]
 Mesure la variation du Delta de l'option correspondante à une augmentation du prix de l'action.
 
 \tcbline
@@ -3513,8 +3524,49 @@ Mesure la variation du Delta de l'option correspondante à une augmentation du p
 	\item	Le $\Gamma$ mesure le \textit{taux} de variation du $\Delta$.\\
 			Puisque le $\Delta$ augmente toujours, le $\Gamma$ est toujours positif;
 	\item	Le $\Gamma$ est maximisé au cours du marché, car c'est où le $\Delta$ connaît le plus de variation.
+%		\begin{center}
+%		\includegraphics[scale=0.4]{src/ACT-2011/gamma-delta-greek.png}
+%		\end{center}
 		\begin{center}
-		\includegraphics[scale=0.4]{src/ACT-2011/gamma-delta-greek.png}
+		
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,225); %set diagram left start at 0, and has height of 225
+
+%Shape: Axis 2D [id:dp24873725999704033] 
+\draw  (71,130.67) -- (298.17,130.67)(166.17,46.33) -- (166.17,211.33) (291.17,125.67) -- (298.17,130.67) -- (291.17,135.67) (161.17,53.33) -- (166.17,46.33) -- (171.17,53.33)  ;
+%Curve Lines [id:da415072861376667] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][line width=2.25]    (71.17,129.33) .. controls (175.17,127.67) and (158.17,117.33) .. (165.17,99.33) .. controls (172.17,81.33) and (158.17,69.33) .. (259.17,69.33) ;
+%Curve Lines [id:da4699510927961381] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (71.17,129.33) .. controls (129.17,91.33) and (200.17,89.33) .. (263.17,131.33) ;
+%Curve Lines [id:da7102609332275407] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (71.17,189.33) .. controls (172.17,190.33) and (158.17,178.33) .. (165.17,160.33) .. controls (172.17,142.33) and (162.17,131.33) .. (263.17,131.33) ;
+
+% Text Node
+\draw (297,110) node   [align=left] {$\displaystyle S_{t}$};
+% Text Node
+\draw (263,64.33) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {$\displaystyle \Delta _{C}$};
+% Text Node
+\draw (265.17,134.33) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 245; green, 166; blue, 35 }  ,opacity=1 ] [align=left] {$\displaystyle \Delta _{P}$};
+% Text Node
+\draw (167.17,102.33) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \Gamma $};
+% Text Node
+\draw (62.5,110.69) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,rotate=-337.11] [align=left] {\textcolor[rgb]{0.82,0.01,0.11}{$\displaystyle \rightarrow ${\scriptsize tend vers le maximum}}};
+% Text Node
+\draw (187.55,80.84) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,rotate=-22.32] [align=left] {\textcolor[rgb]{0.82,0.01,0.11}{$\displaystyle \rightarrow $}{\scriptsize \textcolor[rgb]{0.82,0.01,0.11}{tend vers le minimum}}};
+% Text Node
+\draw (194.96,55.91) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ,rotate=-357.41] [align=left] {\textcolor[rgb]{0.56,0.07,1}{$\displaystyle \rightarrow ${\scriptsize tend vers 1}}};
+% Text Node
+\draw (84.3,129.24) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ,rotate=-357.41] [align=left] {\textcolor[rgb]{0.56,0.07,1}{$\displaystyle \leftarrow $}{\scriptsize \textcolor[rgb]{0.56,0.07,1}{tend vers 0}}};
+% Text Node
+\draw (95.3,193.24) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ,rotate=-357.41] [align=left] {\textcolor[rgb]{0.96,0.65,0.14}{$\displaystyle \leftarrow ${\scriptsize tend vers -1}}};
+% Text Node
+\draw (188.96,136.91) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ,rotate=-357.41] [align=left] {\textcolor[rgb]{0.96,0.65,0.14}{$\displaystyle \rightarrow ${\scriptsize tend vers 0}}};
+
+
+\end{tikzpicture}
 		\end{center}
 \end{itemize}
 \end{definitionNOHFILL}
@@ -3696,10 +3748,10 @@ Le grec d'un portefeuille composé de $N$ options sur une même action, avec $n_
 
 \columnbreak
 
-\subsection*{Élasticité}
+\subsection{Élasticité}
 
 
-\begin{definitionNOHFILL}[Élasticité $\Omega	=	\frac{\Delta S}{V}$]
+\begin{definitionNOHFILL}[Élasticité $\Omega	=	\frac{\Delta S_{0}}{V}$]
 Mesure le pourcentage de variation du prix de l'option correspondante au pourcentage d'augmentation du prix de l'action.
 
 \tcbline
@@ -3708,7 +3760,7 @@ Mesure le pourcentage de variation du prix de l'option correspondante au pourcen
 	\textbf{Élasticité}
 \end{center}
 \begin{align*}
-		\Omega
+		\Omega_{\text{option}}
 		&=	\frac{\text{\% variation du prix de l'option}}{\text{\% variation du prix de l'action}}	
 		=	\frac{{\color{teal}(V_{t} - V_{0})}/V_{0}}{{\color{teal}(S_{t} - S_{0})}/S_{0}}	\\
 		&=	{\color{teal}\Delta} \cdot \frac{S_{0}}{V_{0}}
@@ -3738,12 +3790,12 @@ Mesure le pourcentage de variation du prix de l'option correspondante au pourcen
 \end{definitionNOHFILL}
 
 \subsubsection*{Volatilité}
-Puisqu'un actif sans risque n'a aucune volatilité, la volatilité de l'option va seulement dépendre sur celle de l'action.\\
-Pour l'obtenir, on pondère la volatilité de l'action par la valeur absolue de $\Omega$:
-\begin{align*}
-	\sigma_{\text{option}}
-	&=	| \Omega | \sigma_{\text{action}}
-\end{align*}
+Puisqu'un actif sans risque n'a aucune volatilité, la volatilité de l'option ($\sigma_{\text{option}}$) va seulement dépendre de celle de l'action ($\sigma_{\text{action}}$).\\
+On ne fait que pondérer par la valeur absolue de l'élasticité de l'option ($\Omega_{\text{option}}$): \lfbox[formula]{$\sigma_{\text{option}}
+	=	\left| \Omega_{\text{option}} \right| \sigma_{\text{action}}$}.
+%\begin{align*}
+%	
+%\end{align*}
 
 \begin{itemize}
 	\item	La valeur absolue assure une volatilité positive.
@@ -3755,7 +3807,10 @@ Avec ceci on trouve:
 \begin{description}
 	\item[\% investit dans l'action sous-jacente]	$\% \text{ action} = \frac{\Delta S}{V} = \Omega$.
 	\item[\% investit dans l'actif sans risque]	$\% \text{ actif} = \frac{B}{V} = 1 - \Omega$.
-	\item[Rendement espéré instantané sur l'option $\gamma$]	On pondère les rendements sur l'action et l'actif:
+	\item[$\gamma$]	Rendement espéré instantané sur l'option.
+		\begin{itemize}
+		\item	On pondère les rendements sur l'action et l'actif:	
+		\end{itemize}
 		\begin{align*}
 		\gamma 
 		&=	(\% \text{ action}) \alpha + (\% \text{ actif}) r	\\
@@ -3803,7 +3858,8 @@ Puisque $\Omega$ est positif pour les options d'achat et négatif pour les optio
 
 \subsubsection*{Portefeuille}
 
-L'élasticité d'un portefeuille composé de $N$ options avec $n_{i}$ de chaque type est la moyenne pondérée de l'élasticité de chaque type d'option. Donc, avec $\omega_{i}$\% du portefeuille investi dans l'option $i$, on a:
+L'élasticité d'un portefeuille composé de $N$ options avec $n_{i}$ de chaque type est la moyenne pondérée de l'élasticité de chaque type d'option.\\
+Donc, avec $\omega_{i}$\% du portefeuille investi dans l'option $i$, on a:
 \begin{align*}
 	\Omega_{\text{ptf.}}
 	&=	\overset{N}{\underset{i = 1}{\sum}} \omega_{i} \Omega_{i}, \: \text{où } \omega_{i} = n_{i} \times \frac{V_{i}}{V_{\text{ptf.}}}
@@ -3811,7 +3867,7 @@ L'élasticité d'un portefeuille composé de $N$ options avec $n_{i}$ de chaque 
 
 On peut également le calculer avec les paramètres du portefeuille $\Omega_{\text{ptf.}} = \frac{\Delta_{\text{ptf.}}S}{V_{\text{ptf.}}}$.
 
-\subsection*{Approximation}
+\subsection{Approximation}
 
 \begin{itemize}[leftmargin = *]
 	\item	On peut approximer la variation du prix de l'option avec les grecques;
