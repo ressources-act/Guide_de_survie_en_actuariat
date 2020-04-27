@@ -13,27 +13,8 @@
 \def\SubSectionColor{burntsienna}
 \def\SubSubSectionColor{burntsienna}
 
-%% Reduce margin space and change lists spacing
+%% Reduce margin space
 \setlength{\abovedisplayskip}{-15pt}
-\setlist{leftmargin=*}
-
-%%	change TOC depth so sections are not numbered but not subsections and more
-\setcounter{secnumdepth}{1}
-%%	Change \part to be an annex
-\usepackage{titlesec}
-\titleformat{\part}%
-	{
-		\centering\normalfont\Large
-	}%
-	{
-		Annexe \hspace{2pt} 
-		\Alph{part}\hspace{2pt}:
-	}%
-	{2pt}%
-	{}
-\newcommand{\annexe}{\part} % define command to be \annexe for coherence
-
-
 
 \newcommand{\bettershortstack}[2][c]{%
   \begin{tabular}[b]{@{}#1@{}}#2\end{tabular}%
@@ -55,7 +36,7 @@
 \raggedcolumns
 \begin{multicols*}{2} 
 
-\subsection{Rappels}
+\subsection*{Rappels}
 
 \subsubsection*{Approximation Woolhouse}
 \begin{align*}
@@ -157,7 +138,7 @@ où:
 
 \section{Calcul de réserve}
 
-\subsection{Notation}
+\subsection*{Notation}
 \begin{itemize}[leftmargin = *]
 	\item[] 	$\actsymb[h]{L}{}$: Perte nette future sur un contrat d'assurance pour un individu d'âge $(x)$ au temps $h$.
 		\begin{itemize}[leftmargin = *]
@@ -222,7 +203,7 @@ Sous le principe d'équivalence du portefeuille (PEP):
 \end{itemize}
 \end{examplebox}
 
-\subsection{Calcul de réserves}
+\subsection*{Calcul de réserves}
 \begin{conceptgen}{Méthodes d'évaluation de la réserve}
 \setlength{\mathindent}{-1.5cm}
 \begin{minipage}[t]{0.5\columnwidth}
@@ -314,7 +295,7 @@ Avec le montant net au risque réserve pour l'année $h + 1$ isolé :
 	&\approx	\left(\Vx[h]{}[g] + G_h - e_h\right)(1 - s) + \left(\Vx[h + 1]{}[g]\right)(s), \, s \in (0, 1)
 \end{align*}
 
-\subsection{Profit de l'assureur}
+\subsection*{Profit de l'assureur}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[]	$N_{h}$: Nombre de contrats d'assurance vie (identiques) du portefeuille en vigueur au temps $h$.
@@ -351,7 +332,7 @@ Par exemple:
 %\]
 %%%	--------------------------------
 
-\subsection{Équation de Thiele}
+\subsection*{Équation de Thiele}
 Cette équation permet d'obtenir le \emph{taux instantané d'accroissement} de $\actsymb[t]{V}{}$.
 \begin{align*}
 	\derivee{t} \Vx[t]{}[g]
@@ -377,7 +358,7 @@ on peut approximer $\Vx[h]{}[g]$ avec la \underline{Méthode d'Euler} :
 		{1 + h \delta_t + h \mu_{[x] + h}}
 \end{align*}
 
-\subsection{Frais d'acquisition reportés}
+\subsection*{Frais d'acquisition reportés}
 
 \begin{description}
 	\item	$\actsymb[h]{V}{}[e]$	Réserve pour les frais d'acquisition reportés (DAC).
@@ -400,7 +381,7 @@ on peut approximer $\Vx[h]{}[g]$ avec la \underline{Méthode d'Euler} :
 		\end{align*}
 \end{description}
 
-\subsection{FTP}
+\subsection*{FTP}
 
  
 \begin{description}
@@ -466,7 +447,7 @@ on peut approximer $\Vx[h]{}[g]$ avec la \underline{Méthode d'Euler} :
 
 \columnbreak
 
-\subsection{En temps continu}
+\subsection*{En temps continu}
 On généralise la notation utilisée auparavant (le \textit{modèle actif-décédé}) pour des modèles à plusieurs états.
 
 \subsubsection*{Notation et hypothèses}
@@ -537,7 +518,7 @@ On généralise la notation utilisée auparavant (le \textit{modèle actif-déc�
 	\item	\icbox{$\px[h]{x}[ii] = \px[h]{x}[\overline{ij}] + o(h)$} où $o(h)$ est la probabilité de sortir et revenir de l'hypothèse 2.
 	\item	
 	\begin{align*}
-		\px[h]{x}[ij] 
+		\px[h]{x}[ii] 
 		\geq \px[h]{x}[\overline{ii}] 	
 		&= 1 - \sumz{n}{j = 0, j \neq i} \px[h]{x}[ij] + o(h) 	\\
 		&\equiv 1 - h \sumz{n}{j = 0, j \neq i} \mu_{x}^{ij} + o(h)
@@ -563,29 +544,12 @@ Transition d'un état au prochain pour un \textbf{modèle d'invalidité permanen
 \end{align*}
 \paragraph{Note}	On \textbf{\color{teal}approxime} la mortalité instantanée $\color{teal}\mu_{x + t}^{01}dt$ par la mortalité au moment infiniment petit $dt$ $\color{teal}\px[dt]{x + t}[01]$.\\
 
-\hl{Transition d'un état à un état supérieur}:
+Transition d'un état à un état supérieur:
 \begin{align*}
 	\px[u]{x}[02] 
 	&=	\int_{t = 0}^{u} \left\{(\px[t]{x}[\overline{00}]) (\mu_{x + t}^{01}) (\px[u - t]{x + t}[12])\right\} + \left\{(\px[t]{x}[\overline{00}]) (\mu_{x + t}^{02}) (\px[u - t]{x + t}[\overline{22}])\right\} dt	\\
 	&=	1 - \px[u]{x}[\overline{00}] - \px[u]{x}[01]
 \end{align*}
-\begin{itemize}
-	\item	L'important à retenir est qu'il faut considérer toutes les façons de se rendre de 0 à 2 (0 à 2, 0 à 1 à 2, etc.).
-\end{itemize}
-
-\hl{Transition par deux états}:\\
-Par exemple, aller de 0 à 1 et finir à 2 par le temps $u$:
-\begin{align*}
-	\int_{0}^{u} \px[t]{x}[01] \mu_{x + t}^{12} \px[u - t]{x + t}[\overline{22}]dt
-	&=	\int_{0}^{u} 
-			\left\{
-				\int_{0}^{t} \px[s]{x}[\overline{00}] \mu_{x + s}^{01} \px[t - s]{x + s}[\overline{11}]ds 
-			\right\} 
-			\mu_{x + t}^{12} \px[u - t]{x + t}[\overline{22}]dt
-\end{align*}
-\begin{itemize}
-	\item	On commence par la fin avec $\px[u - t]{x + t}[\overline{22}]$ puis on intègre jusqu'à la forme connue.
-\end{itemize}
 
 \subsubsection*{Approximations}
 Pour les modèles où il est possible de sortir et de revenir à un état.
@@ -593,9 +557,7 @@ Pour les modèles où il est possible de sortir et de revenir à un état.
 \begin{conceptgen}{Kolmogorov's Forward Equations}
 \begin{align*}
 	\derivee{t}{} \px[t]{x}[ij]
-	&=	\sumz{n}{k = 0, k \neq j} \left( \px[t]{x}[ik] \mu_{x + t}^{kj} - \px[t]{x}[ij] \mu_{x + t}^{jk}  \right)	\\
-	\shortstack{la variation de la\\ probabilité d'aller\\ de l'état $i$ à l'état\\ $j$}
-	&=	\shortstack{taux auquel ceux\\ hors de l'état $j$ entrent\\ dans l'état $j$ de tout\\ autre état}	-	\shortstack{taux auquel ceux\\ dans l'état $j$ quittent\\ l'état $j$ pour tout\\ autre état}
+	&=	\sumz{n}{k = 0, k \neq j} \left( \px[t]{x}[ik] \mu_{x + t}^{kj} - \px[t]{x}[ij] \mu_{x + t}^{jk}  \right)
 \end{align*}
 
 Avec la \textbf{notation} $\mu_{x}^{ii} = - \sumz{n}{k = 0, k \neq i} \mu_{x}^{ik}$ on a:
@@ -638,10 +600,7 @@ On peut récrire l'expression en forme matricielle:
 Pour $h > 0$ très petit, on a: 
 \begin{align*}
 	\derivee{t}{} \px[t]{x}[ij]
-	&\approx	\frac{(\px[t + h]{x}[ij] - \px[t]{x}[ij])}{h}	\\
-	\Rightarrow
-	\px[t + h]{x}[ij]
-	&\approx	 \px[t]{x}[ij] + h\sumz{n}{k = 0, k \neq j} \left( \px[t]{x}[ik] \mu_{x + t}^{kj} - \px[t]{x}[ij] \mu_{x + t}^{jk}  \right)
+	&\approx	\frac{(\px[t + h]{x}[ij] - \px[t]{x}[ij])}{h}
 \end{align*}
 avec la condition initiale $\forall i \neq j$:
 \begin{align*}
@@ -651,14 +610,14 @@ avec la condition initiale $\forall i \neq j$:
 
 \subsubsection*{Paiements}
 \begin{description}
-	\item	$\ax*{x:\angln}[\overline{ii}]$	La VPA d'une rente temporaire payant $1$\$ à une vie dans l'état $i$ seulement lorsqu'elle est dans l'état $i$.
+	\item	$\ax**{x:\angln}[\overline{ii}]$	La VPA d'une rente temporaire payant $1$\$ à une vie dans l'état $i$ seulement lorsqu'elle est dans l'état $i$.
 		\begin{align*}
-		\ax*{x:\angln}[\overline{ii}]
+		\ax**{x:\angln}[\overline{ii}]
 		&=	\int_{0}^{n} v^{t} \px[t]{x}[\overline{ii}] dt
 		\end{align*}
-	\item	On a aussi plus généralement pour une rente qui paye lorsque le individu est dans l'état $j$:
+	\item	On a aussi plus généralement:
 \begin{align*}
-	\ax*{x:\angln}[ij]
+	\ax**{x:\angln}[ij]
 	&=	\int_{0}^{n} v^{t} \px[t]{x}[ij] dt	\\
 	\Ax*{x}[ij]
 	&=	\int_{0}^{\infty} \sumz{}{k \neq j}	v^{t} \px[t]{x}[ik] \mu_{x + t}^{kj} dt
@@ -669,7 +628,7 @@ avec la condition initiale $\forall i \neq j$:
 
 %\columnbreak
 
-\subsection{Modèle à plusieurs décroissances}
+\subsection*{Modèle à plusieurs décroissances}
 \begin{itemize}[leftmargin = *]
 	\item	en anglais, \og \textit{Multiple Decrement Model} \fg{};
 	\item	Précédemment, il y avait résiliation du contrat uniquement en raison d'un décès;
@@ -776,7 +735,7 @@ Aussi
 	&=	\int_{k}^{k + 1} \px[t]{x}[(\tau)] \mu_{x + t}^{(j)}dt
 	=	\px[k]{x}[(\tau)] \qx{x + k}[(j)]
 \end{align*}
-\paragraph{Note}	Développer cette expression s'il y a un manque d'information sur des $\ell{x}$; voir l'exercice 2.10 du cours 8 pour un exemple.
+\paragraph{Note}	Développer cette expression s'il y a un manque d'information sur des $\ell_{x}$; voir l'exercice 2.10 du cours 8 pour un exemple.
 
 Loi marginale:
 \begin{align*}
@@ -809,7 +768,7 @@ Si $\mu_{x + t}^{(1)}, \dots, \mu_{x + t}^{(m)}$ sont des constantes $\mu^{(1)},
 
 \columnbreak
 
-\subsection{Modèles à décroissance unique associés}
+\subsection*{Modèles à décroissance unique associés}
 \begin{description}
 	\item[$T_{x}'^{(j)}$]	Temps de décroissance de $x$ (alias, la \textit{durée de vie} résiduelle de $x$) \underline{\textbf{en supposant}} qu'il est uniquement exposé à la cause $j$;
 		\begin{itemize}[leftmargin = *]
@@ -818,7 +777,7 @@ Si $\mu_{x + t}^{(1)}, \dots, \mu_{x + t}^{(m)}$ sont des constantes $\mu^{(1)},
 		\item	Généralement, on suppose que les décroissances $T_{x}'^{(j)}$ pour $j = 1, 2, \dots, m$ sont indépendantes;
 		\item	Avec l'indépendance, on trouve que la distribution de $T_{x}$ est la même que la première cause de décès \icbox{$T_{x}	\overset{d}{=}	\min\left\{T_{x}'^{(1)}, T_{x}'^{(2)}, \dots, T_{x}'^{(m)}\right\}$}.
 		\end{itemize}
-	\item[]	$\qx[t]{x}'^{(j)}$:	Probabilité de décroissance d'ici $t$ années pour un assuré d'âge $x$ en raison de la $j$e cause \underline{\textbf{en supposant}} qu'il est uniquement exposé à la cause $j$;
+	\item[]	$\qx[t]{x}'^{(j)}$:	Probabilité de décroissance d'ici $t$ années pour un assuré d'âge $x$ en raison de la $j^{e}$ cause \underline{\textbf{en supposant}} qu'il est uniquement exposé à la cause $j$;
 		\begin{itemize}[leftmargin = *]
 		\item	Puisque c'est le modèle actif-décédé, il s'ensuit que \icbox{$\px[t]{x}'^{(j)}	=	1	-	\qx[t]{x}'^{(j)}$};
 		\item	\lfbox[formula]{$\qx[t]{x}'^{(j)}	=	1	-	\textrm{e}^{-\int_{0}^{t}\mu_{x + s}^{(j)}ds}$}.
@@ -847,15 +806,14 @@ Donc:
 Il s'ensuit que \icbox[red][palechestnut]{$\px[t]{x}[(\tau)] \leq \px[t]{x}'^{(j)}, \forall j = 1, 2, \dots, m$} et \icbox[red][palechestnut]{$\qx[t]{x}'^{(j)} \geq \qx[t]{x}[(j)], \forall j = 1, 2, \dots, m$}.
 
 \columnbreak
-\subsection{Interrelations}
+\subsection*{Interrelations}
 \begin{rappel_enhanced}[Hypothèses]
 Dans le cas de décroissances uniques avec $T_{x}'^{(j)}$:\\
 
 Pour $x \in \mathbb{Z}^{+}, t \in [0, 1], j = 1, 2, \dots, m$,
 \begin{description}
-	\item[DUD]	\lfbox[formula]{$\qx[s]{x}'^{(j)} = s \times \qx[]{x}'^{(j)}$} pour \lfbox[conditions]{$0 \leq s \leq 1$};
-	\item[FC]	$\mu_{x + s}^{(j)} = \mu_{x}^{(j)}$ pour \lfbox[conditions]{$0 \leq s \leq 1$}.
-%	\item[FC]	Les probabilités sont proportionnelles à la probabilité de décroissance totale avec \lfbox[formula]{$\qx[s]{x}'^{(j)}	=	\frac{\qx{x}'^{(j)}}{\qx{x}[(\tau)]} \bigg( 1 - \left( \px{x}[(\tau)]\right)^{s}\bigg)$} pour \lfbox[conditions]{$0 \leq s \leq 1$}.
+	\item[DUD]	$\qx[t]{x}'^{(j)} = t \times \qx[]{x}'^{(j)}$;
+	\item[FC]	$\mu_{x + t}^{(j)} = \mu_{x}^{(j)}$.
 \end{description}
 
 \begin{itemize}[leftmargin = *]
@@ -874,15 +832,14 @@ Sachant $\qx[]{x}'^{(1)}, \dots, \qx[]{x}'^{(m)}$,
 \end{enumerate}
 
 \begin{distributions}[Sous DUD]
-Pour \lfbox[conditions]{$0	\leq	{\color{blue(pigment)}s}	\leq1$}:
 \begin{align*}
-	\qx[\color{blue(pigment)}s]{x}[(j)]
-	&=	\qx[\color{blue(pigment)}s]{x}'^{(j)}	\int_{0}^{{\color{blue(pigment)}s}} \left[ \underset{k \neq j, k = 1}{\overset{m}{\prod}}\left(1 - t \cdot \qx{x}'^{(k)}\right) \right] dt
+	\qx[t]{x}[(j)]
+	&=	\qx[t]{x}'^{(j)}	\int_{0}^{t} \left[ \underset{k \neq j, k = 1}{\overset{m}{\prod}}\left(1 - s \cdot \qx{x}'^{(k)}\right) \right] ds
 \end{align*}
 
 \tcbline
 
-\textbf{Cas particuliers pour $s = 1$}:
+\textbf{Cas particuliers pour $t = 1$}:
 \begin{itemize}[leftmargin = *]
 	\item	Si $m = 2$, \icbox{$\qx{x}[(1)]	=	\qx{x}'^{(1)} \left( 1 - \frac{\qx{x}'^{(2)}}{2} \right)$} et \icbox{$\qx{x}[(2)]	=	\qx{x}'^{(2)} \left( 1 - \frac{\qx{x}'^{(1)}}{2} \right)$};
 	\item	Si $m = 3$, \icbox{$\qx{x}[(1)]	=	\qx{x}'^{(1)} \left[ 1 - \frac{1}{2}\left( \qx{x}'^{(2)} + \qx{x}'^{(3)} \right) + \frac{1}{3} \left( \qx{x}'^{(2)} \qx{x}'^{(3)} \right) \right]$}.
@@ -890,10 +847,9 @@ Pour \lfbox[conditions]{$0	\leq	{\color{blue(pigment)}s}	\leq1$}:
 \end{distributions}
 
 \begin{distributions}[Sous FC]
-Pour \lfbox[conditions]{$0	\leq	{\color{blue(pigment)}s}	\leq1$}:
 \begin{align*}
-	\qx[\color{blue(pigment)}s]{x}[(j)]
-	&=	\frac{\ln(\px{x}'^{(j)})}{\ln(\px{x}[(\tau)])}\qx[\color{blue(pigment)}s]{x}[(\tau)] 
+	\qx[\color{blue(pigment)}t]{x}[(j)]
+	&=	\frac{\ln(\px{x}'^{(j)})}{\ln(\px{x}[(\tau)])}\qx[\color{blue(pigment)}t]{x}[(\tau)] 
 \end{align*}
 \end{distributions}
 \end{conceptgen}
@@ -907,26 +863,21 @@ Sachant $\qx[t]{x}[(1)], \dots, \qx[t]{x}[(m)]$,
 \end{enumerate}
 
 \begin{distributions}[Sous DUD]
-Pour \lfbox[conditions]{$0	\leq	{\color{blue(pigment)}s}	\leq1$}:
 \begin{align*}
-	\qx[\color{blue(pigment)}s]{x}'^{(j)}
-	&=	1 - \left( 1 - {\color{blue(pigment)}s} \times \qx{x}[(\tau)] \right)^{\qx{x}[(j)]/\qx{x}[(\tau)]}	\\
-	\px[\color{blue(pigment)}s]{x}'^{(j)}
-	&=	\left( \px[\color{blue(pigment)}s]{x}[(\tau)] \right)^{\qx{x}[(j)]/\qx{x}[(\tau)]}	
+	\qx[t]{x}'^{(j)}
+	&=	1 - \left( 1 - t \times \qx{x}[(\tau)] \right)^{\qx{x}[(j)]/\qx{x}[(\tau)]}	\\
+	\px[\color{blue(pigment)}t]{x}'^{(j)}
+	&=	\left( \px[\color{blue(pigment)}t]{x}[(\tau)] \right)^{\qx{x}[(j)]/\qx{x}[(\tau)]}	
 \end{align*}
 \end{distributions}
 
 \begin{distributions}[Sous FC]
-Pour \lfbox[conditions]{$0	\leq	{\color{blue(pigment)}s}	\leq1$}:
 \begin{align*}
-	\px[\color{blue(pigment)}s]{x}'^{(j)}
-	&=	\left( \px[\color{blue(pigment)}s]{x}[(\tau)] \right)^{\qx{x}[(j)]/\qx{x}[(\tau)]}	
+	\px[\color{blue(pigment)}t]{x}'^{(j)}
+	&=	\left( \px[\color{blue(pigment)}t]{x}[(\tau)] \right)^{\qx{x}[(j)]/\qx{x}[(\tau)]}	
 \end{align*}
 \end{distributions}
 \end{conceptgen}
-
-\paragraph{Note}	Si la mortalité a lieu à un moment fixe, on multiplie les espérance du nombre de personnes en vie. 
-Par exemple, si on donne $\qx{x}'^{(1)}	=	0.01$ pour les décès et $\qx{x}'^{(2)}	=	0.05$ pour les retraits en stipulant que les décès $T_{x}'^{(1)}$ sont DUD alors que les retraits ont lieu uniquement en fin d'année. Pour trouver $\qx{x}'^{(2)}$ on trouve l'espérance de la probabilité de retrait = $\px{x}'^{(1)}\qx{x}'^{(2)}$. (voir pages 13 à 14 des notes de cours du chapitre 9 pour un exemple).
 
 \pagebreak
 
@@ -945,7 +896,7 @@ Par exemple, si on donne $\qx{x}'^{(1)}	=	0.01$ pour les décès et $\qx{x}'^{(2
 		&\overset{T_{x}\perp T_{y}}{=}	\Pr(T_{x}	\leq	t)\Pr(T_{y}	\leq	s)	
 		=	F_{T_{x}}(t)F_{T_{y}}(s)
 		\end{align*}
-	\item[]	$\qx[t]{\overset{1}{x}y}$	On mets le chiffre sur la personne qui meurt et le chiffre représente l'ordre; dans ce cas-ci, $(x)$ meurt avant $(y)$ avant le temps $t$.
+	\item[]	$\qx[t]{\overset{1}{x}y}$	On mets le chiffre sur la personne qui meurt et le chiffre représente l'ordre; dans ce cas-ci, $(x)$ meurt avant $(y)$ et avant le temps $t$.
 \end{description}
 \end{distributions}
 
@@ -1119,7 +1070,7 @@ Puis (voir la preuve à la page 15 des notes de cours du chapitre 11)
 
 \columnbreak
 
-\subsection{Contingent Insurance}
+\subsection*{Contingent Insurance}
 
 \paragraph*{Continue}
 \begin{distributions}[Notation]
@@ -1226,7 +1177,7 @@ La rente de 1\$ est versée jusqu'au deuxième décès parmi $(x)$ et $(y)$.
 
 \columnbreak
 
-\subsection{Reversionary Annuity (pension de réversion)}
+\subsection*{Reversionary Annuity (pension de réversion)}
 \begin{rappel_enhanced}[Historique]
 Produit originalement créé dans le temps que les hommes travaillent et les femmes restaient à la maison. C'était une assurance contre le risque que le mari décède et que la femme ne se retrouve avec aucune source de revenus. Le produit fournissait donc une rente afin que la femme puisse continuer de survivre sans le salaire de son mari.
 \end{rappel_enhanced}
@@ -1298,7 +1249,7 @@ Une annuité ayant une pension de 1\$ payable à $(y)$ à compter du décès de 
 \pagebreak
 \raggedcolumns
 \begin{multicols*}{2}
-\annexe{Preuves}
+\section{Preuves}
 \begin{center}
 	\lfbox[rappel]{Preuve de la fonction de densité du couple $(x, y)$}
 \end{center}
