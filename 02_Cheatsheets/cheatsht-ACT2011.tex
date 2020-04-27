@@ -3990,7 +3990,7 @@ Portefeuille dont la couverture, même si elle existe un rééquilibrage, entra�
 
 
 \columnbreak
-\subsubsection*{Analyse de Black-Scholes}
+\subsubsection{Analyse de Black-Scholes}
 \textbf{Équation de Black-Scholes}:
 \begin{align*}
 	r S_{t} \deriv{S_{t}}{C_{t}} + \frac{1}{2}\sigma^{2}S_{t}^{2}\deriv[2]{S_{t}}{C_{t}} + \deriv{t}{C_{t}}	
@@ -4034,7 +4034,7 @@ Portefeuille dont la couverture, même si elle existe un rééquilibrage, entra�
 
 \setcounter{section}{13}
 \section{Options exotiques: I}
-\subsection*{Options asiatiques}
+\subsection{Options asiatiques}
 \begin{definitionNOHFILL}[Options asiatiques]
 La valeur à l'échéance dépend du prix moyen du sous-jacent sur une certaine période de temps.
 
@@ -4110,7 +4110,7 @@ On remplace $K$ par le prix moyen $\bar{S}$ pour la valeur à l'échéance des o
 \end{enumerate}
 
 \columnbreak
-\subsection*{Options à barrière}
+\subsection{Options à barrière}
 \begin{definitionNOHFILL}[Options à barrière]
 Une option qui peut \textbf{désactiver ou activer} si le prix de l'actif sous-jacent atteint une \textbf{barrière} précise alors que l'option est en vigueur.
 
@@ -4202,7 +4202,7 @@ Le même cas se produit où $K \leq \text{barrière} \leq S_{0}$ pour une option
 
 
 \columnbreak
-\subsection*{Options sur option}
+\subsection{Options sur option}
 \begin{definitionNOHFILL}[Options sur option]
 Option qui permet à son détenteur \textbf{d'acheter ou de vendre une autre option} au prix d'exercice précisé.
 
@@ -4328,7 +4328,7 @@ On généralise l'équation de parité des options vente-achat:
 
 
 \columnbreak
-\subsection*{Options avec écart}
+\subsection{Options avec écart}
 \begin{definitionNOHFILL}[Options avec écart]
 Contrairement au options classiques qui ont un seul prix pour déterminer le \underline{moment d'exercice} et \underline{la valeur à l'échéance}, les options avec écart ont un prix pour chacune des fonctions créant alors un \textit{écart}.
 
@@ -4610,7 +4610,7 @@ Pour se rappeler quel $K$ remplacer:
 \end{align*}
 
 \columnbreak
-\subsection*{Options d'échange}
+\subsection{Options d'échange}
 \begin{definitionNOHFILL}[Options d'échange]
 Permet au détenteur d'échanger un actif pour un autre.
 
@@ -4646,15 +4646,16 @@ où $d_{1}	=	\frac{\ln\left(\frac{F^{P}(A)}{F^{P}(B)}\right) + \frac{1}{2} \sigm
 \end{distributions}
 
 
-\subsection*{La distribution normale}
+\subsection{La distribution normale}
 \begin{itemize}[leftmargin = *]
 	\item	Si $X \sim \mathcal{N}(\mu, \sigma^{2})$ alors \lfbox[formula]{$Z = \frac{X - \mu}{\sigma} \sim \mathcal{N}(0, 1)$};
 	\item	La loi normale est symétrique donc \lfbox[formula]{$N(-d) = 1 - N(d)$}, \lfbox[conditions]{$\forall d \in \mathbb{R}$} et \lfbox[formula]{$\Pr(-d \leq Z \leq d)	=	2N(d)	-	1$}, \lfbox[conditions]{$\forall d \in \mathbb{R}_{+}$};
-	\item	\lfbox[formula]{$aX_{1} + bX_{2}	\sim	\mathcal{N}(a\mu_{1} + b\mu_{2}, a^{2}\sigma^{2}_{1} + b^{2}\sigma^{2}_{2} + 2ab\rho\sigma_{1}\sigma_{2})$}.
+	\item	\lfbox[formula]{$aX_{1} + bX_{2}	\sim	\mathcal{N}(a\mu_{1} + b\mu_{2}, a^{2}\sigma^{2}_{1} + b^{2}\sigma^{2}_{2} + 2ab\rho\sigma_{1}\sigma_{2})$};
+	\item	La FGM est $M_{X}(t)	=	\textrm{e}^{\mu t + \frac{\sigma^{2} t^{2}}{2}}$.
 \end{itemize}
 
 
-\subsection*{La distribution lognormale}
+\subsection{La distribution lognormale}
 Lorsque $Y = \textrm{e}^{X}$ alors $Y \sim LN(\mu,\sigma^{2})$.
 
 \begin{itemize}
