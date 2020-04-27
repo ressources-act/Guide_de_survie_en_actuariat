@@ -483,11 +483,11 @@ On généralise la notation utilisée auparavant (le \textit{modèle actif-déc�
 		\end{align*}
 	\item	$\px[k]{x + t}^{\overline{ii}}$	Probabilité qu'un individu d'âge $x$ dans l'état $i$ au temps $t$ reste dans dans l'état $i$ continument jusqu'au temps $t + k$.
 		\begin{align*}
-		\px[k]{x + t}^{\overline{ij}}
+		\px[k]{x + t}^{\overline{ii}}
 		&=	\Pr(Y_{x}(s) = i, \underbrace{\forall s \in [0, t]}_{\text{sans sortir et revenir}} | Y_{x} = i)
 		\end{align*}
 		\begin{itemize}[leftmargin = *]
-			\item	Il s'ensuit que $\px[k]{x + t}^{ij} \geq \px[k]{x + t}^{\overline{ij}}$ car:
+			\item	Il s'ensuit que $\px[k]{x + t}^{ii} \geq \px[k]{x + t}^{\overline{ii}}$ car:
 				\begin{align*}
 				\px[k]{x + t}^{ij}
 				&=	\px[k]{x + t}^{\overline{ij}} + \Pr(Y_{x}(t) = i, \text{après avoir sorti et revenu} | Y_{x} = i)	\\
@@ -501,7 +501,7 @@ On généralise la notation utilisée auparavant (le \textit{modèle actif-déc�
 		\begin{itemize}[leftmargin = *]
 		\item	On trouve que \icbox[red][palechestnut]{pour $i \neq j$}:
 			\begin{align*}
-			\px[h]{x}[ij]	&=	h\mu_{x}^{ij} + o(h)		&
+			\px[h]{x}[ij]	&=	h\cdot \mu_{x}^{ij} + o(h)		&
 			&\Rightarrow		\px[h]{x}[ij]	&\approx	h\mu_{x}^{ij}, \\
 			&\text{où } h > 0 \text{ est très petit.}
 			\end{align*}
