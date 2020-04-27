@@ -537,7 +537,7 @@ On généralise la notation utilisée auparavant (le \textit{modèle actif-déc�
 	\item	\icbox{$\px[h]{x}[ii] = \px[h]{x}[\overline{ij}] + o(h)$} où $o(h)$ est la probabilité de sortir et revenir de l'hypothèse 2.
 	\item	
 	\begin{align*}
-		\px[h]{x}[ij] 
+		\px[h]{x}[ii] 
 		\geq \px[h]{x}[\overline{ii}] 	
 		&= 1 - \sumz{n}{j = 0, j \neq i} \px[h]{x}[ij] + o(h) 	\\
 		&\equiv 1 - h \sumz{n}{j = 0, j \neq i} \mu_{x}^{ij} + o(h)
@@ -776,7 +776,7 @@ Aussi
 	&=	\int_{k}^{k + 1} \px[t]{x}[(\tau)] \mu_{x + t}^{(j)}dt
 	=	\px[k]{x}[(\tau)] \qx{x + k}[(j)]
 \end{align*}
-\paragraph{Note}	Développer cette expression s'il y a un manque d'information sur des $\ell{x}$; voir l'exercice 2.10 du cours 8 pour un exemple.
+\paragraph{Note}	Développer cette expression s'il y a un manque d'information sur des $\ell_{x}$; voir l'exercice 2.10 du cours 8 pour un exemple.
 
 Loi marginale:
 \begin{align*}
@@ -818,7 +818,7 @@ Si $\mu_{x + t}^{(1)}, \dots, \mu_{x + t}^{(m)}$ sont des constantes $\mu^{(1)},
 		\item	Généralement, on suppose que les décroissances $T_{x}'^{(j)}$ pour $j = 1, 2, \dots, m$ sont indépendantes;
 		\item	Avec l'indépendance, on trouve que la distribution de $T_{x}$ est la même que la première cause de décès \icbox{$T_{x}	\overset{d}{=}	\min\left\{T_{x}'^{(1)}, T_{x}'^{(2)}, \dots, T_{x}'^{(m)}\right\}$}.
 		\end{itemize}
-	\item[]	$\qx[t]{x}'^{(j)}$:	Probabilité de décroissance d'ici $t$ années pour un assuré d'âge $x$ en raison de la $j$e cause \underline{\textbf{en supposant}} qu'il est uniquement exposé à la cause $j$;
+	\item[]	$\qx[t]{x}'^{(j)}$:	Probabilité de décroissance d'ici $t$ années pour un assuré d'âge $x$ en raison de la $j^{e}$ cause \underline{\textbf{en supposant}} qu'il est uniquement exposé à la cause $j$;
 		\begin{itemize}[leftmargin = *]
 		\item	Puisque c'est le modèle actif-décédé, il s'ensuit que \icbox{$\px[t]{x}'^{(j)}	=	1	-	\qx[t]{x}'^{(j)}$};
 		\item	\lfbox[formula]{$\qx[t]{x}'^{(j)}	=	1	-	\textrm{e}^{-\int_{0}^{t}\mu_{x + s}^{(j)}ds}$}.
@@ -945,7 +945,7 @@ Par exemple, si on donne $\qx{x}'^{(1)}	=	0.01$ pour les décès et $\qx{x}'^{(2
 		&\overset{T_{x}\perp T_{y}}{=}	\Pr(T_{x}	\leq	t)\Pr(T_{y}	\leq	s)	
 		=	F_{T_{x}}(t)F_{T_{y}}(s)
 		\end{align*}
-	\item[]	$\qx[t]{\overset{1}{x}y}$	On mets le chiffre sur la personne qui meurt et le chiffre représente l'ordre; dans ce cas-ci, $(x)$ meurt avant $(y)$ avant le temps $t$.
+	\item[]	$\qx[t]{\overset{1}{x}y}$	On mets le chiffre sur la personne qui meurt et le chiffre représente l'ordre; dans ce cas-ci, $(x)$ meurt avant $(y)$ et avant le temps $t$.
 \end{description}
 \end{distributions}
 
