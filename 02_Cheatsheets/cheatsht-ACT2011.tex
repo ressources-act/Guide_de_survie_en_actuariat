@@ -3466,12 +3466,12 @@ Mesure la variation du prix de l'option correspondante à une augmentation du pr
 \end{minipage}
 
 \tcbline
-%Lien entre delta d'options de vente et d'achat:
-%\begin{align*}
+Lien entre le delta pour une options de vente et d'achat:
+\begin{align*}
 %	C - P	&=	S\textrm{e}^{-\delta T} - K\textrm{e}^{-rT}	\\
 %	\deriv{S}{C} - \deriv{S}{P}	&=	\deriv{S}{} (S\textrm{e}^{-\delta T}) - \deriv{S}{} (K\textrm{e}^{-rT})	\\
-%	\Delta_{C} - \Delta_{P}	&=	\textrm{e}^{-\delta T}
-%\end{align*}
+	\Delta_{C} - \Delta_{P}	&=	\textrm{e}^{-\delta T}
+\end{align*}
 
 \begin{center}
 	\textbf{Notes}
@@ -3524,9 +3524,6 @@ Mesure la variation du Delta de l'option correspondante à une augmentation du p
 	\item	Le $\Gamma$ mesure le \textit{taux} de variation du $\Delta$.\\
 			Puisque le $\Delta$ augmente toujours, le $\Gamma$ est toujours positif;
 	\item	Le $\Gamma$ est maximisé au cours du marché, car c'est où le $\Delta$ connaît le plus de variation.
-%		\begin{center}
-%		\includegraphics[scale=0.4]{src/ACT-2011/gamma-delta-greek.png}
-%		\end{center}
 		\begin{center}
 		
 
@@ -3577,6 +3574,10 @@ Mesure la variation du prix de l'option correspondante à l'écoulement du temps
 \paragraph{Note}	Selon si on dérive par rapport au point de départ $t$ ou à l'échéance $T$ on a que \icbox[red][palechestnut]{$\theta	=	\deriv{t}{V}	=	-\deriv{T}{V}$}
 
 \tcbline
+Lien entre le delta pour une options de vente et d'achat:
+\begin{align*}
+	\theta_{C} - \theta_{P}	&=	\delta S \textrm{e}^{-\delta (T - t)}	-	r K \textrm{e}^{-r (T - t)}
+\end{align*}
 
 \begin{center}
 	\textbf{Expressions du Theta pour les options}
@@ -3585,10 +3586,10 @@ Mesure la variation du prix de l'option correspondante à l'écoulement du temps
 \begin{gather}
 \begin{align*}
 	\theta_{C}
-	&=	\left(Kr \textrm{e}^{-r (T - t)} N(d_{2})	-	S_{0}\delta \textrm{e}^{-\delta (T - t)} N(d_{1})\right) +
+	&=	\left(S_{0}\delta \textrm{e}^{-\delta (T - t)} N(d_{1})	-	Kr \textrm{e}^{-r (T - t)} N(d_{2})\right) -
 		\frac{K\textrm{e}^{-r (T - t)} N'(d_{2}) \sigma}{2\sqrt{T - t}}	\\
 	\theta_{P}
-	&=	\left(S_{0}\delta \textrm{e}^{-\delta (T - t)} N(-d_{1})	-	Kr \textrm{e}^{-r (T - t)} N(-d_{2})\right) +
+	&=	\left(Kr \textrm{e}^{-r (T - t)} N(-d_{2})	-	S_{0}\delta \textrm{e}^{-\delta (T - t)} N(-d_{1})\right) -
 		\frac{K\textrm{e}^{-r (T - t)} N'(d_{2}) \sigma}{2\sqrt{T - t}}	\\
 \end{align*}
 	\setlength{\mathindent}{1cm}
@@ -4997,7 +4998,7 @@ Lorsque la valeur à l'échéance dépend de la trajectoire du prix, le modèle 
 
 La méthode de Monte Carlo utilise la distribution neutre au risque et le taux sans risque.
 
-\subsection*{Calcul du prix de l'option comme une valeur espérée actualisée}
+\subsection{Calcul du prix de l'option comme une valeur espérée actualisée}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\text{E}_{0}^{*}$]	Espérance calculée à $t	=	0$ en utilisant la distribution neutre au risque;
@@ -5027,10 +5028,10 @@ On remplace $p^{*}$ par $p$ cependant, au lieu d'appliquer $\textrm{e}^{-rT}$ à
 
 
 \columnbreak
-\subsection*{Génération de nombres aléatoires}
+\subsection{Génération de nombres aléatoires}
 On simule des chiffres $u$ provenant d'une distribution uniforme $U(a, b)$. Lorsque la distribution est $U(0, 1)$, on peut interpréter les chiffres $u$ comme des quantiles et obtenir des valeurs $F^{-1}(u)$ pour une distribution (Méthode de l'inverse).
 
-\subsection*{Simulation de prix lognormaux}
+\subsection{Simulation de prix lognormaux}
 On rappel que \lfbox[rappel]{$S_{T}	=	S_{0}\textrm{exp}\left\{ (\alpha - \delta - \frac{1}{2}\sigma^{2})T + \sigma\sqrt{T} Z \right\}$.}
 Pour simuler des prix lognormaux $S_{T}$ on insère des valeurs aléatoire de $Z \sim \mathcal{N}(0, 1)$ dans la formule.
 
@@ -5049,7 +5050,7 @@ Donc, \lfbox[formula]{$S_{nh}	=	S_{T}	=	S_{0}\textrm{exp}\left\{ (\alpha - \delt
 
 
 \columnbreak
-\subsection*{Évaluation par la méthode de Monte Carlo}
+\subsection{Évaluation par la méthode de Monte Carlo}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$S_{T}(i)$]	Prix du sous-jacent à $T$ généré aléatoirement avec la distribution neutre au risque;
@@ -5085,7 +5086,7 @@ On estime le prix tel que illustré à la section 19.3 puis on trouve que l'esti
 
 
 \columnbreak
-\subsection*{Évaluation par la méthode efficace de Monte Carlo}
+\subsection{Évaluation par la méthode efficace de Monte Carlo}
 La méthode décrite jusqu'ici est la méthode simple (alias, naïve) de Monte Carlo. Il existe des méthodes pour améliorer la précision, et donc réduire la variance de l'estimé.
 
 \subsubsection*{Variable de contrôle}
@@ -5095,22 +5096,26 @@ L'idée de la variable de contrôle est d'estimer l'erreur à chaque itération 
 \begin{description}
 	\item[$A(i)$ et $G(i)$]	Prix de l'option avec moyenne arithmétique et géométrique calculé avec la $i^{\text{e}}$ trajectoire simulée;
 	\item[$\overline{A}$ et $\overline{G}$]	Estimé du prix de l'option;
-	\item[$G$]	Vrai prix de l'option utilisant la moyenne géométrique selon la formule connue;
+	\item[$A$ et $G$]	Vrai prix de l'option avec moyenne arithmétique et géométrique selon la formule connue;	
 		\begin{itemize}
-		\item	On peut donc obtenir l'erreur \lfbox[conditions]{$G	-	\overline{G}$}.
+		\item	$A$ est inconnu mais $G$ l'est.
 		\end{itemize}
 	\item[$A^{*}$]	Estimé ajusté du prix de l'option utilisant la moyenne arithmétique.
-		\begin{align*}
-		A^{*}
-		&=	\overline{A}	+	\beta	(G	-	\overline{G})
-		\end{align*}
-		\begin{itemize}
-%		\item	On trouve que $\text{Var}(A^{*})	=	\text{Var}(A) + \beta^{2}\text{Var}(\overline{G})	-	2\beta\text{Cov}(\overline{A}, \overline{G})$
-		\item	On trouve que $\text{Var}(A^{*})	=	\text{Var}(A)(1	-	\rho^{2})$ où $\rho	=	\text{Corr}(\overline{A}, \overline{G})$;
-		\item	On trouve que $\hat{\beta}	=	\frac{\text{Cov}(\overline{A}, \overline{G})}{\text{Var}(\overline{G})}$.
-		\end{itemize}
 \end{description}
 \end{distributions}
+
+Pour approximer le prix $A^{*}$ :
+\begin{enumerate}
+	\item	On pose que $A$ et $G$ sont corrélés et les relient par le coefficient $\beta$.
+		\begin{itemize}
+		\item	Le coefficient $\beta$ est la pente d'une régression linéaire;
+		\item	On trouve donc que $\hat{\beta}	=	\frac{\text{Cov}(\overline{A}, \overline{G})}{\text{Var}(\overline{G})}$.
+		\end{itemize}
+	\item	On utilise $\beta$ pour ajouter à la moyenne $\overline{A}$ la différence entre le vrai prix $G$ et sa moyenne $\overline{G}$.
+\end{enumerate}
+
+Donc, \lfbox[formula]{$A^{*}	=	\overline{A}	+	\beta	(G	-	\overline{G})$}.\\
+De plus, $\text{Var}(A^{*})	=	\text{Var}(A)(1	-	\rho^{2})$ où $\rho	=	\text{Corr}(\overline{A}, \overline{G})$
 
 \subsubsection*{Autres méthodes}
 \begin{definitionNOHFILLsub}[Variable antithétique]
@@ -5151,7 +5156,7 @@ Elles sont obtenues de façon déterministe et visent à bien couvrir l'ensemble
 \pagebreak
 \setcounter{section}{22}
 \section{Options exotiques: II}
-\subsection*{Options tout ou rien}
+\subsection{Options tout ou rien}
 
 \begin{definitionNOHFILL}[Options tout ou rien]
 Paient un montant (1\$ par défaut) ou une action (1 unité par défaut) si une condition est remplie mais rien sinon.\\
@@ -5172,7 +5177,7 @@ Si la condition de paiement est :
 \end{definitionNOHFILL}
 
 
-\subsection*{Types d'options tout ou rien}
+\subsubsection{Types d'options tout ou rien}
 \begin{definitionNOHFILLsub}[Options comptant ou rien]
 La valeur à l'échéance est de 1\$ si la condition est satisfaite.\\
 
@@ -5211,7 +5216,7 @@ La valeur à l'échéance est de $S_{T}$ si la condition est satisfaite.\\
 \end{itemize}
 
 \columnbreak
-\subsection*{Option rétroviseur}
+\subsection{Option rétroviseur}
 \begin{definitionNOHFILL}[Option rétroviseur]
 La valeur à l'échéance dépend du prix de l'action maximal ou minimal atteint lorsque l'option était en vigueur.\\
 
@@ -5244,7 +5249,7 @@ Extrema Lookback Put		&	$\max(K	-	\min(S), 0)	-	S_{T}$	\\\hline
 \end{definitionNOHFILL}
 
 \columnbreak
-\subsection*{Options qui ne sont pas dans le cadre du cours, mais qui font partie de l'examen IFM}
+\subsection{Options qui ne sont pas dans le cadre du cours, mais qui font partie de l'examen IFM}
 \begin{definitionNOHFILLsub}[Options \og \textit{forward start} \fg{}]
 Fourni au détenteur une option à un temps futur déterminé. À l'échéance de l'option \og \textit{forward start} \fg{}, le détenteur reçoit une option dont le prix d'exercice dépend du prix de l'action à ce moment.	
 \end{definitionNOHFILLsub}
