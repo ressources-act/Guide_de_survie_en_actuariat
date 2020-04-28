@@ -5096,22 +5096,26 @@ L'idée de la variable de contrôle est d'estimer l'erreur à chaque itération 
 \begin{description}
 	\item[$A(i)$ et $G(i)$]	Prix de l'option avec moyenne arithmétique et géométrique calculé avec la $i^{\text{e}}$ trajectoire simulée;
 	\item[$\overline{A}$ et $\overline{G}$]	Estimé du prix de l'option;
-	\item[$G$]	Vrai prix de l'option utilisant la moyenne géométrique selon la formule connue;
+	\item[$A$ et $G$]	Vrai prix de l'option avec moyenne arithmétique et géométrique selon la formule connue;	
 		\begin{itemize}
-		\item	On peut donc obtenir l'erreur \lfbox[conditions]{$G	-	\overline{G}$}.
+		\item	$A$ est inconnu mais $G$ l'est.
 		\end{itemize}
 	\item[$A^{*}$]	Estimé ajusté du prix de l'option utilisant la moyenne arithmétique.
-		\begin{align*}
-		A^{*}
-		&=	\overline{A}	+	\beta	(G	-	\overline{G})
-		\end{align*}
-		\begin{itemize}
-%		\item	On trouve que $\text{Var}(A^{*})	=	\text{Var}(A) + \beta^{2}\text{Var}(\overline{G})	-	2\beta\text{Cov}(\overline{A}, \overline{G})$
-		\item	On trouve que $\text{Var}(A^{*})	=	\text{Var}(A)(1	-	\rho^{2})$ où $\rho	=	\text{Corr}(\overline{A}, \overline{G})$;
-		\item	On trouve que $\hat{\beta}	=	\frac{\text{Cov}(\overline{A}, \overline{G})}{\text{Var}(\overline{G})}$.
-		\end{itemize}
 \end{description}
 \end{distributions}
+
+Pour approximer le prix $A^{*}$ :
+\begin{enumerate}
+	\item	On pose que $A$ et $G$ sont corrélés et les relient par le coefficient $\beta$.
+		\begin{itemize}
+		\item	Le coefficient $\beta$ est la pente d'une régression linéaire;
+		\item	On trouve donc que $\hat{\beta}	=	\frac{\text{Cov}(\overline{A}, \overline{G})}{\text{Var}(\overline{G})}$.
+		\end{itemize}
+	\item	On utilise $\beta$ pour ajouter à la moyenne $\overline{A}$ la différence entre le vrai prix $G$ et sa moyenne $\overline{G}$.
+\end{enumerate}
+
+Donc, \lfbox[formula]{$A^{*}	=	\overline{A}	+	\beta	(G	-	\overline{G})$}.\\
+De plus, $\text{Var}(A^{*})	=	\text{Var}(A)(1	-	\rho^{2})$ où $\rho	=	\text{Corr}(\overline{A}, \overline{G})$
 
 \subsubsection*{Autres méthodes}
 \begin{definitionNOHFILLsub}[Variable antithétique]
