@@ -4997,7 +4997,7 @@ Lorsque la valeur à l'échéance dépend de la trajectoire du prix, le modèle 
 
 La méthode de Monte Carlo utilise la distribution neutre au risque et le taux sans risque.
 
-\subsection*{Calcul du prix de l'option comme une valeur espérée actualisée}
+\subsection{Calcul du prix de l'option comme une valeur espérée actualisée}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\text{E}_{0}^{*}$]	Espérance calculée à $t	=	0$ en utilisant la distribution neutre au risque;
@@ -5027,10 +5027,10 @@ On remplace $p^{*}$ par $p$ cependant, au lieu d'appliquer $\textrm{e}^{-rT}$ à
 
 
 \columnbreak
-\subsection*{Génération de nombres aléatoires}
+\subsection{Génération de nombres aléatoires}
 On simule des chiffres $u$ provenant d'une distribution uniforme $U(a, b)$. Lorsque la distribution est $U(0, 1)$, on peut interpréter les chiffres $u$ comme des quantiles et obtenir des valeurs $F^{-1}(u)$ pour une distribution (Méthode de l'inverse).
 
-\subsection*{Simulation de prix lognormaux}
+\subsection{Simulation de prix lognormaux}
 On rappel que \lfbox[rappel]{$S_{T}	=	S_{0}\textrm{exp}\left\{ (\alpha - \delta - \frac{1}{2}\sigma^{2})T + \sigma\sqrt{T} Z \right\}$.}
 Pour simuler des prix lognormaux $S_{T}$ on insère des valeurs aléatoire de $Z \sim \mathcal{N}(0, 1)$ dans la formule.
 
@@ -5049,7 +5049,7 @@ Donc, \lfbox[formula]{$S_{nh}	=	S_{T}	=	S_{0}\textrm{exp}\left\{ (\alpha - \delt
 
 
 \columnbreak
-\subsection*{Évaluation par la méthode de Monte Carlo}
+\subsection{Évaluation par la méthode de Monte Carlo}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$S_{T}(i)$]	Prix du sous-jacent à $T$ généré aléatoirement avec la distribution neutre au risque;
@@ -5085,7 +5085,7 @@ On estime le prix tel que illustré à la section 19.3 puis on trouve que l'esti
 
 
 \columnbreak
-\subsection*{Évaluation par la méthode efficace de Monte Carlo}
+\subsection{Évaluation par la méthode efficace de Monte Carlo}
 La méthode décrite jusqu'ici est la méthode simple (alias, naïve) de Monte Carlo. Il existe des méthodes pour améliorer la précision, et donc réduire la variance de l'estimé.
 
 \subsubsection*{Variable de contrôle}
@@ -5151,7 +5151,7 @@ Elles sont obtenues de façon déterministe et visent à bien couvrir l'ensemble
 \pagebreak
 \setcounter{section}{22}
 \section{Options exotiques: II}
-\subsection*{Options tout ou rien}
+\subsection{Options tout ou rien}
 
 \begin{definitionNOHFILL}[Options tout ou rien]
 Paient un montant (1\$ par défaut) ou une action (1 unité par défaut) si une condition est remplie mais rien sinon.\\
@@ -5172,7 +5172,7 @@ Si la condition de paiement est :
 \end{definitionNOHFILL}
 
 
-\subsection*{Types d'options tout ou rien}
+\subsubsection{Types d'options tout ou rien}
 \begin{definitionNOHFILLsub}[Options comptant ou rien]
 La valeur à l'échéance est de 1\$ si la condition est satisfaite.\\
 
@@ -5211,7 +5211,7 @@ La valeur à l'échéance est de $S_{T}$ si la condition est satisfaite.\\
 \end{itemize}
 
 \columnbreak
-\subsection*{Option rétroviseur}
+\subsection{Option rétroviseur}
 \begin{definitionNOHFILL}[Option rétroviseur]
 La valeur à l'échéance dépend du prix de l'action maximal ou minimal atteint lorsque l'option était en vigueur.\\
 
@@ -5244,7 +5244,7 @@ Extrema Lookback Put		&	$\max(K	-	\min(S), 0)	-	S_{T}$	\\\hline
 \end{definitionNOHFILL}
 
 \columnbreak
-\subsection*{Options qui ne sont pas dans le cadre du cours, mais qui font partie de l'examen IFM}
+\subsection{Options qui ne sont pas dans le cadre du cours, mais qui font partie de l'examen IFM}
 \begin{definitionNOHFILLsub}[Options \og \textit{forward start} \fg{}]
 Fourni au détenteur une option à un temps futur déterminé. À l'échéance de l'option \og \textit{forward start} \fg{}, le détenteur reçoit une option dont le prix d'exercice dépend du prix de l'action à ce moment.	
 \end{definitionNOHFILLsub}
