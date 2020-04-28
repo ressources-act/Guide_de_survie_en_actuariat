@@ -3466,12 +3466,12 @@ Mesure la variation du prix de l'option correspondante à une augmentation du pr
 \end{minipage}
 
 \tcbline
-%Lien entre delta d'options de vente et d'achat:
-%\begin{align*}
+Lien entre le delta pour une options de vente et d'achat:
+\begin{align*}
 %	C - P	&=	S\textrm{e}^{-\delta T} - K\textrm{e}^{-rT}	\\
 %	\deriv{S}{C} - \deriv{S}{P}	&=	\deriv{S}{} (S\textrm{e}^{-\delta T}) - \deriv{S}{} (K\textrm{e}^{-rT})	\\
-%	\Delta_{C} - \Delta_{P}	&=	\textrm{e}^{-\delta T}
-%\end{align*}
+	\Delta_{C} - \Delta_{P}	&=	\textrm{e}^{-\delta T}
+\end{align*}
 
 \begin{center}
 	\textbf{Notes}
@@ -3524,9 +3524,6 @@ Mesure la variation du Delta de l'option correspondante à une augmentation du p
 	\item	Le $\Gamma$ mesure le \textit{taux} de variation du $\Delta$.\\
 			Puisque le $\Delta$ augmente toujours, le $\Gamma$ est toujours positif;
 	\item	Le $\Gamma$ est maximisé au cours du marché, car c'est où le $\Delta$ connaît le plus de variation.
-%		\begin{center}
-%		\includegraphics[scale=0.4]{src/ACT-2011/gamma-delta-greek.png}
-%		\end{center}
 		\begin{center}
 		
 
@@ -3577,6 +3574,10 @@ Mesure la variation du prix de l'option correspondante à l'écoulement du temps
 \paragraph{Note}	Selon si on dérive par rapport au point de départ $t$ ou à l'échéance $T$ on a que \icbox[red][palechestnut]{$\theta	=	\deriv{t}{V}	=	-\deriv{T}{V}$}
 
 \tcbline
+Lien entre le delta pour une options de vente et d'achat:
+\begin{align*}
+	\theta_{C} - \theta_{P}	&=	\delta S \textrm{e}^{-\delta (T - t)}	-	r K \textrm{e}^{-r (T - t)}
+\end{align*}
 
 \begin{center}
 	\textbf{Expressions du Theta pour les options}
@@ -3585,10 +3586,10 @@ Mesure la variation du prix de l'option correspondante à l'écoulement du temps
 \begin{gather}
 \begin{align*}
 	\theta_{C}
-	&=	\left(Kr \textrm{e}^{-r (T - t)} N(d_{2})	-	S_{0}\delta \textrm{e}^{-\delta (T - t)} N(d_{1})\right) +
+	&=	\left(S_{0}\delta \textrm{e}^{-\delta (T - t)} N(d_{1})	-	Kr \textrm{e}^{-r (T - t)} N(d_{2})\right) -
 		\frac{K\textrm{e}^{-r (T - t)} N'(d_{2}) \sigma}{2\sqrt{T - t}}	\\
 	\theta_{P}
-	&=	\left(S_{0}\delta \textrm{e}^{-\delta (T - t)} N(-d_{1})	-	Kr \textrm{e}^{-r (T - t)} N(-d_{2})\right) +
+	&=	\left(Kr \textrm{e}^{-r (T - t)} N(-d_{2})	-	S_{0}\delta \textrm{e}^{-\delta (T - t)} N(-d_{1})\right) -
 		\frac{K\textrm{e}^{-r (T - t)} N'(d_{2}) \sigma}{2\sqrt{T - t}}	\\
 \end{align*}
 	\setlength{\mathindent}{1cm}
