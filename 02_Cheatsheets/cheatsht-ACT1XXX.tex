@@ -26,6 +26,7 @@
 % Save more space than default
 %
 \setlength{\abovedisplayskip}{-15pt}
+\setlist{leftmargin=*}
 %
 %	Extra math symbols
 %
@@ -42,6 +43,7 @@
 \def\SubSectionColor{azure(colorwheel)}
 \def\SubSubSection{azure(colorwheel)}
 %% -----------------------------
+\setcounter{secnumdepth}{0}
 
 %% -----------------------------
 %% Color definitions
@@ -66,10 +68,10 @@
 \input{contributeurs/contrib-ACT1XXX}
 
 \newpage
-
+\raggedcolumns
 \begin{multicols*}{2}
 
-\section*{Compléments de mathématiques}
+\section{Compléments de mathématiques}
 
 \subsection*{Intégrales utiles à connaître}
 \begin{conceptgen}{Polynômes}
@@ -218,7 +220,7 @@ Par exemple, $\sin(-x) = -\sin(x)$.
 
 \newpage
 
-\section*{Mathématiques financières}
+\section{Mathématiques financières}
 
 \subsection*{Intérêt simple}
 \begin{align*}
@@ -645,8 +647,36 @@ Pour bien saisir la distinction entre les deux:
 
 \newpage
 
-\section*{Analyse probabiliste des risques actuariels}
+\section{Analyse probabiliste des risques actuariels}
+\subsection{Analyse combinatoire}
+\begin{description}
+	\item[Analyse combinatoire]	La théorie mathématique du comptage.
+\end{description}
 
+\begin{definitionNOHFILLsub}[Principe de base de comptage]
+Deux expériences sont effectuées.	\\
+La première a $m$ événements possibles, et la deuxième a $n$ événements possibles.	\\
+Ensemble, il y a $m \times n$ événements possible pour les deux expériences.	
+
+\tcbline
+
+On peut visualiser ceci avec un tableau:
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline
+$(1, 1)$	&	$(1, 2)$	&	$\dots$	&	$(1, n)$	\\\hline
+$(2, 1)$	&	$(2, 2)$	&	$\dots$	&	$(2, n)$	\\\hline
+$\vdots$	&	$\vdots$	&	$\ddots$	&	$\vdots$	\\\hline
+$(m, 1)$	&	$(m, 2)$	&	$\dots$	&	$(m, n)$	\\\hline
+\end{tabular}
+\end{center}
+\begin{itemize}
+	\item	Par exemple, la première cellule à l'événement 1 pour l'expérience 1 et l'événement 2 pour l'expérience 2.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\columnbreak
 \subsection*{Théorèmes probabilistes}
 
 \textbf{Théorème du binôme}
