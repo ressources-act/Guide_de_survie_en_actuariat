@@ -15,6 +15,8 @@
 \def\SubSectionColor{amaranth}
 \def\SubSubSectionColor{pastelred}
  %%	pour timeline
+\setlist{leftmargin=*}
+\setcounter{secnumdepth}{0}
 
 \usetikzlibrary{shapes,positioning}
 \newcommand{\foo}{\hspace{-2.3pt}$\bullet$ \hspace{5pt}}
@@ -46,7 +48,7 @@
 
 \newpage
 
-
+\raggedcolumns
 \begin{multicols*}{3} 
 \section{Le risque et l'assurance}
 \begin{definitionNOHFILL}[Risque]
@@ -626,11 +628,7 @@ Combat la pauvreté	&	Coût caché	\\\hline
 
 Classement des régimes existants
 
-%%%	-----
-%%%	NOTES (AJVR):
-%%%	+	Ce tableau est à retravailler dans un autre format je crois afin d'ajouter plus de détails d'Isabelle si t'en as, sinon c'est chill je vais faire du reformatting;
-%%%	-----
-\begin{tabular}{| >{\columncolor{beaublue}}m{3cm} | >{\columncolor{beaublue}}m{3cm} | >{\columncolor{beaublue}}m{3cm} |}
+\begin{tabular}{| >{\columncolor{beaublue}}m{2cm} | >{\columncolor{beaublue}}m{2.5cm} | >{\columncolor{beaublue}}m{2.5cm} |}
 \hline\hline\rowcolor{airforceblue} 
 \textcolor{white}{\textbf{Assurance emploi}}						&	\textcolor{white}{\textbf{Assistance sociale}}	&	\textcolor{white}{\textbf{Régimes universels}}	\\\hline
 Assurance parentale					&	Assistance sociale						&	Allocations familiales	\\
@@ -660,7 +658,7 @@ Assurance médicament					&											&	\\\hline
 	  \item Maintenant qu'on sait ce que les autres pays font, on sait ce qui se fait mieux, on veut compétitionner
 	  \end{itemize}
 \end{itemize}
-Nos régimes craquent d'un peu partout. On mets en vigueur des changements et des lois pour cacher ces fissures, mais ça va sans doute exploser un jour.
+Nos régimes craquent d'un peu partout. On mets en vigueur des changements et des lois pour cacher ces fissures, mais ça va sans doute exploser un jour.\\
 
 \textbf{Les États-Unis}
 
@@ -948,7 +946,6 @@ Raisons pourquoi pas 100\%:
 \newpage
 
 \section{Loi sur la sécurité de la vieillesse}
-
 \begin{conceptgen}{Types de prestations}
 Il existe plusieurs types de prestations dont:
 \begin{itemize}[leftmargin =  *]
@@ -1329,7 +1326,8 @@ Prestation mensuelle payable à une personne entre 60 et 64 ans veuf(ve) (existe
 %%%	--------------
 %%%	NOTE
 %%%	+	Recherche d'avantage sur ceci pour trouver une meilleur façon de le dire autre que "#2 propriétaire d'immeubles" (AJVR).
-%%% + En fait, je me questionne à savoir si c'est important de le dire, je crois que on devrait focus à trouver une manière simple de dire que c'est un organisme très important.
+%%% + En fait, je me questionne à savoir si c'est important de le dire, je crois que on devrait focus à trouver une manière simple de dire que c'est un organisme très important. (OC)
+%%%	+	Bon point (AJvR)	
 %%%	--------------
 		\end{itemize}
 	\item[1966]	Conditions sur les personnes admissibles;
@@ -1461,6 +1459,7 @@ Acquis \textbf{conservés}:
 %%%	NOTE
 %%%	+	pas certain ce que ça entend? (AJVR)
 %%% +    Better now ? [OC] 
+%%%	+	Oui :) (AJvR)
 %%%	--------------
 		\end{itemize}
 	\item[Période cotisable]	Période servant au calcul de la rente de retraite;
@@ -1593,6 +1592,7 @@ Conditions:
 %%%	---------------
 %%%	NOTE:
 %%%	+	Je ne savais pas trop comment / si je devrais reformuler ces deux prochaines sous-sous-sections parce-que je n'ai pas écris grand chose à propos (AJVR).
+%%%	+	Dayum thx big (AJvR)
 %%%	---------------
 \subsubsection*{Suffisance de la rente}
 La PSV et le RRQ fournissent 40\% du salaire (MGA) et l'objectif est d'environ 70\%. Cela est atteint avec des RCR, l'épargne personnelle, etc. Le gouvernement tentera de pallier à ce manque avec l'instauration du régime supplémentaire 1 (1er Janvier 2019).
@@ -1859,38 +1859,28 @@ Les compagnies peuvent mettre en place et offrir à leurs employés un régime d
 
 \begin{definitionNOHFILL}[Définition du RCR]
 
-	\begin{itemize}
-	\item[Globalement] Contrat en vertu duquel le participat bénéficie d'une prestation de retraite dont le financement est assuré par l'employeur seul ou de l'employeur et du participant.
+\begin{description}[leftmargin = *]
+	\item[Globalement] Contrat en vertu duquel le participant bénéficie d'une prestation de retraite dont le financement est assuré soit par l'employeur uniquement ou l'employeur et le participant.
 	\item[Selon la loi] Le principal objet doit être le paiement d'une rente viagère de retraite aux participants pour les services qu'ils ont accomplis à titre d'employés.
-	\end{itemize}
-%%%	------------------------
-%%%	NOTE
-%%%	+	Mettre la définition? Je trouvais ça pourrait être trops lourd et j'étais un peu paresseux. (AJVR)
-%%% + Done [OC]
-%%%	------------------------
+\end{description}
 
 \paragraph{Notes}
 \begin{itemize}[leftmargin = *]
-	\item	Traditionnellement, ce sont surtout des employés gouvernementaux et de grandes compagnies privées qui ont accès à des RCR; ils sont rares pour les employés de petites entreprises.
-	\item	Le gouvernement accorde des avantages fiscaux pour encourager la mise en place de RCR.
-	\item	Le fonctionnement est d'accumuler du rendements sur les cotisations pour payer les prestations à la retraite.
+	\item	Traditionnellement, ce sont surtout des employés gouvernementaux et de grandes compagnies privées qui ont accès à des RCR---ils sont rares pour les employés de petites entreprises;
+	\item	Le gouvernement accorde des avantages fiscaux pour encourager la mise en place de RCR;
+	\item	Le fonctionnement est d'accumuler du rendement sur les cotisations pour payer les prestations à la retraite.
 \end{itemize}
 \end{definitionNOHFILL}
-
-%%%	------------------------
-%%%	NOTE
-%%%	+	À faire (AJVR)
-%%% + Also done [OC]
-%%%	------------------------
 \subsubsection*{Raison d'être}
 
-La raison d'être des régimes complémentaires de retraite est de pallier au fait que les rentes gouvernementales n'atteigne pas le 70\% du revenu avant la retraite visé. (sauf pour les faibles revenus) En effet, le RCR a pour but de combler le manque, en emmenant l'épargne directement sur le milieu du travail.
+La raison d'être des régimes complémentaires de retraite est de palier au fait que les rentes gouvernementales n'atteignent pas le 70\% du revenu avant la retraite visée. (sauf pour les faibles revenus)\\
+En effet, le RCR a pour but de combler le manque, en emmenant l'épargne directement sur le milieu du travail.
 
-\begin{itemize}
-\item{Objectif premier} Fournir un revenu de retraite qui s'ajoute à celui versé par les régimes publics.
-\item{Principe de revenu différé} C'est quand même de l'argent que l'employeur nous verse, seulement différé.
-\item{Fiscalement} Pour encourager la mise en place d'un RCR, le gouvernement accorde des avantages fiscaux à l'argent mis de côté dans ces moyens d'épargne-retraite (autant pour les employeurs que les employés s'ils participent).
-\end{itemize}
+\begin{description}
+	\item[Objectif premier:] Fournir un revenu de retraite qui s'ajoute à celui versé par les régimes publics.
+	\item[Principe de revenu différé:] C'est quand même de l'argent que l'employeur nous verse, seulement différé.
+	\item[Fiscalement:] Pour encourager la mise en place d'un RCR, le gouvernement accorde des avantages fiscaux à l'argent mis de côté dans ces moyens d'épargne-retraite (autant pour les employeurs que les employés s'ils participent).
+\end{description}
 
 \subsubsection*{Pour ou contre?}
 
@@ -1928,7 +1918,7 @@ Point de vue des:
 %%%		+	Vérifier ce que ça veut dire que les sommes sont provisionnées. (AJVR)
 %%% 		+ 	Ça veut dire qu'elles sont capitalisés, qu'elles ne servent pas à la retraite de quelqu'un d'autres, elles sont sécurisés à toi. (OC)
 %%%		--------------------
-		\item[$\color{blue}+$]	\textit{Sécurité des prestations---les sommes sont provisionnées};
+		\item[$\color{blue}+$]	Sécurité des prestations---les sommes sont provisionnées;
 		\item[$\color{blue}+$]	Planification de la retraite simplifiée;
 		\item[$\color{blue}+$]	Contribution de l'employeur à l'épargne-retraite;
 		\item[$\color{red}-$]	Préférence pour un salaire plus élevé plutôt que des prestations de retraite  futures (Avoir l'argent maintenant).
@@ -1967,7 +1957,7 @@ Les régimes peuvent être:
 
 \subsubsection*{Types de régimes}
 
-On ne fait qu'énuméré les types de régimes, ils seront tous couverts en détails plus tard.
+\paragraph{Note:}	On ne fait qu'énumérer les types de régimes, ils seront tous couverts en détails plus tard.
 
 \begin{description}
 	\item[prestations déterminées]	On sait ce qu'on va payer à la retraite, les cotisations sont calculées pour que ça puisse fonctionner.
@@ -1981,8 +1971,7 @@ On ne fait qu'énuméré les types de régimes, ils seront tous couverts en dét
 
 \columnbreak
 
-\subsection*{Régimes à prestations déterminées (PD)}
-\addcontentsline{toc}{subsection}{Régimes à prestations déterminées (PD)}
+\subsection{Régimes à prestations déterminées (PD)}
 
 \begin{definitionNOHFILL}[Description]
 Promesse (pas nécessairement garantie) de payer aux participants un \hl{montant de rente déterminé}.
@@ -1990,7 +1979,10 @@ Promesse (pas nécessairement garantie) de payer aux participants un \hl{montant
 \paragraph{Notes}
 \begin{itemize}[leftmargin = *]
 	\item	Le \textit{niveau} des prestations est connu.\\
-			C'est-à-dire que la \textit{formule} utilisée pour déterminer les prestations est connue mais \textbf{pas} le \textit{montant} comme tel (même si ça semble pareil, exemple : 70\% d'un meilleur salaire qui est aujourd'hui inconnu);
+			C'est-à-dire que la \textit{formule} utilisée pour déterminer les prestations est connue mais \textbf{pas} le \textit{montant} comme tel (même si ça semble pareil);
+		\begin{itemize}
+		\item	 Exemple : 70\% d'un meilleur salaire qui est aujourd'hui inconnu.
+		\end{itemize}
 	\item	Le montant varie habituellement selon le nombre d'années de service;
 \end{itemize}
 \begin{description}
@@ -2006,9 +1998,9 @@ Il n'y a aucune décision d'investissement pour le participant---l'\hl{employeur
 
 Le provisionnement (capitalisation) est obligatoire (Exigence de la loi sur les RCR) : 
 \begin{itemize}
-\item Pour assurer la sécurité des prestations promises;
-\item Pour éliminer les transferts de coût entre les générations;
-\item Ultimement, ça réduit les cotisations requises (rendement sur les sommes accumulés).
+	\item Pour assurer la sécurité des prestations promises;
+	\item Pour éliminer les transferts de coût entre les générations;
+	\item Ultimement, ça réduit les cotisations requises (rendement sur les sommes accumulés).
 \end{itemize}
 
 L'employeur doit être en mesure de payer les prestations futures aux participants du régime et détermine les cotisations patronales (et salariales si contributif) en fonction d'une \textbf{évaluation actuarielle} périodique. 
@@ -2045,6 +2037,7 @@ Le régime peut avoir un:
 %%%	+	Faudrait trouver un terme plus simple que "expérience" je trouve ça pourrait throw off du monde d'utiliser un terme actuariel lorsque je ne pense pas que c'est vraiment nécessaire.
 %%%	+	J'ai écris ce qui a été observé, qu'est-ce t'en penses?
 %%% + 	J'ai modifié ta phrase, quelque chose de plus simple pour quelqu'un en première session peut-être ? On pourra faire un entredeux au besoin, jai conservé la phrase que tu avais fait (OC)
+%%%	+	J'aime :) (AJvR)
 %%%	--------------------
 	\item[Déficit]	Lorsque les choses vont moins bien que prévu et qu'on a une perte (car on aurait reçu des cotisations pas assez élevées pour les coûts qui sont survenus) 
 	%selon ce qui a été observé (\textit{l'expérience}).
@@ -2060,10 +2053,10 @@ Exemples d'événements qui peuvent mener à un déficit:
 \end{itemize}
 
 
-\paragraph{Note} S'il y a un déficit, l'employeur doit verser des cotisations additionnelles pour combler l'écart. Par contre, l'excédent d'\hl{un surplus ne vas pas automatiquement à l'employeur} et peut avoir d'autres utilités.
+\paragraph{Note} S'il y a un déficit, l'employeur doit verser des cotisations additionnelles pour combler l'écart. Par contre, l'excédent d'\hl{un surplus ne va pas automatiquement à l'employeur} et peut avoir d'autres utilités.
 \end{definitionNOHFILLsub}
 
-Les principaux types de régimes à prestations déterminées observés en pratique sont présenté aux boîtes de couleurs qui suivent. 
+Les principaux types de régimes à prestations déterminées observés en pratique sont présentés aux boîtes de couleurs qui suivent. 
 
 \subsubsection*{Calcul des prestations de la rente selon un montant fixe forfaitaire}
 
@@ -2204,10 +2197,9 @@ Notes
 \end{itemize}
 \end{definitionNOHFILL}
 
-\columnbreak
 
-\subsection*{Régimes à cotisations déterminées (CD)}
-\addcontentsline{toc}{subsection}{Régimes à cotisations déterminées (CD)}
+\columnbreak
+\subsection{Régimes à cotisations déterminées (CD)}
 
 \begin{definitionNOHFILL}[Description]
 \hl{Les cotisations} (de l'employeur et l'employé) \textit{ou} la méthode utilisée pour les calculer \hl{sont déterminées à l'avance.}
@@ -2336,10 +2328,9 @@ Régime à CD administré par un établissement financier offert aux employeurs 
 \end{itemize}
 \end{definitionNOHFILL}
 
-\columnbreak
 
-\subsection*{Résumé des différents RCR}
-\addcontentsline{toc}{subsection}{Résumé des différents RCR}
+\columnbreak
+\subsection{Résumé des différents RCR}
 
 \subsubsection*{Régime à prestations déterminées (PD)}
 \begin{center}
@@ -2367,11 +2358,6 @@ Contre
 \end{center}
 Pour
 \begin{itemize}
-%%%	---------------------
-%%%	NOTE (AJvR)
-%%%	+	Pas certain de bien saisir ce que ça veut dire:
-%%%	+	Ça veut dire que l'employeur pourrait encourager les employés à partir plus tôt en bonifiant le régime si jamais il avait trop de main d'oeuvre. De la même manière, il pourrait pénaliser les retraite anticipée et donner des bonifications importantes à ceux qui partent plus tard si la main d'oeuvre est plus rare (garder les gens en emploi avec des "cadeau").
-%%%	---------------------
 	\item[$\color{blue}+$]	Développement des programmes de retraite pour gérer la fluctuation de la main-d'œuvre (retraite anticipée).
 	\item[$\color{blue}+$]	Possibilité d'augmenter les prestations au besoin.
 	\item[$\color{blue}+$]	Premier bénéficiaire des gains sur les rendements et l'expérience (surplus).
@@ -2414,23 +2400,28 @@ Pour
 %%%	NOTE (AJvR)
 %%%	+	Pas sur de ce que ça veut dire exactement / pourquoi c'est une bonne chose?
 %%%	+	Me semble la compagnie ne serait pas contente d'avoir des fonds immobilisés puisqu'elle ne peut pas faire un rendement d'investissement / l'utiliser pour expansion / etc.?
-%%% + 	Je suis d'accord avec toi ! C'est un avantage dans la mesure ou l'employé ne pourra pas aller au casino avec l'argent que l'employeur souhaite lui donner pour la retraite.
+%%% + 	Je suis d'accord avec toi ! C'est un avantage dans la mesure ou l'employé ne pourra pas aller au casino avec l'argent que l'employeur souhaite lui donner pour la retraite. (OC)
+%%%	+	Ah je catch, merci :) (AJvR)
 %%%	--------------------
 	\item[$\color{blue}+$]	L'argent sera utilisé pour la retraite (immobilisation)
+		\begin{itemize}
+		\item	Ceci est un avantage pour l'employeur, car ça assure que l'employé ne pourra pas utiliser les fonds pour autre chose que sa retraite.
+		\end{itemize}
 \end{itemize}
 
 Contre
 \begin{itemize}
-	\item[$\color{red}-$]	Administration des RCR réglementésw.
+	\item[$\color{red}-$]	Administration des RCR réglementés.
 %%%	--------------------
 %%%	Voir note ci-dessus
 %%%	--------------------
-	\item[$\color{red}-$]	Pas d'outils pour gérer les ressources humaines. (On ne peut contrôler les retraites anticipés)
+	\item[$\color{red}-$]	Pas d'outils pour gérer les ressources humaines. (On ne peut pas contrôler les retraites anticipés)
 %%%	--------------------
 %%%	NOTE
 %%%	+	Pourquoi c'est un négatif pour eux?
 %%%	+	Ce ne serait pas uniquement un négatif pour les employés ou est-ce que je manque de quoi ici?
-%%%	+	J'ai l'impression que c'est parce que on peut pas nécéssairement Dire aux employés qu'on va leur donner un meilleur revenu... on peut juste cotiser plus. Ça parle moins directement aux employés. 
+%%%	+	J'ai l'impression que c'est parce que on peut pas nécéssairement Dire aux employés qu'on va leur donner un meilleur revenu... on peut juste cotiser plus. Ça parle moins directement aux employés.  (OC)
+%%%	+	lol 10-4, merci (AJvR)
 %%%	--------------------
 	\item[$\color{red}-$]	Montant de prestation non-prévisible.
 	\item[$\color{red}-$]	Certaine responsabilité sur les (mauvais) placements des employés et donc le besoin des informer sur le risque/rendement des placements.
@@ -2439,8 +2430,7 @@ Contre
 
 \newpage
 
-\subsection*{Hybrides}
-\addcontentsline{toc}{subsection}{Hybrides}
+\subsection{Hybrides}
 
 \begin{definitionNOHFILL}[Description]
 Régime à cotisations \textbf{et} prestations déterminées; les cotisations ainsi que la méthode du calcul de la rente sont prédéterminées.
@@ -2477,10 +2467,9 @@ Désavantages:
 \end{itemize}
 \end{definitionNOHFILL}
 
-\columnbreak
 
-\subsection*{Autres caractéristiques}
-\addcontentsline{toc}{subsection}{Autres caractéristiques}
+\columnbreak
+\subsection{Autres caractéristiques}
 
 \subsubsection*{Coordination avec les régimes d'État}
 \paragraph{Note:}	Le RCR tient compte du RRQ/RPC.\\
@@ -2553,7 +2542,8 @@ La LIR a été réformée en 1991
 %%%	------------------------
 %%%	NOTES
 %%%	+	Quoi? (AJVR)
-%%% +	Hypothèse : Pour que ce conjoint puisse utiliser ces fonds pour sa retraite à lui. Ça pourrait être à poser sur le forum.
+%%% +	Hypothèse : Pour que ce conjoint puisse utiliser ces fonds pour sa retraite à lui. Ça pourrait être à poser sur le forum. (OC)
+%%%	+	hmmm intéressante hypothèse j'ai posé la question; à voir. (AJvR)
 %%%	------------------------
 	\item	immobilisé si le survivant est un conjoint (pour sa retraite à lui?)
 	\item	Normalement un seul paiement forfaitaire.
@@ -2570,7 +2560,6 @@ La LIR a été réformée en 1991
 
 
 \newpage
-
 \section{Accidents du travail et maladies professionnelles}
 
 \begin{conceptgen}{Santé et sécurité au travail (SST)}
@@ -2585,7 +2574,8 @@ Programme d'assurance sociale (type Bismarck) pour couvrir les accidents du trav
 \end{itemize}
 \end{conceptgen}
 
-\subsection*{Historique}
+
+\subsection{Historique}
 \subsubsection*{Fin du 19e siècle}
 
 Contexte historique:
@@ -2678,7 +2668,9 @@ Ajoute la réparation (indemnisation) et la réadaptation.
 
 La \textbf{C}ommission des \textbf{n}ormes, de l'\textbf{é}quité, de la \textbf{s}anté et de la \textbf{s}écurité du \textbf{t}ravail (CNESST) est maintenant l'organisme qui gère l'administration du régime.
 
-\subsection*{Accidents de travail et Maladies professionnelles}
+
+\columnbreak
+\subsection{Accidents de travail et Maladies professionnelles}
 \begin{definitionNOHFILL}[Accidents de travail]
 Événement: 
 \begin{itemize}[leftmargin = *]
@@ -2686,6 +2678,7 @@ La \textbf{C}ommission des \textbf{n}ormes, de l'\textbf{é}quité, de la \textb
 	\item	Attribuable à toute cause, 
 	\item	Survenant à une personne par le fait, ou à l'occasion, de son travail et qui entraîne pour elle une lésion professionnelle.
 \end{itemize}
+\
 
 Le dommage subi doit être apparu de façon subite, par exemple: 
 \begin{itemize}[leftmargin = *]
@@ -2700,16 +2693,19 @@ Le dommage subi doit être apparu de façon subite, par exemple:
 \begin{definitionNOHFILL}[Maladie professionnelle]
 Maladie :
 \begin{itemize}[leftmargin = *]
-	\item	contractée par le fait, ou à l'occasion, du travail qui est caractéristique, ou reliée directement aux risques particuliers, de ce travail. (Exemple : Amianthose, tendinite, etc.)
+	\item	contractée par le fait, ou à l'occasion, du travail,
+	\item	qui est caractéristique, ou reliée directement aux risques particuliers, de ce travail.
 \end{itemize}
+\
 
-Maladies non reconnues:
-\begin{itemize}[leftmargin = *]
-	\item	Épuisement (Difficile a relier au travail, rarement compensé)
-\end{itemize}
+Exemple de maladies:
+\begin{description}
+	\item[reconnues]	Amiantose, tendinite, etc.
+	\item[non reconnues]	Épuisement (difficile à relier au travail, rarement compensé)
+\end{description}
 \end{definitionNOHFILL}
 
-Pour qu'il y ait un accident du travail, il faut qu'il y ait un fait accidentel et qu'il ai entraîné une lésion professionnelle.
+Pour qu'il y ait un accident du travail, il faut qu'il y ait un \hl{fait accidentel} et qu'il ai entraîné une \hl{lésion professionnelle}.
 
 \begin{definitionNOHFILL}[Lésion professionnelle]
 \textbf{Blessure}, ou \textbf{maladie}, qui survient par le fait, ou à l’occasion, d’un accident du travail, ou maladie professionnelle. Donc, il doit y avoir une relation de cause à effet et non seulement une coïncidence entre l'accident et la lésion.\\
@@ -2741,7 +2737,7 @@ L'événement peut se produire:
 		\end{itemize}
 \end{description}
 
-%\subsection*{Régime sans égard à la responsabilité}
+%\subsection{Régime sans égard à la responsabilité}
 
 %%%	--------------------
 %%%	NOTES (AJvR)
@@ -2921,7 +2917,9 @@ Notes:
 \end{itemize}
 \end{definitionNOHFILL}
 
-\subsection*{Tarification}
+
+\columnbreak
+\subsection{Tarification}
 La CNESST est entièrement financée par les cotisations des employeurs.\\
 
 La prime, comme toute autre assurance, varie selon la:
@@ -2979,7 +2977,9 @@ Notes:
 \end{itemize}
 \end{definitionNOHFILL}
 
-\subsection*{Fiscalité}
+
+\columnbreak
+\subsection{Fiscalité}
 Les cotisations patronales sont déductibles d'impôts.
 Les indemnités versées ne sont pas imposables puisqu'elles sont calculées avec le salaire net.
 
@@ -2987,29 +2987,24 @@ Les indemnités versées ne sont pas imposables puisqu'elles sont calculées ave
 %%%	NOTES (AJvR)
 %%%	+	J'ai skip cette section puisque j'étais tanné.
 %%%	------------------------------------------
-\subsection*{Coordination}
+
+
+\columnbreak
+\subsection{Coordination}
 \subsubsection*{Régimes privés}
-\begin{itemize}
-\item[Régimes collectifs :]
-	\begin{itemize}
-	\item La CNESST est le premier payeur. Le régime collectif paiera ce qui dépasse pour arriver à sa promesse.
-	\end{itemize}
-\item[Régimes individuels]
-	\begin{itemize}
-	\item En sus, (selon le contrat) je pourrais recevoir le double de compensation. (Aucune coordination)
-	\end{itemize}
-\end{itemize}
-\subsubsection{Régimes publics}
-\begin{itemize}
-\item Certaines factures sont transférées à la CNESST. 
-\end{itemize}
+\begin{description}
+\item[Régimes collectifs :]	La CNESST est le premier payeur et le régime collectif paiera ce qui dépasse pour arriver à sa promesse.
+\item[Régimes individuels]	En sus, (selon le contrat) je pourrais recevoir le double de compensation (Aucune coordination).
+\end{description}
+
+\subsubsection*{Régimes publics}
+Certaines factures sont transférées à la CNESST. 
+
 
 
 \newpage
-
 \section{La Politique familiale et le régime québécois d’assurance parentale (RQAP)}
-
-\subsection*{Objectifs}
+\subsection{Objectifs}
 L'objectif principal est d'aider les familles à assurer les besoins essentiels des enfants; en particulier, les familles avec de faibles revenus. (Mesure d'assistance sociale)\\
 
 En particulier:
@@ -3019,7 +3014,8 @@ En particulier:
 	\item	Appuyer le développement des enfants.
 \end{itemize}
 
-\subsection*{Historique}
+
+\subsection{Historique}
 
 \begin{description}
 	\item[1918]	Programme \textcolor{bulgarianrose}{fédéral} "\textit{exemption pour les enfants}";
@@ -3061,7 +3057,9 @@ En particulier:
 		\end{description}
 \end{description}
 
-\subsection*{RQAP}
+
+\columnbreak
+\subsection{RQAP}
 
 C'est un régime de remplacement de revenu avec des prestations:
 \begin{multicols*}{2}
@@ -3136,13 +3134,18 @@ Travailleurs autonomes	&	0.37\%	\\\hline
 \end{tabular}
 \end{center}
 
-\subsection*{Comparaison internationale du RQAP}
+
+\subsection{Comparaison internationale du RQAP}
 \begin{description}
-	\item[Congé maternité]	Programme courant, plusieurs pays qui remplacent près de 100\% du salaire (Allemagne, Croatie, Serbie, etc.);
+	\item[Congé maternité]	Programme courant, plusieurs pays qui remplacent près de 100\% du salaire;
+		\begin{itemize}
+		\item	Allemagne, Croatie, Serbie, etc.
+		\end{itemize}
 	\item[Congé paternité]	Programme rare dont le Canada est exemplaire.
 \end{description}
 
-\subsection*{Impacts de la mise en place du RQAP}
+
+\subsection{Impacts de la mise en place du RQAP}
 \begin{itemize}[leftmargin = *]
 	\item	Jusqu'en 2006, le taux de natalité était toujours plus grand au Canada, mais le Québec a surpassé le Canada depuis;
 	\item	Cela dit, le taux décroît au Québec depuis 2012;
@@ -3151,7 +3154,9 @@ Travailleurs autonomes	&	0.37\%	\\\hline
 	\item	Atténuation de l'inégalité des genres. 
 \end{itemize}
 
-\subsection*{Projets de loi}
+
+\columnbreak
+\subsection{Projets de loi}
 
 \begin{definitionNOHFILLsub}[Projet de loi 174]
 Présenté le 22 mars 2018, mais jamais adopté.\\
@@ -3182,11 +3187,11 @@ Propositions:
 	\item	Le nombre à partager passe donc au même nombre de semaines (32) que les parents naturels;
 	\item	Augmentation du maximum de salaire que l'on peut gagner tout en recevant les prestations parentales.
 \end{itemize}
-
 \end{definitionNOHFILLsub}
 
-\newpage
 
+
+\newpage
 \section{L’assurance emploi}
 
 \begin{definitionNOHFILLsub}[Objectifs]
@@ -3208,7 +3213,9 @@ Particulièrement avec des prestations:
 \end{description}
 \end{definitionNOHFILLsub}
 
-\subsection*{Historique}
+
+\columnbreak
+\subsection{Historique}
 \begin{description}
 	\item[1935]	La Loi sur le placement et les assurances sociales est déclarée inconstitutionnelle puisque les domaines ne relèvent pas exclusivement du gouvernement fédéral;
 	\item[1940]	Accord unanime parmi toutes les provinces d'accorder le pouvoir au gouvernement fédéral de concevoir un régime d'assurance-chômage (10 juillet);
@@ -3236,7 +3243,9 @@ Particulièrement avec des prestations:
 		\end{itemize}
 \end{description}
 
-\subsection*{Cotisations}
+
+\columnbreak
+\subsection{Cotisations}
 \textbf{Notes}:
 \begin{itemize}[leftmargin = *]
 	\item	Elles sont requises de la part des employeurs et employés;
@@ -3262,8 +3271,9 @@ Particulièrement avec des prestations:
 	\item	Le but est qu'il n'y ait pas d'excédents à placer et que les cotisations servent uniquement à financer l'assurance emploi.
 \end{itemize}
 
-\subsection*{Prestations}
 
+\columnbreak
+\subsection{Prestations}
 \subsubsection*{Caractéristiques}
 \begin{itemize}[leftmargin = *]
 	\item	Délai de carence de 1 semaine;
@@ -3390,16 +3400,18 @@ Les périodes peuvent être séparées entre les parents, dans tel cas on ajoute
 
 \paragraph{Note}	Les prestations de pêcheur ont une période de référence de 31 semaines au lieu de 52.
 
-\subsection*{Autres gains}
 
+\columnbreak
+\subsection{Autres gains}
 Il existe une mesure de \textit{Travail pendant une période de prestations} : 
 \begin{itemize}
 \item 	On perd 0.5\$ de prestations pour chaque \$ de gains.
 \item	Jusqu'à un maximum de 90\% de la rémunération que l'on avait avant. Ensuite les prestations sont déduites \$ pour \$.
 \end{itemize}
 
-\subsection*{Fiscalité}
 
+\columnbreak
+\subsection{Fiscalité}
 \begin{definitionNOHFILLsub}[Fiscalité]
 \textbf{Impôts}:
 \begin{itemize}[leftmargin = *]
@@ -3425,11 +3437,11 @@ Il existe une mesure de \textit{Travail pendant une période de prestations} :
 \end{itemize}
 \end{definitionNOHFILLsub}
 
+
+
 \newpage
-
 \section{Régimes publics d'assurance maladie et d'assurance hospitalisation}
-
-\subsection*{Objectifs}
+\subsection{Objectifs}
 Il s'agit d'un régime public d'assurance visant l'accèsà des soins de santé gratuits.
 \begin{itemize}
 \item	Il s'agit d'un régime \textit{Beveridgien} car il est universel
@@ -3441,10 +3453,10 @@ Il s'agit d'un régime public d'assurance visant l'accèsà des soins de santé 
 	\item	Régime public d'assurance médicaments
 	\end{enumerate}
 \end{itemize}
-
 \textbf{Note : } L'assurance médicaments est traitée en détail au prochain chapitre.
 
-\subsection*{Évolution de la santé au Canada dans le temps}
+
+\subsection{Évolution de la santé au Canada dans le temps}
 \subsubsection*{Jusqu'au milieu du 20$^{eme}$ siècle}
 \begin{description}
 \item[Changement dans les mentalités]	Suite à plusieurs épidémies au 19$^{e}$ siècle, les découvertes scientifiques transforment les mentalités. En effet, on commence à préconiser une apprche plus interventionniste axée sur l'éducation à l'hygiène (et vaccination).
@@ -3460,20 +3472,20 @@ Il s'agit d'un régime public d'assurance visant l'accèsà des soins de santé 
 	\end{itemize}
 \item[Innovations] On remarque plusieurs innovations en termes de régimes au Canada. Notamment, on voit naître le principe d'assurance-maladie couvrant les soins médicaux hors hopitaux et d'assurance hospitalisation.
 \item[Au Québec : ] Nous avons connus des dénouements similaires que dans le reste du pays :
-	\begin{itemize}
+	\begin{description}
 	\item[1960]	Assurance hospitalisation
 	\item[1966-1972] Commission Castoguay-Nepveu
 	\item[1970] Loi sur le ministère des Affaires sociales 
 	\item[1970]	Loi sur l'assurance-maladie
 	\item[1971]	Loi sur les services de santé et de services sociaux
-	\end{itemize}	
+	\end{description}	
 \item[Années 80] Augmentation des coûts, aggravés par la crise économique des années 80.
 \item[1984] Loi canadienne sur la santé --- On vise à réunir les lois sur l'assurance hospitalisation et sur l'assurance maladie.
 \item[1996] Au Québec, on adopte la Loi créant un régime d'assurance médicament. 
 \end{description}
 
 
-\subsection*{Sur le plan législatif}
+\subsection{Sur le plan législatif}
 \subsubsection*{Au Canada}
 Au Canada, la santé est un domaine de compétence provinciale. Le gouvernement fédéral s'occupe d'établir et d'appliquer des principes nationnaux pour le système de santé en vertu de la Loi canadienne sur la santé. Il offre aussi un soutient financier aux provinces.
 	\begin{itemize}
@@ -3503,7 +3515,9 @@ Tel que mentionné précédemment, c'est cette loi qui établit les critères et
 	\item	Les provinces (et territoires) limitent la couverture offerte lors de services à l'étranger. Ceux-ci peuvent aussi exiger une approbation préalable de services non urgents offerts à l'extérieur de la province initiale.
 	\end{itemize}
 \end{description}
-\subsection*{Rôle des gouvernements provinciaux}
+
+
+\subsection{Rôle des gouvernements provinciaux}
 Les gouvernements provinciaux gèrent et fournissent la majorité des services de soins de santé du Canada. Ils doivent s'assurer de respecter les principes nationnaux présents dans la Loi canadienne sur la santé.
 	\begin{itemize}
 	\item	Chaque régime s'occupe des coûts des services hospitaliers et médicalement nécéssaires, qui sont offerts gratuitement au point de service.
@@ -3522,7 +3536,8 @@ Les services médicalement nécéssaires ne sont pas définis dans la Loi canadi
 %%%	+	Pour la section plus haut, je pensais ne pas la mettre puisque cette feuille se veut un résumé. Si on la met ça doit être concis (OC)
 %%%	------------------------
 
-\subsection*{Prestations}
+
+\subsection{Prestations}
 	\subsubsection*{Hospitalisation}
 	Il s'agit du coût associé aux soins relatifs aux médicaments, soins infirmiers, salles d'opération, anesthésies, laboratoires, diagnostics, radiothérapies, physiothérapies rendue dans un hôpital.
 		\begin{itemize}
@@ -3546,7 +3561,9 @@ Les services médicalement nécéssaires ne sont pas définis dans la Loi canadi
 	\item[Examen de la vue] Certaines provinces, dont le Québec, couvrent les examens de la vue des enfants et des ainés (mineurs au Québec).
 	\end{description}
 	Ces protections peuvent aussi être payés pour les prestataires de l'assistance sociale et leurs personnes à charge, en plus de couvrir les gens souffrant de certaines maladies spécifiques.
-\subsection*{Soins à l'extérieur du Québec}
+
+
+\subsection{Soins à l'extérieur du Québec}
 	\subsubsection*{Dans une autre province}
 	Le résident d'une province est couvert pour les soins reçus dans une autre province.
 	\begin{itemize}
@@ -3559,7 +3576,9 @@ Les services médicalement nécéssaires ne sont pas définis dans la Loi canadi
 	\item	Tel qu'énoncé précédemment, le québécois devra payer le professionnel et réclamer le tarif en vigueur au Québec. Les frais sont généralement plus élevés à l'étranger, une différence sera donc fort probablement à payer.
 	\end{itemize}
 	Il peut être une bonne idée d'avoir une assurance privée pour cette situation.
-\subsection*{Admissibilité}
+
+
+\subsection{Admissibilité}
 Pour bénéficier des soins de santé au Québec, il faut être considéré comme résident au Québec au sens de la loi sur la santé.
 	\begin{itemize}
 	\item 	La personne aurotirée par la loi à demeurer au Canada, qui vit au Québec et y est ordinairement présente est un résident du Québec.
@@ -3577,7 +3596,8 @@ Un personne qui s'établit au Québec après avoir quitté une province où il e
 	\end{itemize}
 \end{description}
 
-\subsection*{Financement}
+
+\subsection{Financement}
 	\subsubsection*{Gouvernement fédéral}
 	Il y a un trasnfert canadien (appelé précédemment les \textit{transferts fédéraux}) en matière de santé et de services sociaux.
 	\begin{itemize}
@@ -3592,7 +3612,9 @@ Un personne qui s'établit au Québec après avoir quitté une province où il e
 		\item 	varie entre 2.7 \% et 4.26 \% de la masse salariale, dépendant de la masse salariale annuelle brute au Québec.
 		\end{itemize}
 	\end{description}
-\subsection*{Fiscalité}
+
+
+\subsection{Fiscalité}
 \begin{itemize}
 \item	Aucun impôt sur les soins reçus;
 \item	La cotisation de la paie est un impôt;
@@ -3604,8 +3626,9 @@ Un personne qui s'établit au Québec après avoir quitté une province où il e
 %%%	+	Je vais te laisser décider quand on pourrait avoir besoin de TCOLORBOX et lesquels choisir (OC) 
 %%%	------------------------
 
-\newpage
 
+
+\newpage
 \section{Assurance médicaments}
 
 
