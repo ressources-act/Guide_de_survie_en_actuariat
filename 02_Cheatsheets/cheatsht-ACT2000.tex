@@ -66,8 +66,7 @@ L'objectif est d'expliquer les concepts statistiques de façon claire et concise
 
 \part{Analyse statistique des risques actuariels}
 
-\section*{Vraisemblance}
-
+\section{Vraisemblance}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\mathcal{L}(\theta; \bm{x})$]	Fonction de vraisemblance de $\theta$ en fonction des observations $\bm{x}$;
@@ -83,6 +82,7 @@ On peut voir la fonction de densité $f(x; \theta)$ comme étant une fonction du
 Pour bien saisir ce que représente la fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$, il faut songer à ce que représente $f(x; \theta)$. \\
 $f(x; \theta)$ est une fonction qui fait varier $x$ pour un (ou plusieurs) paramètre $\theta$ fixe. Alors, $\mathcal{L}(\theta; \bm{x})$ est une fonction qui fait varier $\theta$ pour un "paramètre" $\bm{x}$ fixé; ce que l'on considère habituellement comme étant "$x$" est en fait $\theta$ pour la fonction de vraisemblance!
 
+\columnbreak
 \section{Qualité de l'estimateur}
 
 La première section traite de \guillemotleft \textbf{estimateurs ponctuels} \guillemotright. 
@@ -387,11 +387,15 @@ En combinant tous ces critères, le meilleur estimateur est alors l'estimateur \
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\hat{\theta}_{L}$ et $\hat{\theta}_{U}$]	Fonctions de l'échantillon aléatoire $\{X_{1}, \dots, X_{n}\}$ où \icbox[red][palechestnut]{$\hat{\theta}_{L} < \hat{\theta}_{U}$};
-	\item[$(\hat{\theta}_{L}, \hat{\theta}_{U})$]	Intervalle de confiance de $100(1 - \alpha)\%$ de $\theta$ si \icbox[red][palechestnut]{$\Pr(\hat{\theta}_{L} \leq \theta \leq \hat{\theta}_{U}) = 1 - \alpha$}.
+	\item[$(\hat{\theta}_{L}, \hat{\theta}_{U})$]	Intervalle de confiance de $100(1 - \alpha)\%$ de $\theta$ si \icbox[red][palechestnut]{$\Pr(\hat{\theta}_{L} \leq \theta \leq \hat{\theta}_{U}) = 1 - \alpha$};
+		\begin{itemize}
+		\item	Avec les réalisations, on a un intervalle de nombres réels $(\hat{\theta}_{l}, \hat{\theta}_{u})$.
+		\end{itemize}
+	\item[$(1 - \alpha)$]	Niveau de confiance de l'intervalle où \lfbox[conditions]{$\alpha \in (0, 1)$}.
 \end{description}
 \end{distributions}
 
-Un type d'estimateur par intervalle est l'\textbf{intervalle de confiance}:
+Le type principal d'estimateur par intervalle est l'\textbf{intervalle de confiance}:
 \begin{algo}{Intervalle de confiance}
 Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que le paramètre inconnu $\theta$ est entre $(\hat{\theta}_{L}, \hat{\theta}_{U})$. 
 
@@ -400,13 +404,277 @@ De façon équivalente, nous sommes confiant à un seuil de $\alpha$\% que $\the
 Donc, \icbox{$\theta \in (\hat{\theta}_{L}, \hat{\theta}_{U})$} et nous pouvons dire que \icbox{$\Pr( \hat{\theta}_{L} \le \theta \le  \hat{\theta}_{U}) \ge (1 - \alpha)$} \icbox[red][palechestnut]{pour tout $\theta$}.
 \end{algo}
 
-Par exemple, dans le cas d'une population avec distribution normale et moyenne $\mu	=	\theta$ inconnue, on a comme estimateur (MVUE) la moyenne échantillonnale $\bar{x}	=	\hat{\theta}$.
-\begin{formula}{Intervalle de confiance sur la moyenne \textit{(distribution normale)}} 
-Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que :
+Ce qu'il faut bien saisir avec les intervalles de confiance, c'est que \lfbox[imphl]{soit $\theta$ est contenu dans l'intervalle $(\hat{\theta}_{l}, \hat{\theta}_{u})$ ou il ne l'est pas}.
+
+On peut conceptualiser les intervalles comme une distribution binomiale avec probabilité de succès de $(1 - \alpha)$. Si l'on effectue $M$ essais indépendants, on s'attend à ce que $(1 - \alpha)M$ intervalles de confiance contiennent $\theta$. Donc on se sent confiant à $(1 - \alpha)\%$ que la vraie valeur de $\theta$ est contenue dans l'intervalle observé $(\hat{\theta}_{l}, \hat{\theta}_{u})$.
+
+\subsubsection*{Efficacité des intervalles de confiance}
+Typiquement, la largeur de l'intervalle $(\hat{\theta}_{L}, \hat{\theta}_{U})$ augmente si on augmente le niveau de confiance $(1 - \alpha)$. Par exemple, pour être certain à 100\% que l'intervalle va contenir la valeur, on a qu'à faire un intervalle $(-\infty, \infty)$.\\
+
+Donc, un intervalle plus petit nous donne plus d'information si le niveau est adéquat. On dit que pour un même niveau $(1 - \alpha)$, l'intervalle avec la plus petite largeur est \textit{plus efficace} que l'autre.
+
+\subsubsection*{Exemples}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$T_{n}$]	Statistique de test basée sur un échantillon aléatoire de $n$ observations;
+	\item[$\bar{X}$]	Moyenne empirique qui estime sans biais la vraie moyenne $\mu$;
+		\begin{align*}
+		\bar{x}
+		&=	\frac{\sumz{n}{i = 1} x_{i}}{n}
+		\end{align*}
+		\begin{itemize}
+		\item	$\bar{X}	\sim \mathcal{N}(\mu, \frac{\sigma}{\sqrt{n}})$;
+		\item	On peut donc centrer et réduire la moyenne empirique pour obtenir une distribution normale standard---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)$};
+		\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{s_{n}/\sqrt{n}} \sim t_{(n - 1)}$};
+		\item	Cela dit, la distribution de Student tend vers la normale lorsque $n$ est très grand.
+		\end{itemize}
+	\item[$S_{n}^{2}$]	Variance échantillonale, qui estime \underline{sans biais} la vraie variance $\sigma^{2}$;
+		\begin{align*}
+			s^{2}_{n}
+			&=	\frac{\sum (x_{i} - \bar{x})^{2}}{n - 1}
+		\end{align*}
+		\begin{itemize}
+		\item	$S^{2}_{n}$ n'est pas normalement distribuée; 
+		\item	Cependant, la statistique \lfbox[formula]{$T_{n}	=	\frac{(n - 1)S^{2}_{n}}{\sigma^{2}} \sim \chi^{2}_{(n - 1)}$}.
+		\end{itemize}
+	\item[$\hat{\sigma}^{2}$]	Variance empirique qui estime \underline{avec biais} la vraie variance $\sigma^{2}$.
+		\begin{align*}
+		\hat{\sigma}^{2} 
+		&=	\frac{\sum (x_{i} - \bar{x})^{2}}{n}
+		\end{align*}
+\end{description}
+\end{distributions}
+%
+%De façon générale, les intervalles de confiance ont une estimation ponctuelle à laquelle on ajoute une marge d'erreur.
+
+\begin{formula}{Intervalle de confiance sur la variance} 
+%%%	https://www.youtube.com/watch?v=qwqB5a7_W44
+Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\sigma^{2}$ inconnue, \lfbox[formula]{$\Pr\left(\chi^{2}_{1 - \alpha/2} \leq \frac{(n - 1)s^{2}_{n}}{\sigma^{2}} \leq \chi^{2}_{\alpha/2}\right) =	(1 - \alpha)$}. \\
+Graphiquement: 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Curve Lines [id:da6253759692396421] 
+\draw [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=1.5]    (100.83,100.33) .. controls (106.67,75) and (119.67,40) .. (146.67,41) .. controls (173.67,42) and (207.67,88.33) .. (284.67,100.33) ;
+%Straight Lines [id:da9705044831224325] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (119.83,52.67) -- (119.83,99.33) -- (100.83,99.33) ;
+%Curve Lines [id:da9090824147972125] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=2.25]    (100.83,99.33) .. controls (106.67,72) and (114.83,58.67) .. (119.83,52.67) ;
+
+%Straight Lines [id:da8243679921312423] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (228.83,85) -- (228.83,100.33) -- (283.83,100.33) ;
+%Curve Lines [id:da07655100443368612] 
+\draw [line width=1.5]    (100,100) .. controls (105.83,74.67) and (118.83,39.67) .. (145.83,40.67) .. controls (172.83,41.67) and (206.83,88) .. (283.83,100) ;
+%Straight Lines [id:da5824849118650262] 
+\draw [line width=1.5]    (119.83,100.33) -- (119.83,105.67) ;
+%Straight Lines [id:da7912407501617629] 
+\draw [line width=1.5]    (228.83,100.33) -- (228.83,105.67) ;
+%Straight Lines [id:da26335370673771696] 
+\draw [line width=1.5]    (99,100) -- (283.83,100) ;
+
+% Text Node
+\draw (79,52) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
+% Text Node
+\draw (249,70) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
+% Text Node
+\draw (185,38) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle 1\ -\ \alpha $};
+% Text Node
+\draw (96.83,102.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \chi ^{2}_{1-\alpha /2}$};
+% Text Node
+\draw (208,102.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \chi ^{2}_{\alpha /2}$};
+
+
+\end{tikzpicture}
+\end{center}
+
+Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
+\begin{align*}
+	\sigma^{2} \in \left[
+		\frac{(n - 1)s^{2}_{n}}{\chi^{2}_{\alpha / 2}}, 
+		\frac{(n - 1)s^{2}_{n}}{\chi^{2}_{1 - \alpha / 2}}
+	\right]
+\end{align*}
+\end{formula}
+
+\begin{formula}{Intervalle de confiance sur la moyenne} 
+%%%	https://www.youtube.com/watch?v=KG921rfbTDw&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=4&t=0s
+%%%	https://www.youtube.com/watch?v=-iYDu8flFXQ&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=3&t=268s
+Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\mu$ inconnu et $\sigma^{2}$ connue, \lfbox[formula]{$\Pr\left(-z_{\alpha/2} \leq \frac{\bar{x} - \mu}{\sigma/\sqrt{n}} \leq z_{\alpha/2}\right) =	(1 - \alpha)$}.\\
+Graphiquement:
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+
+%Curve Lines [id:da8947130044196236] 
+\draw [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=1.5]    (387,99) .. controls (474.83,98.67) and (450.83,19.67) .. (479.83,19.67) .. controls (509.83,19.67) and (485.83,98.67) .. (571.83,99) ;
+%Straight Lines [id:da8407133508917781] 
+\draw [line width=1.5]    (428.83,99.33) -- (428.83,104.67) ;
+%Straight Lines [id:da7153733396293662] 
+\draw [line width=1.5]    (530.83,99.33) -- (530.83,104.67) ;
+%Straight Lines [id:da1468161753341053] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,91.67) -- (516.83,99) -- (571.83,99) ;
+%Straight Lines [id:da44372694181119354] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,81.67) -- (516.83,91.67) -- (540.5,95.67) ;
+%Straight Lines [id:da871067588661014] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,78.67) -- (516.83,88.67) -- (528.67,93.67) ;
+
+%Straight Lines [id:da7000317622260974] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,91.67) -- (442.83,99) -- (387.83,99) ;
+%Straight Lines [id:da8176903889743383] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,81.67) -- (442.83,91.67) -- (419.17,95.67) ;
+%Straight Lines [id:da7955659226488763] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,78.67) -- (442.83,88.67) -- (431,93.67) ;
+
+%Curve Lines [id:da21189166086741196] 
+\draw [line width=1.5]    (387,99) .. controls (474.83,98.67) and (450.83,19.67) .. (479.83,19.67) .. controls (509.83,19.67) and (485.83,98.67) .. (571.83,99) ;
+%Straight Lines [id:da9615401029487891] 
+\draw [line width=1.5]    (387,99) -- (571.83,99) ;
+
+
+% Text Node
+\draw (397,74) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
+% Text Node
+\draw (537,74) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
+% Text Node
+\draw (461,5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle 1\ -\ \alpha $};
+% Text Node
+\draw (518.83,102) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle z_{\alpha /2}$};
+% Text Node
+\draw (417.33,102) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle -z_{\alpha /2}$};
+
+
+\end{tikzpicture}
+\end{center}
+
+
+Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
 	\mu \in \left[ \bar{x} - z_{\alpha/2} \frac{\sigma}{\sqrt{n}}, \bar{x} + z_{\alpha/2} \frac{\sigma}{\sqrt{n}}\right].
 \end{equation*}
 \end{formula}
+
+\begin{formula}{Intervalle de confiance sur la moyenne} 
+Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\sigma^{2}$ inconnue, \lfbox[formula]{$\Pr\left(-t_{\alpha/2, n - 1} \leq \frac{\bar{x} - \mu}{s_{n}/\sqrt{n}} \leq t_{\alpha/2, n - 1}\right) =	(1 - \alpha)$}.\\
+Graphiquement:
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+
+%Curve Lines [id:da982458578172261] 
+\draw [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=1.5]    (386,98) .. controls (473.83,97.67) and (449.83,28.67) .. (478.83,28.67) .. controls (508.83,28.67) and (484.83,97.67) .. (570.83,98) ;
+%Straight Lines [id:da3849016484089105] 
+\draw [line width=1.5]    (427.83,98.33) -- (427.83,103.67) ;
+%Straight Lines [id:da40648686188300065] 
+\draw [line width=1.5]    (529.83,98.33) -- (529.83,103.67) ;
+%Straight Lines [id:da0901743854683843] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (515.5,91.15) -- (515.5,98) -- (570.83,98) ;
+%Straight Lines [id:da7611083055876529] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (515.5,81.8) -- (515.5,91.15) -- (539.31,94.89) ;
+%Straight Lines [id:da39003595249115297] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (515.5,79) -- (515.5,88.34) -- (527.41,93.02) ;
+
+%Straight Lines [id:da438403114586448] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.5,91.15) -- (442.5,98) -- (386.83,98) ;
+%Straight Lines [id:da963730012359405] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.5,81.8) -- (442.5,91.15) -- (418.55,94.89) ;
+%Straight Lines [id:da7346871172050706] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.5,79) -- (442.5,88.34) -- (430.52,93.02) ;
+
+%Curve Lines [id:da971478425929696] 
+\draw [line width=1.5]    (386,98) .. controls (473.83,97.67) and (449.83,28.67) .. (478.83,28.67) .. controls (508.83,28.67) and (484.83,97.67) .. (570.83,98) ;
+%Straight Lines [id:da9295821978585093] 
+\draw [line width=1.5]    (386,98) -- (570.83,98) ;
+
+% Text Node
+\draw (396,73) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
+% Text Node
+\draw (536,73) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
+% Text Node
+\draw (459,14) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle 1\ -\ \alpha $};
+% Text Node
+\draw (517.83,101) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle t_{\alpha /2}$};
+% Text Node
+\draw (416.33,101) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle -t_{\alpha /2}$};
+
+
+\end{tikzpicture}
+\end{center}
+
+Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
+\begin{equation*}
+	\mu \in \left[ \bar{x} - t_{\alpha/2, n - 1} \frac{s}{\sqrt{n}}, \bar{x} + t_{\alpha/2, n - 1} \frac{s}{\sqrt{n}}\right].
+\end{equation*}
+\end{formula}
+
+\begin{formula}{Intervalle de confiance \textit{approximatif} sur la moyenne} 
+%%%	https://www.youtube.com/watch?v=bFefxSE5bmo&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=8&t=0s
+Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution avec moyenne $\mu$ et une variance inconnue.\\
+
+Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
+\begin{equation*}
+	\mu \in \left[ \bar{x} - z_{\alpha/2} \frac{s}{\sqrt{n}}, \bar{x} + z_{\alpha/2} \frac{s}{\sqrt{n}}\right].
+\end{equation*}
+\end{formula}
+
+\begin{formula}{Intervalle de confiance \textit{approximatif} sur la moyenne} 
+Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution Bernoulli de paramètre $p$.\\
+
+Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
+\begin{equation*}
+	p \in \left[ \hat{p} - z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}, \hat{p} + z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}\right].
+\end{equation*}
+\end{formula}
+
+\begin{formula}{Intervalle de confiance pour une différence de moyenne} 
+Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1}, Y_{2}, \dots, Y_{m}\}$ issus de distributions normales de moyennes $\mu_{1}$ et $\mu_{2}$ et variance $\sigma^{2}_{1} = \sigma^{2}_{2} = \sigma^{2}$ inconnues.
+
+On défini le \og \textit{pooled estimator} \fg{} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.\\
+
+Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que :
+\begin{equation*}
+	(\mu_{1}	-	\mu_{2}) \in \left[ 
+	\bar{x}_{n}	-	\bar{y}_{m}
+	\pm	t_{\alpha/2, n + m - 2} s_{p}\sqrt{\frac{1}{n} + \frac{1}{m}} \right].
+\end{equation*}
+\begin{align*}
+\end{align*}
+\end{formula}
+
+\begin{formula}{Intervalle de confiance \textit{approximatif} pour une différence de moyenne} 
+Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1}, Y_{2}, \dots, Y_{m}\}$ issus de distributions normales de moyennes $\mu_{1}$ et $\mu_{2}$ et variances $\sigma^{2}_{1}$ et $\sigma^{2}_{2}$ inconnues.\\
+
+Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
+\begin{equation*}
+	(\mu_{1}	-	\mu_{2}) \in \left[ 
+	\bar{x}_{n}	-	\bar{y}_{m}
+	\pm	z_{\alpha/2} \sqrt{\frac{s_{n}^{2}}{n} + \frac{s_{m}^{2}}{m}} \right].
+\end{equation*}
+\begin{align*}
+\end{align*}
+\end{formula}
+
+\begin{formula}{Intervalle de confiance \textit{approximatif} pour une différence de proportions} 
+Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1}, Y_{2}, \dots, Y_{m}\}$ issus de distributions Bernoulli de paramètres $p_{1}$ et $p_{2}$.\\
+
+Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
+\begin{equation*}
+	(p_{1}	-	p_{2}) \in \left[ 
+	\hat{p}_{1}	-	\hat{p}_{2}
+	\pm	z_{\alpha/2} \sqrt{\frac{\hat{p}_{1}(1 - \hat{p}_{1})}{n} + \frac{\hat{p}_{2}(1 - \hat{p}_{2})}{m}} \right].
+\end{equation*}
+\begin{align*}
+\end{align*}
+\end{formula}
+
 
 %%%
 %%%	Méthode du pivot
@@ -618,20 +886,31 @@ En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}c
 %	Quantile-Quantile
 %	AIC
 %	BIC
-
-
 \columnbreak
 
-\section{Tests d'hypothèses}
-
-\subsection{Introduction}
-Soit la 
+\section{Échantillonnage et statistiques}
+\begin{distributions}[Notation]
 \begin{description}
 	\item[$X$]	Variable aléatoire d'intérêt $X$ avec fonction de densité $f(x; \theta)$;
-	\item[$\Theta$]	Ensemble des valeurs possible pour le paramètre $\theta$ tel que \lfbox[formula]{$\theta \in \Theta$;}
+	\item[$\Theta$]	Ensemble des valeurs possible pour le paramètre $\theta$ tel que \lfbox[formula]{$\theta \in \Theta$};
 		\begin{itemize}
 		\item	Par exemple, pour une loi normale $\Theta	=	\{(\mu, \sigma^{2}): \sigma^{2} > 0, -\infty < \mu < \infty\}$.
 		\end{itemize}
+	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon de taille $n$.
+		\begin{itemize}
+		\item	On pose que les observations ont la même distribution que $X$;
+		\item	On pose habituellement l'indépendance entre les observations;
+		\item	L'indépendance et la distribution identique rend l'échantillon un \textbf{échantillon aléatoire};
+		\item	Lorsque nous avons des observations, ont dénote l'échantillon par $\{x_{1}, \dots, x_{n}\}$ pour représenter des \textit{réalisations} de l'échantillon.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\section{Tests d'hypothèses}
+\label{sec:hyp-test}
+\subsection{Introduction}
+Soit la 
+\begin{description}
 	\item[$\Theta_{0}$ et $\Theta_{1}$]	Sous-ensembles disjoints de $\Theta$ tel que \lfbox[formula]{$\Theta_{0} \cup \Theta_{1}	=	\Theta$;}
 	\item[$\textrm{H}_{0}$]	Hypothèse nulle;
 	\item[$\textrm{H}_{0}$]	Hypothèse alternative.
@@ -652,7 +931,6 @@ Habituellement l'hypothèse nulle représente le statu quo alors que l'hypothès
 \begin{definitionNOHFILLsub}[Région critique]
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon aléatoire sur lequel le test se fait;
 	\item[$\mathcal{S}$]	"Ensemble" de tous les résultats possible pour l'échantillon aléatoire;
 	\item[$\mathcal{C}$]	\textbf{Région critique} qui est un sous-ensemble de $\mathcal{S}$.
 \end{description}
@@ -790,17 +1068,6 @@ On peut donc faire 2 types d'erreurs:
 %		Tableau de contingence
 %		Test d'indépendance du khi-carré
 
-%%%	Différence de moyennes
-%\begin{align*}
-%	(\bar{x}	-	\bar{y})
-%	&\pm	t_{\alpha/2, n - 2} s_{p}\sqrt{\frac{1}{n_{1}} + frac{1}{n_{2}}}
-%\end{align*}
-
-%%%	Différence de proportions
-%\begin{align*}
-%	\hat{p}_{1}	-	\hat{p}_{2}
-%	&\pm	z_{\alpha/2} \sqrt{\frac{\hat{p}_{1}(1 - \hat{p}_{1}}{n_{1}} + frac{\hat{p}_{2}(1 - \hat{p}_{2}}{n_{2}}}
-%\end{align*}
 
 %\subsection{Distributions d'échantillonnage}
 %%	Contenu à y inclure
@@ -825,8 +1092,8 @@ On peut donc faire 2 types d'erreurs:
 
 %%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
 %		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
-\columnbreak
 
+\columnbreak
 \section{Statistiques d'ordre}
 
 Soit un échantillon aléatoire de taille $n$.
@@ -1479,17 +1746,18 @@ On défini $\phi_{i}	=	\frac{x - x_{i}}{b}$ et $K_{R}(\phi)$:
 \subsection*{Estimation par maximum de vraisemblance pour des données incomplètes et groupées}
 Lorsque les données sont groupées et/ou incomplètes, les observations ne sont plus iid mais on peut quand même formuler la fonction de vraisemblance et trouver l'EMV.
 
-1ère étape est d'écrire la fonction de (log) vraisemblance adéquate pouur la méthode d'échantillonnage des données.
+La première étape est d'écrire la fonction de (log) vraisemblance adéquate pour la méthode d'échantillonnage des données.\\
 
-%Par exemple, soit des données complètes groupées en $k$ intervalles $(c_{0}, c_{1}], (c_{1}, c_{2}], \dots, (c_{k - 1}, c_{k}]$ où $0	\leq	c_{0}	<	c_{1}	<	\hdots	<	c_{k}	=	\infty	$.
-On trouve avec la fonction de répartition $F(\cdot; \theta)$ que la probabilité d'être dans l'intervalle $(c_{j - 1}, c_{j}]$ est $F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)$.
-
-On pose que les observations individuelles sont iid et donc la vraisemblance de d'avoir $n_{j}$ observations dans l'intervalle $(c_{j - 1}, c_{j}]$, \lfbox[conditions]{pour $j	=	1, \dots, k$ et $\bm{n}	=	(n_{1}, \cdots, n_{k})$} est :
-\begin{align*}
-	\mathcal{L}(\theta; \bm{n})
-	&=	\prod^{k}_{j	=	1} \left[F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)\right]^{n_{j}}
-\end{align*}
-
+Par exemple, soit des données groupées en $k$ intervalles : 
+\begin{itemize}
+	\item	On trouve avec la fonction de répartition $F(\cdot; \theta)$ que la probabilité d'être dans l'intervalle $(c_{j - 1}, c_{j}]$ est $F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)$;
+	\item	On pose que les observations individuelles sont iid;
+	\item	Donc, la vraisemblance d'avoir $n_{j}$ observations dans l'intervalle $(c_{j - 1}, c_{j}]$, \lfbox[conditions]{pour $j	=	1, \dots, k$ et $\bm{n}	=	(n_{1}, \cdots, n_{k})$} est :
+		\begin{align*}
+		\mathcal{L}(\theta; \bm{n})
+		&=	\prod^{k}_{j	=	1} \left[F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)\right]^{n_{j}}
+		\end{align*}
+\end{itemize}
 
 
 \setlength{\mathindent}{-0.75cm}
