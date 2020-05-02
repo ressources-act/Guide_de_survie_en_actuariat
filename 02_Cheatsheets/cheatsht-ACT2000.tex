@@ -66,6 +66,54 @@ L'objectif est d'expliquer les concepts statistiques de façon claire et concise
 
 \part{Analyse statistique des risques actuariels}
 
+\section{Échantillonnage et statistiques}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X$]	Variable aléatoire d'intérêt $X$ avec fonction de densité $f(x; \theta)$;
+	\item[$\Theta$]	Ensemble des valeurs possible pour le paramètre $\theta$ tel que \lfbox[formula]{$\theta \in \Theta$};
+		\begin{itemize}
+		\item	Par exemple, pour une loi normale $\Theta	=	\{(\mu, \sigma^{2}): \sigma^{2} > 0, -\infty < \mu < \infty\}$.
+		\end{itemize}
+	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon de taille $n$.
+		\begin{itemize}
+		\item	On pose que les observations ont la même distribution que $X$;
+		\item	On pose habituellement l'indépendance entre les observations;
+		\item	L'indépendance et la distribution identique rend l'échantillon un \textbf{échantillon aléatoire};
+		\item	Lorsque nous avons des observations, ont dénote l'échantillon par $\{x_{1}, \dots, x_{n}\}$ pour représenter des \textit{réalisations} de l'échantillon.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+
+%%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
+%%%%		À rajouter éventuellement	%%%%	
+%%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
+
+%\subsection{Distributions d'échantillonnage}
+%%	Contenu à y inclure
+%	Postulat de normalité
+%		Moyenne échantillonnale
+%		Variance échantillonnale
+%		Statistique T
+%		Statistique F
+%	Échantillons de distribution inconnue
+%		Théorème centrale limite
+
+%\subsection{Exhaustivité}
+%%	Contenu à y inclure
+%	Définition de l'exhaustivité
+%	Théorème de factorisation de Fisher-Neymann
+%	Critère de Lehmann-Scheffé (Exhaustivité minimale)
+%	Théorème de factorisation de Fisher-Neymann (cas de plus d'un paramètre)
+%	Théorème de Rao-Blackwell (statistique exhaustive sans biais)
+%	MVUE
+%		Élaboration sur le MVUE
+%		Comment le construire
+
+%%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
+%		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
+
+\columnbreak
 \section{Vraisemblance}
 \begin{distributions}[Notation]
 \begin{description}
@@ -447,7 +495,7 @@ Donc, un intervalle plus petit nous donne plus d'information si le niveau est ad
 %
 %De façon générale, les intervalles de confiance ont une estimation ponctuelle à laquelle on ajoute une marge d'erreur.
 
-\begin{formula}{Intervalle de confiance sur la variance} 
+\begin{definitionNOHFILLsub}[Intervalle de confiance sur la variance]
 %%%	https://www.youtube.com/watch?v=qwqB5a7_W44
 Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\sigma^{2}$ inconnue, \lfbox[formula]{$\Pr\left(\chi^{2}_{1 - \alpha/2} \leq \frac{(n - 1)s^{2}_{n}}{\sigma^{2}} \leq \chi^{2}_{\alpha/2}\right) =	(1 - \alpha)$}. \\
 Graphiquement: 
@@ -497,9 +545,9 @@ Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 		\frac{(n - 1)s^{2}_{n}}{\chi^{2}_{1 - \alpha / 2}}
 	\right]
 \end{align*}
-\end{formula}
+\end{definitionNOHFILLsub}
 
-\begin{formula}{Intervalle de confiance sur la moyenne} 
+\begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne]
 %%%	https://www.youtube.com/watch?v=KG921rfbTDw&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=4&t=0s
 %%%	https://www.youtube.com/watch?v=-iYDu8flFXQ&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=3&t=268s
 Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\mu$ inconnu et $\sigma^{2}$ connue, \lfbox[formula]{$\Pr\left(-z_{\alpha/2} \leq \frac{\bar{x} - \mu}{\sigma/\sqrt{n}} \leq z_{\alpha/2}\right) =	(1 - \alpha)$}.\\
@@ -558,9 +606,9 @@ Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
 	\mu \in \left[ \bar{x} - z_{\alpha/2} \frac{\sigma}{\sqrt{n}}, \bar{x} + z_{\alpha/2} \frac{\sigma}{\sqrt{n}}\right].
 \end{equation*}
-\end{formula}
+\end{definitionNOHFILLsub}
 
-\begin{formula}{Intervalle de confiance sur la moyenne} 
+\begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne]
 Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\sigma^{2}$ inconnue, \lfbox[formula]{$\Pr\left(-t_{\alpha/2, n - 1} \leq \frac{\bar{x} - \mu}{s_{n}/\sqrt{n}} \leq t_{\alpha/2, n - 1}\right) =	(1 - \alpha)$}.\\
 Graphiquement:
 \begin{center}
@@ -613,9 +661,16 @@ Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
 	\mu \in \left[ \bar{x} - t_{\alpha/2, n - 1} \frac{s}{\sqrt{n}}, \bar{x} + t_{\alpha/2, n - 1} \frac{s}{\sqrt{n}}\right].
 \end{equation*}
-\end{formula}
+\end{definitionNOHFILLsub}
 
-\begin{formula}{Intervalle de confiance \textit{approximatif} sur la moyenne} 
+
+%%%	-------------------------
+%%%	NOTES:
+%%%	+	À retravailler cette section pour ajouter un peu plus de contexte sur les grands échantillons
+%%%	-------------------------
+
+
+\begin{definitionNOHFILLsub}[Intervalle de confiance \textit{approximatif} sur la moyenne]
 %%%	https://www.youtube.com/watch?v=bFefxSE5bmo&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=8&t=0s
 Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution avec moyenne $\mu$ et une variance inconnue.\\
 
@@ -623,18 +678,18 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \begin{equation*}
 	\mu \in \left[ \bar{x} - z_{\alpha/2} \frac{s}{\sqrt{n}}, \bar{x} + z_{\alpha/2} \frac{s}{\sqrt{n}}\right].
 \end{equation*}
-\end{formula}
+\end{definitionNOHFILLsub}
 
-\begin{formula}{Intervalle de confiance \textit{approximatif} sur la moyenne} 
+\begin{definitionNOHFILLsub}[Intervalle de confiance \textit{approximatif} sur la proportion]
 Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution Bernoulli de paramètre $p$.\\
 
 Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
 	p \in \left[ \hat{p} - z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}, \hat{p} + z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}\right].
 \end{equation*}
-\end{formula}
+\end{definitionNOHFILLsub}
 
-\begin{formula}{Intervalle de confiance pour une différence de moyenne} 
+\begin{definitionNOHFILLsub}[Intervalle de confiance pour une différence de moyennes]
 Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1}, Y_{2}, \dots, Y_{m}\}$ issus de distributions normales de moyennes $\mu_{1}$ et $\mu_{2}$ et variance $\sigma^{2}_{1} = \sigma^{2}_{2} = \sigma^{2}$ inconnues.
 
 On défini le \og \textit{pooled estimator} \fg{} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.\\
@@ -647,9 +702,9 @@ Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que :
 \end{equation*}
 \begin{align*}
 \end{align*}
-\end{formula}
+\end{definitionNOHFILLsub}
 
-\begin{formula}{Intervalle de confiance \textit{approximatif} pour une différence de moyenne} 
+\begin{definitionNOHFILLsub}[Intervalle de confiance \textit{approximatif} pour une différence de moyennes]
 Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1}, Y_{2}, \dots, Y_{m}\}$ issus de distributions normales de moyennes $\mu_{1}$ et $\mu_{2}$ et variances $\sigma^{2}_{1}$ et $\sigma^{2}_{2}$ inconnues.\\
 
 Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
@@ -660,9 +715,9 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \end{equation*}
 \begin{align*}
 \end{align*}
-\end{formula}
+\end{definitionNOHFILLsub}
 
-\begin{formula}{Intervalle de confiance \textit{approximatif} pour une différence de proportions} 
+\begin{definitionNOHFILLsub}[Intervalle de confiance \textit{approximatif} pour une différence de proportions]
 Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1}, Y_{2}, \dots, Y_{m}\}$ issus de distributions Bernoulli de paramètres $p_{1}$ et $p_{2}$.\\
 
 Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
@@ -673,7 +728,7 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \end{equation*}
 \begin{align*}
 \end{align*}
-\end{formula}
+\end{definitionNOHFILLsub}
 
 
 %%%
@@ -681,10 +736,544 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 %%%
 
 \columnbreak
+\section{Tests d'hypothèses}
+\label{sec:hyp-test}
+\subsection{Introduction}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\Theta_{0}$ et $\Theta_{1}$]	Sous-ensembles disjoints de $\Theta$ tel que \lfbox[formula]{$\Theta_{0} \cup \Theta_{1}	=	\Theta$;}
+	\item[$\textrm{H}_{0}$]	Hypothèse nulle;
+	\item[$\textrm{H}_{1}$]	Hypothèse alternative.
+\end{description}
+\end{distributions}
+
+Lorsque l'on veut tester deux hypothèses différents, on effectue un "\textbf{test d'hypothèse}".
+\begin{definitionNOHFILL}[Test d'hypothèse]
+\begin{align*}
+	\textrm{H}_{0}
+	&:	\theta \in \Theta_{0}	&
+	&\text{vs}	&
+	\textrm{H}_{1}
+	&:	\theta \in \Theta_{1}	&
+\end{align*}
+
+Habituellement l'hypothèse nulle représente le statu quo alors que l'hypothèse alternative représente un changement.
+\end{definitionNOHFILL}
+
+\begin{formula}{Exemple du LPU}
+Par exemple, on veut savoir si le monde utilisent l'autobus (oui ou non) avant et après l'implantation du LPU.\\ 
+On pose que la proportion des gens qui utilisent l'autobus est $q	=	0.44$.\\
+Il y a deux types de tests qu'on peut faire,
+\begin{itemize}
+	\item	Tester si l'utilisation est différente est un test "\textbf{bilatéral}", car on test si elle a augmentée \textit{ou} diminuée;
+		\begin{align*}
+		\textrm{H}_{0}
+		&:	q	=	0.44	&
+		\textrm{H}_{1}
+		&:	q	\neq	0.44
+		\end{align*}
+	\item	Tester si l'utilisation a augmentée est un test "\textbf{unilatéral}", car on test uniquement si elle a augmentée.
+		\begin{align*}
+		\textrm{H}_{0}
+		&:	q	=	0.44	&
+		\textrm{H}_{1}
+		&:	q	>	0.44
+		\end{align*}
+\end{itemize}
+
+Un test unilatéral requiert que l'on sache déjà que la proportion de gens "\textit{doit}" être supérieure. Un test bilatéral est plus conservatif et test les deux possibilités, il devrait donc être celui qu'on applique par défaut. \\
+
+Dans tous les cas, l'hypothèse nulle est que, en moyenne, l'utilisation de l'autobus n'a pas \textit{changée}. Pour le test bilatéral, l'hypothèse alternative est que, en moyenne, l'utilisation a \textit{changée}. Pour le test unilatéral, l'hypothèse alternative est que, en moyenne, l'utilisation a \textit{augmentée}.
+\end{formula}
+
+\begin{definitionNOHFILLsub}[Région critique]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\mathcal{S}$]	"Ensemble" de tous les résultats possible pour l'échantillon aléatoire;
+	\item[$\mathcal{C}$]	\textbf{Région critique} du test qui est un sous-ensemble de $\mathcal{S}$.
+\end{description}
+\end{distributions}
+
+On rejette $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}$.\\
+On conserve $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}^{c}$.
+\end{definitionNOHFILLsub}
+
+\begin{formula}{Exemple du LPU}
+On reprend l'exemple du LPU.\\
+L'ensemble des résultats possibles est $\mathcal{S} = [0, 1]$.
+\begin{itemize}
+	\item	Un test "\textbf{bilatéral}" a comme région critique $\mathcal{C} = [0, 0.44) \cup (0.44, 1]$;
+	\item	Un test "\textbf{unilatéral}" testant l'augmentation a comme région critique $\mathcal{C} = (0.44, 1]$.
+\end{itemize}
+\end{formula}
+On peut donc faire 2 types d'erreurs:
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,165); %set diagram left start at 0, and has height of 165
+
+%Shape: Rectangle [id:dp5658804967739193] 
+\draw  [fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (74,50.17) -- (163.83,50.17) -- (163.83,101.5) -- (74,101.5) -- cycle ;
+%Shape: Rectangle [id:dp933461228347003] 
+\draw  [fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (163.83,101.5) -- (253.67,101.5) -- (253.67,152.83) -- (163.83,152.83) -- cycle ;
+%Shape: Rectangle [id:dp24194313951746427] 
+\draw  [fill={rgb, 255:red, 148; green, 250; blue, 106 }  ,fill opacity=1 ] (163.83,50) -- (253.67,50) -- (253.67,101.33) -- (163.83,101.33) -- cycle ;
+%Shape: Rectangle [id:dp27324261874552724] 
+\draw  [fill={rgb, 255:red, 148; green, 250; blue, 106 }  ,fill opacity=1 ] (74,101.33) -- (163.83,101.33) -- (163.83,152.67) -- (74,152.67) -- cycle ;
+%Shape: Rectangle [id:dp9425087952138109] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (74,30.17) -- (163.83,30.17) -- (163.83,50) -- (74,50) -- cycle ;
+%Shape: Rectangle [id:dp40513736937576916] 
+\draw  [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (74,10.33) -- (253.67,10.33) -- (253.67,30.17) -- (74,30.17) -- cycle ;
+%Shape: Rectangle [id:dp4099498200973881] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (163.83,30.17) -- (253.67,30.17) -- (253.67,50) -- (163.83,50) -- cycle ;
+%Shape: Rectangle [id:dp35293578825776084] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (5.5,101.33) -- (74,101.33) -- (74,152.67) -- (5.5,152.67) -- cycle ;
+%Shape: Rectangle [id:dp2841127241620307] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (5.5,50.17) -- (74,50.17) -- (74,101.5) -- (5.5,101.5) -- cycle ;
+%Shape: Rectangle [id:dp5918283025493905] 
+\draw  [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (5.5,30.33) -- (74,30.33) -- (74,50.17) -- (5.5,50.17) -- cycle ;
+
+% Text Node
+\draw (138.33,13) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Vrai état};
+% Text Node
+\draw (110.92,35) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$ \text{H}_{0}$};
+% Text Node
+\draw (200.75,35) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$ \text{H}_{1}$};
+% Text Node
+\draw (18.25,112) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Accepter\\ $\text{H}_{0}$}};
+% Text Node
+\draw (23.25,60.83) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Rejeter\\ $\text{H}_{0}$}};
+% Text Node
+\draw (13.25,32.75) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Décision};
+% Text Node
+\draw (91.42,65.83) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] 
+{\shortstack{Erreur\\ de type I}};
+% Text Node
+\draw (181.25,117) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Erreur\\ de type II}};
+% Text Node
+\draw (95.92,117) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Bonne\\ décision}};
+% Text Node
+\draw (185.75,65.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Bonne\\ décision}};
+
+
+
+\end{tikzpicture}
+\end{center}
+
+\columnbreak
+\subsection{Certitude du test}
+Lorsque nous voulons quantifier le degré auquel nous sommes confiants du test, nous utilisons la valeur $p$. \\
+La valeur $p$ a trois composantes:
+\begin{enumerate}
+	\item	La probabilité que l'événement se produise aléatoirement.
+	\item	La probabilité qu'un événement tout aussi rare se produise.
+	\item	La probabilité qu'un événement encore plus rare se produise.
+\end{enumerate}
+
+\begin{formula}{Exemple de pile ou face}
+On souhaite tester si, en obtenant deux piles sur deux lancers, nous avons une pièce de monnaie truquée :
+\begin{description}
+	\item[Hypothèse nulle]	Ma pièce de monnaie n'est pas truquée même si j'ai obtenu deux piles.
+\end{description}
+\
+
+Étapes du calcul de la valeur $p$:
+\begin{enumerate}
+	\item	On calcule la probabilité d'obtenir 2 piles: $0.5 \times 0.5 = 0.25$.
+	\item	Puis, on calcule la probabilité d'obtenir 2 faces (un événement autant rare): $0.5 \times 0.5 = 0.25$.
+	\item	Finalement, il n'y a pas d'autres séquences plus rares.
+\end{enumerate}
+Donc, la valeur $p$ du test est de $0.50$.
+
+\begin{itemize}
+	\item	Ceci est plutôt élevé;
+	\item	Souvent, on pose que la valeur $p$ du test doit être d'au plus $0.05$;
+	\item	Ce qui veut dire que des événements tout aussi (ou plus) rares doivent arriver moins que 5\% du temps pour que l'on considère la pièce de monnaie comme étant truquée;
+	\item	Donc, dans notre cas, on ne peut pas rejeter l'hypothèse nulle que notre pièce de monnaie n'est pas spéciale.
+\end{itemize}
+\end{formula}
+
+Dans le cas continu, on somme les probabilités d'être plus rare ou d'être moins rare. C'est la même idée que les intervalles de confiance avec la valeur $p$, ou \textit{seuil de signifiance $\alpha$}, représenté en rouge. 
+\begin{itemize}
+	\item	Si la valeur $p$ est petite, ceci indique que d'autres distributions pourraient potentiellement mieux s'ajuster aux données puisque l'événement est très rare;
+	\item	Si la valeur $p$ est grande, ceci indique que l'événement est très courant et que la distribution semble être bien ajustée.
+\end{itemize}
+
+\
+
+Il y a plusieurs termes semblables qui peuvent devenir mélangeants.
+\begin{distributions}[Terminologie]
+\begin{description}
+	\item[$p$]	La \textbf{valeur $p$} du test.
+		\begin{itemize}
+		\item	On dit souvent que c'est la \textbf{taille} de la région critique $\mathcal{C}$.
+		\end{itemize}
+	\item[Probabilité d'une erreur de type I]	Probabilité de rejeter $\text{H}_{0}$ alors qu'elle est vraie.
+		\begin{itemize}
+		\item	Même chose que la valeur $p$.
+		\end{itemize}
+	\item[$\alpha$]	\textbf{Seuil de signifiance} du test.
+		\begin{itemize}
+		\item	Même chose que pour les intervalles de confiance;
+		\item	Essentiellement, c'est la valeur $p$ qui détermine si on rejette ou pas un test;
+		\item	En anglais, \og \textit{threshold for significance} \fg{}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+Formellement, on défini \lfbox[formula]{$\alpha	=	\underset{\theta \in \Theta_{0}}{\max} \Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \right\}$}. \\
+C'est-à-dire :
+\begin{itemize}
+	\item	on maximise la probabilité que l'échantillon aléatoire soit contenu dans la région critique (alias rejeter $\textrm{H}_{0}$), 
+	\item	où la distribution est tracée en fonction du paramètre $\theta$ de l'hypothèse nulle.
+\end{itemize}
+Ceci est l'erreur de type I.
+%%%	qqchose que je manque ici
+%%%	\Theta vs S, test vs param?? (X, ... X_n) \in ...?
+
+
+\columnbreak
+\subsection{Puissance d'un test}
+\begin{definitionNOHFILL}[La puissance d'un test]
+La probabilité de \textit{correctement} rejeter l'hypothèse nulle.
+%%	https://www.youtube.com/watch?v=Rsc5znwR5FA&feature=youtu.be
+
+\tcbline
+
+Une analyse de la puissance détermine le nombre d'observations qu'il faut afin d'avoir une probabilité élevée de correctement rejeter l'hypothèse nulle.
+\end{definitionNOHFILL}
+
+
+Plusieurs facteurs influencent la puissance d'un test. Lorsqu'on teste si deux échantillons d'observations proviennent de la même distribution,
+\begin{definitionNOHFILLsub}[La forme de la distribution]
+Si les deux distributions sont:
+\begin{itemize}
+	\item	Très \textbf{distinctes}, la puissance sera très \textbf{élevée}:
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+
+%Straight Lines [id:da864976542619565] 
+\draw [line width=1.5]    (245.5,117.83) -- (571.5,117.83) (281.5,109.83) -- (281.5,125.83)(317.5,109.83) -- (317.5,125.83)(353.5,109.83) -- (353.5,125.83)(389.5,109.83) -- (389.5,125.83)(425.5,109.83) -- (425.5,125.83)(461.5,109.83) -- (461.5,125.83)(497.5,109.83) -- (497.5,125.83)(533.5,109.83) -- (533.5,125.83)(569.5,109.83) -- (569.5,125.83) ;
+%Straight Lines [id:da9295821978585093] 
+\draw [line width=1.5]    (245.17,98) -- (571.5,98) ;
+%Curve Lines [id:da28384300225010417] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (245.17,98) .. controls (353.67,98.67) and (309,28.67) .. (338,28.67) .. controls (368,28.67) and (320.67,97.67) .. (430,98) ;
+%Curve Lines [id:da19190888762749303] 
+\draw [color={rgb, 255:red, 33; green, 86; blue, 233 }  ,draw opacity=1 ][line width=1.5]    (386,98) .. controls (494.5,98.67) and (449.83,28.67) .. (478.83,28.67) .. controls (508.83,28.67) and (461.5,97.67) .. (570.83,98) ;
+%Shape: Circle [id:dp23295532013997544] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (316,117.83) .. controls (316,113.6) and (319.43,110.17) .. (323.67,110.17) .. controls (327.9,110.17) and (331.33,113.6) .. (331.33,117.83) .. controls (331.33,122.07) and (327.9,125.5) .. (323.67,125.5) .. controls (319.43,125.5) and (316,122.07) .. (316,117.83) -- cycle ;
+%Shape: Circle [id:dp6583442494748755] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (323.67,117.83) .. controls (323.67,113.6) and (327.1,110.17) .. (331.33,110.17) .. controls (335.57,110.17) and (339,113.6) .. (339,117.83) .. controls (339,122.07) and (335.57,125.5) .. (331.33,125.5) .. controls (327.1,125.5) and (323.67,122.07) .. (323.67,117.83) -- cycle ;
+%Shape: Circle [id:dp7278683126625956] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (341,117.83) .. controls (341,113.6) and (344.43,110.17) .. (348.67,110.17) .. controls (352.9,110.17) and (356.33,113.6) .. (356.33,117.83) .. controls (356.33,122.07) and (352.9,125.5) .. (348.67,125.5) .. controls (344.43,125.5) and (341,122.07) .. (341,117.83) -- cycle ;
+%Shape: Circle [id:dp6846096733160589] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 33; green, 86; blue, 233 }  ,fill opacity=1 ] (459,117.83) .. controls (459,113.6) and (462.43,110.17) .. (466.67,110.17) .. controls (470.9,110.17) and (474.33,113.6) .. (474.33,117.83) .. controls (474.33,122.07) and (470.9,125.5) .. (466.67,125.5) .. controls (462.43,125.5) and (459,122.07) .. (459,117.83) -- cycle ;
+%Shape: Circle [id:dp05843938160550621] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 33; green, 86; blue, 233 }  ,fill opacity=1 ] (476.67,117.83) .. controls (476.67,113.6) and (480.1,110.17) .. (484.33,110.17) .. controls (488.57,110.17) and (492,113.6) .. (492,117.83) .. controls (492,122.07) and (488.57,125.5) .. (484.33,125.5) .. controls (480.1,125.5) and (476.67,122.07) .. (476.67,117.83) -- cycle ;
+%Shape: Circle [id:dp2540684792866683] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 33; green, 86; blue, 233 }  ,fill opacity=1 ] (490,117.83) .. controls (490,113.6) and (493.43,110.17) .. (497.67,110.17) .. controls (501.9,110.17) and (505.33,113.6) .. (505.33,117.83) .. controls (505.33,122.07) and (501.9,125.5) .. (497.67,125.5) .. controls (493.43,125.5) and (490,122.07) .. (490,117.83) -- cycle ;
+
+% Text Node
+\draw (363,36) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor{black}{Puissance élevée}};
+
+
+\end{tikzpicture}
+		\end{center}
+		\begin{itemize}
+		\item	 La probabilité de \textbf{correctement} rejeter l'hypothèse nulle (que les deux échantillons proviennent d'une même distribution) est élevée;
+		\item	On peut aussi dire qu'il y a une forte probabilité de \textbf{correctement} obtenir une faible valeur $p$.
+		\end{itemize}
+	\item	Se \textbf{chevauchent}, la puissance sera \textbf{faible}:
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+
+%Straight Lines [id:da674545395459474] 
+\draw [line width=1.5]    (244.83,117.33) -- (570.83,117.33) (280.83,109.33) -- (280.83,125.33)(316.83,109.33) -- (316.83,125.33)(352.83,109.33) -- (352.83,125.33)(388.83,109.33) -- (388.83,125.33)(424.83,109.33) -- (424.83,125.33)(460.83,109.33) -- (460.83,125.33)(496.83,109.33) -- (496.83,125.33)(532.83,109.33) -- (532.83,125.33)(568.83,109.33) -- (568.83,125.33) ;
+%Shape: Circle [id:dp5899062048279418] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (371,117.33) .. controls (371,113.1) and (374.43,109.67) .. (378.67,109.67) .. controls (382.9,109.67) and (386.33,113.1) .. (386.33,117.33) .. controls (386.33,121.57) and (382.9,125) .. (378.67,125) .. controls (374.43,125) and (371,121.57) .. (371,117.33) -- cycle ;
+%Shape: Circle [id:dp033764139219446765] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (378.67,117.33) .. controls (378.67,113.1) and (382.1,109.67) .. (386.33,109.67) .. controls (390.57,109.67) and (394,113.1) .. (394,117.33) .. controls (394,121.57) and (390.57,125) .. (386.33,125) .. controls (382.1,125) and (378.67,121.57) .. (378.67,117.33) -- cycle ;
+%Shape: Circle [id:dp9956436610120569] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (396,117.33) .. controls (396,113.1) and (399.43,109.67) .. (403.67,109.67) .. controls (407.9,109.67) and (411.33,113.1) .. (411.33,117.33) .. controls (411.33,121.57) and (407.9,125) .. (403.67,125) .. controls (399.43,125) and (396,121.57) .. (396,117.33) -- cycle ;
+%Straight Lines [id:da9463171904376761] 
+\draw [line width=1.5]    (244.5,98) -- (570.83,98) ;
+%Curve Lines [id:da7529446506143549] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (298.5,97) .. controls (407,97.67) and (362.33,27.67) .. (391.33,27.67) .. controls (421.33,27.67) and (374,96.67) .. (483.33,97) ;
+%Curve Lines [id:da7479872172646262] 
+\draw [color={rgb, 255:red, 33; green, 86; blue, 233 }  ,draw opacity=1 ][line width=1.5]    (347,98) .. controls (455.5,98.67) and (410.83,28.67) .. (439.83,28.67) .. controls (469.83,28.67) and (422.5,97.67) .. (531.83,98) ;
+%Shape: Circle [id:dp8825558203269679] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 33; green, 86; blue, 233 }  ,fill opacity=1 ] (425,117.33) .. controls (424.72,113.1) and (427.93,109.67) .. (432.17,109.67) .. controls (436.4,109.67) and (440.06,113.1) .. (440.33,117.33) .. controls (440.61,121.57) and (437.4,125) .. (433.17,125) .. controls (428.93,125) and (425.28,121.57) .. (425,117.33) -- cycle ;
+%Shape: Circle [id:dp2808249488586654] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 33; green, 86; blue, 233 }  ,fill opacity=1 ] (442.67,117.33) .. controls (442.39,113.1) and (445.6,109.67) .. (449.83,109.67) .. controls (454.07,109.67) and (457.72,113.1) .. (458,117.33) .. controls (458.28,121.57) and (455.07,125) .. (450.83,125) .. controls (446.6,125) and (442.94,121.57) .. (442.67,117.33) -- cycle ;
+%Shape: Circle [id:dp8643138982751464] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 33; green, 86; blue, 233 }  ,fill opacity=1 ] (456,117.33) .. controls (455.72,113.1) and (458.93,109.67) .. (463.17,109.67) .. controls (467.4,109.67) and (471.06,113.1) .. (471.33,117.33) .. controls (471.61,121.57) and (468.4,125) .. (464.17,125) .. controls (459.93,125) and (456.28,121.57) .. (456,117.33) -- cycle ;
+
+% Text Node
+\draw (370,10) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor{black}{Puissance faible}};
+
+
+\end{tikzpicture}
+		\end{center}
+		\begin{itemize}
+		\item	 La probabilité de \textbf{incorrectement} rejeter l'hypothèse nulle (que les deux échantillons proviennent d'une même distribution) est élevée;
+		\item	On peut aussi dire qu'il y a une forte probabilité de \textbf{incorrectement} obtenir une faible valeur $p$;
+		\item	Cependant, la puissance peut être augmentée avec plus d'observations.
+		\end{itemize}
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[La variabilité des données]
+Si la variabilité de la distribution est
+\begin{itemize}
+	\item	\textbf{Faible}, alors la variabilité de l'échantillon sera probablement faible aussi menant à une puissance très \textbf{élevée}:
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+
+%Straight Lines [id:da864976542619565] 
+\draw [line width=1.5]    (245.42,117.83) -- (497.17,117.83) (281.42,109.83) -- (281.42,125.83)(317.42,109.83) -- (317.42,125.83)(353.42,109.83) -- (353.42,125.83)(389.42,109.83) -- (389.42,125.83)(425.42,109.83) -- (425.42,125.83)(461.42,109.83) -- (461.42,125.83) ;
+%Straight Lines [id:da9295821978585093] 
+\draw [line width=1.5]    (245.17,98) -- (497.17,98) ;
+%Shape: Circle [id:dp23295532013997544] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (319,117.83) .. controls (319,113.6) and (322.43,110.17) .. (326.67,110.17) .. controls (330.9,110.17) and (334.33,113.6) .. (334.33,117.83) .. controls (334.33,122.07) and (330.9,125.5) .. (326.67,125.5) .. controls (322.43,125.5) and (319,122.07) .. (319,117.83) -- cycle ;
+%Shape: Circle [id:dp6583442494748755] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (323.67,117.83) .. controls (323.67,113.6) and (327.1,110.17) .. (331.33,110.17) .. controls (335.57,110.17) and (339,113.6) .. (339,117.83) .. controls (339,122.07) and (335.57,125.5) .. (331.33,125.5) .. controls (327.1,125.5) and (323.67,122.07) .. (323.67,117.83) -- cycle ;
+%Shape: Circle [id:dp7278683126625956] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (337,117.83) .. controls (337,113.6) and (340.43,110.17) .. (344.67,110.17) .. controls (348.9,110.17) and (352.33,113.6) .. (352.33,117.83) .. controls (352.33,122.07) and (348.9,125.5) .. (344.67,125.5) .. controls (340.43,125.5) and (337,122.07) .. (337,117.83) -- cycle ;
+%Shape: Circle [id:dp6846096733160589] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 33; green, 86; blue, 233 }  ,fill opacity=1 ] (388,116.83) .. controls (388,112.6) and (391.43,109.17) .. (395.67,109.17) .. controls (399.9,109.17) and (403.33,112.6) .. (403.33,116.83) .. controls (403.33,121.07) and (399.9,124.5) .. (395.67,124.5) .. controls (391.43,124.5) and (388,121.07) .. (388,116.83) -- cycle ;
+%Shape: Circle [id:dp05843938160550621] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 33; green, 86; blue, 233 }  ,fill opacity=1 ] (399.67,116.83) .. controls (399.67,112.6) and (403.1,109.17) .. (407.33,109.17) .. controls (411.57,109.17) and (415,112.6) .. (415,116.83) .. controls (415,121.07) and (411.57,124.5) .. (407.33,124.5) .. controls (403.1,124.5) and (399.67,121.07) .. (399.67,116.83) -- cycle ;
+%Shape: Circle [id:dp2540684792866683] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 33; green, 86; blue, 233 }  ,fill opacity=1 ] (410,116.83) .. controls (410,112.6) and (413.43,109.17) .. (417.67,109.17) .. controls (421.9,109.17) and (425.33,112.6) .. (425.33,116.83) .. controls (425.33,121.07) and (421.9,124.5) .. (417.67,124.5) .. controls (413.43,124.5) and (410,121.07) .. (410,116.83) -- cycle ;
+%Curve Lines [id:da9834393207352259] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (245.17,98) .. controls (320.17,96.33) and (320.17,96.33) .. (325.17,77.33) .. controls (327.17,58.33) and (328.17,29.33) .. (335.17,29.33) .. controls (342.17,29.33) and (342.17,59.33) .. (344.17,77.33) .. controls (350.17,96.33) and (352.17,96.33) .. (430,98) ;
+%Curve Lines [id:da5775597107131041] 
+\draw [color={rgb, 255:red, 33; green, 86; blue, 233 }  ,draw opacity=1 ][line width=1.5]    (312.17,98) .. controls (387.17,96.33) and (387.17,96.33) .. (392.17,77.33) .. controls (394.17,58.33) and (395.17,29.33) .. (402.17,29.33) .. controls (409.17,29.33) and (409.17,59.33) .. (411.17,77.33) .. controls (417.17,96.33) and (419.17,96.33) .. (497,98) ;
+
+% Text Node
+\draw (324,3) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{66.6825pt}\setlength\topsep{0pt}
+\begin{center}
+Puissance élevée\\{\footnotesize variabilité faible}
+\end{center}
+
+\end{minipage}};
+
+
+\end{tikzpicture}
+		\end{center}
+	\item	\textbf{Élevée}, alors la variabilité de l'échantillon sera probablement élevée aussi menant à une puissance \textbf{faible}: 
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+
+%Straight Lines [id:da224342647816256] 
+\draw [line width=1.5]    (291.42,122.83) -- (543.17,122.83) (327.42,114.83) -- (327.42,130.83)(363.42,114.83) -- (363.42,130.83)(399.42,114.83) -- (399.42,130.83)(435.42,114.83) -- (435.42,130.83)(471.42,114.83) -- (471.42,130.83)(507.42,114.83) -- (507.42,130.83) ;
+%Shape: Circle [id:dp7289237376471596] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (362,122.83) .. controls (362,118.6) and (365.43,115.17) .. (369.67,115.17) .. controls (373.9,115.17) and (377.33,118.6) .. (377.33,122.83) .. controls (377.33,127.07) and (373.9,130.5) .. (369.67,130.5) .. controls (365.43,130.5) and (362,127.07) .. (362,122.83) -- cycle ;
+%Shape: Circle [id:dp6581028616853248] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (417.3,122.83) .. controls (417.3,118.6) and (420.73,115.17) .. (424.96,115.17) .. controls (429.2,115.17) and (432.63,118.6) .. (432.63,122.83) .. controls (432.63,127.07) and (429.2,130.5) .. (424.96,130.5) .. controls (420.73,130.5) and (417.3,127.07) .. (417.3,122.83) -- cycle ;
+%Shape: Circle [id:dp32832339728857773] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (394.96,122.83) .. controls (394.96,118.6) and (398.39,115.17) .. (402.63,115.17) .. controls (406.86,115.17) and (410.3,118.6) .. (410.3,122.83) .. controls (410.3,127.07) and (406.86,130.5) .. (402.63,130.5) .. controls (398.39,130.5) and (394.96,127.07) .. (394.96,122.83) -- cycle ;
+%Shape: Circle [id:dp8463878803176157] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 33; green, 86; blue, 233 }  ,fill opacity=1 ] (412.3,122.83) .. controls (412.3,118.6) and (415.73,115.17) .. (419.96,115.17) .. controls (424.2,115.17) and (427.63,118.6) .. (427.63,122.83) .. controls (427.63,127.07) and (424.2,130.5) .. (419.96,130.5) .. controls (415.73,130.5) and (412.3,127.07) .. (412.3,122.83) -- cycle ;
+%Shape: Circle [id:dp41576741952688256] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 33; green, 86; blue, 233 }  ,fill opacity=1 ] (446.67,123.83) .. controls (446.67,119.6) and (450.1,116.17) .. (454.33,116.17) .. controls (458.57,116.17) and (462,119.6) .. (462,123.83) .. controls (462,128.07) and (458.57,131.5) .. (454.33,131.5) .. controls (450.1,131.5) and (446.67,128.07) .. (446.67,123.83) -- cycle ;
+%Shape: Circle [id:dp7322447345202854] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 33; green, 86; blue, 233 }  ,fill opacity=1 ] (471,121.83) .. controls (471,117.6) and (474.43,114.17) .. (478.67,114.17) .. controls (482.9,114.17) and (486.33,117.6) .. (486.33,121.83) .. controls (486.33,126.07) and (482.9,129.5) .. (478.67,129.5) .. controls (474.43,129.5) and (471,126.07) .. (471,121.83) -- cycle ;
+%Curve Lines [id:da3201541308920388] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (295.17,101.67) .. controls (311.17,102) and (346.17,86) .. (385.17,86) .. controls (426.17,86) and (470.33,102.33) .. (485.17,102) ;
+%Curve Lines [id:da0520324915772159] 
+\draw [color={rgb, 255:red, 33; green, 86; blue, 233 }  ,draw opacity=1 ][line width=1.5]    (352.17,101.67) .. controls (368.17,102) and (403.17,86) .. (442.17,86) .. controls (483.17,86) and (527.33,102.33) .. (542.17,102) ;
+%Straight Lines [id:da9874290431386423] 
+\draw [line width=1.5]    (290.17,102) -- (543.17,102) ;
+
+% Text Node
+\draw (371,50) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{64.149144pt}\setlength\topsep{0pt}
+\begin{center}
+Puissance faible\\{\footnotesize variabilité élevée}
+\end{center}
+
+\end{minipage}};
+\end{tikzpicture}
+		\end{center}
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+Il existe plusieurs mesures qui permettent de considérer la variabilité des données ainsi que la forme de la distribution. Entres autre, il y a le \og \textit{\textbf{effect size ($d$)}} \fg{} où \lfbox[formula]{$d	=	\frac{\bar{x} - \bar{y}}{s^{2}_{p}}$}.
+
+\begin{definitionNOHFILLsub}[Le taille de l'échantillon de données]
+Un grand échantillon de données peut compenser pour des distributions qui se chevauchent ou une variabilité élevée. Ça permet d'augmenter notre \textit{confiance} qu'il y a bel et bien une différence entre les échantillons. \\
+
+En contraste, nous n'avons pas besoin d'un grand échantillon de données pour des distributions très distinctes ou avec une faible variabilité; nous sommes déjà confiants que les distributions sont différentes.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Le test statistique]
+Certains tests ont une puissance plus élevée que les autres. \\
+Cela dit, le test $t$ habituel est très puissant.
+\end{definitionNOHFILLsub}
+
+La fonction de puissance est $\gamma_{C}(\theta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \in \Theta_{1} \right\}$.
+
+
+%%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
+%%%%		À rajouter éventuellement	%%%%	
+%%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
+
+%\subsection{Tests d'hypothèses}
+%%	Contenu à y inclure
+%	Hypothèse nulle et alternative
+%	Statistique de test
+%	Région de réjection
+%	Erreurs de type I et II
+%		Tests optimaux
+%		Lemme de Neymann-Pearson
+%		Ratio de vraisemblance
+%	Valeurs critique et seuil observé
+%	Test unilatéral et bilatéral
+%	La valeur p
+%	
+%	Test uniformément le plus puissant, alias Uniformely Most Powerful (UMP)
+%	Tests échantillons normaux
+%		Test T
+%			Unilatéral (test, taille, puissance, seuil observé, IC)
+%			Bilatéral (test, taille, puissance, seuil observé, IC)\\
+%		Test sur la variance
+%			3 différents problèmes (<=U<, >=U>, =U=/=)
+%	Tests grands échantillons
+%		Test Z (normal)
+%			3 différents problèmes (<=U<, >=U>, =U=/=)
+%			(tests, tailles, puissances, seuils observé, IC)
+%	Test du Rapport de Vraisemblance
+%		Statistique, test
+%	Test d'adéquation
+%		Fonction de répartition empirique
+%		Test de Kolmogorov-Smirnov
+%		Test du khi-carré de Pearson
+%			design multinomial
+%		Tableau de contingence
+%		Test d'indépendance du khi-carré
+
+
+\columnbreak
+\section{Statistiques d'ordre}
+
+Soit un échantillon aléatoire de taille $n$.
+Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.\\
+Les crochets sont utilisés pour différencier la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.\\
+
+Nous sommes habituellement intéressés au minimum $X_{(1)}$ et le maximum $X_{(n)}$.
+
+\setlength{\mathindent}{-0.75cm}
+\begin{minipage}{0.5\columnwidth}
+\begin{algo}{Minimum}
+\begin{align*}
+	X_{(1)}
+	&=	\min(X_{1}, \dots, X_{n})	\\
+	f_{X_{(1)}}(x)
+	&=	n f_{X}(x) \big( S_{X}(x) \big)^{n - 1}	\\
+	S_{X_{(1)}}(x)
+	&=	\prod_{i = 1}^{n} \Pr(X_{i} > x)
+\end{align*}
+\end{algo}
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+\begin{algo}{Maximum}
+\begin{align*}
+	X_{(n)}
+	&=	\max(X_{1}, \dots, X_{n})	\\
+	f_{X_{(n)}}(x)
+	&=	n f_{X}(x) \big( F_{X}(x) \big)^{n - 1}	\\
+	F_{X_{(n)}}(x)
+	&=	\prod_{i = 1}^{n} \Pr(X_{i} \le x)
+\end{align*}
+\end{algo}
+\end{minipage}
+\setlength{\mathindent}{1cm}
+
+De façon plus générale, on défini:
+\begin{algo}{$k^{\text{e}}$ statistique d'ordre}
+\begin{align*}
+%	X_{(k)}
+	f_{X_{(k)}}(x)
+	&=	\frac{n!}{\textcolor{teal}{(k - 1)!} \textcolor{cobalt}{1!} \textcolor{cyan}{(n - k)!}} \textcolor{teal}{\underset{\text{observations } < \ k}{\underbrace{\big[ F_{X}(x) \big]^{k - 1}}}} \textcolor{cobalt}{\overset{\text{observation } = \ k}{\overbrace{f_{X}(x)}}} \textcolor{cyan}{\underset{\text{observations } > \ k}{\underbrace{\big[ S_{X}(x) \big]^{n - k}}}} \\
+	F_{X_{(k)}}(x)
+	&=	\underset{\text{Probabilité qu'au moins } k \text{ des } n \text{ observations } X_{k} \text{ sont } \le \ x}{\underbrace{\sum_{i = r}^{n} \binom{n}{i} [F_{X}(x)]^{j} [1 - F_{X}(x)]^{n - j}}}
+\end{align*}
+\end{algo}
+
+Nous pouvons également définir quelques autres statistiques d'intérêt :
+
+\begin{description}
+	\item[$R = X_{(n)} - X_{(1)}$: ] \textbf{L'étendu}e (range) est la différence entre le minimum et le maximum d'un échantillon.
+		\begin{itemize}[leftmargin = *]
+		\item	L'utilité de l'étendue est limitée puisqu'elle est très sensible aux données extrêmes.
+		\item	Par exemple, supposons qu’on observe des données historiques de température pour le 1er septembre. \\
+				En moyenne, la température est de $16\degree C$, mais nous avons un cas extrême de $-60\degree C$ en 1745.\\
+				L'étendue sera de $86\degree C$ ce qui n'est très représentatif des données.\\
+				Donc, dans ce contexte, la mesure n'est pas d'une très grande utilité.
+		\end{itemize}
+	\item[$M = \frac{X_{(n)} + X_{(1)}}{2}$: ] \textbf{mi-étendue} (Midrange), est la moyenne entre le minimum et le maximum d'un échantillon.
+		\begin{itemize}[leftmargin = *]
+		\item	Pour comprendre ce que représente la mi-étendue, on la compare à la moyenne arithmétique.
+		\item	La moyenne arithmétique considère les données observées et calcule leur moyenne.\\
+				Il s'ensuit qu'elle ne considère pas les chiffres qui ne sont pas observés.
+		\item	La mi-étendue considère \textbf{tous} les chiffres, observés ou non, entre la plus grande et la plus petite valeur d'un échantillon et en prend la moyenne.		
+		\end{itemize}
+\end{description}
+
+\begin{conceptgen}{Exemple sur les statistiques d'ordre}
+Soit un échantillon de données météorologiques $\{-30\degree, -24\degree, -7\degree, -23\degree, +5\degree\}$ (celsius).
+
+Je suppose que ce sont des températures du 4 février observées lors des dernières années.
+\begin{itemize}[leftmargin = *]
+	\item	La moyenne arithmétique ($-22.25\degree C$) m'intéresse, car je peux savoir, en moyenne, ce qu'est la température le 4 février.
+	\item	La mi-étendue ($-12.5\degree C$), tout comme l'étendue ($-35\degree C$), ne m'intéresse pas puisqu'elle ne prend pas en considération la vraisemblance des différentes températures.
+\end{itemize}
+
+Maintenant, je suppose que ces données sont des températures observées tout au long de l'hiver passé.
+\begin{itemize}[leftmargin = *]
+	\item	La moyenne arithmétique ne m'intéresse pas puisqu'elle est beaucoup trop biaisée par les températures de cette même journée. 
+	\item	Cependant, la mi-étendue et l'étendue me donnent maintenant une meilleure idée de la température de l'hiver.
+\end{itemize}
+
+L'important à retenir est que l'utilité des mesures dépend de la situation. Également, ceci est un exemple \textbf{très} simpliste et dans tous les cas on ne peut pas tirer de conclusions sur les températures de l'hiver à partir d'une seule journée.
+\end{conceptgen}
+
+Nous pouvons définir la \textbf{médiane} en termes de statistiques d'ordre:
+\begin{align*}
+	\text{Med}
+	&=	\left\{
+		\begin{matrix}
+			X_{((n + 1)/2)},		&	\text{si n est impair}	\\
+			\frac{X_{(n/2)} + X_{(n/2 + 1)}}{2},	&	\text{si n est pair}	\\
+		\end{matrix}
+	\right.
+\end{align*}
+
+Finalement, on définit la distribution conjointe du minimum et du maximum $\forall x < y$:
+\begin{align*}
+	f_{X_{(1)}, X_{(n)}}(x, y)
+	&=	n (n - 1) [F_{X}(y) - F_{X}(x)]^{n - 2} f_{X}(x) f_{X}(y)
+\end{align*}
+
+\columnbreak
 \section{Construction d'estimateurs}
 
-Dans la section précédente, on évalue les méthodes pour évaluer la \textbf{qualité} de l'estimateur. 
-Cependant, comment obtenons-nous des estimateurs pour les évaluer?
+Précédemment, nous avons décrit les méthodes utilisées pour évaluer la \textbf{qualité} de l'estimateur. 
+Cependant, comment obtenons-nous des estimateurs à évaluer?
 
 Plusieurs méthodes existent pour établir des estimateurs, de plus plusieurs méthodes existent pour estimer des paramètres.
 La méthode vu dans le cadre du cours de statistique est la \textbf{méthode fréquentiste}, le cours de mathématiques IARD 1 (ACT-2005) présente \textbf{l'estimation bayésienne}.
@@ -886,314 +1475,6 @@ En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}c
 %	Quantile-Quantile
 %	AIC
 %	BIC
-\columnbreak
-
-\section{Échantillonnage et statistiques}
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$X$]	Variable aléatoire d'intérêt $X$ avec fonction de densité $f(x; \theta)$;
-	\item[$\Theta$]	Ensemble des valeurs possible pour le paramètre $\theta$ tel que \lfbox[formula]{$\theta \in \Theta$};
-		\begin{itemize}
-		\item	Par exemple, pour une loi normale $\Theta	=	\{(\mu, \sigma^{2}): \sigma^{2} > 0, -\infty < \mu < \infty\}$.
-		\end{itemize}
-	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon de taille $n$.
-		\begin{itemize}
-		\item	On pose que les observations ont la même distribution que $X$;
-		\item	On pose habituellement l'indépendance entre les observations;
-		\item	L'indépendance et la distribution identique rend l'échantillon un \textbf{échantillon aléatoire};
-		\item	Lorsque nous avons des observations, ont dénote l'échantillon par $\{x_{1}, \dots, x_{n}\}$ pour représenter des \textit{réalisations} de l'échantillon.
-		\end{itemize}
-\end{description}
-\end{distributions}
-
-\section{Tests d'hypothèses}
-\label{sec:hyp-test}
-\subsection{Introduction}
-Soit la 
-\begin{description}
-	\item[$\Theta_{0}$ et $\Theta_{1}$]	Sous-ensembles disjoints de $\Theta$ tel que \lfbox[formula]{$\Theta_{0} \cup \Theta_{1}	=	\Theta$;}
-	\item[$\textrm{H}_{0}$]	Hypothèse nulle;
-	\item[$\textrm{H}_{0}$]	Hypothèse alternative.
-\end{description}
-
-\begin{definitionNOHFILL}[Test d'hypothèse]
-\begin{align*}
-	\textrm{H}_{0}
-	&:	\theta \in \Theta_{0}	&
-	&\text{vs}	&
-	\textrm{H}_{1}
-	&:	\theta \in \Theta_{1}	&
-\end{align*}
-
-Habituellement l'hypothèse nulle représente le statu quo alors que l'hypothèse alternative représente un changement.
-\end{definitionNOHFILL}
-
-\begin{definitionNOHFILLsub}[Région critique]
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$\mathcal{S}$]	"Ensemble" de tous les résultats possible pour l'échantillon aléatoire;
-	\item[$\mathcal{C}$]	\textbf{Région critique} qui est un sous-ensemble de $\mathcal{S}$.
-\end{description}
-\end{distributions}
-
-On rejet $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}$.\\
-On conserve $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}^{c}$.
-\end{definitionNOHFILLsub}
-
-On peut donc faire 2 types d'erreurs:
-\begin{center}
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,165); %set diagram left start at 0, and has height of 165
-
-%Shape: Rectangle [id:dp5658804967739193] 
-\draw  [fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (74,50.17) -- (163.83,50.17) -- (163.83,101.5) -- (74,101.5) -- cycle ;
-%Shape: Rectangle [id:dp933461228347003] 
-\draw  [fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (163.83,101.5) -- (253.67,101.5) -- (253.67,152.83) -- (163.83,152.83) -- cycle ;
-%Shape: Rectangle [id:dp24194313951746427] 
-\draw  [fill={rgb, 255:red, 148; green, 250; blue, 106 }  ,fill opacity=1 ] (163.83,50) -- (253.67,50) -- (253.67,101.33) -- (163.83,101.33) -- cycle ;
-%Shape: Rectangle [id:dp27324261874552724] 
-\draw  [fill={rgb, 255:red, 148; green, 250; blue, 106 }  ,fill opacity=1 ] (74,101.33) -- (163.83,101.33) -- (163.83,152.67) -- (74,152.67) -- cycle ;
-%Shape: Rectangle [id:dp9425087952138109] 
-\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (74,30.17) -- (163.83,30.17) -- (163.83,50) -- (74,50) -- cycle ;
-%Shape: Rectangle [id:dp40513736937576916] 
-\draw  [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (74,10.33) -- (253.67,10.33) -- (253.67,30.17) -- (74,30.17) -- cycle ;
-%Shape: Rectangle [id:dp4099498200973881] 
-\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (163.83,30.17) -- (253.67,30.17) -- (253.67,50) -- (163.83,50) -- cycle ;
-%Shape: Rectangle [id:dp35293578825776084] 
-\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (5.5,101.33) -- (74,101.33) -- (74,152.67) -- (5.5,152.67) -- cycle ;
-%Shape: Rectangle [id:dp2841127241620307] 
-\draw  [fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (5.5,50.17) -- (74,50.17) -- (74,101.5) -- (5.5,101.5) -- cycle ;
-%Shape: Rectangle [id:dp5918283025493905] 
-\draw  [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (5.5,30.33) -- (74,30.33) -- (74,50.17) -- (5.5,50.17) -- cycle ;
-
-% Text Node
-\draw (138.33,13) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Vrai état};
-% Text Node
-\draw (110.92,35) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$ \text{H}_{0}$};
-% Text Node
-\draw (200.75,35) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$ \text{H}_{1}$};
-% Text Node
-\draw (18.25,112) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Accepter\\ $\text{H}_{0}$}};
-% Text Node
-\draw (23.25,60.83) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Rejeter\\ $\text{H}_{0}$}};
-% Text Node
-\draw (13.25,32.75) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Décision};
-% Text Node
-\draw (91.42,65.83) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] 
-{\shortstack{Erreur\\ de type I}};
-% Text Node
-\draw (181.25,117) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Erreur\\ de type II}};
-% Text Node
-\draw (95.92,117) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Bonne\\ décision}};
-% Text Node
-\draw (185.75,65.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack{Bonne\\ décision}};
-
-
-
-\end{tikzpicture}
-\end{center}
-
-%Nous avons trois termes qui représentent la même chose:
-%\begin{description}
-%	\item[Probabilité d'une erreur de type I]	Donc la probabilité de rejeter $\text{H}_{0}$ alors qu'elle est vraie.
-%	\item[taille]	La taille $\alpha$ de la région critique $\mathcal{C}$;
-%	\item[taux de signifiance] $\alpha$
-%\end{description}
-%
-%C'est à dire, \lfbox[formula]{$\alpha	=	\underset{\theta \in \Theta_{0}}{\max} \Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \right\}$}.
-%\begin{itemize}
-%	\item	On note que ceci correspond à $1	-	\Pr\{\text{erreur de type II}\}$.
-%\end{itemize}
-%
-%La fonction de puissance est $\gamma_{C}(\theta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \in \Theta_{1} \right\}$.
-%\begin{definitionNOHFILL}[La puissance d'un test]
-%La probabilité de \textit{correctement} rejeter l'hypothèse nulle.
-%%%	https://www.youtube.com/watch?v=Rsc5znwR5FA&feature=youtu.be
-%
-%Lorsqu'on teste si deux échantillons d'observations proviennent de la même distribution, si les deux distributions sont:
-%\begin{itemize}
-%	\item	Très distinctes, la puissance sera très élevée.
-%		\begin{itemize}
-%		\item	 La probabilité de rejeter l'hypothèse nulle (que les deux échantillons proviennent d'une même distribution) est élevée.
-%		\end{itemize}
-%	\item	Se chevauche, la puissance sera faible; particulièrement si nous avons peu d'observations.
-%		\begin{itemize}
-%		\item	Cependant, la puissance peut être augmentée avec plus d'observations.
-%		\end{itemize}
-%\end{itemize}
-%
-%\tcbline
-%
-%Une analyse de la puissance nous informe du nombre d'observations nécessaire pour une bonne puissance.
-%\end{definitionNOHFILL}
-
-
-%%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
-%%%%		À rajouter éventuellement	%%%%	
-%%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
-
-%\subsection{Tests d'hypothèses}
-%%	Contenu à y inclure
-%	Hypothèse nulle et alternative
-%	Statistique de test
-%	Région de réjection
-%	Erreurs de type I et II
-%		Tests optimaux
-%		Lemme de Neymann-Pearson
-%		Ratio de vraisemblance
-%	Valeurs critique et seuil observé
-%	Test unilatéral et bilatéral
-%	La valeur p
-%	
-%	Test uniformément le plus puissant, alias Uniformely Most Powerful (UMP)
-%	Tests échantillons normaux
-%		Test T
-%			Unilatéral (test, taille, puissance, seuil observé, IC)
-%			Bilatéral (test, taille, puissance, seuil observé, IC)\\
-%		Test sur la variance
-%			3 différents problèmes (<=U<, >=U>, =U=/=)
-%	Tests grands échantillons
-%		Test Z (normal)
-%			3 différents problèmes (<=U<, >=U>, =U=/=)
-%			(tests, tailles, puissances, seuils observé, IC)
-%	Test du Rapport de Vraisemblance
-%		Statistique, test
-%	Test d'adéquation
-%		Fonction de répartition empirique
-%		Test de Kolmogorov-Smirnov
-%		Test du khi-carré de Pearson
-%			design multinomial
-%		Tableau de contingence
-%		Test d'indépendance du khi-carré
-
-
-%\subsection{Distributions d'échantillonnage}
-%%	Contenu à y inclure
-%	Postulat de normalité
-%		Moyenne échantillonnale
-%		Variance échantillonnale
-%		Statistique T
-%		Statistique F
-%	Échantillons de distribution inconnue
-%		Théorème centrale limite
-
-%\subsection{Exhaustivité}
-%%	Contenu à y inclure
-%	Définition de l'exhaustivité
-%	Théorème de factorisation de Fisher-Neymann
-%	Critère de Lehmann-Scheffé (Exhaustivité minimale)
-%	Théorème de factorisation de Fisher-Neymann (cas de plus d'un paramètre)
-%	Théorème de Rao-Blackwell (statistique exhaustive sans biais)
-%	MVUE
-%		Élaboration sur le MVUE
-%		Comment le construire
-
-%%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
-%		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
-
-\columnbreak
-\section{Statistiques d'ordre}
-
-Soit un échantillon aléatoire de taille $n$.
-Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.\\
-Les crochets sont utilisés pour différencier la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.\\
-
-Nous sommes habituellement intéressés au minimum $X_{(1)}$ et le maximum $X_{(n)}$.
-
-\setlength{\mathindent}{-0.75cm}
-\begin{minipage}{0.5\columnwidth}
-\begin{algo}{Minimum}
-\begin{align*}
-	X_{(1)}
-	&=	\min(X_{1}, \dots, X_{n})	\\
-	f_{X_{(1)}}(x)
-	&=	n f_{X}(x) \big( S_{X}(x) \big)^{n - 1}	\\
-	S_{X_{(1)}}(x)
-	&=	\prod_{i = 1}^{n} \Pr(X_{i} > x)
-\end{align*}
-\end{algo}
-\end{minipage}
-\begin{minipage}{0.5\columnwidth}
-\begin{algo}{Maximum}
-\begin{align*}
-	X_{(n)}
-	&=	\max(X_{1}, \dots, X_{n})	\\
-	f_{X_{(n)}}(x)
-	&=	n f_{X}(x) \big( F_{X}(x) \big)^{n - 1}	\\
-	F_{X_{(n)}}(x)
-	&=	\prod_{i = 1}^{n} \Pr(X_{i} \le x)
-\end{align*}
-\end{algo}
-\end{minipage}
-\setlength{\mathindent}{1cm}
-
-De façon plus générale, on défini:
-\begin{algo}{$k^{\text{e}}$ statistique d'ordre}
-\begin{align*}
-%	X_{(k)}
-	f_{X_{(k)}}(x)
-	&=	\frac{n!}{\textcolor{teal}{(k - 1)!} \textcolor{cobalt}{1!} \textcolor{cyan}{(n - k)!}} \textcolor{teal}{\underset{\text{observations } < \ k}{\underbrace{\big[ F_{X}(x) \big]^{k - 1}}}} \textcolor{cobalt}{\overset{\text{observation } = \ k}{\overbrace{f_{X}(x)}}} \textcolor{cyan}{\underset{\text{observations } > \ k}{\underbrace{\big[ S_{X}(x) \big]^{n - k}}}} \\
-	F_{X_{(k)}}(x)
-	&=	\underset{\text{Probabilité qu'au moins } k \text{ des } n \text{ observations } X_{k} \text{ sont } \le \ x}{\underbrace{\sum_{i = r}^{n} \binom{n}{i} [F_{X}(x)]^{j} [1 - F_{X}(x)]^{n - j}}}
-\end{align*}
-\end{algo}
-
-Nous pouvons également définir quelques autres statistiques d'intérêt :
-
-\begin{description}
-	\item[$R = X_{(n)} - X_{(1)}$: ] \textbf{L'étendu}e (range) est la différence entre le minimum et le maximum d'un échantillon.
-		\begin{itemize}[leftmargin = *]
-		\item	L'utilité de l'étendue est limitée puisqu'elle est très sensible aux données extrêmes.
-		\item	Par exemple, supposons qu’on observe des données historiques de température pour le 1er septembre. \\
-				En moyenne, la température est de $16\degree C$, mais nous avons un cas extrême de $-60\degree C$ en 1745.\\
-				L'étendue sera de $86\degree C$ ce qui n'est très représentatif des données.\\
-				Donc, dans ce contexte, la mesure n'est pas d'une très grande utilité.
-		\end{itemize}
-	\item[$M = \frac{X_{(n)} + X_{(1)}}{2}$: ] \textbf{mi-étendue} (Midrange), est la moyenne entre le minimum et le maximum d'un échantillon.
-		\begin{itemize}[leftmargin = *]
-		\item	Pour comprendre ce que représente la mi-étendue, on la compare à la moyenne arithmétique.
-		\item	La moyenne arithmétique considère les données observées et calcule leur moyenne.\\
-				Il s'ensuit qu'elle ne considère pas les chiffres qui ne sont pas observés.
-		\item	La mi-étendue considère \textbf{tous} les chiffres, observés ou non, entre la plus grande et la plus petite valeur d'un échantillon et en prend la moyenne.		
-		\end{itemize}
-\end{description}
-
-\begin{conceptgen}{Exemple sur les statistiques d'ordre}
-Soit un échantillon de données météorologiques $\{-30\degree, -24\degree, -7\degree, -23\degree, +5\degree\}$ (celsius).
-
-Je suppose que ce sont des températures du 4 février observées lors des dernières années.
-\begin{itemize}[leftmargin = *]
-	\item	La moyenne arithmétique ($-22.25\degree C$) m'intéresse, car je peux savoir, en moyenne, ce qu'est la température le 4 février.
-	\item	La mi-étendue ($-12.5\degree C$), tout comme l'étendue ($-35\degree C$), ne m'intéresse pas puisqu'elle ne prend pas en considération la vraisemblance des différentes températures.
-\end{itemize}
-
-Maintenant, je suppose que ces données sont des températures observées tout au long de l'hiver passé.
-\begin{itemize}[leftmargin = *]
-	\item	La moyenne arithmétique ne m'intéresse pas puisqu'elle est beaucoup trop biaisée par les températures de cette même journée. 
-	\item	Cependant, la mi-étendue et l'étendue me donnent maintenant une meilleure idée de la température de l'hiver.
-\end{itemize}
-
-L'important à retenir est que l'utilité des mesures dépend de la situation. Également, ceci est un exemple \textbf{très} simpliste et dans tous les cas on ne peut pas tirer de conclusions sur les températures de l'hiver à partir d'une seule journée.
-\end{conceptgen}
-
-Nous pouvons définir la \textbf{médiane} en termes de statistiques d'ordre:
-\begin{align*}
-	\text{Med}
-	&=	\left\{
-		\begin{matrix}
-			X_{((n + 1)/2)},		&	\text{si n est impair}	\\
-			\frac{X_{(n/2)} + X_{(n/2 + 1)}}{2},	&	\text{si n est pair}	\\
-		\end{matrix}
-	\right.
-\end{align*}
-
-Finalement, on définit la distribution conjointe du minimum et du maximum $\forall x < y$:
-\begin{align*}
-	f_{X_{(1)}, X_{(n)}}(x, y)
-	&=	n (n - 1) [F_{X}(y) - F_{X}(x)]^{n - 2} f_{X}(x) f_{X}(y)
-\end{align*}
 
 \pagebreak
 
@@ -1517,7 +1798,7 @@ On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" th
 %	\item[]	e.g., probabilité d'observer 4 faces.
 %\end{itemize}
 
-\section{Intervalles de confiance}
+%\section{Intervalles de confiance}
 
 \pagebreak
 
