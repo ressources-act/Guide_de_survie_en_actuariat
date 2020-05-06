@@ -37,6 +37,713 @@
 \raggedcolumns
 \begin{multicols*}{2} 
 
+\section{Notions de base à la modélisation en actuariat}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X$]	Variable aléatoire représentant les pertes pour une "\textit{entité}" pour un (ou plusieurs) "\textit{périls}".
+		\begin{itemize}
+		\item	Elle peut être continue, discrète ou mixte ;
+		\item	"\textit{Entité}" peut être un individu (ou groupe de), commerce, compagnie, etc. ;
+		\item	"\textit{Périls}" peut être une incendie, du vandalisme, une maladie, du risque opérationnel, etc. ;
+		\item	On pose que \lfbox[conditions]{$\text{E}[X]	<	\infty$}.
+		\end{itemize}
+	\item[$\text{PP}(X)$]	La \textbf{prime pure} pour le risque $X$, \lfbox[formula]{$\text{PP}(X)	=	\text{E}[X]$}.
+\end{description}
+\end{distributions}
+
+
+\subsection{Fonction quantile}
+\lfbox[formula]{$F_{X}^{-1}(u)	=	\inf\{x \in \mathbb{R}; F_{X}(x)	\geq u\}$}, \lfbox[conditions]{$\forall u \in (0, 1)$}.\\
+
+
+\begin{formula}{\hyperlink{proof:ftc-quantile}{Théorème de la fonction quantile}}
+Soit :	
+\begin{itemize}
+	\item	la variable aléatoire $X$ avec fonction de répartition $F_{X}(x)$ et la fonction quantile $F_{X}^{-1}(u)$.
+	\item	la variable aléatoire $U \sim Unif(0, 1)$.
+	\item	$Y	=	F_{X}^{-1}(U)$.
+\end{itemize}
+
+Alors, \lfbox[formula]{$F_{Y}(x)	=	F_{F_{X}^{-1}(U)}(x)	=	F_{X}(x)$} \lfbox[conditions]{$\forall x \in \mathbb{R}$} et \lfbox[formula]{$X		=	F_{X}^{-1}(U)$}.
+
+\tcbline
+
+C'est-à-dire, on défini $Y$ comme la transformation de la variable aléatoire $U$ via la fonction quantile. Par conséquent, $Y$ se comporte comme $X$.
+\end{formula}
+
+\setcounter{subsection}{3}
+\subsection{Espérance tronquée}
+On pose que $X$ est une variable aléatoire tel que $\text{E}[X]	<	\infty$.
+\begin{distributions}[Notation]
+\begin{description}
+	\item[]	$\text{E}[X \times \bm{1}_{\{X > d\}}]$	l'espérance tronquée à $d$.
+		\begin{itemize}
+		\item	C'est-à-dire, l'espérance des valeurs de la v.a. $X$ qui sont supérieur à $d$.
+		\item	On peut définir l'espérance tronquée avec n'importe quelle indicatrice.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\textbf{Rappel :}
+\begin{align*}
+	\bm{1}_{\{X	>	d\}}
+	&=	\begin{cases}	
+		1,	&	X	>	d	\\
+		0,	&	X	\leq	d	
+		\end{cases}
+\end{align*}
+
+
+\subsection{Fonction \textbf{stop-loss}}
+On pose que $X$ est une variable aléatoire tel que $\text{E}[X]	<	\infty$.
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\pi_{X}(d)$]	Fonction stop-loss de déductible $d$ tel que \lfbox[formula]{$\pi_{X}(d)	=	\text{E}[\max\{X	-	d;	0\}]$}, \lfbox[conditions]{$\forall d \in \mathbb{R}$}.
+		\begin{itemize}
+		\item	C'est-à-dire, l'espérance des montants de perte en excédant de la limite $d$,
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\textbf{Relation :}
+\begin{align*}
+	\pi_{X}(d)
+	&\equiv	\text{E}[X	\times	\bm{1}_{\{X	>	d\}}]	-	d\bar{F}_{X}(d)
+\end{align*}
+
+
+\subsection{Fonction quantile et espérance(s)}
+\lfbox[formula]{$\text{E}[X]	=	\text{E}[F_{X}^{-1}(U)]	=	\int_{0}^{1}F_{X}^{-1}(u)du$}.
+
+\textbf{Relation :}
+\begin{align*}
+	\int_{k}^{1}F_{X}^{-1}(u)du
+	&=	\pi_{x}\left(F_{X}^{-1}(\kappa)\right) + (1 - \kappa)F_{X}^{-1}(\kappa), \quad \forall \kappa \in (0, 1)	\\
+	&=	\text{E}\Big[X	\times	\bm{1}_{\{X	>	F_{X}^{-1}(\kappa)\}}\Big]+ 
+		F_{X}^{-1}(\kappa)\bigg( F_{X}\Big(F_{X}^{-1}(\kappa)	-	\kappa\Big) \bigg)
+\end{align*}
+
+\subsection{Mesures de risque}
+\begin{itemize}
+	\item	La \textbf{Value-at-Risk} correspond au $100\alpha^{\text{e}}$ pourcentile;
+%	\item	Si $X$ représente les pertes, on s'intéresse à l'extrémité supérieure de la distribution des gains et \icbox{$TVaR_{\kappa}(X)	=	\esp{X | X > \kappa}	=	\frac{1}{1 - \kappa} \int_{VaR_{\kappa}}^{\infty} x f_{X}(x)dx$} ;
+%	\item	Si $X$ représente les gains, on s'intéresse à l'extrémité inférieure de la distribution des gains et \icbox{$TVaR_{\kappa}(X)	=	\esp{X | X \leq \kappa}	=	\frac{1}{\kappa} \int_{-\infty}^{VaR_{\kappa}} x f_{X}(x)dx$}.
+\end{itemize}
+
+Également, on a la $TVaR$ que l'on peut écrire pour $\kappa \in (0, 1)$: 
+\begin{align*}
+	TVaR_{\kappa}(X)
+	&=	\frac{1}{1 - \kappa}\int_{\kappa}^{1}	VaR_{u}(X)du	\\
+	&=	\frac{1}{1 - \kappa}\pi_{X}\left(VaR_{\kappa}(X)\right) + VaR_{\kappa}(X)	\\
+	&=	\frac{1}{1 - \kappa}\left[	\text{E}[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}] + VaR_{\kappa}(X) \left(F_{X}\left(VaR_{\kappa}(X)	-	\kappa\right)\right)	\right]
+\end{align*}
+
+Pour une variable aléatoire $X$ continue, on simplifie :
+\begin{align*}
+	TVaR_{\kappa}(X)
+	&=	\frac{1}{1 - \kappa}\left[	\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right] + \underbrace{VaR_{\kappa}(X) \left(F_{X}\left(VaR_{\kappa}(X)	-	\kappa\right)\right)}_{\shortstack{= 0}}	\right]	\\
+	&=	\frac{1}{1 - \kappa}\left[	\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right]	\right]	\\
+	&\equiv	\frac{\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right]}{\Pr(X	>	VaR_{\kappa}(X))}	\\
+	&=	\esp{X | X	>	Var_{\kappa}(X)}
+\end{align*}
+
+\subsubsection{Propriétés désirables d'une mesure de risque}
+\begin{definitionNOHFILLsub}[Homogénéité]
+Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$c	>	0$}, la mesure de risque $\rho$ est dite homogène si \icbox{$\rho(cX)	=	c\rho(X)$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Invariance à la translation]
+Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$c	\in	\mathbb{R}$}, la mesure de risque $\rho$ satisfait la propriété d'invariance à la translation si \icbox{$\rho(X + c)	=	\rho(X) + c$}.	\\
+
+Ajouter un montant positif à un risque ajoute un montant équivalent à la mesure de risque.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Monotonicité]
+Soit les v.a. $X_{1}$ et $X_{2}$ \icbox[red][palechestnut]{tel que $\Pr(X	\leq	X_{2})	=	1$}, la mesure de risque $\rho$ satisfait la propriété de monotonicité si \icbox{$\rho(X_{1})	\leq	\rho(X_{2})$} ou si \icbox[red][palechestnut]{$\forall	u	\in	(0, 1)$}, \icbox{$F_{X_{1}}^{-1}(u)	\leq	F_{X_{2}}^{-1}(u)$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Sous-additivité]
+Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de sous-additivité si \icbox{$\rho(X_{1}	+	X_{2})	\leq	\rho(X_{1})	+	\rho(X_{2})$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Convexité]
+Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de convexité si \icbox{$\rho(\alpha X_{1}	+	(1	-	\alpha)X_{2})	\leq	\alpha\rho(X_{1})	+	(1	-	\alpha)\rho(X_{2})$}.
+\end{definitionNOHFILLsub}
+
+
+
+\pagebreak
+\section{Méthodes de simulation Monte-Carlo}
+\begin{algo2}[Méthode inverse]
+Pour $j	=	1, 2, \dots, m$, 
+\begin{enumerate}
+	\item	On produit une réalisation $U^{(j)}$ d'une loi $U(0, 1)$ à partir d'un GNPA (\texttt{runif} en \texttt{R}).
+	\item	On simule une réalisation $X^{(j)}$ de $X$ où \lfbox[formula]{$X^{(j)}	=	F_{X}^{-1}(U^{(j)})$}.
+\end{enumerate}
+\end{algo2}
+
+\begin{algo2}[Simulation d'une fonction d'un nombre fini de variables aléatoires]
+Pour $j	=	1, 2, \dots, m$, 
+\begin{enumerate}
+	\item	On simule les réalisations $\left(X_{1}^{(j)}, X_{2}^{(j)}, \dots, X_{n}^{(j)}\right)$ de $\left(X_{1}, X_{2}, \dots, X_{n}\right)$.
+	\item	On évalue $Z^{(j)}	=	\phi\left(X_{1}^{(j)}, X_{2}^{(j)}, \dots, X_{n}^{(j)}\right)$.
+\end{enumerate}
+
+Par exemple, on peut avoir $\phi\left(x_{1}, x_{2}, \dots, x_{n}\right)	=	\sumz{n}{i = 1}x_{i}$.
+\end{algo2}
+
+\begin{algo2}[Simulation d'une fonction de variables aléatoires définies par un mélange]
+Pour $j	=	1, 2, \dots, m$, 
+\begin{enumerate}
+	\item	On simule une réalisation $\Theta^{(j)}$ de $\Theta$.
+	\item	On produit une réalisation $X^{(j)}$ de $X$ avec la fonction quantile $F_{X | \Theta = \Theta^{(j)}}$ de la fonction de répartition conditionnelle de $(X | \Theta = \Theta^{(j)})$
+\end{enumerate}
+\end{algo2}
+
+\subsection{Erreur et intervalle de confiance}
+Soit une v.a. $X$ dont on produit $m$ réalisation $\left( X^{(1)}, X^{(2)}, \dots, X^{(m)} \right)$.\\
+Soit la fonction intégrale de $X$, $g(X)$.\\
+On obtient les approximations pour $\theta	=	\text{E}[g(X)]$ : 
+\begin{align*}
+	\theta	
+	&=	\simeq	\hat{\theta}_{m}
+	=	\frac{1}{m}\sumz{m}{j	=	1} g\left(X^{(j)}\right)	\\
+	\text{Var}\left(\hat{\theta}_{m}\right)
+	&=	\frac{1}{m}\text{Var}\left(g(X)\right)	\\
+	\widehat{\text{Var}}\left(g(X)\right)
+	&=	\frac{1}{m - 1} \sumz{m}{j	=	1} \left(g\left(X^{(j)}\right)	-	\hat{\theta}_{m}\right)^{2}
+\end{align*}
+
+De plus, 
+\begin{align*}
+	\theta \in \left[\hat{\theta}_{m} \pm \sqrt{\frac{\text{Var}\left(\hat{\theta}_{m}\right)}{m}} \Phi^{-1} \left(1 - \frac{\alpha}{2}\right)\right]
+	\approx	\left[\hat{\theta}_{m} \pm \sqrt{\frac{\widehat{\text{Var}}\left(\hat{\theta}_{m}\right)}{m}} \Phi^{-1} \left(1 - \frac{\alpha}{2}\right)\right]
+\end{align*}
+
+Également, la fonction de répartition peut être approximée avec $m$ réalisations $\left( X^{(1)}, X^{(2)}, \dots, X^{(m)} \right)$ :
+\begin{align*}
+	F^{(m)}_{X}(x)
+	&\simeq	\frac{1}{m} \sumz{m}{j	=	1} \bm{1}_{\{X^{(j)}	\leq	x\}}
+\end{align*}
+
+De plus, pour \lfbox[conditions]{$j_{0}	=	m\times k$} entier :
+\begin{align*}
+	TVaR_{\kappa}(X)
+	&\simeq	\frac{1}{m - j_{0}} \left( \frac{1}{m} \sumz{m}{j	=	j_{0} + 1} X^{[j]} 
+%	+ X^{[j_{0}]}\bigg(F^{(m)}\big(X^{[j_{0}]}\big) - \kappa \bigg) 
+	\right)
+\end{align*}
+
+\pagebreak
+\section{Mutualisation des risques}
+\begin{distributions}[Terminologie]
+\begin{description}
+	\item[$S$]	Pertes totales 
+\end{description}
+\end{distributions}
+
+\subsection{Méthode de Monte-Carlo}
+\begin{algo2}[Étapes pour simuler]
+\begin{enumerate}
+	\item	Produire $M$ réalisations $U^{(1)}, \dots, U^{(m)}$ de $U$ ;
+	\item	Approximer $\theta$ par $\hat{\theta}_{m}$ où :
+		\begin{align*}
+		\hat{\theta}_{m}
+		&=	\frac{1}{m} \sumz{m}{j = 1} \phi\left( F_{X}^{-1}\left(U^{(j)}\right) \right)	\\
+		&=	\frac{1}{m} \sumz{m}{j = 1} \phi\left( X^{(j)} \right)	\\
+		\end{align*}
+\end{enumerate}
+Par la loi des grands nombres, $\hat{\theta}_{m}	\overset{P}{\rightarrow}	\theta$.
+\end{algo2}
+
+
+\subsection{Mesures de risque}
+
+
+\begin{description}
+	\item[Capital économique]	Allocation de surplus de la compagnie;
+		\begin{align*}
+		CE(S)	
+		&=	\rho(S)	-	\esp{S}
+		\end{align*}
+	\item[Marge de risque]	associée à une prime $P(X)$;
+		\begin{align*}
+		MR(X)
+		&=	\rho(X)	-	\esp{X}
+		\end{align*}
+\end{description}
+
+$\rho$ introduit une marge de risque:
+\begin{description}
+	\item[positive]	lorsque \icbox{$\rho(X)	\geq		\esp{X}$} pour une v.a. $X$ avec \icbox[red][palechestnut]{$\esp{X} < \infty$};
+	\item[justifiée]	lorsque \icbox{$\rho(X)	=	\rho(a)	=	a$} pour une v.a. $X$ avec \icbox[red][palechestnut]{$\Pr(X	=	a)	=	1, \alpha > 0$};
+	\item[non-excessive]	lorsque \icbox{$\rho(X)	\leq		a_{\max}$} pour une v.a. $X$ \icbox[red][palechestnut]{s'il existe $a_{\max}	<	\infty$} \icbox[red][palechestnut]{tel que $\Pr(X	\leq		a_{\max})	=	1$};
+\end{description}
+
+\pagebreak
+\section{Modèles de risques non-vie}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$M$]	Variable aléatoire du nombre de sinistres pour un risque;
+	\item[$B_{k}$]	Variable aléatoire du montant du $k^{\text{e}}$ sinistre.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Modèle fréquence-sinistre]
+On défini la v.a. $X$ comme étant les coûts (pertes) pour un risque tel que \icbox[red][palechestnut]{$\forall	M	>	0$}:
+\begin{align*}
+	X
+	&=	\sum_{k	=	1}^{M} B_{k}
+\end{align*}
+
+\tcbline
+
+\begin{align*}
+	\esp{X}
+	&=	\text{E}_{\text{M}}\left[\text{E}_{\text{B}}[X | M]\right]	\\
+	&=	\text{E}[M]	\times	\text{E}[B]	\\
+	\text{Var}(X)
+	&=	\underbrace{\text{Var}_{\text{M}}(\text{E}_{\text{B}}[X | M])}_{\text{variabilité du \textit{nombre} de sinistres}}	+	\underbrace{\text{E}_{\text{M}}\left[\text{Var}_{\text{B}}(X | M)\right]}_{\text{variabilité du \textit{coût} par sinistre}}	\\
+	&=	\text{E}[M]\text{Var}(B)	+	\text{E}^{2}[B]\text{Var}(M)	\\
+\end{align*}
+
+\tcbline
+
+\begin{align*}
+	F_{X}(x)
+	&=	\Pr(M	=	0)	+	\sum_{k	=	1}^{\infty} \Pr(M	=	k)F_{B_{1}	+	\dots	+	B_{k}}(x)
+\end{align*}
+
+Par exemple, pour $B_{k}	\sim	\Gamma(\alpha,	\beta)$:
+\begin{align*}
+	F_{X}(x)
+	&=	\Pr(M	=	0)	+	\sum_{k	=	1}^{\infty} \Pr(M	=	k)H(x;	\alpha k, \beta)
+\end{align*}
+
+\tcbline
+
+\begin{align*}
+	\mathcal{L}_{X}(t)
+	&=	P_{M}\left(\mathcal{L}_{B}(t)\right), \quad	t > 0	\\
+	\esp{X	\times	\bm{1}_{\{X	>	b\}}}
+	&=	\sum_{k	=	1}^{\infty} \Pr(M	=	k)E\left[(B_{1}	+	\dots	+	B_{k})	\times	\bm{1}_{\{B_{1}	+	\dots	+	B_{k} > b\}}\right]
+\end{align*}
+
+Par exemple, pour $B_{k}	\sim	\Gamma(\alpha,	\beta)$:
+\begin{align*}
+	\esp{X	\times	\bm{1}_{\{X	>	b\}}}
+	&=	\sum_{k	=	1}^{\infty} \Pr(M	=	k) \frac{k\alpha}{\beta} \overline{H}(b;	\alpha k + 1, \beta)
+\end{align*}
+\end{definitionNOHFILL}
+
+\subsection{Simulation}
+\begin{algo2}[Simulation de réalisations de $X$]
+\begin{enumerate}
+	\item	Simuler la réalisation $M^{(j)}$ de la v.a. $M$ ;
+	\item	Si $M^{(j)}	=	0$, alors $X^{(j)}	=	0$ ;
+	\item	Si $M^{(j)}	>	0$, alors :	
+		\begin{enumerate}
+		\item	Simuler $M^{(j)}$ réalisations de la v.a. (iid) $B$ pour obtenir $B^{(j)}_{1}, B^{(j)}_{2}, \dots, B^{(j)}_{M^{(j)}}$;
+		\item	On pose $X^{(j)}	=	B^{(j)}_{1} + B^{(j)}_{2} + \dots + B^{(j)}_{M^{(j)}}$.
+		\end{enumerate}
+\end{enumerate}
+\end{algo2}
+
+\subsection{Heavy tailed and light tailed}
+Si la distribution de la v.a. $B$ est sub-exponentielle alors :
+\begin{align*}
+	\overline{F}_{X}(x)
+	&=	\sumz{\infty}{k	=	1}f_{M}(k) \overline{F}_{B_{1} + \dots + B_{k}}(x)
+	\sim	\sumz{\infty}{k	=	1}f_{M}(k)k\overline{F}_{B}(x)
+	=	\text{E}[M]\overline{F}_{B}(x)
+\end{align*}
+
+
+\newpage
+\part{ACT-3000: Théorie du risque}
+\setcounter{section}{9}
+\section{Processus de Poisson}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$T_{k}$]	Temps d'occurrence de l'événement $k	=	1, 2, \dots$.
+		\begin{itemize}
+		\item	Il s'ensuit que \lfbox[conditions]{$0	<	T_{1}	<	T_{2}	<	\dots$} ;
+		\item	\lfbox[formula]{$T_{k}	\sim	Erlang(k; \lambda)$}.
+		\end{itemize}
+	\item[$W_{k}$]	Temps écoulé entre l'événement $k - 1$ et $k$.
+		\begin{itemize}
+		\item	Il s'ensuit que \lfbox[formula]{$W_{k}	=	T_{k} - T_{k - 1}$} ;
+		\item	\lfbox[formula]{$W_{k}	\sim	W	\sim	Exp(\lambda)$}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Processus de comptage]
+Soit le processus de comptage \lfbox[formula]{$\underline{N}	=	\{N(t), t \geq 0\}$} sous les conditions suivantes :
+\begin{enumerate}
+	\item	$N(0)	=	0$ ;
+	\item	$N(t)	\geq	0$ ;
+	\item	$N(t)	\geq	N(s)$ si $t	>	s$ ;
+	\item	$N(t) - N(s)$ correspond au nombre d'événements encourus durant l'intervalle $(s, t]$ où $t	>	s$ ;
+\end{enumerate}
+
+Au lieu de le définir en fonction d'une loi de Poisson, on peut définir \lfbox[formula]{$N(t)	=	\sup\{k \geq 1 : T_{k} \leq t\}$}, \lfbox[conditions]{$\forall t \geq 0$}. C'est-à-dire, le dernier événement à se produire à ou avant le temps $t$.
+
+\tcbline
+
+\begin{itemize}
+	\item	Alias, processus de dénombrement.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\columnbreak
+\subsection{Processus de Poisson homogène}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\lambda$]	Taux, ou intensité, du processus.
+	\item[$\Lambda(t)$]	Intensité cumulée :
+		\begin{align*}
+		\Lambda(t)
+		&=	\int_{0}^{t} \lambda ds
+		=	\lambda t, \quad t > 0
+		\end{align*}
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILLsub}[Processus de Poisson]
+$\underline{N}	=	\{N(t), t \geq 0\}$ est un \textbf{processus de Poisson} sous les conditions suivantes :
+\begin{enumerate}
+	\item	$N(0)	=	0$ ;
+	\item	Les accroissements sont indépendants et stationnaires ;
+	\item	$N(t)	\sim	Pois(\lambda t)$ ;
+	\item	$N(t + s) - N(s) \sim Pois(\lambda t)$.
+\end{enumerate}
+\end{definitionNOHFILLsub}
+
+Pour \lfbox[conditions]{$s \geq 0$ et $t > 0$}, \lfbox[formula]{$N(s, s + t]	=	N(s + t)	-	N(s)$}.\\
+Également, pour \lfbox[conditions]{$s \geq 0$ et $t > 0$}, \lfbox[formula]{$\Lambda(s, s + t]	=	\Lambda(s + t)	-	\Lambda(s)$}.
+
+\subsubsection*{Fonctions d'un processus de Poisson homogène}
+Pour $k \in \mathbb{N}$, $t > 0$, $s \geq 0$ :
+\begin{align*}
+	\Pr(N(t)	=	k)
+	&=	\textrm{e}^{-\lambda t} \frac{(\lambda t)^{k}}{k!}	\\
+	&\underset{\small\shortstack{accroissements\\ stationnaires}}{\equiv} \Pr(N(s, s + t)	=	k)
+\end{align*}
+
+
+\begin{definitionNOHFILLprop}[Propriétés d'un processus de Poisson homogène]
+Soit le processus de Poisson $\underline{N}	=	\{N(t), t \geq 0\}$ avec les propriétés suivantes :
+\begin{enumerate}
+	\item	$N(0)	=	0$ ;
+	\item	Les accroissements sont indépendants et stationnaires ;
+	\item	$N(t)	\sim	Pois(\lambda t)$ ;
+	\item	$N(s, s + t]	\equiv N(s + t) - N(s) \sim Pois(\lambda t)$ ;\\
+	Pour \lfbox[conditions]{$h	\rightarrow 0$} et \lfbox[conditions]{$o(h)	\overset{h \rightarrow 0}{\rightarrow} 0$} :
+	\item	$\Pr(N(t + h) - N(t) = 0)	=	1 - \lambda h + o(h)$ ;
+	\item	$\Pr(N(t + h) - N(t) = 1)	=	\lambda h + o(h)$ ;
+	\item	$\Pr(N(t + h) - N(t) \geq 2)	=	o(h)$.
+\end{enumerate}
+\end{definitionNOHFILLprop}
+
+\subsubsection*{Propositions}
+\begin{definitionNOHFILLpropos}[Proposition:	Mélange de processus de Poisson avec une suite de v.a. Bernoulli]
+Soit :
+\begin{itemize}
+	\item	Un processus de Poisson $\underline{N}	=	\{N(t), t \geq 0\}$ de taux $\lambda$ ;
+	\item	La suite de variables aléatoires (iid) Bernoulli $\underline{I}	=	\{I_{k}, k	=		1, 2, \dots\}$ de paramètre $q$.
+\end{itemize}
+On pose que $\underline{N}	\perp	\underline{I}$ et défini :
+\begin{align*}
+	M(t)
+	&=	\begin{cases}
+		\sumz{N(t)}{k	=	1} I_{k}, &	N(t)	>	0	\\
+		0,	&	N(t)	=	0
+		\end{cases}
+\end{align*}
+
+On obtient donc le processus de Poisson $\underline{M}	=	\{M(t), t \geq 0\}$ de taux $\lambda q$; c'est-à-dire, \lfbox[formula]{$M(t)	\sim	Pois(\lambda q t)$}.
+\end{definitionNOHFILLpropos}
+
+\begin{definitionNOHFILLpropos}[Proposition:	Somme de processus de Poisson]
+Soit les processus de Poisson indépendants $\underline{N}_{1}	=	\{N_{1}(t), t \geq 0\}$ et $\underline{N}_{2}	=	\{N_{2}(t), t \geq 0\}$ de taux $\lambda_{1}$ et $\lambda_{2}$.\\
+
+Alors, $\underline{M}	=	\{M(t), t \geq 0\}$ est un processus de Poisson de taux $\lambda_{1} + \lambda_{2}$ où $M(t)	=	N_{1}(t) + N_{2}(t)$; c'est-à-dire, \lfbox[formula]{$M(t)	\sim	Pois(\lambda_{1} + \lambda_{2})$}.
+\end{definitionNOHFILLpropos}
+
+\begin{algo2}[Algorithme de Processus de Poisson 1 (PP1)]
+\begin{enumerate}
+	\item	On fixe \lfbox[conditions]{$T_{0}^{(j)}	=	0$} ;
+	\item	Pour $i	=	1, 2, \dots, n$, 
+		\begin{enumerate}[label = \alph*)]
+		\item	On simule $W_{i}^{(j)}$ ;
+		\item	On calcule $T_{i}^{(j)}	=	T_{i - 1}^{(j)} + W_{i}^{(j)}$.
+		\end{enumerate}
+\end{enumerate}
+
+\tcbline
+
+\begin{itemize}
+	\item	Cet algorithme est simple d'application ;
+	\item	Cependant, il n'est pas toujours efficace pour produire des simulations du processus $\underline{N}$ sur un intervalle fixe $(0, t]$.
+\end{itemize}
+\end{algo2}
+
+\subsubsection*{Distributions du temps d'occurrence}
+\begin{rappel_enhanced}[Rappel:	Distribution du temps inter-sinistre]
+\begin{equation*}
+	T_{1}	\sim	W_{k}	\sim	W	\sim	\text{Exp}(\lambda)
+\end{equation*}
+\end{rappel_enhanced}
+
+\begin{description}
+	\item[$(T_{1} | N(t)	=	1)$]	Temps d'occurrence du premier sinistre sachant qu'il est survenu dans l'intervalle $(0, t]$.
+		\begin{itemize}
+		\item	\lfbox[formula]{$(T_{1} | N(t)	=	1) \sim U(0, t)$} ;
+		\item	Pour \lfbox[conditions]{$s \in (0, t)$} :
+		\end{itemize}
+		\begin{align*}
+		f_{T_{1} | N(t)	=	1}(s)	
+		&=	\frac{1}{t}	&
+		F_{T_{1} | N(t)	=	1}(s)	
+		&=	\frac{s}{t}	\\
+		\end{align*}
+\end{description}
+%\begin{align*}
+%	\Pr(T_{1}	\leq	s	|	N(t)	=	1)
+%	&=	\frac{\Pr(T_{2}	>	t)}{\Pr(N(t)	=	1)}	\\
+%	&\equiv	\frac{\Pr(N(s)	=	1, N(s, t]	=	0)}{\Pr(N(t)	=	1)}	\\
+%	&\overset{\small\shortstack{accroissements\\ indépendants}}{=}	...	\\
+%	&=	\frac{s}{t}, \quad s \in (0, t]
+%\end{align*}
+
+
+\begin{description}
+	\item[$(T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n)$]	Temps d'occurrence des $n$ premiers sinistres sachant qu'ils sont survenus dans l'intervalle $(0, t]$.
+\end{description}
+
+Pour \lfbox[conditions]{$0	<	s_{1}	<	s_{2}	<	\dots	<	s_{n}	\leq		n$} :
+\begin{align*}
+	f_{T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n}(s_{1}, s_{2}, \dots, s_{n})	
+	&=	\frac{n!}{t^{n}}	\\
+\end{align*}
+
+De plus, pour des très petits nombres $h_{1}, h_{2}, \dots, h_{n}$ tel que les intervalles $(s_{1}, s_{1} + h_{1}], (s_{2}, s_{2} + h_{2}], \dots, (s_{n}, s_{n} + h_{n}]$ sont disjoints, alors :
+\begin{align*}
+	\Pr(T_{1} \in (s_{1}, s_{1} + h_{1}], T_{2} \in (s_{2}, s_{2} + h_{2}], \dots, T_{n} \in (s_{n}, s_{n} + h_{n}] | N(t)	=	n)
+	&=	\frac{n!}{t^{n}}	 \prod_{i = 1}^{n}h_{i}\\
+\end{align*}
+
+
+
+\begin{definitionNOHFILLpropos}[Vecteur de statistiques d'ordre]
+Soit le vecteur de v.a. continues (iid) $(Y_{1}, Y_{2}, \dots, Y_{n})$, alors \lfbox[conditions]{$\forall i	=	1, 2, \dots, n$} :
+\begin{itemize}
+	\item	\lfbox[conditions]{$Y_{i} \sim Y$} et 
+	\item	la fonction de densité \lfbox[conditions]{$f_{Y_{i}}	=	f_{Y}$}. 
+\end{itemize}
+
+On défini le vecteur de statistiques d'ordre $(Y_{[1]}, Y_{[2]}, \dots, Y_{[n]})$ avec la fonction de densité conjointe :
+\begin{align*}
+	f_{Y_{[1]}, Y_{[2]}, \dots, Y_{[n]}}(y_{1}, y_{2}, \dots, y_{n})	
+	&=	n! \times \prod_{i = 1}^{n} f_{Y}(y_{i}), \quad	y_{1}	<	y_{2}	<	\dots	<	y_{n}	\\
+	&\overset{Y \sim U(0, t)}{=}	\frac{n!}{t^{n}}, \quad 0	<	y_{1}	<	y_{2}	<	\dots	<	y_{n}	\leq		t
+\end{align*}
+
+Donc, \lfbox[formula]{$(T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n) \sim (Y_{[1]}, Y_{[2]}, \dots, Y_{[n]})$}.
+\end{definitionNOHFILLpropos}
+
+\begin{algo2}[Algorithme de Processus de Poisson 2 (PP2)]
+\begin{enumerate}
+	\item	On fixe \lfbox[conditions]{$T_{0}^{(j)}	=	0$} ;
+	\item	On simule la réalisation $N(t)^{(j)}$ de $N(t)$ ;
+	\item	Sachant $N(t)	=	N(t)^{(j)}	>	0$ :
+		\begin{enumerate}[label = \alph*)]
+		\item	On simule le vecteur de réalisations $\left( U_{1}^{(j)}, U_{2}^{(j)}, \dots, U_{N(t)^{(j)}}^{(j)}\right)$ de $\left( U_{1}, U_{2}, \dots, U_{N(t)^{(j)}}\right)$ ;
+		\item	On trie ces réalisations pour obtenir le vecteur de statistiques d'ordre $\left( U_{[1]}^{(j)}, U_{[2]}^{(j)}, \dots, U_{[N(t)^{(j)}]}^{(j)}\right)$ où $ U_{[1]}^{(j)} < U_{[2]}^{(j)}< \dots < U_{[N(t)^{(j)}]}^{(j)}$ ;
+		\item	On calcule $T_{i}^{(j)}	=	t \times U_{[i]}^{(j)}$ pour $i	=	1, 2, \dots, N(t)^{(j)}$.
+		\end{enumerate}
+		\begin{description}
+		\item[Note :]	On pose que $U_{i} \sim U \sim U(0, 1)$.
+		\end{description}
+\end{enumerate}
+\end{algo2}
+
+
+\columnbreak
+\subsection{Processus de Poisson non-homogène}
+\begin{definitionNOHFILLsub}[Processus de Poisson non-homogène]
+$\underline{N}	=	\{N(t), t \geq 0\}$ est un \textbf{processus de Poisson non-homogène} de fonction d'intensité $\lambda(t)	\geq 0$ $\forall t \geq 0$ si :
+\begin{enumerate}
+	\item	$N(0)	=	0$ ;
+	\item	Les accroissements sont indépendants ;
+	\item	$\Pr(N(t + h) - N(t)	=	1)	=	\lambda(t)h + o(h)$ ;
+	\item	$\Pr(N(t + h) - N(t)	\geq	2)	=	o(h)$ ;
+\end{enumerate}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLpropos}[Proposition :	]
+Soit le processus de Poisson non-homogène $\underline{N}	=	\{N(t), t \geq 0\}$ avec intensité $\lambda(t)$; alors \lfbox[formula]{$\forall t, s \geq 0$},
+\begin{align*}
+	N(t + s) - N(t)
+	\sim	Pois\left(\Lambda(t + s) - \Lambda(s)\right)
+\end{align*}
+où $\Lambda(t)	=	\int_{0}^{t}\lambda(y)dy$.
+
+\tcbline
+
+Ainsi, 
+\begin{align*}
+	\Pr\left(N(t + s) - N(s) = n\right)
+	&=	\frac{\left[ m(t + s) - m(s) \right]^{n} \textrm{e}^{-[ m(t + s) - m(s)]}}{n!}
+\end{align*}
+
+\begin{itemize}
+	\item	La suite de v.a. des temps inter-sinistres n'est pas $\underline{W}$ indépendante ni identiquement distribuée.
+\end{itemize}
+\end{definitionNOHFILLpropos}
+
+\begin{formula}{Exemples de fonctions d'intensité}
+\begin{description}
+	\item[fonction linéaire]	$\lambda(t)	=	a + bt$, $a > 0, b \geq 0$ ;
+	\item[fonction puissance]		$\lambda(t)	=	(\beta t)^{\tau}$, $\beta, \tau > 0$ ;
+	\item[fonction log-linéaire]		$\lambda(t)	=	\textrm{e}^{\alpha + \beta t}$, $\alpha,\beta \in \mathbb{R}$ ;
+	\item[fonction périodique]	$\lambda(t)	=	a + b\cos(2\pi t)$, $a > 0, b \in [0, a]$.
+\end{description}
+\end{formula}
+
+\subsubsection*{Distributions du temps d'occurrence}
+On sait que $T_{1}	\equiv	W_{1}$.
+\begin{align*}
+	F_{W_{1}}(t)
+	&=	1	-	\textrm{e}^{-\Lambda(t)}, \quad t \geq 0
+\end{align*}
+
+Plus généralement, 
+\begin{align*}
+	F_{W_{n} | T_{n - 1} = s}(t)
+	&=	1	-	\textrm{e}^{-\Lambda_{s}(t)},\quad t \geq 0
+\end{align*}
+
+\begin{algo2}[Algorithme de Processus de Poisson non-homogène 1 (PPNH1)]
+\begin{enumerate}
+	\item	On fixe \lfbox[conditions]{$T_{0}^{(j)}	=	0$} ;
+	\item	Pour $i	=	1, 2, \dots, n$, 
+		\begin{enumerate}[label = \alph*)]
+		\item	On simule les réalisations $\left( Z_{1}^{(j)}, Z_{2}^{(j)}, \dots, Z_{n}^{(j)}\right)$ du vecteur de v.a. (iid) avec $Z_{i} \sim Z \sim Exp(1)$ ;
+		\item	On simule $W_{i}^{(j)}	=	\Lambda^{-1}_{T_{i - 1}^{(j)}}(Z_{i})$ ;
+		\item	On calcule $T_{i}^{(j)}	=	T_{i - 1}^{(j)} + W_{i}^{(j)}$.
+		\end{enumerate}
+\end{enumerate}
+
+\tcbline
+
+\begin{itemize}
+	\item	Cet algorithme est simple d'application si l'expression $\Lambda_{s}^{-1}$ est fermée ;
+	\item	Cependant, le prochain est plus efficace pour produire des simulations du processus $\underline{N}$ sur un intervalle fixe $(0, t]$.
+\end{itemize}
+\end{algo2}
+
+Pour \lfbox[conditions]{$0	<	s_{1}	<	s_{2}	<	\dots	<	s_{n}	<	t$} :
+\begin{align*}
+	f_{T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n}(s_{1}, s_{2}, \dots, s_{n})	
+	&=	\frac{n!}{\Lambda(t)^{n}}\prod_{i = 1}^{n}\lambda(s_{i})	\\
+\end{align*}
+
+Les hypothèses au vecteur de v.a. (iid) $\left(V_{1}, V_{2}, \dots, V_{N(t)}^{(j)}\right)$ sont appliquées de la même façon qu'auparavant avec $\left(U_{1}, U_{2}, \dots, U_{N(t)}^{(j)}\right)$.
+
+\begin{algo2}[Algorithme de Processus de Poisson non-homogène 2 (PPNH2)]
+\begin{enumerate}
+	\item	On fixe \lfbox[conditions]{$T_{0}^{(j)}	=	0$}.
+	\item	On simule la réalisation $N(t)^{(j)}$ de $N(t) \sim Pois(\Lambda(t))$.
+	\item	Sachant $N(t)	=	N(t)^{(j)}	>	0$ :
+		\begin{enumerate}[label = \alph*)]
+		\item	On simule le vecteur de réalisations $\left( V_{1}^{(j)}, V_{2}^{(j)}, \dots, V_{N(t)^{(j)}}^{(j)}\right)$ du vecteur de v.a. (iid) $\left( V_{1}, V_{2}, \dots, V_{N(t)^{(j)}}\right)$ ;
+		\item[Note :]	$V_{i} \sim V$ avec $f_{V}(x)	=	\frac{\lambda(x)}{\Lambda(t)}$ pour $0 < x < t$ et $\forall	i	=	1, 2, \dots, N(t)^{(j)}$
+		\item	On trie ces réalisations pour obtenir le vecteur de statistiques d'ordre $\left( V_{[1]}^{(j)}, V_{[2]}^{(j)}, \dots, V_{[N(t)^{(j)}]}^{(j)}\right)$ où $ V_{[1]}^{(j)} < V_{[2]}^{(j)}< \dots < V_{[N(t)^{(j)}]}^{(j)}$ ;
+		\item	On calcule $T_{i}^{(j)}	=	V_{[i]}^{(j)}$ pour $i	=	1, 2, \dots, N(t)^{(j)}$.
+		\end{enumerate}
+		\begin{description}
+		\item[Note :]	On pose que $U_{i} \sim U \sim U(0, 1)$.
+		\end{description}
+	\item	Pour $i	=	1, 2, \dots, n$, 
+		\begin{enumerate}[label = \alph*)]
+		\item	On simule les réalisations $\left( Z_{1}^{(j)}, Z_{2}^{(j)}, \dots, Z_{n}^{(j)}\right)$ du vecteur de v.a. (iid) avec $Z_{i} \sim Z \sim Exp(1)$ ;
+		\item	On simule $W_{i}^{(j)}	=	\Lambda^{-1}_{T_{i - 1}^{(j)}}(Z_{i})$ ;
+		\item	On calcule $T_{i}^{(j)}	=	T_{i - 1}^{(j)} + W_{i}^{(j)}$.
+		\end{enumerate}
+\end{enumerate}
+
+\tcbline
+
+\begin{itemize}
+	\item	Cet algorithme est simple d'application si l'expression $\Lambda_{s}^{-1}$ est fermée ;
+	\item	Cependant, le prochain est plus efficace pour produire des simulations du processus $\underline{N}$ sur un intervalle fixe $(0, t]$.
+\end{itemize}
+\end{algo2}
+
+
+\columnbreak
+\subsection{Processus de Poisson mixte}
+\begin{align*}
+	\text{E}[N(t)]
+	&=	t\lambda	\\
+	\text{Var}(N(t))
+	&=	t\lambda	 + t^{2}\text{Var}(\Theta)\\
+\end{align*}
+
+Pour $r \in [0, 1]$ :
+\begin{align*}
+	M_{N(t)}(r)
+	&=	M_{\Theta}\left( t(\textrm{e}^{r} - 1)\right)	\\
+	\mathcal{P}_{N(t)}(r)
+	&=	M_{\Theta}\left( t(r - 1)\right)	\\
+\end{align*}
+
+\begin{itemize}
+	\item	Le processus de Poisson mixte $\underline{N}$ possède des accroissements stationnaires mais pas indépendants.
+		\begin{align*}
+		\Pr\left(N(t + s) - N(s) = n | N(s) = m\right)
+		\neq		\Pr\left(N(t + s)	-	N(s)	=	n\right), \quad m, n \in \mathbb{N}
+		\end{align*}
+\end{itemize}
+
+\begin{algo2}[Algorithme de simulation d'un Processus de Poisson mixte]
+\begin{enumerate}
+%	\item	On fixe \lfbox[conditions]{$T_{0}^{(j)}	=	0$} ;
+	\item	On simule la réalisation $\Theta^{(j)}$ de $\Theta$ ;
+	\item	On simule le $j^{\text{e}}$ parcours de $(\underline{N} | \Theta = \Theta^{(j)})$ avec l'algorithme PP1 pour un processus de Poisson avec intensité $\lambda = \Theta^{(j)}$.
+\end{enumerate}
+\end{algo2}
+
+
+\columnbreak
+\subsection{Processus de renouvellement}
+\lfbox[formula]{$\{N(t) \geq k\}	\equiv	\{T_{k} \leq t\}$}, \lfbox[conditions]{$t > 0, k \in \mathbb{N}$}.
+
+\begin{align*}
+	m(t)
+	&=	\text{E}[N(t)]	\\
+	&=	\sumz{\infty}{k = 1}	\text{E}[\bm{1}_{\{T_{k} \leq t\}}]\\
+	&=	\sumz{\infty}{k = 1}	 F_{T_{k}}(t)\\
+\end{align*}
+
+
+\subsection{Processus agrégés}
+\begin{align*}
+	S(t)
+	&=	\begin{cases}
+		\sumz{N(t)}{k = 1} B_{k},	&	N(t)	>	0	\\
+		0,	&	N(t)	=	0
+		\end{cases}
+\end{align*}
+
+
+\subsection{Valeur présente et processus agrégés}
+
+
+\newpage
 \section{Terminologie}
 \begin{description}
 	\item[$\argmax$]	Si on pose que $\hat{\theta}	=	\argmax L(\theta; \bm{X})$ on dit que la valeur maximale de $L(\theta; \bm{X})$ est au point $\hat{\theta}$.
@@ -112,119 +819,70 @@ Paramètre
 \end{description}
 \end{distributions}
 
-\section{Mesures de risque}
 
-\begin{description}
-	\item[Capital économique]	Allocation de surplus de la compagnie;
-		\begin{align*}
-		CE(S)	
-		&=	\rho(S)	-	\esp{S}
-		\end{align*}
-	\item[Marge de risque]	associée à une prime $P(X)$;
-		\begin{align*}
-		MR(X)
-		&=	\rho(X)	-	\esp{X}
-		\end{align*}
-\end{description}
-
-$\rho$ introduit une marge de risque:
-\begin{description}
-	\item[positive]	lorsque \icbox{$\rho(X)	\geq		\esp{X}$} pour une v.a. $X$ avec \icbox[red][palechestnut]{$\esp{X} < \infty$};
-	\item[justifiée]	lorsque \icbox{$\rho(X)	=	\rho(a)	=	a$} pour une v.a. $X$ avec \icbox[red][palechestnut]{$\Pr(X	=	a)	=	1, \alpha > 0$};
-	\item[non-excessive]	lorsque \icbox{$\rho(X)	\leq		a_{\max}$} pour une v.a. $X$ \icbox[red][palechestnut]{s'il existe $a_{\max}	<	\infty$} \icbox[red][palechestnut]{tel que $\Pr(X	\leq		a_{\max})	=	1$};
-\end{description}
-
-\subsection{Propriétés désirables d'une mesure de risque}
-\begin{definitionNOHFILLsub}[Homogénéité]
-Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$c	>	0$}, la mesure de risque $\rho$ est dite homogène si \icbox{$\rho(cX)	=	c\rho(X)$}.
-\end{definitionNOHFILLsub}
-
-\begin{definitionNOHFILLsub}[Invariance à la translation]
-Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$c	\in	\mathbb{R}$}, la mesure de risque $\rho$ satisfait la propriété d'invariance à la translation si \icbox{$\rho(X + c)	=	\rho(X) + c$}.	\\
-
-Ajouter un montant positif à un risque ajoute un montant équivalent à la mesure de risque.
-\end{definitionNOHFILLsub}
-
-\begin{definitionNOHFILLsub}[Monotonicité]
-Soit les v.a. $X_{1}$ et $X_{2}$ \icbox[red][palechestnut]{tel que $\Pr(X	\leq	X_{2})	=	1$}, la mesure de risque $\rho$ satisfait la propriété de monotonicité si \icbox{$\rho(X_{1})	\leq	\rho(X_{2})$} ou si \icbox[red][palechestnut]{$\forall	u	\in	(0, 1)$}, \icbox{$F_{X_{1}}^{-1}(u)	\leq	F_{X_{2}}^{-1}(u)$}.
-
-\end{definitionNOHFILLsub}
-
-\begin{definitionNOHFILLsub}[Sous-additivité]
-Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de sous-additivité si \icbox{$\rho(X_{1}	+	X_{2})	\leq	\rho(X_{1})	+	\rho(X_{2})$}.
-
-\end{definitionNOHFILLsub}
-
-\begin{definitionNOHFILLsub}[Convexité]
-Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de convexité si \icbox{$\rho(\alpha X_{1}	+	(1	-	\alpha)X_{2})	\leq	\alpha\rho(X_{1})	+	(1	-	\alpha)\rho(X_{2})$}.
-
-\end{definitionNOHFILLsub}
-
-\subsection{TVaR et VaR}
-
-\begin{itemize}
-	\item	La \textbf{Value-at-Risk} correspond au $100\alpha^{\text{e}}$ pourcentile;
-	\item	Si $X$ représente les gains, on s'intéresse à l'extrémité inférieure de la distribution des gains et \icbox{$TVaR_{\alpha}(X)	=	\esp{X | X \leq \alpha}	=	\frac{1}{\alpha} \int_{-\infty}^{VaR_{\alpha}} x f_{X}(x)dx$};
-	\item	Si $X$ représente les pertes, on s'intéresse à l'extrémité supérieure de la distribution des gains et \icbox{$TVaR_{\alpha}(X)	=	\esp{X | X > \alpha}	=	\frac{1}{1 - \alpha} \int_{VaR_{\alpha}}^{\infty} x f_{X}(x)dx$};
-\end{itemize}
 
 \pagebreak
 
-\section{Modèles de risques non-vie}
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$M$]	Variable aléatoire du nombre de sinistres pour un risque;
-	\item[$B_{k}$]	Variable aléatoire du montant du $k^{\text{e}}$ sinistre.
-\end{description}
-\end{distributions}
+\section{Preuves}
 
-\begin{definitionNOHFILL}[Modèle fréquence-sinistre]
-On défini la v.a. $X$ comme étant les coûts (pertes) pour un risque tel que \icbox[red][palechestnut]{$\forall	M	>	0$}:
+\subsection*{\hypertarget{proof:ftc-quantile}{Preuve du théorème de la fonction quantile}}
+\begin{formula}{}
 \begin{align*}
-	X
-	&=	\sum_{k	=	1}^{M} B_{k}
+	F_{F_{X}^{-1}(U)}
+	&=	\Pr\left(F_{X}^{-1}(U) \leq x\right)	\\
+	&\overset{2}{=}	\Pr\left(U \leq F_{X}(x)\right)	\\
+	&\overset{1}{=}	F_{X}(x)
 \end{align*}
+\begin{enumerate}
+	\item	Pour $U \sim Unif(0, 1)$, $F_{U}(u)	=	\Pr(U	\leq	u)	=	u$ alors $F_{U}(F_{X}(x))	=	F_{X}(x)$.
+	\item	On doit prouver que:
+		\begin{align*}
+		\bigg\{	F_{X}^{-1}(U)	\leq	x	\bigg\}
+		\equiv
+		\bigg\{	U	\leq	F_{X}(x)	\bigg\}
+		\end{align*}
+\end{enumerate}
 
 \tcbline
 
+\paragraph{Cas 1:	$X$ est une variable aléatoire continue}
+\begin{itemize}
+	\item	Alors, l'équivalence est vraie puisque $\{	F_{X}^{-1}(U)	\leq	x	\}$ est la solution unique à $\{	U	\leq	F_{X}(x)	\}$ par définition.
+\end{itemize}
+
+\paragraph{Cas 2:	$X$ est une variable aléatoire quelconque}
+\begin{enumerate}
+	\item	On fixe \lfbox[conditions]{$x	=	F_{X}^{-1}(u)	=	\inf\{y \in \mathbb{R}; F_{X}(y)	\geq u\}$} ;
+		\begin{itemize}
+		\item	Donc, ce "$x$" est une valeur parmi les valeurs "$y$" qui rencontre la condition $F_{X}(y)	\geq	u$ ;
+		\item	Il s'ensuit que puisque $u \leq F_{X}(y)$ alors \lfbox[conditions]{$u \leq F_{X}(x)$}.
+		\end{itemize}
+		\begin{align*}
+		\bigg\{	F_{X}^{-1}(U)	\leq	x	\bigg\}
+		\Rightarrow
+		\bigg\{	U	\leq	F_{X}(x)	\bigg\}
+		\end{align*}
+	\item	On fixe \lfbox[conditions]{$u \leq F_{X}(x)$} ;
+		\begin{itemize}
+		\item	Puisque la fonction quantile est la plus petite valeur de $y$ tel que $u \leq F_{X}(y)$, il s'ensuit que $F_{X}^{-1}(u)	\leq  x$.
+		\end{itemize}
+		\begin{align*}
+		\bigg\{	U	\leq	F_{X}(x)	\bigg\}
+		\Rightarrow
+		\bigg\{	F_{X}^{-1}(U)	\leq	x	\bigg\}
+		\end{align*}
+\end{enumerate}
+Donc :
 \begin{align*}
-	\esp{X}
-	&=	\text{E}_{\text{M}}\left[\text{E}_{\text{B}}[X | M]\right]	\\
-	&=	\text{E}[M]	\times	\text{E}[B]	\\
-	\text{Var}(X)
-	&=	\underbrace{\text{Var}_{\text{M}}(\text{E}_{\text{B}}[X | M])}_{\text{variabilité du \textit{nombre} de sinistres}}	+	\underbrace{\text{E}_{\text{M}}\left[\text{Var}_{\text{B}}(X | M)\right]}_{\text{variabilité du \textit{coût} par sinistre}}	\\
-	&=	\text{E}[M]\text{Var}(B)	+	\text{E}^{2}[B]\text{Var}(M)	\\
+	\bigg\{	F_{X}^{-1}(U)	\leq	x	\bigg\}
+	\equiv
+	\bigg\{	U	\leq	F_{X}(x)	\bigg\}
 \end{align*}
+\end{formula}
 
-\tcbline
 
-\begin{align*}
-	F_{X}(x)
-	&=	\Pr(M	=	0)	+	\sum_{k	=	1}^{\infty} \Pr(M	=	k)F_{B_{1}	+	\dots	+	B_{k}}(x)
-\end{align*}
-
-Par exemple, pour $B_{k}	\sim	\Gamma(\alpha,	\beta)$:
-\begin{align*}
-	F_{X}(x)
-	&=	\Pr(M	=	0)	+	\sum_{k	=	1}^{\infty} \Pr(M	=	k)H(x;	\alpha k, \beta)
-\end{align*}
-
-\tcbline
-
-\begin{align*}
-	\mathcal{L}_{X}(t)
-	&=	P_{M}\left(\mathcal{L}_{B}(t)\right), \quad	t > 0	\\
-	\esp{X	\times	\bm{1}_{\{X	>	b\}}}
-	&=	\sum_{k	=	1}^{\infty} \Pr(M	=	k)E\left[(B_{1}	+	\dots	+	B_{k})	\times	\bm{1}_{\{B_{1}	+	\dots	+	B_{k} > b\}}\right]
-\end{align*}
-
-Par exemple, pour $B_{k}	\sim	\Gamma(\alpha,	\beta)$:
-\begin{align*}
-	\esp{X	\times	\bm{1}_{\{X	>	b\}}}
-	&=	\sum_{k	=	1}^{\infty} \Pr(M	=	k) \frac{k\alpha}{\beta} \overline{H}(b;	\alpha k + 1, \beta)
-\end{align*}
-\end{definitionNOHFILL}
 
 \end{multicols*}
 \end{document}
+
 

@@ -202,6 +202,28 @@
 	before title = {\faNavicon \quad }, %faBars  faGetPocket
 	breakable
 }
+%%
+%% Coloured box "definition3" for propriétés
+%%
+\DeclareTColorBox{definitionNOHFILLprop}{ o }				% #1 parameter
+{
+	colframe=amber(sae/ece),colback=amber(sae/ece)!5!white, % color of the box
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	before title = {\faGetPocket \quad }, %faBars  faGetPocket
+	breakable
+}
+%%
+%% Coloured box "definition3" for propriétés
+%%
+\DeclareTColorBox{definitionNOHFILLpropos}{ o }				% #1 parameter
+{
+	colframe=carmine,colback=carmine!5!white, % color of the box
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	before title = {\faColumns \quad }, %\faEllipsisH  faColumns
+	breakable
+}
 
 
 %%
@@ -415,6 +437,7 @@
 \definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}			% light green-beige-ish gray
 \definecolor{gray(x11gray)}{rgb}{0.75, 0.75, 0.75}
 
+\definecolor{carmine}{rgb}{0.59, 0.0, 0.09} 			% deep red
 \definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
 \definecolor{brickred}{rgb}{0.8, 0.25, 0.33}
 \definecolor{chestnut}{rgb}{0.8, 0.36, 0.36}

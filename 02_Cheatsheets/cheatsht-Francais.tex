@@ -1,0 +1,517 @@
+\documentclass[10pt, french]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+\usepackage{ulem}
+\usepackage{booktabs}
+%% -----------------------------
+%% Redefine from template
+%% -----------------------------
+\def\auteur{Alec James van Rassel}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Francais}
+\def\sigle{alloprof}
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
+\def\SectionColor{burntorange}
+\def\SubSectionColor{burntsienna}
+\def\SubSubSectionColor{burntsienna}
+%%%
+%%%
+%%%
+\hypersetup{colorlinks = true, urlcolor = blue, linkcolor = black}
+\usepackage{multicol}
+\usetikzlibrary{matrix}
+\setcounter{secnumdepth}{0}
+\setlist{leftmargin=*}
+\DeclareTColorBox{astuces}{ o }			% #1 parameter
+{
+	enhanced,
+	title = #1,
+	colback=beaublue, % color of the box
+%	colframe=blue(pigment),
+	colframe=ballblue,	
+	colbacktitle=aurometalsaurus,
+	fonttitle = \bfseries,
+	boxed title style={size=small,colframe=arsenic} ,
+	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
+%	left=0pt,
+%  	right=0pt,
+%    box align=center,
+%    ams align*
+%  	top=-10pt
+}
+
+\graphicspath{{src/FRN-3003/}}
+
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+\raggedcolumns
+\begin{multicols*}{2}
+
+\section{Classes de mots}
+
+\begin{definitionNOHFILL}[Interjection]
+Mot (ou groupe de mots) qui traduit l'émotion de l'énonciateur, sa réaction ou un ordre.
+\begin{definitionNOHFILL}[Onomatopées]
+Mots classés dans les interjections qui imitent des bruits réels.
+\end{definitionNOHFILL}
+\begin{itemize}
+	\item	L'interjection est suivie d'un point d'exclamation ;
+	\item	Si une interjection est composée de plusieurs mots, c'est une \textit{locution interjective}.
+\end{itemize}
+\tcbline
+
+Exemples:
+\begin{itemize}
+	\item	Haut les mains ! Mon Dieu ! Ma foi ! (\textit{locutions interjectives}) ;
+	\item	Flûte ! Fantastique ! Tiens ! (\textit{nom}, \textit{adjectif}, \textit{verbe}) ;
+	\item	Boom ! Ouf ! Aïe ! (\textit{onomatopées}).
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[La locution]
+%	http://www.alloprof.qc.ca/BV/pages/f1233.aspx
+Groupe de mots qui forme une unité lexicale. \\
+C'est-à-dire: 
+\begin{enumerate}[label = \roman*)]
+	\item	un adverbe, 
+	\item	un verbe,
+	\item	une préposition,
+	\item	une conjonction ou une interjection composée d'au moins deux mots.
+\end{enumerate}
+
+\tcbline
+
+\begin{definitionNOHFILLsub}[Locution adverbiale]
+Construite à partir d'un adverbe :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Construction}}	&	\textcolor{white}{\textbf{Exemples}}		\\\specialrule{0.1em}{0em}{0em} 
+adverbe + \textbf{adverbe}	&	là-bas, bientôt	\\\hline
+préposition + \textbf{adverbe}	&	à jamais, d'ailleurs	\\\hline
+\end{tabular}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Locution verbale]
+Construite à partir d'un verbe :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Construction}}	&	\textcolor{white}{\textbf{Exemples}}		\\\specialrule{0.1em}{0em}{0em} 
+\textbf{verbe} + (déterminant) + nom	&	avoir l'air, rendre l'âme,avoir lieu	\\\hline
+\end{tabular}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Locution prépositive]
+Construite à partir d'une préposition :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}m{5cm} | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Construction}}	&	\textcolor{white}{\textbf{Exemples}}		\\\specialrule{0.1em}{0em}{0em} 
+\textbf{préposition} + \textbf{préposition} (ou adverbe)	&	autour de, par-dessus	\\\hline
+\textbf{préposition} + (déterminant) + nom + \textbf{préposition}	&	à l'égard de, par rapport à	\\\hline
+nom + \textbf{préposition}	&	face à, grâce à	\\\hline
+adverbe + \textbf{préposition}	&	contrairement à	\\\hline
+\end{tabular}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Locution conjonctive]
+Construite à partir d'une conjonction :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Construction}}	&	\textcolor{white}{\textbf{Exemples}}		\\\specialrule{0.1em}{0em}{0em} 
+préposition + \textbf{que}	&	avant que, pour que	\\\hline
+adverbe + \textbf{que}	&	aussitôt que, bien que	\\\hline
+préposition + nom + \textbf{que}	&	à condition que, de crainte que	\\\hline
+\end{tabular}
+\end{center}
+\end{definitionNOHFILLsub}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Mot invariable]
+Mots qui s’écrivent généralement toujours de la même manière et dont la forme ne dépend pas d'un autre mot.
+
+\tcbline
+
+Par exemple:	la préposition, l'adverbe, etc.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Adverbe]
+Mot invariable qui modifie ou précise le sens d'un verbe ou adjectif.
+\begin{itemize}
+	\item	Il peut être effacé de la phrase ;
+	\item	Alias, une locution adverbiale.
+\end{itemize}
+
+\tcbline
+
+Exemples:
+\begin{itemize}
+	\item	ainsi, hier, complètement, ici (\textit{adverbes simples}) ;
+	\item	en effet, peu à peu, en dessous, c'est-à-dire (\textit{adverbes complexes}) ;
+\end{itemize}
+\begin{astuces}[Comment repérer un adverbe]
+Trouver les mots invariables d'une phrase, ceux qui peuvent être retirés sont des mots invariables.\\
+Exemple:	Il semble \textbf{\color{teal}vraiment} concerné \textbf{par} cet avis. On voit que \textbf{\color{teal}vraiment} est l'adverbe.
+\end{astuces}
+\end{definitionNOHFILLsub}
+
+\subsection{La préposition}
+\begin{definitionNOHFILL}[La préposition]
+Mot invariable qui unit des mots en les mettant en rapport et qui complète et précise le message présent dans la phrase.
+\begin{itemize}
+	\item	C'est un mot de liaison;
+	\item	Il crée un lien de dépendance entre des éléments syntaxiques.
+\end{itemize}
+
+\tcbline
+
+Par exemple:	sur, chez, de, pour, etc.
+\end{definitionNOHFILL}
+
+\subsubsection*{Types de prépositions}
+\begin{definitionNOHFILLsub}[Prépositions simples]
+Prépositions qui ne sont pas décomposables.
+\begin{center}
+	\includegraphics[width=0.9\columnwidth]{prep-simple}
+\end{center}
+\begin{astuces}[On n'ajoute pas la préposition \textit{de} devant d'autres.]
+\paragraph{Exemple :}	Il avait besoin \textit{\sout{de} d'autres} pommes.
+\end{astuces}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Prépositions complexes]
+Prépositions qui sont décomposables.
+\begin{itemize}
+	\item	Alias, des locutions prépositives.
+\end{itemize}
+\begin{center}
+	\includegraphics[width=0.9\columnwidth]{prep-compl}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Prépositions contractées]
+Prépositions qui ne sont pas décomposables.
+\begin{itemize}
+	\item	Alias, les déterminants contractés.
+\end{itemize}
+\begin{center}
+	\includegraphics[width=0.9\columnwidth]{prep-compl}
+\end{center}
+
+\end{definitionNOHFILLsub}
+
+\columnbreak
+\subsection{Pronoms}
+\begin{definitionNOHFILLsub}[Pronom nominal]
+Pronom dont le sens ne provient pas d'un antécédent; le pronom peut posséder une signification propre ou s'expliquer par la situation de communication.
+
+\tcbline
+
+Exemples :
+\begin{itemize}
+	\item	\textbf{Quelqu'un} a refermé la porte.
+	\item	\textbf{Personne} ne l'a vu venir !
+	\item	\textbf{Rien} n'explique son comportement.
+	\item	Je ne veux plus voir \textbf{ça} dans ta chambre. (\textit{pronom de communication})
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Pronom personnel]
+Mot qui indique la personne grammaticale et peut être un pronom de reprise ou nominal.
+
+\tcbline
+
+Exemples :
+\begin{itemize}
+	\item	je, tu, il, elle, on, etc. (sujet) ;
+	\item	me, moi, toi, nous, le, elle, soi (complément).
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Pronom possessif]
+Mot qui remplace une personne (objet, animal) en indiquant qui est le possesseur ou en établissant une relation d'appartenance entre le pronom et son \textit{antécédent}.
+
+\tcbline
+
+Exemples :
+\begin{itemize}
+	\item	le mien, le tien, la nôtre, la leur, les siens.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Pronom démonstratif]
+Remplace une personne (objet, animal) que l'on désire montrer.
+
+\tcbline
+
+Exemples :
+\begin{itemize}
+	\item	celui, celui-ci, celui-là ;
+	\item	celle, celle-ci, celle-là ;
+	\item	ce, ceci, cela, ça.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Pronom relatif]
+Mot qui remplace un nom et qui introduit une \textit{subordonnée relative}.
+
+\tcbline
+
+
+\hl{à compléter}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Pronom interrogatif]
+Remplace une personne (objet, animal) ou un élément abstrait sur lequel on se questionne.
+\begin{itemize}
+	\item	Peut être directe ou indirecte.
+\end{itemize}
+
+\tcbline
+
+Exemples:
+\begin{itemize}
+	\item	\textbf{Que} fabrique-t-elle\textbf{?} (\textit{directe})
+	\item	Je me demande \textbf{ce qu}'elle fabrique. (\textit{indirecte})
+\end{itemize}
+\begin{center}
+	\includegraphics[width=0.9\columnwidth]{pronom-interg}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Pronom indéfini]
+Mot qui remplace une personne (objet, animal) d'une manière indéterminée, imprécise.
+
+\tcbline
+
+\begin{center}
+	\includegraphics[width=0.9\columnwidth]{pronom-indef}
+\end{center}
+\hl{à compléter}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Pronom numéral]
+Pronom de reprise qui précise une quantité.
+
+\tcbline
+
+Par exemple: deux, vingt, trois, etc.
+\end{definitionNOHFILLsub}
+
+
+\newpage
+\section*{\href{http://www.alloprof.qc.ca/bv/pages/f1128.aspx}{La phrase}}
+
+\subsection*{\href{http://www.alloprof.qc.ca/BV/Pages/f1130.aspx}{Le sujet}}
+\begin{description}
+	\item[Description technique]	Le sujet est une \textbf{fonction} grammaticale qui régit l'accord du verbe;
+	\item[Description moins technique]	C'est le \og groupe \fg{} qui donne au verbe son nom et sa personne;
+		\begin{itemize}[leftmargin = *]
+		\item	On dit \og groupe \fg{} car la fonction sujet est souvent occupée par un \href{http://www.alloprof.qc.ca/BV/pages/f1235.aspx}{groupe du nom};
+		\item	Par exemple \og le petit Louis \fg{}, \og les hommes \fg{}, \og les voitures \fg{}.
+		\end{itemize}
+	\item[Sur le plan sémantique]	il indique \textbf{de qui} ou \textbf{de quoi} on parle dans la phrase.
+\end{description}
+
+\begin{distributions}[La fonction sujet peut être occupée par:]
+\begin{description}
+%%%	--------------------
+%%%	NOTE
+%%%	+	De quoi qui me manque en compréhension ici pour GN (AJVR).
+%%%	--------------------
+	\item[Le groupe nominal]	\textbf{GNs};
+	\item[Le pronom]	on dit \textbf{pronom sujet};
+		\begin{itemize}[leftmargin = *]
+		\item	\textcolor{blue_rectangle}{Elles} veulent se rappeler de ce moment tout leur vie.
+		\item	\textcolor{blue_rectangle}{Nous} désirons vous rencontrer dans les plus brefs délais.
+		\item	\textcolor{blue_rectangle}{Je} suis confortable dans ce lit.
+		\end{itemize}
+	\item[Le groupe du verbe à infinitif]	on dit \textbf{groupe infinitif sujet};
+		\begin{itemize}[leftmargin = *]
+		\item	\textcolor{blue_rectangle}{Manger trois repas par jour} est une habitude de vie saine.
+		\item	\textcolor{blue_rectangle}{Se marier} est le rêve de bien des gens.
+		\item	\textcolor{blue_rectangle}{Étudier} est la clé à la réussite.
+		\item	Les groupes on donc un verbe à l'infinitif comme noyau.
+		\end{itemize}
+	\item[La subordonnée complétive]	on dit \textbf{subordonnée complétive sujet}
+		\begin{itemize}[leftmargin = *]
+		\item	\textcolor{blue_rectangle}{Qu'il pleuve} change le programme de ma journée.
+		\item	\textcolor{blue_rectangle}{Que tu m'appelles} me comble de joie.
+		\item	\textcolor{blue_rectangle}{Que tu sois récompensé} est bien normal.
+		\item	Les groupes comportent donc un subordonnant \textit{(qu', que)} et un verbe conjugué \textit{(pleuve, appelles, sois récompensé)}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{astuces}[Trucs pour trouver le sujet dans une phrase]
+\begin{enumerate}[leftmargin = *]
+	\item	Poser la question \textit{Qu'est-ce qui ?} ou \textit{Qui est-ce qui ?} devant le verbe.
+	\item	Encadrer le sujet par \textbf{C'est \dots qui} ou \textbf{Ce sont \dots qui}.
+	\item	Remplacer le sujet par un pronom (procédé appelé la \textbf{pronominalisation}).﻿
+		\begin{itemize}[leftmargin = *]
+		\item	Par exemple, remplacer \og Alec aime apprendre \fg{} par \og il aime apprendre \fg{}.
+		\end{itemize}
+\end{enumerate}
+\end{astuces}
+
+\paragraph{NOTE}	Le sujet de la phrase est \textbf{non-effaçable} sinon elle n'a plus de sens. On  dit donc que le sujet est un \textbf{constituant obligatoire} de la phrase.
+
+
+\subsection*{\href{http://www.alloprof.qc.ca/BV/Pages/f1131.aspx}{Le prédicat}}
+
+\subsection*{\href{http://www.alloprof.qc.ca/BV/Pages/f1132.aspx}{Le complément de phrase}}
+
+
+
+%\begin{tikzpicture}
+%\clip node (m) [
+%	matrix,
+%	matrix of nodes,
+%	fill = black!20, % alternating rows color
+%	inner sep = 1pt, % width of exterior line
+%	nodes in empty cells,
+%	nodes = {
+%		minimum height = 1cm,
+%		minimum width = 2.6cm,
+%		anchor = center,
+%		outer sep = 0,
+%		font = \sffamily
+%	},
+%	row 1/.style = {
+%		nodes = {
+%			fill = ballblue,  % header colour
+%			text = white,
+%			font = \bfseries
+%		}
+%	},
+%%	column 1/.style = {
+%%		nodes = {
+%%			fill = gray,
+%%			text = white,
+%%			align = right,
+%%			text width = 2.5cm,
+%%			text depth = 0.5ex
+%%		}
+%%	},
+%	column 1/.style = {
+%		text width = 4cm, 
+%		align = center,
+%		nodes = {
+%			font = \bfseries
+%		},
+%		every even row/.style = {
+%			nodes = {
+%				fill = white
+%			}
+%		}
+%	},
+%	column 2/.style = {
+%		text width = 3cm,
+%		align = center,
+%		every even row/.style = {nodes = {fill = white}},
+%	},
+%%	row 1 column 1/.style = {nodes = {fill = gray}},
+%	prefix after command = {
+%		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+%	}
+%] {
+%	Norwegian	&	English \\
+%	Jeg	&	I	\\
+%	du	&	you	\\
+%	han	&	he	\\
+%	hun	&	she	\\
+%	det	&	it	\\
+%};
+%\end{tikzpicture}
+%
+%\subsection*{Verbs}
+%\begin{tikzpicture}
+%\clip node (m) [
+%	matrix,
+%	matrix of nodes,
+%	fill = black!20, % alternating rows color
+%	inner sep = 1pt, % width of exterior line
+%	nodes in empty cells,
+%	nodes = {
+%		minimum height = 1cm,
+%		minimum width = 2.6cm,
+%		anchor = center,
+%		outer sep = 0,
+%		font = \sffamily
+%	},
+%	row 1/.style = {
+%		nodes = {
+%			fill = ballblue,  % header colour
+%			text = white,
+%			font = \bfseries
+%		}
+%	},
+%%	column 1/.style = {
+%%		nodes = {
+%%			fill = gray,
+%%			text = white,
+%%			align = right,
+%%			text width = 2.5cm,
+%%			text depth = 0.5ex
+%%		}
+%%	},
+%	column 1/.style = {
+%		text width = 4cm, 
+%		align = center,
+%		nodes = {
+%			font = \bfseries,
+%			fill = lightgray
+%		}
+%	},
+%	column 2/.style = {
+%		text width = 3cm,
+%		align = center,
+%		nodes = {
+%			fill = white
+%		}
+%	},
+%	column 3/.style = {
+%		text width = 3cm,
+%		align = center,
+%		nodes = {
+%			font = \bfseries,
+%			fill = lightgray
+%		}
+%	},
+%	column 4/.style = {
+%		text width = 3cm,
+%		align = center,
+%		nodes = {
+%			fill = white
+%		}
+%	},
+%%	row 1 column 1/.style = {nodes = {fill = gray}},
+%	prefix after command = {
+%		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+%	}
+%] {
+%	Singular	&	&	Plural	&\\
+%	Jeg er	&	I am	&	vi er	&	we are	\\
+%	du er	&	you are	&	dere er	&	 you are	\\
+%	han, hun, det, er	&	he, she, it, is	&	de er	&	they are	\\
+%};
+%\end{tikzpicture}
+
+\end{multicols*}
+%% -----------------------------
+%% Fin du document
+%% -----------------------------
+\end{document}
