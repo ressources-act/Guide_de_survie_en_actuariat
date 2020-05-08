@@ -120,7 +120,7 @@ On pose que $X$ est une variable aléatoire tel que $\text{E}[X]	<	\infty$.
 	\int_{k}^{1}F_{X}^{-1}(u)du
 	&=	\pi_{x}\left(F_{X}^{-1}(\kappa)\right) + (1 - \kappa)F_{X}^{-1}(\kappa), \quad \forall \kappa \in (0, 1)	\\
 	&=	\text{E}\Big[X	\times	\bm{1}_{\{X	>	F_{X}^{-1}(\kappa)\}}\Big]+ 
-		F_{X}^{-1}(\kappa)\bigg( F_{X}\Big(F_{X}^{-1}(\kappa)	-	\kappa\Big) \bigg)
+		F_{X}^{-1}(\kappa)\bigg( F_{X}\Big(F_{X}^{-1}(\kappa)\Big)	-	\kappa \bigg)
 \end{align*}
 
 \subsection{Mesures de risque}
@@ -135,13 +135,13 @@ On pose que $X$ est une variable aléatoire tel que $\text{E}[X]	<	\infty$.
 	TVaR_{\kappa}(X)
 	&=	\frac{1}{1 - \kappa}\int_{\kappa}^{1}	VaR_{u}(X)du	\\
 	&=	\frac{1}{1 - \kappa}\pi_{X}\left(VaR_{\kappa}(X)\right) + VaR_{\kappa}(X)	\\
-	&=	\frac{1}{1 - \kappa}\left[	\text{E}[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}] + VaR_{\kappa}(X) \left(F_{X}\left(VaR_{\kappa}(X)	-	\kappa\right)\right)	\right]
+	&=	\frac{1}{1 - \kappa}\left[	\text{E}[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}] + VaR_{\kappa}(X) \left(F_{X}\left(VaR_{\kappa}(X)\right)	-	\kappa\right)	\right]
 \end{align*}
 
 Pour une variable aléatoire $X$ continue, on simplifie :
 \begin{align*}
 	TVaR_{\kappa}(X)
-	&=	\frac{1}{1 - \kappa}\left[	\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right] + \underbrace{VaR_{\kappa}(X) \left(F_{X}\left(VaR_{\kappa}(X)	-	\kappa\right)\right)}_{\shortstack{= 0}}	\right]	\\
+	&=	\frac{1}{1 - \kappa}\left[	\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right] + \underbrace{VaR_{\kappa}(X) \left(F_{X}\left(VaR_{\kappa}(X)\right)	-	\kappa\right)}_{\shortstack{= 0}}	\right]	\\
 	&=	\frac{1}{1 - \kappa}\left[	\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right]	\right]	\\
 	&\equiv	\frac{\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right]}{\Pr(X	>	VaR_{\kappa}(X))}	\\
 	&=	\esp{X | X	>	Var_{\kappa}(X)}
