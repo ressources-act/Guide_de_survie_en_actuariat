@@ -194,9 +194,11 @@ Cependant, le biais n'indique pas la variabilité des prévisions de l'estimateu
 
 \begin{distributions}[Notation]
 \begin{description}
+	\item[$S(\theta)$]	Fonction de Score, \lfbox[formula]{$S(\theta)	=	\deriv{\theta}{\ln f(\theta; x)}$};
 	\item[$\bm{I}_{n}(\theta)$]	Matrice d'information de Fisher d'un échantillon aléatoire $\bm{X}$;
 		\begin{itemize}
-		\item	La matrice d'information Fisher pour un seule observation sera donc dénotée $\bm{I}(\theta)$.
+		\item	La matrice d'information Fisher pour un seule observation sera donc dénotée $\bm{I}(\theta)$ ;
+		\item	On obtient une "matrice" lorsque nous estimons plusieurs paramètres et donc $\theta$ n'est pas un scalaire.
 		\end{itemize}
 	\item[$\hat{\theta}^{EMV}$]	Estimateur du maximum de vraisemblance de $\theta$.
 \end{description}
@@ -1360,10 +1362,20 @@ et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qu
 
 De façon formelle, on dit que \lfbox[formula]{$\hat{\theta}^{\text{EMV}}	=	\underset{\theta}{\max}\{\mathcal{L}(\theta; \bm{x})\}	\equiv	\underset{\theta}{\max}\{\ln\mathcal{L}(\theta; \bm{x})\}$.}
 
+\subsubsection{Raccourcis}
+
+Si la fonction de vraisemblance est de la forme :
+\begin{itemize}
+	\item	\lfbox[formula]{$\mathcal{L}(\gamma)	=	\gamma^{-a}\textrm{e}^{-b/\gamma}$} alors \lfbox[formula]{$\hat{\gamma}^{\text{MLE}}	=	\frac{b}{a}$}.
+	\item	\lfbox[formula]{$\mathcal{L}(\lambda)	=	\lambda^{a}\textrm{e}^{-\lambda b}$} alors \lfbox[formula]{$\hat{\lambda}^{\text{MLE}}	=	\frac{a}{b}$}.
+	\item	\lfbox[formula]{$\mathcal{L}(\theta)	=	\theta^{a}(1	-	\theta)^{b}$} then \lfbox[formula]{$\hat{\theta}^{\text{MLE}}	=	\frac{a}{a + b}$}.
+\end{itemize}
+
+
 \subsubsection{Propriétés}
 \begin{definitionNOHFILL}[Propriété d'invariance]
-Soit une fonction bijective $g(\cdot)$ et l'EMV $\hat{\theta}^{\text{EMV}}$ de $\theta$.\\
-Alors, selon le principe d'invariance \lfbox[formula]{$g(\hat{\theta}^{\text{EMV}})$ est l'EMV de $g(\theta)$.}\\
+Soit une fonction bijective $g(\cdot)$ et l'estimateur du maximum de vraisemblance (EMV) $\hat{\theta}^{\text{EMV}}$ de $\theta$.\\
+Alors, selon la propriété d'invariance \lfbox[formula]{$g(\hat{\theta}^{\text{EMV}})$ est l'EMVw de $g(\theta)$.}\\
 
 L'EMV satisfait cette propriété.
 \end{definitionNOHFILL}
@@ -1400,8 +1412,11 @@ Souvent les professeurs ne montrent pas ces conditions puisqu'elles sont compliq
 		\item	C'est une condition restrictive que certains modèles ne respectent pas.
 		\end{itemize}
 	\item[R2]	La "vraie valeur" de $\theta$ est contenue dans l'ensemble des valeurs possibles $\Theta$.
-\end{description}
 \tcbline
+\begin{description}
+	\item[R3]	Les deux premières dérivés de la fonction de densité $f(x; \theta)$ existent.
+\end{description}
+\end{description}
 %%%	--------------------------------
 %%%	NOTES:
 %%%	+	FAUT AJOUTER DES DÉTAILS SUR LES CONDITIONS AVEC LES DÉRIVÉES D'INTÉGRALES ÉGAUX À ZÉRO!!!!!
@@ -1414,6 +1429,8 @@ Souvent les professeurs ne montrent pas ces conditions puisqu'elles sont compliq
 %	\item[R5]	La fonction de densité $f(x; \theta)$ est différentiable trois fois comme fonction de $\theta$. De plus, $\forall \theta \in \Theta$ il existe une constante $c$ and une fonction $g(x)$ tel que $\big| \deriv[3]{\theta}{} \ln f(x; \theta) \big| \leq g(x)$.
 %\end{description}
 %\paragraph{Note:}	Les conditions R3 et R4 sont additionnelles pour \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}la borne de Cramér-Rao}.
+\paragraph{Note:}	La condition R3 additionnelle pour \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}la borne de Cramér-Rao}.
+%%%	Impliquent que l'on peut interchanger l'intégration et la différention wrt/ \theta
 \end{definitionNOHFILLsub}
 	
 
