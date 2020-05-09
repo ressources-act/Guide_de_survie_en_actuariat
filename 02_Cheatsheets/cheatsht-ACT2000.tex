@@ -810,6 +810,7 @@ L'ensemble des résultats possibles est $\mathcal{S} = [0, 1]$.
 \end{itemize}
 \end{formula}
 On peut donc faire 2 types d'erreurs:
+%%	voir les images que j'ai gardé pour quand je retouche à la matrice de confusion dans les GLMs pour développer et parler des métriques ! 
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -1375,7 +1376,7 @@ Si la fonction de vraisemblance est de la forme :
 \subsubsection{Propriétés}
 \begin{definitionNOHFILL}[Propriété d'invariance]
 Soit une fonction bijective $g(\cdot)$ et l'estimateur du maximum de vraisemblance (EMV) $\hat{\theta}^{\text{EMV}}$ de $\theta$.\\
-Alors, selon la propriété d'invariance \lfbox[formula]{$g(\hat{\theta}^{\text{EMV}})$ est l'EMVw de $g(\theta)$.}\\
+Alors, selon la propriété d'invariance \lfbox[formula]{$g(\hat{\theta}^{\text{EMV}})$ est l'EMV de $g(\theta)$.}\\
 
 L'EMV satisfait cette propriété.
 \end{definitionNOHFILL}
@@ -1649,6 +1650,229 @@ On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" th
 	\item	Un niveau de base l'intercepte $\beta_{0}$.
 	\item	Une erreur aléatoire $\varepsilon$ inconnue.
 \end{itemize}
+
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,366); %set diagram left start at 0, and has height of 366
+
+%Rounded Same Side Corner Rect [id:dp5863189014777732] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ][line width=1.5]  (186.37,215.03) .. controls (186.37,209.57) and (190.8,205.14) .. (196.27,205.14) -- (553.98,205.14) .. controls (559.45,205.14) and (563.87,209.57) .. (563.87,215.03) -- (563.87,224.92) .. controls (563.87,224.92) and (563.87,224.92) .. (563.87,224.92) -- (186.37,224.92) .. controls (186.37,224.92) and (186.37,224.92) .. (186.37,224.92) -- cycle ;
+%Rounded Same Side Corner Rect [id:dp10542736831068278] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (563.87,275.01) .. controls (563.87,279.61) and (560.15,283.33) .. (555.56,283.33) -- (194.69,283.33) .. controls (190.1,283.33) and (186.37,279.61) .. (186.37,275.01) -- (186.37,224.92) .. controls (186.37,224.92) and (186.37,224.92) .. (186.37,224.92) -- (563.87,224.92) .. controls (563.87,224.92) and (563.87,224.92) .. (563.87,224.92) -- cycle ;
+%Flowchart: Process [id:dp2781782458228159] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (236.54,237.33) -- (246.54,237.33) -- (246.54,227.33) -- (236.54,227.33) -- cycle ;
+%Flowchart: Process [id:dp6595006333689621] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (236.54,249.33) -- (246.54,249.33) -- (246.54,239.33) -- (236.54,239.33) -- cycle ;
+%Straight Lines [id:da005645386209309766] 
+\draw    (233.54,238.5) -- (249.54,238.5) ;
+
+%Flowchart: Process [id:dp7524991543129134] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (302.54,253) -- (312.54,253) -- (312.54,243) -- (302.54,243) -- cycle ;
+%Straight Lines [id:da5176971400521515] 
+\draw    (299.54,242.17) -- (315.54,242.17) ;
+%Flowchart: Process [id:dp9574550023533219] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 182; green, 64; blue, 64 }  ,fill opacity=1 ] (302.54,241) -- (312.54,241) -- (312.54,231) -- (302.54,231) -- cycle ;
+
+%Flowchart: Process [id:dp6446573608226225] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (236.54,263.5) -- (246.54,263.5) -- (246.54,253.5) -- (236.54,253.5) -- cycle ;
+%Flowchart: Process [id:dp6670926329350344] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (236.54,275.5) -- (246.54,275.5) -- (246.54,265.5) -- (236.54,265.5) -- cycle ;
+%Straight Lines [id:da5832941059999399] 
+\draw    (233.54,264.67) -- (249.54,264.67) ;
+
+%Flowchart: Process [id:dp3885928458657999] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (302.54,277.33) -- (312.54,277.33) -- (312.54,267.33) -- (302.54,267.33) -- cycle ;
+%Straight Lines [id:da3401710446338324] 
+\draw    (299.54,266.5) -- (315.54,266.5) ;
+%Flowchart: Process [id:dp6813365938208455] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 97; green, 123; blue, 71 }  ,fill opacity=1 ] (302.54,265.33) -- (312.54,265.33) -- (312.54,255.33) -- (302.54,255.33) -- cycle ;
+
+%Flowchart: Process [id:dp26333217881412674] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (412.04,263.83) -- (422.04,263.83) -- (422.04,253.83) -- (412.04,253.83) -- cycle ;
+%Flowchart: Process [id:dp33935301348671065] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 97; green, 123; blue, 71 }  ,fill opacity=1 ] (400.04,276.33) -- (410.04,276.33) -- (410.04,266.33) -- (400.04,266.33) -- cycle ;
+%Straight Lines [id:da4578404875999813] 
+\draw    (397.54,265) -- (435.54,265) ;
+%Flowchart: Process [id:dp07704188689930547] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (423.54,276.33) -- (433.54,276.33) -- (433.54,266.33) -- (423.54,266.33) -- cycle ;
+
+%Flowchart: Process [id:dp511192763925254] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (412.04,238) -- (422.04,238) -- (422.04,228) -- (412.04,228) -- cycle ;
+%Flowchart: Process [id:dp8487027222224734] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (400.04,250.5) -- (410.04,250.5) -- (410.04,240.5) -- (400.04,240.5) -- cycle ;
+%Straight Lines [id:da11748805900160852] 
+\draw    (397.54,239.17) -- (435.54,239.17) ;
+%Flowchart: Process [id:dp6757535243694623] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (423.54,250.5) -- (433.54,250.5) -- (433.54,240.5) -- (423.54,240.5) -- cycle ;
+
+%Flowchart: Process [id:dp23257062904433523] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (524.04,250.5) -- (534.04,250.5) -- (534.04,240.5) -- (524.04,240.5) -- cycle ;
+%Straight Lines [id:da16879793480007654] 
+\draw    (521.54,239.17) -- (559.54,239.17) ;
+%Flowchart: Process [id:dp629293047660624] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (547.54,250.5) -- (557.54,250.5) -- (557.54,240.5) -- (547.54,240.5) -- cycle ;
+%Flowchart: Process [id:dp25903639593069716] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (524.04,237.5) -- (534.04,237.5) -- (534.04,227.5) -- (524.04,227.5) -- cycle ;
+%Flowchart: Process [id:dp2784202862814029] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (547.54,237.5) -- (557.54,237.5) -- (557.54,227.5) -- (547.54,227.5) -- cycle ;
+
+%Flowchart: Process [id:dp5706215732887201] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (524.04,277.83) -- (534.04,277.83) -- (534.04,267.83) -- (524.04,267.83) -- cycle ;
+%Straight Lines [id:da24052635124853383] 
+\draw    (521.54,266.5) -- (559.54,266.5) ;
+%Flowchart: Process [id:dp8806206355646873] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (547.54,277.83) -- (557.54,277.83) -- (557.54,267.83) -- (547.54,267.83) -- cycle ;
+%Flowchart: Process [id:dp025661689438194246] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 97; green, 123; blue, 71 }  ,fill opacity=1 ] (524.04,264.83) -- (534.04,264.83) -- (534.04,254.83) -- (524.04,254.83) -- cycle ;
+%Flowchart: Process [id:dp07416724651822326] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 182; green, 64; blue, 64 }  ,fill opacity=1 ] (547.54,264.83) -- (557.54,264.83) -- (557.54,254.83) -- (547.54,254.83) -- cycle ;
+
+
+%Shape: Rectangle [id:dp9078887636984747] 
+\draw  [color={rgb, 255:red, 125; green, 185; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ][line width=4.5]  (186.79,76.98) -- (428.29,76.98) -- (428.29,198) -- (186.79,198) -- cycle ;
+%Shape: Rectangle [id:dp6719473196737591] 
+\draw  [color={rgb, 255:red, 249; green, 188; blue, 87 }  ,draw opacity=1 ][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ][line width=4.5]  (431.29,76.98) -- (564.29,76.98) -- (564.29,198) -- (431.29,198) -- cycle ;
+%Shape: Rectangle [id:dp8554811027992568] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ][line width=0.75]  (427.96,76.98) -- (560.96,76.98) -- (560.96,198) -- (427.96,198) -- cycle ;
+%Shape: Rectangle [id:dp4666790964474916] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 182; green, 64; blue, 64 }  ,fill opacity=1 ] (186.79,76.98) -- (428.29,76.98) -- (428.29,198) -- (186.79,198) -- cycle ;
+%Shape: Rectangle [id:dp4684932062372884] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=0.75 ] (185.96,55.67) -- (425.29,55.67) -- (425.29,73.33) -- (185.96,73.33) -- cycle ;
+%Shape: Rectangle [id:dp7538608016518991] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (432.29,55.67) -- (563.96,55.67) -- (563.96,73.33) -- (432.29,73.33) -- cycle ;
+%Shape: Rectangle [id:dp575388567694743] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (250.29,108.8) -- (428.29,108.8) -- (428.29,198) -- (250.29,198) -- cycle ;
+%Shape: Rectangle [id:dp694025502587706] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 97; green, 123; blue, 71 }  ,fill opacity=1 ] (428.29,161.33) -- (529.29,161.33) -- (529.29,198) -- (428.29,198) -- cycle ;
+%Left Arrow [id:dp159442790435544] 
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 97; green, 123; blue, 71 }  ,fill opacity=1 ] (511.02,173.58) -- (516.74,158.26) -- (519.35,162.71) -- (546.06,147.06) -- (551.28,155.96) -- (524.57,171.61) -- (527.18,176.07) -- cycle ;
+
+%Left Arrow [id:dp2567253964557259] 
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (231.33,156.74) -- (247.51,154.38) -- (244.87,158.81) -- (271.45,174.68) -- (266.16,183.54) -- (239.58,167.67) -- (236.93,172.1) -- cycle ;
+
+%Left Arrow [id:dp4712888920317464] 
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (370.29,184.33) -- (387.29,172.66) -- (387.29,178.5) -- (440.29,178.5) -- (440.29,190.17) -- (387.29,190.17) -- (387.29,196) -- cycle ;
+%Left Arrow [id:dp3521145387427629] 
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 97; green, 123; blue, 71 }  ,fill opacity=1 ] (426.29,184.33) -- (443.29,172.66) -- (443.29,178.5) -- (443.29,178.5) -- (443.29,190.17) -- (443.29,190.17) -- (443.29,196) -- cycle ;
+
+%Left Arrow [id:dp8166384807624658] 
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (450.8,86.33) -- (434.29,74.66) -- (434.29,80.5) -- (370.29,80.5) -- (370.29,92.17) -- (434.29,92.17) -- (434.29,98) -- cycle ;
+%Left Arrow [id:dp8194414952038565] 
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (386.8,86.33) -- (370.29,74.66) -- (370.29,80.5) -- (370.29,80.5) -- (370.29,92.17) -- (370.29,92.17) -- (370.29,98) -- cycle ;
+
+
+%Rounded Same Side Corner Rect [id:dp01839882980964913] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ][line width=1.5]  (199.87,12.03) .. controls (199.87,6.57) and (204.3,2.14) .. (209.77,2.14) -- (540.48,2.14) .. controls (545.95,2.14) and (550.37,6.57) .. (550.37,12.03) -- (550.37,21.92) .. controls (550.37,21.92) and (550.37,21.92) .. (550.37,21.92) -- (199.87,21.92) .. controls (199.87,21.92) and (199.87,21.92) .. (199.87,21.92) -- cycle ;
+%Rounded Same Side Corner Rect [id:dp42232070994654003] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (550.37,48.86) .. controls (550.37,51.33) and (548.37,53.33) .. (545.9,53.33) -- (204.35,53.33) .. controls (201.88,53.33) and (199.87,51.33) .. (199.87,48.86) -- (199.87,21.92) .. controls (199.87,21.92) and (199.87,21.92) .. (199.87,21.92) -- (550.37,21.92) .. controls (550.37,21.92) and (550.37,21.92) .. (550.37,21.92) -- cycle ;
+
+
+% Text Node
+\draw (267.37,236.67) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {FNR = };
+% Text Node
+\draw (267.37,261) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {FPR = };
+% Text Node
+\draw (343.37,259.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {Precision = };
+% Text Node
+\draw (411.54,265.83) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle +$};
+% Text Node
+\draw (535.54,267.33) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle +$};
+% Text Node
+\draw (440.37,259) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {\begin{minipage}[lt]{54.30085600000001pt}\setlength\topsep{0pt}
+\begin{center}
+Misclassification\\rate 
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (535.54,254.33) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle +$};
+% Text Node
+\draw (513.37,262) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {= };
+% Text Node
+\draw (535.54,240) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle +$};
+% Text Node
+\draw (467.37,233.67) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {Accuracy = };
+% Text Node
+\draw (535.54,227) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle +$};
+% Text Node
+\draw (334.37,233.67) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {Prevalence = };
+% Text Node
+\draw (411.54,240) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle +$};
+% Text Node
+\draw (243.09,156.56) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,rotate=-30.84] [align=left] {{\footnotesize $\displaystyle \uparrow $TPR}};
+% Text Node
+\draw (516.52,163.19) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,rotate=-329.62] [align=left] {{\footnotesize $\displaystyle \downarrow $\textcolor[rgb]{1,1,1}{FPR}}};
+% Text Node
+\draw (382.95,178.25) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {{\scriptsize $\displaystyle \uparrow $Precision}};
+% Text Node
+\draw (384.63,80.25) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {{\scriptsize $\displaystyle \uparrow $Prevalence}};
+% Text Node
+\draw (199.37,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {TPR = };
+% Text Node
+\draw (186,240) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {{\scriptsize (sensitivity)}};
+% Text Node
+\draw (199.37,259.17) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {TNR = };
+% Text Node
+\draw (186,268.17) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {{\scriptsize (specificity)}};
+% Text Node
+\draw (264.04,60.17) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{56.241644pt}\setlength\topsep{0pt}
+\begin{center}
+Actual Positive
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (455.79,60.17) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{59.875428pt}\setlength\topsep{0pt}
+\begin{center}
+Actual Negative
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (464.29,171.17) node [anchor=north west][inner sep=0.75pt]  [font=\Large,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{21.490856pt}\setlength\topsep{0pt}
+\begin{center}\textcolor{white}{
+FP}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (204.04,106.17) node [anchor=north west][inner sep=0.75pt]  [font=\Large,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{22.305428000000003pt}\setlength\topsep{0pt}
+\begin{center}\textcolor{white}{
+FN}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (510.96,99.99) node [anchor=north west][inner sep=0.75pt]  [font=\Large,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{22.305428000000003pt}\setlength\topsep{0pt}
+\begin{center}
+TN
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (283.79,126.9) node [anchor=north west][inner sep=0.75pt]  [font=\Large,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{21.490856pt}\setlength\topsep{0pt}
+\begin{center}
+TP
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (336.62,207.19) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {MEASURES};
+% Text Node
+\draw (346.62,4.53) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {LEGEND};
+% Text Node
+\draw (201.87,24.92) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {{\footnotesize \textcolor[rgb]{0,0,0}{TP: Correctly predicted as positive}}\\{\footnotesize TN: Correctly predicted as negative}};
+% Text Node
+\draw (380.37,24.92) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {{\footnotesize FN: Wrongly predicted as negative}\\{\footnotesize FP: Wrongly predicted as positive}};
+
+
+\end{tikzpicture}
+\end{center}
+
 
 \section{Erreur}
 
