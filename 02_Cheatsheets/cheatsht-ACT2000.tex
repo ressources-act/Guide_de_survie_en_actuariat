@@ -137,7 +137,7 @@ La première section traite de \guillemotleft \textbf{estimateurs ponctuels} \gu
 C'est-à-dire, on produit une seule valeur comme notre meilleur essai pour déterminer la valeur de la population inconnue.
 Intrinsèquement, on ne s'attend pas à ce que cette valeur (même si c'en est une bonne) soit la vraie valeur exacte.\\
 
-Une hypothèse plus utile à des fins d'interprétation est plutôt un \textbf{estimateur par intervalle}; au lieu d'une seule valeur, il retourne un intervalle de valeurs plausibles qui peuvent toutes être la vraie valeur. 
+Une hypothèse plus utile à des fins d'interprétation est plutôt un \textbf{\hyperref[sec:int-estimation]{estimateur par intervalle}}; au lieu d'une seule valeur, il retourne un intervalle de valeurs plausibles qui peuvent toutes être la vraie valeur. 
 Le type principal d'\textit{estimateur par intervalle} est \textit{l'intervalle de confiance} traité dans la deuxième sous-section.\\
 
 En bref:
@@ -433,7 +433,7 @@ En combinant tous ces critères, le meilleur estimateur est alors l'estimateur \
 \columnbreak
 
 \subsection{Estimation par intervalles}
-
+\label{sec:int-estimation}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\hat{\theta}_{L}$ et $\hat{\theta}_{U}$]	Fonctions de l'échantillon aléatoire $\{X_{1}, \dots, X_{n}\}$ où \icbox[red][palechestnut]{$\hat{\theta}_{L} < \hat{\theta}_{U}$};
@@ -463,25 +463,46 @@ Typiquement, la largeur de l'intervalle $(\hat{\theta}_{L}, \hat{\theta}_{U})$ a
 
 Donc, un intervalle plus petit nous donne plus d'information si le niveau est adéquat. On dit que pour un même niveau $(1 - \alpha)$, l'intervalle avec la plus petite largeur est \textit{plus efficace} que l'autre.
 
-\subsubsection*{Exemples}
+\subsubsection*{Intervalles de confiance}
+
+\begin{rappel_enhanced}[Rappel : Loi du khi-carré]
+Soit un échantillon aléatoire $(X_{1}, X_{2}, \dots, X_{n})$ de variables aléatoires normales de moyenne $\mu$ et variance $\sigma^{2}$.\\
+Soit \lfbox[formula]{$Q	=	\sumz{n}{i	=	1}\left(X_{i}	-	\mu\right)^{2}$}.\\
+
+Alors, \lfbox[formula]{$Q/\sigma^{2} \sim \chi^{2}_{n}$}.
+\end{rappel_enhanced}
+
+\begin{rappel_enhanced}[Rappel : Loi de Student]
+Soit les variables aléatoires indépendantes :
+\begin{itemize}
+	\item	$Z \sim \mathcal{N}(0, 1)$.
+	\item	$W \sim \chi^{2}_{(n)}$.
+\end{itemize}
+
+Alors, \lfbox[formula]{$T	=	\frac{Z}{\sqrt{W/n}}	\sim	t_{n}$}.\\
+
+\tcbline
+
+La loi de Student tend vers la normale lorsque $n$ est très grand.
+\end{rappel_enhanced}
+
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$T_{n}$]	Statistique de test basée sur un échantillon aléatoire de $n$ observations;
 	\item[$\bar{X}$]	Moyenne empirique qui estime sans biais la vraie moyenne $\mu$;
 		\begin{align*}
-		\bar{x}
-		&=	\frac{\sumz{n}{i = 1} x_{i}}{n}
+		\bar{X}
+		&=	\frac{\sumz{n}{i = 1} X_{i}}{n}
 		\end{align*}
 		\begin{itemize}
 		\item	$\bar{X}	\sim \mathcal{N}(\mu, \frac{\sigma}{\sqrt{n}})$;
 		\item	On peut donc centrer et réduire la moyenne empirique pour obtenir une distribution normale standard---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)$};
-		\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{s_{n}/\sqrt{n}} \sim t_{(n - 1)}$};
-		\item	Cela dit, la distribution de Student tend vers la normale lorsque $n$ est très grand.
+		\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{s_{n}/\sqrt{n}}	\equiv	\frac{Z}{\sqrt{W/(n - 1)}} \sim t_{(n - 1)}$}.
 		\end{itemize}
 	\item[$S_{n}^{2}$]	Variance échantillonale, qui estime \underline{sans biais} la vraie variance $\sigma^{2}$;
 		\begin{align*}
-			s^{2}_{n}
-			&=	\frac{\sum (x_{i} - \bar{x})^{2}}{n - 1}
+			S^{2}_{n}
+			&=	\frac{\sum (X_{i} - \bar{X})^{2}}{n - 1}
 		\end{align*}
 		\begin{itemize}
 		\item	$S^{2}_{n}$ n'est pas normalement distribuée; 
@@ -490,10 +511,11 @@ Donc, un intervalle plus petit nous donne plus d'information si le niveau est ad
 	\item[$\hat{\sigma}^{2}$]	Variance empirique qui estime \underline{avec biais} la vraie variance $\sigma^{2}$.
 		\begin{align*}
 		\hat{\sigma}^{2} 
-		&=	\frac{\sum (x_{i} - \bar{x})^{2}}{n}
+		&=	\frac{\sum (X_{i} - \bar{X})^{2}}{n}
 		\end{align*}
 \end{description}
 \end{distributions}
+
 %
 %De façon générale, les intervalles de confiance ont une estimation ponctuelle à laquelle on ajoute une marge d'erreur.
 
@@ -549,7 +571,7 @@ Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 \end{align*}
 \end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne]
+\begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne ($\sigma^{2}$ connue)]
 %%%	https://www.youtube.com/watch?v=KG921rfbTDw&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=4&t=0s
 %%%	https://www.youtube.com/watch?v=-iYDu8flFXQ&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=3&t=268s
 Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\mu$ inconnu et $\sigma^{2}$ connue, \lfbox[formula]{$\Pr\left(-z_{\alpha/2} \leq \frac{\bar{x} - \mu}{\sigma/\sqrt{n}} \leq z_{\alpha/2}\right) =	(1 - \alpha)$}.\\
@@ -610,7 +632,7 @@ Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 \end{equation*}
 \end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne]
+\begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne ($\sigma^{2}$ inconnue)]
 Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\sigma^{2}$ inconnue, \lfbox[formula]{$\Pr\left(-t_{\alpha/2, n - 1} \leq \frac{\bar{x} - \mu}{s_{n}/\sqrt{n}} \leq t_{\alpha/2, n - 1}\right) =	(1 - \alpha)$}.\\
 Graphiquement:
 \begin{center}
@@ -691,10 +713,11 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \end{equation*}
 \end{definitionNOHFILLsub}
 
+On défini le \og \textit{pooled estimator} \fg{} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.\\
+
+
 \begin{definitionNOHFILLsub}[Intervalle de confiance pour une différence de moyennes]
 Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1}, Y_{2}, \dots, Y_{m}\}$ issus de distributions normales de moyennes $\mu_{1}$ et $\mu_{2}$ et variance $\sigma^{2}_{1} = \sigma^{2}_{2} = \sigma^{2}$ inconnues.
-
-On défini le \og \textit{pooled estimator} \fg{} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.\\
 
 Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
@@ -1161,28 +1184,125 @@ Certains tests ont une puissance plus élevée que les autres. \\
 Cela dit, le test $t$ habituel est très puissant.
 \end{definitionNOHFILLsub}
 
-La fonction de puissance est $\gamma_{C}(\theta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \in \Theta_{1} \right\}$.
+\subsubsection{La fonction de puissance}
 
+La fonction de puissance est \lfbox[formula]{$\gamma(\theta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \right\}$} ; c'est-à-dire, la probabilité de rejeter l'hypothèse nulle $\mathrm{H}_{0}$ si la \textbf{vraie} valeur du paramètre est $\theta \in \Theta$. 
+\begin{itemize}
+	\item	C'est une fonction de $\theta$ ;
+	\item	Idéalement, si l'hypothèse nulle est :
+		\begin{description}
+		\item[acceptée]	on souhaite que $\gamma(\theta)	=	0$ puisque $\theta \in \Theta_{0}$.
+			\begin{itemize}
+			\item	On dénote $\gamma(\theta_{0})	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta \in \Theta_{0}\right\}	=	0$.
+			\end{itemize}
+		\item[rejetée]	on souhaite que $\gamma(\theta)	=	1$ puisque $\theta \in \Theta_{1}$.
+			\begin{itemize}
+			\item	On dénote $\gamma(\theta_{1})	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \in \Theta_{1}\right\}	=	1$.
+			\end{itemize}
+		\end{description}
+\end{itemize}
+
+Si, par exemple, on rejette l'hypothèse nulle on pourrait tracer la fonction de puissance pour toutes les valeurs possibles de l'ensemble $\Theta_{1}$.
+
+
+%%	
+%	\lfbox[formula]{$n \geq \left(\frac{z}{k - \mu_{1}}\right)^{2}\sigma^{2}$}.
+
+
+\columnbreak
+
+\subsection{Tests optimaux}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\delta$]	(Procédure de) test ;
+	\item[$\alpha(\delta)$]	Probabilité d'une erreur de type I pour un test $\delta$ ;
+		\begin{itemize}
+		\item	$\alpha(\delta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta \in \Theta_{0}\right\}	=	\gamma(\theta_{0})$.
+		\end{itemize}
+	\item[$\beta(\delta)$]	Probabilité d'une erreur de type II pour un test $\delta$ ;
+		\begin{itemize}
+		\item	$\beta(\delta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}^{\complement} ;  \theta \in \Theta_{1}\right\}	=	1 - \gamma(\theta_{1})$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILLprop}[Tests optimaux]
+Bien qu'il est impossible de trouver un test $\delta$ pour lequel les probabilités d'erreurs de type I et II sont très petites, on peut minimiser $a\alpha(\delta) + b\beta(\delta)$.
+
+\tcbline
+
+Soit les constantes $a, b > 0$.\\
+Soit un test $\delta^{*}$ tel que :
+\begin{itemize}
+	\item	 $\mathrm{H}_{0}$ est acceptée si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	>	bf(\bm{x} ; \theta_{1})$} ;
+	\item	 $\mathrm{H}_{0}$ est rejetée si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	<	bf(\bm{x} ; \theta_{1})$} ;
+	\item	Si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	=	bf(\bm{x} ; \theta_{1})$} soit $\mathrm{H}_{0}$ ou $\mathrm{H}_{1}$ peut être acceptée.
+\end{itemize}
+
+Pour tout autre test $\delta$, \lfbox[formula]{$a\alpha(\delta^{*}) + b\beta(\delta^{*})	\leq	a\alpha(\delta) + b\beta(\delta)$}.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILL}[Lemme de Neymann-Pearson]
+Le lemme de Neyman-Pearson trouve le test $\delta$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ parmi tous les test dont la probabilité d'une erreur de type I $\alpha(\delta)$ est inférieure ou égale à $\alpha	=	\alpha(\delta^{*})	=	\Pr\left\{ f(\bm{X} ; \theta_{0}) < k f(\bm{X} ; \theta_{1}) ; \theta \in \Theta_{0} \right\}$.
+
+\tcbline
+
+Soit une constante $k > 0$.\\
+Soit un test $\delta^{*}$ tel que :
+\begin{itemize}
+	\item	 $\mathrm{H}_{0}$ est acceptée si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	>	kf(\bm{x} ; \theta_{1})$} ;
+	\item	 $\mathrm{H}_{0}$ est rejetée si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	<	kf(\bm{x} ; \theta_{1})$} ;
+	\item	Si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	=	kf(\bm{x} ; \theta_{1})$} une ou l'autre sera acceptée.
+\end{itemize}
+
+Si $\delta$ est n'importe quel autre test que $\delta^{*}$ tel que \lfbox[conditions]{$\alpha(\delta) \leq \alpha(\delta^{*})$} alors \lfbox[formula]{$\beta(\delta)	\geq	\beta(\delta^{*})$}.
+\begin{itemize}
+	\item	De façon semblable, si \lfbox[conditions]{$\alpha(\delta) < \alpha(\delta^{*})$} alors \lfbox[formula]{$\beta(\delta)	>	\beta(\delta^{*})$} ;
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+%\begin{definitionNOHFILLsub}[Sous la forme du ratio de vraisemblance]
+%Soit le \textbf{ratio de vraisemblance} \lfbox[formula]{$\frac{L(\theta_{1})}{L(\theta_{0})}	=	\frac{f(\bm{x} ; \theta_{1})}{f(\bm{x} ; \theta_{0})}$}.\\
+%
+%\tcbline
+%
+%Alors, le test $\delta$ au seuil $\alpha$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ rejette $\mathrm{H}_{0}$ si : \lfbox[formula]{$\frac{L(\theta_{1})}{L(\theta_{0})}	>	\frac{1}{k}$}.
+%\end{definitionNOHFILLsub}
+%
+%
+%\begin{definitionNOHFILL}[Test uniformément le plus puissant]
+%Un test $\delta^{*}$ est le test \lfbox[imphl]{uniformément le plus puissant} au seuil $\alpha$ si :
+%\begin{enumerate}
+%	\item	\lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta^{*}) \leq \alpha$}, et si
+%	\item	pour tout autre test $\delta$ tel que \lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta) \leq \alpha$}.
+%\end{enumerate}
+%Alors, \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\theta \in \Theta_{1} | \delta^{*})$}.
+%
+%\begin{itemize}
+%	\item	En anglais, c'est le test \og \textit{uniformly most powerful (UMP)} \fg{} 
+%\end{itemize}
+%\end{definitionNOHFILL}
 
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%%		À rajouter éventuellement	%%%%	
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 
 %\subsection{Tests d'hypothèses}
-%%	Contenu à y inclure
-%	Hypothèse nulle et alternative
-%	Statistique de test
-%	Région de réjection
-%	Erreurs de type I et II
+%	Contenu à y inclure
+%%%	Hypothèse nulle et alternative
+%%%	Statistique de test
+%%%	Région de réjection
+%%%	Erreurs de type I et II
 %		Tests optimaux
 %		Lemme de Neymann-Pearson
 %		Ratio de vraisemblance
-%	Valeurs critique et seuil observé
-%	Test unilatéral et bilatéral
-%%		mentionner que unilat peut être "dangereux"
-%	La valeur p
+%%%	Valeurs critique et seuil observé
+%%%	Test unilatéral et bilatéral
+%		mentionner que unilat peut être "dangereux"
+%%%	La valeur p
 %	
-%	Test uniformément le plus puissant, alias Uniformely Most Powerful (UMP)
+%%	Test uniformément le plus puissant, alias Uniformely Most Powerful (UMP)
 %	Tests échantillons normaux
 %		Test T
 %			Unilatéral (test, taille, puissance, seuil observé, IC)
