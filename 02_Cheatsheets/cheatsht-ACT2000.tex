@@ -741,32 +741,56 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \section{Tests d'hypothèses}
 \label{sec:hyp-test}
 \subsection{Introduction}
+\begin{rappel_enhanced}[Contexte]
+Les statistiques classiques posent que tout phénomène observable est régi par un \textit{"\textbf{processus}" sous-jacent}.\\
+On ne peut jamais savoir exactement ce qu'est ce "processus"; le mieux que l'on peut faire est d'émettre des \textit{\textbf{hypothèses}} vraisemblables sur ce qu'il pourrait être. \\
+Par la suite, on analyse les observations en présumant qu'elles sont régies par le processus hypothétique et détermine la \textit{\textbf{vraisemblance des observations}}. On accepte le processus hypothétique si la vraisemblance est suffisamment élevée.
+\end{rappel_enhanced}
 
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\Theta_{0}$ et $\Theta_{1}$]	Sous-ensembles disjoints de $\Theta$ tel que \lfbox[formula]{$\Theta_{0} \cup \Theta_{1}	=	\Theta$;}
-	\item[$\textrm{H}_{0}$]	Hypothèse nulle;
+	\item[$\textrm{H}_{0}$]	Hypothèse nulle ;
+		\begin{itemize}
+		\item	Représente généralement le statu quo jusqu'à preuve contraire.
+		\end{itemize}
 	\item[$\textrm{H}_{1}$]	Hypothèse alternative.
+		\begin{itemize}
+		\item	Représente généralement un changement du statu quo.
+		\end{itemize}
 \end{description}
 \end{distributions}
 
-Lorsque l'on veut tester deux hypothèses différents, on effectue un "\textbf{test d'hypothèse}".
 \begin{definitionNOHFILL}[Test d'hypothèse]
+On spécifie une \textcolor{burntorange}{hypothèse} nulle et par conséquent une hypothèse alternative :
 \begin{align*}
 	\textrm{H}_{0}
 	&:	\theta \in \Theta_{0}	&
 	&\text{vs}	&
 	\textrm{H}_{1}
-	&:	\theta \in \Theta_{1}	&
+	&:	\theta \in \Theta_{1}	\\
 \end{align*}
 
-Habituellement l'hypothèse nulle représente le statu quo alors que l'hypothèse alternative représente un changement.
+Puis, on spécifie une \textcolor{orange-red}{expérience} et un \textcolor{orange}{test} pour décider si l'on accepte ou rejette l'hypothèse nulle.
 \end{definitionNOHFILL}
 
-\begin{formula}{Exemple du LPU}
-Par exemple, on veut savoir si le monde utilisent l'autobus (oui ou non) avant et après l'implantation du LPU.\\ 
-On pose que la proportion des gens qui utilisent l'autobus est $q	=	0.44$.\\
-Il y a deux types de tests qu'on peut faire,
+\begin{distributions}[Terminologie]
+\begin{description}
+\item[Hypothèse simple]	Spécifie \textbf{entièrement} une distribution de probabilité.
+	\begin{itemize}
+	\item	Par exemple, $\mathcal{H}_{0}	:	q = 0.50$---on connaît la valeur exacte du paramètre $q$ pour une distribution Bernoulli.
+	\end{itemize}
+\item[Hypothèse composite]	Spécifie \textbf{partiellement} une distribution de probabilité.
+	\begin{itemize}
+	\item	Par exemple, $\mathcal{H}_{1}	:	q \neq 0.50$.---on ne connaît pas la valeur exacte du paramètre $q$, il pourrait être n'importe quel chiffre sauf $0.50$.
+	\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{formula}{Exemple du laissez-passer universitaire (LPU)}
+\textcolor{orange-red}{Par exemple}, on veut savoir si le monde utilisent l'autobus (oui ou non) avant et après l'implantation du LPU.\\ 
+On \textcolor{burntorange}{pose} que la proportion des gens qui utilisent l'autobus est $q	=	0.44$.\\
+Il y a deux types de \textcolor{orange}{tests} qu'on peut faire,
 \begin{itemize}
 	\item	Tester si l'utilisation est différente est un test "\textbf{bilatéral}", car on test si elle a augmentée \textit{ou} diminuée;
 		\begin{align*}
@@ -786,7 +810,15 @@ Il y a deux types de tests qu'on peut faire,
 
 Un test unilatéral requiert que l'on sache déjà que la proportion de gens "\textit{doit}" être supérieure. Un test bilatéral est plus conservatif et test les deux possibilités, il devrait donc être celui qu'on applique par défaut. \\
 
-Dans tous les cas, l'hypothèse nulle est que, en moyenne, l'utilisation de l'autobus n'a pas \textit{changée}. Pour le test bilatéral, l'hypothèse alternative est que, en moyenne, l'utilisation a \textit{changée}. Pour le test unilatéral, l'hypothèse alternative est que, en moyenne, l'utilisation a \textit{augmentée}.
+L'hypothèse :
+\begin{description}
+	\item[nulle]		dans les deux cas est que, en moyenne, l'utilisation de l'autobus n'a pas \textit{changée}. 
+	\item[alternative]	dans le cas d'un test :
+		\begin{description}
+		\item[unilatéral]	est que, en moyenne, l'utilisation a \textit{augmentée}.
+		\item[bilatéral]	est que, en moyenne, l'utilisation a \textit{changée}.
+		\end{description}
+\end{description}
 \end{formula}
 
 \begin{definitionNOHFILLsub}[Région critique]
@@ -799,9 +831,13 @@ Dans tous les cas, l'hypothèse nulle est que, en moyenne, l'utilisation de l'au
 
 On rejette $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}$.\\
 On conserve $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}^{c}$.
+
+\begin{itemize}
+	\item	On peut aussi dire \og \textbf{région de rejet} \fg{}.
+\end{itemize}
 \end{definitionNOHFILLsub}
 
-\begin{formula}{Exemple du LPU}
+\begin{formula}{Exemple du laissez-passer universitaire (LPU)}
 On reprend l'exemple du LPU.\\
 L'ensemble des résultats possibles est $\mathcal{S} = [0, 1]$.
 \begin{itemize}
@@ -809,6 +845,7 @@ L'ensemble des résultats possibles est $\mathcal{S} = [0, 1]$.
 	\item	Un test "\textbf{unilatéral}" testant l'augmentation a comme région critique $\mathcal{C} = (0.44, 1]$.
 \end{itemize}
 \end{formula}
+
 On peut donc faire 2 types d'erreurs:
 %%	voir les images que j'ai gardé pour quand je retouche à la matrice de confusion dans les GLMs pour développer et parler des métriques ! 
 \begin{center}
@@ -911,28 +948,26 @@ Il y a plusieurs termes semblables qui peuvent devenir mélangeants.
 \begin{description}
 	\item[$p$]	La \textbf{valeur $p$} du test.
 		\begin{itemize}
-		\item	On peut la définir comme la probabilité d'un événement autant (ou plus) rare sous l'hypothèse nulle;
-		\item	On peut la définir comme la \textbf{taille} de la région critique $\mathcal{C}$; c'est-à-dire, la probabilité qu'une observation y sera contenue sous l'hypothèse nulle;
-		\item	On peut la définir comme le \textbf{seuil de signifiance}; c'est-à-dire, la probabilité de rejeter $\text{H}_{0}$ alors qu'elle est vraie (erreur de type I);
+		\item	On peut la définir comme la probabilité d'un événement autant (ou plus) rare sous l'hypothèse nulle ;
+		\item	On peut la définir comme la \textbf{taille} de la région critique $\mathcal{C}$ ; c'est-à-dire, l'\textit{aire} de la région de rejet de l'hypothèse nulle $\text{H}_{0}$ alors qu'elle est vraie ;
+		\item	On peut la définir comme le \textbf{seuil de signifiance} ; c'est-à-dire, la probabilité de rejeter $\text{H}_{0}$ alors qu'elle est vraie ;
+		\item	Elle correspond donc également à la \textbf{probabilité d'une erreur de type I}.
 		\end{itemize}
-	\item[$\alpha$]	Dénote habituellement le \textbf{Seuil de signifiance} ou la \textbf{taille} du test.
+	\item[$\alpha$]	Dénote habituellement le \textbf{seuil de signifiance} ou la \textbf{taille} du test.
 		\begin{itemize}
 		\item	Même idée qu'avec les intervalles de confiance;
-		\item	Souvent, on dénote par $\alpha$ la valeur de $p$ qui détermine si on rejette ou pas un test;
+		\item	On peut parfois aussi utiliser $\alpha$ pour dénoter la valeur de $p$ qui détermine si on rejette ou pas un test ;
 		\item	En anglais, \og \textit{threshold for significance} \fg{}.
 		\end{itemize}
 \end{description}
 \end{distributions}
 
-Formellement, on défini \lfbox[formula]{$\alpha	=	\underset{\theta \in \Theta_{0}}{\max} \Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \right\}$}. \\
+Formellement, on défini \lfbox[formula]{$\alpha	=	{\color{indigo(web)}\max}_{{\color{amethyst}\theta} \in {\color{pastelred}\Theta_{0}}} \Pr\left\{{\color{bondiblue!80!black}(X_{1}, \dots, X_{n})} {\color{armygreen}\in} {\color{bulgarianrose}\mathcal{C}} ; {\color{amethyst}\theta} \right\}$}. \\
 C'est-à-dire :
 \begin{itemize}
-	\item	on maximise la probabilité que l'échantillon aléatoire soit contenu dans la région critique (alias rejeter $\textrm{H}_{0}$), 
-	\item	où la distribution est tracée en fonction du paramètre $\theta$ de l'hypothèse nulle.
+	\item	on \textcolor{indigo(web)}{maximise} la probabilité que \textcolor{bondiblue!80!black}{l'échantillon aléatoire} soit \textcolor{armygreen}{contenu} dans \textcolor{bulgarianrose!90!black}{la région critique} (alias rejeter $\textrm{H}_{0}$), 
+	\item	où la distribution est tracée \textcolor{amethyst}{en fonction du paramètre $\theta$} de \textcolor{pastelred}{l'hypothèse nulle}.
 \end{itemize}
-Ceci est l'erreur de type I.
-%%%	qqchose que je manque ici
-%%%	\Theta vs S, test vs param?? (X, ... X_n) \in ...?
 
 
 \columnbreak
@@ -1651,6 +1686,8 @@ On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" th
 	\item	Une erreur aléatoire $\varepsilon$ inconnue.
 \end{itemize}
 
+\section{Autres}
+\textbf{Matrice de confusion : }
 \begin{center}
 
 
