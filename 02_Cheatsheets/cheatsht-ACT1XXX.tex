@@ -180,6 +180,27 @@ La moyenne de $n$ chiffres $x_{1}, x_{2}, \dots, x_{n}$.
 \sum_{k = 1}^{n}k^2 &= \frac{n(n + 1)(2n + 1)}{6} \\
 \end{align*}
 
+\subsection{Différenciation}
+\begin{rappel_enhanced}[Théorème des accroissements finis]
+\begin{rappel_enhanced}[Théorème de Rolle]
+Soit la fonction $f$ qui répond aux critères suivants :
+\begin{enumerate}
+	\item	$f(x)$ est continue sur l'intervalle fermé $[a, b]$ ;
+	\item	$f(x)$ est différentiable sur l'intervalle ouvert $(a, b)$ ;
+	\item	$f(a)	=	f(b)$.
+\end{enumerate}
+Alors, il existe un nombre $c$ tel que \lfbox[conditions]{$a < c < b$} et \lfbox[formula]{$f'(c)	= 0$}; c'est-à-dire, $f(x)$ a un point critique dans $(a, b)$.
+\end{rappel_enhanced}
+
+Soit la fonction $f$ qui répond aux critères suivants :
+\begin{enumerate}
+	\item	$f(x)$ est continue sur l'intervalle fermé $[a, b]$ ;
+	\item	$f(x)$ est différentiable sur l'intervalle ouvert $(a, b)$.
+\end{enumerate}
+Alors, il existe un nombre $c$ tel que \lfbox[conditions]{$a < c < b$} et \lfbox[formula]{$f'(c)	=	\frac{f(b) - f(a)}{b - a}$}.
+\end{rappel_enhanced}
+
+
 \subsection*{Estimation Taylor}
 \begin{align*}
 	f(x) 
@@ -204,14 +225,88 @@ Alors,
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Domaines]
-\begin{itemize}
+\begin{description}
 	\item[$\mathds{R}$]: Real numbers, $x \in (-\infty, \infty)$.
 	\item[$\mathds{Z}$]: Integers; all integers positive \& negative, $x \in \{\dots, -3, -2, -1, 0, 1, 2, 3, \dots\}$.
 	\item[$\mathds{N}$]: Natural numbers; all positive integers numbers, $x \in \{1, 2, 3, \dots\}$.
 	\item[$\mathds{Q}$]: Rational numbers; numbers written as fractions, for example $1.25\%$, $-0.4775$, $3.\overline{153}$, $\frac{1}{2}, \frac{4}{7}$.	
 	\item[$\mathds{R} \backslash \mathds{Q}$]: Irrational numbers; for example $\pi, \mathrm{e}, \sqrt{3}$.
-\end{itemize}
+\end{description}
 \end{definitionNOHFILL}
+
+\subsection*{Intégrale de Riemann-Stieltjes}
+\begin{rappel_enhanced}[Intégrale de Riemann]
+Soit la fonction $f$ continue sur l'intervalle $[a, b]$.
+\begin{itemize}
+	\item	On divise l'ensemble $[a, b]$ en $n$ sous-intervalles $c_{i} = [x_{i - 1}, x_{i}]$.
+	\item	Les $n$ partitions $P$ des sous-intervalles sont aux points $P	=	\{a	=	x_{0} < x_{1} < \hdots < x_{n} = b\}$. 
+	\item	La norme des partitions est la longueur du plus long sous-intervalle $\lVert P \rVert	=	\underset{1 \leq i \leq n}{\max}\{|x_{i} - x_{i - 1}|\}$.
+	\item	On dénote le $i^{\text{e}}$ point du sous-intervalle $c_{i}$ par $t_{i} \in [x_{i - 1}, x_{i}]$.
+\end{itemize}
+
+Visuellement :
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da21404446917902464] 
+\draw    (90.5,170) -- (317.5,170) ;
+\draw [shift={(319.5,170)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Curve Lines [id:da28387606314411706] 
+\draw [color={rgb, 255:red, 24; green, 51; blue, 82 }  ,draw opacity=1 ][line width=2.25]    (100,170) .. controls (126.5,87) and (150.5,60) .. (185.5,62) .. controls (220.5,64) and (238.5,135) .. (288.5,170) ;
+%Straight Lines [id:da40818193657573865] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (125,106) -- (125,170) ;
+%Straight Lines [id:da26577873998854695] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (146,81) -- (146,170) ;
+%Straight Lines [id:da3961268279871215] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (168,66) -- (168,173) ;
+%Straight Lines [id:da08779208875720568] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (191,65) -- (191,172) ;
+%Straight Lines [id:da7201407531686637] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (211.75,81) -- (211.75,170) ;
+%Straight Lines [id:da14334729073326669] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (233.75,106) -- (233.75,170) ;
+%Straight Lines [id:da5334510980168155] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (253.75,138) -- (253.75,173) ;
+%Straight Lines [id:da4523334823717404] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (135,91) -- (135,171) ;
+
+% Text Node
+\draw (217,59.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 24; green, 51; blue, 82 }  ,opacity=1 ]  {$f( x)$};
+% Text Node
+\draw (317,148.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 24; green, 51; blue, 82 }  ,opacity=1 ]  {$x$};
+% Text Node
+\draw (66.5,173.4) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 24; green, 51; blue, 82 }  ,opacity=1 ]  {$a=x_{0}$};
+% Text Node
+\draw (116.5,173.4) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 24; green, 51; blue, 82 }  ,opacity=1 ]  {$x_{1}$};
+% Text Node
+\draw (137.5,173.4) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 24; green, 51; blue, 82 }  ,opacity=1 ]  {$x_{2}$};
+% Text Node
+\draw (244.5,173.4) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 24; green, 51; blue, 82 }  ,opacity=1 ]  {$x_{n-1}$};
+% Text Node
+\draw (283.5,173.4) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 24; green, 51; blue, 82 }  ,opacity=1 ]  {$x_{n} =b$};
+% Text Node
+\draw (182.5,173.4) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 24; green, 51; blue, 82 }  ,opacity=1 ]  {$\dotsc $};
+% Text Node
+\draw (118,75) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle t_{2}$};
+\end{tikzpicture}
+\end{center}
+
+On obtient donc l'intégrale de Riemann : \lfbox[formula]{$\limz{\lVert P \rVert}{0}\ \sumz{n}{i = 1} f(t_{i})(x_{i} - x_{i - 1})	=	\int_{a}^{b}f(x)dx$}.
+\end{rappel_enhanced}
+
+\begin{rappel_enhanced}[Intégrale de Riemann-\textit{Stieltjes}]
+L'intégrale de Riemann-\textit{Stieltjes} généralise l'intégrale de Riemann avec une fonction $g$ comme mesure de distance entre les points $x_{i - 1}$ et $x_{i}$.
+
+\tcbline
+
+Soit les fonction $f, g : [a, b] \rightarrow \mathbb{R}$.\\
+On maintient les définitions de l'intégrale de Riemann et substitue $(x_{i - 1} - x_{i})$ pour $\left(g(x_{i - 1}) - g(x_{i})\right)$ pour obtenir l'intégrale de Riemann-Stieltjes : \lfbox[formula]{$\limz{\lVert P \rVert}{0}\ \sumz{n}{i = 1} f(t_{i})(g(x_{i - 1}) - g(x_{i}))	=	\int_{a}^{b}f(x)dg(x)$}.
+\end{rappel_enhanced}
+
 
 \subsection*{Fonction impaire}
 
@@ -879,10 +974,27 @@ Alors
 \end{align*}
 
 \subsubsection*{Convolution}
+\begin{definitionNOHFILLprop}[Convolution de deux variables aléatoires]
+Soit deux v.a. continues indépendantes $X$ et $Y$.\\
+Le produit de convolution de $X$ et $Y$ est :
 \begin{align*}
-	f_{X + Y}(s)	
-		&=	\int_{-\infty}^{\infty} f_{X}(s - y) f_{Y}(y) dy	
+	f_{X} \ast f_{Y}(s)
+	=	f_{X + Y}(s)
+	&=	\int_{-\infty}^{\infty}f_{X}(s - y)f_{Y}(y)dy	\\
+	F_{X + Y}(s)
+	&=	\int_{-\infty}^{\infty}F_{X}(s - y)f_{Y}(y)dy	\\
 \end{align*}
+
+\tcbline
+
+Soit deux v.a. discrètes indépendantes $X$ et $Y$.\\
+Le produit de convolution de $X$ et $Y$ est :
+\begin{align*}
+	\Pr(X + Y = s)
+	&=	\sum_{y = 0}^{s}\Pr(X = s - y)\Pr(Y = y)	\\
+\end{align*}
+
+\end{definitionNOHFILLprop}
 
 \subsection*{Variable aléatoire}
 

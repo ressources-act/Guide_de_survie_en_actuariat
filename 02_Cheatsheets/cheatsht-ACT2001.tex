@@ -16,6 +16,8 @@
 %% Reduce margin space
 \setlength{\abovedisplayskip}{-15pt}
 \setlist{leftmargin=*}
+\setcounter{secnumdepth}{1}
+
 
 \newcommand{\bettershortstack}[2][c]{%
   \begin{tabular}[b]{@{}#1@{}}#2\end{tabular}%
@@ -36,7 +38,7 @@
 
 \raggedcolumns
 \begin{multicols*}{2} 
-
+\part{ACT-2001: Introduction à l'actuariat II}
 \section{Notions de base à la modélisation en actuariat}
 \begin{distributions}[Notation]
 \begin{description}
@@ -144,7 +146,7 @@ Pour une variable aléatoire $X$ continue, on simplifie :
 	&=	\frac{1}{1 - \kappa}\left[	\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right] + \underbrace{VaR_{\kappa}(X) \left(F_{X}\left(VaR_{\kappa}(X)\right)	-	\kappa\right)}_{\shortstack{= 0}}	\right]	\\
 	&=	\frac{1}{1 - \kappa}\left[	\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right]	\right]	\\
 	&\equiv	\frac{\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right]}{\Pr(X	>	VaR_{\kappa}(X))}	\\
-	&=	\esp{X | X	>	Var_{\kappa}(X)}
+	&=	\esp{X | X	>	VaR_{\kappa}(X)}
 \end{align*}
 
 \subsubsection{Propriétés désirables d'une mesure de risque}
@@ -358,6 +360,16 @@ Si la distribution de la v.a. $B$ est sub-exponentielle alors :
 	=	\text{E}[M]\overline{F}_{B}(x)
 \end{align*}
 
+\subsection{Mutualisation}
+
+\begin{definitionNOHFILLsub}[Somme de variables aléatoires Poisson composée]
+Soient les variables aléatoires indépendantes $X_{1}, \dots, X_{n}$ où $X_{i} \sim PComp(\lambda_{i}, F_{B_{i}})$ pour $i	=	1, 2, \dots, n$.\\
+Alors, $S	=	\sum_{i = }^{n} X_{i}	\sim	PComp(\lambda_{s} = \sum_{i = 1}^{n}\lambda_{i}; F_{C})$.
+\begin{align*}
+	F_{C}(x)
+	&=	\frac{\lambda_{1}}{\lambda_{S}}F_{B_{1}}(x) + \frac{\lambda_{2}}{\lambda_{S}}F_{B_{2}}(x) + \dots + \frac{\lambda_{n}}{\lambda_{S}}F_{B_{n}}(x)	\\
+\end{align*}
+\end{definitionNOHFILLsub}
 
 \newpage
 \part{ACT-3000: Théorie du risque}
@@ -743,7 +755,146 @@ Pour $r \in [0, 1]$ :
 \subsection{Valeur présente et processus agrégés}
 
 
+
+\pagebreak
+\section{Méthodes récursives d'agrégation}
+\subsection{Motivations}
+\subsubsection{Convolution}
+\begin{rappel_enhanced}[Produit de convolution]
+Soit les variables aléatoires indépendantes continues positives $X_{1}$ et $X_{2}$.\\
+On définit $S	=	X_{1} + X_{2}$, alors :
+\begin{align*}
+	f_{S}(x)
+	&=	\int_{0}^{x} f_{X_{1}}(y) f_{X_{2}}(x - y) dy
+	=	f_{X_{1}} \ast f_{X_{2}}(x)
+\end{align*}
+
+\tcbline
+
+Soit les variables aléatoires indépendantes discrètes positives $X_{1}$ et $X_{2}$ définies sur le support arithmétique $0h, 1h, 2h, \dots$.
+\begin{itemize}
+	\item	$h$ est un \og \textit{pas de discrétisation} \fg{} positif ($h > 0$) ;
+	\item	Par exemple : $10, 20, 30, \ldots  = 1h, 2h, 3h, \dots$ avec $h = 10$.
+\end{itemize}
+
+On définit $S	=	X_{1} + X_{2}$, alors pour $k \in \mathbb{N}$ :
+\begin{align*}
+	f_{S}(kh)
+	&=	\sum_{j = 0}^{k} f_{X_{1}}(jh) f_{X_{2}}((k - j)h) 
+	=	f_{X_{1}} \ast f_{X_{2}}(kh)
+\end{align*}
+\end{rappel_enhanced}
+
+\subsubsection{Nombres complexes}
+\begin{align*}
+	z	&=	\underbrace{x}_{\shortstack{partie réelle,\\ \text{Re}(z)}} + \underbrace{y}_{\shortstack{partie imaginaire,\\ \text{Im}(z)}}\times\underbrace{i}_{\shortstack{Unité imaginaire,\\ $i = \sqrt{-1}$}}
+\end{align*}
+
+\begin{definitionNOHFILLpropos}[Propriétés de base]
+Soit les nombres complexes $z_{1}	=	x_{1} + y_{1}i$ et $z_{2}	=	x_{2} + y_{2}i$.\\
+Règle de : 
+\begin{description}
+	\item[addition]	$z_{1} + z_{2}	=	(x_{1} + x_{2}) + (y_{1} + y_{2})i$ ;
+	\item[multiplication]	$z_{1} \times z_{2}	=	(x_{1}x_{2} - y_{1}y_{2}) + (x_{1}y_{2} + x_{2}y_{1})i$ ;
+	\item[soustraction]		$z_{1} - z_{2}	=	(x_{1} - x_{2}) + (y_{1} - y_{2})i$.
+\end{description}
+\end{definitionNOHFILLpropos}
+
+
+\begin{definitionNOHFILLprop}[Représentation sous la forme polaire]
+\lfbox[formula]{$z	=	r(\cos(\theta) + i\sin(\theta))$} où : 
+\begin{itemize}
+	\item	$r	=	|z|	=	\sqrt{x^{2} + y^{2}}	=$ \textbf{module} de $z$ ;
+	\item	$\theta$	est \textbf{l'argument} de $z$ ; c'est-à-dire, l'angle du vecteur $z$ dans le plan complexe.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Conjugué d'un nombre complexe]
+Le conjugué de $z	=	x + yi$ est : \lfbox[formula]{$\overline{z}	=	\overline{x + yi}	=	x	-	yi$}.
+
+\begin{definitionNOHFILLpropos}[Propriétés de base du conjugué]
+Soit les nombres complexes $z_{1}	=	x_{1} + y_{1}i$ et $z_{2}	=	x_{2} + y_{2}i$.\\
+Règle de : 
+\begin{description}
+	\item[addition]	$\overline{z_{1} + z_{2}}	=	\overline{z_{1}} + \overline{z_{2}}$ ;
+	\item[multiplication]	$\overline{z_{1} \times z_{2}}	=	\overline{z_{1}} \times \overline{z_{2}}$ ;
+	\item[les exposants]		$\overline{z_{1}^{n}}	=	\left(\overline{z_{1}}\right)^{n}$.
+\end{description}
+\end{definitionNOHFILLpropos}
+\end{definitionNOHFILLprop}
+
+
+\begin{definitionNOHFILLpropos}[Règle de division]
+Soit les nombres complexes $z_{1}	=	x_{1} + y_{1}i$ et $z_{2}	=	x_{2} + y_{2}i$.\\
+\begin{align*}
+	\frac{z_{1}}{z_{2}}
+	&=	\frac{z_{1} \times \overline{z_{2}}}{z_{2} \times \overline{z_{2}}}
+	=	\frac{(x_{1}x_{2} - y_{1}y_{2})}{x_{2}^{2} - y_{2}^{2}} + \frac{(x_{1}y_{2} + x_{2}y_{1})}{x_{2}^{2} - y_{2}^{2}}i
+\end{align*}
+\end{definitionNOHFILLpropos}
+
+\begin{definitionNOHFILLprop}[Formule d'Euler]
+\begin{align*}
+	\textrm{e}^{i\theta}
+	&=	\cos(\theta) + i\sin(\theta)	\\
+	&\Rightarrow	\\
+	z
+	&=	r\textrm{e}^{i\theta}
+	=	r\times\left(\cos(\theta) + i\sin(\theta)\right)
+\end{align*}
+\end{definitionNOHFILLprop}
+
+\columnbreak
+\subsection{Somme de variables aléatoires discrètes}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$f_{X}^{\ast n}(k)$]	$n^{\text{e}}$ produit de convolution de $f_{X}$ avec elle-même.	
+		\begin{align*}
+			f_{S_{n}}(k)	
+			&=	f_{X_{1} + \dots + X_{n}}(k)	=	f_{X}^{\ast n}(k)
+		\end{align*}
+\end{description}
+\end{distributions}
+
+\begin{align*}
+	\mathcal{P}_{S_{n}}(t)
+	&=	P_{X}(t)^{n}	
+	=	\sum_{k = 0}^{\infty} f_{S_{n}}(k) t^{k}
+\end{align*}
+
+\begin{algo2}[Algorithme de De Pril]
+Cet algorithme permet de calculer $f_{X}^{\ast n}(k)$ selon la relation récursive suivante :
+\begin{align*}
+	f_{S_{n}}(k)
+	&=	\frac{1}{f_{X}(0)} \sum_{j = 1}^{k} \left((n + 1)\frac{j}{k} - 1\right)f_{X}(j)f_{S_{n}}(k - j)
+\end{align*}
+
+Avec \lfbox[formula]{$f_{S_{n}}(0)	=	\left(f_{X}(0)\right)^{n}$} comme point de départ.
+
+\tcbline
+
+\begin{enumerate}
+	\item	On calcule $f_{S_{n}}(0)	=	\left(f_{X}(0)\right)^{n}$.
+	\item	On calcule $f_{S_{n}}(1)	=	\frac{1}{f_{X}(0)} \left((n + 1)\frac{1}{1} - 1\right)f_{X}(1)f_{S_{n}}(0)$.
+	\item	Avec $f_{S_{n}}(1)$, on trouve $f_{S_{n}}(2)	=	\frac{1}{f_{X}(0)} \bigg\{ f_{X}(1)\left((n + 1)\frac{1}{2} - 1\right)f_{S_{n}}(1)	+$ $ f_{X}(2)\left((n + 1)\frac{2}{2} - 1\right)f_{S_{n}}(0) \bigg\}$.
+	\item	Répéter pour $k \in \{3, 4, \dots\}$.
+\end{enumerate}
+\end{algo2}
+
+\pagebreak
+\section{Comparaison des risques et ordres stochastiques}
+
+
+\pagebreak
+\section{Distributions multivariées et agrégation des risques}
+
+
+\pagebreak
+\section{Théorie des copules}
+
+
 \newpage
+\part{Autres}
 \section{Terminologie}
 \begin{description}
 	\item[$\argmax$]	Si on pose que $\hat{\theta}	=	\argmax L(\theta; \bm{X})$ on dit que la valeur maximale de $L(\theta; \bm{X})$ est au point $\hat{\theta}$.
@@ -881,6 +1032,77 @@ Donc :
 \end{formula}
 
 
+\subsection*{\hypertarget{proof:stoploss}{Preuve de la fonction Stop-Loss comme la survie}}
+\begin{enumerate}
+	\item	Premièrement, on développe l'expression :
+		\begin{align}
+		\pi_{X}(d)
+			&=	\text{E}[\max(X - d; 0)]	\nonumber\\
+			&=	\int_{-\infty}^{\infty} {\color{teal}\max(x - d; 0)} f_{X}(x)dx	\nonumber\\
+			&=	\int_{-\infty}^{d} {\color{teal}(0)} f_{X}(x)dx	+	\int_{d}^{\infty} {\color{teal}(x - d)} {\color{amethyst}f_{X}(x)}dx	\nonumber\\
+			&=	\int_{d}^{\infty} {\color{teal}(x - d)} f_{X}(x)dx	
+%			&=	\int_{d}^{\infty} (x - d) \left({\color{amethyst}\deriv{x}{F_{X}(x)}}\right)dx	
+		\end{align}
+\end{enumerate}
+
+Pour la prochaine étape, nous avons recours au théorème des accroissements finis :
+\begin{rappel_enhanced}[Théorème des accroissements finis]
+Soit la fonction $f$ qui répond aux critères suivants :
+\begin{enumerate}
+	\item	$f(x)$ est continue sur l'intervalle fermé $[a, b]$ ;
+	\item	$f(x)$ est différentiable sur l'intervalle ouvert $(a, b)$.
+\end{enumerate}
+
+Alors, il existe un nombre $c$ tel que \lfbox[conditions]{$a < c < b$} et \lfbox[formula]{$f'(c)	=	\frac{f(b) - f(a)}{b - a}$}.
+\end{rappel_enhanced}
+
+De plus, nous avons recours à l'intégrale de Riemann-Stieltjes :
+
+\begin{rappel_enhanced}[Intégrale de Riemann-Stieltjes]
+Sois les fonctions $f$ et $g$ continues sur l'intervalle $[a, b]$.
+\begin{itemize}
+	\item	On divise l'ensemble $[a, b]$ en $n$ sous-intervalles $c_{i} = [x_{i - 1}, x_{i}]$.
+	\item	Les $n$ partitions $P$ des sous-intervalles sont aux points $P	=	\{a	=	x_{0} < x_{1} < \hdots < x_{n} = b\}$. 
+	\item	La norme des partitions est la longueur du plus long sous-intervalle $\lVert P \rVert	=	\underset{1 \leq i \leq n}{\max}\{|x_{i} - x_{i - 1}|\}$.
+	\item	On dénote le $i^{\text{e}}$ point du sous-intervalle $c_{i}$ par $t_{i} \in [x_{i - 1}, x_{i}]$.
+\end{itemize}
+
+On obtient donc l'intégrale de Riemann : \lfbox[formula]{$\limz{\lVert P \rVert}{0}\ \sumz{n}{i = 1} f(t_{i})(x_{i} - x_{i - 1})	=	\int_{a}^{b}f(x)dx$}.\\
+
+L'intégrale de Riemann-\textit{Stieltjes} généralise l'intégrale de Riemann avec une fonction $g$ comme mesure de distance entre les points $x_{i - 1}$ et $x_{i}$; l'intégrale de Riemann-Stieltjes est donc : \lfbox[formula]{$\limz{\lVert P \rVert}{0}\ \sumz{n}{i = 1} f(t_{i})(g(x_{i - 1}) - g(x_{i}))	=	\int_{a}^{b}f(x)dg(x)$}.
+\end{rappel_enhanced}
+
+
+\begin{enumerate}[resume]
+	\item	On réécrit \textbf{l'intégrale indéfinie} avec une limite afin d'obtenir un intervalle borné :
+		\begin{align}
+		\int_{d}^{\infty} (x - d) f(x) dx
+			&=	\limz{{\color{cyan}c}}{\infty} \int_{d}^{{\color{cyan}c}} (x - d) f(x) dx	
+		\end{align}
+	\item	On réécrit l'intégrale sous la forme de \textbf{l'intégrale de Riemann} :
+		\begin{align}
+		\limz{c}{\infty} \int_{d}^{c} (x - d) f(x) dx	
+			&=	\limz{c}{\infty} \lim_{\lVert P \rVert \rightarrow 0} \sumz{n}{i = 1} (t_{i} - d) {\color{amethyst}f(t_{i})}(x_{i} - x_{i - 1})	\nonumber\\
+			&=	\limz{c}{\infty} \lim_{\lVert P \rVert \rightarrow 0} \sumz{n}{i = 1} (t_{i} - d) {\color{amethyst}\deriv{x}{F(t_{i})}}(x_{i} - x_{i - 1})	
+		\end{align}
+	\item	On applique le théorème des accroissements finis : 
+		\begin{align}
+		\limz{c}{\infty} \lim_{\lVert P \rVert \rightarrow 0}\ &\sumz{n}{i = 1} (t_{i} - d) \deriv{x}{F(t_{i})}(x_{i} - x_{i - 1})	\nonumber\\
+			&=	\limz{c}{\infty} \lim_{\lVert P \rVert \rightarrow 0} \sumz{n}{i = 1} (t_{i} - d) \left({\color{teal}F(x_{i}) - F(x_{i - 1})}\right)	
+		\end{align}
+	\item	On réécrit \textbf{l'intégrale de Riemann-Stieltjes} sous la forme normale :
+		\begin{align*}
+		\limz{c}{\infty} \lim_{\lVert P \rVert \rightarrow 0} \sumz{n}{i = 1} (t_{i} - d) \left(F(x_{i}) - F(x_{i - 1})\right)
+			&=	\limz{c}{\infty} \int_{d}^{c} (x - d) {\color{teal}dF(x)}	\\
+			&=	\limz{c}{\infty} {\color{teal}-}\int_{d}^{c} (x - d) {\color{teal}d\bar{F}(x)}
+		\end{align*}	
+	\item	Puis, on réécrit l'intégrale sous la forme d'un intégrale impropre :
+		\begin{align*}
+		\limz{c}{\infty} -\int_{d}^{c} (x - d) d\bar{F}(x)
+		&=	-\int_{d}^{{\color{cyan}\infty}} (x - d) d\bar{F}(x)
+		\end{align*}
+	\item	....
+\end{enumerate}
 
 \end{multicols*}
 \end{document}

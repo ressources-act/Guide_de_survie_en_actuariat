@@ -50,6 +50,8 @@
 
 \begin{center}
 	\textsc{\Large Contributeurs}\\[0.5cm] 
+	\hl{Pendant mon étude de MAS-I, je vais travailler sur cette feuille dans le dépôt de ressources-examens (https://github.com/ressources-act/Ressources-examens).}\\
+	\hl{Je vais la remettre ici au mois de septembre.}
 \end{center}
 \input{contributeurs/contrib-ACT2000}
 
@@ -98,20 +100,6 @@ L'objectif est d'expliquer les concepts statistiques de façon claire et concise
 %		Statistique F
 %	Échantillons de distribution inconnue
 %		Théorème centrale limite
-
-%\subsection{Exhaustivité}
-%%	Contenu à y inclure
-%	Définition de l'exhaustivité
-%	Théorème de factorisation de Fisher-Neymann
-%	Critère de Lehmann-Scheffé (Exhaustivité minimale)
-%	Théorème de factorisation de Fisher-Neymann (cas de plus d'un paramètre)
-%	Théorème de Rao-Blackwell (statistique exhaustive sans biais)
-%	MVUE
-%		Élaboration sur le MVUE
-%		Comment le construire
-
-%%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
-%		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
 
 \columnbreak
 \section{Vraisemblance}
@@ -407,7 +395,7 @@ Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et \lfbox[conditions
 \end{description}
 \end{distributions}
 
-On dit que $\hat{\theta}_{n}$ est une estimateur \og \textit{consistent} \fg{} si \lfbox[formula]{$\hat{\theta}_{n}	\overset{P}{\rightarrow}	\theta$}.
+On dit que $\hat{\theta}_{n}$ est un estimateur \og \textit{consistent} \fg{} si \lfbox[formula]{$\hat{\theta}_{n}	\overset{P}{\rightarrow}	\theta$}.
 \end{definitionNOHFILL}
 
 
@@ -463,13 +451,12 @@ Typiquement, la largeur de l'intervalle $(\hat{\theta}_{L}, \hat{\theta}_{U})$ a
 
 Donc, un intervalle plus petit nous donne plus d'information si le niveau est adéquat. On dit que pour un même niveau $(1 - \alpha)$, l'intervalle avec la plus petite largeur est \textit{plus efficace} que l'autre.
 
-\subsubsection*{Intervalles de confiance}
-
+\subsubsection*{Statistiques}
 \begin{rappel_enhanced}[Rappel : Loi du khi-carré]
 Soit un échantillon aléatoire $(X_{1}, X_{2}, \dots, X_{n})$ de variables aléatoires normales de moyenne $\mu$ et variance $\sigma^{2}$.\\
 Soit \lfbox[formula]{$Q	=	\sumz{n}{i	=	1}\left(X_{i}	-	\mu\right)^{2}$}.\\
 
-Alors, \lfbox[formula]{$Q/\sigma^{2} \sim \chi^{2}_{n}$}.
+Alors, \lfbox[formula]{$Q/\sigma^{2} \sim \chi^{2}_{(n)}$}.
 \end{rappel_enhanced}
 
 \begin{rappel_enhanced}[Rappel : Loi de Student]
@@ -479,43 +466,81 @@ Soit les variables aléatoires indépendantes :
 	\item	$W \sim \chi^{2}_{(n)}$.
 \end{itemize}
 
-Alors, \lfbox[formula]{$T	=	\frac{Z}{\sqrt{W/n}}	\sim	t_{n}$}.\\
+Alors, \lfbox[formula]{$T	=	\frac{Z}{\sqrt{W/n}}	\sim	t_{(n)}$}.\\
 
 \tcbline
 
 La loi de Student tend vers la normale lorsque $n$ est très grand.
 \end{rappel_enhanced}
 
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$T_{n}$]	Statistique de test basée sur un échantillon aléatoire de $n$ observations;
-	\item[$\bar{X}$]	Moyenne empirique qui estime sans biais la vraie moyenne $\mu$;
-		\begin{align*}
-		\bar{X}
-		&=	\frac{\sumz{n}{i = 1} X_{i}}{n}
-		\end{align*}
-		\begin{itemize}
-		\item	$\bar{X}	\sim \mathcal{N}(\mu, \frac{\sigma}{\sqrt{n}})$;
-		\item	On peut donc centrer et réduire la moyenne empirique pour obtenir une distribution normale standard---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)$};
-		\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{s_{n}/\sqrt{n}}	\equiv	\frac{Z}{\sqrt{W/(n - 1)}} \sim t_{(n - 1)}$}.
-		\end{itemize}
-	\item[$S_{n}^{2}$]	Variance échantillonale, qui estime \underline{sans biais} la vraie variance $\sigma^{2}$;
-		\begin{align*}
-			S^{2}_{n}
-			&=	\frac{\sum (X_{i} - \bar{X})^{2}}{n - 1}
-		\end{align*}
-		\begin{itemize}
-		\item	$S^{2}_{n}$ n'est pas normalement distribuée; 
-		\item	Cependant, la statistique \lfbox[formula]{$T_{n}	=	\frac{(n - 1)S^{2}_{n}}{\sigma^{2}} \sim \chi^{2}_{(n - 1)}$}.
-		\end{itemize}
-	\item[$\hat{\sigma}^{2}$]	Variance empirique qui estime \underline{avec biais} la vraie variance $\sigma^{2}$.
-		\begin{align*}
-		\hat{\sigma}^{2} 
-		&=	\frac{\sum (X_{i} - \bar{X})^{2}}{n}
-		\end{align*}
-\end{description}
-\end{distributions}
+\begin{rappel_enhanced}[Rappel : Loi de Fisher-Snedecor ($F$)]
+Soit les variables aléatoires indépendantes :
+\begin{itemize}
+	\item	$W_{1} \sim \chi^{2}_{(\nu_{1})}$.
+	\item	$W_{2} \sim \chi^{2}_{(\nu_{2})}$.
+\end{itemize}
 
+Alors, \lfbox[formula]{$F	=	\frac{W_{1}/\nu_{1}}{W_{2}/\nu_{2}}	\sim	\mathcal{F}_{(\nu_{1}, \nu_{2})}$}.\\
+
+\tcbline
+
+La loi de Student tend vers la normale lorsque $n$ est très grand.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Statistique de test $T_{n}$]
+$T_{n}$ est une statistique de test basée sur un échantillon aléatoire de $n$ observations.
+
+\begin{itemize}
+\item	C'est donc une \textbf{fonction} d'un échantillon aléatoire ;
+\item	Sa distribution est la \textbf{distribution d'échantillonnage} qui dépend de :
+	\begin{enumerate}
+	\item	La statistique.
+	\item	La taille de l'échantillon.
+	\item	La distribution sous-jacente des données.
+	\end{enumerate}
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[Moyenne échantillonale $\bar{X}$]
+\lfbox[formula]{$\bar{X}	=	\frac{\sum^{n}_{i = 1} X_{i}}{n}$}.
+
+\begin{itemize}
+	\item	Estime sans biais la moyenne $\mu$ ;
+	\item	Si on pose que l'échantillon aléatoire est normalement distribué, $\bar{X}	\sim \mathcal{N}(\mu, \frac{\sigma}{\sqrt{n}})$ ;
+	\item	On centre et réduit pour trouver que \lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)$} ;
+	\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{s_{n}/\sqrt{n}}	\equiv	\frac{Z}{\sqrt{W/(n - 1)}} \sim t_{(n - 1)}$} où $W \sim \chi^{2}_{(n - 1)}$.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Variance échantillonale $S^{2}_{n}$]
+\lfbox[formula]{$S^{2}_{n}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n - 1}$}.
+
+\begin{itemize}
+	\item	Estime \underline{sans biais} la vraie variance $\sigma^{2}$ ;
+	\item	$S^{2}_{n}$ n'est pas normalement distribuée, cependant la statistique \lfbox[formula]{$T_{n}	=	\frac{(n - 1)S^{2}_{n}}{\sigma^{2}} \sim \chi^{2}_{(n - 1)}$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Variance empirique $\hat{\sigma}^{2}$]
+\lfbox[formula]{$\hat{\sigma}^{2}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n}$}.
+
+\begin{itemize}
+	\item	Estime \underline{avec biais} la vraie variance $\sigma^{2}$.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Statistique $F$]
+\lfbox[formula]{$F	=	\frac{S^{2}_{n}/\sigma^{2}_{1}}{S^{2}_{m}/\sigma^{2}_{2}}$}.
+
+\begin{itemize}
+	\item	Si on pose que les deux échantillons aléatoires indépendants $(X_{1}, \dots, X_{n})$ et $(Y_{1}, \dots, Y_{m})$ sont normalement distribués, \lfbox[formula]{$F \sim \mathcal{F}_{(n - 1, m - 1)}$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+
+
+\columnbreak
+\subsubsection*{Intervalles de confiance}
 %
 %De façon générale, les intervalles de confiance ont une estimation ponctuelle à laquelle on ajoute une marge d'erreur.
 
@@ -1262,27 +1287,27 @@ Si $\delta$ est n'importe quel autre test que $\delta^{*}$ tel que \lfbox[condit
 \end{definitionNOHFILL}
 
 
-%\begin{definitionNOHFILLsub}[Sous la forme du ratio de vraisemblance]
-%Soit le \textbf{ratio de vraisemblance} \lfbox[formula]{$\frac{L(\theta_{1})}{L(\theta_{0})}	=	\frac{f(\bm{x} ; \theta_{1})}{f(\bm{x} ; \theta_{0})}$}.\\
-%
-%\tcbline
-%
-%Alors, le test $\delta$ au seuil $\alpha$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ rejette $\mathrm{H}_{0}$ si : \lfbox[formula]{$\frac{L(\theta_{1})}{L(\theta_{0})}	>	\frac{1}{k}$}.
-%\end{definitionNOHFILLsub}
-%
-%
-%\begin{definitionNOHFILL}[Test uniformément le plus puissant]
-%Un test $\delta^{*}$ est le test \lfbox[imphl]{uniformément le plus puissant} au seuil $\alpha$ si :
-%\begin{enumerate}
-%	\item	\lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta^{*}) \leq \alpha$}, et si
-%	\item	pour tout autre test $\delta$ tel que \lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta) \leq \alpha$}.
-%\end{enumerate}
-%Alors, \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\theta \in \Theta_{1} | \delta^{*})$}.
-%
-%\begin{itemize}
-%	\item	En anglais, c'est le test \og \textit{uniformly most powerful (UMP)} \fg{} 
-%\end{itemize}
-%\end{definitionNOHFILL}
+\begin{definitionNOHFILLsub}[Sous la forme du ratio de vraisemblance]
+Soit le \textbf{ratio de vraisemblance} \lfbox[formula]{$\frac{L(\theta_{1})}{L(\theta_{0})}	=	\frac{f(\bm{x} ; \theta_{1})}{f(\bm{x} ; \theta_{0})}$}.\\
+
+\tcbline
+
+Alors, le test $\delta$ au seuil $\alpha$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ rejette $\mathrm{H}_{0}$ si : \lfbox[formula]{$\frac{L(\theta_{1})}{L(\theta_{0})}	>	\frac{1}{k}$}.
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILL}[Test uniformément le plus puissant]
+Un test $\delta^{*}$ est le test \lfbox[imphl]{uniformément le plus puissant} au seuil $\alpha$ si :
+\begin{enumerate}
+	\item	\lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta^{*}) \leq \alpha$}, et si
+	\item	pour tout autre test $\delta$ tel que \lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta) \leq \alpha$}.
+\end{enumerate}
+Alors, \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\theta \in \Theta_{1} | \delta^{*})$}.
+
+\begin{itemize}
+	\item	En anglais, c'est le test \og \textit{uniformly most powerful (UMP)} \fg{} 
+\end{itemize}
+\end{definitionNOHFILL}
 
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%%		À rajouter éventuellement	%%%%	
@@ -1323,6 +1348,172 @@ Si $\delta$ est n'importe quel autre test que $\delta^{*}$ tel que \lfbox[condit
 %		Tableau de contingence
 %		Test d'indépendance du khi-carré
 
+%\subsection{Exhaustivité}
+%%	Contenu à y inclure
+%	Définition de l'exhaustivité
+%	Théorème de factorisation de Fisher-Neymann
+%	Critère de Lehmann-Scheffé (Exhaustivité minimale)
+%	Théorème de factorisation de Fisher-Neymann (cas de plus d'un paramètre)
+%	Théorème de Rao-Blackwell (statistique exhaustive sans biais)
+%	MVUE
+%		Élaboration sur le MVUE
+%		Comment le construire
+
+%%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
+%		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
+
+\columnbreak
+\subsection{Test du khi carré}
+\subsubsection*{Test d'adéquation (\og \textit{goodness-of-fit test} \fg{})}
+Soit $n$ répétitions (indépendantes) d'une expérience aléatoire.\\
+On pose :
+\begin{itemize}
+	\item	L'espace d'échantillon des expériences $\mathcal{A}$ qui représente l'union de $k$ différents ensembles (disjoints) $\mathcal{A}	=	\left\{A_{1} \cup A_{2} \cup \dots \cup A_{k} \right\}$ ;
+	\item	On pose que pour $i	=	1, 2, \dots, k$, $\Pr(A_{i})	=	p_{i}$ où $p_{k}	=	1	-	p_{1}	-	\hdots	-	p_{k - 1}$ et $O_{k}	=	n	-	O_{1}	-	\hdots	-	O_{k - 1}$ ;
+		\begin{itemize}
+		\item	$p_{i}$ représente donc la \textit{probabilité} que le résultat de l'expérience aléatoire fait partie de l'ensemble $A_{i}$ ;
+		\item	$O_{i}$	représente le \textit{nombre d'observations} (la \textit{fréquence}) pour lesquelles le résultat de l'expérience aléatoire fait partie de l'ensemble $A_{i}$.
+		\end{itemize}
+	\item	On pose que la distribution conjointe de $O_{1}, O_{2}, \dots, O_{k - 1} \sim MultiNom(n, p_{1}, \dots, p_{k - 1})$.
+\end{itemize}
+
+Soit le test d'hypothèse avec les nombres spécifiés $p_{1,0}, p_{2,0}, p_{k - 1,0}$ :
+\begin{align*}
+	\mathrm{H}_{0}	&:	
+	p_{1}	=	p_{1,0}, p_{2}	=	p_{2,0},	 \dots, p_{k - 1}	=	p_{k - 1,0}
+\end{align*}
+où $p_{k}	=	p_{k,0}	=	1	-	p_{1,0}	-	\hdots	-	p_{k - 1,0}$.
+
+Alors, sous l'hypothèse nulle : \lfbox[formula]{$T	=	\sumz{k}{i = 1} \frac{(O_{i}	-	np_{i,0})^{2}}{np_{i,0}}	\approx	\chi_{(k - 1)}^{2}$}.
+\begin{itemize}
+%	\item	Si $O_{i} \sim \mathcal{N}$ alors le distribution du khi carrée n'est pas une approximation ;
+	\item	Il y a seulement $k - 1$ degrés de liberté car on estime seulement $k - 1$ paramètres.
+		\begin{itemize}
+		\item	Le nombre $n$ total d'observations est fixe et on déduit $n_{k}$ par la somme ;
+		\item	Si on avait à 
+		\end{itemize}
+\end{itemize}
+
+\subsubsection*{Tableau de contingence}
+Dans le cas de données à deux dimensions, alias un tableau de contingence, on défini :
+\begin{description}
+	\item[$E_{ij}$]	L'espérance du nombre d'observations dans la cellule $i, j$ ;
+	\item[$O_{ij}$]	Le nombre observé d'observations dans la cellule $i, j$.
+\end{description}
+
+\begin{itemize}
+	\item	On pose qu'il y a $c$ colonnes au tableau pour $r$ rangées (les rangées sont les différents ensembles) ;
+	\item	On peut donc tester si la distribution de la fréquence est identique pour les $c$ colonnes avec \lfbox[formula]{$Q	=	\sumz{r}{i	=	1}\sumz{c}{j	=	1}\frac{(O_{ij} - E_{ij})^{2}}{E_{ij}} \approx	\chi^{2}_{(r - 1) \cdot (c - 1)}$} ;
+	\item	Cette formule est beaucoup plus intuitive visuellement que par formule, pour la comprendre fwwaites un exemple.
+\end{itemize}
+
+
+\columnbreak
+\section{Statistiques exhaustives}
+\begin{definitionNOHFILL}[Statistique exhaustive]
+Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.\\
+Alors, la statistique $T_{n}$ est "\textbf{exhaustive pour $\theta$}" si la distribution conditionnelle $(X_{1}, \dots, X_{n} | T_{n})$ ne \textbf{dépend pas} de $\theta$.
+
+\begin{formula}{Exemple Bernoulli}
+Soit l'échantillon aléatoire d'une distribution Bernouilli de paramètre $p$.\\
+Alors $T_{n}	=	\sum_{i = 1}^{n}X_{i}$ est exhaustive pour $p$ car : 
+
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	\Pr(X_{1}	=	x_{1}, \dots, X_{n}	=	x_{n} &| T_{n}	=	x_{1} + \dots + x_{n})	\\
+	&=	p^{{\color{teal}x_{1} + \dots + x_{n}}}(1 - p)^{n - {\color{teal}(x_{1} + \dots + x_{n})}}	\\
+	&=	p^{\color{teal}t} (1 - p)^{n  -{\color{teal}t}}
+\end{align*}
+Dépend seulement de l'échantillon par la valeur ${\color{teal}t}$ de la statistique $T_{n}$.
+\end{formula}
+\setlength{\mathindent}{1cm}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[\textbf{Théorème de factorisation} de Fisher-Neymann]
+Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.\\
+Alors, la statistique $T_{n}$ est "\textbf{exhaustive pour $\theta$}" si pour tout $x_{i}	\in \mathbb{R}, i = 1, 2, \dots, n$,
+\begin{align*}
+	{\color{burntorange}f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}
+	&=	g({\color{teal}t}; {\color{amethyst}\theta}) \times h(x_{1}, \dots, x_{n})
+\end{align*}
+où :
+\begin{itemize}
+	\item	$g({\color{teal}t}; {\color{amethyst}\theta})$ dépend de $(x_{1}, \dots, x_{n})$ seulement par $T_{n}$ ;
+	\item	$h(x_{1}, \dots, x_{n})$ ne \textbf{dépend pas} de ${\color{amethyst}\theta}$.
+\end{itemize}	
+
+\tcbline
+
+Pour \textbf{plusieurs paramètres}, on généralise avec le vecteur de paramètres inconnus $\bm{\theta}	=	(\theta_{1}, \dots, \theta_{k})$.\\
+Alors, les statistiques $T^{1}_{n}, \dots, T^{k}_{n}$ sont \textbf{conjointement exhaustives pour $\bm{\theta}$} si pour tout $x_{i}	\in \mathbb{R}, i = 1, 2, \dots, n$, 
+\begin{align*}
+	{\color{burntorange}f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}
+	&=	g({\color{teal}t_{1}, \dots, t_{k}}; {\color{amethyst}\theta}) \times h(x_{1}, \dots, x_{n})
+\end{align*}
+où :
+\begin{itemize}
+	\item	$g({\color{teal}t^{1}, \dots, t^{k}}; {\color{amethyst}\bm{\theta}})$ dépend de $(x_{1}, \dots, x_{n})$ seulement par $T^{1}_{n}, \dots, T^{k}_{n}$ ;
+	\item	$h(x_{1}, \dots, x_{n})$ ne \textbf{dépend pas} de ${\color{amethyst}\bm{\theta}}$.
+\end{itemize}	
+\end{definitionNOHFILLprop}
+
+Le théorème de factorisation permet d'identifier des statistiques exhaustives. Cependant, il peut y avoir plusieurs statistiques exhaustives ! Certaines offrent une plus grand réduction des données ; par exemple, $\bar{X}_{n}$ réduit les données plus que $(X_{(1)}, \dots, X_{(n)})$. 
+
+On cherche donc la statistique exhaustive qui offre la \textbf{réduction maximale} tout en retenant toute l'information sur le paramètre visé.
+
+\begin{definitionNOHFILL}[Statistique exhaustive minimale]
+Une statistique exhaustive $T_{n}	=	T(X_{1}, \dots, X_{n})$ est "\textbf{minimale}" si pour tout autre statistique exhaustive $U_{n}	=	U(X_{1}, \dots, X_{n})$, il existe une fonction $g$ tel que $T	=	g\{U(X_{1}, \dots, X_{n})\}$.
+
+\begin{definitionNOHFILLprop}[Critère de Lehmann-Scheffé]
+Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.\\
+Alors, la statistique $T_{n}$ est "\textbf{exhaustive \textit{minimale} pour $\theta$}" si pour tout $x_{i}, y_{i}	\in \mathbb{R}, i = 1, 2, \dots, n$,
+\begin{align*}
+	\frac{f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}{f(y_{1}; \theta) \times \hdots \times f(y_{n}; \theta)}
+\end{align*}
+ne \textbf{dépend pas} de $\theta$ ssi $T(x_{1}, \dots, x_{n})	=	T(y_{1}, \dots, y_{n})$
+\end{definitionNOHFILLprop}
+
+\begin{formula}{Exemple Bernoulli}
+Soit l'échantillon aléatoire d'une distribution Bernouilli de paramètre $p$.
+
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	\frac{f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}{f(y_{1}; \theta) \times \hdots \times f(y_{n}; \theta)}	
+	&=	\left(\frac{p}{1 - p}\right)^{(x_{1} + \dots + x_{n}) - (y_{1} + \dots + y_{n})}
+\end{align*}
+
+Le ratio est seulement indépendant de $p$ si $\sum_{i = 1}^{n} x_{i} = \sum_{i = 1}^{n} y_{i}$ et donc $T_{n}	=	\sum_{i = 1}^{n}X_{i}$ est \textbf{exhaustive minimale} pour $p$.
+\end{formula}
+\setlength{\mathindent}{1cm}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILLprop}[Théorème de Rao-Blackwell]
+Soit l'estimateur $\hat{\theta}_{n}$ sans biais pour $\theta$ avec $\text{Var}(\hat{\theta}_{n}) < \infty$.	\\
+Si la statistique $T_{n}$ est exhaustive pour $\theta$, la statistique \lfbox[formula]{$\theta_{n}^{\ast}	=	\text{E}[\hat{\theta}_{n} | T_{n}]$} est un \textbf{estimateur sans biais} de $\theta$ avec \lfbox[conditions]{$\text{Var}(\theta^{\ast}_{n}) \leq \text{Var}(\hat{\theta}_{n})$}.
+\end{definitionNOHFILLprop}
+
+
+\subsubsection*{Famille exponentielle}
+
+Une loi de probabilité fait partie de la famille exponentielle linéaire si:
+\begin{enumerate}
+	\item	Sa fonction de densité \textit{(ou de masse)} de probabilité peut être exprimée comme:
+\begin{formula}{Densité de la famille exponentielle}
+	\begin{align*}
+		f(y ; \theta, \phi) 
+			= 	\exp \left( \frac{y \theta - b(\theta)}{a(\phi)} + c(y ; \phi) \right)  
+	\end{align*}
+\end{formula}
+	où
+	\begin{description}
+		\item[$\theta$] paramètre canonique
+		\item[$\phi$] paramètre de dispersion
+	\end{description}
+	\item	La fonction $c$ ne dépend pas du paramètre $\theta$.
+	
+	\item 	Le support de $Y$ ne dépend pas de $\theta$ puisqu'il ne peut pas varier.
+\end{enumerate}
 
 \columnbreak
 \section{Statistiques d'ordre}
