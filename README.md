@@ -1,3 +1,49 @@
+# Index des noms de cours par sigle :
+<dl>
+  <dt>  ACT-1003  </dt>
+  <dd>  Complémments de mathématiques  </dd>
+  <dt>  ACT-1002  </dt>
+  <dd>  Analye probabiliste des risques actuariels  </dd>
+  <dt>  ACT-1000  </dt>
+  <dd>  Introduction à l'actuariat I  </dd>
+  
+  <dt>  ACT-2001  </dt>
+  <dd>  Introduction à l'actuariat II  </dd>
+  <dt>  ACT-2000  </dt>
+  <dd>  Analyse statistique des risques actuariels  </dd>
+  <dt>  ACT-1006  </dt>
+  <dd>  Gestion des risques financiers I  </dd>
+  <dt>  ACT-2003  </dt>
+  <dd>  Modèles linéaires  </dd>
+  
+  <dt>  ACT-2007  </dt>
+  <dd>  Mathématique actuarielles vie I  </dd>
+  <dt>  ACT-2008  </dt>
+  <dd>  Mathématique actuarielles IARD I  </dd>
+  <dt>  ACT-2009  </dt>
+  <dd>  Processus stochastiques  </dd>
+  
+  
+  <dt>  ACT-1005  </dt>
+  <dd>  Analyse et traitement collectif du risque  </dd>
+  <dt>  ACT-2011  </dt>
+  <dd>  Gestion des risques financiers II  </dd>
+  <dt>  ACT-2004  </dt>
+  <dd>  Mathématique actuarielles vie II  </dd>
+  <dt>  ACT-2005  </dt>
+  <dd>  Mathématique actuarielles IARD II  </dd>
+  
+  <dt>  ACT-3000  </dt>
+  <dd>  Théorie du risque  </dd>
+  <dt>  ACT-3114  </dt>
+  <dd>  Apprentissage statistique en actuariat </dd>
+  <dt>  ACT-4105  </dt>
+  <dd>  Tarification en assurance IARD  </dd>
+  
+  <dt>  FRN-3003  </dt>
+  <dd>  Français avancé: grammaire et rédaction II  </dd>
+</dl>
+
 # Guide de survie en actuariat
 
 Ce projet a pour but de créer un document contenant toutes les feuilles de formules utiles au bac en actuariat. Toutes les contributions sont les bienvenues.
