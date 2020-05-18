@@ -1,48 +1,25 @@
 # Index des noms de cours par sigle :
-<dl>
-  <dt>  ACT-1003  </dt>
-  <dd>  Complémments de mathématiques  </dd>
-  <dt>  ACT-1002  </dt>
-  <dd>  Analye probabiliste des risques actuariels  </dd>
-  <dt>  ACT-1000  </dt>
-  <dd>  Introduction à l'actuariat I  </dd>
-  
-  <dt>  ACT-2001  </dt>
-  <dd>  Introduction à l'actuariat II  </dd>
-  <dt>  ACT-2000  </dt>
-  <dd>  Analyse statistique des risques actuariels  </dd>
-  <dt>  ACT-1006  </dt>
-  <dd>  Gestion des risques financiers I  </dd>
-  <dt>  ACT-2003  </dt>
-  <dd>  Modèles linéaires  </dd>
-  
-  <dt>  ACT-2007  </dt>
-  <dd>  Mathématique actuarielles vie I  </dd>
-  <dt>  ACT-2008  </dt>
-  <dd>  Mathématique actuarielles IARD I  </dd>
-  <dt>  ACT-2009  </dt>
-  <dd>  Processus stochastiques  </dd>
-  
-  
-  <dt>  ACT-1005  </dt>
-  <dd>  Analyse et traitement collectif du risque  </dd>
-  <dt>  ACT-2011  </dt>
-  <dd>  Gestion des risques financiers II  </dd>
-  <dt>  ACT-2004  </dt>
-  <dd>  Mathématique actuarielles vie II  </dd>
-  <dt>  ACT-2005  </dt>
-  <dd>  Mathématique actuarielles IARD II  </dd>
-  
-  <dt>  ACT-3000  </dt>
-  <dd>  Théorie du risque  </dd>
-  <dt>  ACT-3114  </dt>
-  <dd>  Apprentissage statistique en actuariat </dd>
-  <dt>  ACT-4105  </dt>
-  <dd>  Tarification en assurance IARD  </dd>
-  
-  <dt>  FRN-3003  </dt>
-  <dd>  Français avancé: grammaire et rédaction II  </dd>
-</dl>
+
+Sigle | Nom du cours
+--- | --------
+ACT-1003  | Compléments de mathématiques
+ACT-1002  | Analye probabiliste des risques actuariels
+ACT-1000  | Introduction à l'actuariat I
+ACT-2001  | Introduction à l'actuariat II
+ACT-2000  | Analyse statistique des risques actuariels
+ACT-1006  | Gestion des risques financiers I
+ACT-2003  | Modèles linéaires
+ACT-2004  | Mathématique actuarielles vie I
+ACT-2005  | Mathématique actuarielles IARD I
+ACT-2009  | Processus stochastiques
+ACT-1005  | Analyse et traitement collectif du risque
+ACT-2011  | Gestion des risques financiers II
+ACT-2007  | Mathématique actuarielles vie II
+ACT-2008  | Mathématique actuarielles IARD II
+ACT-3000  | Théorie du risque
+ACT-3114  | Apprentissage statistique en actuariat
+ACT-4105  | Tarification en assurance IARD
+FRN-3003  | Français avancé: grammaire et rédaction II
 
 # Guide de survie en actuariat
 
