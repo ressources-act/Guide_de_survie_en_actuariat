@@ -151,21 +151,38 @@ Pour une variable aléatoire $X$ continue, on simplifie :
 
 \subsubsection{Propriétés désirables d'une mesure de risque}
 \begin{definitionNOHFILLsub}[Homogénéité]
-Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$c	>	0$}, la mesure de risque $\rho$ est dite homogène si \icbox{$\rho(cX)	=	c\rho(X)$}.
+Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$a	>	0$}, la mesure de risque $\rho$ est dite homogène si \icbox{$\rho(aX)	=	a\rho(X)$}.
+
+\begin{rappel_enhanced}[Interprétation]
+Par exemple, on peut poser que $a	=	1.75$ est le taux de change entre le dollar canadien et le dollar américain.\\
+Il est alors \textit{cohérent} que calculer $\rho(1.75X)$ soit équivalent à calculer $1.75\rho(X)$.
+\end{rappel_enhanced}
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Invariance à la translation]
-Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$c	\in	\mathbb{R}$}, la mesure de risque $\rho$ satisfait la propriété d'invariance à la translation si \icbox{$\rho(X + c)	=	\rho(X) + c$}.	\\
+Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$a	\in	\mathbb{R}$}, la mesure de risque $\rho$ satisfait la propriété d'invariance à la translation si \icbox{$\rho(X + a)	=	\rho(X) + a$}.	\\
 
-Ajouter un montant positif à un risque ajoute un montant équivalent à la mesure de risque.
+\begin{rappel_enhanced}[Interprétation]
+Par exemple, on peut poser que $a	=	-500\$$ est la franchise d'un contrat d'assurance auto ; c'est-à-dire, un assuré va payer de sa poche le premier 500\$ d'un accident auto.\\
+
+Il est alors \textit{cohérent} que calculer $\rho(X - 500)$ soit équivalent à calculer $\rho(X) - 500$. Par exemple, si on utilise l'espérance comme mesure de risque ($\rho(X)	=	\text{E}[X]$) alors  il devrait nous être familier que $\text{E}[X	-	500]	=	\text{E}[X]	-	500$.
+\end{rappel_enhanced}
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Monotonicité]
-Soit les v.a. $X_{1}$ et $X_{2}$ \icbox[red][palechestnut]{tel que $\Pr(X	\leq	X_{2})	=	1$}, la mesure de risque $\rho$ satisfait la propriété de monotonicité si \icbox{$\rho(X_{1})	\leq	\rho(X_{2})$} ou si \icbox[red][palechestnut]{$\forall	u	\in	(0, 1)$}, \icbox{$F_{X_{1}}^{-1}(u)	\leq	F_{X_{2}}^{-1}(u)$}.
+Soit les v.a. $X_{1}$ et $X_{2}$ \icbox[red][palechestnut]{tel que $\Pr(X_{1}		\leq		X_{2})	=	1$}, la mesure de risque $\rho$ satisfait la propriété de monotonicité si \icbox{$\rho(X_{1})	\leq	\rho(X_{2})$} ou si pour un \icbox[red][palechestnut]{$\kappa	\in	(0, 1)$} fixé, \icbox{$F_{X_{1}}^{-1}(\kappa)	\leq	F_{X_{2}}^{-1}(\kappa)$}.\\
+
+\begin{rappel_enhanced}[Interprétation]
+Par exemple, si $X_{1}$ est un assuré plus dangereux que $X_{2}$ il est \textit{cohérent} que la mesure de risque lui charge plus cher.
+\end{rappel_enhanced}
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Sous-additivité]
-Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de sous-additivité si \icbox{$\rho(X_{1}	+	X_{2})	\leq	\rho(X_{1})	+	\rho(X_{2})$}.
+Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de sous-additivité si \icbox{$\rho(X_{1}	+	X_{2})	\leq	\rho(X_{1})	+	\rho(X_{2})$}.\\
+
+\begin{rappel_enhanced}[Interprétation]
+On peut raisonner qu'il est cohérent que ce soit moins cher pour une compagnie d'assurance d’assurer deux personnes que pour deux compagnies d'assurance d’assurer chacune une personne.
+\end{rappel_enhanced}
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Convexité]
@@ -279,15 +296,18 @@ $\rho$ introduit une marge de risque:
 \begin{description}
 	\item[positive]	lorsque \icbox{$\rho(X)	\geq		\esp{X}$} pour une v.a. $X$ avec \icbox[red][palechestnut]{$\esp{X} < \infty$};
 	\item[justifiée]	lorsque \icbox{$\rho(X)	=	\rho(a)	=	a$} pour une v.a. $X$ avec \icbox[red][palechestnut]{$\Pr(X	=	a)	=	1, \alpha > 0$};
-	\item[non-excessive]	lorsque \icbox{$\rho(X)	\leq		a_{\max}$} pour une v.a. $X$ \icbox[red][palechestnut]{s'il existe $a_{\max}	<	\infty$} \icbox[red][palechestnut]{tel que $\Pr(X	\leq		a_{\max})	=	1$};
+	\item[non-excessive]	lorsque \icbox{$\rho(X)	\leq		a_{\max}$} pour une v.a. $X$ \icbox[red][palechestnut]{s'il existe $x_{\max}	<	\infty$} \icbox[red][palechestnut]{tel que $\Pr(X	\leq		x_{\max})	=	1$}.
 \end{description}
 
 \pagebreak
 \section{Modèles de risques non-vie}
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$M$]	Variable aléatoire du nombre de sinistres pour un risque;
-	\item[$B_{k}$]	Variable aléatoire du montant du $k^{\text{e}}$ sinistre.
+	\item[$M$]	Variable aléatoire discrète du nombre de sinistres pour un risque;
+	\item[$B_{k}$]	Variable aléatoire continue du montant du $k^{\text{e}}$ sinistre.
+		\begin{itemize}
+		\item	La suite de v.a. positives (iid) $\underline{B}	=	\{B_{k}, k \in \mathbb{N}^{+}\}$ est indépendante de $M$.
+		\end{itemize}
 \end{description}
 \end{distributions}
 
@@ -327,6 +347,8 @@ Par exemple, pour $B_{k}	\sim	\Gamma(\alpha,	\beta)$:
 \begin{align*}
 	\mathcal{L}_{X}(t)
 	&=	P_{M}\left(\mathcal{L}_{B}(t)\right), \quad	t > 0	\\
+	P_{X}(t)
+	&=	P_{M}\left(P_{B}(t)\right), \quad	t > 0	\\
 	\esp{X	\times	\bm{1}_{\{X	>	b\}}}
 	&=	\sum_{k	=	1}^{\infty} \Pr(M	=	k)E\left[(B_{1}	+	\dots	+	B_{k})	\times	\bm{1}_{\{B_{1}	+	\dots	+	B_{k} > b\}}\right]
 \end{align*}
@@ -857,19 +879,25 @@ Soit les nombres complexes $z_{1}	=	x_{1} + y_{1}i$ et $z_{2}	=	x_{2} + y_{2}i$.
 \end{distributions}
 
 \begin{align*}
+	f_{S_{n}}(k)
+	&=	\sumz{k}{k_{1}	=	0}\dots\sumz{k_{n	-	2}}{k_{n	-	1}	=	0} 
+	f_{X_{1}, \dots, X_{n}}\left(k_{1}, \dots, k_{n - 1}, \left(k - \sumz{n	-	1}{j	=	1}k_{j} \right) \right)
+\end{align*}
+
+\begin{align*}
 	\mathcal{P}_{S_{n}}(t)
 	&=	P_{X}(t)^{n}	
 	=	\sum_{k = 0}^{\infty} f_{S_{n}}(k) t^{k}
 \end{align*}
 
 \begin{algo2}[Algorithme de De Pril]
-Cet algorithme permet de calculer $f_{X}^{\ast n}(k)$ selon la relation récursive suivante :
+Cet algorithme permet de calculer $f_{X}^{\ast n}(k)$ selon la relation récursive suivante pour \lfbox[conditions]{$k \in \mathbb{N}^{+}$} :
 \begin{align*}
 	f_{S_{n}}(k)
 	&=	\frac{1}{f_{X}(0)} \sum_{j = 1}^{k} \left((n + 1)\frac{j}{k} - 1\right)f_{X}(j)f_{S_{n}}(k - j)
 \end{align*}
 
-Avec \lfbox[formula]{$f_{S_{n}}(0)	=	\left(f_{X}(0)\right)^{n}$} comme point de départ.
+avec \lfbox[conditions]{$f_{S_{n}}(0)	=	\left(f_{X}(0)\right)^{n}$} comme point de départ.
 
 \tcbline
 
@@ -880,6 +908,241 @@ Avec \lfbox[formula]{$f_{S_{n}}(0)	=	\left(f_{X}(0)\right)^{n}$} comme point de 
 	\item	Répéter pour $k \in \{3, 4, \dots\}$.
 \end{enumerate}
 \end{algo2}
+
+\columnbreak
+\subsection{Somme aléatoire et algorithme de Panjer}
+Rappel que pour une variable aléatoire composée $X$ : 
+\begin{align*}
+	f_{X}(0)
+	&=	P_{M}(f_{B}(0))	\\
+	f_{X}(k)
+	&=	\sumz{\infty}{j	=	1} f_{M}(j)f_{B}^{\ast j}(k), \quad k \in \mathbb{N}^{+}	
+\end{align*}
+
+\begin{definitionNOHFILL}[Famille $(a, b, 0)$ de lois de fréquence]
+La distribution d'une v.a. $M$ fait partie de la famille de distributions de fréquence $(a, b, 0)$ ssi : \lfbox[formula]{$f_{M}(k)	=	\left(a + \frac{b}{k}\right)f_{M}(k - 1)$} pour \lfbox[conditions]{$k	\in 	\mathbb{N}^{+}$} avec un point de départ \lfbox[conditions]{$f_{M}(0)	>	0$}.\\
+
+Cette famille contient uniquement les distributions suivantes : 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c   | >{\columncolor{beaublue}}c   | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Distribution}}	&	\textcolor{white}{$a$}	&	\textcolor{white}{$b$}		&	\textcolor{white}{$f_{M}(0)$}	\\\hline
+Poisson	&	$0$	&	$\lambda$	&	$\textrm{e}^{-\lambda}$	\\\hline
+Binomiale	&	$-\frac{q}{1 - q}$	&	$\frac{q}{1 - q}(n + 1)$	&	$(1	-	q)^{n}$	\\\hline
+Binomiale négative ($r$, $q$)	&	$1 - q$	&	$(1 - q)(r - 1)$	&	$q^{r}$	\\\hline
+Binomiale négative ($r$, $\beta$)	&	$\frac{\beta}{1 + \beta}$	&	$\frac{\beta}{1 + \beta}(r - 1)$	&	$\left(\frac{1}{1 + \beta}\right)^{r}$	\\\hline
+\end{tabular}
+\end{center}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Relation récursive pour la FGP]
+\begin{align*}
+	\mathcal{P}'_{M}(t)
+	&=	at\mathcal{P}'_{M}(t) + (a + b)\mathcal{P}_{M}(t)
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{algo2}[Algorithme de Panjer]
+Soit une variable aléatoire composée $X$ avec une distribution de fréquence $M$ faisant partie de la famille $(a, b, 0)$ et une distribution de sévérité $B$.\\
+
+Cet algorithme permet de calculer $f_{X}(k)$ selon la relation récursive suivante pour \lfbox[conditions]{$k \in \mathbb{N}^{+}$}:
+\begin{align*}
+	f_{X}(k)
+	&=	\frac{1}{1 - af_{B}(0)} \sum_{j = 1}^{k} \left(a + b\frac{j}{k}\right)f_{B}(j)f_{X}(k - j)
+\end{align*}
+
+avec \lfbox[conditions]{$f_{X}(0)	=	\mathcal{P}_{M}\big(f_{B}(0)\big)$} comme point de départ.
+
+\tcbline
+
+\begin{enumerate}
+	\item	On calcule $f_{S_{n}}(0)	=	\left(f_{X}(0)\right)^{n}$.
+	\item	On calcule $f_{S_{n}}(1)	=	\frac{1}{f_{X}(0)} \left((n + 1)\frac{1}{1} - 1\right)f_{X}(1)f_{S_{n}}(0)$.
+	\item	Avec $f_{S_{n}}(1)$, on trouve $f_{S_{n}}(2)	=	\frac{1}{f_{X}(0)} \bigg\{ f_{X}(1)\left((n + 1)\frac{1}{2} - 1\right)f_{S_{n}}(1)	+$ $ f_{X}(2)\left((n + 1)\frac{2}{2} - 1\right)f_{S_{n}}(0) \bigg\}$.
+	\item	Répéter pour $k \in \{3, 4, \dots\}$.
+\end{enumerate}
+\end{algo2}
+
+Pour \lfbox[conditions]{$k \in \mathbb{N}^{+}$}, 
+\begin{description}
+	\item[$M \sim Pois(\lambda)$:]	\lfbox[formula]{$f_{X}(k)	=	\frac{\lambda}{k} \sum_{j	=	1}^{k} j \times f_{B}(j)f_{X}(k - j)$} avec comme point de départ \lfbox[conditions]{$f_{X}(0)	=	\textrm{e}^{\lambda(f_{B}(0) - 1)}$}.
+	\item[$M \sim Bin(n, q)$:]	\lfbox[formula]{$f_{X}(k)	=	\frac{1}{(1 - q) + qf_{B}(0)} \sum_{j	=	1}^{k} \left(-q + q(n + 1)\frac{j}{k}\right) f_{B}(j)f_{X}(k - j)$} avec comme point de départ \lfbox[conditions]{$f_{X}(0)	=	(1 - q + qf_{B}(0))^{n}$}.
+	\item[$M \sim BN(r, q)$:]	\lfbox[formula]{$f_{X}(k)	=	\frac{1}{1 - (1 - q)f_{B}(0)} \sum_{j	=	1}^{k} \left((1 - q) + (1 - q)(r - 1)\frac{j}{k}\right) f_{B}(j)f_{X}(k - j)$} avec comme point de départ \lfbox[conditions]{$f_{X}(0)	=	\left(\frac{q}{1 - (1 - q)f_{B}(0)}\right)^{r}$}.
+\end{description}
+
+
+\columnbreak
+\subsection{Méthodes de discrétisation}
+Soit les v.a. indépendantes continues positives $B_{1}, \dots, B_{n}$.
+Soit $S	=	\sum_{i	=	1}^{n}B_{i}$.
+Afin d'utiliser les algorithmes récursifs de convolution, on approxime la v.a. continue $B_{i}$ par la v.a. discrète $\tilde{B}_{i}$ définie sur le support \lfbox[conditions]{$\mathcal{A}_{h}	=	\{0, 1h, 2h, 3h, \dots\}$} où \lfbox[conditions]{$h	>	0$} est le \textit{pas de discrétisation}.
+On défini donc $\tilde{S}	=	\sum_{i	=	1}^{n}\tilde{B}_{i}$.
+
+Plusieurs méthodes existent pour approximer $\tilde{B}$.
+
+
+\subsubsection{Méthodes \textbf{upper} et \textit{lower}}
+\begin{definitionNOHFILLprop}[Méthode upper]
+\begin{align*}
+	f_{\tilde{B}}(0)
+	&=	F_{B}(h)	\\
+	f_{\tilde{B}}(kh)
+	&=	\Pr(kh	\leq	B	<	(k + 1)h), \quad k \in \mathbb{N}^{+}
+\end{align*}
+
+\begin{align*}
+	F_{\tilde{B}}(x)
+	&=	\begin{cases}
+		F_{B}(h),	&	0	\leq	x	<	h	\\
+		F_{B}(2h),	&	h	\leq	x	<	2h	\\
+		F_{B}(3h),	&	2h	\leq	x	<	3h	\\
+		...	&	\\
+		\end{cases}
+\end{align*}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Méthode lower]
+\begin{align*}
+	f_{\tilde{B}}(0)
+	&=	0	\\
+	f_{\tilde{B}}(kh)
+	&=	\Pr((k - 1)h	\leq	B	<	kh), \quad k \in \mathbb{N}^{+}
+\end{align*}
+
+\begin{align*}
+	F_{\tilde{B}}(x)
+	&=	\begin{cases}
+		0,	&	0	\leq	x	<	h	\\
+		F_{B}(h),	&	h	\leq	x	<	2h	\\
+		F_{B}(2h),	&	2h	\leq	x	<	3h	\\
+		...	&	\\
+		\end{cases}
+\end{align*}
+\end{definitionNOHFILLprop}
+
+Visuellement :
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp0917203973178844] 
+\draw  (48,194.42) -- (348.83,194.42)(78.08,45.17) -- (78.08,211) (341.83,189.42) -- (348.83,194.42) -- (341.83,199.42) (73.08,52.17) -- (78.08,45.17) -- (83.08,52.17)  ;
+%Curve Lines [id:da8046234326772914] 
+\draw    (78.08,194.42) .. controls (111.83,79) and (218.83,50) .. (329.83,50) ;
+%Straight Lines [id:da9849769243307844] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (78.08,194.42) -- (78.08,141) ;
+%Straight Lines [id:da3943481861674383] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (77.08,141) -- (102.83,141) ;
+%Straight Lines [id:da008525076806593201] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (101.83,87.58) -- (158.83,87.58) ;
+%Straight Lines [id:da6431146537588102] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (102.83,141) -- (102.83,87.58) ;
+%Straight Lines [id:da052276646032704654] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (157.83,57) -- (242.83,57) ;
+%Straight Lines [id:da6176137521249536] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (158.83,87.58) -- (158.83,56) ;
+%Straight Lines [id:da19336635837959326] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (242.83,55) -- (242.83,87.58) ;
+%Straight Lines [id:da8496050407473881] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (244.83,87.58) -- (158.83,87.58) ;
+%Straight Lines [id:da3615064269180923] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (159.83,141) -- (102.83,141) ;
+%Straight Lines [id:da8589349231177894] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (158.83,87.58) -- (158.83,141) ;
+%Straight Lines [id:da45656775847848285] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (103.83,194.42) -- (78.08,194.42) ;
+%Straight Lines [id:da23540563287937655] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (102.83,141) -- (102.83,194.42) ;
+%Straight Lines [id:da7725424623835695] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (242.83,50) -- (329.83,50) ;
+%Straight Lines [id:da4368156230854221] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (242.83,58) -- (242.83,50) ;
+%Straight Lines [id:da055576776802613415] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (329.83,58) -- (243.83,58) ;
+%Straight Lines [id:da6827425172306525] 
+\draw [line width=2.25]    (340,81.58) -- (317.17,81.58) ;
+%Straight Lines [id:da3881977243224537] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (340,103.58) -- (290,103.58) ;
+%Straight Lines [id:da38195740555775237] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (340,135.58) -- (290,135.58) ;
+
+% Text Node
+\draw (35,33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle F_{B}( x)$};
+% Text Node
+\draw (352,193) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x$};
+% Text Node
+\draw (290,106) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle F_{\tilde{B}^{(up)}}( x)$};
+% Text Node
+\draw (282,139) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle F_{\tilde{B}^{(lower)}}( x)$};
+% Text Node
+\draw (311,84) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle F_{B}( x)$};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{Méthodes de dispersion de la masse avec espérance préservée}
+\begin{definitionNOHFILLpropos}[Lemme]
+Soit les scalaires $a, b, c, d$ tels que :
+\begin{itemize}
+	\item	\lfbox[conditions]{$a < b$}
+	\item	\lfbox[conditions]{$a < d < b$}
+	\item	\lfbox[conditions]{$0 \leq c < 1$}
+	\item	\lfbox[conditions]{$p_{a}, p_{b} \geq 0$}
+\end{itemize}
+
+Alors la solution au système de deux équations avec les deux inconnus suivants : 
+\begin{align*}
+	p_{a}	+	p_{b}	&=	c	\\
+	ap_{a}	+	bp_{b}	&=	d
+\end{align*}
+est \lfbox[formula]{$p_{a}	=	\frac{bc	-	d}{b	-	a}$} et \lfbox[formula]{$p_{b}	=	\frac{d	-	ac}{b	-	a}$}.
+\end{definitionNOHFILLpropos}
+
+\begin{definitionNOHFILLprop}[Méthode de dispersion de la masse]
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	p^{-}_{kh}
+	&=	\frac{(k + 1)h}{h} \left\{
+			F_{B}((k + 1)h)	-	F_{B}(kh)
+		\right\}		\\	&\quad\quad	-	\frac{1}{h} \left\{
+			\text{E}[B \times \bm{1}_{(-\infty, (k + 1)h]}]	-	\text{E}[B \times \bm{1}_{(-\infty, kh]}]	
+		\right\}	\\
+	p^{+}_{(k + 1)h}
+	&=	\frac{1}{h} \left\{
+			\text{E}[B \times \bm{1}_{(-\infty, (k + 1)h]}]	-	\text{E}[B \times \bm{1}_{(-\infty, kh]}]
+		\right\}			\\	&\quad\quad -\frac{kh}{h} \left\{
+			F_{B}((k + 1)h)	-	F_{B}(kh)
+		\right\}		\\
+\end{align*}
+
+Puis on obtient que pour \lfbox[conditions]{$k \in \mathbb{N}^{+}$} \lfbox[formula]{$f_{\tilde{B}}(kh)	=	p^{+}_{kh} + p^{-}_{kh}$}. C'est-à-dire, 
+\begin{align*}
+	f_{\tilde{B}}(kh)
+	&=	...
+	=	\frac{1}{h}	\bigg\{
+		2\text{E}[\min(B; kh)]	-	\text{E}[\min(B; (k - 1)h)]		-	\text{E}[\min(B; (k + 1)h)]	
+		\bigg\}
+\end{align*}
+\setlength{\mathindent}{1cm}
+
+Avec comme point de départ \lfbox[conditions]{$f_{\tilde{B}}(0)	=	1	-	\frac{\text{E}[\min(B; h)]}{h}$}.
+
+\end{definitionNOHFILLprop}
+
+\columnbreak
+\subsection{Agrégation et transformée de Fourier rapide}
+
+
+\columnbreak
+\subsection{Transformée de Fourier rapide}
+
+
+\columnbreak
+\subsection{Distribution mélange d'Erlang}
+
+
 
 \pagebreak
 \section{Comparaison des risques et ordres stochastiques}
