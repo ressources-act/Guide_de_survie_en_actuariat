@@ -243,6 +243,17 @@
 	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
 }
 %%
+%% Coloured box "probch1" pour formules relatives au 1er chapitre de prob
+%%
+\newtcolorbox{probch1}[ 1 ]
+{
+	colback = lightgreen,
+	colframe = forestgreen(traditional),
+	fonttitle = \bfseries,	
+	breakable,
+	title=#1
+}
+%%
 %% Coloured box "probch3" pour formules relatives au 3ème chapitre de prob
 %%
 \newtcolorbox{probch3}[ 1 ]
@@ -370,6 +381,7 @@
 \definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
 \definecolor{calpolypomonagreen}{rgb}{0.12, 0.3, 0.17}
 \definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
+\definecolor{lightgreen}{rgb}{0.2, 0.95, 0.2}
 
 \definecolor{antiquebrass}{rgb}{0.8, 0.58, 0.46}	% brown-ish light
 
