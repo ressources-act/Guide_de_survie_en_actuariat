@@ -1,5 +1,4 @@
 \documentclass[10pt, french]{article}
-%\input{cheatsht-preamble-general.tex}
 \usepackage[landscape, hmargin=1cm, vmargin=1.7cm]{geometry}
 
 %% -----------------------------
@@ -12,13 +11,11 @@
 %% -----------------------------
 %% Footer and header customization
 %% -----------------------------
-\fancyhead{} 	% Reset
-\fancyhead[C]{\LARGE Analyse probabiliste des risques actuariels}
-\fancyhead[R]{\auteur}
-%\def\cours{Analyse probabiliste des risques actuariels}
-%\def\sigle{ACT-1002}
-\fancyfoot{}		% Reset
+\def\cours{Analyse probabiliste des risques actuariels}
+\def\sigle{ACT-1002}
 \fancyfoot[R]{\thepage ~de~ \pageref{LastPage}}
+\setlist{leftmargin=*}
+
 
 %% -----------------------------
 %% Colour setup for sections
@@ -42,11 +39,10 @@
 
 \newpage
 
-\center % Center everything on the page
-
-%\textsc{\LARGE Analyse combinatoire}\\[0.5cm]
+\raggedcolumns
 \begin{multicols*}{3}
 
+\section{Chapitre 1: Analyse combinatoire}
 \begin{probch1}{L'analyse combinatoire}
 \begin{description}
   \item[Principe de base de comptage :] Pour une expérience 1 avec m résultats possibles et une expérience 2 avec n résultats possibles, il y a m x n possibilités.
@@ -81,21 +77,12 @@
 \end{description}
 \end{probch1}
 
-\end{multicols*}
-
-\newpage
-
-\center % Center everything on the page
-
-%\textsc{\LARGE Base de processus aléatoire}\\[0.5cm]
-%\textsc{\Large ACT-1002: Analyse probabiliste des risques actuarielles}\\[0.5cm] 
-
-\begin{multicols*}{3}
-
+\pagebreak
+\section{Chapitre 2: Axiomes de probabilité}
 \begin{rappel}{Domaine et définition}
 \begin{description}
 	\item[Random Process:]	Famille de variable aléatoires $\{X_{t}: t \in T\}$ qui associe un espace d'états $\Omega$ à un ensemble $S$.
-	\begin{enumerate}[leftmargin = *]
+	\begin{enumerate}
 		\item[$\Omega$: ] L'espace d'états $\Omega$ est composé des événements possibles de la variable aléatoire $X$.
 		\item[] Par exemple, lorsqu'on lance une pièce de monnaie $\Omega = \{\textsf{Face}, \texttt{Pile} \}$.
 		\item[$S$: ] L'ensemble $S$ est l'ensemble des probabilités des événements dans $\Omega$.
@@ -121,6 +108,9 @@
 \end{description}
 \end{rappel}
 
+
+\pagebreak
+\section{Chapitre 3: Probabilité conditionnelle}
 \begin{probch3}{Probabilité conditionnelle}
 \begin{description}
 	\item[Conditionnel:]	La probabilité que $A$ arrive \textit{sachant} que $B$ est arrivé est: 
