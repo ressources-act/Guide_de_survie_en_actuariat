@@ -1,5 +1,4 @@
 \documentclass[10pt, french]{article}
-%\input{cheatsht-preamble-general.tex}
 \usepackage[landscape, hmargin=1cm, vmargin=1.7cm]{geometry}
 
 %% -----------------------------
@@ -12,13 +11,11 @@
 %% -----------------------------
 %% Footer and header customization
 %% -----------------------------
-\fancyhead{} 	% Reset
-\fancyhead[C]{\LARGE Bases de processus aléatoire}
-\fancyhead[R]{\auteur}
-%\def\cours{Analyse probabiliste des risques actuariels}
-%\def\sigle{ACT-1002}
-\fancyfoot{}		% Reset
+\def\cours{Analyse probabiliste des risques actuariels}
+\def\sigle{ACT-1002}
 \fancyfoot[R]{\thepage ~de~ \pageref{LastPage}}
+\setlist{leftmargin=*}
+
 
 %% -----------------------------
 %% Colour setup for sections
@@ -42,18 +39,51 @@
 
 \newpage
 
-\center % Center everything on the page
-
-%\textsc{\LARGE Base de processus aléatoire}\\[0.5cm]
-%\textsc{\Large ACT-1002: Analyse probabiliste des risques actuarielles}\\[0.5cm] 
-
+\raggedcolumns
 \begin{multicols*}{3}
 
+\section{Chapitre 1: Analyse combinatoire}
+\begin{probch1}{L'analyse combinatoire}
+\begin{description}
+  \item[Principe de base de comptage :] Pour une expérience 1 avec m résultats possibles et une expérience 2 avec n résultats possibles, il y a m x n possibilités.
+\end{description}
+\begin{description}
+  \item[Permutations :] Nombre d'arrangements en tenant compte de l'ordre. La façon de dénombrer les arrangements dépend du type de question.
+  \begin{description}
+	\item[$Exemples$ :] Combien de façons peut-on arranger les chiffres 1, 2, 3 et 4 dans un nombre à 4 chiffres? La réponse est {4!}. La réponse serait la même avec les chiffres 1, 2, 2 et 3, car les deux chiffres 2 ne sont pas considérés comme identiques. 
+	\item[] Toutefois, si on demande combien de façons peut-on distribuer 12 cadeaux différents à 4 personnes, la réponse sera $ 4^{12} $ étant donné que chaque cadeau peut aller à quatre personnes.
+	\end{description}
+\end{description}
+\begin{description}
+	\item[Combinaisons :] Nombre d'arrangements en \textbf{ne} tenant \textbf{pas} compte de l'ordre.
+	\begin{description}
+	 \item[$Exemples$ :] En reprenant l'exemple des permutations, mais avec les chiffres 1, 1, 1, 2 et 2, il y aurait 5!/(3!2!) combinaisons puisque les trois 1 et les deux 2 sont considérés identiques.
+	 \end{description}
+\end{description}
+\begin{description}
+	 \item[Coefficient binomial :] De l'exemple précédent, on peut observer l'existence du coefficient binomial, qui est défini selon la formule :
+	 \begin{align*}
+	 \binom{n}{k}
+	 &= \frac{n!}{k! \,(n-k)!}
+	 \end{align*}
+\end{description}
+\begin{description}
+  \item[Coefficient multinomial :] La généralisation du coefficient binomial va comme suit :
+  \begin{align*}
+  \binom{n}{k_1, k_2, ..., k_m}
+  &= \frac{n!}{(k_1)! \, (k_2)! \, ..., (k_m)!}
+  \end{align*}
+  \item[] Où {$n = \sum_{i = 1}^{m} k_i$}
+\end{description}
+\end{probch1}
+
+\pagebreak
+\section{Chapitre 2: Axiomes de probabilité}
 \begin{rappel}{Domaine et définition}
 \begin{description}
 	\item[Random Process:]	Famille de variable aléatoires $\{X_{t}: t \in T\}$ qui associe un espace d'états $\Omega$ à un ensemble $S$.
-	\begin{enumerate}[leftmargin = *]
-		\item[$\Omega$: ] L'espace d'états $\Omega$ est composé des événements possible de la variable aléatoire $X$.
+	\begin{enumerate}
+		\item[$\Omega$: ] L'espace d'états $\Omega$ est composé des événements possibles de la variable aléatoire $X$.
 		\item[] Par exemple, lorsqu'on lance une pièce de monnaie $\Omega = \{\textsf{Face}, \texttt{Pile} \}$.
 		\item[$S$: ] L'ensemble $S$ est l'ensemble des probabilités des événements dans $\Omega$.
 		\item[] Par exemple, lorsqu'on lance une pièce de monnaie $S = \{\frac{1}{2}, \frac{1}{2} \}$.
@@ -62,11 +92,11 @@
 \begin{description}
 	\item[iid: ]	Les variables aléatoire $X_{t}$ doivent être indépendantes et identiquement distribuées. Ceci est dénoté par \textit{\textbf{i.i.d.}}.				
 	\begin{description}
-		\item[indépendant: ] Si $X_{t}$ est une variable aléatoire \textit{iid} alors, pour 2 variables aléatoire $X_{i}$ et $X_{j}$, où $i, j \in T$, le résultat de $X_{i}$ n'a aucun impact sur le résultat de $X_{j}$ pour tout $t \in T$.
+		\item[indépendant: ] Si $X_{t}$ est une variable aléatoire \textit{iid} alors, pour 2 variables aléatoires $X_{i}$ et $X_{j}$, où $i, j \in T$, le résultat de $X_{i}$ n'a aucun impact sur le résultat de $X_{j}$ pour tout $t \in T$.
 		\item[identiquement distribué: ] L'ensemble $S$ est l'ensemble des probabilités des événements dans $\Omega$.
 	\end{description}
 	\item[Probabilité de $X_{t}$: ]	La probabilité d'un événement $X_{t}$ est dénoté $\Pr(X_{t})$. 
-	Ces probabilité forment l'ensemble $S$.
+	Ces probabilités forment l'ensemble $S$.
 	\begin{description}
 		\item[Propriété: ] $\sum_{i = -\infty}^{\infty} \Pr(X_{i}) = 1$
 	\end{description}
@@ -78,6 +108,9 @@
 \end{description}
 \end{rappel}
 
+
+\pagebreak
+\section{Chapitre 3: Probabilité conditionnelle}
 \begin{probch3}{Probabilité conditionnelle}
 \begin{description}
 	\item[Conditionnel:]	La probabilité que $A$ arrive \textit{sachant} que $B$ est arrivé est: 
@@ -93,14 +126,14 @@
 \end{description}
 Avec la première définition de la probabilité conditionnelle, on peut trouver ces résultats:
 \begin{description}
-	\item[relation probabilité conditionnelle: ]	La probabilité que l'événement $E_{2}$ ai lieu sachant que l'événement $E_{1}$ à déjà eu lieu est équivalent à la probabilité que l'événement $E_{1}$ ai lieu sachant que $E_{2}$ à \textit{déjà} eu lieu multiplié par la probabilité que l'événement $E_{2}$ ai lieu peu importe $E_{1}$. \\
+	\item[Relation probabilité conditionnelle: ]	La probabilité que l'événement $E_{2}$ ai lieu sachant que l'événement $E_{1}$ à déjà eu lieu est équivalent à la probabilité que l'événement $E_{1}$ ai lieu sachant que $E_{2}$ à \textit{déjà} eu lieu multiplié par la probabilité que l'événement $E_{2}$ ai lieu peu importe $E_{1}$. \\
 	Le tout est encore pondéré par la probabilité que l'événement $E_{1}$ ai lieu peu importe si $E_{2}$ y a.
 	\begin{align*}
 		\Pr(E_{2} | E_{1})
 		&= 	\frac{\Pr(E_{2} \cap E_{1})}{\Pr(E_{1})}		\\
 		&=	\frac{\Pr(E_{1} | E_{2}) \Pr(E_{2})}{\Pr(E_{1})}		
 	\end{align*}
-	\item[Loi des probabilités totale: ]	Les probabilités liées à la variable aléatoire $E$ lorsqu'elles sont conditionnelles à la variable aléatoire discrète $F$ est dénoté comme suit:
+	\item[Loi des probabilités totales: ]	Les probabilités liées à la variable aléatoire $E$ lorsqu'elles sont conditionnelles à la variable aléatoire discrète $F$ est dénoté comme suit:
 	\begin{align*}
 		\Pr(E)	&=	\sum_{i = 1}^{n} \Pr(E | F_{i}) \Pr(F_{i})
 	\end{align*}
