@@ -1,3 +1,26 @@
+# Index des noms de cours par sigle :
+
+Sigle | Nom du cours
+--- | --------
+ACT-1003  | Compléments de mathématiques
+ACT-1002  | Analye probabiliste des risques actuariels
+ACT-1000  | Introduction à l'actuariat I
+ACT-2001  | Introduction à l'actuariat II
+ACT-2000  | Analyse statistique des risques actuariels
+ACT-1006  | Gestion des risques financiers I
+ACT-2003  | Modèles linéaires
+ACT-2004  | Mathématique actuarielles vie I
+ACT-2005  | Mathématique actuarielles IARD I
+ACT-2009  | Processus stochastiques
+ACT-1005  | Analyse et traitement collectif du risque
+ACT-2011  | Gestion des risques financiers II
+ACT-2007  | Mathématique actuarielles vie II
+ACT-2008  | Mathématique actuarielles IARD II
+ACT-3000  | Théorie du risque
+ACT-3114  | Apprentissage statistique en actuariat
+ACT-4105  | Tarification en assurance IARD
+FRN-3003  | Français avancé: grammaire et rédaction II
+
 # Guide de survie en actuariat
 
 Ce projet a pour but de créer un document contenant toutes les feuilles de formules utiles au bac en actuariat. Toutes les contributions sont les bienvenues.

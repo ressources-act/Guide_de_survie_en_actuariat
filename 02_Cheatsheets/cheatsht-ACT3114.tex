@@ -36,6 +36,7 @@
 
 \newpage
 
+\raggedcolumns
 \begin{multicols*}{3} 
 
 \section{Préparation de données}
@@ -531,6 +532,7 @@ Autres méthodes:
 	\item[Single linkage]	Mesure la distance minimale (les deux points les plus proches) des groupes et on choisit la plus petite distance.
 	\item[Average linkage]	Mesure la moyenne des distances entre les points de chacun des groupes puis on choisit la plus petite distance.
 	\item[Centroid linkage]	Assigne un centroïd à chaque groupe ayant comme coordonnées la moyenne des observations du groupe.
+	\item[Ward]	La distance correspond à l'augmentation de l'EQM suite à la fusion d'un groupe. L'EQM commence à zéro puisque chaque observation à son propre groupe. Ceci est utile lorsque l'on croit que l'EQM devrait être petite.
 \end{description}
 \end{definitionNOHFILLsub}
 
@@ -860,6 +862,7 @@ Paquetage \texttt{rpart} (Recursive Partioning And Regression Trees) dont la fon
 	\item	On utilise \texttt{cost = } pour spécifier un vecteur de coûts associés à chaque variable dans la séparation des données. \\
 			Cela peut s'avérer utile pour pénaliser une variable qu'on voudrait idéalement utiliser seulement si son pouvoir prédictif est très grand.
 	\item	\texttt{method = } permet de spécifier si l'arbre doit retourner une réponse de type "class" ou "numeric".
+	\item	\texttt{control = list(maxdepth = )} permet de spécifier la profondeur de l'arbre $d$.
 \end{itemize}
 %%	voir labo sur apprentissage supervisé pour exemple avec CARET
 %%	confusionMatrix() pour un tableau de confusion avec les statistiques en plus
@@ -987,33 +990,70 @@ La mise en garde des arbres est que le modèle est beaucoup moins interprétable
 \newpage
 
 \section{Boosting et Gradient Boosting}
-\begin{definitionNOHFILL}[Boosting]
+
+\begin{distributions}[Terminologie]
+\begin{description}
+	\item[$\lambda$]	Taux d'apprentissage (alias, le paramètre de régularisation).
+\end{description}
+		\begin{itemize}[leftmargin = *]
+		\item	Le diminuer mène toujours à une meilleur performance, au prix d'un plus grand nombre d'arbres $T$.
+		\item	En pratique, on choisit la plus petite valeur de $\lambda$ qui permet un temps de calcul raissonable.
+		\end{itemize}
+\begin{description}
+	\item[$T$]	Nombre d'itérations.
+\end{description}
+\begin{itemize}[leftmargin = *]
+	\item	Normalement assez grand mais peut mener à un surajustement.
+\end{itemize}
+\begin{description}
+	\item[$d$]	Profondeur des arbres à chaque itération.
+\end{description}
+\begin{itemize}[leftmargin = *]
+	\item	Souvent, $d = 1$ pour des souches ce qui mène à un modèle additif;
+	\item	Plus $d$ est élevé, plus les interactions d'ordre élevé peuvent être captées mais il est rare que $d > 7$ soit utile.
+\end{itemize}
+\begin{description}
+	\item[$\delta$]	Pourcentage de sous-échantillonnage.
+\end{description}
+\begin{itemize}[leftmargin = *]
+	\item	Souvent 50\% ou 75\%.
+\end{itemize}
+\end{distributions}
+
+\subsection*{Boosting}
 Le boosting permet de combiner plusieurs modèles faibles en un prédicteur puissant.
 \begin{itemize}[leftmargin = *]
 	\item	À chaque itération, un arbre tente d'améliorer ce que le modèle ne prédit pas bien.
 	\item	Le boosting est itératif et donc, en contraste aux forêts aléatoires, l'ajustement des arbres est impacté par l'ordre.
 \end{itemize}
-\end{definitionNOHFILL}
 
 \begin{algo2}[Algorithme de boosting (arbres de régression)]
-On initialise :
+On initialise:
+
 \begin{align*}
 	\hat{f}_{0}(\bm{x})	&=	0	&
 	&\text{et}	&
 	\rho_{i, 0}	&=	y_{i}, \forall i = 1, \dots, n	\\
 \end{align*}
 
-Pour $t = 1, \dots, T$,
+Pour chaque itération de $t = 1, \dots, T$,
 \begin{enumerate}[leftmargin  = *]
-	\item	Ajuster un arbre de régression de profondeur $d$ ($2^{d}$ feuilles) sur les résidus $(\bm{x}, \rho_{t})$.\\
-			La fonction de prévision est notée $\hat{f}^{t}_{\text{arbre}}$.
+	\item	Ajuster un arbre de régression de profondeur $d$ sur les résidus $(\bm{x}, \rho_{t})$.
+		\begin{itemize}[leftmargin = *]
+		\item	Donc, on contrôle le nombre maximal de feuilles avec $2^{d}$ feuilles;
+		\item	Par exemple, si $d = 1$ c'est une souche avec 2 feuilles;
+		\item	La fonction de prévision est notée \icbox{$\hat{f}^{t}_{\text{arbre}}$}.
+		\end{itemize}
 	\item	Mettre à jour $\hat{f}$ en ajoutant une version rapetissée de l'arbre:
 		\begin{align*}
 		\hat{f}_{t}(\bm{x})	&=	\hat{f}_{t - 1}(\bm{x}) + \lambda \hat{f}^{t}_{\text{arbre}}(\bm{x})
 		\end{align*}
+		\begin{itemize}[leftmargin = *]
+		\item	Donc on ne prend pas directement la prévision de l'arbre $\hat{f}^{t}_{\text{arbre}}$ mais plutôt une fraction de la prévision selon le taux d'apprentissage $\lambda$.
+		\end{itemize}
 	\item	Mettre à jour les résidus:
 		\begin{align*}
-		\rho_{i, t}	&=	\rho_{i, t - 1} - \lambda \hat{f}^{t}_{\text{arbre}}(\bm{x}_{i})	\\
+		\rho_{i, t}	&=	\rho_{i, t - 1} - \lambda \hat{f}^{t}_{\text{arbre}}(\bm{x}_{i})	
 		\end{align*}
 \end{enumerate}
 
@@ -1021,49 +1061,42 @@ La prévision du boosting pour un arbre de régression est:
 \begin{align*}
 	f_{\text{boost}}(\bm{x})	
 	&=	\hat{f}_{T}(\bm{x})
-	&=	\sumz{T}{t = 1} \lambda f_{\text{arbre}}^{t}(\bm{x})	
+	=	\sumz{T}{t = 1} \lambda f_{\text{arbre}}^{t}(\bm{x})	
 \end{align*}
 \end{algo2}
 
-\begin{distributions}[Terminologie]
-\begin{description}
-	\item[$\lambda$]	Taux d'apprentissage.
-		\begin{itemize}[leftmargin = *]
-		\item	Le diminuer mène toujours à une meilleur performance, au prix d'un plus grand nombre d'arbres $T$.
-		\item	En pratique, on choisit la plus petite valeur de $\lambda$ qui permet un temps de calcul raissonable.
-		\end{itemize}
-\end{description}
-\end{distributions}
+\columnbreak
 
-\begin{definitionNOHFILL}[\textbf{Adaptive Boosting} (Adaboost)]
-Puisque les résidus n'ont pas de sens en classification, on défini la méthode Adaboost. 
-Les arbres ont plutôt une contribution différente dans la prévision finale.
-%	supppose étiquettes des classes -1 et +1
-\end{definitionNOHFILL}
+\subsection*{Adaptive Boosting (Adaboost)}
+Puisque les résidus n'ont pas de sens en classification, on défini la méthode Adaboost. \\
+
+Au lieu d'avoir un même taux d'apprentissage pour tous les arbres, chacun des arbres aura une contribution différente dans la prévision finale.
 
 \begin{algo2}[Algorithme Adaboost (arbres de classification)]
 On initialise les poids des observations :
 \begin{align*}
-	w_{i}	&=	\frac{1}{n}, \;	\forall i = 1, \dots, n
+	w_{i}	
+	&=	\frac{1}{n}, \;	\forall i = 1, \dots, n	\\
 \end{align*}
 
-Pour $t = 1, \dots, T$,
+Pour chaque itération de $t = 1, \dots, T$,
 \begin{enumerate}[leftmargin  = *]
-	\item	Ajuster un arbre de classification $\hat{f}_{t}(\bm{x})$ de profondeur $d$ ($2^{d}$ feuilles) sur les données d'entraînement en utilisant l'indice de Gini pondéré par les poids $w_{i}$.
+	\item	Ajuster un arbre de classification $\hat{f}_{t}(\bm{x})$ de profondeur $d$ sur les données d'entraînement en utilisant l'indice de Gini pondéré par les poids $w_{i}$.
 	\item	Calculer le taux d'erreur:
 		\begin{align*}
 		\text{err}_{t}	
-		&=	\frac{\sumz{n}{i = 1} w_{i} \times \bm{1}_{\{ y_{i} \neq \hat{f}_{t}(\bm{x}_{i}) \}}}{\sumz{n}{i = 1} w_{i}}
+		&=	\frac{\sumz{n}{i = 1} w_{i} \times \bm{1}_{\{ y_{i} \neq \hat{f}_{t}(\bm{x}_{i}) \}}}{\sumz{n}{i = 1} w_{i}}	\\
+		&=	\frac{\shortstack{la somme des poids pour\\ les observations mal classées}}{\text{la somme totale des poids}}
 		\end{align*}
 	\item	Calculer la contribution de l'arbre:
 		\begin{align*}
 			\alpha_{t}	
-			&=	\log(\frac{1 - \text{err}_{t}}{\text{err}_{t}})
+			&=	\log\left(\frac{1 - \text{err}_{t}}{\text{err}_{t}}\right)
 		\end{align*}
-	\item	Réajuster les poids, $\forall i = 1, \dots, n$,
+	\item	Réajuster, alias \textit{\textbf{ada}}pter, les poids $\forall i = 1, \dots, n$,
 		\begin{align*}
 		w_{i}
-		&=	w_{i} \text{e}^{\alpha_{i} bm{1}_{\{ y_{i} \neq \hat{f}_{t}(\bm{x}_{i}) \}}}
+		&\leftarrow	w_{i}\, \text{exp}\left\{\alpha_{i} \bm{1}_{\{ y_{i} \neq \hat{f}_{t}(\bm{x}_{i}) \}}\right\}
 		\end{align*}
 \end{enumerate}
 
@@ -1072,43 +1105,85 @@ Le classificateur est:
 	\hat{f}_{\text{ada}}(\bm{x})	
 	&=	\text{signe}\left\{ \sumz{t = 1}{T} \alpha_{t} \hat{f}_{t} (\bm{x}) \right\}
 \end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	On traite les prévisions $\hat{f}_{t}$ comme étant soit -1 ou 1 représentant les classes et la classe la plus présente sera la prédiction.
+\end{itemize}
 \end{algo2}
 
+
 \begin{definitionNOHFILLsub}[Fonctions \texttt{R}]
-Fonction \texttt{boosting(boos = F, coeflearn = "Freund")} du paquetage \texttt{adabag} ou la fonction \texttt{Adaboost.M1} de \texttt{caret}. Statquest utilise avec \texttt{boos = T}.
+\texttt{boosting(boos = F, coeflearn = "Freund")} du paquetage \texttt{adabag}.\\
+\texttt{Adaboost.M1} de \texttt{caret}. 
+\begin{itemize}[leftmargin = *]
+	\item	\texttt{coeflearn} est la formula pour $\alpha$.
+	\item	\texttt{boos = F} utilise l'indice de Gini pondéré.
+	\item	\texttt{boos = T} (utilisé par StatQuest) utilise un algorithme qui est comme un boosting pondéré.
+\end{itemize}
 \end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILL}[Gradient Boosting]
+\columnbreak
 
-%	Steepest descent
-\end{definitionNOHFILL}
+\subsection*{Boosting de Gradient}
+Peut généraliser l'idée du boosting pour toute fonction de perte $\mathcal{L}$ d'intérêt (e.g., la déviance pour des lois Bernoulli, Poisson ou Tweedie).\\
 
-\begin{algo2}[Algorithme de boosting (arbres de régression)]
+L'idée est qu'à l'itération $t$, on essaie d'améliorer le plus possible (de façon \og \textit{greedy} \fg{}) la prévision en trouvant l'arbre $\hat{f}_{\text{arbre}}^{t}$ qui minimise:
+	\begin{align*}
+	\sumz{n}{i = 1}\mathcal{L}\{y_{i}, \hat{f}_{t - 1}(\bm{x}_{i}) + \hat{f}_{\text{arbre}}^{t}(\bm{x}_{i}) \}
+	\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Cette fonction de perte pourrait être l'EQM, la déviance, etc.;
+	\item	Les deux arguments sont la valeur observée et la prévision à l'itération $t$.
+\end{itemize}
+
+\subsubsection*{Descente la plus à pic}
+L'idée est qu'à l'itération $t$, on fait un pas dans la direction du gradient \underline{négatif} menant à une baisse de la valeur de la fonction de perte.\\
+Le gradient pour l'itération $t$ est:
+\begin{align*}
+	\left[
+		\deriv{f(\bm{x}_{i})}{\mathcal{L}\{y_{i}, f(\bm{x}_{u})\}}
+	\right]_{f = \hat{f}_{t - 1}}
+\end{align*}
+\begin{itemize}
+	\item	En anglais, \og \textit{steepest descent} \fg{};
+	\item	Le gradient est seulement défini sur les observations est donc on trouve un arbre dont les prévisions sont les plus proches possible du gradient négatif, qu'on surnomme pseudo-résidus, en utilisant l'EQM;
+	\item	On ajoute une erreur aléatoire et sélectionne un nouveau sous-échantillon de taille $\delta n$ pour ajuster l'arbre afin d'obtenir le boosting de gradient \textbf{stochastique}
+\end{itemize}
+
+\begin{algo2}[Algorithme de Gradient boosting (arbres de régression)]
 On initialise :
 \begin{align*}
 	\hat{f}_{0}(\bm{x})	&=	\argmin_{a} \sumz{n}{i = 1} \mathcal{L}(y_{i}, a)
 \end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Donc on trouve la constante $a$ qui minimise la fonction de perte;
+	\item	Pour une déviance d'une poisson ou l'EQM, ce serait la moyenne des observations $\bar{y}$;
+	\item	Dans la majorité des cas, $a$ est facile à trouver.
+\end{itemize}
 
-Pour $t = 1, \dots, T$,
+Pour chaque itération $t = 1, \dots, T$,
 \begin{enumerate}[leftmargin  = *]
-	\item	Échantillonner aléatoirement sans remise $\delta n$ observations notées $\mathcal{D}^{t}$.
-	\item	Poser, pour $i \in \mathcal{D}^{t}$, 
+	\item	Échantillonner aléatoirement \underline{sans remise} $\delta n$ observations notées $\mathcal{D}^{t}$.
+	\item	Calculer le pseudo-résidu pour chaque observation $i$ dans l'échantillon $\mathcal{D}^{t}$:
 		\begin{align*}
 		\rho_{i, t}
 		&=	-\left[ 
 				\deriv{f(\bm{x}_{i})}{} \mathcal{L}\{y_{i}, f(\bm{x}_{i})\}
 			\right]_{f = \hat{f}_{t - 1}}
 		\end{align*}
-	\item	Ajuster un arbre de régression (perte EQM) de profondeur $d$ aux pseudo-résidus $\rho_{i, t}$ pour obtenir les régions $\mathcal{R}_{j, t}, \forall j = 1, \dots, J_{t}$.
+	\item	Ajuster un arbre de régression (perte EQM peu importe la fonction de perte  $\mathcal{L}$) de profondeur $d$ aux pseudo-résidus $\rho_{i, t}$ pour obtenir les régions (alias les feuilles) $\mathcal{R}_{j, t}, \forall j = 1, \dots, J_{t}$.
+		\begin{itemize}[leftmargin = *]
+		\item	Donc, souvent $J_{t} = 2^{d}$ mais peut être un peu plus petit;
+		\item	Donc cette étape sert à trouver les points de coupure.
+		\end{itemize}
+	\item	Pour $j = 1, \dots, J_{t}$, trouver \icbox{$\hat{a}_{j, t}	=	\argmin_{a} \sumz{}{i: \bm{x}_{i} \in \mathcal{R}_{j, t}} \mathcal{L}\{y_{i}, \hat{f}_{t - 1}(\bm{x}_{i}) + a\}$};
 	\item	Mettre à jour $\hat{f}$ en ajoutant une version rapetissée de l'arbre:
 		\begin{align*}
 		\rho_{i, t}	&=	\rho_{i, t - 1} - \lambda \hat{f}^{t}_{\text{arbre}}(\bm{x}_{i})	\\
 		\end{align*}
-	\item	
 	\item	Mettre à jour:
 		\begin{align*}
 		\hat{f}_{t}(\bm{x})	
-		&=	\hat{f}_{t - 1}(\bm{x}) + \lambda \sumz{J_{t}}{j = 1} \hat{\alpha}_{j, t} \times \bm{1}_{x \in \mathbb{R}_{j, t}}
+		&=	\hat{f}_{t - 1}(\bm{x}) + \lambda \sumz{J_{t}}{j = 1} \hat{a}_{j, t} \times \bm{1}_{\{x \in \mathbb{R}_{j, t}\}}
 		\end{align*}
 \end{enumerate}
 
@@ -1119,9 +1194,41 @@ La prévision est:
 \end{align*}
 \end{algo2}
 
-\begin{definitionNOHFILL}[Stochastic Gradient Boosting]
+\begin{definitionNOHFILLsub}[Fonctions \texttt{R}]
+Paquetage \texttt{gbm} ou \texttt{method = "gbm"} dans le paquetage \texttt{caret} pour régler les hyperparamètres suivants:
+\begin{itemize}[leftmargin = *]
+	\item	Nombre d'itérations dans le boosting \texttt{n.trees};
+	\item	Profondeur maximal de l'arbre \texttt{interaction.depth};
+	\item	Le taux d'apprentissage $\lambda$ \texttt{shrinkage};
+	\item	Nombre d'observations minimal dans un nœud \texttt{n.minobsinnode};
+\end{itemize}
+\end{definitionNOHFILLsub}
 
-\end{definitionNOHFILL}
+XGBoost
+\begin{itemize}
+	\item	Traite les valeurs manquante correctement si elles sont MAR;
+	\item	Comportement des prévisions peut être inattendu parfois;
+	\item	Pour la plupart des problèmes, la méthode boosting par gradient stochastique est la plus précise et la plus complexe.
+\end{itemize}
+
+%tdboost avec tweedie
+
+\section{Communication et interprétations}
+Les \textbf{graphiques de dépendance partielle (PDP)} nous permettent de mieux comprendre l'effet \textit{global} d'une variable explicative sur la prévision.
+\begin{itemize}[leftmargin = *]
+	\item	Peut être utilisé avec n'importe quel modèle de prévision (Boosting, Arbres, etc.)
+\end{itemize}
+
+On évalue la prévision pour une variable d'intérêt $x_{\ell}$ avec $\ell \in \{1, \dots, p\}$ et on prend la moyenne sur les valeurs possibles des autres variables:
+\begin{align*}
+	\bar{f}_{\ell}(x_{\ell})
+	&=	\frac{1}{n} \sumz{n}{i = 1} f_{\text{model}}(x_{\ell}, 	\bm{x}_{i}^{(-\ell)})
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Le vecteur $\bm{x}_{i}^{(-\ell)}$ contient les valeurs observées de toutes les variables explicatives pour l'observation $i$ sauf $x_{\ell}$.
+\end{itemize}
+
+Les \textbf{graphiques d'espérance conditionnelle individuelle (ICE)} nous permettent de comprendre l'effet d'une variable explicative sur \textit{une prévision en particulier} et de \textit{détecter des interactions}.
 
 \end{multicols*}
 %% -----------------------------
