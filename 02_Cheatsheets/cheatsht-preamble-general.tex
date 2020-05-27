@@ -202,6 +202,28 @@
 	before title = {\faNavicon \quad }, %faBars  faGetPocket
 	breakable
 }
+%%
+%% Coloured box "definition3" for propriétés
+%%
+\DeclareTColorBox{definitionNOHFILLprop}{ o }				% #1 parameter
+{
+	colframe=amber(sae/ece),colback=amber(sae/ece)!5!white, % color of the box
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	before title = {\faGetPocket \quad }, %faBars  faGetPocket
+	breakable
+}
+%%
+%% Coloured box "definition3" for propriétés
+%%
+\DeclareTColorBox{definitionNOHFILLpropos}{ o }				% #1 parameter
+{
+	colframe=carmine,colback=carmine!5!white, % color of the box
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	before title = {\faColumns \quad }, %\faEllipsisH  faColumns
+	breakable
+}
 
 
 %%
@@ -383,42 +405,45 @@
 \definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
 \definecolor{lightgreen}{rgb}{0.2, 0.95, 0.2}
 
-\definecolor{antiquebrass}{rgb}{0.8, 0.58, 0.46}	% brown-ish light
+\definecolor{antiquebrass}{rgb}{0.8, 0.58, 0.46}	% brown-ish light cardboard color
 
 \definecolor{blue(munsell)}{rgb}{0.0, 0.5, 0.69}
 \definecolor{blue(matcha)}{rgb}{0.596, 0.819, 1.00}
 \definecolor{blue(munsell)-light}{rgb}{0.5, 0.8, 0.9}
 \definecolor{bleudefrance}{rgb}{0.19, 0.55, 0.91}
-\definecolor{blizzardblue}{rgb}{0.67, 0.9, 0.93}
-\definecolor{bondiblue}{rgb}{0.0, 0.58, 0.71}
+\definecolor{blizzardblue}{rgb}{0.67, 0.9, 0.93}	%	mr.freeze light baby blue 
+\definecolor{bondiblue}{rgb}{0.0, 0.58, 0.71}	%	darker cyan type inidgo blue
 \definecolor{blue(pigment)}{rgb}{0.2, 0.2, 0.6}
 \definecolor{bluebell}{rgb}{0.64, 0.64, 0.82}
 \definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
 \definecolor{beaublue}{rgb}{0.74, 0.83, 0.9}    % almost white
 \definecolor{blue_rectangle}{RGB}{83, 84, 244}		% ACT-2004
 \definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}	% nice light blue-ish
-\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}	%	almost green ish blue ish
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
 
 \definecolor{indigo(web)}{rgb}{0.29, 0.0, 0.51}	% purple-ish
-\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}	%	pastel dark purple ish
-\definecolor{darkpastelpurple}{rgb}{0.59, 0.44, 0.84}
+\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}	%	pastel matte (darkerish) purple ish
+\definecolor{darkpastelpurple}{rgb}{0.59, 0.44, 0.84}	%	pretty purple
 \definecolor{gray(x11gray)}{rgb}{0.75, 0.75, 0.75}
 \definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
-\definecolor{ruddypink}{rgb}{0.88, 0.56, 0.59}
-\definecolor{bulgarianrose}{rgb}{0.28, 0.02, 0.03}
-\definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}		
+\definecolor{bulgarianrose}{rgb}{0.28, 0.02, 0.03}	%	dark maroon type 
+\definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}		%	light red pinktinybit ish
 \definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
 \definecolor{eggshell}{rgb}{0.94, 0.92, 0.84}
 \definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
 \definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}			
-\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}		
-\definecolor{burntsienna}{rgb}{0.91, 0.45, 0.32}		
-\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}		% ACT-2003
-\definecolor{amber(sae/ece)}{rgb}{1.0, 0.49, 0.0} 	% ACT-2004
+\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}		% prertty apple dark pastel (light) green
 \definecolor{green_rectangle}{RGB}{131, 176, 84}		% ACT-2004
 \definecolor{red_rectangle}{RGB}{241,112,113}		% ACT-2004
 \definecolor{amethyst}{rgb}{0.6, 0.4, 0.8}
 \definecolor{amethyst-light}{rgb}{0.6, 0.4, 0.8}
+\definecolor{ruddypink}{rgb}{0.88, 0.56, 0.59}
+
+\definecolor{amber(sae/ece)}{rgb}{1.0, 0.49, 0.0} 	%	pretty orange ish
+\definecolor{burntsienna}{rgb}{0.91, 0.45, 0.32}		%%	lighter pastel orange
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}		%%	imilar but deeper orange
+\definecolor{orange-red}{rgb}{1.0, 0.27, 0.0}
 
 \definecolor{tealblue}{rgb}{0.21, 0.46, 0.53}
 
@@ -427,12 +452,12 @@
 \definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}			% light green-beige-ish gray
 \definecolor{gray(x11gray)}{rgb}{0.75, 0.75, 0.75}
 
+\definecolor{carmine}{rgb}{0.59, 0.0, 0.09} 			% deep red
 \definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
 \definecolor{brickred}{rgb}{0.8, 0.25, 0.33}
-\definecolor{chestnut}{rgb}{0.8, 0.36, 0.36}
+\definecolor{chestnut}{rgb}{0.8, 0.36, 0.36}		% pink red ish light
 \definecolor{palechestnut}{rgb}{0.87, 0.68, 0.69}
 \definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}
-\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
 \definecolor{forestgreen(traditional)}{rgb}{0.0, 0.27, 0.13}
 %
 % Useful shortcuts for coloured text
