@@ -1991,31 +1991,28 @@ On obtient que \textbf{Ridge modifie l'échelle} des prévisions alors que \text
 \subsubsection*{Définition}
 
 Une loi de probabilité fait partie de la famille exponentielle linéaire si:
-
-\begin{itemize}
+\begin{enumerate}
 	\item	Sa fonction de densité \textit{(ou de masse)} de probabilité peut être exprimée comme:
 \begin{formula}{Densité de la famille exponentielle}
-	\[
+	\begin{align*}
 		f(y ; \theta, \phi) 
 			= 	\exp \left( \frac{y \theta - b(\theta)}{a(\phi)} + c(y ; \phi) \right)  
-	\]
+	\end{align*}
 \end{formula}
 	où
-	\begin{enumerate}
-		\item[$\theta$:] paramètre canonique
-		\item[$\phi$:] paramètre de dispersion
-	\end{enumerate}
+	\begin{description}
+		\item[$\theta$] paramètre canonique
+		\item[$\phi$] paramètre de dispersion
+	\end{description}
 	\item	La fonction $c$ ne dépend pas du paramètre $\theta$.
 	
 	\item 	Le support de $Y$ ne dépend pas de $\theta$ puisqu'il ne peut pas varier.
 	
-	\item[\textbf{note}: ] Si $\phi$ est \textbf{\textit{inconnu}}, alors le modèle fait partie de la \textbf{famille exponentielle \textit{de dispersion}} et le support de $Y$ ne peut pas dépendre de $\phi$.
+	\item[]	\textbf{note}: Si $\phi$ est \textbf{\textit{inconnu}}, alors le modèle fait partie de la \textbf{famille exponentielle \textit{de dispersion}} et le support de $Y$ ne peut pas dépendre de $\phi$.
 	
-	\item[\textbf{note}: ]
-		Si chaque donnée à un $\phi_i$ différent, on réécrit la fonction de dispersion comme $\alpha_i = \phi/\omega_i \; \forall i \in \{1, \dots, n \}$. 
-		
+	\item[]	\textbf{note}: Si chaque donnée à un $\phi_i$ différent, on réécrit la fonction de dispersion comme $\alpha_i = \phi/\omega_i \; \forall i \in \{1, \dots, n \}$. \\		
 		Ceci est la \textbf{famille exponentielle \textit{pondérée}}.
-\end{itemize}
+\end{enumerate}
 
 \subsubsection*{Propriétés}
 

@@ -50,6 +50,8 @@
 
 \begin{center}
 	\textsc{\Large Contributeurs}\\[0.5cm] 
+	\hl{Pendant mon étude de MAS-I, je vais travailler sur cette feuille dans le dépôt de ressources-examens (https://github.com/ressources-act/Ressources-examens).}\\
+	\hl{Je vais la remettre ici au mois de septembre.}
 \end{center}
 \input{contributeurs/contrib-ACT2000}
 
@@ -99,20 +101,6 @@ L'objectif est d'expliquer les concepts statistiques de façon claire et concise
 %	Échantillons de distribution inconnue
 %		Théorème centrale limite
 
-%\subsection{Exhaustivité}
-%%	Contenu à y inclure
-%	Définition de l'exhaustivité
-%	Théorème de factorisation de Fisher-Neymann
-%	Critère de Lehmann-Scheffé (Exhaustivité minimale)
-%	Théorème de factorisation de Fisher-Neymann (cas de plus d'un paramètre)
-%	Théorème de Rao-Blackwell (statistique exhaustive sans biais)
-%	MVUE
-%		Élaboration sur le MVUE
-%		Comment le construire
-
-%%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
-%		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
-
 \columnbreak
 \section{Vraisemblance}
 \begin{distributions}[Notation]
@@ -137,7 +125,7 @@ La première section traite de \guillemotleft \textbf{estimateurs ponctuels} \gu
 C'est-à-dire, on produit une seule valeur comme notre meilleur essai pour déterminer la valeur de la population inconnue.
 Intrinsèquement, on ne s'attend pas à ce que cette valeur (même si c'en est une bonne) soit la vraie valeur exacte.\\
 
-Une hypothèse plus utile à des fins d'interprétation est plutôt un \textbf{estimateur par intervalle}; au lieu d'une seule valeur, il retourne un intervalle de valeurs plausibles qui peuvent toutes être la vraie valeur. 
+Une hypothèse plus utile à des fins d'interprétation est plutôt un \textbf{\hyperref[sec:int-estimation]{estimateur par intervalle}}; au lieu d'une seule valeur, il retourne un intervalle de valeurs plausibles qui peuvent toutes être la vraie valeur. 
 Le type principal d'\textit{estimateur par intervalle} est \textit{l'intervalle de confiance} traité dans la deuxième sous-section.\\
 
 En bref:
@@ -194,9 +182,11 @@ Cependant, le biais n'indique pas la variabilité des prévisions de l'estimateu
 
 \begin{distributions}[Notation]
 \begin{description}
+	\item[$S(\theta)$]	Fonction de Score, \lfbox[formula]{$S(\theta)	=	\deriv{\theta}{\ln f(\theta; x)}$};
 	\item[$\bm{I}_{n}(\theta)$]	Matrice d'information de Fisher d'un échantillon aléatoire $\bm{X}$;
 		\begin{itemize}
-		\item	La matrice d'information Fisher pour un seule observation sera donc dénotée $\bm{I}(\theta)$.
+		\item	La matrice d'information Fisher pour un seule observation sera donc dénotée $\bm{I}(\theta)$ ;
+		\item	On obtient une "matrice" lorsque nous estimons plusieurs paramètres et donc $\theta$ n'est pas un scalaire.
 		\end{itemize}
 	\item[$\hat{\theta}^{EMV}$]	Estimateur du maximum de vraisemblance de $\theta$.
 \end{description}
@@ -405,7 +395,7 @@ Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et \lfbox[conditions
 \end{description}
 \end{distributions}
 
-On dit que $\hat{\theta}_{n}$ est une estimateur \og \textit{consistent} \fg{} si \lfbox[formula]{$\hat{\theta}_{n}	\overset{P}{\rightarrow}	\theta$}.
+On dit que $\hat{\theta}_{n}$ est un estimateur \og \textit{consistent} \fg{} si \lfbox[formula]{$\hat{\theta}_{n}	\overset{P}{\rightarrow}	\theta$}.
 \end{definitionNOHFILL}
 
 
@@ -431,7 +421,7 @@ En combinant tous ces critères, le meilleur estimateur est alors l'estimateur \
 \columnbreak
 
 \subsection{Estimation par intervalles}
-
+\label{sec:int-estimation}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\hat{\theta}_{L}$ et $\hat{\theta}_{U}$]	Fonctions de l'échantillon aléatoire $\{X_{1}, \dots, X_{n}\}$ où \icbox[red][palechestnut]{$\hat{\theta}_{L} < \hat{\theta}_{U}$};
@@ -461,37 +451,96 @@ Typiquement, la largeur de l'intervalle $(\hat{\theta}_{L}, \hat{\theta}_{U})$ a
 
 Donc, un intervalle plus petit nous donne plus d'information si le niveau est adéquat. On dit que pour un même niveau $(1 - \alpha)$, l'intervalle avec la plus petite largeur est \textit{plus efficace} que l'autre.
 
-\subsubsection*{Exemples}
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$T_{n}$]	Statistique de test basée sur un échantillon aléatoire de $n$ observations;
-	\item[$\bar{X}$]	Moyenne empirique qui estime sans biais la vraie moyenne $\mu$;
-		\begin{align*}
-		\bar{x}
-		&=	\frac{\sumz{n}{i = 1} x_{i}}{n}
-		\end{align*}
-		\begin{itemize}
-		\item	$\bar{X}	\sim \mathcal{N}(\mu, \frac{\sigma}{\sqrt{n}})$;
-		\item	On peut donc centrer et réduire la moyenne empirique pour obtenir une distribution normale standard---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)$};
-		\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{s_{n}/\sqrt{n}} \sim t_{(n - 1)}$};
-		\item	Cela dit, la distribution de Student tend vers la normale lorsque $n$ est très grand.
-		\end{itemize}
-	\item[$S_{n}^{2}$]	Variance échantillonale, qui estime \underline{sans biais} la vraie variance $\sigma^{2}$;
-		\begin{align*}
-			s^{2}_{n}
-			&=	\frac{\sum (x_{i} - \bar{x})^{2}}{n - 1}
-		\end{align*}
-		\begin{itemize}
-		\item	$S^{2}_{n}$ n'est pas normalement distribuée; 
-		\item	Cependant, la statistique \lfbox[formula]{$T_{n}	=	\frac{(n - 1)S^{2}_{n}}{\sigma^{2}} \sim \chi^{2}_{(n - 1)}$}.
-		\end{itemize}
-	\item[$\hat{\sigma}^{2}$]	Variance empirique qui estime \underline{avec biais} la vraie variance $\sigma^{2}$.
-		\begin{align*}
-		\hat{\sigma}^{2} 
-		&=	\frac{\sum (x_{i} - \bar{x})^{2}}{n}
-		\end{align*}
-\end{description}
-\end{distributions}
+\subsubsection*{Statistiques}
+\begin{rappel_enhanced}[Rappel : Loi du khi-carré]
+Soit un échantillon aléatoire $(X_{1}, X_{2}, \dots, X_{n})$ de variables aléatoires normales de moyenne $\mu$ et variance $\sigma^{2}$.\\
+Soit \lfbox[formula]{$Q	=	\sumz{n}{i	=	1}\left(X_{i}	-	\mu\right)^{2}$}.\\
+
+Alors, \lfbox[formula]{$Q/\sigma^{2} \sim \chi^{2}_{(n)}$}.
+\end{rappel_enhanced}
+
+\begin{rappel_enhanced}[Rappel : Loi de Student]
+Soit les variables aléatoires indépendantes :
+\begin{itemize}
+	\item	$Z \sim \mathcal{N}(0, 1)$.
+	\item	$W \sim \chi^{2}_{(n)}$.
+\end{itemize}
+
+Alors, \lfbox[formula]{$T	=	\frac{Z}{\sqrt{W/n}}	\sim	t_{(n)}$}.\\
+
+\tcbline
+
+La loi de Student tend vers la normale lorsque $n$ est très grand.
+\end{rappel_enhanced}
+
+\begin{rappel_enhanced}[Rappel : Loi de Fisher-Snedecor ($F$)]
+Soit les variables aléatoires indépendantes :
+\begin{itemize}
+	\item	$W_{1} \sim \chi^{2}_{(\nu_{1})}$.
+	\item	$W_{2} \sim \chi^{2}_{(\nu_{2})}$.
+\end{itemize}
+
+Alors, \lfbox[formula]{$F	=	\frac{W_{1}/\nu_{1}}{W_{2}/\nu_{2}}	\sim	\mathcal{F}_{(\nu_{1}, \nu_{2})}$}.\\
+
+\tcbline
+
+La loi de Student tend vers la normale lorsque $n$ est très grand.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Statistique de test $T_{n}$]
+$T_{n}$ est une statistique de test basée sur un échantillon aléatoire de $n$ observations.
+
+\begin{itemize}
+\item	C'est donc une \textbf{fonction} d'un échantillon aléatoire ;
+\item	Sa distribution est la \textbf{distribution d'échantillonnage} qui dépend de :
+	\begin{enumerate}
+	\item	La statistique.
+	\item	La taille de l'échantillon.
+	\item	La distribution sous-jacente des données.
+	\end{enumerate}
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[Moyenne échantillonale $\bar{X}$]
+\lfbox[formula]{$\bar{X}	=	\frac{\sum^{n}_{i = 1} X_{i}}{n}$}.
+
+\begin{itemize}
+	\item	Estime sans biais la moyenne $\mu$ ;
+	\item	Si on pose que l'échantillon aléatoire est normalement distribué, $\bar{X}	\sim \mathcal{N}(\mu, \frac{\sigma}{\sqrt{n}})$ ;
+	\item	On centre et réduit pour trouver que \lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)$} ;
+	\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{s_{n}/\sqrt{n}}	\equiv	\frac{Z}{\sqrt{W/(n - 1)}} \sim t_{(n - 1)}$} où $W \sim \chi^{2}_{(n - 1)}$.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Variance échantillonale $S^{2}_{n}$]
+\lfbox[formula]{$S^{2}_{n}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n - 1}$}.
+
+\begin{itemize}
+	\item	Estime \underline{sans biais} la vraie variance $\sigma^{2}$ ;
+	\item	$S^{2}_{n}$ n'est pas normalement distribuée, cependant la statistique \lfbox[formula]{$T_{n}	=	\frac{(n - 1)S^{2}_{n}}{\sigma^{2}} \sim \chi^{2}_{(n - 1)}$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Variance empirique $\hat{\sigma}^{2}$]
+\lfbox[formula]{$\hat{\sigma}^{2}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n}$}.
+
+\begin{itemize}
+	\item	Estime \underline{avec biais} la vraie variance $\sigma^{2}$.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Statistique $F$]
+\lfbox[formula]{$F	=	\frac{S^{2}_{n}/\sigma^{2}_{1}}{S^{2}_{m}/\sigma^{2}_{2}}$}.
+
+\begin{itemize}
+	\item	Si on pose que les deux échantillons aléatoires indépendants $(X_{1}, \dots, X_{n})$ et $(Y_{1}, \dots, Y_{m})$ sont normalement distribués, \lfbox[formula]{$F \sim \mathcal{F}_{(n - 1, m - 1)}$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+
+
+\columnbreak
+\subsubsection*{Intervalles de confiance}
 %
 %De façon générale, les intervalles de confiance ont une estimation ponctuelle à laquelle on ajoute une marge d'erreur.
 
@@ -547,7 +596,7 @@ Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 \end{align*}
 \end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne]
+\begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne ($\sigma^{2}$ connue)]
 %%%	https://www.youtube.com/watch?v=KG921rfbTDw&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=4&t=0s
 %%%	https://www.youtube.com/watch?v=-iYDu8flFXQ&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=3&t=268s
 Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\mu$ inconnu et $\sigma^{2}$ connue, \lfbox[formula]{$\Pr\left(-z_{\alpha/2} \leq \frac{\bar{x} - \mu}{\sigma/\sqrt{n}} \leq z_{\alpha/2}\right) =	(1 - \alpha)$}.\\
@@ -608,7 +657,7 @@ Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 \end{equation*}
 \end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne]
+\begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne ($\sigma^{2}$ inconnue)]
 Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\sigma^{2}$ inconnue, \lfbox[formula]{$\Pr\left(-t_{\alpha/2, n - 1} \leq \frac{\bar{x} - \mu}{s_{n}/\sqrt{n}} \leq t_{\alpha/2, n - 1}\right) =	(1 - \alpha)$}.\\
 Graphiquement:
 \begin{center}
@@ -689,10 +738,11 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \end{equation*}
 \end{definitionNOHFILLsub}
 
+On défini le \og \textit{pooled estimator} \fg{} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.\\
+
+
 \begin{definitionNOHFILLsub}[Intervalle de confiance pour une différence de moyennes]
 Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1}, Y_{2}, \dots, Y_{m}\}$ issus de distributions normales de moyennes $\mu_{1}$ et $\mu_{2}$ et variance $\sigma^{2}_{1} = \sigma^{2}_{2} = \sigma^{2}$ inconnues.
-
-On défini le \og \textit{pooled estimator} \fg{} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.\\
 
 Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
@@ -739,32 +789,56 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \section{Tests d'hypothèses}
 \label{sec:hyp-test}
 \subsection{Introduction}
+\begin{rappel_enhanced}[Contexte]
+Les statistiques classiques posent que tout phénomène observable est régi par un \textit{"\textbf{processus}" sous-jacent}.\\
+On ne peut jamais savoir exactement ce qu'est ce "processus"; le mieux que l'on peut faire est d'émettre des \textit{\textbf{hypothèses}} vraisemblables sur ce qu'il pourrait être. \\
+Par la suite, on analyse les observations en présumant qu'elles sont régies par le processus hypothétique et détermine la \textit{\textbf{vraisemblance des observations}}. On accepte le processus hypothétique si la vraisemblance est suffisamment élevée.
+\end{rappel_enhanced}
 
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\Theta_{0}$ et $\Theta_{1}$]	Sous-ensembles disjoints de $\Theta$ tel que \lfbox[formula]{$\Theta_{0} \cup \Theta_{1}	=	\Theta$;}
-	\item[$\textrm{H}_{0}$]	Hypothèse nulle;
+	\item[$\textrm{H}_{0}$]	Hypothèse nulle ;
+		\begin{itemize}
+		\item	Représente généralement le statu quo jusqu'à preuve contraire.
+		\end{itemize}
 	\item[$\textrm{H}_{1}$]	Hypothèse alternative.
+		\begin{itemize}
+		\item	Représente généralement un changement du statu quo.
+		\end{itemize}
 \end{description}
 \end{distributions}
 
-Lorsque l'on veut tester deux hypothèses différents, on effectue un "\textbf{test d'hypothèse}".
 \begin{definitionNOHFILL}[Test d'hypothèse]
+On spécifie une \textcolor{burntorange}{hypothèse} nulle et par conséquent une hypothèse alternative :
 \begin{align*}
 	\textrm{H}_{0}
 	&:	\theta \in \Theta_{0}	&
 	&\text{vs}	&
 	\textrm{H}_{1}
-	&:	\theta \in \Theta_{1}	&
+	&:	\theta \in \Theta_{1}	\\
 \end{align*}
 
-Habituellement l'hypothèse nulle représente le statu quo alors que l'hypothèse alternative représente un changement.
+Puis, on spécifie une \textcolor{orange-red}{expérience} et un \textcolor{orange}{test} pour décider si l'on accepte ou rejette l'hypothèse nulle.
 \end{definitionNOHFILL}
 
-\begin{formula}{Exemple du LPU}
-Par exemple, on veut savoir si le monde utilisent l'autobus (oui ou non) avant et après l'implantation du LPU.\\ 
-On pose que la proportion des gens qui utilisent l'autobus est $q	=	0.44$.\\
-Il y a deux types de tests qu'on peut faire,
+\begin{distributions}[Terminologie]
+\begin{description}
+\item[Hypothèse simple]	Spécifie \textbf{entièrement} une distribution de probabilité.
+	\begin{itemize}
+	\item	Par exemple, $\mathcal{H}_{0}	:	q = 0.50$---on connaît la valeur exacte du paramètre $q$ pour une distribution Bernoulli.
+	\end{itemize}
+\item[Hypothèse composite]	Spécifie \textbf{partiellement} une distribution de probabilité.
+	\begin{itemize}
+	\item	Par exemple, $\mathcal{H}_{1}	:	q \neq 0.50$.---on ne connaît pas la valeur exacte du paramètre $q$, il pourrait être n'importe quel chiffre sauf $0.50$.
+	\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{formula}{Exemple du laissez-passer universitaire (LPU)}
+\textcolor{orange-red}{Par exemple}, on veut savoir si le monde utilisent l'autobus (oui ou non) avant et après l'implantation du LPU.\\ 
+On \textcolor{burntorange}{pose} que la proportion des gens qui utilisent l'autobus est $q	=	0.44$.\\
+Il y a deux types de \textcolor{orange}{tests} qu'on peut faire,
 \begin{itemize}
 	\item	Tester si l'utilisation est différente est un test "\textbf{bilatéral}", car on test si elle a augmentée \textit{ou} diminuée;
 		\begin{align*}
@@ -784,7 +858,15 @@ Il y a deux types de tests qu'on peut faire,
 
 Un test unilatéral requiert que l'on sache déjà que la proportion de gens "\textit{doit}" être supérieure. Un test bilatéral est plus conservatif et test les deux possibilités, il devrait donc être celui qu'on applique par défaut. \\
 
-Dans tous les cas, l'hypothèse nulle est que, en moyenne, l'utilisation de l'autobus n'a pas \textit{changée}. Pour le test bilatéral, l'hypothèse alternative est que, en moyenne, l'utilisation a \textit{changée}. Pour le test unilatéral, l'hypothèse alternative est que, en moyenne, l'utilisation a \textit{augmentée}.
+L'hypothèse :
+\begin{description}
+	\item[nulle]		dans les deux cas est que, en moyenne, l'utilisation de l'autobus n'a pas \textit{changée}. 
+	\item[alternative]	dans le cas d'un test :
+		\begin{description}
+		\item[unilatéral]	est que, en moyenne, l'utilisation a \textit{augmentée}.
+		\item[bilatéral]	est que, en moyenne, l'utilisation a \textit{changée}.
+		\end{description}
+\end{description}
 \end{formula}
 
 \begin{definitionNOHFILLsub}[Région critique]
@@ -797,9 +879,13 @@ Dans tous les cas, l'hypothèse nulle est que, en moyenne, l'utilisation de l'au
 
 On rejette $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}$.\\
 On conserve $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}^{c}$.
+
+\begin{itemize}
+	\item	On peut aussi dire \og \textbf{région de rejet} \fg{}.
+\end{itemize}
 \end{definitionNOHFILLsub}
 
-\begin{formula}{Exemple du LPU}
+\begin{formula}{Exemple du laissez-passer universitaire (LPU)}
 On reprend l'exemple du LPU.\\
 L'ensemble des résultats possibles est $\mathcal{S} = [0, 1]$.
 \begin{itemize}
@@ -807,7 +893,9 @@ L'ensemble des résultats possibles est $\mathcal{S} = [0, 1]$.
 	\item	Un test "\textbf{unilatéral}" testant l'augmentation a comme région critique $\mathcal{C} = (0.44, 1]$.
 \end{itemize}
 \end{formula}
+
 On peut donc faire 2 types d'erreurs:
+%%	voir les images que j'ai gardé pour quand je retouche à la matrice de confusion dans les GLMs pour développer et parler des métriques ! 
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -908,28 +996,26 @@ Il y a plusieurs termes semblables qui peuvent devenir mélangeants.
 \begin{description}
 	\item[$p$]	La \textbf{valeur $p$} du test.
 		\begin{itemize}
-		\item	On peut la définir comme la probabilité d'un événement autant (ou plus) rare sous l'hypothèse nulle;
-		\item	On peut la définir comme la \textbf{taille} de la région critique $\mathcal{C}$; c'est-à-dire, la probabilité qu'une observation y sera contenue sous l'hypothèse nulle;
-		\item	On peut la définir comme le \textbf{seuil de signifiance}; c'est-à-dire, la probabilité de rejeter $\text{H}_{0}$ alors qu'elle est vraie (erreur de type I);
+		\item	On peut la définir comme la probabilité d'un événement autant (ou plus) rare sous l'hypothèse nulle ;
+		\item	On peut la définir comme la \textbf{taille} de la région critique $\mathcal{C}$ ; c'est-à-dire, l'\textit{aire} de la région de rejet de l'hypothèse nulle $\text{H}_{0}$ alors qu'elle est vraie ;
+		\item	On peut la définir comme le \textbf{seuil de signifiance} ; c'est-à-dire, la probabilité de rejeter $\text{H}_{0}$ alors qu'elle est vraie ;
+		\item	Elle correspond donc également à la \textbf{probabilité d'une erreur de type I}.
 		\end{itemize}
-	\item[$\alpha$]	Dénote habituellement le \textbf{Seuil de signifiance} ou la \textbf{taille} du test.
+	\item[$\alpha$]	Dénote habituellement le \textbf{seuil de signifiance} ou la \textbf{taille} du test.
 		\begin{itemize}
 		\item	Même idée qu'avec les intervalles de confiance;
-		\item	Souvent, on dénote par $\alpha$ la valeur de $p$ qui détermine si on rejette ou pas un test;
+		\item	On peut parfois aussi utiliser $\alpha$ pour dénoter la valeur de $p$ qui détermine si on rejette ou pas un test ;
 		\item	En anglais, \og \textit{threshold for significance} \fg{}.
 		\end{itemize}
 \end{description}
 \end{distributions}
 
-Formellement, on défini \lfbox[formula]{$\alpha	=	\underset{\theta \in \Theta_{0}}{\max} \Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \right\}$}. \\
+Formellement, on défini \lfbox[formula]{$\alpha	=	{\color{indigo(web)}\max}_{{\color{amethyst}\theta} \in {\color{pastelred}\Theta_{0}}} \Pr\left\{{\color{bondiblue!80!black}(X_{1}, \dots, X_{n})} {\color{armygreen}\in} {\color{bulgarianrose}\mathcal{C}} ; {\color{amethyst}\theta} \right\}$}. \\
 C'est-à-dire :
 \begin{itemize}
-	\item	on maximise la probabilité que l'échantillon aléatoire soit contenu dans la région critique (alias rejeter $\textrm{H}_{0}$), 
-	\item	où la distribution est tracée en fonction du paramètre $\theta$ de l'hypothèse nulle.
+	\item	on \textcolor{indigo(web)}{maximise} la probabilité que \textcolor{bondiblue!80!black}{l'échantillon aléatoire} soit \textcolor{armygreen}{contenu} dans \textcolor{bulgarianrose!90!black}{la région critique} (alias rejeter $\textrm{H}_{0}$), 
+	\item	où la distribution est tracée \textcolor{amethyst}{en fonction du paramètre $\theta$} de \textcolor{pastelred}{l'hypothèse nulle}.
 \end{itemize}
-Ceci est l'erreur de type I.
-%%%	qqchose que je manque ici
-%%%	\Theta vs S, test vs param?? (X, ... X_n) \in ...?
 
 
 \columnbreak
@@ -1123,28 +1209,125 @@ Certains tests ont une puissance plus élevée que les autres. \\
 Cela dit, le test $t$ habituel est très puissant.
 \end{definitionNOHFILLsub}
 
-La fonction de puissance est $\gamma_{C}(\theta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \in \Theta_{1} \right\}$.
+\subsubsection{La fonction de puissance}
 
+La fonction de puissance est \lfbox[formula]{$\gamma(\theta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \right\}$} ; c'est-à-dire, la probabilité de rejeter l'hypothèse nulle $\mathrm{H}_{0}$ si la \textbf{vraie} valeur du paramètre est $\theta \in \Theta$. 
+\begin{itemize}
+	\item	C'est une fonction de $\theta$ ;
+	\item	Idéalement, si l'hypothèse nulle est :
+		\begin{description}
+		\item[acceptée]	on souhaite que $\gamma(\theta)	=	0$ puisque $\theta \in \Theta_{0}$.
+			\begin{itemize}
+			\item	On dénote $\gamma(\theta_{0})	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta \in \Theta_{0}\right\}	=	0$.
+			\end{itemize}
+		\item[rejetée]	on souhaite que $\gamma(\theta)	=	1$ puisque $\theta \in \Theta_{1}$.
+			\begin{itemize}
+			\item	On dénote $\gamma(\theta_{1})	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \in \Theta_{1}\right\}	=	1$.
+			\end{itemize}
+		\end{description}
+\end{itemize}
+
+Si, par exemple, on rejette l'hypothèse nulle on pourrait tracer la fonction de puissance pour toutes les valeurs possibles de l'ensemble $\Theta_{1}$.
+
+
+%%	
+%	\lfbox[formula]{$n \geq \left(\frac{z}{k - \mu_{1}}\right)^{2}\sigma^{2}$}.
+
+
+\columnbreak
+
+\subsection{Tests optimaux}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\delta$]	(Procédure de) test ;
+	\item[$\alpha(\delta)$]	Probabilité d'une erreur de type I pour un test $\delta$ ;
+		\begin{itemize}
+		\item	$\alpha(\delta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta \in \Theta_{0}\right\}	=	\gamma(\theta_{0})$.
+		\end{itemize}
+	\item[$\beta(\delta)$]	Probabilité d'une erreur de type II pour un test $\delta$ ;
+		\begin{itemize}
+		\item	$\beta(\delta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}^{\complement} ;  \theta \in \Theta_{1}\right\}	=	1 - \gamma(\theta_{1})$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILLprop}[Tests optimaux]
+Bien qu'il est impossible de trouver un test $\delta$ pour lequel les probabilités d'erreurs de type I et II sont très petites, on peut minimiser $a\alpha(\delta) + b\beta(\delta)$.
+
+\tcbline
+
+Soit les constantes $a, b > 0$.\\
+Soit un test $\delta^{*}$ tel que :
+\begin{itemize}
+	\item	 $\mathrm{H}_{0}$ est acceptée si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	>	bf(\bm{x} ; \theta_{1})$} ;
+	\item	 $\mathrm{H}_{0}$ est rejetée si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	<	bf(\bm{x} ; \theta_{1})$} ;
+	\item	Si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	=	bf(\bm{x} ; \theta_{1})$} soit $\mathrm{H}_{0}$ ou $\mathrm{H}_{1}$ peut être acceptée.
+\end{itemize}
+
+Pour tout autre test $\delta$, \lfbox[formula]{$a\alpha(\delta^{*}) + b\beta(\delta^{*})	\leq	a\alpha(\delta) + b\beta(\delta)$}.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILL}[Lemme de Neymann-Pearson]
+Le lemme de Neyman-Pearson trouve le test $\delta$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ parmi tous les test dont la probabilité d'une erreur de type I $\alpha(\delta)$ est inférieure ou égale à $\alpha	=	\alpha(\delta^{*})	=	\Pr\left\{ f(\bm{X} ; \theta_{0}) < k f(\bm{X} ; \theta_{1}) ; \theta \in \Theta_{0} \right\}$.
+
+\tcbline
+
+Soit une constante $k > 0$.\\
+Soit un test $\delta^{*}$ tel que :
+\begin{itemize}
+	\item	 $\mathrm{H}_{0}$ est acceptée si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	>	kf(\bm{x} ; \theta_{1})$} ;
+	\item	 $\mathrm{H}_{0}$ est rejetée si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	<	kf(\bm{x} ; \theta_{1})$} ;
+	\item	Si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	=	kf(\bm{x} ; \theta_{1})$} une ou l'autre sera acceptée.
+\end{itemize}
+
+Si $\delta$ est n'importe quel autre test que $\delta^{*}$ tel que \lfbox[conditions]{$\alpha(\delta) \leq \alpha(\delta^{*})$} alors \lfbox[formula]{$\beta(\delta)	\geq	\beta(\delta^{*})$}.
+\begin{itemize}
+	\item	De façon semblable, si \lfbox[conditions]{$\alpha(\delta) < \alpha(\delta^{*})$} alors \lfbox[formula]{$\beta(\delta)	>	\beta(\delta^{*})$} ;
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILLsub}[Sous la forme du ratio de vraisemblance]
+Soit le \textbf{ratio de vraisemblance} \lfbox[formula]{$\frac{L(\theta_{1})}{L(\theta_{0})}	=	\frac{f(\bm{x} ; \theta_{1})}{f(\bm{x} ; \theta_{0})}$}.\\
+
+\tcbline
+
+Alors, le test $\delta$ au seuil $\alpha$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ rejette $\mathrm{H}_{0}$ si : \lfbox[formula]{$\frac{L(\theta_{1})}{L(\theta_{0})}	>	\frac{1}{k}$}.
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILL}[Test uniformément le plus puissant]
+Un test $\delta^{*}$ est le test \lfbox[imphl]{uniformément le plus puissant} au seuil $\alpha$ si :
+\begin{enumerate}
+	\item	\lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta^{*}) \leq \alpha$}, et si
+	\item	pour tout autre test $\delta$ tel que \lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta) \leq \alpha$}.
+\end{enumerate}
+Alors, \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\theta \in \Theta_{1} | \delta^{*})$}.
+
+\begin{itemize}
+	\item	En anglais, c'est le test \og \textit{uniformly most powerful (UMP)} \fg{} 
+\end{itemize}
+\end{definitionNOHFILL}
 
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%%		À rajouter éventuellement	%%%%	
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 
 %\subsection{Tests d'hypothèses}
-%%	Contenu à y inclure
-%	Hypothèse nulle et alternative
-%	Statistique de test
-%	Région de réjection
-%	Erreurs de type I et II
+%	Contenu à y inclure
+%%%	Hypothèse nulle et alternative
+%%%	Statistique de test
+%%%	Région de réjection
+%%%	Erreurs de type I et II
 %		Tests optimaux
 %		Lemme de Neymann-Pearson
 %		Ratio de vraisemblance
-%	Valeurs critique et seuil observé
-%	Test unilatéral et bilatéral
-%%		mentionner que unilat peut être "dangereux"
-%	La valeur p
+%%%	Valeurs critique et seuil observé
+%%%	Test unilatéral et bilatéral
+%		mentionner que unilat peut être "dangereux"
+%%%	La valeur p
 %	
-%	Test uniformément le plus puissant, alias Uniformely Most Powerful (UMP)
+%%	Test uniformément le plus puissant, alias Uniformely Most Powerful (UMP)
 %	Tests échantillons normaux
 %		Test T
 %			Unilatéral (test, taille, puissance, seuil observé, IC)
@@ -1165,6 +1348,172 @@ La fonction de puissance est $\gamma_{C}(\theta)	=	\Pr\left\{(X_{1}, \dots, X_{n
 %		Tableau de contingence
 %		Test d'indépendance du khi-carré
 
+%\subsection{Exhaustivité}
+%%	Contenu à y inclure
+%	Définition de l'exhaustivité
+%	Théorème de factorisation de Fisher-Neymann
+%	Critère de Lehmann-Scheffé (Exhaustivité minimale)
+%	Théorème de factorisation de Fisher-Neymann (cas de plus d'un paramètre)
+%	Théorème de Rao-Blackwell (statistique exhaustive sans biais)
+%	MVUE
+%		Élaboration sur le MVUE
+%		Comment le construire
+
+%%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
+%		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
+
+\columnbreak
+\subsection{Test du khi carré}
+\subsubsection*{Test d'adéquation (\og \textit{goodness-of-fit test} \fg{})}
+Soit $n$ répétitions (indépendantes) d'une expérience aléatoire.\\
+On pose :
+\begin{itemize}
+	\item	L'espace d'échantillon des expériences $\mathcal{A}$ qui représente l'union de $k$ différents ensembles (disjoints) $\mathcal{A}	=	\left\{A_{1} \cup A_{2} \cup \dots \cup A_{k} \right\}$ ;
+	\item	On pose que pour $i	=	1, 2, \dots, k$, $\Pr(A_{i})	=	p_{i}$ où $p_{k}	=	1	-	p_{1}	-	\hdots	-	p_{k - 1}$ et $O_{k}	=	n	-	O_{1}	-	\hdots	-	O_{k - 1}$ ;
+		\begin{itemize}
+		\item	$p_{i}$ représente donc la \textit{probabilité} que le résultat de l'expérience aléatoire fait partie de l'ensemble $A_{i}$ ;
+		\item	$O_{i}$	représente le \textit{nombre d'observations} (la \textit{fréquence}) pour lesquelles le résultat de l'expérience aléatoire fait partie de l'ensemble $A_{i}$.
+		\end{itemize}
+	\item	On pose que la distribution conjointe de $O_{1}, O_{2}, \dots, O_{k - 1} \sim MultiNom(n, p_{1}, \dots, p_{k - 1})$.
+\end{itemize}
+
+Soit le test d'hypothèse avec les nombres spécifiés $p_{1,0}, p_{2,0}, p_{k - 1,0}$ :
+\begin{align*}
+	\mathrm{H}_{0}	&:	
+	p_{1}	=	p_{1,0}, p_{2}	=	p_{2,0},	 \dots, p_{k - 1}	=	p_{k - 1,0}
+\end{align*}
+où $p_{k}	=	p_{k,0}	=	1	-	p_{1,0}	-	\hdots	-	p_{k - 1,0}$.
+
+Alors, sous l'hypothèse nulle : \lfbox[formula]{$T	=	\sumz{k}{i = 1} \frac{(O_{i}	-	np_{i,0})^{2}}{np_{i,0}}	\approx	\chi_{(k - 1)}^{2}$}.
+\begin{itemize}
+%	\item	Si $O_{i} \sim \mathcal{N}$ alors le distribution du khi carrée n'est pas une approximation ;
+	\item	Il y a seulement $k - 1$ degrés de liberté car on estime seulement $k - 1$ paramètres.
+		\begin{itemize}
+		\item	Le nombre $n$ total d'observations est fixe et on déduit $n_{k}$ par la somme ;
+		\item	Si on avait à 
+		\end{itemize}
+\end{itemize}
+
+\subsubsection*{Tableau de contingence}
+Dans le cas de données à deux dimensions, alias un tableau de contingence, on défini :
+\begin{description}
+	\item[$E_{ij}$]	L'espérance du nombre d'observations dans la cellule $i, j$ ;
+	\item[$O_{ij}$]	Le nombre observé d'observations dans la cellule $i, j$.
+\end{description}
+
+\begin{itemize}
+	\item	On pose qu'il y a $c$ colonnes au tableau pour $r$ rangées (les rangées sont les différents ensembles) ;
+	\item	On peut donc tester si la distribution de la fréquence est identique pour les $c$ colonnes avec \lfbox[formula]{$Q	=	\sumz{r}{i	=	1}\sumz{c}{j	=	1}\frac{(O_{ij} - E_{ij})^{2}}{E_{ij}} \approx	\chi^{2}_{(r - 1) \cdot (c - 1)}$} ;
+	\item	Cette formule est beaucoup plus intuitive visuellement que par formule, pour la comprendre fwwaites un exemple.
+\end{itemize}
+
+
+\columnbreak
+\section{Statistiques exhaustives}
+\begin{definitionNOHFILL}[Statistique exhaustive]
+Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.\\
+Alors, la statistique $T_{n}$ est "\textbf{exhaustive pour $\theta$}" si la distribution conditionnelle $(X_{1}, \dots, X_{n} | T_{n})$ ne \textbf{dépend pas} de $\theta$.
+
+\begin{formula}{Exemple Bernoulli}
+Soit l'échantillon aléatoire d'une distribution Bernouilli de paramètre $p$.\\
+Alors $T_{n}	=	\sum_{i = 1}^{n}X_{i}$ est exhaustive pour $p$ car : 
+
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	\Pr(X_{1}	=	x_{1}, \dots, X_{n}	=	x_{n} &| T_{n}	=	x_{1} + \dots + x_{n})	\\
+	&=	p^{{\color{teal}x_{1} + \dots + x_{n}}}(1 - p)^{n - {\color{teal}(x_{1} + \dots + x_{n})}}	\\
+	&=	p^{\color{teal}t} (1 - p)^{n  -{\color{teal}t}}
+\end{align*}
+Dépend seulement de l'échantillon par la valeur ${\color{teal}t}$ de la statistique $T_{n}$.
+\end{formula}
+\setlength{\mathindent}{1cm}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[\textbf{Théorème de factorisation} de Fisher-Neymann]
+Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.\\
+Alors, la statistique $T_{n}$ est "\textbf{exhaustive pour $\theta$}" si pour tout $x_{i}	\in \mathbb{R}, i = 1, 2, \dots, n$,
+\begin{align*}
+	{\color{burntorange}f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}
+	&=	g({\color{teal}t}; {\color{amethyst}\theta}) \times h(x_{1}, \dots, x_{n})
+\end{align*}
+où :
+\begin{itemize}
+	\item	$g({\color{teal}t}; {\color{amethyst}\theta})$ dépend de $(x_{1}, \dots, x_{n})$ seulement par $T_{n}$ ;
+	\item	$h(x_{1}, \dots, x_{n})$ ne \textbf{dépend pas} de ${\color{amethyst}\theta}$.
+\end{itemize}	
+
+\tcbline
+
+Pour \textbf{plusieurs paramètres}, on généralise avec le vecteur de paramètres inconnus $\bm{\theta}	=	(\theta_{1}, \dots, \theta_{k})$.\\
+Alors, les statistiques $T^{1}_{n}, \dots, T^{k}_{n}$ sont \textbf{conjointement exhaustives pour $\bm{\theta}$} si pour tout $x_{i}	\in \mathbb{R}, i = 1, 2, \dots, n$, 
+\begin{align*}
+	{\color{burntorange}f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}
+	&=	g({\color{teal}t_{1}, \dots, t_{k}}; {\color{amethyst}\theta}) \times h(x_{1}, \dots, x_{n})
+\end{align*}
+où :
+\begin{itemize}
+	\item	$g({\color{teal}t^{1}, \dots, t^{k}}; {\color{amethyst}\bm{\theta}})$ dépend de $(x_{1}, \dots, x_{n})$ seulement par $T^{1}_{n}, \dots, T^{k}_{n}$ ;
+	\item	$h(x_{1}, \dots, x_{n})$ ne \textbf{dépend pas} de ${\color{amethyst}\bm{\theta}}$.
+\end{itemize}	
+\end{definitionNOHFILLprop}
+
+Le théorème de factorisation permet d'identifier des statistiques exhaustives. Cependant, il peut y avoir plusieurs statistiques exhaustives ! Certaines offrent une plus grand réduction des données ; par exemple, $\bar{X}_{n}$ réduit les données plus que $(X_{(1)}, \dots, X_{(n)})$. 
+
+On cherche donc la statistique exhaustive qui offre la \textbf{réduction maximale} tout en retenant toute l'information sur le paramètre visé.
+
+\begin{definitionNOHFILL}[Statistique exhaustive minimale]
+Une statistique exhaustive $T_{n}	=	T(X_{1}, \dots, X_{n})$ est "\textbf{minimale}" si pour tout autre statistique exhaustive $U_{n}	=	U(X_{1}, \dots, X_{n})$, il existe une fonction $g$ tel que $T	=	g\{U(X_{1}, \dots, X_{n})\}$.
+
+\begin{definitionNOHFILLprop}[Critère de Lehmann-Scheffé]
+Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.\\
+Alors, la statistique $T_{n}$ est "\textbf{exhaustive \textit{minimale} pour $\theta$}" si pour tout $x_{i}, y_{i}	\in \mathbb{R}, i = 1, 2, \dots, n$,
+\begin{align*}
+	\frac{f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}{f(y_{1}; \theta) \times \hdots \times f(y_{n}; \theta)}
+\end{align*}
+ne \textbf{dépend pas} de $\theta$ ssi $T(x_{1}, \dots, x_{n})	=	T(y_{1}, \dots, y_{n})$
+\end{definitionNOHFILLprop}
+
+\begin{formula}{Exemple Bernoulli}
+Soit l'échantillon aléatoire d'une distribution Bernouilli de paramètre $p$.
+
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	\frac{f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}{f(y_{1}; \theta) \times \hdots \times f(y_{n}; \theta)}	
+	&=	\left(\frac{p}{1 - p}\right)^{(x_{1} + \dots + x_{n}) - (y_{1} + \dots + y_{n})}
+\end{align*}
+
+Le ratio est seulement indépendant de $p$ si $\sum_{i = 1}^{n} x_{i} = \sum_{i = 1}^{n} y_{i}$ et donc $T_{n}	=	\sum_{i = 1}^{n}X_{i}$ est \textbf{exhaustive minimale} pour $p$.
+\end{formula}
+\setlength{\mathindent}{1cm}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILLprop}[Théorème de Rao-Blackwell]
+Soit l'estimateur $\hat{\theta}_{n}$ sans biais pour $\theta$ avec $\text{Var}(\hat{\theta}_{n}) < \infty$.	\\
+Si la statistique $T_{n}$ est exhaustive pour $\theta$, la statistique \lfbox[formula]{$\theta_{n}^{\ast}	=	\text{E}[\hat{\theta}_{n} | T_{n}]$} est un \textbf{estimateur sans biais} de $\theta$ avec \lfbox[conditions]{$\text{Var}(\theta^{\ast}_{n}) \leq \text{Var}(\hat{\theta}_{n})$}.
+\end{definitionNOHFILLprop}
+
+
+\subsubsection*{Famille exponentielle}
+
+Une loi de probabilité fait partie de la famille exponentielle linéaire si:
+\begin{enumerate}
+	\item	Sa fonction de densité \textit{(ou de masse)} de probabilité peut être exprimée comme:
+\begin{formula}{Densité de la famille exponentielle}
+	\begin{align*}
+		f(y ; \theta, \phi) 
+			= 	\exp \left( \frac{y \theta - b(\theta)}{a(\phi)} + c(y ; \phi) \right)  
+	\end{align*}
+\end{formula}
+	où
+	\begin{description}
+		\item[$\theta$] paramètre canonique
+		\item[$\phi$] paramètre de dispersion
+	\end{description}
+	\item	La fonction $c$ ne dépend pas du paramètre $\theta$.
+	
+	\item 	Le support de $Y$ ne dépend pas de $\theta$ puisqu'il ne peut pas varier.
+\end{enumerate}
 
 \columnbreak
 \section{Statistiques d'ordre}
@@ -1360,10 +1709,20 @@ et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qu
 
 De façon formelle, on dit que \lfbox[formula]{$\hat{\theta}^{\text{EMV}}	=	\underset{\theta}{\max}\{\mathcal{L}(\theta; \bm{x})\}	\equiv	\underset{\theta}{\max}\{\ln\mathcal{L}(\theta; \bm{x})\}$.}
 
+\subsubsection{Raccourcis}
+
+Si la fonction de vraisemblance est de la forme :
+\begin{itemize}
+	\item	\lfbox[formula]{$\mathcal{L}(\gamma)	=	\gamma^{-a}\textrm{e}^{-b/\gamma}$} alors \lfbox[formula]{$\hat{\gamma}^{\text{MLE}}	=	\frac{b}{a}$}.
+	\item	\lfbox[formula]{$\mathcal{L}(\lambda)	=	\lambda^{a}\textrm{e}^{-\lambda b}$} alors \lfbox[formula]{$\hat{\lambda}^{\text{MLE}}	=	\frac{a}{b}$}.
+	\item	\lfbox[formula]{$\mathcal{L}(\theta)	=	\theta^{a}(1	-	\theta)^{b}$} then \lfbox[formula]{$\hat{\theta}^{\text{MLE}}	=	\frac{a}{a + b}$}.
+\end{itemize}
+
+
 \subsubsection{Propriétés}
 \begin{definitionNOHFILL}[Propriété d'invariance]
-Soit une fonction bijective $g(\cdot)$ et l'EMV $\hat{\theta}^{\text{EMV}}$ de $\theta$.\\
-Alors, selon le principe d'invariance \lfbox[formula]{$g(\hat{\theta}^{\text{EMV}})$ est l'EMV de $g(\theta)$.}\\
+Soit une fonction bijective $g(\cdot)$ et l'estimateur du maximum de vraisemblance (EMV) $\hat{\theta}^{\text{EMV}}$ de $\theta$.\\
+Alors, selon la propriété d'invariance \lfbox[formula]{$g(\hat{\theta}^{\text{EMV}})$ est l'EMV de $g(\theta)$.}\\
 
 L'EMV satisfait cette propriété.
 \end{definitionNOHFILL}
@@ -1400,8 +1759,11 @@ Souvent les professeurs ne montrent pas ces conditions puisqu'elles sont compliq
 		\item	C'est une condition restrictive que certains modèles ne respectent pas.
 		\end{itemize}
 	\item[R2]	La "vraie valeur" de $\theta$ est contenue dans l'ensemble des valeurs possibles $\Theta$.
-\end{description}
 \tcbline
+\begin{description}
+	\item[R3]	Les deux premières dérivés de la fonction de densité $f(x; \theta)$ existent.
+\end{description}
+\end{description}
 %%%	--------------------------------
 %%%	NOTES:
 %%%	+	FAUT AJOUTER DES DÉTAILS SUR LES CONDITIONS AVEC LES DÉRIVÉES D'INTÉGRALES ÉGAUX À ZÉRO!!!!!
@@ -1414,6 +1776,8 @@ Souvent les professeurs ne montrent pas ces conditions puisqu'elles sont compliq
 %	\item[R5]	La fonction de densité $f(x; \theta)$ est différentiable trois fois comme fonction de $\theta$. De plus, $\forall \theta \in \Theta$ il existe une constante $c$ and une fonction $g(x)$ tel que $\big| \deriv[3]{\theta}{} \ln f(x; \theta) \big| \leq g(x)$.
 %\end{description}
 %\paragraph{Note:}	Les conditions R3 et R4 sont additionnelles pour \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}la borne de Cramér-Rao}.
+\paragraph{Note:}	La condition R3 additionnelle pour \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}la borne de Cramér-Rao}.
+%%%	Impliquent que l'on peut interchanger l'intégration et la différention wrt/ \theta
 \end{definitionNOHFILLsub}
 	
 
@@ -1632,6 +1996,231 @@ On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" th
 	\item	Un niveau de base l'intercepte $\beta_{0}$.
 	\item	Une erreur aléatoire $\varepsilon$ inconnue.
 \end{itemize}
+
+\section{Autres}
+\textbf{Matrice de confusion : }
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,366); %set diagram left start at 0, and has height of 366
+
+%Rounded Same Side Corner Rect [id:dp5863189014777732] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ][line width=1.5]  (186.37,215.03) .. controls (186.37,209.57) and (190.8,205.14) .. (196.27,205.14) -- (553.98,205.14) .. controls (559.45,205.14) and (563.87,209.57) .. (563.87,215.03) -- (563.87,224.92) .. controls (563.87,224.92) and (563.87,224.92) .. (563.87,224.92) -- (186.37,224.92) .. controls (186.37,224.92) and (186.37,224.92) .. (186.37,224.92) -- cycle ;
+%Rounded Same Side Corner Rect [id:dp10542736831068278] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (563.87,275.01) .. controls (563.87,279.61) and (560.15,283.33) .. (555.56,283.33) -- (194.69,283.33) .. controls (190.1,283.33) and (186.37,279.61) .. (186.37,275.01) -- (186.37,224.92) .. controls (186.37,224.92) and (186.37,224.92) .. (186.37,224.92) -- (563.87,224.92) .. controls (563.87,224.92) and (563.87,224.92) .. (563.87,224.92) -- cycle ;
+%Flowchart: Process [id:dp2781782458228159] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (236.54,237.33) -- (246.54,237.33) -- (246.54,227.33) -- (236.54,227.33) -- cycle ;
+%Flowchart: Process [id:dp6595006333689621] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (236.54,249.33) -- (246.54,249.33) -- (246.54,239.33) -- (236.54,239.33) -- cycle ;
+%Straight Lines [id:da005645386209309766] 
+\draw    (233.54,238.5) -- (249.54,238.5) ;
+
+%Flowchart: Process [id:dp7524991543129134] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (302.54,253) -- (312.54,253) -- (312.54,243) -- (302.54,243) -- cycle ;
+%Straight Lines [id:da5176971400521515] 
+\draw    (299.54,242.17) -- (315.54,242.17) ;
+%Flowchart: Process [id:dp9574550023533219] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 182; green, 64; blue, 64 }  ,fill opacity=1 ] (302.54,241) -- (312.54,241) -- (312.54,231) -- (302.54,231) -- cycle ;
+
+%Flowchart: Process [id:dp6446573608226225] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (236.54,263.5) -- (246.54,263.5) -- (246.54,253.5) -- (236.54,253.5) -- cycle ;
+%Flowchart: Process [id:dp6670926329350344] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (236.54,275.5) -- (246.54,275.5) -- (246.54,265.5) -- (236.54,265.5) -- cycle ;
+%Straight Lines [id:da5832941059999399] 
+\draw    (233.54,264.67) -- (249.54,264.67) ;
+
+%Flowchart: Process [id:dp3885928458657999] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (302.54,277.33) -- (312.54,277.33) -- (312.54,267.33) -- (302.54,267.33) -- cycle ;
+%Straight Lines [id:da3401710446338324] 
+\draw    (299.54,266.5) -- (315.54,266.5) ;
+%Flowchart: Process [id:dp6813365938208455] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 97; green, 123; blue, 71 }  ,fill opacity=1 ] (302.54,265.33) -- (312.54,265.33) -- (312.54,255.33) -- (302.54,255.33) -- cycle ;
+
+%Flowchart: Process [id:dp26333217881412674] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (412.04,263.83) -- (422.04,263.83) -- (422.04,253.83) -- (412.04,253.83) -- cycle ;
+%Flowchart: Process [id:dp33935301348671065] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 97; green, 123; blue, 71 }  ,fill opacity=1 ] (400.04,276.33) -- (410.04,276.33) -- (410.04,266.33) -- (400.04,266.33) -- cycle ;
+%Straight Lines [id:da4578404875999813] 
+\draw    (397.54,265) -- (435.54,265) ;
+%Flowchart: Process [id:dp07704188689930547] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (423.54,276.33) -- (433.54,276.33) -- (433.54,266.33) -- (423.54,266.33) -- cycle ;
+
+%Flowchart: Process [id:dp511192763925254] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (412.04,238) -- (422.04,238) -- (422.04,228) -- (412.04,228) -- cycle ;
+%Flowchart: Process [id:dp8487027222224734] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (400.04,250.5) -- (410.04,250.5) -- (410.04,240.5) -- (400.04,240.5) -- cycle ;
+%Straight Lines [id:da11748805900160852] 
+\draw    (397.54,239.17) -- (435.54,239.17) ;
+%Flowchart: Process [id:dp6757535243694623] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (423.54,250.5) -- (433.54,250.5) -- (433.54,240.5) -- (423.54,240.5) -- cycle ;
+
+%Flowchart: Process [id:dp23257062904433523] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (524.04,250.5) -- (534.04,250.5) -- (534.04,240.5) -- (524.04,240.5) -- cycle ;
+%Straight Lines [id:da16879793480007654] 
+\draw    (521.54,239.17) -- (559.54,239.17) ;
+%Flowchart: Process [id:dp629293047660624] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (547.54,250.5) -- (557.54,250.5) -- (557.54,240.5) -- (547.54,240.5) -- cycle ;
+%Flowchart: Process [id:dp25903639593069716] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (524.04,237.5) -- (534.04,237.5) -- (534.04,227.5) -- (524.04,227.5) -- cycle ;
+%Flowchart: Process [id:dp2784202862814029] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (547.54,237.5) -- (557.54,237.5) -- (557.54,227.5) -- (547.54,227.5) -- cycle ;
+
+%Flowchart: Process [id:dp5706215732887201] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (524.04,277.83) -- (534.04,277.83) -- (534.04,267.83) -- (524.04,267.83) -- cycle ;
+%Straight Lines [id:da24052635124853383] 
+\draw    (521.54,266.5) -- (559.54,266.5) ;
+%Flowchart: Process [id:dp8806206355646873] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (547.54,277.83) -- (557.54,277.83) -- (557.54,267.83) -- (547.54,267.83) -- cycle ;
+%Flowchart: Process [id:dp025661689438194246] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 97; green, 123; blue, 71 }  ,fill opacity=1 ] (524.04,264.83) -- (534.04,264.83) -- (534.04,254.83) -- (524.04,254.83) -- cycle ;
+%Flowchart: Process [id:dp07416724651822326] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 182; green, 64; blue, 64 }  ,fill opacity=1 ] (547.54,264.83) -- (557.54,264.83) -- (557.54,254.83) -- (547.54,254.83) -- cycle ;
+
+
+%Shape: Rectangle [id:dp9078887636984747] 
+\draw  [color={rgb, 255:red, 125; green, 185; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ][line width=4.5]  (186.79,76.98) -- (428.29,76.98) -- (428.29,198) -- (186.79,198) -- cycle ;
+%Shape: Rectangle [id:dp6719473196737591] 
+\draw  [color={rgb, 255:red, 249; green, 188; blue, 87 }  ,draw opacity=1 ][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ][line width=4.5]  (431.29,76.98) -- (564.29,76.98) -- (564.29,198) -- (431.29,198) -- cycle ;
+%Shape: Rectangle [id:dp8554811027992568] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ][line width=0.75]  (427.96,76.98) -- (560.96,76.98) -- (560.96,198) -- (427.96,198) -- cycle ;
+%Shape: Rectangle [id:dp4666790964474916] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 182; green, 64; blue, 64 }  ,fill opacity=1 ] (186.79,76.98) -- (428.29,76.98) -- (428.29,198) -- (186.79,198) -- cycle ;
+%Shape: Rectangle [id:dp4684932062372884] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=0.75 ] (185.96,55.67) -- (425.29,55.67) -- (425.29,73.33) -- (185.96,73.33) -- cycle ;
+%Shape: Rectangle [id:dp7538608016518991] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (432.29,55.67) -- (563.96,55.67) -- (563.96,73.33) -- (432.29,73.33) -- cycle ;
+%Shape: Rectangle [id:dp575388567694743] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (250.29,108.8) -- (428.29,108.8) -- (428.29,198) -- (250.29,198) -- cycle ;
+%Shape: Rectangle [id:dp694025502587706] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 97; green, 123; blue, 71 }  ,fill opacity=1 ] (428.29,161.33) -- (529.29,161.33) -- (529.29,198) -- (428.29,198) -- cycle ;
+%Left Arrow [id:dp159442790435544] 
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 97; green, 123; blue, 71 }  ,fill opacity=1 ] (511.02,173.58) -- (516.74,158.26) -- (519.35,162.71) -- (546.06,147.06) -- (551.28,155.96) -- (524.57,171.61) -- (527.18,176.07) -- cycle ;
+
+%Left Arrow [id:dp2567253964557259] 
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (231.33,156.74) -- (247.51,154.38) -- (244.87,158.81) -- (271.45,174.68) -- (266.16,183.54) -- (239.58,167.67) -- (236.93,172.1) -- cycle ;
+
+%Left Arrow [id:dp4712888920317464] 
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 198; green, 237; blue, 158 }  ,fill opacity=1 ] (370.29,184.33) -- (387.29,172.66) -- (387.29,178.5) -- (440.29,178.5) -- (440.29,190.17) -- (387.29,190.17) -- (387.29,196) -- cycle ;
+%Left Arrow [id:dp3521145387427629] 
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 97; green, 123; blue, 71 }  ,fill opacity=1 ] (426.29,184.33) -- (443.29,172.66) -- (443.29,178.5) -- (443.29,178.5) -- (443.29,190.17) -- (443.29,190.17) -- (443.29,196) -- cycle ;
+
+%Left Arrow [id:dp8166384807624658] 
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 249; green, 188; blue, 87 }  ,fill opacity=1 ] (450.8,86.33) -- (434.29,74.66) -- (434.29,80.5) -- (370.29,80.5) -- (370.29,92.17) -- (434.29,92.17) -- (434.29,98) -- cycle ;
+%Left Arrow [id:dp8194414952038565] 
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 125; green, 185; blue, 255 }  ,fill opacity=1 ] (386.8,86.33) -- (370.29,74.66) -- (370.29,80.5) -- (370.29,80.5) -- (370.29,92.17) -- (370.29,92.17) -- (370.29,98) -- cycle ;
+
+
+%Rounded Same Side Corner Rect [id:dp01839882980964913] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ][line width=1.5]  (199.87,12.03) .. controls (199.87,6.57) and (204.3,2.14) .. (209.77,2.14) -- (540.48,2.14) .. controls (545.95,2.14) and (550.37,6.57) .. (550.37,12.03) -- (550.37,21.92) .. controls (550.37,21.92) and (550.37,21.92) .. (550.37,21.92) -- (199.87,21.92) .. controls (199.87,21.92) and (199.87,21.92) .. (199.87,21.92) -- cycle ;
+%Rounded Same Side Corner Rect [id:dp42232070994654003] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 179; green, 179; blue, 179 }  ,fill opacity=1 ] (550.37,48.86) .. controls (550.37,51.33) and (548.37,53.33) .. (545.9,53.33) -- (204.35,53.33) .. controls (201.88,53.33) and (199.87,51.33) .. (199.87,48.86) -- (199.87,21.92) .. controls (199.87,21.92) and (199.87,21.92) .. (199.87,21.92) -- (550.37,21.92) .. controls (550.37,21.92) and (550.37,21.92) .. (550.37,21.92) -- cycle ;
+
+
+% Text Node
+\draw (267.37,236.67) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {FNR = };
+% Text Node
+\draw (267.37,261) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {FPR = };
+% Text Node
+\draw (343.37,259.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {Precision = };
+% Text Node
+\draw (411.54,265.83) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle +$};
+% Text Node
+\draw (535.54,267.33) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle +$};
+% Text Node
+\draw (440.37,259) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {\begin{minipage}[lt]{54.30085600000001pt}\setlength\topsep{0pt}
+\begin{center}
+Misclassification\\rate 
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (535.54,254.33) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle +$};
+% Text Node
+\draw (513.37,262) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {= };
+% Text Node
+\draw (535.54,240) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle +$};
+% Text Node
+\draw (467.37,233.67) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {Accuracy = };
+% Text Node
+\draw (535.54,227) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle +$};
+% Text Node
+\draw (334.37,233.67) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {Prevalence = };
+% Text Node
+\draw (411.54,240) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle +$};
+% Text Node
+\draw (243.09,156.56) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,rotate=-30.84] [align=left] {{\footnotesize $\displaystyle \uparrow $TPR}};
+% Text Node
+\draw (516.52,163.19) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,rotate=-329.62] [align=left] {{\footnotesize $\displaystyle \downarrow $\textcolor[rgb]{1,1,1}{FPR}}};
+% Text Node
+\draw (382.95,178.25) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {{\scriptsize $\displaystyle \uparrow $Precision}};
+% Text Node
+\draw (384.63,80.25) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {{\scriptsize $\displaystyle \uparrow $Prevalence}};
+% Text Node
+\draw (199.37,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {TPR = };
+% Text Node
+\draw (186,240) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {{\scriptsize (sensitivity)}};
+% Text Node
+\draw (199.37,259.17) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {TNR = };
+% Text Node
+\draw (186,268.17) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {{\scriptsize (specificity)}};
+% Text Node
+\draw (264.04,60.17) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{56.241644pt}\setlength\topsep{0pt}
+\begin{center}
+Actual Positive
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (455.79,60.17) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{59.875428pt}\setlength\topsep{0pt}
+\begin{center}
+Actual Negative
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (464.29,171.17) node [anchor=north west][inner sep=0.75pt]  [font=\Large,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{21.490856pt}\setlength\topsep{0pt}
+\begin{center}\textcolor{white}{
+FP}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (204.04,106.17) node [anchor=north west][inner sep=0.75pt]  [font=\Large,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{22.305428000000003pt}\setlength\topsep{0pt}
+\begin{center}\textcolor{white}{
+FN}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (510.96,99.99) node [anchor=north west][inner sep=0.75pt]  [font=\Large,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{22.305428000000003pt}\setlength\topsep{0pt}
+\begin{center}
+TN
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (283.79,126.9) node [anchor=north west][inner sep=0.75pt]  [font=\Large,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{21.490856pt}\setlength\topsep{0pt}
+\begin{center}
+TP
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (336.62,207.19) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {MEASURES};
+% Text Node
+\draw (346.62,4.53) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {LEGEND};
+% Text Node
+\draw (201.87,24.92) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {{\footnotesize \textcolor[rgb]{0,0,0}{TP: Correctly predicted as positive}}\\{\footnotesize TN: Correctly predicted as negative}};
+% Text Node
+\draw (380.37,24.92) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {{\footnotesize FN: Wrongly predicted as negative}\\{\footnotesize FP: Wrongly predicted as positive}};
+
+
+\end{tikzpicture}
+\end{center}
+
 
 \section{Erreur}
 
