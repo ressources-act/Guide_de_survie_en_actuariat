@@ -2,9 +2,10 @@
 
 Sigle | Nom du cours
 --- | --------
-ACT-1003  | Compléments de mathématiques
-ACT-1002  | Analye probabiliste des risques actuariels
 ACT-1000  | Introduction à l'actuariat I
+ACT-1001  | Mathématiques financières
+ACT-1002  | Analye probabiliste des risques actuariels
+ACT-1003  | Compléments de mathématiques
 ACT-2001  | Introduction à l'actuariat II
 ACT-2000  | Analyse statistique des risques actuariels
 ACT-1006  | Gestion des risques financiers I
