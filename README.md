@@ -28,10 +28,11 @@ Projet ayant pour but de créer des ressources d’études pour les étudiants d
 
 ## Contributeurs
 
-- [aut., cre.] Nicholas Langevin [:octocat:](https://github.com/NicholasLangevin)
+- [aut.] Nicholas Langevin [:octocat:](https://github.com/NicholasLangevin)
 - [aut., diplômé] Gabriel Crépeault-Cauchon [:octocat:](https://github.com/gabrielcrepeault)
 - [aut., cre.] Alec James van Rassel [:octocat:](https://github.com/alec42)
-- [ctb., cre.] Olivier Côté [:octocat:](https://github.com/OliCoSide)
+- [aut., cre.] Olivier Côté [:octocat:](https://github.com/OliCoSide)
+- [ctb., cre.] Félix Cournoyer [:octocat:](https://github.com/felix5960)
 
 Pour les contributeurs aux feuilles de formules ainsi qu'une description des différents rôles, voir [ce fichier](https://github.com/NicholasLangevin/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/contributeurs-cheatshts.pdf).
 
