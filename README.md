@@ -24,7 +24,7 @@ FRN-3003  | Français avancé: grammaire et rédaction II
 
 # Guide de survie en actuariat
 
-Ce projet a pour but de créer un document contenant toutes les feuilles de formules utiles au bac en actuariat. Toutes les contributions sont les bienvenues.
+Projet ayant pour but de créer des ressources d’études pour les étudiants du baccalauréat en actuariat à l’université Laval. Toutes les contributions sont les bienvenues.
 
 ## Contributeurs
 
