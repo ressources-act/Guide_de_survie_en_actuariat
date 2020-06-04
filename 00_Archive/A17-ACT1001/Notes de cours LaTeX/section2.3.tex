@@ -1,0 +1,309 @@
+% section 2.3 versements non constant rentes
+Cas général : $n$ versements $P_1, P_2, ..., P_n$ à $t_1,t_2, ..., t_n$.
+
+\begin{displaymath}
+\begin{aligned}
+\text{Valeur actualisée à $t=0$}	 	&\quad \text{Valeur accumulée à $t=t_n$} \\
+\sum_{k=1}^n P_k (1+j)^{t_k}		&\quad \sum_{k=1}^n P_k (1+j)^{t_n - t_k} \\
+\end{aligned}
+\end{displaymath}
+\p
+Deux cas particuliers : 
+\begin{displaymath}
+\begin{aligned}
+P_{k+1} 			& = P_k \gamma	& \quad k = 2,3,...,n \\
+| P_{k+1} - P_k | 	& = \beta			& \quad k = 2, 3, ..., n \\
+\end{aligned}
+\end{displaymath}
+Note : $t_{k+1} - t_k = \alpha	\quad k=1,2,3,..., n-1$
+
+\subsection{Rentes dont les versements forment une série géométrique}
+
+\subsubsection{... avec fréquence de versement égale à fréquence de variation géométrique}
+
+\begin{center}
+	\includegraphics[width = 10cm, height = 3cm]{illustrations/versement_geom.png}
+\end{center}
+
+Supposons un taux effectif par période $j$.
+
+\paragraph{Valeur à $t=0$}
+\begin{gather*}
+P(1+j)^{-1} + P\gamma(1+j)^{-2} + ... + P\gamma^{n-1}(1+j)^{-n} = \sum_{k=1}^n P\gamma^{-1} \left( \frac{\gamma}{1+j} \right)^k \\
+= ...\\
+\end{gather*}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+P \gamma^{-1} \ax{\angln j^*}, \text{où } j^* = \frac{1+j}{\gamma} - 1
+\end{empheq}
+
+\paragraph{Valeur à $t=1$}
+\begin{gather*}
+P + P\gamma(1+j)^{-1} + ... + P\gamma^{n-1}(1+j)^{-(n-1)}\\
+= ... \\
+= P \gamma^{-1} \ax{\angln j^*}(1+j) \\
+\end{gather*}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+P \ax**{\angln j^*}
+\end{empheq}
+
+\paragraph{Valeur à $t=n$}
+\begin{gather*}
+P(1+j)^{n-1} + P\gamma(1+j)^{-2} + ... + P\gamma^{n-1}\\
+= \sum_{k=0}^{n-1} P \gamma^{n-1-k} (1+j)^k\\
+\end{gather*}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+P \gamma^{n-1}\sx{\angln j^*}
+\end{empheq}
+
+\paragraph{Valeur à $t=n+1$}
+\begin{gather*}
+P(1+j)^{n} + ... + P\gamma^{n-1}(1+j)\\
+= ... \\
+= P \gamma^{n-1} \sx{\angln j^*}(1+j) \\
+\end{gather*}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+P \gamma^n\sx**{\angln j^*}
+\end{empheq}
+
+\subsubsection{... avec fréquence de versement supérieure à fréquence de variation géométrique}
+
+Supposons $n \times m$ versements égaux, taux $j$ par période et une \emph{augmentation} des versements tous les $m$ versements.
+
+\begin{displaymath}
+\begin{aligned}
+P_1		& = P_2		& = ...		& = P_m		& = P 		\\
+P_{m+1}	& = P_{m+2}	& = ...		& = P_{2m}	& = P\gamma 	\\
+...		\\
+P_{m(n-1) + 1}	& = P_m(n-1)+2	& = ...	& = P_{mn}	& = P\gamma^{n-1} \\
+\end{aligned}
+\end{displaymath}
+
+\underline{Exemple concret pour démontrer les prochaines formules} : 
+% graphique à insérer ici plus tard
+%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%
+%%%%%%%%%%%
+%%%%%%%%%%%
+\begin{displaymath}
+\begin{aligned}
+m = 4	&\quad  n = 3	&\quad  j = 1\% \\
+\end{aligned}
+\end{displaymath}
+
+Alors,
+
+\begin{displaymath}
+\begin{aligned}
+A	& \quad	Pv^1 + pv^2 + Pv^3 + Pv^4		\\
+B	& \quad	P\gamma v^5 + P\gamma v^6 + P\gamma v^7	+ P \gamma v^8\\
+C	& \quad	P\gamma^2 v^9 + P \gamma^2 v^{10} + P \gamma^2 v^{11} + P \gamma^2 v^{12}		\\
+\end{aligned}
+\end{displaymath}
+
+Si on veut passer de $A$ à $B \rightarrow \gamma v^4$
+
+Si on veut passer de $A$ à $C \rightarrow \gamma^2 v^8$
+
+Donc,
+\begin{align*}
+\text{Valeur à $t=0$} & = P\ax{\angl{4} 1\%} + P \gamma \ax{\angl{4} 1\%} v^4 +  P \ax{\angl{4} 1\%} \gamma^2 v^8 \\
+& = P\ax{\angl{4} j^*} \underbrace{(1 + \gamma v^4 + \gamma^2 v^8)}_{\ax**{\angl{3} j^*}} \quad \text{,où } 1+j^* = \frac{(1,01)^4}{\gamma}\\
+\end{align*}
+Généralisation : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+P \ax{\angl{m} j^*} \cdot \ax**{\angln j^*} \quad \text{où } j^* = \frac{(1+j)^m}{\gamma} -1
+\end{empheq}
+
+\subsubsection{Modèle d'évaluation des actions par actualisation des dividendes}
+\begin{itemize}
+\item supposons prochain dividende : $D$
+\item Croissance par un facteur  $\gamma$ à chaque période
+\item Taux $j$ par période (qui est égale à l'intervalle entre 2 versements)\footnote{Note : le taux $j$ en contexte d'évaluation d'actions est plus élevé, car il y a un risque supérieur.}
+\item dividende payable à perpétuité
+\end{itemize}
+
+Prix de l'action = VA des dividendes futurs.
+
+\begin{align*}
+\text{Prix}	& = Dv^1 + D\gamma v^2 + D \gamma^2 v^3 + ... \\
+		& = \sum_{k=0}^\infty D \gamma^k (1+j)^{-k-1} \\
+\end{align*}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+\text{Prix}	 = \frac{D}{1 + j - \gamma} 
+\end{empheq}
+
+Remarque : si $\gamma = 1 + g$
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+\text{Prix}	 = \frac{D}{j - g} 
+\end{empheq}
+
+\paragraph{Remarques}
+On suppose $1 + j > \gamma$, mais $\gamma < 1$ est possible (diminution des dividendes d'une pédiode à l'autre).
+\p
+L'action peut aussi être revendue. Supposons une revente après le versement d'un dividende : 
+\begin{itemize}
+\item Supposons la revente à $t = n$ au prix $Q$.
+\item Le prix à $t=0$ est dénoté $P$
+\end{itemize}
+
+\begin{align*}
+P 	= D(1+j)^{-1} + D\gamma(1+j)^{-2} + ... + D \gamma^{n-1} (1_j)^{-n} + Q(1+j)^{-n} \\
+P -  D \gamma^{-1} \ax{\angln j^*} + Q(1+j)^{-n} \quad \text{où } j^* = \frac{1+j}{\gamma} - 1 \\
+\end{align*}
+
+\subsection{Rentes dont les versements forment une série arithmétique}
+
+\subsubsection{Rentes croissantes}
+\begin{center}
+	\includegraphics[width = 12cm, height = 3cm]{illustrations/intro_serie_arithmetique.png}
+\end{center}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+(Ia)_{\angln j}	= \frac{\ax**{\angln j} - nv^{n}}{j}
+\end{empheq}
+\begin{proof}
+Si on écrit mathématiquement le dessin ci-haut : 
+\begin{align*}
+(Ia)_{\angln j} 	& = (1+j)^{-1} + 2(1+j)^{-2} + 3(1+j)^{-3} + ... + n(1+j)^{-n} \\
+	& = \sum_{k=1}^n k(1+j)^{-k} \\
+\end{align*}
+Si on évalue la série une période plus tard, ça serait équivalent à : 
+\begin{align*}
+(1+j)(Ia)_{\angln j}	& = 1 + 2v + 3v^2 + ... + (n-1)v^{(n-2)} + nv^{(n-1)} \\
+\red{(Ia)_{\angln j}} + j(Ia)_{\angln j}	& = 1 + 2v + 3v^2 + ... + (n-1)v^{(n-2)} + nv^{(n-1)} \\
+j(Ia)_{\angln j}	& = 1 + 2v + 3v^2 + ... + (n-1)v^{(n-2)} + nv^{(n-1)} \\ 
+		& \red{-v^{1} -2v^{2} - 3v^{3} - ... - \underbrace{nv^{n}}_{\text{ne se simplifie avec rien}}} \\
+		& = \underbrace{1 + v + v^2 + v^3 + ... v^{(n-1)}}_{\ax**{\angln j}} - nv^n \\ 
+j(Ia)_{\angln j}	& = \ax**{\angln j} - nv^{n} \\
+(Ia)_{\angln j}	& = \frac{\ax**{\angln j} - nv^{n}}{j} \\
+\end{align*}
+\end{proof}
+
+à $t=1$,
+\begin{align*}
+(Iä)_{\angln j}	
+			& = (1+j)(Ia)_{\angln j} \\
+			& = \frac{\ax**{\angln j} - nv^n}{\frac{j}{1+j}} \\
+			& = \frac{\ax**{\angln j} - nv^n}{d_j}
+\end{align*}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+(Iä)_{\angln j} = \frac{\ax**{\angln j} - nv^n}{d_j}
+\end{empheq}
+
+à $t = n$,
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+(Is)_{\angln j} = \frac{\sx**{\angln j} - n}{j}
+\end{empheq}
+
+à $t = n+1$,
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+(I\sx**{})_{\angln j} = \frac{\sx**{\angln j} - n}{d_j}
+\end{empheq}
+
+\subsubsection*{Généralisation}
+$P_k=  P + (k-1)\beta \quad k = 1,2,...,n$
+\n
+\begin{align*}
+\text{Valeur}_{\text{moment donnée}} & = (P-\beta) \blue{\diamond}_{\angln j} + \beta(I\blue{\diamond})_{\angln j}
+\end{align*}
+\blue{On peut remplacer le diamant par un $a,ä,s $ ou $\sx**{}$}.
+
+\subsubsection*{Exemple rapide}
+\begin{center}
+	\includegraphics[width = 6cm, height = 3cm]{illustrations/exemple_rapide_arithmetique.png}
+\end{center}
+On cherche la valeur à $t=0$ : 
+\begin{align*}
+A(0)	& = 75\ax**{\angl{5} j} + 25(Iä)_{\angl{5} j} \\
+\end{align*}
+
+\subsubsection{Rentes décroissantes}
+$P_k = n+1-  k$
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+(Da)_{\angln j} = \frac{n - \ax{\angln j}}{j}
+\end{empheq}
+\begin{proof}
+\begin{align*}
+(Da)_{\angln j}	& = nv + (n-1)v^2 + ... + 2v^{n-1} + v^n \\
+			& = \sum_{k=1}^n (n+1-k) v^k \\
+			& = ... \\
+			& = \frac{n - \ax{\angln j}}{j} \\
+\end{align*}
+\end{proof}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+(Dä)_{\angln j} = \frac{n - \ax{\angln j}}{d_j}
+\end{empheq}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+(Ds)_{\angln j} = \frac{n(1+j)^n - \sx{\angln j}}{j}
+\end{empheq}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+(D\sx**{})_{\angln j} = \frac{n(1+j)^n - \sx{\angln j}}{d_j}
+\end{empheq}
+
+{\remarque On peut prouver que $(Ia)_{\angln j} + (Da)_{\angln j} = (n+1)\ax{\angln j}$}
+\begin{align*}
+\frac{\ax**{\angln j} - n(1+j)^{-n}}{j} + \frac{n  - \ax{\angln j}}{j} & = \frac{n(1- (1+j)^{-n})  + 1 - (1+j)^{-n}}{j} \\
+& = \frac{(n+1)(1- (1+j)^{-n})}{j} \\
+& = (n+1)\ax{\angln j} \\
+\end{align*}
+
+\subsubsection*{Généralisation}
+.
+\begin{displaymath}
+\begin{aligned}
+P_k	& = P - (k-1)\beta				& \quad k = 1,2,...,n \\
+	& = (P-n\beta) + (n+1-k)\beta		& \quad k=1,2,...,n \\
+\end{aligned}
+\end{displaymath}
+
+\fbox{Valeur $=(P-n\beta) \blue{\diamond}_{\angln j} + \beta(D\blue{\diamond})_{\angln j}$}
+
+\subsubsection{Rentes continues}
+$h(t)$ : taux de versement annuel à $t$, $0 \le t \le n$.
+
+\subsubsection*{Valeur actualisée à $t=0$, avec $\delta$ non constant}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+\int_0^n h(u) \underbrace{e^{-\int_0^u \delta_s ds}}_{e^{-\delta u} \text{ si } \delta_t = \delta\ \forall\ t} du
+\end{empheq}
+
+\subsubsection*{Valeur accumulée à $t=n$, avec $\delta$ non constant}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+\int_0^n h(u) \underbrace{e^{\int_u^n \delta_s ds}}_{e^{\delta(n-u)} \text{ si } \delta_t = \delta\ \forall\ t} du
+\end{empheq}
+
+
+\subsubsection*{Rente continue croissante}	% rente croissante (continue)
+Si $h(t) = t$ , $0 \le t \le n$ et $ \delta_t = \delta\ \forall\ t$.
+
+Par intégration par partie, on peut prouver la formule suivante (beaucoup plus simple que d'intégrer!)
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+(\bar{I}\bar{a})_{\angln i} = \frac{\ax*{\angln i} - ne^{-\delta n}}{\delta}
+\end{empheq}
+
+et
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+(\bar{I}\bar{s})_{\angln i} = \frac{\sx*{\angln i} - n}{\delta}
+\end{empheq}
+
+\subsubsection*{Rente décroissante}	% rente décroissante (continue)
+Si $h(t) = n-t$ , $0 \le t \le n$ et $ \delta_t = \delta\ \forall\ t$.
+
+Même chose, on peut intégrer par partie pour se débarasser de l'intégrale et obtenir ces formules : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+(\bar{D}\bar{a})_{\angln i} = \frac{n - \ax*{\angln i}}{\delta}
+\end{empheq}
+
+et
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+(\bar{D}\bar{s})_{\angln i} = \frac{ne^{\delta n} - \sx*{\angln i}}{\delta}
+\end{empheq}
+
+\subsubsection*{Taux d'intérêt inconnu...}
+\hl{à compléter}

@@ -1,0 +1,37 @@
+% SECTION 1.4 TAUX INTÉRÊT NOMINAUX
+Nous avons convenu que, par défaut, le taux d'intérêt est annuel.
+
+Donc, un taux effectif de 8\%/an = a(t) = $(1,08)^t$
+\n
+Mais un taux nominal de 8\%/an = ???
+
+\subsubsection{Exemple}
+24\%/an capitalisé mensuellement
+\n
+$\frac{24\%}{12} = 2\% / mois \Rightarrow $ taux effectif mensuel de 2\%
+
+\begin{gather*}
+i^{(m)} \text{: taux d'intérêt annuel (nominal), composé $m$ fois par an} \\
+\frac{i^{(m)}}{m} \text{: taux d'intérêt effectif par $(\frac{1}{m})$ d'année.} \\
+a(t) = (1+i)^t = \left( 1+\frac{i^{(m)}}{m} \right)^{t \cdot m} \\
+\Rightarrow a+i = \left( 1 + \frac{i^{(m)}}{m} \right)^m - 1 \\
+\end{gather*}
+Donc,
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+i = \left( 1 + \frac{i^{(m)}}{m} \right)^m - 1
+\end{empheq}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+i^{(m)} = m \left( (1 + i)^{\frac{1}{m}} - 1 \right)
+\end{empheq}
+où $i^{(m)} < i$ et $ m>1$.
+
+\subsubsection{Exemple 1.9 (modifié)}
+$i_{A}^{(2)}$ = 15,25\% et $i_{B}^{(12)} = 15\%$, $i_{A}^{(12)} = ?$
+\begin{gather*}
+\left( 1 + \frac{i_{A}^{(2)}}{2} \right)^2 = \left( 1 + \frac{i_{A}^{(12)}}{12} \right)^12 \\
+\Rightarrow i_{A}^{(12)} = 12 \left[ \left(1 + \frac{i_{A}^{(2)}}{2} \right)^{2/12} - 1\right ] \\
+i_{A}^{(12)} = 0,147869192 \\
+i_{A}^{(12)} < i_{B}^{(12)}
+\end{gather*}
+% FIN SECTION 1.4 TAUX INTÉRÊT NOMINAUX ET EFFECTIFS

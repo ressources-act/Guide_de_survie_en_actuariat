@@ -1,0 +1,97 @@
+\emph{(En anglais : Present value)}
+
+\red{\st{valeur présente}}  ça ne veut rien dire, mauvaise traduction.
+\p
+Inversement, on peut se demander combien d'argent il faut aujourd'hui pour accumuler un certain montant $K$ à $t$. Il s'agit alors de la valeur actualisée (à 0) de $K$.
+\p
+\begin{tabular}{ll}
+On connaît 	& $A(n) = k$		\\
+			& $a(t) pour t \ge 0$	\\
+\end{tabular}
+\n			
+\fbox{$A(0) \cdot a(n) = k$} $\egal A(0) = \frac{k}{a(n)} = k(a())^{-1}$			
+
+{\remarque{Il faut connaître les montants, le moment où chaque montant est versé et le moment où on fait l'évaluation de chaque montant.}}
+
+	\begin{center}		% INSERTION GRAPHIQUE ÉVALUATION
+	\includegraphics[width = 7cm, height = 7cm, ] {eval1.png}		% on peut préciser les dimensions de l'image	
+	\hl{Il faut mettre des signes distincts ($+/-$) si dépôts et retraits}
+	\end{center}
+
+\begin{description}
+	\item[a(t)]{permet de déplacer $1\$$ $t$ années dans le \underline{futur}.}
+	\item[v(t)]{permet de déplacer $1\$$ $t$ années dans le \underline{passé}.}
+\end{description}
+
+\begin{equation*}
+v(t) = \frac{1}{a(t)} \text{ si } t \ge 0
+\end{equation*}
+
+\subsubsection{Intérêt composé :} 		% INTÉRÊT COMPOSÉ
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+v(t) = \frac{1}{a(t)} = \frac{1}{(1+i)^t} = \left(\frac{1}{1+i} \right)^t = (1+i)^{-t} \text{ si } t \ge 0
+\end{empheq}  
+
+\fbox{Notation}
+\begin{equation*}
+v = \frac{1}{1+i}
+\end{equation*}
+On peut aussi préciser le taux sous-jacent utilisé : $v_{0,08} = \frac{1}{1+ 0,08}$.
+
+{\remarque{\textbf{facteur d'accumulation : } plus $i$ est élevé, plus ça prend de la valeur et moins ça prends de temps pour atteindre une valeur choisie}}
+
+{\remarque{\textbf{facteur d'actualisation : } plus $i$ est élevé, moins ça vaut cher aujourd'hui \hl{(relation inverse entre rendement et le prix}}}
+\p
+\underline{Exemple 1.5 du livre (corrigé)}
+
+Mario veut 1 000 000\$ dans 25 ans. Voici ses options : 
+\begin{itemize}
+	\item{Fond commun de placement avec un taux historique de $19,5\%/$an}
+	\item{Coupon zéro avec un taux garanti de $11,5\%/$an.}
+\end{itemize}
+a) $1000000(1,195)^{-25} = 11 635,96\$$
+\n
+b) $1000000(1,115)^{-25} = 65 785,22\$$
+\n
+c) Mario a 25 000\$ aujourd'hui, quel doit être son taux minimal pour atteindre son objectif?
+\begin{gather*}
+25 000(1+i)^{25} = 1000000 \egal i=\left(\frac{1000000}{25000} \right) ^{\frac{1}{25}} - 1 \egal \text{\fbox{i = 0,158097}}
+\end{gather*}
+d) 
+\begin{gather*}
+11 635,96\$(1,115)^t = 1000000 \egal t = \frac{\ln{1000000/11635,96}}{\ln{1,115}} \egal \text{\fbox{t = 40,914}}
+\end{gather*}
+
+{\remarque Bien lire les énoncés des questions pour s'assurer de bien répondre!}
+
+\subsubsection{Intérêt simple :}		% INTÉRÊT SIMPLE
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+a(t) = 1 + it 
+\end{empheq}
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}	% ÉQUATION MATH DANS UNE BOÎTE
+v(t) = \frac{1}{1 + it}
+\end{empheq}						% FIN DE L'ÉQUATION
+
+\subsection{Bons du Trésor canadien}
+Éléments à savoir : 
+\begin{itemize}
+	\item{intérêt simple}
+	\item{année de 365 jours}
+	\item{l'échéance = multiple de 7 jours}
+	\item{prix basé sur valeur de 100\$ à l'échéance}
+\end{itemize}
+En résumé : 
+\n
+\includegraphics[width = 14cm, height = 3cm, ] {tbills1.png}
+\n
+On calcule le prix d'un \emph{T-Bills} avec cette formule : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+Prix = 100 \left(1+ \frac{i \cdot t}{365}\right)^{-1} \text{où $t$ est en jour}
+\end{empheq}
+\n
+\subsubsection{Exemple}
+Bon du trésor canadien 91 jours avec $i=0,6\%$. Quel est le prix du \emph{T-Bills}?
+\begin{gather*}
+Prix = 100(1+\frac{0,006 \cdot 91}{365})^{-1} = 99,85\$
+\end{gather*}
+

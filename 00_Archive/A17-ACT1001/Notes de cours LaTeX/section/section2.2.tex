@@ -1,0 +1,213 @@
+% Section 2.2 ACT1001 (automne 2017)
+% Retranscription de Gabriel Cr?peault-Cauchon
+\textbf{Quelques généralisations...}
+
+\subsection{Lorsque la fréquence de versement $\ne$ fréquence des intérêts}
+
+Que faire? Il suffit de trouver le taux effectif pour la période qui s'écoule entre 2 versements. En d'autres mots, on cherche $j = \frac{i^{(m)}}{m}$, où $m$ est le nombre de versements par année.
+
+\subsubsection*{Exemple 2.13}
+On sait que $m=4$. On cherche notre taux $j$ qu'on doit utiliser dans nos calculs de versements sachant...
+\begin{enumerate}
+\item $i^{(12)} = 9\%$
+\begin{gather*}
+\frac{i^{(12)}}{12} = \frac{9\%}{12} = 0,75\% /\text{mois} \\
+\left( 1 + \frac{i^{(12)}}{12} \right)^{12} = \left( 1 + \frac{i^{(4)}}{4} \right)^4 \egal j = \frac{i^{(4)}}{4} = (1,0075)^{12/4} - 1 \\
+j = 2,2669172\%
+\end{gather*}
+\item $i = 10\%$
+\begin{gather*}
+1 + i = \left( 1 + \frac{i^{(4)}}{4} \right)^4 \\
+j = \frac{i^{(4)}}{4} = (1 + 0,10)^{1/4} - 1 = 2,4113689\% \\
+\end{gather*}
+\end{enumerate}
+
+\subsection{Rentes payable $m$ fois l'an}
+\begin{center}
+	\includegraphics[width = 10.5cm, height = 2cm]{illustrations/rente_payablem.png}
+\end{center}
+Valeur à $=n$ : $ P s_{\angl{n \cdot m} j}$, où $j = \frac{i^{(m)}}{m}$.
+\begin{align*}
+P s_{\angl{n \cdot m} j}	& = P \frac{\left(1+\frac{i^{(m)}}{m}\right)^{n \cdot m} - 1}{\frac{i^{(m)}}{m}} \\
+	& = mP \frac{ \left( \left(1+\frac{i^{(m)}}{m}\right)^m \right)^n - 1}{i^{(m)}} \\
+	& = mP \frac{(1+i)^n - 1}{i^{(m)}} \\
+	& = mP s_{\angln i}^{(m)} \\
+\end{align*}
+Alors,
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+mP s_{\angln i}^{(m)} = mP \frac{(1+i)^n - 1}{i^{(m)}}
+\end{empheq}
+
+\fcolorbox{red}{white}{ \bcattention $mP$ est le montant total versé par année.}
+
+\fcolorbox{red}{white}{\bcattention $m \times n$ doit être un entier. Mais $n$ n'a pas besoin d'être un entier.}
+
+
+En résumé,
+\begin{displaymath}
+	\begin{array}{|c|c|c|}
+	\hline
+	& \text{sans tréma}	& \text{avec tréma}	\\
+	\hline \hline
+a_{\angln i}^{(m)}  & \frac{1 - (1+i)^{-n}}{i^{(m)}} & \frac{1 - (1+i)^{-n}}{d^{(m)}} \\
+	\hline
+s_{\angln i}^{(m)}  & \frac{(1+i)^n - 1}{i^{(m)}} & 	\frac{(1+i)^n - 1}{d^{(m)}} \\
+	\hline
+	\end{array}
+\end{displaymath}
+
+\subsection{Rentes continues}
+Définition : ça paie continûment. Dans la pratique, ça n'existe pas. Le plus loin qu'on va, c'est des versements au quotidien. Toutefois, en théorie, on peut calculer ce type de rentes : 
+
+% utilisation du package actuarialsymbol pour avoir des raccourcis clavier
+\begin{align*}
+\lim_{m \to \infty} a_{\angln i}^{(m)} & = \ax*{\angln i} & = \frac{1 - (1+i)^{-n}}{\ln (1+i)} & = \frac{1 - e^{-\delta n}}{\delta}\\
+\lim_{m \to \infty} s_{\angln i}^{(m)} & = \sx*{\angln i} & = \frac{(1+i)^n -1}{\ln (1+i)} & = \frac{e^{\delta n} - 1}{\delta}\\
+\end{align*}
+
+\begin{displaymath}
+\begin{aligned}
+\ax*{\angln i} = \int_{0}^n e^{-\delta t} dt	 &\quad \sx*{\angln i} = \int_{0}^n e^{\delta (n-t)} dt \\
+a_{\angln i}^{(m)} = \sum_{k=1}^{n \cdot m} \frac{1}{m} (1+i)^{-k/m} & \quad \ax*{\angln i}[(m)] = \sum_{k=0}^{nm-1} \frac{1}{m} (1+i)^{-k/m} \\
+\sx{\angln i}[(m)] = \sum_{k=1}^{n \cdot m} \frac{1}{m} (1+i)^{n - \frac{k}{m}}	& \quad \sx*{\angln i}[(m)] = \sum_{k=0}^{nm -1} \frac{1}{m} (1+i)^{n - \frac{k}{m}}
+\end{aligned}
+\end{displaymath}
+
+\subsection{Résoudre pour le nombre de versements d'une rente \emph{(durée inconnue)}}
+Versement $P$ fixé, taux $j$ connu et valeur visée $X$ (actualisée ou accumulée).
+\begin{displaymath}
+\begin{aligned}
+X = P \ax{\angln j}	& \egal & n & = \frac{-\ln(1- \frac{Xj}{P})}{\ln(1+j)} \\
+X = P \ax**{\angln j}	& \egal & n & = \frac{-\ln(1- \frac{Xd_j}{P})}{\ln(1+j)} \\
+X = P \sx{\angln j}	& \egal & n & = \frac{\ln(1+ \frac{Xj}{P})}{\ln(1+j)} \\
+X = P \sx**{\angln j}	& \egal & n & = \frac{\ln(1+ \frac{Xj}{P(1+j)})}{\ln(1+j)} \\
+\end{aligned}
+\end{displaymath}
+\fcolorbox{teal}{white}{ \bcetoile Souvent, $n\not\in \entiers$, que faire?}
+
+\navyblue{Commençons par considérer $X = P\ax{\angln j}$. Nous pouvons avoir $[n]$ versements de $P$... et un peu plus.}
+\begin{gather*}
+P\ax{\angl{[n]} j} < X <P\ax{\angl{[n+1]} j}
+\end{gather*}
+
+On a 2 possibilités : 
+\begin{enumerate}
+\item Épuiser le capital à $t = [n]$ avec un versement $Q > P$ (\emph{balloon payment}).
+\begin{align*}
+X 	& = P\ax{\angl{[n+1]} j} 	+ Q(1+j)^{-[n]} \\
+	& = P\ax{\angl{[n]} j} 	+  (Q-P)(1+j)^{-[n]} \\
+\end{align*}
+\item Épuiser le capital à $t = [n+1]$ avec un versement $R < P$ (\emph{drop payment}).
+\begin{align*}
+X 	& = P\ax{\angl{[n]} j}	+ R(1+j)^{-[n+1]} \\		
+\end{align*}
+Remarque : On peut poser les deux méthodes de résolution équivalentes et trouver que $\mathbf{R = (Q-P)(1+j)}$.
+\end{enumerate}
+
+
+\subsubsection*{Exemple}
+$X = 1000$, $P = 50$ et $j=4\%$. Trouver $n$.
+\begin{displaymath}
+1000 = 50\ax{\angln 4\%} \egal n = \frac{-\ln \left( 1 - \frac{1000 \times 0,04}{50} \right)}{\ln (1,04)} = 41,035
+\end{displaymath}
+On doit trouver la valeur du dernier prélèvement pour avoir $[n]$ versements.
+
+Si on résout avec la première possibilité : 
+\begin{align*}
+1000 & = 50\ax{\angl{40} 4\%} + Q(1,04)^{-41} \\
+	& = 50\left( \frac{1 - (1,04)^{-40}}{0,04} \right) + Q(1,04)^{-41} \\
+\	& = 51,73\$ \\	
+\end{align*}
+Si on résout avec la deuxième méthode : 
+\begin{align*}
+1000	& = 50\ax{\angl{41} 4\%} + R(1,04)^{-42} \\
+		& = 50\left( \frac{1 - (1,04)^{-41}}{0,04} \right) + R(1,04)^{-42} \\
+R		& = 1,80\$ \\		
+\end{align*}
+Remarque : $(51,73 - 50)(1,04) = 1,80$.
+\p
+\navyblue{Poursuivons en considérant $X = P\sx{\angln j}$, $n \not\in \entiers$ avec $[n]$ versements de $P$ qui ne suffisent pas tout à fait...}
+\begin{gather*}
+P\sx{\angl{[n]} j} < X <P\sx{\angl{[n+1]} j}
+\end{gather*}
+
+trois possibilités : 
+\begin{enumerate}
+\item Faire un $[n]\up{e}$ paiement $Q > P$.
+\begin{align*}
+X 	& = P\sx{\angl{[n-1]} j} + Q \\
+	& = P\sx{\angl{[n]} j} + (Q-P) \\
+\end{align*}
+\item Faire un $[n+1]\up{e}$ versement $R < P$ \red{(si $P\sx{\angl{[n]} j}(1+j) < X$).}
+\begin{align*}
+X 	& = P\sx{\angl{[n]} j} + R \\
+\end{align*}
+\item Attendre $X$ ? $t^{*}$ \green{(si $P\sx{\angl{[n]} j}(1+j) > X$).}
+\begin{align*}
+X = P\sx{\angl{[n]} j}(1+j)^{t^{*}-[n]} \\
+\end{align*}
+\end{enumerate}
+
+\subsubsection*{Exemple 1.15 \emph{amélioré}}
+\hl{retranscrire le problème du livre ici plus tard}
+\begin{enumerate}
+\item $x = 1000$, $j=4\%$ et $P=50$
+\begin{align*}
+1000 = 50 \sx{\angln 4\%} \egal n = 14,987 \text{ans} \\
+\end{align*}
+$n \not\in \entiers$, donc on peut trouver le dernier paiement selon les 2 possibilités : 
+\begin{enumerate}
+\item
+\begin{align*}
+1000	& = 50 \sx{\angl{13} 4\%} (1,04) + Q \\
+		& = ... \\
+	Q	& = 135,40\$
+\end{align*}
+
+\item
+\begin{align*}
+50 \sx{\angl{14} 4\%}(1,04) = ... = \red{951,18 < 1000}
+\end{align*}
+Alors,
+\begin{align*}
+1000	& = 50\sx{\angl{14} 4\%} (1,04) + R \\
+		& = ... \\
+	R	& = 48,82\$ \\
+\end{align*}
+\end{enumerate}
+
+\item Si $\mathbf{P = 25\$}$...
+
+\begin{align*}
+1000 = 25 \sx{\angln 4\%} \egal n = 24,3 \\
+\end{align*}
+
+Alors,
+
+\begin{enumerate}
+\item
+\begin{align*}
+1000	& = 25 \sx{\angl{23} 4\%}(1,04) + Q \\
+		& = ... \\
+	Q	& = 47,93\$ \\
+\end{align*}
+
+\item
+\begin{align*}
+25 \sx{\angl{24} 4\%}(1,04) = ... = \darkgreen{1016,15 > 1000}
+\end{align*}
+Alors,
+\begin{align*}
+1000	& = 25 \sx{\angl{24} 4\%} (1,04)^{t^* - 24} \\
+		& = 25 \left( \frac{(1,04)^{24} - 1}{0,04} \right) (1,04)^{t^* - 24} \\
+(1,04)^{t^* - 24} & = 1,02347254 \\
+t^*	& = 24 + \frac{\ln(1,023473254)}{\ln(1,04)} \\
+	& = 24,785 \\
+\end{align*}
+\end{enumerate}
+\end{enumerate}
+
+\subsection{Résoudre pour le taux d'intérêt d'une rente (intérêt inconnu)}
+On sait déjà comment faire, ça nous prends la \emph{BA II Plus}. On \emph{Compute} notre taux d'intérêt.
+
+% Fin de la section 2.2
