@@ -74,19 +74,36 @@
   &= \frac{n!}{(k_1)! \, (k_2)! \, ..., (k_m)!}
   \end{align*}
   \item[] Où {$n = \sum_{i = 1}^{m} k_i$}
-  \item[Théorème multinomial :] Le coefficient multinomial aide à trouver les coefficients devant les variables lors du développement de multinômes. Afin de mieux comprendre le théorème multinomial, voici un exemple :
-  \item[]{$(-3x+5y^2)^4 = \sum_{}^{} \binom{4}{n_1 , n_2} (-3x)^{n_1} (5y^{2})^{n_2}$}
-  \item[] Si on cherche le coefficient devant les variables $x^{3}y^{2}$, on remplace $n_1$ par 3 et $n_2$ par 1 et on obtient -540.
+  \item[Théorème multinomial :] Le coefficient multinomial aide à trouver les coefficients devant les variables lors du développement de multinômes. 
+  \begin{itemize}
+	  \item Afin de mieux comprendre le théorème multinomial, voici un exemple :
+	  	\setlength{\mathindent}{-1cm}
+		  \begin{align*}
+			(-3x+5y^2)^4 
+			&=	\sum_{}^{} \binom{4}{n_1 , n_2} (-3x)^{n_1} (5y^{2})^{n_2}
+		  \end{align*}
+		\setlength{\mathindent}{1cm}
+	 \item Si on cherche le coefficient devant les variables $x^{3}y^{2}$, on remplace $n_1$ par 3 et $n_2$ par 1 et on obtient -540.
+\end{itemize} 
 \end{description}  
 \begin{description}
-  \item[Solutions entières non-négatives :] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants». Il peut y avoir aucun objet dans un «contenant». La solution à ce type de problème est donnée par $\binom{n+r-1}{r-1}$ où n est le nombre d'objets et r le nombre de «contenants». S'il est mentionné dans le problème qu'il n'est pas nécessaire d'utiliser tous les objets pour les mettre dans les contenants, on peut rajouter un contenant pour les objets «non-utilisés».
-  \item[Solutions entières positives:] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants» et ce, de façon à ce que chaque «contenant» ait au moins un objet. La solution à ce type de problème est donnée par $\binom{n-1}{r-1}$.
+  \item[Solutions entières non-négatives :] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants». 
+	\begin{itemize}
+		\item Il peut y avoir aucun objet dans un «contenant». 
+		\item La solution à ce type de problème est donnée par $\binom{n+r-1}{r-1}$ où n est le nombre d'objets et r le nombre de «contenants». 
+		\item S'il est mentionné dans le problème qu'il n'est pas nécessaire d'utiliser tous les objets pour les mettre dans les contenants, on peut rajouter un contenant pour les objets «non-utilisés».
+	\end{itemize}
+  \item[Solutions entières positives:] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants» et ce, de façon à ce que chaque «contenant» ait au moins un objet. 
+  \begin{itemize}
+	  \item La solution à ce type de problème est donnée par $\binom{n-1}{r-1}$.
+  \end{itemize} 
 \end{description}
 \end{probch1}
 
 \pagebreak
 \section{Chapitre 2: Axiomes de probabilité}
 %faut trouver une façon de ramener les colonnes à gaucher comme dans probch1 FC
+% effectivement,  pas encore trouvé comment (AJvR)
 \begin{rappel}{Domaine et définition}
 \begin{description}
 	\item[Random Process:]	Famille de variable aléatoires $\{X_{t}: t \in T\}$ qui associe un espace d'états $\Omega$ à un ensemble $S$.
@@ -135,8 +152,8 @@
   \item[] ($A_1$ {$\cap$} $A_2$) {$\cap$} $A_3$ = $A_1$ {$\cap$} ($A_2$ {$\cap$} $A_3$)
   \item[Distributivité :] ($A_1$ {$\cup$} $A_2$) {$\cap$} $A_3$ = ($A_1$ {$\cap$} $A_3$) {$\cup$} ($A_2$ {$\cap$} $A_3$)
   \item[] ($A_1$ {$\cap$} $A_2$) {$\cup$} $A_3$ = ($A_1$ {$\cup$} $A_3$) {$\cap$} ($A_2$ {$\cup$} $A_3$)
-  \item[Loi de DeMorgan :] ($\bigcup_{i=1}^{n} A_i$)^{c} = ($\bigcap_{i=1}^{n} A_i^{c}$)
-  \item[] ($\bigcap_{i=1}^{n} A_i$)^{c} = ($\bigcup_{i=1}^{n} A_i^{c}$)
+  \item[Loi de DeMorgan :] $(\bigcup_{i = 1}^{n} A_{i})^{c} = (\bigcap_{i=1}^{n} A_i^{c})$
+  \item[] $(\bigcap_{i=1}^{n} A_{i})^{c} = (\bigcup_{i=1}^{n} A_i^{c})$
 \end{description}
 \end{probch2}
 
