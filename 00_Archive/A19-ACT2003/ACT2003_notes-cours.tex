@@ -1,0 +1,64 @@
+\documentclass[10pt, french]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{../Cheatsheets/cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Modèles linéaires en actuariat}
+\def\sigle{ACT-2003}
+\def\auteur{Alec James van Rassel}
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
+\def\SectionColor{green!50!black}
+\def\SubSectionColor{green!20!black}
+%% -----------------------------
+%% Definition of LaTex math commands
+%% -----------------------------
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+% 
+% Débute numérotation des chapitres à 2 pour suivre les notes de Marie-Piere.
+% 
+\setcounter{section}{1}
+
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+\begin{multicols*}{2}
+\section*{Algorithme de Newton-Raphson - \textit{plus de détails}}
+
+On rappel l'estimation de Taylor:
+\begin{equation*}
+	f(x) \approx f(x_0) + f'(x_0) (x - x_0)
+\end{equation*}
+
+Pour l'algorithme, on utilise la fonction de Score $S(\bm{\beta}) = \dot{\ell}(\bm{\beta}; y_1, \dots, y_n)$ autour d'un point arbitraire $\bm{\beta}^{(0)}$:
+\begin{align*}
+	\dot{\ell}(\bm{\beta}) 
+		&\approx \dot{\ell}(\bm{\beta}^{(0)}) + \ddot{\ell}(\bm{\beta}^{(0)}) (\bm{\beta} - \bm{\beta}^{(0)}) \\
+		&\Rightarrow	\bm{\beta} = 
+			\bm{\beta}^{(0)} + \left\{ \ddot{\ell}(\bm{\beta}^{(0)}) \right\}^{-1}
+			\left[
+				\dot{\ell}(\bm{\beta}) - \dot{\ell}(\bm{\beta}^{(0)})
+			\right].
+\end{align*}
+
+Lorsque $\bm{\beta}$ est inconnu, il est estimé avec l'\textbf{EMV} $\bm{\hat{\beta}}$:
+\begin{align*}
+	\bm{\beta} 
+		&=	\bm{\hat{\beta}}^{(0)} + \left\{ \ddot{\ell}(\bm{\hat{\beta}}^{(0)}) \right\}^{-1}
+			\left[
+				\dot{\ell}(\bm{\hat{\beta}}) - \dot{\ell}(\bm{\hat{\beta}}^{(0)})
+			\right];
+\end{align*}
+
+Ici, $\dot{\ell}(\bm{\hat{\beta}}) = 0$ par définition puisque la méthode du MV pose la dérivée égale à 0 pour maximiser la fonction.
+
+
+\end{multicols*}
+\end{document}
+

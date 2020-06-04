@@ -1,0 +1,83 @@
+\documentclass[oneside, 12pt, french]{book}
+\input{preambule_utf8.tex}
+\newcommand{\TITLE}{%
+Guide de survie  %The blank line after is needed.
+
+\vspace{3mm}
+en Actuariat
+}
+\newcommand{\AUTHORS}{%
+Gabriel Crépeault-Cauchon \href{https://github.com/gabrielcrepeault}{\faGithub}  \href{https://www.linkedin.com/in/gabrielcrepeault/}{\faLinkedinSquare}  \\
+Nicholas Langevin  \href{https://github.com/NicholasLangevin}{\faGithub}  \href{https://www.linkedin.com/in/nicholas-langevin-216474182/}{\faLinkedinSquare} \\
+}
+
+\begin{document}
+% Page titre et table des matières
+\include{Main-Couverture}
+
+\frontmatter % PRÉFACE
+\include{Main-Introduction}
+\include{Main-ListeCollaborateurs}
+
+{
+    \hypersetup{linkcolor=tocColor}
+    \bfseries % Pas encore sur si c'est plus beau...
+    \tableofcontents
+}
+\newpage
+% ------
+
+\mainmatter % début du document principal
+
+% FONDEMENTS MATHÉMATIQUES
+\part{Fondements mathématiques utiles}
+
+\include{Chapter-NotionCalculs}
+\label{Chapter:NotionCalculs}
+
+\include{Chapter-AlgebreLineaire}
+\label{Chapter:AlgebreLineaire}
+
+
+% UNIVERSITÉ
+\part{Matière vue dans le baccalauréat en actuariat}
+
+\include{Chapter-ProbEtStatistique}
+\label{Chapter:ProbEtStatistique}
+
+\include{Chapter-MathematiqueFinanciere}
+\label{Chapter:MathematiqueFinanciere}
+
+\include{Chapter-ProcessusAleatoires}
+\label{Chapter:ProcessusAleatoires}
+
+\include{Chapter-TheorieDuRisque}
+\label{Chapter:TheorieDuRisque}
+
+
+% EXAMENS PROFESSIONNELS
+\part{Matière pour les examens professionnels}
+
+\include{Chapter-SerieChronologique}
+\label{Chapter:SerieChronologique}
+
+\include{Chapter-ExtendedLinearModels}
+\label{Chapter:ExtendedLinearModels}
+
+\include{Chapter-StatisticalLearning}
+\label{Chapter:StatisticalLearning}
+
+% ANNEXES DU DOCUMENT
+\appendix
+\chapter{Principales distribution de probabilité utilisées}
+introduction
+
+\include{Appendix-PreuveImportante}
+\label{Appendix:PreuveImportante}
+
+\include{Appendix-GitWorkflow}
+\label{Appendix:GitWorkflow}
+
+
+
+\end{document}

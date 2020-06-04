@@ -1,0 +1,512 @@
+% Annexe des preuves
+\chapter{Résultats (et démonstrations) utiles}
+
+% \chapter{Preuves}
+\section{Stop-Loss ($\pi_X(d)$)}
+\label{preuve:stoploss}
+Dans un contexte continu,
+\begin{align*}
+\pi_X(d) = \int_d^\infty \overline{F}(d) du
+\end{align*}
+
+\begin{proof}
+\begin{align*}
+\pi_X(d)		& = E[\max(X-d,0)] \\
+	& = \int_0^\infty \max(x - d, 0) F_X(x) dx \\
+	& = \int_0^\infty (x-d) 1_{\{X > d \}} f_X(x) dx \\
+	& = \int_d^\infty (x-d) f_X(x) dx \\
+	& = \int_d^\infty x f_X(x) dx - \int_d^\infty d f_X(x) dx \\
+\end{align*}
+On doit alors faire une intégration par partie, en posant
+
+\begin{displaymath}
+\begin{aligned}
+u	& = x		& du	 & = dx \\
+dv	& = dF_X(x)	& v	 & = -S(x) \\	
+\end{aligned}
+\end{displaymath}
+Note : si on fait tendre $S(x)$ vers l'infini, ça va tendre plus rapidement vers 0 que $x$ seul.
+\begin{align*}
+\pi_X(d)	& = -xS(x) \eval_d^\infty - \int_d^\infty - S(x) dx - d \big(F(\infty) - F(d) \big) \\
+	& = 0 + \cancel{dS(d)} + \int_d^\infty S(x) dx - \cancel{dS(d)} \\
+	& = \int_d^\infty S(x) dx \\
+\end{align*}
+\end{proof}
+Il existe aussi le contexte discret : 
+\begin{align*}
+\pi_X(d) = \sum_{k=d}^\infty S(k)
+\end{align*}
+\begin{proof}
+\begin{align*}
+\pi_X(k) 	& = E[\max(N-k),0)] \\
+	& = \sum_{j=k}^\infty (j-k) P(N = j) \\
+	& = (k-k) P(N = k) + ((k+1)-k) P(N = k+1) + P((k+2)-k) P(N = k+2) + ... \\
+	& = P(N = k+1) + 2 P(N = k+2) + 3 P(N = k+3) + ... \\
+	& = \underbrace{(P(N = k+1) + P(N = k+2) + P(N = k+3) + ...)}_{S(k)} \\
+	& + \underbrace{(P(N = k+2) + P(N = k+3) + P(N = k+4) + ...)}_{S(k+1)} \\
+	& + \underbrace{(P(N = k+3) + (PN = k+4) + P(N = k+5) + ...)}_{S(k+2)} \\
+	& + ... \\
+	& = \sum_{i = k}^\infty S(i)
+\end{align*}
+\end{proof}
+
+\section{TVaR}
+\subsection{Les 3 formes explicites de la $TVaR$	}
+\label{sec:preuve}
+
+Pour la $TVaR$, il y a 3 preuves à bien connaître : 
+\begin{equation*}
+TVaR_\kappa(X) = \frac{1}{1 - \kappa} \pi_X(VaR_\kappa(X)) + VaR_\kappa(X)
+\end{equation*}
+
+
+\begin{proof}
+\label{preuve:tvar_stoploss}
+\begin{align*}
+TvaR_\kappa(X)  & = \frac{1}{1 - \kappa} \int_\kappa^1 VaR_u(X) du \\
+    & = \frac{1}{1 - \kappa} \int_\kappa^1 (VaR_u(X) - VaR_\kappa(X) + VaR_\kappa(X)) du \\
+    & = \frac{1}{1 - \kappa} \int_\kappa^1 (\underbrace{VaR_u(X)}_{\substack{\text{fonction} \\ \text{quantile}}} - VaR_\kappa(X)) du + \underbrace{\int_\kappa^1 VaR_\kappa(X) du}_{\text{intégration d'une constante}} \\
+    & = \frac{1}{1 - \kappa} \int_\kappa^1 (F_X^{-1}(u) - VaR_\kappa(X)) \underbrace{f_U(u)}_{U \backsim Unif(0,1)} du + \frac{1}{\cancel{1 - \kappa}} VaR_\kappa(X) (\cancel{1 - \kappa}) \\
+    & = \frac{1}{1 - \kappa} E[\max(\underbrace{F_X^{-1}(U)}_{F_X^{-1} \backsim X} - VaR_\kappa(X);0)] + VaR_\kappa(X) \\
+    & = \frac{1}{1 - \kappa} E[\max(X - VaR_\kappa(X) ; 0)] + VaR_\kappa(X) \\
+    & = \frac{1}{1 - \kappa} \pi_X(VaR_\kappa(X)) + VaR_\kappa(X) \\
+\end{align*}
+\end{proof}
+
+à partir de la preuve ci-dessus, on peut démontrer celle-ci : 
+$$
+TVaR_\kappa(X) = \frac{E[X \times 1_{\{X > VaR_\kappa(X) \}}] + VaR_\kappa(X)(F_X(VaR_\kappa(X)) - \kappa)}{1-\kappa} 
+$$
+
+\begin{proof}
+\begin{align*}
+TVaR_\kappa(X)  & = \frac{1}{1 - \kappa} \pi_X(VaR_\kappa(X)) + VaR_\kappa(X) \\
+    & = \frac{1}{1 - \kappa} E[\max(X - VaR_\kappa(X); 0)] + VaR_\kappa(X) \\
+    & = \frac{1}{1 - \kappa} E[(X - VaR_\kappa(X)) \times 1_{\{X > VaR_\kappa(X) \}}] + VaR_\kappa(X) \\
+    & = \frac{1}{1 - \kappa} E[X \times 1_{\{X > VaR_\kappa(X) \}}] - \frac{1}{1 - \kappa} E[VaR_\kappa(X) \times \underbrace{1_{\{X > VaR_\kappa(X) \}}}_{= S_X(VaR_\kappa(X))}] + VaR_\kappa(X) \\
+    & = \frac{1}{1 - \kappa} E[X \times 1_{\{X > VaR_\kappa(X) \}}] - \frac{1}{1 - \kappa} VaR_\kappa(X)(1 - F_X(VaR_\kappa(X))) + \frac{1 - \kappa}{1 - \kappa}VaR_\kappa(X) \\
+    & = \frac{E[X \times 1_{\{X > VaR_\kappa(X) \}}] + VaR_\kappa(X)(-1 + F_X(VaR_\kappa(X)) + 1 - \kappa)}{1 - \kappa}  \\
+    & = \frac{E[X \times 1_{\{X > VaR_\kappa(X) \}}] + VaR_\kappa(X)(F_X(VaR_\kappa(X)) - \kappa)}{1 - \kappa}  \\
+\end{align*}
+\end{proof}
+
+Une dernière preuve fortement utilisée pour la $TVaR$, qui découle directement de la dernière :  : 
+\begin{align*}
+TVaR_\kappa(X) = \frac{E[X \times 1_{\{X > VaR_\kappa(X) \}}]}{1 - \kappa}  \\
+\end{align*}
+
+
+\begin{proof}
+Étant donné que cette formule ne fonctionne seulement que pour une v.a. continue, elle est très facile à prouver : 
+\begin{align*}
+\text{si $X$ est continue}, \quad \forall x, F_X(VaR_\kappa(X))) = \kappa \\
+\end{align*}
+Alors, on peut enlever la partie de droite de l'équation.
+\end{proof}
+
+\section{Sous-additivité de la $TVaR$}
+\label{preuve:subadditivity_tvar}
+Il y a \blue{\href{https://people.math.ethz.ch/~embrecht/ftp/Seven_Proofs.pdf}{plusieurs façons}} de prouver la sous-additivité de la $TVaR$.
+
+\subsection{À l'aide de la fonction convexe $\varphi(x)$}
+
+
+On sait que la fonction $\varphi(x)$ est convexe : 
+\begin{align*}
+\varphi(x) = x + \frac{1}{1 - \kappa} \pi_X(x)
+\end{align*}
+
+Et on sait aussi que 
+\begin{align*}
+TVaR_\kappa(X) = \inf \big \{ \varphi(x) \big \}
+\end{align*}
+
+Il faut prouver que $TVaR_\kappa(X + Y) \le TVaR_\kappa(X) + TVaR_\kappa(Y)$
+\begin{proof}
+Puisque $\varphi(x)$ est une fonction convexe, on peut dire que
+\begin{align*}
+TVaR_\kappa(X) & \le \varphi(x) \\
+	& \le x + \frac{1}{1 - \kappa} \pi_X(x) \\ 
+\end{align*} 
+On pose le changement de variable \fbox{$X^* = \alpha X + (1-\alpha ) Y$}
+\p
+On peut donc remplacer $x$ dans $\varphi(x)$ par
+\begin{align*}
+x_0 & = VaR_\kappa(X^*) \\
+	& = VaR_\kappa(\alpha X + (1-\alpha ) Y) \\
+	& = \alpha VaR_\kappa(X) + (1-\alpha) VaR_\kappa(Y) \\
+\end{align*}
+Alors,
+
+\begin{align*}
+TVaR_\kappa(\alpha X + (1-\alpha ) Y) & \le \alpha VaR_\kappa(X) + (1-\alpha) VaR_\kappa(Y) \\
+	& + \frac{1}{1 - \kappa} E [ \max( \blue{\alpha} X + \red{(1-\alpha)} Y - \blue{\alpha} VaR_\kappa(X) - \red{(1-\alpha)} VaR_\kappa(Y) ; 0)] \\ 
+	& = \alpha VaR_\kappa(X) + (1-\alpha) VaR_\kappa(Y) \\
+	& + \frac{1}{1 - \kappa} E[ \max( \blue{\alpha} (X - VaR_\kappa(X)) + \red{(1-\alpha )} (Y - VaR_\kappa(Y)) ; 0)] \\
+	& \le \alpha VaR_\kappa(X) + (1-\alpha) VaR_\kappa(Y) \\
+	& + \alpha \left( \frac{1}{1 - \kappa} E[\max( X - VaR_\kappa(X);0)] \right) \\
+	& + (1 - \alpha) \left( \frac{1}{1 - \kappa} E[\max( X - VaR_\kappa(X);0)] \right) \\
+	& \text{Si on met en commun, on retrouve les expressions de la $TVaR$} \\
+	& = \alpha \left( \frac{1}{1 - \kappa} \pi_X(VaR_\kappa(X)) + VaR_\kappa(X) \right) \\
+	& + (1 - \alpha) \left( \frac{1}{1 - \kappa} \pi_Y(VaR_\kappa(Y)) + VaR_\kappa(Y) \right) \\
+TVaR_\kappa(\alpha X + (1- \alpha ) Y) & \le \alpha TVaR_\kappa(X) + (1- \alpha) TVaR_\kappa(Y) \\
+\end{align*}
+La relation se vérifie très bien avec le cas où $\alpha = 0,5$ : 
+\begin{align*}
+TVaR_\kappa(0,5X + (1-0,5)Y) & \le 0,5 TVaR_\kappa(X) + (1-0,5) TVaR_\kappa(Y) \\
+\red{0,5} TVaR_\kappa(X + Y) & \le \red{0,5} TVaR_\kappa(X) + \red{0,5} TVaR_\kappa(Y) \\
+	& \text{on multiplie par 2 pour enlever les \red{0,5}} \\
+\mathbf{TVaR_\kappa(X + Y)} & \mathbf{\le TVaR_\kappa(X) + TVaR_\kappa(Y)} \\
+\end{align*}
+
+\end{proof}
+
+
+
+\subsection{Avec les fonctions indicatrices}
+Si on a les v.a. continues $X$ et $Y$ (les espérances existent) avec les fonctions de répartition respectives $F_X$ et $F_Y$, alors
+\begin{align*}
+TVaR_\kappa(X) & = \frac{E[ X \times 1_{\{X > VaR_\kappa(X) \}} ]}{1 - \kappa}  \\
+(1 - \kappa) TVaR_\kappa(X) & = E[ X \times 1_{\{X > VaR_\kappa(X) \}} ]
+\end{align*}
+est valide pour toute v.a. continue $X$.
+\p
+On veut alors démontrer que
+\begin{equation}
+\label{eq:subaddit_tvar}
+TVaR_\kappa(X) + TVaR_\kappa(Y) - TVaR_\kappa(X + Y) \ge 0
+\end{equation}
+\begin{proof}
+.
+\begin{enumerate}[label=(\arabic*)]
+\item On peut écrire le membre de gauche de l'inégalité \eqref{eq:subaddit_tvar} comme
+\begin{align*}
+& \underbrace{(1 - \kappa)TVaR_\kappa(X)}_{E[ X \times 1_{\{X > VaR_\kappa(X) \}} ]} + \underbrace{(1 - \kappa)TVaR_\kappa(Y)}_{E[ Y \times 1_{\{Y > VaR_\kappa(Y) \}} ]} - \underbrace{(1 - \kappa)TVaR_\kappa(X + Y)}_{E[ (X+Y) \times 1_{\{X+Y > VaR_\kappa(X+Y) \}} ]} \\
+& = E[X \times 1_{\{X > VaR_\kappa(X) \}}] + E[Y \times 1_{\{Y > VaR_\kappa(Y) \}}] - \underbrace{E[ (X+Y) \times 1_{\{X + Y > VaR_\kappa(X + Y) \}} ]}_{\text{On \textit{split} cette espérance}} \\
+& = \underbrace{E[X \times 1_{\{X > VaR_\kappa(X) \}}] - E[X \times 1_{\{X+Y > VaR_\kappa(X+Y) \}}]}_{\text{On peut rassembler les indicatrices}} \\
+& + \underbrace{E[Y \times 1_{\{Y > VaR_\kappa(Y) \}}] - E[Y \times 1_{\{X+Y > VaR_\kappa(X+Y) \}}]}_{\text{ici aussi}} \\
+\end{align*}
+\begin{equation}
+\label{eq:espTronq_VaR}
+= E[X \times (1_{\{X > VaR_\kappa(X) \}} - 1_{\{X+Y > VaR_\kappa(X+Y) \}})] + E[Y \times (1_{\{Y > VaR_\kappa(Y) \}} - 1_{\{X+Y > VaR_\kappa(X+Y) \}})]
+\end{equation}
+\item Rendu ici, on veut prouver que chacun de ces espérance $\ge 0$, pour que la somme des 2 soit $\ge 0$ aussi. Étant donné que les 2 parties du membre de gauche sont identiques, on va le prouver seulement pour un côté.
+\p
+\begin{enumerate}[label=(2.\arabic*)]
+	\item Pour nous aider, on va créer un terme \textit{auxiliaire}, i.e un terme qui est égal à zéro, mais qui va nous aider à faire la preuve, soit le terme suivant : 
+\begin{align*}
+& E[VaR_\kappa(X) \times (1_{\{X > VaR_\kappa(X) \}} - 1_{\{X+Y > VaR_\kappa(X+Y) \}})] \\
+& = VaR_\kappa(X) E[(1_{\{X > VaR_\kappa(X) \}} - 1_{\{X+Y > VaR_\kappa(X+Y) \}})] \\
+& = VaR_\kappa(X) \big( (1-\kappa) - (1-\kappa)  \big) \\
+& = 0 \\
+\end{align*} 
+\item Alors, l'équation \eqref{eq:espTronq_VaR} devient
+\begin{align*}
+E[(X - VaR_\kappa(X)) \times (1_{\{X > VaR_\kappa(X) \}} - 1_{\{X+Y > VaR_\kappa(X+Y) \}})]
+\end{align*}
+\item On va prouver que la quantité à l'intérieur de l'espérance ci-haut sera toujours $\ge 0$, de sorte que l'espérance sera toujours positive aussi : 
+\begin{align*}
+(X - VaR_\kappa(X))(1_{\{X > VaR_\kappa(X) \}} - 1_{\{X+Y > VaR_\kappa(X+Y) \}}) \ge 0 & \text{ si } & X < VaR_\kappa(X) \\
+(X - VaR_\kappa(X))(1_{\{X > VaR_\kappa(X) \}} - 1_{\{X+Y > VaR_\kappa(X+Y) \}}) = 0 & \text{ si } & X = VaR_\kappa(X) \\
+(X - VaR_\kappa(X))(1_{\{X > VaR_\kappa(X) \}} - 1_{\{X+Y > VaR_\kappa(X+Y) \}}) \ge 0 & \text{ si } & X > VaR_\kappa(X) \\
+\end{align*}
+\item Alors, on déduit que 
+\begin{align*}
+& E[(X - VaR_\kappa(X)) \times (1_{\{X > VaR_\kappa(X) \}} - 1_{\{X+Y > VaR_\kappa(X+Y) \}})] \\
+& = E[X \times (1_{\{X > VaR_\kappa(X) \}} - 1_{\{X+Y > VaR_\kappa(X+Y) \}})] \ge 0
+\end{align*}
+\end{enumerate} % partie 2 de la preuve
+\item Par conséquent,
+\begin{align*}
+(1 - \kappa)TVaR_\kappa(X) + (1 - \kappa)TVaR_\kappa(Y)- (1 - \kappa)TVaR_\kappa(X + Y) \ge 0 \\
+\mathbf{TVaR_\kappa(X) + TVaR_\kappa(Y)- TVaR_\kappa(X + Y) \ge 0} \\
+\end{align*}
+\end{enumerate} % fin de l'énumération de la preuve
+\end{proof}
+
+
+
+\subsection{À l'aide des statistiques d'ordre}
+Pour pouvoir prouver la sous-additivité de la $TVaR$, on peut aussi utiliser la relation des statistiques d'ordre\footnote{Relation qui d'ailleurs est utilisée dans le contexte de simulation Monte Carlo pour estimer la TVaR d'une variable aléatoire.} : 
+\begin{align*}
+TVaR_\kappa(X)	& = \lim_{n \to \infty} \frac{\sum_{j= [ n \kappa ] + 1}^{n} X_{j:n}}{[n (1-\kappa)]}
+\end{align*}
+\hl{à compléter plus tard}
+
+
+
+
+
+\section{Loi des grands nombres}
+\label{preuve:grand_nombre}
+Cette preuve était demandée à l'examen Intra traditionnel H2017 du cours ACT-2001.
+
+\begin{tcolorbox}[title=Théorème, colframe=darkgray, colback=white]
+Soit les v.a. \textit{iid} $X_1, ..., X_n$ avec $E[X^m] < \infty \quad, m = 1,2, ...$ et $Var(X) < \infty$. Alors,
+\begin{equation}
+\lim_{n \to \infty} F_{W_n}(x) \longrightarrow F_Z(x)
+\end{equation}
+où $Z$ est une v.a. tel que $P(Z = E[X]) = 1$.
+\end{tcolorbox}
+
+\begin{proof}
+
+\begin{enumerate}[label=(\arabic*)]
+\item Première étape, on va démontrer que $\lim_{n \to \infty} \laplace_{w_n}(t) \rightarrow \laplace_Z(t)$
+\begin{enumerate}[label=(1.\arabic*)]
+\item On sait que $\laplace_{w_n}(t) = \laplace_X \left( \frac{t}{n} \right)^n \quad n = 1,2,...$.
+\item Soit une v.a. $Y$ positive. On fixe $t$ tout petit
+\item Alors
+\begin{align*}
+\laplace_Y(t) & = E[e^{-tY}] \\
+	& \approx E[1 - tY] \quad \text{par dév. de Taylor}
+	& = E[1] - t E[Y] \\
+\end{align*}
+\item 
+\begin{align*}
+\laplace_{w_n}(t) & = \laplace_X \left( \frac{t}{n} \right)^n  \\
+	& \simeq \left(1 - \frac{t}{n} E[X] \right)^n \\
+\end{align*}
+\item On prends la limite de part et d'autre de l'égalité en (1.3)
+\begin{align*}
+\lim_{n \to \infty} \laplace_{w_n}(t) & = \lim_{n \to \infty} \left( \laplace_X \left( \frac{t}{n} \right) \right)^n \\
+	& \simeq \lim_{n \to \infty} \left(1 - \frac{t}{n} E[X] \right)^n \\
+	& = e^{-t E[X]} \\
+	& = \laplace_Z(t) \\
+\end{align*}
+Ce qui correspond à la Transformée de la v.a. $Z$ où $P(Z = E[X]) = 1$
+\end{enumerate}
+\item On applique le résultat de (1.4)
+\begin{align*}
+\lim_{n \to \infty} F_{w_n} (x) = F_Z(x), \quad \forall x
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+
+
+\section{Somme de v.a. indépendantes d'une loi Poisson Composée}
+\label{preuve:poissoncompose}
+\begin{proof}
+Soit les v.a. indépendantes $X_1, ..., X_n$ où
+
+$X_i \sim PoisComp(\lambda_i ; F_{B_i}) \quad, i = 1, ..., n$
+
+
+Ainsi,
+\begin{align*}
+\laplace_{X_1}(t)	& = \fgp_{M_i} \left( \laplace_{B_i}(t) \right) \\
+	& = e^{\lambda \left( \laplace_{B_i}(t) - 1 \right)} \quad, i = 1,2, ... , n \\
+\end{align*}
+On peut trouver la transformée de $S$,
+\begin{equation}
+\label{eq:laplaceS}
+\laplace_S(t) = \prod_{i=1}^n \laplace_{X_i}(t) = \prod_{i=1}^{n} e^{\lambda \left( \laplace_{B_i}(t) - 1 \right)}
+\end{equation} 
+Le passage de l'équation \eqref{eq:laplaceS} aux étapes suivantes résulte d'une propriété de la loi de Poisson, i.e.
+\begin{align*}
+\laplace_S(t)	& = e^{\sum_{i=1}^{n} \lambda_i \left( \laplace_{B_i}(t) - 1 \right)} \\
+	& = e^{\sum_{i=1}^{n} \lambda_i \laplace_{B_i}(t) - \lambda_i} \\
+	& = e^{\sum_{i=1}^{n}\lambda_i \laplace_{B_i}(t) - \sum_{i=1}^{n} \lambda_i} \\
+		& = e^{\sum_{i=1}^{n}\lambda_i \laplace_{B_i}(t) - \lambda_S} \\
+\end{align*}
+Si on met en évidence le $\lambda_S$ ...
+\begin{align}
+\label{eq:lambdaevidence}
+\laplace_S(t)	& = e^{\lambda_S \left( \sum_{i=1}^{n} \frac{\lambda_i}{\lambda_S} \laplace_{B_i}(t) - 1 \right)}
+\end{align}
+Si on pose $c_i = \frac{\lambda_i}{\lambda_S}$, on observe que $0 < c_i < 1$ et que $\sum_{i=1}^{n} c_i = 1$.
+\p
+On se définit une nouvelle v.a., $D$, où
+\begin{align}
+\label{eq:variablealeaD}
+\laplace_D(t) = \sum_{i=1}^{n} c_i \laplace_{B_i}(t)
+\end{align}
+
+Ce qui implique que $D$ obéit à une loi mélange : 
+\begin{align*}
+F_D(x) = \sum_{i=1}^{n} c_1 F_{B_i}(x) \quad, x \ge 0
+\end{align*}
+
+en combinant \eqref{eq:lambdaevidence} et \eqref{eq:variablealeaD}, on obtient
+\begin{align}
+\label{eq:laplaceD}
+\laplace_S(t)	& = e^{ \lambda_S \left( \laplace_D(t) - 1 \right)}
+\end{align}
+On introduit une nouvelle v.a., $N_S \sim Pois(\lambda_S)$ et $P_N(s) = e^{\lambda_S(s-1)}$. Alors, \eqref{eq:laplaceD} devient
+\begin{align*}
+\laplace_S(t) = \fgp_{N_S}(\laplace_D(t))
+\end{align*}
+On peut donc représenter $S$ comme
+\begin{align*}
+S = 
+\begin{cases}
+\sum_{k=1}^{N_s} D_k & N_s > 0 \\
+0	& N_s = 0 \\
+\end{cases}
+\end{align*}
+où $D_k, \quad k = 1,2,...$ forme une suite de v.a \textit{iid}, et $D$ et $N_s$ sont indépendants.
+\end{proof}
+
+
+\section{Théorème d'Euler}
+\label{preuve:euler}
+\paragraph{Définition}
+Soit une fonction $\phi : \reels^n \rightarrow \reels$ homogène d'ordre $n$. Alors, pour toute fonction $\phi$ dérivable partout, on a
+\begin{align*}
+n \phi(x_1, ..., x_n)  = \sum_{i=1}^{n} x_i \frac{\partial \phi(x_1, .., x_n)}{\partial x_i}
+\end{align*}
+\begin{proof}.
+\begin{enumerate}[label=(\arabic*)]
+\item Puisque $\phi$ est homogène d'ordre $n$, on a
+\begin{equation}
+\label{eq:homogeneite}
+\phi(x_1, ..., x_n) = \lambda^n \phi(x_1, ..., x_n)
+\end{equation}
+
+\item On dérive le terme de gauche de l'équation dans l'équation \eqref{eq:homogeneite} par rapport à $\lambda$ et on pose $\lambda=1$.
+\begin{align*}
+\frac{\partial}{\partial \lambda} \lambda^n \phi(x_1, ..., x_n) \eval_{\lambda=1} & = n \lambda^{n-1} \phi(x_1, ..., x_n) \eval_{\lambda = 1} \\
+	& = n \phi(x_1, ..., x_n) \\
+\end{align*}
+
+\item On dérive le terme de droite de l'équation dans l'équation \eqref{eq:homogeneite} par rapport à $\lambda$ et on pose $\lambda=1$.
+\begin{align*}
+\frac{\partial}{\partial \lambda} \lambda^n \phi(x_1, ..., x_n) \eval_{\lambda=1} & = \sum_{i=1}^{n} \frac{\partial \phi(x_1, ..., x_n)}{\partial (\lambda x_i)} \frac{\partial (\lambda x_i) }{\partial \lambda} \eval_{\lambda=1} \\ 
+	& = \sum_{i=1}^{n} \frac{\partial ( \lambda x_i, ..., \lambda x_n)}{\partial \lambda x_i} x_i \eval_{\lambda=1} \\	
+	& = \sum_{i=1}^{n} x_i \frac{\partial (x_1, ..., x_n)}{\partial x_i} \\
+\end{align*}
+\item On pose $(4) = (3)$, et on obtient le résultat souhaité.
+\end{enumerate}
+\end{proof}
+
+
+\section{Dérivée de l'écart-type (générale)}
+\label{preuve:derivee_sd}
+Lorsqu'on prouve la contribution $C(X_i)$ pour $\rho(X) = \sqrt{Var(\sum_{i=1}^{n} X_i)}$, on doit dériver l'écart-type... voici le développement complet, avec un exemple où $n=3$. Ce qui est important de suivre, c'est qu'on cherche ici la contribution de la v.a. $X_i$ : alors, lorsqu'on dérive par rapport à $\lambda_i$, ça peut être n'importe quoi le $i$ : $1, 2, ..., n$. 
+
+\paragraph{Rappel d'ACT-1002} Pour les propriétés de la covariance, voir la sous-section \ref{subsec:propriete_covariance}.
+\begin{align*}
+\frac{\partial}{\partial \lambda_i} \sqrt{Var \left( \sum_{i=1}^{n} \lambda_i X_i \right)} & = \frac{1}{2} \left( \frac{1}{\sqrt{Var \left( \sum_{i=1}^{n} \lambda_i X_i \right)}}   \right) \times  \\
+	& \red{\frac{\partial}{\partial \lambda_i} \left( \sum_{i=1}^{n} \lambda_i^2 Var(X_i) + \sum_{i=1}^{n} \sum_{k=1, k \neq i}^{n} \lambda_i \lambda_k Cov(X_i, X_k) \right)} \\
+\end{align*}
+\begin{tcolorbox}[title=Explication de la forme générale de la variance, colframe=red, colback=white]
+Avec un exemple $n=3$, il est très facile de comprendre d'où vient la formule générale de la variance (qui est universelle si les $X_i$ sont indépendants ou non).
+\tcblower
+\begin{align*}
+Var(X_1 + X_2 + X_3)	& = Cov(X_1 + X_2 + X_3, X_1 + X_2 + X_3) \\
+	& = \blue{Cov(X_1, X_1)} + \darkgreen{Cov(X_1, X_2)} + \purple{Cov(X_1, X_3)} \\
+	& + \orange{Cov(X_2, X_1)} + \blue{Cov(X_2, X_2)} + \purple{Cov(X_2, X_3)} \\
+	& + \orange{Cov(X_3, X_1)} + \darkgreen{Cov(X_3, X_2)} + \blue{Cov(X_3, X_3)} \\
+\end{align*}
+On remarque \blue{en bleu} les variances séparées pour chacun de nos $X_i$ de notre exemple, qu'on va pouvoir rassembler ensemble dans une même somme. On remarque aussi que les covariances sont similaires. On remarque en \orange{orange} les covariances reliées à $X_1$, en \darkgreen{vert} les covariances reliées à $X_2$ et finalement en \purple{violet} les covariances qui sont reliées à $X_3$.
+\p
+En étant attentif, on remarque qu'on peut sommer ensemble chaque \textit{paquet} de covariance sur tout le support ($n=3$), sauf la combinaison $Cov(X_i, X_i)$, car celle-ci a été prise pour rassembler les variances ensemble ($Var(X_i) = Cov(X_i, X_i)$).
+\p
+Alors, on obtient (pour le cas $n=3$) : 
+\begin{align*}
+Var \left( \sum_{i=1}^{3} X_i \right)	& = \sum_{i=1}^{3} Var(X_i) + \sum_{i=1}^{3} \sum_{k=1, k \neq i}^{3} Cov(X_i, X_k)
+\end{align*}
+\end{tcolorbox}
+Si on développe le \red{la dérivée en rouge} seule du reste (en prenant l'exemple du cas $n-3$ et qu'on dérive par rapport à $\lambda_1$), on obtient : 
+\begin{align*}
+\frac{\partial}{\partial \lambda_1} \rho(X_1 + X_2 + X_3) & = \frac{\partial}{\partial \lambda_1} \Big[ \lambda_1^2 Var(X_1) + \lambda_2^2 Var(X_2) + \lambda_3^2 Var(X_3) \\
+	& + \lambda_1 \lambda_2 Cov(X_1, X_2) + \lambda_1 \lambda_3 Cov(X_1, X_3) \\
+	& + \lambda_2 \lambda_1 Cov(X_2, X_1) + \lambda_2 \lambda_3 Cov(X_2, X_3) \\
+	& + \lambda_3 \lambda_1 Cov(X_3, X_1) + \lambda_3 \lambda_2 Cov(X_3, X_2) \Big] \\
+	& = 2 \lambda_1 Var(X_1) \\
+	& + \lambda_2 Cov(X_1, X_2) + \lambda_3 Cov(X_1, X_3) \\	
+	& + \lambda_2 Cov(X_2, X_1) + \lambda_3 Cov(X_3, X_1) \\
+	& = 2 \lambda_1 Var(X_1) + \sum_{k=1, k \neq 1}^{3} \lambda_k Cov(X_1, X_k) + \sum_{k=1, k \neq 1}^{3} \lambda_k Cov(X_k, X_1) \\
+	& = 2 \lambda_1 Var(X_1) + 2 \sum_{k=1, k \neq 1}^{3} \lambda_k Cov(X_1, X_k) \\
+\end{align*}
+Il ne reste plus qu'à remettre toute l'équation ensemble : 
+\begin{align*}
+\frac{\partial}{\partial \lambda_i} & = \frac{1}{\cancel{2}} \frac{\cancel{2} \lambda_i Var(X_i) + \cancel{2} \sum_{k=1, k \neq i}^{3} \lambda_k Cov(X_i, X_k)}{\sqrt{Var \left( \sum_{i=1}^{n} \lambda_i X_i \right)}} \\
+\end{align*}
+Si on pose $\lambda_1 = ... = \lambda_i = ... = \lambda_n = 1$ et qu'on utilise les définitions des covariances pour rentrer les sommes dans la covariance, tel que
+
+\begin{align*}
+Var(X_i) + \sum_{k=1, k \neq i}^{n} Cov(X_i, X_k) & = \sum_{k=1}^{n} Cov(X_i, X_k) \\
+	& = Cov \left( X_i, \sum_{k=1}^{n} X_k \right) \\
+\end{align*}
+Alors,
+\begin{align*}
+C(X_i)	& = \frac{Cov \left( X_i, \sum_{k=1}^{n} X_k   \right)}{\sqrt{Var \left(\sum_{k=1}^{n} X_k \right)}} = \frac{Cov( X_i, S)}{\sqrt{Var (S)}}
+\end{align*}
+
+
+\section{Distribution limite de $W_n$}
+\label{preuve:dist_limiteWn}
+\begin{tcolorbox}
+Soit la v.a. $Z$ où $\Pr(Z = E[X]) = 1$. On veut démontrer (à l'aide des transformées de Laplace) que
+\begin{align*}
+F_{W_n}(x) \longleftarrow F_{Z}(x) \quad x > 0
+\end{align*}
+où $\Pr(Z = \gamma_j) = \Pr(\Theta = \theta_j)$ et $\gamma_j = E[X | \Theta = \theta_j]$.
+\end{tcolorbox}
+
+\begin{proof}
+Pour faire la preuve, il faut savoir les 2 résultats suivants : 
+\begin{equation}
+\label{eq:dev_exponentielle}
+e^{-x} \approx 1 - x
+\end{equation}
+\begin{equation}
+\label{eq:dev_taylor}
+\lim_{n \to \infty} \left( 1 + \frac{x}{n} \right)^n = e^x
+\end{equation}
+Si on développe la transformée de Laplace : 
+\begin{align*}
+\laplace_{W_n}(t)	& = E[e^{-t W_n}] \\
+	& = E_\Theta [ E[ e^{-t W_n} | \Theta = \theta]] \\
+	& = \int_{0}^\infty E[e^{-t W_n} | \Theta = \theta] f_\Theta(\theta) d\theta \\
+	& = \int_{0}^{\infty} E[e^{\frac{t}{n} (X_1 + ... + X_n)} | \Theta = \theta] f_\Theta(\theta) d \theta \\
+	& = \int_{0}^{\infty} \prod_{i=1}^{n} E[e^{-\frac{t}{n} X_i} | \Theta = \theta] f_\Theta (\theta) d \theta \quad \text{(Car les risques sont cond. indép.)}\\
+	& = \int_{0}^{\infty} E[ \blue{e^{- \frac{t}{n} X}} | \Theta = \theta]^n f_\Theta (\theta) d \theta \quad \text{(car les v.a. sont \textit{id})} \\
+	& \approx \int_{0}^{\infty} E \left[ \blue{\left(1 - \frac{t}{n} X \right)} | \Theta = \theta \right]^n f_\Theta (\theta) d \theta  \quad \text{(par l'équation \eqref{eq:dev_exponentielle})} \\
+	& = \int_{0}^{\infty} \left( E[1 | \Theta] - \frac{t}{n} E[X|\Theta] \right)^n f_\Theta (\theta) d \theta \\
+	& = \int_{0}^{\infty} \left( 1 - \frac{t}{n} E[X|\Theta] \right)^n f_\Theta (\theta) d \theta \\
+	& \text{Si on pose la limite $n \to \infty$,} \\
+\lim_{n \to \infty} \laplace_{W_n}(t)	& = \int_{0}^{\infty} \blue{\lim_{n \to \infty} \left(1 - \frac{t}{n} E[X|\Theta] \right)^n} f_\Theta (\theta) d \theta \\
+	& = \int_{0}^{\infty} \blue{e^{-t E[X|\Theta]}} f_\Theta (\theta) d \theta \quad \text{(par l'équation \eqref{eq:dev_taylor})} \\
+	& = \int_{0}^{\infty} e^{-t \gamma} f_\Theta (\theta) d \theta \quad \text{, où } \gamma = E[X|\Theta] \\
+	& = \laplace_Z(t) \\ 
+\end{align*}
+\end{proof}
+
+\section{Équation de Wald}
+\label{preuve:wald_eqn}
+
+\begin{crit-ann}{Critères}
+\begin{enumerate}
+	\item	Soit $T_{1}, T_{2}, T_{3}, \dots$ une suite de variables aléatoires (iid) avec espérance fini $\mu < \infty$.
+	\item	Soit la variable aléatoire $N$
+	\begin{enumerate}
+		\item	Prenant valeur uniquement dans les entiers positifs $n \in \mathcal{N}$;
+		\item	Indépendante de la série $T_{1}, T_{2}, T_{3}, \dots$ (donc la réalisation ou pas de l'événement $\{N \geq n\}$ est indépendante du temps auquel elle y a lieu);
+		\item Avec espérance fini $\text{E}[N] < \infty$. 
+	\end{enumerate}
+\end{enumerate}
+\end{crit-ann}
+\begin{theo-ann}{Équation de Wald}
+\begin{equation*}
+%	\text{E}\left[ \sum_{n = 1}^{N} T_{n} \right]
+	\text{E}\left[ S_{N} \right]	
+	=	\mu \text{E}[N]
+\end{equation*}
+\end{theo-ann}
+\begin{preuve-ann}{Preuve}
+\begin{align*}
+	\text{E}\left[ S_{N} \right]
+	&=	\text{E}\left[ T_{1} + \dots + T_{N} \right]	
+	\Leftrightarrow	\text{E}\left[ \sum_{n = 1}^{N} T_{n} \right]	\\
+	&=	\text{E}\left[ \sum_{n \geq 1} T_{n} \times \bm{1}_{\{N(t) \geq n \}} \right]	\\
+	&=	\sum_{n \geq 1} \text{E}\left[ T_{n} \times \bm{1}_{\{N(t) \geq n \}} \right]	\\
+	&=	\sum_{n \geq 1} \text{E}\left[ T_{n}\right] \text{E}\left[\bm{1}_{\{N(t) \geq n \}} \right]	\\
+	&=	\sum_{n \geq 1} \text{E}\left[ T_{n}\right] \text{Pr}\left(N(t) \geq n \right)	\\
+	&\overset{i.d.}{=}	\mu \sum_{n \geq 1} \text{Pr}\left(N(t) \geq n \right)	\\
+	&\Leftrightarrow 	\mu \sum_{n \geq 1} n \text{Pr}\left(N(t) = n \right)	\\
+	&= 	\mu \text{E}[N]	
+\end{align*}
+\end{preuve-ann}

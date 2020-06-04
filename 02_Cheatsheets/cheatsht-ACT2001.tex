@@ -1,0 +1,1573 @@
+\documentclass[10pt, french]{article}
+
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Introduction à l'actuariat II}
+\def\sigle{ACT-2001}
+\def\SectionColor{burntorange}
+\def\SubSectionColor{burntsienna}
+\def\SubSubSectionColor{burntsienna}
+
+%% Reduce margin space
+\setlength{\abovedisplayskip}{-15pt}
+\setlist{leftmargin=*}
+\setcounter{secnumdepth}{1}
+
+
+\newcommand{\bettershortstack}[2][c]{%
+  \begin{tabular}[b]{@{}#1@{}}#2\end{tabular}%
+}
+\usepackage{stackengine}
+\newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+%\input{contributeurs/contrib-ACT2001}
+
+\newpage
+
+\raggedcolumns
+\begin{multicols*}{2} 
+\part{ACT-2001: Introduction à l'actuariat II}
+\section{Notions de base à la modélisation en actuariat}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X$]	Variable aléatoire représentant les pertes pour une "\textit{entité}" pour un (ou plusieurs) "\textit{périls}".
+		\begin{itemize}
+		\item	Elle peut être continue, discrète ou mixte ;
+		\item	"\textit{Entité}" peut être un individu (ou groupe de), commerce, compagnie, etc. ;
+		\item	"\textit{Périls}" peut être une incendie, du vandalisme, une maladie, du risque opérationnel, etc. ;
+		\item	On pose que \lfbox[conditions]{$\text{E}[X]	<	\infty$}.
+		\end{itemize}
+	\item[$\text{PP}(X)$]	La \textbf{prime pure} pour le risque $X$, \lfbox[formula]{$\text{PP}(X)	=	\text{E}[X]$}.
+\end{description}
+\end{distributions}
+
+
+\subsection{Fonction quantile}
+\lfbox[formula]{$F_{X}^{-1}(u)	=	\inf\{x \in \mathbb{R}; F_{X}(x)	\geq u\}$}, \lfbox[conditions]{$\forall u \in (0, 1)$}.\\
+
+
+\begin{formula}{\hyperlink{proof:ftc-quantile}{Théorème de la fonction quantile}}
+Soit :	
+\begin{itemize}
+	\item	la variable aléatoire $X$ avec fonction de répartition $F_{X}(x)$ et la fonction quantile $F_{X}^{-1}(u)$.
+	\item	la variable aléatoire $U \sim Unif(0, 1)$.
+	\item	$Y	=	F_{X}^{-1}(U)$.
+\end{itemize}
+
+Alors, \lfbox[formula]{$F_{Y}(x)	=	F_{F_{X}^{-1}(U)}(x)	=	F_{X}(x)$} \lfbox[conditions]{$\forall x \in \mathbb{R}$} et \lfbox[formula]{$X		=	F_{X}^{-1}(U)$}.
+
+\tcbline
+
+C'est-à-dire, on défini $Y$ comme la transformation de la variable aléatoire $U$ via la fonction quantile. Par conséquent, $Y$ se comporte comme $X$.
+\end{formula}
+
+\setcounter{subsection}{3}
+\subsection{Espérance tronquée}
+On pose que $X$ est une variable aléatoire tel que $\text{E}[X]	<	\infty$.
+\begin{distributions}[Notation]
+\begin{description}
+	\item[]	$\text{E}[X \times \bm{1}_{\{X > d\}}]$	l'espérance tronquée à $d$.
+		\begin{itemize}
+		\item	C'est-à-dire, l'espérance des valeurs de la v.a. $X$ qui sont supérieur à $d$.
+		\item	On peut définir l'espérance tronquée avec n'importe quelle indicatrice.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\textbf{Rappel :}
+\begin{align*}
+	\bm{1}_{\{X	>	d\}}
+	&=	\begin{cases}	
+		1,	&	X	>	d	\\
+		0,	&	X	\leq	d	
+		\end{cases}
+\end{align*}
+
+
+\subsection{Fonction \textbf{stop-loss}}
+On pose que $X$ est une variable aléatoire tel que $\text{E}[X]	<	\infty$.
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\pi_{X}(d)$]	Fonction stop-loss de déductible $d$ tel que \lfbox[formula]{$\pi_{X}(d)	=	\text{E}[\max\{X	-	d;	0\}]$}, \lfbox[conditions]{$\forall d \in \mathbb{R}$}.
+		\begin{itemize}
+		\item	C'est-à-dire, l'espérance des montants de perte en excédant de la limite $d$,
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\textbf{Relation :}
+\begin{align*}
+	\pi_{X}(d)
+	&\equiv	\text{E}[X	\times	\bm{1}_{\{X	>	d\}}]	-	d\bar{F}_{X}(d)
+\end{align*}
+
+
+\subsection{Fonction quantile et espérance(s)}
+\lfbox[formula]{$\text{E}[X]	=	\text{E}[F_{X}^{-1}(U)]	=	\int_{0}^{1}F_{X}^{-1}(u)du$}.
+
+\textbf{Relation :}
+\begin{align*}
+	\int_{k}^{1}F_{X}^{-1}(u)du
+	&=	\pi_{x}\left(F_{X}^{-1}(\kappa)\right) + (1 - \kappa)F_{X}^{-1}(\kappa), \quad \forall \kappa \in (0, 1)	\\
+	&=	\text{E}\Big[X	\times	\bm{1}_{\{X	>	F_{X}^{-1}(\kappa)\}}\Big]+ 
+		F_{X}^{-1}(\kappa)\bigg( F_{X}\Big(F_{X}^{-1}(\kappa)\Big)	-	\kappa \bigg)
+\end{align*}
+
+\subsection{Mesures de risque}
+\begin{itemize}
+	\item	La \textbf{Value-at-Risk} correspond au $100\alpha^{\text{e}}$ pourcentile;
+%	\item	Si $X$ représente les pertes, on s'intéresse à l'extrémité supérieure de la distribution des gains et \icbox{$TVaR_{\kappa}(X)	=	\esp{X | X > \kappa}	=	\frac{1}{1 - \kappa} \int_{VaR_{\kappa}}^{\infty} x f_{X}(x)dx$} ;
+%	\item	Si $X$ représente les gains, on s'intéresse à l'extrémité inférieure de la distribution des gains et \icbox{$TVaR_{\kappa}(X)	=	\esp{X | X \leq \kappa}	=	\frac{1}{\kappa} \int_{-\infty}^{VaR_{\kappa}} x f_{X}(x)dx$}.
+\end{itemize}
+
+Également, on a la $TVaR$ que l'on peut écrire pour $\kappa \in (0, 1)$: 
+\begin{align*}
+	TVaR_{\kappa}(X)
+	&=	\frac{1}{1 - \kappa}\int_{\kappa}^{1}	VaR_{u}(X)du	\\
+	&=	\frac{1}{1 - \kappa}\pi_{X}\left(VaR_{\kappa}(X)\right) + VaR_{\kappa}(X)	\\
+	&=	\frac{1}{1 - \kappa}\left[	\text{E}[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}] + VaR_{\kappa}(X) \left(F_{X}\left(VaR_{\kappa}(X)\right)	-	\kappa\right)	\right]
+\end{align*}
+
+Pour une variable aléatoire $X$ continue, on simplifie :
+\begin{align*}
+	TVaR_{\kappa}(X)
+	&=	\frac{1}{1 - \kappa}\left[	\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right] + \underbrace{VaR_{\kappa}(X) \left(F_{X}\left(VaR_{\kappa}(X)\right)	-	\kappa\right)}_{\shortstack{= 0}}	\right]	\\
+	&=	\frac{1}{1 - \kappa}\left[	\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right]	\right]	\\
+	&\equiv	\frac{\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right]}{\Pr(X	>	VaR_{\kappa}(X))}	\\
+	&=	\esp{X | X	>	VaR_{\kappa}(X)}
+\end{align*}
+
+\subsubsection{Propriétés désirables d'une mesure de risque}
+\begin{definitionNOHFILLsub}[Homogénéité]
+Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$a	>	0$}, la mesure de risque $\rho$ est dite homogène si \icbox{$\rho(aX)	=	a\rho(X)$}.
+
+\begin{rappel_enhanced}[Interprétation]
+Par exemple, on peut poser que $a	=	1.75$ est le taux de change entre le dollar canadien et le dollar américain.\\
+Il est alors \textit{cohérent} que calculer $\rho(1.75X)$ soit équivalent à calculer $1.75\rho(X)$.
+\end{rappel_enhanced}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Invariance à la translation]
+Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$a	\in	\mathbb{R}$}, la mesure de risque $\rho$ satisfait la propriété d'invariance à la translation si \icbox{$\rho(X + a)	=	\rho(X) + a$}.	\\
+
+\begin{rappel_enhanced}[Interprétation]
+Par exemple, on peut poser que $a	=	-500\$$ est la franchise d'un contrat d'assurance auto ; c'est-à-dire, un assuré va payer de sa poche le premier 500\$ d'un accident auto.\\
+
+Il est alors \textit{cohérent} que calculer $\rho(X - 500)$ soit équivalent à calculer $\rho(X) - 500$. Par exemple, si on utilise l'espérance comme mesure de risque ($\rho(X)	=	\text{E}[X]$) alors  il devrait nous être familier que $\text{E}[X	-	500]	=	\text{E}[X]	-	500$.
+\end{rappel_enhanced}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Monotonicité]
+Soit les v.a. $X_{1}$ et $X_{2}$ \icbox[red][palechestnut]{tel que $\Pr(X_{1}		\leq		X_{2})	=	1$}, la mesure de risque $\rho$ satisfait la propriété de monotonicité si \icbox{$\rho(X_{1})	\leq	\rho(X_{2})$} ou si pour un \icbox[red][palechestnut]{$\kappa	\in	(0, 1)$} fixé, \icbox{$F_{X_{1}}^{-1}(\kappa)	\leq	F_{X_{2}}^{-1}(\kappa)$}.\\
+
+\begin{rappel_enhanced}[Interprétation]
+Par exemple, si $X_{1}$ est un assuré plus dangereux que $X_{2}$ il est \textit{cohérent} que la mesure de risque lui charge plus cher.
+\end{rappel_enhanced}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Sous-additivité]
+Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de sous-additivité si \icbox{$\rho(X_{1}	+	X_{2})	\leq	\rho(X_{1})	+	\rho(X_{2})$}.\\
+
+\begin{rappel_enhanced}[Interprétation]
+On peut raisonner qu'il est cohérent que ce soit moins cher pour une compagnie d'assurance d’assurer deux personnes que pour deux compagnies d'assurance d’assurer chacune une personne.
+\end{rappel_enhanced}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Convexité]
+Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de convexité si \icbox{$\rho(\alpha X_{1}	+	(1	-	\alpha)X_{2})	\leq	\alpha\rho(X_{1})	+	(1	-	\alpha)\rho(X_{2})$}.
+\end{definitionNOHFILLsub}
+
+
+
+\pagebreak
+\section{Méthodes de simulation Monte-Carlo}
+\begin{algo2}[Méthode inverse]
+Pour $j	=	1, 2, \dots, m$, 
+\begin{enumerate}
+	\item	On produit une réalisation $U^{(j)}$ d'une loi $U(0, 1)$ à partir d'un GNPA (\texttt{runif} en \texttt{R}).
+	\item	On simule une réalisation $X^{(j)}$ de $X$ où \lfbox[formula]{$X^{(j)}	=	F_{X}^{-1}(U^{(j)})$}.
+\end{enumerate}
+\end{algo2}
+
+\begin{algo2}[Simulation d'une fonction d'un nombre fini de variables aléatoires]
+Pour $j	=	1, 2, \dots, m$, 
+\begin{enumerate}
+	\item	On simule les réalisations $\left(X_{1}^{(j)}, X_{2}^{(j)}, \dots, X_{n}^{(j)}\right)$ de $\left(X_{1}, X_{2}, \dots, X_{n}\right)$.
+	\item	On évalue $Z^{(j)}	=	\phi\left(X_{1}^{(j)}, X_{2}^{(j)}, \dots, X_{n}^{(j)}\right)$.
+\end{enumerate}
+
+Par exemple, on peut avoir $\phi\left(x_{1}, x_{2}, \dots, x_{n}\right)	=	\sumz{n}{i = 1}x_{i}$.
+\end{algo2}
+
+\begin{algo2}[Simulation d'une fonction de variables aléatoires définies par un mélange]
+Pour $j	=	1, 2, \dots, m$, 
+\begin{enumerate}
+	\item	On simule une réalisation $\Theta^{(j)}$ de $\Theta$.
+	\item	On produit une réalisation $X^{(j)}$ de $X$ avec la fonction quantile $F_{X | \Theta = \Theta^{(j)}}$ de la fonction de répartition conditionnelle de $(X | \Theta = \Theta^{(j)})$
+\end{enumerate}
+\end{algo2}
+
+\subsection{Erreur et intervalle de confiance}
+Soit une v.a. $X$ dont on produit $m$ réalisation $\left( X^{(1)}, X^{(2)}, \dots, X^{(m)} \right)$.\\
+Soit la fonction intégrale de $X$, $g(X)$.\\
+On obtient les approximations pour $\theta	=	\text{E}[g(X)]$ : 
+\begin{align*}
+	\theta	
+	&=	\simeq	\hat{\theta}_{m}
+	=	\frac{1}{m}\sumz{m}{j	=	1} g\left(X^{(j)}\right)	\\
+	\text{Var}\left(\hat{\theta}_{m}\right)
+	&=	\frac{1}{m}\text{Var}\left(g(X)\right)	\\
+	\widehat{\text{Var}}\left(g(X)\right)
+	&=	\frac{1}{m - 1} \sumz{m}{j	=	1} \left(g\left(X^{(j)}\right)	-	\hat{\theta}_{m}\right)^{2}
+\end{align*}
+
+De plus, 
+\begin{align*}
+	\theta \in \left[\hat{\theta}_{m} \pm \sqrt{\frac{\text{Var}\left(\hat{\theta}_{m}\right)}{m}} \Phi^{-1} \left(1 - \frac{\alpha}{2}\right)\right]
+	\approx	\left[\hat{\theta}_{m} \pm \sqrt{\frac{\widehat{\text{Var}}\left(\hat{\theta}_{m}\right)}{m}} \Phi^{-1} \left(1 - \frac{\alpha}{2}\right)\right]
+\end{align*}
+
+Également, la fonction de répartition peut être approximée avec $m$ réalisations $\left( X^{(1)}, X^{(2)}, \dots, X^{(m)} \right)$ :
+\begin{align*}
+	F^{(m)}_{X}(x)
+	&\simeq	\frac{1}{m} \sumz{m}{j	=	1} \bm{1}_{\{X^{(j)}	\leq	x\}}
+\end{align*}
+
+De plus, pour \lfbox[conditions]{$j_{0}	=	m\times k$} entier :
+\begin{align*}
+	TVaR_{\kappa}(X)
+	&\simeq	\frac{1}{m - j_{0}} \left( \frac{1}{m} \sumz{m}{j	=	j_{0} + 1} X^{[j]} 
+%	+ X^{[j_{0}]}\bigg(F^{(m)}\big(X^{[j_{0}]}\big) - \kappa \bigg) 
+	\right)
+\end{align*}
+
+\pagebreak
+\section{Mutualisation des risques}
+\begin{distributions}[Terminologie]
+\begin{description}
+	\item[$S$]	Pertes totales 
+\end{description}
+\end{distributions}
+
+\subsection{Méthode de Monte-Carlo}
+\begin{algo2}[Étapes pour simuler]
+\begin{enumerate}
+	\item	Produire $M$ réalisations $U^{(1)}, \dots, U^{(m)}$ de $U$ ;
+	\item	Approximer $\theta$ par $\hat{\theta}_{m}$ où :
+		\begin{align*}
+		\hat{\theta}_{m}
+		&=	\frac{1}{m} \sumz{m}{j = 1} \phi\left( F_{X}^{-1}\left(U^{(j)}\right) \right)	\\
+		&=	\frac{1}{m} \sumz{m}{j = 1} \phi\left( X^{(j)} \right)	\\
+		\end{align*}
+\end{enumerate}
+Par la loi des grands nombres, $\hat{\theta}_{m}	\overset{P}{\rightarrow}	\theta$.
+\end{algo2}
+
+
+\subsection{Mesures de risque}
+
+
+\begin{description}
+	\item[Capital économique]	Allocation de surplus de la compagnie;
+		\begin{align*}
+		CE(S)	
+		&=	\rho(S)	-	\esp{S}
+		\end{align*}
+	\item[Marge de risque]	associée à une prime $P(X)$;
+		\begin{align*}
+		MR(X)
+		&=	\rho(X)	-	\esp{X}
+		\end{align*}
+\end{description}
+
+$\rho$ introduit une marge de risque:
+\begin{description}
+	\item[positive]	lorsque \icbox{$\rho(X)	\geq		\esp{X}$} pour une v.a. $X$ avec \icbox[red][palechestnut]{$\esp{X} < \infty$};
+	\item[justifiée]	lorsque \icbox{$\rho(X)	=	\rho(a)	=	a$} pour une v.a. $X$ avec \icbox[red][palechestnut]{$\Pr(X	=	a)	=	1, \alpha > 0$};
+	\item[non-excessive]	lorsque \icbox{$\rho(X)	\leq		a_{\max}$} pour une v.a. $X$ \icbox[red][palechestnut]{s'il existe $x_{\max}	<	\infty$} \icbox[red][palechestnut]{tel que $\Pr(X	\leq		x_{\max})	=	1$}.
+\end{description}
+
+\pagebreak
+\section{Modèles de risques non-vie}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$M$]	Variable aléatoire discrète du nombre de sinistres pour un risque;
+	\item[$B_{k}$]	Variable aléatoire continue du montant du $k^{\text{e}}$ sinistre.
+		\begin{itemize}
+		\item	La suite de v.a. positives (iid) $\underline{B}	=	\{B_{k}, k \in \mathbb{N}^{+}\}$ est indépendante de $M$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Modèle fréquence-sinistre]
+On défini la v.a. $X$ comme étant les coûts (pertes) pour un risque tel que \icbox[red][palechestnut]{$\forall	M	>	0$}:
+\begin{align*}
+	X
+	&=	\sum_{k	=	1}^{M} B_{k}
+\end{align*}
+
+\tcbline
+
+\begin{align*}
+	\esp{X}
+	&=	\text{E}_{\text{M}}\left[\text{E}_{\text{B}}[X | M]\right]	\\
+	&=	\text{E}[M]	\times	\text{E}[B]	\\
+	\text{Var}(X)
+	&=	\underbrace{\text{Var}_{\text{M}}(\text{E}_{\text{B}}[X | M])}_{\text{variabilité du \textit{nombre} de sinistres}}	+	\underbrace{\text{E}_{\text{M}}\left[\text{Var}_{\text{B}}(X | M)\right]}_{\text{variabilité du \textit{coût} par sinistre}}	\\
+	&=	\text{E}[M]\text{Var}(B)	+	\text{E}^{2}[B]\text{Var}(M)	\\
+\end{align*}
+
+\tcbline
+
+\begin{align*}
+	F_{X}(x)
+	&=	\Pr(M	=	0)	+	\sum_{k	=	1}^{\infty} \Pr(M	=	k)F_{B_{1}	+	\dots	+	B_{k}}(x)
+\end{align*}
+
+Par exemple, pour $B_{k}	\sim	\Gamma(\alpha,	\beta)$:
+\begin{align*}
+	F_{X}(x)
+	&=	\Pr(M	=	0)	+	\sum_{k	=	1}^{\infty} \Pr(M	=	k)H(x;	\alpha k, \beta)
+\end{align*}
+
+\tcbline
+
+\begin{align*}
+	\mathcal{L}_{X}(t)
+	&=	P_{M}\left(\mathcal{L}_{B}(t)\right), \quad	t > 0	\\
+	P_{X}(t)
+	&=	P_{M}\left(P_{B}(t)\right), \quad	t > 0	\\
+	\esp{X	\times	\bm{1}_{\{X	>	b\}}}
+	&=	\sum_{k	=	1}^{\infty} \Pr(M	=	k)E\left[(B_{1}	+	\dots	+	B_{k})	\times	\bm{1}_{\{B_{1}	+	\dots	+	B_{k} > b\}}\right]
+\end{align*}
+
+Par exemple, pour $B_{k}	\sim	\Gamma(\alpha,	\beta)$:
+\begin{align*}
+	\esp{X	\times	\bm{1}_{\{X	>	b\}}}
+	&=	\sum_{k	=	1}^{\infty} \Pr(M	=	k) \frac{k\alpha}{\beta} \overline{H}(b;	\alpha k + 1, \beta)
+\end{align*}
+\end{definitionNOHFILL}
+
+\subsection{Simulation}
+\begin{algo2}[Simulation de réalisations de $X$]
+\begin{enumerate}
+	\item	Simuler la réalisation $M^{(j)}$ de la v.a. $M$ ;
+	\item	Si $M^{(j)}	=	0$, alors $X^{(j)}	=	0$ ;
+	\item	Si $M^{(j)}	>	0$, alors :	
+		\begin{enumerate}
+		\item	Simuler $M^{(j)}$ réalisations de la v.a. (iid) $B$ pour obtenir $B^{(j)}_{1}, B^{(j)}_{2}, \dots, B^{(j)}_{M^{(j)}}$;
+		\item	On pose $X^{(j)}	=	B^{(j)}_{1} + B^{(j)}_{2} + \dots + B^{(j)}_{M^{(j)}}$.
+		\end{enumerate}
+\end{enumerate}
+\end{algo2}
+
+\subsection{Heavy tailed and light tailed}
+Si la distribution de la v.a. $B$ est sub-exponentielle alors :
+\begin{align*}
+	\overline{F}_{X}(x)
+	&=	\sumz{\infty}{k	=	1}f_{M}(k) \overline{F}_{B_{1} + \dots + B_{k}}(x)
+	\sim	\sumz{\infty}{k	=	1}f_{M}(k)k\overline{F}_{B}(x)
+	=	\text{E}[M]\overline{F}_{B}(x)
+\end{align*}
+
+\subsection{Mutualisation}
+
+\begin{definitionNOHFILLsub}[Somme de variables aléatoires Poisson composée]
+Soient les variables aléatoires indépendantes $X_{1}, \dots, X_{n}$ où $X_{i} \sim PComp(\lambda_{i}, F_{B_{i}})$ pour $i	=	1, 2, \dots, n$.\\
+Alors, $S	=	\sum_{i = }^{n} X_{i}	\sim	PComp(\lambda_{s} = \sum_{i = 1}^{n}\lambda_{i}; F_{C})$.
+\begin{align*}
+	F_{C}(x)
+	&=	\frac{\lambda_{1}}{\lambda_{S}}F_{B_{1}}(x) + \frac{\lambda_{2}}{\lambda_{S}}F_{B_{2}}(x) + \dots + \frac{\lambda_{n}}{\lambda_{S}}F_{B_{n}}(x)	\\
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\newpage
+\part{ACT-3000: Théorie du risque}
+\setcounter{section}{9}
+\section{Processus de Poisson}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$T_{k}$]	Temps d'occurrence de l'événement $k	=	1, 2, \dots$.
+		\begin{itemize}
+		\item	Il s'ensuit que \lfbox[conditions]{$0	<	T_{1}	<	T_{2}	<	\dots$} ;
+		\item	\lfbox[formula]{$T_{k}	\sim	Erlang(k; \lambda)$}.
+		\end{itemize}
+	\item[$W_{k}$]	Temps écoulé entre l'événement $k - 1$ et $k$.
+		\begin{itemize}
+		\item	Il s'ensuit que \lfbox[formula]{$W_{k}	=	T_{k} - T_{k - 1}$} ;
+		\item	\lfbox[formula]{$W_{k}	\sim	W	\sim	Exp(\lambda)$}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Processus de comptage]
+Soit le processus de comptage \lfbox[formula]{$\underline{N}	=	\{N(t), t \geq 0\}$} sous les conditions suivantes :
+\begin{enumerate}
+	\item	$N(0)	=	0$ ;
+	\item	$N(t)	\geq	0$ ;
+	\item	$N(t)	\geq	N(s)$ si $t	>	s$ ;
+	\item	$N(t) - N(s)$ correspond au nombre d'événements encourus durant l'intervalle $(s, t]$ où $t	>	s$ ;
+\end{enumerate}
+
+Au lieu de le définir en fonction d'une loi de Poisson, on peut définir \lfbox[formula]{$N(t)	=	\sup\{k \geq 1 : T_{k} \leq t\}$}, \lfbox[conditions]{$\forall t \geq 0$}. C'est-à-dire, le dernier événement à se produire à ou avant le temps $t$.
+
+\tcbline
+
+\begin{itemize}
+	\item	Alias, processus de dénombrement.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\columnbreak
+\subsection{Processus de Poisson homogène}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\lambda$]	Taux, ou intensité, du processus.
+	\item[$\Lambda(t)$]	Intensité cumulée :
+		\begin{align*}
+		\Lambda(t)
+		&=	\int_{0}^{t} \lambda ds
+		=	\lambda t, \quad t > 0
+		\end{align*}
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILLsub}[Processus de Poisson]
+$\underline{N}	=	\{N(t), t \geq 0\}$ est un \textbf{processus de Poisson} sous les conditions suivantes :
+\begin{enumerate}
+	\item	$N(0)	=	0$ ;
+	\item	Les accroissements sont indépendants et stationnaires ;
+	\item	$N(t)	\sim	Pois(\lambda t)$ ;
+	\item	$N(t + s) - N(s) \sim Pois(\lambda t)$.
+\end{enumerate}
+\end{definitionNOHFILLsub}
+
+Pour \lfbox[conditions]{$s \geq 0$ et $t > 0$}, \lfbox[formula]{$N(s, s + t]	=	N(s + t)	-	N(s)$}.\\
+Également, pour \lfbox[conditions]{$s \geq 0$ et $t > 0$}, \lfbox[formula]{$\Lambda(s, s + t]	=	\Lambda(s + t)	-	\Lambda(s)$}.
+
+\subsubsection*{Fonctions d'un processus de Poisson homogène}
+Pour $k \in \mathbb{N}$, $t > 0$, $s \geq 0$ :
+\begin{align*}
+	\Pr(N(t)	=	k)
+	&=	\textrm{e}^{-\lambda t} \frac{(\lambda t)^{k}}{k!}	\\
+	&\underset{\small\shortstack{accroissements\\ stationnaires}}{\equiv} \Pr(N(s, s + t)	=	k)
+\end{align*}
+
+
+\begin{definitionNOHFILLprop}[Propriétés d'un processus de Poisson homogène]
+Soit le processus de Poisson $\underline{N}	=	\{N(t), t \geq 0\}$ avec les propriétés suivantes :
+\begin{enumerate}
+	\item	$N(0)	=	0$ ;
+	\item	Les accroissements sont indépendants et stationnaires ;
+	\item	$N(t)	\sim	Pois(\lambda t)$ ;
+	\item	$N(s, s + t]	\equiv N(s + t) - N(s) \sim Pois(\lambda t)$ ;\\
+	Pour \lfbox[conditions]{$h	\rightarrow 0$} et \lfbox[conditions]{$o(h)	\overset{h \rightarrow 0}{\rightarrow} 0$} :
+	\item	$\Pr(N(t + h) - N(t) = 0)	=	1 - \lambda h + o(h)$ ;
+	\item	$\Pr(N(t + h) - N(t) = 1)	=	\lambda h + o(h)$ ;
+	\item	$\Pr(N(t + h) - N(t) \geq 2)	=	o(h)$.
+\end{enumerate}
+\end{definitionNOHFILLprop}
+
+\subsubsection*{Propositions}
+\begin{definitionNOHFILLpropos}[Proposition:	Mélange de processus de Poisson avec une suite de v.a. Bernoulli]
+Soit :
+\begin{itemize}
+	\item	Un processus de Poisson $\underline{N}	=	\{N(t), t \geq 0\}$ de taux $\lambda$ ;
+	\item	La suite de variables aléatoires (iid) Bernoulli $\underline{I}	=	\{I_{k}, k	=		1, 2, \dots\}$ de paramètre $q$.
+\end{itemize}
+On pose que $\underline{N}	\perp	\underline{I}$ et défini :
+\begin{align*}
+	M(t)
+	&=	\begin{cases}
+		\sumz{N(t)}{k	=	1} I_{k}, &	N(t)	>	0	\\
+		0,	&	N(t)	=	0
+		\end{cases}
+\end{align*}
+
+On obtient donc le processus de Poisson $\underline{M}	=	\{M(t), t \geq 0\}$ de taux $\lambda q$; c'est-à-dire, \lfbox[formula]{$M(t)	\sim	Pois(\lambda q t)$}.
+\end{definitionNOHFILLpropos}
+
+\begin{definitionNOHFILLpropos}[Proposition:	Somme de processus de Poisson]
+Soit les processus de Poisson indépendants $\underline{N}_{1}	=	\{N_{1}(t), t \geq 0\}$ et $\underline{N}_{2}	=	\{N_{2}(t), t \geq 0\}$ de taux $\lambda_{1}$ et $\lambda_{2}$.\\
+
+Alors, $\underline{M}	=	\{M(t), t \geq 0\}$ est un processus de Poisson de taux $\lambda_{1} + \lambda_{2}$ où $M(t)	=	N_{1}(t) + N_{2}(t)$; c'est-à-dire, \lfbox[formula]{$M(t)	\sim	Pois(\lambda_{1} + \lambda_{2})$}.
+\end{definitionNOHFILLpropos}
+
+\begin{algo2}[Algorithme de Processus de Poisson 1 (PP1)]
+\begin{enumerate}
+	\item	On fixe \lfbox[conditions]{$T_{0}^{(j)}	=	0$} ;
+	\item	Pour $i	=	1, 2, \dots, n$, 
+		\begin{enumerate}[label = \alph*)]
+		\item	On simule $W_{i}^{(j)}$ ;
+		\item	On calcule $T_{i}^{(j)}	=	T_{i - 1}^{(j)} + W_{i}^{(j)}$.
+		\end{enumerate}
+\end{enumerate}
+
+\tcbline
+
+\begin{itemize}
+	\item	Cet algorithme est simple d'application ;
+	\item	Cependant, il n'est pas toujours efficace pour produire des simulations du processus $\underline{N}$ sur un intervalle fixe $(0, t]$.
+\end{itemize}
+\end{algo2}
+
+\subsubsection*{Distributions du temps d'occurrence}
+\begin{rappel_enhanced}[Rappel:	Distribution du temps inter-sinistre]
+\begin{equation*}
+	T_{1}	\sim	W_{k}	\sim	W	\sim	\text{Exp}(\lambda)
+\end{equation*}
+\end{rappel_enhanced}
+
+\begin{description}
+	\item[$(T_{1} | N(t)	=	1)$]	Temps d'occurrence du premier sinistre sachant qu'il est survenu dans l'intervalle $(0, t]$.
+		\begin{itemize}
+		\item	\lfbox[formula]{$(T_{1} | N(t)	=	1) \sim U(0, t)$} ;
+		\item	Pour \lfbox[conditions]{$s \in (0, t)$} :
+		\end{itemize}
+		\begin{align*}
+		f_{T_{1} | N(t)	=	1}(s)	
+		&=	\frac{1}{t}	&
+		F_{T_{1} | N(t)	=	1}(s)	
+		&=	\frac{s}{t}	\\
+		\end{align*}
+\end{description}
+%\begin{align*}
+%	\Pr(T_{1}	\leq	s	|	N(t)	=	1)
+%	&=	\frac{\Pr(T_{2}	>	t)}{\Pr(N(t)	=	1)}	\\
+%	&\equiv	\frac{\Pr(N(s)	=	1, N(s, t]	=	0)}{\Pr(N(t)	=	1)}	\\
+%	&\overset{\small\shortstack{accroissements\\ indépendants}}{=}	...	\\
+%	&=	\frac{s}{t}, \quad s \in (0, t]
+%\end{align*}
+
+
+\begin{description}
+	\item[$(T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n)$]	Temps d'occurrence des $n$ premiers sinistres sachant qu'ils sont survenus dans l'intervalle $(0, t]$.
+\end{description}
+
+Pour \lfbox[conditions]{$0	<	s_{1}	<	s_{2}	<	\dots	<	s_{n}	\leq		n$} :
+\begin{align*}
+	f_{T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n}(s_{1}, s_{2}, \dots, s_{n})	
+	&=	\frac{n!}{t^{n}}	\\
+\end{align*}
+
+De plus, pour des très petits nombres $h_{1}, h_{2}, \dots, h_{n}$ tel que les intervalles $(s_{1}, s_{1} + h_{1}], (s_{2}, s_{2} + h_{2}], \dots, (s_{n}, s_{n} + h_{n}]$ sont disjoints, alors :
+\begin{align*}
+	\Pr(T_{1} \in (s_{1}, s_{1} + h_{1}], T_{2} \in (s_{2}, s_{2} + h_{2}], \dots, T_{n} \in (s_{n}, s_{n} + h_{n}] | N(t)	=	n)
+	&=	\frac{n!}{t^{n}}	 \prod_{i = 1}^{n}h_{i}\\
+\end{align*}
+
+
+
+\begin{definitionNOHFILLpropos}[Vecteur de statistiques d'ordre]
+Soit le vecteur de v.a. continues (iid) $(Y_{1}, Y_{2}, \dots, Y_{n})$, alors \lfbox[conditions]{$\forall i	=	1, 2, \dots, n$} :
+\begin{itemize}
+	\item	\lfbox[conditions]{$Y_{i} \sim Y$} et 
+	\item	la fonction de densité \lfbox[conditions]{$f_{Y_{i}}	=	f_{Y}$}. 
+\end{itemize}
+
+On défini le vecteur de statistiques d'ordre $(Y_{[1]}, Y_{[2]}, \dots, Y_{[n]})$ avec la fonction de densité conjointe :
+\begin{align*}
+	f_{Y_{[1]}, Y_{[2]}, \dots, Y_{[n]}}(y_{1}, y_{2}, \dots, y_{n})	
+	&=	n! \times \prod_{i = 1}^{n} f_{Y}(y_{i}), \quad	y_{1}	<	y_{2}	<	\dots	<	y_{n}	\\
+	&\overset{Y \sim U(0, t)}{=}	\frac{n!}{t^{n}}, \quad 0	<	y_{1}	<	y_{2}	<	\dots	<	y_{n}	\leq		t
+\end{align*}
+
+Donc, \lfbox[formula]{$(T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n) \sim (Y_{[1]}, Y_{[2]}, \dots, Y_{[n]})$}.
+\end{definitionNOHFILLpropos}
+
+\begin{algo2}[Algorithme de Processus de Poisson 2 (PP2)]
+\begin{enumerate}
+	\item	On fixe \lfbox[conditions]{$T_{0}^{(j)}	=	0$} ;
+	\item	On simule la réalisation $N(t)^{(j)}$ de $N(t)$ ;
+	\item	Sachant $N(t)	=	N(t)^{(j)}	>	0$ :
+		\begin{enumerate}[label = \alph*)]
+		\item	On simule le vecteur de réalisations $\left( U_{1}^{(j)}, U_{2}^{(j)}, \dots, U_{N(t)^{(j)}}^{(j)}\right)$ de $\left( U_{1}, U_{2}, \dots, U_{N(t)^{(j)}}\right)$ ;
+		\item	On trie ces réalisations pour obtenir le vecteur de statistiques d'ordre $\left( U_{[1]}^{(j)}, U_{[2]}^{(j)}, \dots, U_{[N(t)^{(j)}]}^{(j)}\right)$ où $ U_{[1]}^{(j)} < U_{[2]}^{(j)}< \dots < U_{[N(t)^{(j)}]}^{(j)}$ ;
+		\item	On calcule $T_{i}^{(j)}	=	t \times U_{[i]}^{(j)}$ pour $i	=	1, 2, \dots, N(t)^{(j)}$.
+		\end{enumerate}
+		\begin{description}
+		\item[Note :]	On pose que $U_{i} \sim U \sim U(0, 1)$.
+		\end{description}
+\end{enumerate}
+\end{algo2}
+
+
+\columnbreak
+\subsection{Processus de Poisson non-homogène}
+\begin{definitionNOHFILLsub}[Processus de Poisson non-homogène]
+$\underline{N}	=	\{N(t), t \geq 0\}$ est un \textbf{processus de Poisson non-homogène} de fonction d'intensité $\lambda(t)	\geq 0$ $\forall t \geq 0$ si :
+\begin{enumerate}
+	\item	$N(0)	=	0$ ;
+	\item	Les accroissements sont indépendants ;
+	\item	$\Pr(N(t + h) - N(t)	=	1)	=	\lambda(t)h + o(h)$ ;
+	\item	$\Pr(N(t + h) - N(t)	\geq	2)	=	o(h)$ ;
+\end{enumerate}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLpropos}[Proposition :	]
+Soit le processus de Poisson non-homogène $\underline{N}	=	\{N(t), t \geq 0\}$ avec intensité $\lambda(t)$; alors \lfbox[formula]{$\forall t, s \geq 0$},
+\begin{align*}
+	N(t + s) - N(t)
+	\sim	Pois\left(\Lambda(t + s) - \Lambda(s)\right)
+\end{align*}
+où $\Lambda(t)	=	\int_{0}^{t}\lambda(y)dy$.
+
+\tcbline
+
+Ainsi, 
+\begin{align*}
+	\Pr\left(N(t + s) - N(s) = n\right)
+	&=	\frac{\left[ m(t + s) - m(s) \right]^{n} \textrm{e}^{-[ m(t + s) - m(s)]}}{n!}
+\end{align*}
+
+\begin{itemize}
+	\item	La suite de v.a. des temps inter-sinistres n'est pas $\underline{W}$ indépendante ni identiquement distribuée.
+\end{itemize}
+\end{definitionNOHFILLpropos}
+
+\begin{formula}{Exemples de fonctions d'intensité}
+\begin{description}
+	\item[fonction linéaire]	$\lambda(t)	=	a + bt$, $a > 0, b \geq 0$ ;
+	\item[fonction puissance]		$\lambda(t)	=	(\beta t)^{\tau}$, $\beta, \tau > 0$ ;
+	\item[fonction log-linéaire]		$\lambda(t)	=	\textrm{e}^{\alpha + \beta t}$, $\alpha,\beta \in \mathbb{R}$ ;
+	\item[fonction périodique]	$\lambda(t)	=	a + b\cos(2\pi t)$, $a > 0, b \in [0, a]$.
+\end{description}
+\end{formula}
+
+\subsubsection*{Distributions du temps d'occurrence}
+On sait que $T_{1}	\equiv	W_{1}$.
+\begin{align*}
+	F_{W_{1}}(t)
+	&=	1	-	\textrm{e}^{-\Lambda(t)}, \quad t \geq 0
+\end{align*}
+
+Plus généralement, 
+\begin{align*}
+	F_{W_{n} | T_{n - 1} = s}(t)
+	&=	1	-	\textrm{e}^{-\Lambda_{s}(t)},\quad t \geq 0
+\end{align*}
+
+\begin{algo2}[Algorithme de Processus de Poisson non-homogène 1 (PPNH1)]
+\begin{enumerate}
+	\item	On fixe \lfbox[conditions]{$T_{0}^{(j)}	=	0$} ;
+	\item	Pour $i	=	1, 2, \dots, n$, 
+		\begin{enumerate}[label = \alph*)]
+		\item	On simule les réalisations $\left( Z_{1}^{(j)}, Z_{2}^{(j)}, \dots, Z_{n}^{(j)}\right)$ du vecteur de v.a. (iid) avec $Z_{i} \sim Z \sim Exp(1)$ ;
+		\item	On simule $W_{i}^{(j)}	=	\Lambda^{-1}_{T_{i - 1}^{(j)}}(Z_{i})$ ;
+		\item	On calcule $T_{i}^{(j)}	=	T_{i - 1}^{(j)} + W_{i}^{(j)}$.
+		\end{enumerate}
+\end{enumerate}
+
+\tcbline
+
+\begin{itemize}
+	\item	Cet algorithme est simple d'application si l'expression $\Lambda_{s}^{-1}$ est fermée ;
+	\item	Cependant, le prochain est plus efficace pour produire des simulations du processus $\underline{N}$ sur un intervalle fixe $(0, t]$.
+\end{itemize}
+\end{algo2}
+
+Pour \lfbox[conditions]{$0	<	s_{1}	<	s_{2}	<	\dots	<	s_{n}	<	t$} :
+\begin{align*}
+	f_{T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n}(s_{1}, s_{2}, \dots, s_{n})	
+	&=	\frac{n!}{\Lambda(t)^{n}}\prod_{i = 1}^{n}\lambda(s_{i})	\\
+\end{align*}
+
+Les hypothèses au vecteur de v.a. (iid) $\left(V_{1}, V_{2}, \dots, V_{N(t)}^{(j)}\right)$ sont appliquées de la même façon qu'auparavant avec $\left(U_{1}, U_{2}, \dots, U_{N(t)}^{(j)}\right)$.
+
+\begin{algo2}[Algorithme de Processus de Poisson non-homogène 2 (PPNH2)]
+\begin{enumerate}
+	\item	On fixe \lfbox[conditions]{$T_{0}^{(j)}	=	0$}.
+	\item	On simule la réalisation $N(t)^{(j)}$ de $N(t) \sim Pois(\Lambda(t))$.
+	\item	Sachant $N(t)	=	N(t)^{(j)}	>	0$ :
+		\begin{enumerate}[label = \alph*)]
+		\item	On simule le vecteur de réalisations $\left( V_{1}^{(j)}, V_{2}^{(j)}, \dots, V_{N(t)^{(j)}}^{(j)}\right)$ du vecteur de v.a. (iid) $\left( V_{1}, V_{2}, \dots, V_{N(t)^{(j)}}\right)$ ;
+		\item[Note :]	$V_{i} \sim V$ avec $f_{V}(x)	=	\frac{\lambda(x)}{\Lambda(t)}$ pour $0 < x < t$ et $\forall	i	=	1, 2, \dots, N(t)^{(j)}$
+		\item	On trie ces réalisations pour obtenir le vecteur de statistiques d'ordre $\left( V_{[1]}^{(j)}, V_{[2]}^{(j)}, \dots, V_{[N(t)^{(j)}]}^{(j)}\right)$ où $ V_{[1]}^{(j)} < V_{[2]}^{(j)}< \dots < V_{[N(t)^{(j)}]}^{(j)}$ ;
+		\item	On calcule $T_{i}^{(j)}	=	V_{[i]}^{(j)}$ pour $i	=	1, 2, \dots, N(t)^{(j)}$.
+		\end{enumerate}
+		\begin{description}
+		\item[Note :]	On pose que $U_{i} \sim U \sim U(0, 1)$.
+		\end{description}
+	\item	Pour $i	=	1, 2, \dots, n$, 
+		\begin{enumerate}[label = \alph*)]
+		\item	On simule les réalisations $\left( Z_{1}^{(j)}, Z_{2}^{(j)}, \dots, Z_{n}^{(j)}\right)$ du vecteur de v.a. (iid) avec $Z_{i} \sim Z \sim Exp(1)$ ;
+		\item	On simule $W_{i}^{(j)}	=	\Lambda^{-1}_{T_{i - 1}^{(j)}}(Z_{i})$ ;
+		\item	On calcule $T_{i}^{(j)}	=	T_{i - 1}^{(j)} + W_{i}^{(j)}$.
+		\end{enumerate}
+\end{enumerate}
+
+\tcbline
+
+\begin{itemize}
+	\item	Cet algorithme est simple d'application si l'expression $\Lambda_{s}^{-1}$ est fermée ;
+	\item	Cependant, le prochain est plus efficace pour produire des simulations du processus $\underline{N}$ sur un intervalle fixe $(0, t]$.
+\end{itemize}
+\end{algo2}
+
+
+\columnbreak
+\subsection{Processus de Poisson mixte}
+\begin{align*}
+	\text{E}[N(t)]
+	&=	t\lambda	\\
+	\text{Var}(N(t))
+	&=	t\lambda	 + t^{2}\text{Var}(\Theta)\\
+\end{align*}
+
+Pour $r \in [0, 1]$ :
+\begin{align*}
+	M_{N(t)}(r)
+	&=	M_{\Theta}\left( t(\textrm{e}^{r} - 1)\right)	\\
+	\mathcal{P}_{N(t)}(r)
+	&=	M_{\Theta}\left( t(r - 1)\right)	\\
+\end{align*}
+
+\begin{itemize}
+	\item	Le processus de Poisson mixte $\underline{N}$ possède des accroissements stationnaires mais pas indépendants.
+		\begin{align*}
+		\Pr\left(N(t + s) - N(s) = n | N(s) = m\right)
+		\neq		\Pr\left(N(t + s)	-	N(s)	=	n\right), \quad m, n \in \mathbb{N}
+		\end{align*}
+\end{itemize}
+
+\begin{algo2}[Algorithme de simulation d'un Processus de Poisson mixte]
+\begin{enumerate}
+%	\item	On fixe \lfbox[conditions]{$T_{0}^{(j)}	=	0$} ;
+	\item	On simule la réalisation $\Theta^{(j)}$ de $\Theta$ ;
+	\item	On simule le $j^{\text{e}}$ parcours de $(\underline{N} | \Theta = \Theta^{(j)})$ avec l'algorithme PP1 pour un processus de Poisson avec intensité $\lambda = \Theta^{(j)}$.
+\end{enumerate}
+\end{algo2}
+
+
+\columnbreak
+\subsection{Processus de renouvellement}
+\lfbox[formula]{$\{N(t) \geq k\}	\equiv	\{T_{k} \leq t\}$}, \lfbox[conditions]{$t > 0, k \in \mathbb{N}$}.
+
+\begin{align*}
+	m(t)
+	&=	\text{E}[N(t)]	\\
+	&=	\sumz{\infty}{k = 1}	\text{E}[\bm{1}_{\{T_{k} \leq t\}}]\\
+	&=	\sumz{\infty}{k = 1}	 F_{T_{k}}(t)\\
+\end{align*}
+
+
+\subsection{Processus agrégés}
+\begin{align*}
+	S(t)
+	&=	\begin{cases}
+		\sumz{N(t)}{k = 1} B_{k},	&	N(t)	>	0	\\
+		0,	&	N(t)	=	0
+		\end{cases}
+\end{align*}
+
+
+\subsection{Valeur présente et processus agrégés}
+
+
+
+\pagebreak
+\section{Méthodes récursives d'agrégation}
+\subsection{Motivations}
+\subsubsection{Convolution}
+\begin{rappel_enhanced}[Produit de convolution]
+Soit les variables aléatoires indépendantes continues positives $X_{1}$ et $X_{2}$.\\
+On définit $S	=	X_{1} + X_{2}$, alors :
+\begin{align*}
+	f_{S}(x)
+	&=	\int_{0}^{x} f_{X_{1}}(y) f_{X_{2}}(x - y) dy
+	=	f_{X_{1}} \ast f_{X_{2}}(x)
+\end{align*}
+
+\tcbline
+
+Soit les variables aléatoires indépendantes discrètes positives $X_{1}$ et $X_{2}$ définies sur le support arithmétique $0h, 1h, 2h, \dots$.
+\begin{itemize}
+	\item	$h$ est un \og \textit{pas de discrétisation} \fg{} positif ($h > 0$) ;
+	\item	Par exemple : $10, 20, 30, \ldots  = 1h, 2h, 3h, \dots$ avec $h = 10$.
+\end{itemize}
+
+On définit $S	=	X_{1} + X_{2}$, alors pour $k \in \mathbb{N}$ :
+\begin{align*}
+	f_{S}(kh)
+	&=	\sum_{j = 0}^{k} f_{X_{1}}(jh) f_{X_{2}}((k - j)h) 
+	=	f_{X_{1}} \ast f_{X_{2}}(kh)
+\end{align*}
+\end{rappel_enhanced}
+
+\subsubsection{Nombres complexes}
+\begin{align*}
+	z	&=	\underbrace{x}_{\shortstack{partie réelle,\\ \text{Re}(z)}} + \underbrace{y}_{\shortstack{partie imaginaire,\\ \text{Im}(z)}}\times\underbrace{i}_{\shortstack{Unité imaginaire,\\ $i = \sqrt{-1}$}}
+\end{align*}
+
+\begin{definitionNOHFILLpropos}[Propriétés de base]
+Soit les nombres complexes $z_{1}	=	x_{1} + y_{1}i$ et $z_{2}	=	x_{2} + y_{2}i$.\\
+Règle de : 
+\begin{description}
+	\item[addition]	$z_{1} + z_{2}	=	(x_{1} + x_{2}) + (y_{1} + y_{2})i$ ;
+	\item[multiplication]	$z_{1} \times z_{2}	=	(x_{1}x_{2} - y_{1}y_{2}) + (x_{1}y_{2} + x_{2}y_{1})i$ ;
+	\item[soustraction]		$z_{1} - z_{2}	=	(x_{1} - x_{2}) + (y_{1} - y_{2})i$.
+\end{description}
+\end{definitionNOHFILLpropos}
+
+
+\begin{definitionNOHFILLprop}[Représentation sous la forme polaire]
+\lfbox[formula]{$z	=	r(\cos(\theta) + i\sin(\theta))$} où : 
+\begin{itemize}
+	\item	$r	=	|z|	=	\sqrt{x^{2} + y^{2}}	=$ \textbf{module} de $z$ ;
+	\item	$\theta$	est \textbf{l'argument} de $z$ ; c'est-à-dire, l'angle du vecteur $z$ dans le plan complexe.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Conjugué d'un nombre complexe]
+Le conjugué de $z	=	x + yi$ est : \lfbox[formula]{$\overline{z}	=	\overline{x + yi}	=	x	-	yi$}.
+
+\begin{definitionNOHFILLpropos}[Propriétés de base du conjugué]
+Soit les nombres complexes $z_{1}	=	x_{1} + y_{1}i$ et $z_{2}	=	x_{2} + y_{2}i$.\\
+Règle de : 
+\begin{description}
+	\item[addition]	$\overline{z_{1} + z_{2}}	=	\overline{z_{1}} + \overline{z_{2}}$ ;
+	\item[multiplication]	$\overline{z_{1} \times z_{2}}	=	\overline{z_{1}} \times \overline{z_{2}}$ ;
+	\item[les exposants]		$\overline{z_{1}^{n}}	=	\left(\overline{z_{1}}\right)^{n}$.
+\end{description}
+\end{definitionNOHFILLpropos}
+\end{definitionNOHFILLprop}
+
+
+\begin{definitionNOHFILLpropos}[Règle de division]
+Soit les nombres complexes $z_{1}	=	x_{1} + y_{1}i$ et $z_{2}	=	x_{2} + y_{2}i$.\\
+\begin{align*}
+	\frac{z_{1}}{z_{2}}
+	&=	\frac{z_{1} \times \overline{z_{2}}}{z_{2} \times \overline{z_{2}}}
+	=	\frac{(x_{1}x_{2} + y_{1}y_{2})}{x_{2}^{2} - y_{2}^{2}} + \frac{(x_{1}y_{2} + x_{2}y_{1})}{x_{2}^{2} - y_{2}^{2}}i
+\end{align*}
+\end{definitionNOHFILLpropos}
+
+\begin{definitionNOHFILLprop}[Formule d'Euler]
+\begin{align*}
+	\textrm{e}^{i\theta}
+	&=	\cos(\theta) + i\sin(\theta)	\\
+	&\Rightarrow	\\
+	z
+	&=	r\textrm{e}^{i\theta}
+	=	r\times\left(\cos(\theta) + i\sin(\theta)\right)
+\end{align*}
+\end{definitionNOHFILLprop}
+
+\columnbreak
+\subsection{Somme de variables aléatoires discrètes}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$f_{X}^{\ast n}(k)$]	$n^{\text{e}}$ produit de convolution de $f_{X}$ avec elle-même.	
+		\begin{align*}
+			f_{S_{n}}(k)	
+			&=	f_{X_{1} + \dots + X_{n}}(k)	=	f_{X}^{\ast n}(k)
+		\end{align*}
+\end{description}
+\end{distributions}
+
+\begin{align*}
+	f_{S_{n}}(k)
+	&=	\sumz{k}{k_{1}	=	0}\dots\sumz{k_{n	-	2}}{k_{n	-	1}	=	0} 
+	f_{X_{1}, \dots, X_{n}}\left(k_{1}, \dots, k_{n - 1}, \left(k - \sumz{n	-	1}{j	=	1}k_{j} \right) \right)
+\end{align*}
+
+\begin{align*}
+	\mathcal{P}_{S_{n}}(t)
+	&=	P_{X}(t)^{n}	
+	=	\sum_{k = 0}^{\infty} f_{S_{n}}(k) t^{k}
+\end{align*}
+
+\begin{algo2}[Algorithme de De Pril]
+Cet algorithme permet de calculer $f_{X}^{\ast n}(k)$ selon la relation récursive suivante pour \lfbox[conditions]{$k \in \mathbb{N}^{+}$} :
+\begin{align*}
+	f_{S_{n}}(k)
+	&=	\frac{1}{f_{X}(0)} \sum_{j = 1}^{k} \left((n + 1)\frac{j}{k} - 1\right)f_{X}(j)f_{S_{n}}(k - j)
+\end{align*}
+
+avec \lfbox[conditions]{$f_{S_{n}}(0)	=	\left(f_{X}(0)\right)^{n}$} comme point de départ.
+
+\tcbline
+
+\begin{enumerate}
+	\item	On calcule $f_{S_{n}}(0)	=	\left(f_{X}(0)\right)^{n}$.
+	\item	On calcule $f_{S_{n}}(1)	=	\frac{1}{f_{X}(0)} \left((n + 1)\frac{1}{1} - 1\right)f_{X}(1)f_{S_{n}}(0)$.
+	\item	Avec $f_{S_{n}}(1)$, on trouve $f_{S_{n}}(2)	=	\frac{1}{f_{X}(0)} \bigg\{ f_{X}(1)\left((n + 1)\frac{1}{2} - 1\right)f_{S_{n}}(1)	+$ $ f_{X}(2)\left((n + 1)\frac{2}{2} - 1\right)f_{S_{n}}(0) \bigg\}$.
+	\item	Répéter pour $k \in \{3, 4, \dots\}$.
+\end{enumerate}
+\end{algo2}
+
+Visuel du produit de sommations infinies: 
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,357); %set diagram left start at 0, and has height of 357
+
+%Shape: Rectangle [id:dp9012494168801195] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (55.42,87.13) -- (107.08,87.13) -- (107.08,138.8) -- (55.42,138.8) -- cycle ;
+%Shape: Rectangle [id:dp13205821049614785] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (107.08,138.8) -- (158.75,138.8) -- (158.75,190.46) -- (107.08,190.46) -- cycle ;
+%Shape: Rectangle [id:dp019003840010249684] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (158.75,190.46) -- (210.42,190.46) -- (210.42,242.13) -- (158.75,242.13) -- cycle ;
+%Shape: Rectangle [id:dp8073038960439742] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (210.42,242.13) -- (262.09,242.13) -- (262.09,293.8) -- (210.42,293.8) -- cycle ;
+%Shape: Rectangle [id:dp417233184317795] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (210.42,138.8) -- (262.09,138.8) -- (262.09,190.46) -- (210.42,190.46) -- cycle ;
+%Shape: Rectangle [id:dp4717191293138612] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (107.08,242.13) -- (158.75,242.13) -- (158.75,293.8) -- (107.08,293.8) -- cycle ;
+%Shape: Rectangle [id:dp13464262358803225] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (55.42,190.46) -- (107.08,190.46) -- (107.08,242.13) -- (55.42,242.13) -- cycle ;
+%Shape: Rectangle [id:dp16637855029421478] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (158.75,87.13) -- (210.42,87.13) -- (210.42,138.8) -- (158.75,138.8) -- cycle ;
+
+%Shape: Rectangle [id:dp610153790892501] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (107.08,87.13) -- (158.75,87.13) -- (158.75,138.8) -- (107.08,138.8) -- cycle ;
+%Shape: Rectangle [id:dp6072589436516438] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (55.42,138.8) -- (107.08,138.8) -- (107.08,190.46) -- (55.42,190.46) -- cycle ;
+%Shape: Rectangle [id:dp780046034963563] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (107.08,190.46) -- (158.75,190.46) -- (158.75,242.13) -- (107.08,242.13) -- cycle ;
+%Shape: Rectangle [id:dp7830217768491039] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (55.42,242.13) -- (107.08,242.13) -- (107.08,293.8) -- (55.42,293.8) -- cycle ;
+%Shape: Rectangle [id:dp31001434819096274] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (158.75,138.8) -- (210.42,138.8) -- (210.42,190.46) -- (158.75,190.46) -- cycle ;
+%Shape: Rectangle [id:dp44510593714460733] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (210.42,87.13) -- (262.09,87.13) -- (262.09,138.8) -- (210.42,138.8) -- cycle ;
+%Shape: Rectangle [id:dp8059448778013303] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (158.75,242.13) -- (210.42,242.13) -- (210.42,293.8) -- (158.75,293.8) -- cycle ;
+%Shape: Rectangle [id:dp2648498855708319] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (210.42,190.46) -- (262.09,190.46) -- (262.09,242.13) -- (210.42,242.13) -- cycle ;
+%Shape: Rectangle [id:dp3178359683590004] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (404.75,129.4) -- (441.29,165.93) -- (404.75,202.46) -- (368.22,165.93) -- cycle ;
+%Shape: Rectangle [id:dp8097615203830828] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (331.68,202.46) -- (368.22,239) -- (331.68,275.53) -- (295.15,239) -- cycle ;
+%Shape: Rectangle [id:dp6579946521796063] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (477.82,129.4) -- (514.36,165.93) -- (477.82,202.46) -- (441.29,165.93) -- cycle ;
+%Shape: Rectangle [id:dp1676638549029934] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (441.29,92.86) -- (477.82,129.4) -- (441.29,165.93) -- (404.75,129.4) -- cycle ;
+%Shape: Rectangle [id:dp8681065944365156] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (368.29,165.86) -- (404.82,202.4) -- (368.29,238.93) -- (331.75,202.4) -- cycle ;
+%Shape: Rectangle [id:dp655906660349328] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (441.29,165.86) -- (477.82,202.4) -- (441.29,238.93) -- (404.75,202.4) -- cycle ;
+%Shape: Rectangle [id:dp08139212530978601] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (514.29,165.86) -- (550.82,202.4) -- (514.29,238.93) -- (477.75,202.4) -- cycle ;
+%Shape: Rectangle [id:dp4420360995937358] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (404.68,202.46) -- (441.22,239) -- (404.68,275.53) -- (368.15,239) -- cycle ;
+%Shape: Rectangle [id:dp766503793931888] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (477.68,202.46) -- (514.22,239) -- (477.68,275.53) -- (441.15,239) -- cycle ;
+%Shape: Rectangle [id:dp5853286419881494] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (550.68,202.46) -- (587.22,239) -- (550.68,275.53) -- (514.15,239) -- cycle ;
+
+% Text Node
+\draw (71,5) node [anchor=north west][inner sep=0.75pt]  [font=\small] [align=left] {$\displaystyle \sum ^{\infty }_{i=0}\left\{f_{X}( i) \cdotp t^{i}\right\} \ \sum ^{\infty }_{j=0}\left\{j\cdotp f_{S_{n}}( k) \cdotp t^{j}\right\} =\sum ^{\infty }_{k=1}\left\{t^{k} \cdotp \sum ^{j-1}_{l=0}\{( k-l) \cdotp f_{S_{n}}( k-l) \cdotp f_{X}( l)\}\right\}$};
+% Text Node
+\draw (57.7,70.2) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0f_{S_{n}}( 0) t^{0}$};
+% Text Node
+\draw (112.37,70.2) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{S_{n}}( 1) t^{1}$};
+% Text Node
+\draw (160.04,70.2) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 2\ f_{S_{n}}( 2) t^{2}$};
+% Text Node
+\draw (10.08,105.6) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{X}( 0) t^{0}$};
+% Text Node
+\draw (10.08,159.08) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{X}( 1) t^{1}$};
+% Text Node
+\draw (10.08,208.03) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{X}( 2) t^{2}$};
+% Text Node
+\draw (10.08,259.7) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{X}( 3) t^{3}$};
+% Text Node
+\draw (210.8,70.2) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 3\ f_{S_{n}}( 3) t^{3}$};
+% Text Node
+\draw (126.92,158.63) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{2}$};
+% Text Node
+\draw (126.92,106.96) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{1}$};
+% Text Node
+\draw (178.59,106.96) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{2}$};
+% Text Node
+\draw (76.66,261.97) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (76.66,210.3) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (76.66,158.63) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (75.75,106.96) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (126.92,210.3) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
+% Text Node
+\draw (178.59,158.63) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
+% Text Node
+\draw (230.25,106.96) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
+% Text Node
+\draw (230.25,158.63) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+% Text Node
+\draw (178.59,210.3) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+% Text Node
+\draw (126.92,261.97) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+% Text Node
+\draw (178.59,261.97) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{5}$};
+% Text Node
+\draw (230.25,210.3) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{5}$};
+% Text Node
+\draw (227.25,261.97) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle \ddots $};
+% Text Node
+\draw (435.29,123.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{1}$};
+% Text Node
+\draw (362.29,196.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
+% Text Node
+\draw (435.29,196.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
+% Text Node
+\draw (508.29,196.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
+% Text Node
+\draw (398.75,161.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{2}$};
+% Text Node
+\draw (471.82,159.93) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{2}$};
+% Text Node
+\draw (325.68,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+% Text Node
+\draw (398.68,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+% Text Node
+\draw (471.68,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+% Text Node
+\draw (544.68,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+
+\columnbreak
+\subsection{Somme aléatoire et algorithme de Panjer}
+Rappel que pour une variable aléatoire composée $X$ : 
+\begin{align*}
+	f_{X}(0)
+	&=	P_{M}(f_{B}(0))	\\
+	f_{X}(k)
+	&=	\sumz{\infty}{j	=	1} f_{M}(j)f_{B}^{\ast j}(k), \quad k \in \mathbb{N}^{+}	
+\end{align*}
+
+\begin{definitionNOHFILL}[Famille $(a, b, 0)$ de lois de fréquence]
+La distribution d'une v.a. $M$ fait partie de la famille de distributions de fréquence $(a, b, 0)$ ssi : \lfbox[formula]{$f_{M}(k)	=	\left(a + \frac{b}{k}\right)f_{M}(k - 1)$} pour \lfbox[conditions]{$k	\in 	\mathbb{N}^{+}$} avec un point de départ \lfbox[conditions]{$f_{M}(0)	>	0$}.\\
+
+Cette famille contient uniquement les distributions suivantes : 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c   | >{\columncolor{beaublue}}c   | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Distribution}}	&	\textcolor{white}{$a$}	&	\textcolor{white}{$b$}		&	\textcolor{white}{$f_{M}(0)$}	\\\hline
+Poisson	&	$0$	&	$\lambda$	&	$\textrm{e}^{-\lambda}$	\\\hline
+Binomiale	&	$-\frac{q}{1 - q}$	&	$\frac{q}{1 - q}(n + 1)$	&	$(1	-	q)^{n}$	\\\hline
+Binomiale négative ($r$, $q$)	&	$1 - q$	&	$(1 - q)(r - 1)$	&	$q^{r}$	\\\hline
+Binomiale négative ($r$, $\beta$)	&	$\frac{\beta}{1 + \beta}$	&	$\frac{\beta}{1 + \beta}(r - 1)$	&	$\left(\frac{1}{1 + \beta}\right)^{r}$	\\\hline
+\end{tabular}
+\end{center}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Relation récursive pour la FGP]
+\begin{align*}
+	\mathcal{P}'_{M}(t)
+	&=	at\mathcal{P}'_{M}(t) + (a + b)\mathcal{P}_{M}(t)
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{algo2}[Algorithme de Panjer]
+Soit une variable aléatoire composée $X$ avec une distribution de fréquence $M$ faisant partie de la famille $(a, b, 0)$ et une distribution de sévérité $B$.\\
+
+Cet algorithme permet de calculer $f_{X}(k)$ selon la relation récursive suivante pour \lfbox[conditions]{$k \in \mathbb{N}^{+}$}:
+\begin{align*}
+	f_{X}(k)
+	&=	\frac{1}{1 - af_{B}(0)} \sum_{j = 1}^{k} \left(a + b\frac{j}{k}\right)f_{B}(j)f_{X}(k - j)
+\end{align*}
+
+avec \lfbox[conditions]{$f_{X}(0)	=	\mathcal{P}_{M}\big(f_{B}(0)\big)$} comme point de départ.
+
+\tcbline
+
+\begin{enumerate}
+	\item	On calcule $f_{S_{n}}(0)	=	\left(f_{X}(0)\right)^{n}$.
+	\item	On calcule $f_{S_{n}}(1)	=	\frac{1}{f_{X}(0)} \left((n + 1)\frac{1}{1} - 1\right)f_{X}(1)f_{S_{n}}(0)$.
+	\item	Avec $f_{S_{n}}(1)$, on trouve $f_{S_{n}}(2)	=	\frac{1}{f_{X}(0)} \bigg\{ f_{X}(1)\left((n + 1)\frac{1}{2} - 1\right)f_{S_{n}}(1)	+$ $ f_{X}(2)\left((n + 1)\frac{2}{2} - 1\right)f_{S_{n}}(0) \bigg\}$.
+	\item	Répéter pour $k \in \{3, 4, \dots\}$.
+\end{enumerate}
+\end{algo2}
+
+Pour \lfbox[conditions]{$k \in \mathbb{N}^{+}$}, 
+\begin{description}
+	\item[$M \sim Pois(\lambda)$:]	\lfbox[formula]{$f_{X}(k)	=	\frac{\lambda}{k} \sum_{j	=	1}^{k} j \times f_{B}(j)f_{X}(k - j)$} avec comme point de départ \lfbox[conditions]{$f_{X}(0)	=	\textrm{e}^{\lambda(f_{B}(0) - 1)}$}.
+	\item[$M \sim Bin(n, q)$:]	\lfbox[formula]{$f_{X}(k)	=	\frac{1}{(1 - q) + qf_{B}(0)} \sum_{j	=	1}^{k} \left(-q + q(n + 1)\frac{j}{k}\right) f_{B}(j)f_{X}(k - j)$} avec comme point de départ \lfbox[conditions]{$f_{X}(0)	=	(1 - q + qf_{B}(0))^{n}$}.
+	\item[$M \sim BN(r, q)$:]	\lfbox[formula]{$f_{X}(k)	=	\frac{1}{1 - (1 - q)f_{B}(0)} \sum_{j	=	1}^{k} \left((1 - q) + (1 - q)(r - 1)\frac{j}{k}\right) f_{B}(j)f_{X}(k - j)$} avec comme point de départ \lfbox[conditions]{$f_{X}(0)	=	\left(\frac{q}{1 - (1 - q)f_{B}(0)}\right)^{r}$}.
+\end{description}
+
+
+\columnbreak
+\subsection{Méthodes de discrétisation}
+Soit les v.a. indépendantes continues positives $B_{1}, \dots, B_{n}$.
+Soit $S	=	\sum_{i	=	1}^{n}B_{i}$.
+Afin d'utiliser les algorithmes récursifs de convolution, on approxime la v.a. continue $B_{i}$ par la v.a. discrète $\tilde{B}_{i}$ définie sur le support \lfbox[conditions]{$\mathcal{A}_{h}	=	\{0, 1h, 2h, 3h, \dots\}$} où \lfbox[conditions]{$h	>	0$} est le \textit{pas de discrétisation}.
+On défini donc $\tilde{S}	=	\sum_{i	=	1}^{n}\tilde{B}_{i}$.
+
+Plusieurs méthodes existent pour approximer $\tilde{B}$.
+
+
+\subsubsection{Méthodes \textbf{upper} et \textit{lower}}
+\begin{definitionNOHFILLprop}[Méthode upper]
+\begin{align*}
+	f_{\tilde{B}}(0)
+	&=	F_{B}(h)	\\
+	f_{\tilde{B}}(kh)
+	&=	\Pr(kh	\leq	B	<	(k + 1)h), \quad k \in \mathbb{N}^{+}
+\end{align*}
+
+\begin{align*}
+	F_{\tilde{B}}(x)
+	&=	\begin{cases}
+		F_{B}(h),	&	0	\leq	x	<	h	\\
+		F_{B}(2h),	&	h	\leq	x	<	2h	\\
+		F_{B}(3h),	&	2h	\leq	x	<	3h	\\
+		...	&	\\
+		\end{cases}
+\end{align*}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Méthode lower]
+\begin{align*}
+	f_{\tilde{B}}(0)
+	&=	0	\\
+	f_{\tilde{B}}(kh)
+	&=	\Pr((k - 1)h	\leq	B	<	kh), \quad k \in \mathbb{N}^{+}
+\end{align*}
+
+\begin{align*}
+	F_{\tilde{B}}(x)
+	&=	\begin{cases}
+		0,	&	0	\leq	x	<	h	\\
+		F_{B}(h),	&	h	\leq	x	<	2h	\\
+		F_{B}(2h),	&	2h	\leq	x	<	3h	\\
+		...	&	\\
+		\end{cases}
+\end{align*}
+\end{definitionNOHFILLprop}
+
+Visuellement :
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp0917203973178844] 
+\draw  (48,194.42) -- (348.83,194.42)(78.08,45.17) -- (78.08,211) (341.83,189.42) -- (348.83,194.42) -- (341.83,199.42) (73.08,52.17) -- (78.08,45.17) -- (83.08,52.17)  ;
+%Curve Lines [id:da8046234326772914] 
+\draw    (78.08,194.42) .. controls (111.83,79) and (218.83,50) .. (329.83,50) ;
+%Straight Lines [id:da9849769243307844] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (78.08,194.42) -- (78.08,141) ;
+%Straight Lines [id:da3943481861674383] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (77.08,141) -- (102.83,141) ;
+%Straight Lines [id:da008525076806593201] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (101.83,87.58) -- (158.83,87.58) ;
+%Straight Lines [id:da6431146537588102] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (102.83,141) -- (102.83,87.58) ;
+%Straight Lines [id:da052276646032704654] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (157.83,57) -- (242.83,57) ;
+%Straight Lines [id:da6176137521249536] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (158.83,87.58) -- (158.83,56) ;
+%Straight Lines [id:da19336635837959326] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (242.83,55) -- (242.83,87.58) ;
+%Straight Lines [id:da8496050407473881] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (244.83,87.58) -- (158.83,87.58) ;
+%Straight Lines [id:da3615064269180923] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (159.83,141) -- (102.83,141) ;
+%Straight Lines [id:da8589349231177894] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (158.83,87.58) -- (158.83,141) ;
+%Straight Lines [id:da45656775847848285] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (103.83,194.42) -- (78.08,194.42) ;
+%Straight Lines [id:da23540563287937655] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (102.83,141) -- (102.83,194.42) ;
+%Straight Lines [id:da7725424623835695] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (242.83,50) -- (329.83,50) ;
+%Straight Lines [id:da4368156230854221] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (242.83,58) -- (242.83,50) ;
+%Straight Lines [id:da055576776802613415] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (329.83,58) -- (243.83,58) ;
+%Straight Lines [id:da6827425172306525] 
+\draw [line width=2.25]    (340,81.58) -- (317.17,81.58) ;
+%Straight Lines [id:da3881977243224537] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (340,103.58) -- (290,103.58) ;
+%Straight Lines [id:da38195740555775237] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (340,135.58) -- (290,135.58) ;
+
+% Text Node
+\draw (35,33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle F_{B}( x)$};
+% Text Node
+\draw (352,193) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x$};
+% Text Node
+\draw (290,106) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle F_{\tilde{B}^{(up)}}( x)$};
+% Text Node
+\draw (282,139) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle F_{\tilde{B}^{(lower)}}( x)$};
+% Text Node
+\draw (311,84) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle F_{B}( x)$};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{Méthodes de dispersion de la masse avec espérance préservée}
+\begin{definitionNOHFILLpropos}[Lemme]
+Soit les scalaires $a, b, c, d$ tels que :
+\begin{itemize}
+	\item	\lfbox[conditions]{$a < b$}
+	\item	\lfbox[conditions]{$a < d < b$}
+	\item	\lfbox[conditions]{$0 \leq c < 1$}
+	\item	\lfbox[conditions]{$p_{a}, p_{b} \geq 0$}
+\end{itemize}
+
+Alors la solution au système de deux équations avec les deux inconnus suivants : 
+\begin{align*}
+	p_{a}	+	p_{b}	&=	c	\\
+	ap_{a}	+	bp_{b}	&=	d
+\end{align*}
+est \lfbox[formula]{$p_{a}	=	\frac{bc	-	d}{b	-	a}$} et \lfbox[formula]{$p_{b}	=	\frac{d	-	ac}{b	-	a}$}.
+\end{definitionNOHFILLpropos}
+
+\begin{definitionNOHFILLprop}[Méthode de dispersion de la masse]
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	p^{-}_{kh}
+	&=	\frac{(k + 1)h}{h} \left\{
+			F_{B}((k + 1)h)	-	F_{B}(kh)
+		\right\}		\\	&\quad\quad	-	\frac{1}{h} \left\{
+			\text{E}[B \times \bm{1}_{(-\infty, (k + 1)h]}]	-	\text{E}[B \times \bm{1}_{(-\infty, kh]}]	
+		\right\}	\\
+	p^{+}_{(k + 1)h}
+	&=	\frac{1}{h} \left\{
+			\text{E}[B \times \bm{1}_{(-\infty, (k + 1)h]}]	-	\text{E}[B \times \bm{1}_{(-\infty, kh]}]
+		\right\}			\\	&\quad\quad -\frac{kh}{h} \left\{
+			F_{B}((k + 1)h)	-	F_{B}(kh)
+		\right\}		\\
+\end{align*}
+
+Puis on obtient que pour \lfbox[conditions]{$k \in \mathbb{N}^{+}$} \lfbox[formula]{$f_{\tilde{B}}(kh)	=	p^{+}_{kh} + p^{-}_{kh}$}. C'est-à-dire, 
+\begin{align*}
+	f_{\tilde{B}}(kh)
+	&=	...
+	=	\frac{1}{h}	\bigg\{
+		2\text{E}[\min(B; kh)]	-	\text{E}[\min(B; (k - 1)h)]		-	\text{E}[\min(B; (k + 1)h)]	
+		\bigg\}
+\end{align*}
+\setlength{\mathindent}{1cm}
+
+Avec comme point de départ \lfbox[conditions]{$f_{\tilde{B}}(0)	=	1	-	\frac{\text{E}[\min(B; h)]}{h}$}.
+
+\end{definitionNOHFILLprop}
+
+\columnbreak
+\subsection{Agrégation et transformée de Fourier rapide}
+\begin{align*}
+	\varphi_{X}(t_{j})
+	&=	\text{E}[\textrm{e}^{it_{j}X}]
+	=	\text{E}[\cos(t_{j}X)] + i \times \text{E}[\sin(t_{j}X)]	\\
+	&=	\sum_{u = 0}^{n - 1} f_{X}(u) \textrm{e}^{i (2\pi) (j / n) u}
+\end{align*}
+où \lfbox[conditions]{$t_{j}	=	i2\pi(j/n)$}.
+
+Également, \lfbox[formula]{$f_{X}(l)	=	\frac{1}{n} \sum_{j = 0}^{n - 1} \varphi(2\pi(j/n))\textrm{e}^{-i2\pi (j/n)l}$}.
+
+\columnbreak
+\subsection{Transformée de Fourier rapide}
+
+\begin{algo2}[Somme de deux v.a. discrètes indépendantes]
+Soit les v.a. discrètes $X$ et $Y$ avec la v.a. $S	=	X + Y$.	\\
+Pour calculer la fonction de masse de probabilité $f_{S}$ de la v.a. $S$, les étapes sont les suivantes :
+\begin{enumerate}
+	\item	Construire les vecteurs $\underline{f}_{X}$ et $\underline{f}_{Y}$.
+		\begin{itemize}
+		\item	Ils doivent être d'une même longueur $2^{m}$.
+		\item	Pour faire ceci, on ajoute des 0 aux vecteurs.
+		\end{itemize}
+	\item	Utiliser la fonction \texttt{fft} pour produire les vecteurs $\underline{\widetilde{f}}_{X}$ et $\underline{\widetilde{f}}_{Y}$ de $\underline{f}_{X}$ et $\underline{f}_{Y}$.
+	\item	Faire le produit des deux vecteurs pour obtenir $\underline{\widetilde{f}}_{S}	=	\underline{\widetilde{f}}_{X} \times \underline{\widetilde{f}}_{Y}$.	
+		\begin{itemize}
+		\item	Ceci équivaut à une multiplication de vecteurs colonnes et donc le $i^{\text{e}}$ élément de $\underline{\widetilde{f}}_{X}$ multiplie le $i^{\text{e}}$ élément de $\underline{\widetilde{f}}_{Y}$.
+		\end{itemize}
+	\item	Utiliser la fonction \texttt{fft} avec \texttt{inverse = TRUE} pour produire le vecteur $\underline{f}_{S}$ de $\underline{\widetilde{f}}_{S}$.
+		\begin{itemize}
+		\item	On utilise la fonction \texttt{Re} pour conserver uniquement la partie réelle du chiffre.
+		\item	Il faut diviser par $2^{m}$ pour obtenir les densités.
+		\end{itemize}
+\end{enumerate}
+\end{algo2}
+
+\begin{algo2}[Somme de $n$ v.a. discrètes indépendantes]
+Soit les v.a. discrètes $X_{1}, \dots, X_{n}$ définies sur $\{0, 1h, 2h, \dots\}$ avec la v.a. $S	=	\sum_{i = 1}^{n} X_{i}$.\\
+Pour calculer la fonction de masse de probabilité $f_{S}$ de la v.a. $S$, les étapes sont les suivantes :
+\begin{enumerate}
+	\item	Construire les vecteurs $\underline{f}_{X_{1}}, \dots, \underline{f}_{X_{n}}$.
+		\begin{itemize}
+		\item	Ils doivent être d'une même longueur $2^{m}$.
+		\item	Pour faire ceci, on ajoute des 0 aux vecteurs.
+		\end{itemize}
+	\item	Utiliser la fonction \texttt{fft} pour produire les vecteurs $\underline{\widetilde{f}}_{X_{1}}, \dots, \underline{\widetilde{f}}_{X_{n}}$ de $\underline{f}_{X_{1}}, \dots, \underline{f}_{X_{n}}$.
+	\item	Faire le produit des $n$ vecteurs pour obtenir $\underline{\widetilde{f}}_{S}	=	\underline{\widetilde{f}}_{X_{1}} \times \dots \times \underline{\widetilde{f}}_{X_{n}}$.	
+	\item	Utiliser la fonction \texttt{fft} avec \texttt{inverse = TRUE} pour produire le vecteur $\underline{f}_{S}$ de $\underline{\widetilde{f}}_{S}$ en conservant la partie réelle avec \texttt{Re} puis divisant par $2^{m}$.
+\end{enumerate}
+\end{algo2}
+
+\begin{algo2}[Somme aléatoire (loi composée)]
+Soit la v.a. composée $X$ avec $X	=	B_{1}	+	\dots	+	B_{M}$ si $M	> 0$ ou $X = 0$ si $M	=	0$ (et les hypothèses habituelles). \\
+On pose que les v.a. $B_{1}, B_{2}, \dots$ sont définies sur $\{0, 1h, 2h, \dots\}$.
+Pour calculer la fonction de masse de probabilité $f_{X}$ de la v.a. $X$, les étapes sont les suivantes :
+\begin{enumerate}
+	\item	Construire le vecteur $\underline{f}_{B}$.
+		\begin{itemize}
+		\item	Ajouter des 0 au vecteur pour qu'il soit d'une longueur de $2^{m}$.
+		\end{itemize}
+	\item	Utiliser la fonction \texttt{fft} pour produire le vecteur $\underline{\widetilde{f}}_{B}$ de $\underline{f}_{B}$.
+	\item	Trouver le vecteur $\underline{\widetilde{f}}_{X}	=	\mathcal{P}_{M}(\underline{\widetilde{f}}_{B})$.
+	\item	Utiliser la fonction \texttt{fft} avec \texttt{inverse = TRUE} pour produire le vecteur $\underline{f}_{X}$ de $\underline{\widetilde{f}}_{X}$ en conservant la partie réelle avec \texttt{Re} puis divisant par $2^{m}$.
+\end{enumerate}
+\end{algo2}
+
+
+\columnbreak
+\subsection{Distribution mélange d'Erlang}
+
+
+
+\pagebreak
+\section{Comparaison des risques et ordres stochastiques}
+
+
+\pagebreak
+\section{Distributions multivariées et agrégation des risques}
+
+
+\pagebreak
+\section{Théorie des copules}
+
+
+\newpage
+\part{Autres}
+\section{Terminologie}
+\begin{description}
+	\item[$\argmax$]	Si on pose que $\hat{\theta}	=	\argmax L(\theta; \bm{X})$ on dit que la valeur maximale de $L(\theta; \bm{X})$ est au point $\hat{\theta}$.
+\end{description}
+
+Paramètre
+\begin{description}
+%%%	https://www.statisticshowto.com/shape-parameter/
+	\item[de forme]	Affecte la forme générale de la distribution;
+		\begin{itemize}
+		\item	\og \textit{shape parameter} \fg{};
+		\item	Il est important de saisir que le paramètre de forme n'a aucune incidence sur l'emplacement de la densité (paramètre de l'emplacement) ni sur l'échelle de la densité (paramètre d'échelle);
+		\item	Par exemple, la distribution Gamma a un paramètre de forme qui impact comment qu'elle est représentée;
+		\item	Par exemple, la distribution exponentielle n'a pas de paramètre de forme et bien que l'échelle de la distribution peut être modifiée, la forme générale est constante.
+		\end{itemize}
+%%%		
+	\item[d'échelle]	Sert à déterminer la forme et l'emplacement de la distribution en étirant ou compressant la densité;
+		\begin{itemize}
+		\item	\og \textit{scale parameter} \fg{};
+		\item	Le plus gros le paramètre d'échelle, le plus rependue la distribution;
+		\item	On peut voir ceci visuellement où avec un paramètre d'échelle de 1, la distribution est inchangée:
+		\end{itemize}
+		\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp18693685040272978] 
+\draw [line width=1.5]  (119.83,151.67) -- (199.83,151.67)(159.83,27.4) -- (159.83,151.67) (192.83,146.67) -- (199.83,151.67) -- (192.83,156.67) (154.83,34.4) -- (159.83,27.4) -- (164.83,34.4)  ;
+%Shape: Wave [id:dp5641937191696826] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=2.25]  (146.41,149.77) .. controls (146.59,150.04) and (146.77,150.18) .. (146.95,150.18) .. controls (149.38,150.18) and (151.47,124.5) .. (153.66,97.51) .. controls (155.85,70.53) and (157.94,44.84) .. (160.37,44.84) .. controls (162.8,44.84) and (164.89,70.53) .. (167.08,97.51) .. controls (169.1,122.49) and (171.05,146.35) .. (173.25,149.77) ;
+%Shape: Wave [id:dp9736357574926828] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  (139.7,149.94) .. controls (139.97,150.1) and (140.23,150.18) .. (140.5,150.18) .. controls (144.08,150.18) and (147.17,135.46) .. (150.39,119.99) .. controls (153.62,104.52) and (156.71,89.8) .. (160.29,89.8) .. controls (163.87,89.8) and (166.96,104.52) .. (170.19,119.99) .. controls (173.38,135.28) and (176.43,149.85) .. (179.96,150.18) ;
+%Shape: Wave [id:dp9806953027168039] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]  (130.98,150.05) .. controls (131.36,150.14) and (131.74,150.18) .. (132.12,150.18) .. controls (137.28,150.18) and (141.73,142) .. (146.38,133.41) .. controls (151.03,124.82) and (155.48,116.64) .. (160.64,116.64) .. controls (165.8,116.64) and (170.25,124.82) .. (174.9,133.41) .. controls (179.4,141.74) and (183.72,149.68) .. (188.68,150.16) ;
+%Shape: Rectangle [id:dp4682062525043522] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 203; green, 202; blue, 202 }  ,fill opacity=1 ] (176,26.67) -- (216.83,26.67) -- (216.83,94.67) -- (176,94.67) -- cycle ;
+
+% Text Node
+\draw (178.42,29.67) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {Échelle};
+% Text Node
+\draw (186.92,43.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {0.5};
+% Text Node
+\draw (190.92,58.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {1};
+% Text Node
+\draw (190.92,78.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {2};
+
+
+\end{tikzpicture}
+		\end{center}
+	\item[de fréquence]	L'interprétation dépend du contexte.
+		\begin{itemize}
+		\item	\og \textit{rate parameter} \fg{};
+		\item	Dans le cas d'un processus de Poisson, le paramètre de fréquence décrit le taux auquel les événements se produisent;
+		\item	Souvent, il est défini comme le réciproque du paramètre d'échelle pour indiquer le taux de déclin d'une fonction exponentielle;
+		\item	Des valeurs près de 1 impliquent un déclin lent alors que des valeurs près de 0 impliquent un déclin rapide.
+		\end{itemize}
+%%%		https://www.statisticshowto.com/location-parameter/
+	\item[d'emplacement]	Stipule où la densité est située.
+		\begin{itemize}
+		\item	\og \textit{location parameter} \fg{};
+		\item	Plus précisément, indique où sur l'axe des $x$ la distribution est centrée relatif à la distribution normale standard;
+		\item	Une distribution normale standard est centrée à 0 donc un paramètre d'emplacement de 5 implique que la densité est centrée à $x	=	5$.
+		\end{itemize}
+\end{description}
+
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$S$]	Les coûts d'un portefeuille.
+	\item[$\rho(S)$]	Une mesure de risque.
+\end{description}
+\end{distributions}
+
+
+
+\pagebreak
+
+\section{Preuves}
+
+\subsection*{\hypertarget{proof:ftc-quantile}{Preuve du théorème de la fonction quantile}}
+\begin{formula}{}
+\begin{align*}
+	F_{F_{X}^{-1}(U)}
+	&=	\Pr\left(F_{X}^{-1}(U) \leq x\right)	\\
+	&\overset{2}{=}	\Pr\left(U \leq F_{X}(x)\right)	\\
+	&\overset{1}{=}	F_{X}(x)
+\end{align*}
+\begin{enumerate}
+	\item	Pour $U \sim Unif(0, 1)$, $F_{U}(u)	=	\Pr(U	\leq	u)	=	u$ alors $F_{U}(F_{X}(x))	=	F_{X}(x)$.
+	\item	On doit prouver que:
+		\begin{align*}
+		\bigg\{	F_{X}^{-1}(U)	\leq	x	\bigg\}
+		\equiv
+		\bigg\{	U	\leq	F_{X}(x)	\bigg\}
+		\end{align*}
+\end{enumerate}
+
+\tcbline
+
+\paragraph{Cas 1:	$X$ est une variable aléatoire continue}
+\begin{itemize}
+	\item	Alors, l'équivalence est vraie puisque $\{	F_{X}^{-1}(U)	\leq	x	\}$ est la solution unique à $\{	U	\leq	F_{X}(x)	\}$ par définition.
+\end{itemize}
+
+\paragraph{Cas 2:	$X$ est une variable aléatoire quelconque}
+\begin{enumerate}
+	\item	On fixe \lfbox[conditions]{$x	=	F_{X}^{-1}(u)	=	\inf\{y \in \mathbb{R}; F_{X}(y)	\geq u\}$} ;
+		\begin{itemize}
+		\item	Donc, ce "$x$" est une valeur parmi les valeurs "$y$" qui rencontre la condition $F_{X}(y)	\geq	u$ ;
+		\item	Il s'ensuit que puisque $u \leq F_{X}(y)$ alors \lfbox[conditions]{$u \leq F_{X}(x)$}.
+		\end{itemize}
+		\begin{align*}
+		\bigg\{	F_{X}^{-1}(U)	\leq	x	\bigg\}
+		\Rightarrow
+		\bigg\{	U	\leq	F_{X}(x)	\bigg\}
+		\end{align*}
+	\item	On fixe \lfbox[conditions]{$u \leq F_{X}(x)$} ;
+		\begin{itemize}
+		\item	Puisque la fonction quantile est la plus petite valeur de $y$ tel que $u \leq F_{X}(y)$, il s'ensuit que $F_{X}^{-1}(u)	\leq  x$.
+		\end{itemize}
+		\begin{align*}
+		\bigg\{	U	\leq	F_{X}(x)	\bigg\}
+		\Rightarrow
+		\bigg\{	F_{X}^{-1}(U)	\leq	x	\bigg\}
+		\end{align*}
+\end{enumerate}
+Donc :
+\begin{align*}
+	\bigg\{	F_{X}^{-1}(U)	\leq	x	\bigg\}
+	\equiv
+	\bigg\{	U	\leq	F_{X}(x)	\bigg\}
+\end{align*}
+\end{formula}
+
+
+\subsection*{\hypertarget{proof:stoploss}{Preuve de la fonction Stop-Loss comme la survie}}
+\begin{enumerate}
+	\item	Premièrement, on développe l'expression :
+		\begin{align}
+		\pi_{X}(d)
+			&=	\text{E}[\max(X - d; 0)]	\nonumber\\
+			&=	\int_{-\infty}^{\infty} {\color{teal}\max(x - d; 0)} f_{X}(x)dx	\nonumber\\
+			&=	\int_{-\infty}^{d} {\color{teal}(0)} f_{X}(x)dx	+	\int_{d}^{\infty} {\color{teal}(x - d)} {\color{amethyst}f_{X}(x)}dx	\nonumber\\
+			&=	\int_{d}^{\infty} {\color{teal}(x - d)} f_{X}(x)dx	
+%			&=	\int_{d}^{\infty} (x - d) \left({\color{amethyst}\deriv{x}{F_{X}(x)}}\right)dx	
+		\end{align}
+\end{enumerate}
+
+Pour la prochaine étape, nous avons recours au théorème des accroissements finis :
+\begin{rappel_enhanced}[Théorème des accroissements finis]
+Soit la fonction $f$ qui répond aux critères suivants :
+\begin{enumerate}
+	\item	$f(x)$ est continue sur l'intervalle fermé $[a, b]$ ;
+	\item	$f(x)$ est différentiable sur l'intervalle ouvert $(a, b)$.
+\end{enumerate}
+
+Alors, il existe un nombre $c$ tel que \lfbox[conditions]{$a < c < b$} et \lfbox[formula]{$f'(c)	=	\frac{f(b) - f(a)}{b - a}$}.
+\end{rappel_enhanced}
+
+De plus, nous avons recours à l'intégrale de Riemann-Stieltjes :
+
+\begin{rappel_enhanced}[Intégrale de Riemann-Stieltjes]
+Sois les fonctions $f$ et $g$ continues sur l'intervalle $[a, b]$.
+\begin{itemize}
+	\item	On divise l'ensemble $[a, b]$ en $n$ sous-intervalles $c_{i} = [x_{i - 1}, x_{i}]$.
+	\item	Les $n$ partitions $P$ des sous-intervalles sont aux points $P	=	\{a	=	x_{0} < x_{1} < \hdots < x_{n} = b\}$. 
+	\item	La norme des partitions est la longueur du plus long sous-intervalle $\lVert P \rVert	=	\underset{1 \leq i \leq n}{\max}\{|x_{i} - x_{i - 1}|\}$.
+	\item	On dénote le $i^{\text{e}}$ point du sous-intervalle $c_{i}$ par $t_{i} \in [x_{i - 1}, x_{i}]$.
+\end{itemize}
+
+On obtient donc l'intégrale de Riemann : \lfbox[formula]{$\limz{\lVert P \rVert}{0}\ \sumz{n}{i = 1} f(t_{i})(x_{i} - x_{i - 1})	=	\int_{a}^{b}f(x)dx$}.\\
+
+L'intégrale de Riemann-\textit{Stieltjes} généralise l'intégrale de Riemann avec une fonction $g$ comme mesure de distance entre les points $x_{i - 1}$ et $x_{i}$; l'intégrale de Riemann-Stieltjes est donc : \lfbox[formula]{$\limz{\lVert P \rVert}{0}\ \sumz{n}{i = 1} f(t_{i})(g(x_{i - 1}) - g(x_{i}))	=	\int_{a}^{b}f(x)dg(x)$}.
+\end{rappel_enhanced}
+
+
+\begin{enumerate}[resume]
+	\item	On réécrit \textbf{l'intégrale indéfinie} avec une limite afin d'obtenir un intervalle borné :
+		\begin{align}
+		\int_{d}^{\infty} (x - d) f(x) dx
+			&=	\limz{{\color{cyan}c}}{\infty} \int_{d}^{{\color{cyan}c}} (x - d) f(x) dx	
+		\end{align}
+	\item	On réécrit l'intégrale sous la forme de \textbf{l'intégrale de Riemann} :
+		\begin{align}
+		\limz{c}{\infty} \int_{d}^{c} (x - d) f(x) dx	
+			&=	\limz{c}{\infty} \lim_{\lVert P \rVert \rightarrow 0} \sumz{n}{i = 1} (t_{i} - d) {\color{amethyst}f(t_{i})}(x_{i} - x_{i - 1})	\nonumber\\
+			&=	\limz{c}{\infty} \lim_{\lVert P \rVert \rightarrow 0} \sumz{n}{i = 1} (t_{i} - d) {\color{amethyst}\deriv{x}{F(t_{i})}}(x_{i} - x_{i - 1})	
+		\end{align}
+	\item	On applique le théorème des accroissements finis : 
+		\begin{align}
+		\limz{c}{\infty} \lim_{\lVert P \rVert \rightarrow 0}\ &\sumz{n}{i = 1} (t_{i} - d) \deriv{x}{F(t_{i})}(x_{i} - x_{i - 1})	\nonumber\\
+			&=	\limz{c}{\infty} \lim_{\lVert P \rVert \rightarrow 0} \sumz{n}{i = 1} (t_{i} - d) \left({\color{teal}F(x_{i}) - F(x_{i - 1})}\right)	
+		\end{align}
+	\item	On réécrit \textbf{l'intégrale de Riemann-Stieltjes} sous la forme normale :
+		\begin{align*}
+		\limz{c}{\infty} \lim_{\lVert P \rVert \rightarrow 0} \sumz{n}{i = 1} (t_{i} - d) \left(F(x_{i}) - F(x_{i - 1})\right)
+			&=	\limz{c}{\infty} \int_{d}^{c} (x - d) {\color{teal}dF(x)}	\\
+			&=	\limz{c}{\infty} {\color{teal}-}\int_{d}^{c} (x - d) {\color{teal}d\bar{F}(x)}
+		\end{align*}	
+	\item	Puis, on réécrit l'intégrale sous la forme d'un intégrale impropre :
+		\begin{align*}
+		\limz{c}{\infty} -\int_{d}^{c} (x - d) d\bar{F}(x)
+		&=	-\int_{d}^{{\color{cyan}\infty}} (x - d) d\bar{F}(x)
+		\end{align*}
+	\item	....
+\end{enumerate}
+
+\end{multicols*}
+\end{document}
+
+

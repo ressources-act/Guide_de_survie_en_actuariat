@@ -1,0 +1,335 @@
+\documentclass[10pt, french]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Théorie du risque}
+\def\sigle{ACT-3000}
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
+\def\SectionColor{darkpastelpurple}
+\def\SubSectionColor{darkpastelpurple}
+\def\SubSubSectionColor{darkpastelpurple}
+
+% 
+% Débute numérotation des sections  à 1
+% 
+\setcounter{section}{0}
+
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT3000}
+
+\newpage
+
+\begin{multicols*}{2} 
+
+\section{Rappels d'intro 2}
+\subsection{Mesures de risques}
+Voir les preuves de TVaR en annexe. Il est pratique de se rappeler des 3 formes de la TVaR.
+
+\paragraph{Value-at-risk}
+$VaR_{\kappa}(X) = F_{X}^{-1}(\kappa)$. De plus, pour $\varphi$ une fonction strictement croissante, on a que
+\begin{align*}
+VaR_{\kappa}(\varphi(X)) = \varphi \left ( VaR_{\kappa}(X) \right )
+\end{align*}
+
+
+
+\section{Distribution multivariées}
+\subsection{Classes de Fréchet}
+Soit $F_1, \dots, F_n$ des fonction de répartition univariées et $F_{\matr{x}} = F_{X_1, \dots, X_n}$ la fonction de répartition du vecteur $\matr{X}$.
+
+On définit la classe de Fréchet $CF(F_1, \dots, F_n)$ par l'ensemble des fonctions de répartition $F_{\matr{X}}$ dont les marginales sont $F_1, \dots, F_n$.
+
+\subsubsection{Bornes d'une classe de Fréchet}
+Si $F_{\matr{X}} \in CF(F_1, \dots, F_n)$, alors
+\begin{align*}
+W(x_1, \dots, x_n) \leq F_{\matr{X}}(x_1, \dots, x_n) \leq M(x_1, \dots, x_n)
+\end{align*}
+où
+\begin{equation}
+\label{eq:cf-born-inf}
+W(x_1, \dots, x_n) = \max \left (\sum_{i=1}^{n} F_i(x_i) - (n-1) ; 0 \right )
+\end{equation}
+et
+\begin{equation}
+\label{eq:cf-born-sup}
+M(x_1, \dots, x_n)	 = \min \left ( F_1(x_1), \dots, F_n(x_n) \right)
+\end{equation}
+
+
+\hl{Preuve des bornes à savoir!}
+
+
+\subsection{Comonotonicité}
+Les composantes de $\matr{X}$ sont dites comonotones si $X_i = F_{X_i}(U)$, $i = 1, \dots, n$ et $U \sim U(0,1)$.
+
+\subsubsection{Algorithme}
+\begin{enumerate}
+\item Simuler $U^{(j)}$ de la v.a. $U \sim U(0,1)$
+\item Calculer $X_i^{(j)} = F_{X_i}(U^{(j)})$, $i = 1, \dots, n$
+\end{enumerate}
+
+\begin{definition}[variable comonotone et la borne supérieure de Fréchet]
+Le vecteur $\matr{X}$ a des composantes comonotones ssi
+\begin{align*}
+F_{\matr{X}(x_1, \dots, x_n)} = M(x_1, \dots, x_n)
+\end{align*}
+\hl{Preuve à savoir}
+\end{definition}
+
+\begin{definition}[Additivité des $VaR$ et $TVaR$]
+On définit $S = \sum_{i=1}^{n} X_i = \sum_{i=1}^{n} F_{X_i}(U) = \varphi(U)$, où $\varphi$ est une fonction croissante pour $y \in (0,1)$. Alors, on a
+\begin{align*}
+VaR_{\kappa}(S) & = \sum_{i=1}^{n} VaR_{\kappa}(X_i) \\
+TVaR_{\kappa}(S) & = \sum_{i=1}^{n} TVaR_{\kappa}(X_i)
+\end{align*}
+\hl{Preuve à savoir}
+\end{definition}
+
+
+\subsection{Antimonotonicité}
+Un couple de v.a.\footnote{L'antimonotonicité est seulement définie pour $n=2$.} $\matr{X} = (X_1, X_2)$ dont les composantes sont définies par $X_1 = F_{X_1}(U)$ et $X_2 = F_{X_2}(1-U)$ est antimonotone par définition.
+
+\subsubsection{Algorithme}
+\begin{enumerate}
+\item Simuler $U_{(j)}$ de la v.a. $U \sim U(0,1)$
+\item Calculer $X_1^{(j)} = F_{X_1}(U^{(j)})$ et $X_2^{(j)} = F_{X_2}(1 - U^{(j)})$
+\end{enumerate}
+
+\begin{definition}[variable antimonotone et la borne inférieure de Fréchet]
+Le vecteur $\matr{X} = (X_1, X_2)$ a des composantes antimonotone ssi
+\begin{align*}
+F_{\matr{X}(x_1,x_2)} = W(x_1, x_2)
+\end{align*}
+\hl{Preuve à savoir}
+\end{definition}
+
+\subsection{Loi de Poisson bivariée Teicher}
+\begin{itemize}
+\item Couple de v.a. $(M_1, M_2)$ dont les marginales sont $Pois(\lambda_1)$ $Pois(\lambda_2)$
+\item paramètre de dépendance $\alpha_0$ avec $0 \leq \alpha_0 \leq \min(\lambda_1, \lambda_2)$
+\item $\alpha_1 = \lambda - \alpha_0$ et $\alpha_2 = \lambda_2 - \alpha_0$
+\item On définit les v.a. $M_1$ et $M_2$ telles que (avec $K_i \sim Pois(\alpha_i)$)
+\begin{align*}
+M_1 = K_1 + K_0 \text{ et } M_2 = K_2 + K_0
+\end{align*}
+avec $M_i \sim Pois(\lambda_i)$
+\end{itemize}
+
+\subsubsection{Fonction de masse de probabilité (fmp)}
+
+\begin{align*}
+f_{M_1, M_2}(m_1, m_2) = e^{-\lambda_i - \lambda_2 + \alpha_0} \sum_{j=0}^{\min(m_1, m2)} \frac{\alpha_0^{j}}{j!} \frac{(\lambda_1 - \alpha_0)^{m_1 - j}}{(m_1 - j)!} \frac{(\lambda_2 - \alpha_0)^{m_2 - j}}{(m_2 - j)!}
+\end{align*}
+
+
+
+\hl{Preuve à savoir}
+
+\subsubsection{Fonction génératrice des probabilités (fgp)}
+\begin{align*}
+P_{M_1, M_2}(t_1, t_2) = e^{(\lambda_1 - \alpha_0)(t_1 -1)} e^{(\lambda_2 - \alpha_0)(t_2 - 1)} e^{\alpha_0(t_1 t_2 - 1)}
+\end{align*}
+\hl{Preuve à savoir}
+
+\paragraph{Covariance de $M_1$ et $M_2$} $\covar{M_1, M_2} = \variance{K_0} = \alpha_0$
+\hl{Preuve à savoir}
+
+\subsubsection{Connaître la loi de $N = M_1 + M_2$}
+\red{À terminer}
+
+
+
+
+\subsection{Loi exponentielle bivariée EFGM}
+\paragraph{fonction de répartition}
+La fonction de répartition est
+\begin{align*}
+F_{X_1, X_2}(x_1, x_2)	& = (1 - e^{-\beta_1 x_1})(1- e^{-\beta_2 x_2}) \\
+& + \theta (1 - e^{-\beta_1 x_1})(1 - e^{-\beta_2 x_2}) e^{-\beta_1 x_1} e^{-\beta_2 x_2}
+\end{align*}
+
+\paragraph{fgm}
+Il \hl{faut savoir prouver} que la fgm est
+\begin{align*}
+M_{X_1, X_2}(t_1, t_2) & = (1 +\theta) \left ( \frac{\beta_1}{\beta_1 - t_1} \right  )  \left ( \frac{\beta_2}{\beta_2 - t_2} \right  ) \\
+& - \theta \left ( \frac{2 \beta_1}{2 \beta_1 - t_1} \right  )  \left ( \frac{\beta_2}{\beta_2 - t_2} \right  ) - \theta \left ( \frac{\beta_1}{\beta_1 - t_1} \right  )  \left ( \frac{2 \beta_2}{2 \beta_2 - t_2} \right  ) \\
+& + \theta \left ( \frac{2 \beta_1}{2 \beta_1 - t_1} \right  )  \left ( \frac{2 \beta_2}{2 \beta_2 - t_2} \right  )
+\end{align*}
+
+\paragraph{Coefficient de corrélation}
+\hl{Il faut savoir prouver que} la coefficient de corrélation est
+\begin{align*}
+\rho_P(X_1, X_2) = \frac{\theta}{4}
+\end{align*}
+
+\paragraph{Fonction de densité} On peut obtenir la fonction de densité de la loi exponentielle bivariée en dérivant 2 fois
+\begin{align*}
+f_{X_1, X_2}(x_1, x_2) = \frac{\partial^2}{\partial x_1 \partial x_2} F_{X_1, X_2}(x_1, x_2)
+\end{align*}
+
+
+
+\section{Problématiques d'un rapport du BSIF}
+Un extrait d'un rapport du BSIF \footnote{Étude d'impact quantitative No4 du BSIF, 2012.}  présente \textbf{plusieurs incohérences}, notamment : 
+
+\begin{itemize}
+\item La corrélation est la formule ou la méthode utilisée dans le présent document pour mesurer l'association entre des variables ; 
+\item L'intervalle de confiance est de -1  à 1
+\item Une corrélation de 1 (corrélation positive parfaite) sous-entend que l'augmentation d'une variable donnée équivaudra à la hausse d'une autre variable ;
+\item Une corrélation de -1 (corrélation négative parfaite) sous-entend que l'augmentation d'une variable donnée se traduira par une baisse correspondante d'une autre variable
+\item Une corrélation zéro sous-entend l'absence de relation, ou indépendance, entre deux variables.
+\end{itemize}
+
+
+
+% Théorie des copules
+\section{Théorie des copules}
+
+\begin{definition}[Définition d'une copule]
+Une copule $C$ est la fonction de répartition d'un vecteur de va $\matr{U} = (U_1, U_2)$ dont les composantes $U_i \sim U(0,1)$, $i=1,2$. Une copule satisfait les propriétés suivantes : 
+\begin{enumerate}[label=(\arabic*)]
+\item $C(u_1, u_2)$ est non-décroissante sur $(0,1)^2$
+\item $C(u_1, u_2)$ est continue à droite sur $(0,1)^2$
+\item $\lim_{u_i \to 0} C(u_1, u_2) = 0$, $i=1,2$
+\item $\lim_{u_{3-1} \to 1} C(u_1, u_2) = u_i$, $i=1,2$
+\item Inégalité du rectangle : $\forall a_i \leq b_i$, $i=1,2$, on a
+\begin{align*}
+C(b_1, b_2) - C(b_1, a_2) - C(a_1, b_2) + c(a_1, a_2) \geq 0.
+\end{align*}
+Cette égalité sera satisfaite si $\frac{\partial^2}{\partial u_1 \partial u_2} C(u_1, u_2) \geq 0$.
+\end{enumerate}
+\red{On peut généraliser ces définitions pour une copule multivariée.}
+\end{definition}
+
+\subsection{Théorème de Sklar}
+\begin{definition}[Théorème de Sklar]
+Soit $F_\matr{X} \in \mathcal{CF}(F_1, F_2)$ ayant les fonctions de répartition $F_1$ et $F_2$. Il y a 2 volets au théorème : 
+\begin{description}
+\item[Volet \# 1] Il existe une copule $C$ telle que, $\forall x \in \reels^n$,
+\begin{align*}
+F(x_1, \dots, x_n) = C(F_1(x_1), \dots, F_n(x_n))
+\end{align*}
+
+\item[Volet \# 2] Inversement, si $C$ est une copule de $F_1, \dots, F_n$ sont des fonctions de répartition, alors la fonction définie par
+\begin{align*}
+F(x_1, \dots, x_n) = C(F_1(x_1), \dots, F_n(x_n))
+\end{align*}
+est une fonction de répartition multivariée avec les fonctions de répartition marginales $F_1, \dots, F_n$.
+\end{description}
+\hl{À prouver}
+\end{definition}
+
+\subsection{Comment extraire une copule?}
+Soit un vecteur de v.a. continues avec fonction de répartition $F_\matr{X} \in \mathcal{CF}(F_1, \dots, F_n)$. Alors, la copule $C$ associée à $F_\matr{X}$ est donnée par
+\begin{equation}
+C(u_1, \dots, u_n) = F_\matr{X} \left (F_1^{-1}(u_1), \dots, F_n^{-1}(u_n) \right)
+\end{equation}
+
+\subsection{Bornes de Fréchet}
+Puisque $C$ est une fonction de répartition, on a
+\begin{align*}
+W(u_1, \dots, u_n) \leq C(u_1, \dots, u_n) \leq M(u_1, \dots, u_n)
+\end{align*}
+où $W$ et $M$ sont les bornes inférieures (voir Éq. \ref{eq:cf-born-inf}) et supérieures (voir Éq.  \ref{eq:cf-born-sup}), respectivement .
+
+\subsection{Fonction de densité d'une copule}
+\begin{equation}
+c(u_1, \dots, u_n) = \frac{\partial^2}{\partial u_1, \dots, \partial u_n} C(u_1, \dots, u_n)
+\end{equation}
+De plus, on a
+\begin{align*}
+f_{\matr{X}}(x_1, \dots, x_n)	& =  \frac{\partial^2}{\partial u_1, \dots, \partial u_n} F_\matr{X}(x_1, \dots, x_n) \\
+& =   \frac{\partial^2}{\partial u_1, \dots, \partial u_n} C\left( F_1(x_1), \dots, F_n(x_n) \right) \\
+& = c(u_1, \dots, u_n) f_{X_1}(x_1) \dots f_{X_n}(x_n)
+\end{align*}
+
+\subsection{Fonction de répartition conditionnelle d'une copule}
+\begin{equation}
+\label{eq:repart-cond-copule}
+C_{2|1}(u_2 | u_1) = \derivee{u_1} C(u_1, u_2)
+\end{equation}
+Une relation similaire existe pour $C_{1|2}$. On peut obtenir, par exemple, la fonction de répartition conditionnelle $F_{X_2 | X_1 = x_1}(x_2)$ avec
+\begin{align*}
+F_{X_2 | X_1 = x_1}(x_2) = C_{2|1} \left( F_{X_2}(x_2) | F_{X_1}(x_1) \right)
+\end{align*}
+
+
+\subsection{Construction d'une copule archimédienne}
+Une copule archimédienne est construite à partir de 2 v.a  $Y_i|\Theta \sim \text{Exp}(\Theta)$, $i=1,2$ (et $\Theta$ qui suit une certaine distribution)  peut être construite  avec
+\begin{equation}
+C(u_1, u_2) = \overline{F}_{\matr{Y}} \left ( \overline{F}_{Y_1}^{-1}(u_1), \overline{F}_{Y_2}^{-1}(u_1) \right )
+\end{equation}
+où l'on déduit que 
+\begin{align*}
+F_{Y_i}(x_i) = \esp{F_{Y|\Theta}(x_i | \theta)} = \esp{e^{-\Theta x}} = \laplace_\Theta(x)
+\end{align*}
+
+Plusieurs copules possibles : 
+\begin{description}
+\item[Clayton] $\Theta \sim \Gamma(\frac{1}{\alpha}, 1)$
+\item[AMH] $\Theta \sim \text{BinNég}$
+\item[Frank] $\Theta \sim \text{Logarithmique}(\gamma = 1 - e^{-\alpha})$
+\end{description}
+
+
+\subsection{Méthode des rectangles}
+On peut approximer $F_S(s)$ avec la méthode des rectangles\footnote{Plutôt que d'apprendre les formules ci-dessous, il est mieux de se dessiner les rectangles par rapport à la diagonale puis déduire les $F_{X_1, X_2}$ à additionner et soustraire.}
+%TODO : ajouter des Tikz Picture pour montrer comment faire le calcul avec le dessin.
+
+\subsubsection{Méthode \textit{lower}}
+On additionne les masses de probabilité associées aux $2^m-1$ rectangles se trouvant \underline{en-dessous} de la diagonale $x_1 + x_2 = s$.
+
+\begin{equation}
+\label{eq:rectangle-lower}
+A_{S}^{(l, m)}(s) = \sum_{i=1}^{2^m-1} \left [ F_{X_1, X_2} \left( \frac{i}{2^m} s, \frac{2^m - i}{2^m} s \right) -  F_{X_1, X_2} \left( \frac{i-1}{2^m} s, \frac{2^m - i}{2^m} s \right) \right ]
+\end{equation}
+
+\subsubsection{Méthode \textit{upper}}
+On additionne les masses de probabilité associées aux $2^m$ rectangles se trouvant \underline{au-dessus} de la diagonale $x_1 + x_2 = s$
+
+\begin{equation}
+\label{eq:rectangle-upper}
+A_{S}^{(u, m)}(s) = \sum_{i=1}^{2^m} \left [ F_{X_1, X_2} \left( \frac{i}{2^m} s, \frac{2^m +1- i}{2^m} s \right) -  F_{X_1, X_2} \left( \frac{i-1}{2^m} s, \frac{2^m +1 - i}{2^m} s \right) \right ]
+\end{equation}
+
+On a que
+\begin{align*}
+A_S^{(l, m)}(s)  \leq A_S^{(l, m+k)}(s) \leq F_S(s)  \leq A_S^{(u, m+k)}(s) \leq A_S^{(u, m)}(s).
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+% Annexe dans la cheatsheet
+\newpage
+\section{Annexe}
+\input{src/ACT-3000/tvar_3formes}
+
+\end{multicols*}
+
+
+
+
+%% -----------------------------
+%% Fin du document
+%% -----------------------------
+\end{document}

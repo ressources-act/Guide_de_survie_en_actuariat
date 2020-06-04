@@ -1,0 +1,811 @@
+\documentclass[10pt, french]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Apprentissage statistique en actuariat}
+\def\sigle{ACT-3114}
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
+\def\SectionColor{green!50!black}
+\def\SubSectionColor{green!20!black}
+\def\SubSubSectionColor{burntsienna}
+
+%	"to-do" list
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+%%%
+
+\usetikzlibrary{fit, matrix}
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
+\definecolor{rstudioblue}{RGB}{247, 247, 247}
+\lstset{language=R,
+    basicstyle=\small\ttfamily,
+    stringstyle=\color{darkgreen},
+    otherkeywords={0,1,2,3,4,5,6,7,8,9},
+    morekeywords={TRUE,FALSE},
+    deletekeywords={data,frame,length,as,character},
+    keywordstyle=\color{blue},
+    commentstyle=\color{darkgreen},
+}
+
+<<echo = FALSE, message = FALSE, warning = FALSE>>=
+library(tidyverse)  
+@
+
+
+\setcounter{secnumdepth}{0}
+
+
+%% -----------------------------
+%% Début du document
+%% -----------------------------
+\begin{document}
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-R-ACT3114}
+
+\newpage
+
+
+\section{Fonctions \texttt{R}}
+
+\begin{center}
+	\textbf{Dupliqués et niveaux}
+\end{center}
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 2cm,
+		minimum width = 2.6cm,
+		anchor = center,
+		outer sep = 0,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			fill = ballblue,  % header colour
+			text = white,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 4cm, 
+		align = center,
+		nodes = {
+			font = \bfseries
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 5cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+	column 3/.style = {
+		text width = 5cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+	column 4/.style = {
+		text width = 10cm,
+		align = center,
+		nodes = {fill = rstudioblue}
+	},
+	row 1 column 1/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+	Commande	&	Utilité	&	Résultat	&	Exemple \\
+	\texttt{duplicated()}	&	identifie les dupliqués	&	retourne un vecteur booléen identifiant les dupliqués	&	
+		<<>>=
+		duplicated(c(1, 1, 2, 4, 6, 4))
+		@
+	\\
+	\texttt{unique()}	&	extrais les valeurs uniques	&	retourne un vecteur contenant les valeurs uniques du vecteur donné en argument	&
+		<<>>=		
+		unique(c(1, 1, 2, 4, 6, 4))
+		@	
+	\\
+	\texttt{dplyr::distinct()}	&	exclure les lignes dupliquées d'une base de données	&	retourne la BD conservant la première occurrence de dupliqués	&	
+		<<eval = FALSE>>=
+		data %>%
+			distinct()
+		@
+	\\
+	\texttt{levels()}	&	identifie les niveaux d'un facteur	&	retourne une list des niveaux du facteur	&	
+		<<>>=
+		fac <- factor(x = c("one", "two", "two"))
+		levels(fac)
+		@
+	\\
+	\texttt{droplevels()}	&	identifie les niveaux d'un facteur non utilisés	&	retourne le facteur en enlevant les niveaux sans observations	&	
+		<<>>=
+		fac_filt <- fac[-1]
+		droplevels(fac_filt)
+		@
+	\\
+	\texttt{which()}		&	identifie la \textbf{position} d'objets rencontrant la condition
+&	retourne les indices des objets	&	
+		<<>>=
+		data_wt <- c(76, 87, NA, 47, 55, 42, 666, NA)
+		which(is.na(data_wt))
+		@
+	\\
+};
+\end{tikzpicture}
+
+\begin{center}
+	\textbf{Agrégation}
+\end{center}
+\begin{description}
+	\item[\texttt{table()} et \texttt{prop.table()}]	Retourne un tableau de fréquence et de proportion. \\
+	À 2 dimensions, il faut s'assurer d'avoir les mêmes dimensions pour les 2 vecteurs. \\
+	À 3 dimensions, la fonction retourne un tableau par niveau du troisième argument.\\
+	\texttt{prop.table()} s'enchaîne à une table et ne pas être utilisé directement.\\
+	L'argument \texttt{margin} spécifie la dimension sur laquelle sommer (1 pour les rangées, 2 pour les colonnes).
+		<<>>=
+		facto <- factor(x = c("deux", "two", "one", "one", "un", "deux"))
+		table(facto)
+		age <- c(18, 20, 19, 18, 20)
+		weight <- c(200, 150, 175, 190, 220)
+		table(age, weight)
+		table(age, weight) %>% 
+		    prop.table(margin = 1)
+		@
+	\item[\texttt{aggregate()}]	Calcule une fonction par groupe pour une base de données.\\
+		Il faut faire attention à la fonction donnée en argument. Si l’on veut calculer une moyenne et la BD contient des facteurs, la fonction retourne \texttt{NA} pour cette colonne avec un message d'erreur.\\
+		Il faut donner l'argument à \texttt{by} en forme de liste même si nous n'avons qu'une seule variable par laquelle grouper.
+		<<>>=
+		BD <- data.frame(age = c(18, 20, 19, 18, 20), 
+                 weight = c(200, 150, 175, 190, 220))
+		sex <- factor(c("F", "F", "H", "F", "H"))
+		student <- as.factor(c(T, F, T, T, F))
+		aggregate(x = BD, by = list(sex), FUN = median)
+		aggregate(x = BD, by = list(sex, student), FUN = median)
+		@
+\end{description}
+
+\begin{center}
+	\textbf{Modifications de variables}
+\end{center}
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 2cm,
+		minimum width = 2.6cm,
+		anchor = center,
+		outer sep = 0,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			fill = ballblue,  % header colour
+			text = white,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 4cm, 
+		align = center,
+		nodes = {
+			font = \bfseries
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 5cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+	column 3/.style = {
+		text width = 5cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+	column 4/.style = {
+		text width = 10cm,
+		align = center,
+		nodes = {fill = rstudioblue}
+	},
+	row 1 column 1/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+	Commande	&	Utilité	&	Résultat	&	Exemple \\
+	\texttt{tolower()} et \texttt{toupper()}	&	convertis les chaînes de caractères en minuscules et majuscules	&	retourne le vecteur avec les chaînes de caractères modifiées	&	
+		<<>>=
+		tolower(c("ALec", "JAmES"))
+		toupper(c("ALec", "JAmES"))
+		@
+	\\
+};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 2cm,
+		minimum width = 2.6cm,
+		anchor = center,
+		outer sep = 0,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			fill = ballblue,  % header colour
+			text = white,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 2cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 5cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 3/.style = {
+		text width = 2cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 4/.style = {
+		text width = 3cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	row 2 column 1/.style = {nodes = {fill = gray}},
+	row 2 column 2/.style = {nodes = {fill = gray}},
+	row 2 column 3/.style = {nodes = {fill = gray}},
+	row 2 column 4/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+			&			&			&			\\
+	\textbf{Paramètre}	&	\textbf{Description}	&	\textbf{Possiblités}	&	\textbf{Exemple} \\
+	\texttt{face	}	&	type de police	&	"plain", "italic", "bold"	&	 \texttt{face = "plain"}	\\
+	\texttt{colour}	&	couleur du texte	&		&	\texttt{colour = "blue"}	 \\
+	\texttt{size}	&	taille du texte&		pts	&	\texttt{size = 8}	 \\
+	\texttt{angle}	&	angle du texte	&	de 0 à 360 degrés	&	\texttt{angle = 90}	 \\
+	\texttt{hjust} et \texttt{vjust}	&	justification du text selon l'aire du graphique (et non selon les axes) &	entre 0 et 1	&	\texttt{hjust = 0.5}	 \\
+};
+    \node[fit=(m-1-1)(m-1-4)]{\texttt{element\_text()}\addcontentsline{toc}{subsection}{ggplot2}};
+\end{tikzpicture}
+
+
+\section{Fonctions \texttt{R} pour l'ajustement de modèles}
+
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 1.8cm,
+		minimum width = 6cm,
+		anchor = center,
+		outer sep = 0,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			fill = ballblue,  % header colour
+			text = white,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 3cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 7cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 3/.style = {
+		text width = 4cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 4/.style = {
+		text width = 5cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	row 2 column 1/.style = {nodes = {fill = gray}},
+	row 2 column 2/.style = {nodes = {fill = gray}},
+	row 2 column 3/.style = {nodes = {fill = gray}},
+	row 2 column 4/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+			&			&			&			\\
+	\textbf{Paramètre}	&	\textbf{Description}	&	\textbf{Possiblités}	&	\textbf{Exemple} \\
+	\texttt{form	}	&	formule du modèle	&	 	&	 	\\
+	\texttt{data}	&	jeu de données	&		&	\texttt{data = dataset}	 \\
+	\texttt{method}	&	famille de modèle à entraîner	&	\texttt{Adaboost.M1}, \texttt{gbm} (boosting), \texttt{rf} (forêt aléatoire), \texttt{rpart} (CART)	&	\texttt{method = "gbm"}	 \\
+	\texttt{preProcess}	&	permet de transformer les données avant l'entraînement. Les données doivent être une matrice ou un tableau.	&		&	\texttt{preProcess = "scale"}	 \\
+	\texttt{tuneLength}	&	Nombre maximal de combinaisons des paramètres à tester dans l'optimisation.	&		&	\texttt{tuneLength = 8}	 \\
+	\texttt{tuneGrid}	&	Grille d'hyperparamètres à tester au lieu d'une recherche aléatoire.	&		&	
+		\texttt{tuneGrid = expand.grid(
+		maxdepth = c(3, 5, 7),  
+		mfinal = c(10, 50, 100),
+		coeflearn = "Freund")}	 \\
+	\texttt{metric}	&	Critère à utiliser pour choisir le modèle optimal.	&	"Accuracy" (classification), "ROC" (Classification), "RSME" (régression)	&	\texttt{metric = "ROC"}	 \\
+	\texttt{trControl}	&	Spécifie les paramètres d'entraînement.	&	habituellement, on le défini séparément.	&	\texttt{trControl = trControlObjet}	 \\
+};
+    \node[fit=(m-1-1)(m-1-4)]{\texttt{caret::train()}\addcontentsline{toc}{subsection}{Entraînement de modèles}};
+\end{tikzpicture}
+
+\pagebreak
+
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 1.8cm,
+		minimum width = 6cm,
+		anchor = center,
+		outer sep = 0,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			fill = ballblue,  % header colour
+			text = white,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 3cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 7cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 3/.style = {
+		text width = 4cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 4/.style = {
+		text width = 5cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	row 2 column 1/.style = {nodes = {fill = gray}},
+	row 2 column 2/.style = {nodes = {fill = gray}},
+	row 2 column 3/.style = {nodes = {fill = gray}},
+	row 2 column 4/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+			&			&			&			\\
+	\textbf{Paramètre}	&	\textbf{Description}	&	\textbf{Possiblités}	&	\textbf{Exemple} \\
+	\texttt{method}	&	méthode de rééchantillonnage	&	"cv" (validation croisée), "rcv" (validation croisée multiple), "LGOCV" (leave-group-out CV alias, échantillon de validation aléatoire) 	&	 \texttt{method = "LGOC"}	\\
+	\texttt{p}	&	Proportion des données à utiliser par itération de l'entraînement.	&	chiffre. 	&	 \texttt{p = 0.6}	\\
+	\texttt{number}	&	Nombre de plis (cv) ou de groupes d'entraînement (LGOCV).	&	chiffre. 	&	 \texttt{number = 2}	\\
+	\texttt{repeats}	&	Nombre d'itérations complètes de l'entraînement (pour la validation croisée répétée rcv)	&	chiffre. 	&	 \texttt{repeats = 4}	\\
+	\texttt{summaryFunction}	&	Précise le type de problème pour affficher les mesures de performance pertinentes.	&	twoClassSummary pour une classification binaire. 	&	\texttt{summaryFunction = "twoClassSummary"} 	\\
+	\texttt{classProbs}	&	Si vrai, le modèle retourne la probabilité d'être dans chacune des classes ainsi que la prévision.	&	Booléen. 	&	\texttt{classProbs = TRUE} 	\\
+	\texttt{search}	&	Spécifie la méthode de création de la grille d'hyperparamètres.	&	"grid" ou "random". 	&	\texttt{search = "grid"} 	\\
+};
+    \node[fit=(m-1-1)(m-1-4)]{\texttt{caret::trainControl()}};
+\end{tikzpicture}
+
+\pagebreak
+
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 1.8cm,
+		minimum width = 6cm,
+		anchor = center,
+		outer sep = 0,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			fill = ballblue,  % header colour
+			text = white,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 3cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 7cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 3/.style = {
+		text width = 4cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 4/.style = {
+		text width = 5cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	row 2 column 1/.style = {nodes = {fill = gray}},
+	row 2 column 2/.style = {nodes = {fill = gray}},
+	row 2 column 3/.style = {nodes = {fill = gray}},
+	row 2 column 4/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+			&			&			&			\\
+	\textbf{Paramètre}	&	\textbf{Description}	&	\textbf{Possiblités}	&	\textbf{Exemple} \\
+	\texttt{formula}	&	formule du modèle	&	 	&	 	\\
+	\texttt{data}	&	jeu de données	&		&	\texttt{data = dataset}	 \\
+	\texttt{method}	&	Spécifie le type d'arbre à entraîner.	&	typiquement, "class" pour la classification et "anova" pour la régression. Il y a aussi l'option "poisson" parmi d'autres. 	&	 \texttt{method = "class"}	\\
+	\texttt{weights}	&	Facteurs de pondération des observations du jeu de données.	&	Vecteur appliqué aux \textbf{rangées}; si un chiffre, sera appliqué à toutes les rangées. 	&	 \texttt{weights = }	\\
+	\texttt{cost}	&	Spécifie un vecteur de coûts associés à chaque variable dans la séparation des données. Par exemple, on peut pénaliser une variable qu'on désire seulement utiliser si le pouvoir prédictif est très grand.	&	Vecteur appliqué aux \textbf{colonnes}; si un chiffre, sera appliqué à toutes les colonnes. 	&	 \texttt{cost = }	\\
+	\texttt{control}	&	Permet de spécifier les paramètres d'entraînement avec la fonction \texttt{rpart.control()}.	&	Typiquement défini séparément. 	&	 \texttt{control = rpart.controlObjet}	\\
+};
+    \node[fit=(m-1-1)(m-1-4)]{\texttt{rpart::rpart()}\addcontentsline{toc}{subsection}{CART}};
+\end{tikzpicture}
+
+\pagebreak
+
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 1.8cm,
+		minimum width = 6cm,
+		anchor = center,
+		outer sep = 0,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			fill = ballblue,  % header colour
+			text = white,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 3cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 7cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 3/.style = {
+		text width = 4cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 4/.style = {
+		text width = 5cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	row 2 column 1/.style = {nodes = {fill = gray}},
+	row 2 column 2/.style = {nodes = {fill = gray}},
+	row 2 column 3/.style = {nodes = {fill = gray}},
+	row 2 column 4/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+			&			&			&			\\
+	\textbf{Paramètre}	&	\textbf{Description}	&	\textbf{Possiblités}	&	\textbf{Exemple} \\
+	\texttt{cp}	&	Paramètre de complexité.	&	Poser \texttt{cp = 0} implique aucune pénalité. 	&	 \texttt{cp = 0.01}	\\
+	\texttt{maxdepth}	&	Profondeur (nombre de branches) maximal de l'arbre.	&	Chiffre. 	&	 \texttt{maxdepth = 12}	\\
+	\texttt{minbucket}	&	Nombre minimal d'observations dans une feuille de l'arbre.	&	Chiffre. 	&	 \texttt{minbucket = 5}	\\
+	\texttt{minsplit}	&	Nombre minimal d'observations dans un nœud pour qu'une séparation des données soit tentée.	&	Chiffre. 	&	 \texttt{minsplit = 20}	\\
+};
+    \node[fit=(m-1-1)(m-1-4)]{\texttt{rpart::rpart.control()}};
+\end{tikzpicture}
+
+\pagebreak
+
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 1.8cm,
+		minimum width = 6cm,
+		anchor = center,
+		outer sep = 0,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			fill = ballblue,  % header colour
+			text = white,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 3cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 7cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 3/.style = {
+		text width = 4cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 4/.style = {
+		text width = 5cm, 
+		align = center,
+		nodes = {
+			fill = lightgray
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	row 2 column 1/.style = {nodes = {fill = gray}},
+	row 2 column 2/.style = {nodes = {fill = gray}},
+	row 2 column 3/.style = {nodes = {fill = gray}},
+	row 2 column 4/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+			&			&			&			\\
+	\textbf{Paramètre}	&	\textbf{Description}	&	\textbf{Possiblités}	&	\textbf{Exemple} \\
+	\texttt{formula}		&	formule du modèle	&	 	&	 	\\
+	\texttt{data}		&	jeu de données	&		&	\texttt{data = dataset}	 \\
+	\texttt{mtry}		&	Nombre de variables explicatives à considérer à chaque séparation.	&	Habituellement l'arrondi de la racine du nombre de variables en classification ou le tier du nombre en régression. 	&	\texttt{mtry = 7}	\\
+	\texttt{sampsize}	&	Nombre d'observations dans les sous-échantillons.	&	Chiffre.  	&	\texttt{sampsize = 0.5}	\\
+	\texttt{ntree}		&	Nombre d'arbres dans la forêt.	&	Chiffre. 	&	\texttt{ntree = 300}	\\
+	\texttt{nodesize}	&	Nombre minimal d'observations dans une feuille de l'arbre 	&	 Chiffre.	&	\texttt{nodesize = 5}	\\
+	\texttt{importance}	&	Si vrai, calcule l'importance des variables.	&	Booléen. 	&	\texttt{importance = TRUE} 	\\
+};
+    \node[fit=(m-1-1)(m-1-4)]{\texttt{randomForest::randomForest()}\addcontentsline{toc}{subsection}{Forêt Aléatoire}};
+\end{tikzpicture}
+
+\pagebreak
+
+\begin{description}
+	\item[\texttt{mod.iml $\leftarrow$ Predictor\$new(modeleTrain)} puis \texttt{FeatureImp\$new(mod.iml, loss = "METRIC", compare = "difference",  n.repetitions = 5)}]		Importance des variables selon l'erreur de classification "METRIC" (e.g., "mse") que l'on peut ensuite visualiser.
+	\item[\texttt{FeatureEffect\$new(mod.iml, "variable1", method = "pdp", grid.size = X)}]	Graphique de dépendance partielle univariée (PDP).
+	\item[\texttt{FeatureEffect\$new(mod.iml, feature = c("variable1", "variable2"), method = "pdp", grid.size = X)}]	Graphique de dépendance partielle bivariée (PDP).
+	\item[NOTE]	Si l'on remplace \texttt{method = "pdp"} par \texttt{method = "ice"} on obtient un graphique d'espérance conditionnelle individuelle (ICE).
+	\item[\texttt{Interaction\$new(mod.iml, "variableImp")}]	Statistique H de Friedman pour quantifier les interactions entre la variable la plus importante et les autres.
+\end{description}
+
+\end{document}

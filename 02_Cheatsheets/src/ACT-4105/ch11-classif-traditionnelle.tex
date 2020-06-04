@@ -1,0 +1,37 @@
+% ACT-4105
+% Ch11 : Classification traditionnelle des risques
+\section{Classification traditionnelle des risques}
+
+\subsection{Critères d'évaluation des variables de tarification}
+\begin{description}
+\item[Statistique] Différence statistique significative, homogénéité, crédibilité
+\item[Opérationnel] Variable objective, peu coûteuse à administrer et vérifiable
+\item[Social] Prime abordable, lien de causalité, contrôlable et respect de la vie privée
+\item[Légal] Il arrivent que la législation en place empêche l'utilisation de certaines variables de tarif.
+\end{description}
+
+\subsection{Détermination des différentiels (\textit{relativity}}
+
+\subsubsection{Approche de la Prime pure}
+\label{sssec:diff-approche-pp}
+Soit la variable de tarification $R1$ avec un certains nombre de niveaux, dont le niveau de base $B$. Le différentiel indiqué de la variable $R1$ pour le niveau $i$ est
+\begin{equation}
+\label{eq:diff-approche-pp}
+R1_{I, i} = \frac{(\overline{L + E_L})_i}{(\overline{L + E_L})_B}
+\end{equation}
+Cette approche suppose une distributin uniforme des unités dans les autres variables. De plus, elle ignore la corrélation qu'il peut exister entre les variables de tarification.
+
+\subsubsection{Approche du taux de sinistre}
+Soit $P_{C, i}$ la prime au taux courant\footnote{Important d'utiliser les primes au taux courat pour cette approche} pour le niveau $i$. On peut trouver les différentiels avec
+\begin{equation}
+\label{eq:diff-approche-lr}
+\text{Indicated Differential Chg} = \frac{R_{I, j}}{R_{C, i}} = \frac{\frac{(\overline{L + E_L})_i}{P_{C, i}}}{\frac{(\overline{L + E_L})_B}{P_{C, B}}}
+\end{equation}
+
+\subsubsection{Approche de la prime pure ajustée}
+Ajustement à l'approche vue en \ref{sssec:diff-approche-pp} pour limiter l'impact des biais (Distribution non-uniforme) dans la distribution.
+\begin{enumerate}
+\item Pour chaque niveau de l'autre variable, on calcule le différentiel moyen chargé (pondéré par les unités)
+\item On ajuste nos unités d'exposition en multipliant par les différentiels moyen trouvés à l'étape 1.
+\item On applique l'approche décrite en \ref{sssec:diff-approche-pp} en utilisant les unités d'exposition ajustées.
+\end{enumerate}
