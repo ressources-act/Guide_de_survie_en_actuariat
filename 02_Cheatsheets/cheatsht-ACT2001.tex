@@ -125,6 +125,12 @@ On pose que $X$ est une variable aléatoire tel que $\text{E}[X]	<	\infty$.
 		F_{X}^{-1}(\kappa)\bigg( F_{X}\Big(F_{X}^{-1}(\kappa)\Big)	-	\kappa \bigg)
 \end{align*}
 
+\begin{rappel_enhanced}[Fonction convexe]
+Soit \lfbox[conditions]{$t \in [0, 1]$} et \lfbox[conditions]{$x_{1}, x_{2} \in X$}.\\
+
+Alors, \lfbox[formula]{$f(tx_{1} + (1 - t)x_{2})	\leq	tf(x_{1}) + (1 - t)f(x_{2})$}.
+\end{rappel_enhanced}
+
 \subsection{Mesures de risque}
 \begin{itemize}
 	\item	La \textbf{Value-at-Risk} correspond au $100\alpha^{\text{e}}$ pourcentile;
@@ -300,7 +306,7 @@ $\rho$ introduit une marge de risque:
 \end{description}
 
 \pagebreak
-\section{Modèles de risques non-vie}
+\section{Modélisation de risques non-vie}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$M$]	Variable aléatoire discrète du nombre de sinistres pour un risque;
@@ -392,6 +398,36 @@ Alors, $S	=	\sum_{i = }^{n} X_{i}	\sim	PComp(\lambda_{s} = \sum_{i = 1}^{n}\lamb
 	&=	\frac{\lambda_{1}}{\lambda_{S}}F_{B_{1}}(x) + \frac{\lambda_{2}}{\lambda_{S}}F_{B_{2}}(x) + \dots + \frac{\lambda_{n}}{\lambda_{S}}F_{B_{n}}(x)	\\
 \end{align*}
 \end{definitionNOHFILLsub}
+
+
+\columnbreak
+\section{Mutualisation de risques non-vie}
+\begin{definitionNOHFILL}[Loi Poisson composée]
+Soit les v.a. indépendantes $X_{1}, \dots, X_{n}$ où \lfbox[formula]{$X_{i}	\sim	\text{PComp}(\lambda_{i}; F_{B_{i}})$} pour \lfbox[conditions]{$i	=	1, 2, \dots, n$}.\\
+
+Alors, \lfbox[formula]{$S	=	\sum_{i	=	1}^{n} X_{i}	\sim	\text{PComp}(\lambda_{S}; F_{C})$} où :
+\begin{itemize}
+	\item	\lfbox[conditions]{$\lambda_{S}		=	\sum_{i	=	1}^{n} \lambda_{i}$}, 
+	\item	\lfbox[conditions]{$F_{C}(s)	=	\sum_{i	=	1}^{n} \frac{\lambda_{i}}{\lambda_{S}} F_{B_{i}}(s)$}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Loi Binomiale Négative composée]
+Soit les v.a. indépendantes $X_{1}, \dots, X_{n}$ où \lfbox[formula]{$X_{i}	\sim	\text{BNComp}(r_{i}, q; F_{B_{i}})$} pour \lfbox[conditions]{$i	=	1, 2, \dots, n$}.\\
+
+Alors, \lfbox[formula]{$S	=	\sum_{i	=	1}^{n} X_{i}	\sim	\text{BNComp}(r_{S}, q; F_{B})$} où \lfbox[conditions]{$r_{S}		=	\sum_{i	=	1}^{n} r_{i}$}.
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Loi Binomiale composée]
+Soit les v.a. indépendantes $X_{1}, \dots, X_{n}$ où \lfbox[formula]{$X_{i}	\sim	\text{BinComp}(n_{i}, q; F_{B_{i}})$} pour \lfbox[conditions]{$i	=	1, 2, \dots, n$}.\\
+
+Alors, \lfbox[formula]{$S	=	\sum_{i	=	1}^{n} X_{i}	\sim	\text{BinComp}(n_{S}, q; F_{B})$} où \lfbox[conditions]{$n_{S}		=	\sum_{i	=	1}^{n} n_{i}$}.
+\end{definitionNOHFILL}
+
+
+
 
 \newpage
 \part{ACT-3000: Théorie du risque}
@@ -1350,9 +1386,183 @@ Pour calculer la fonction de masse de probabilité $f_{X}$ de la v.a. $X$, les �
 
 \pagebreak
 \section{Distributions multivariées et agrégation des risques}
+\begin{rappel_enhanced}[Contexte]
+Il est devenu crucial de tenir compte de la dépendance dans les modélisations d'un portefeuille de risques.
+\begin{itemize}
+	\item	Il existe pour chaque loi paramétrique (discrète ou continue) plusieurs extensions multivariées.
+	\item	Des lois multivariées peuvent être créées en se basant sur la théorie des copules.
+	\item	Il existe des différentes approches pour construire des modèles multivariés de risque: 
+		\begin{itemize}
+		\item	modèles avec chocs communs,
+		\item	modèles avec mélange commun,
+		\item	etc.
+		\end{itemize}
+\end{itemize}
+\end{rappel_enhanced}
 
 
-\pagebreak
+\subsection{Classes de Fréchet}
+Soit : 
+\begin{itemize}
+	\item	Des fonctions de répartition univariées (pas nécessairement identiques) $F_{1}, \dots, F_{n}$.
+	\item	Le vecteur de v.a. $\underline{X}	=	(X_{1}, \dots, X_{n})$ dont la fonction de répartition est $F_{\underline{X}}$.
+\end{itemize}
+\begin{definitionNOHFILL}[Classe de Fréchet $\mathcal{CF}(F_{1}, \dots, F_{n})$]
+Ensemble de toutes les fonctions de répartition multivariées $F_{\underline{X}}$ ayant pour marginales $F_{1}, \dots, F_{n}$.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[Théorème 13.2]
+
+Soit : 
+\begin{itemize}
+	\item	$W(x_{1}, \dots, x_{n})	=	\max\left(\sum_{i = 1}^{n} F_{i}(x_{i}) - (n - 1); 0\right)$.
+		\begin{itemize}
+		\item	Ceci correspond à la borne inférieure de Fréchet et est une fonction de répartition si $n = 2$.
+		\end{itemize}
+	\item	$M(x_{1}, \dots, x_{n})	=	\min\left(F_{1}(x_{1}); \dots; F_{n}(x_{n})\right)$.
+		\begin{itemize}
+		\item	Ceci correspond à la borne supérieure de Fréchet et est une fonction de répartition.
+		\end{itemize}
+	\item	$F_{\underline{X}} \in \mathcal{CF}(F_{1}, \dots, F_{n})$.
+\end{itemize}
+
+Alors \lfbox[formula]{$W(x_{1}, \dots, x_{n})	\leq	F_{\underline{X}}(x_{1}, \dots, x_{n})	\leq	M(x_{1}, \dots, x_{n})$} pour \lfbox[conditions]{$(x_{1}, \dots, x_{n}) \in \mathbb{R}^{n}$}. 
+\end{definitionNOHFILLprop}
+
+
+\columnbreak
+\subsection{Notions de dépendance}
+\subsubsection{L'indépendance}
+La notion de dépendance avec laquelle nous sommes familiers est l'indépendance.
+\begin{definitionNOHFILLprop}[Indépendance]
+Pour \lfbox[conditions]{$(x_{1}, x_{2}, \dots, x_{n}) \in \mathbb{R}^{n}$},
+\begin{align*}
+	F_{X_{1}, X_{2}, \dots, X_{n}}(x_{1}, x_{2}, \dots, x_{n})
+	&=	F_{X_{1}}(x_{1}) \times \dots \times F_{X_{n}}(x_{n})
+\end{align*}
+\end{definitionNOHFILLprop}
+
+\subsubsection{Comonotonicité}
+La comonotonicité est un cas particulier de relation de dépendance. Elle correspond à la relation de dépendance positive parfaite.
+\begin{definitionNOHFILLprop}[Comonotonicité]
+Le vecteur de v.a. $\underline{X}	=	(X_{1}, X_{2}, \dots, X_{n})$ est comonotonique ssi il existe une v.a. $Z$ et des fonctions non décroissantes $\phi_{1}, \phi_{2}, \dots, \phi_{n}$ telles que :
+\begin{align*}
+	\underline{X}	
+	=	(X_{1}, X_{2}, \dots, X_{n})
+	&\overset{d}{=}	\phi_{1}(Z), \phi_{2}(Z), \dots, \phi_{n}(Z)
+\end{align*}
+\begin{itemize}
+	\item	C'est à dire, le vecteur est comonotonique ssi ses composantes sont comonotones.
+	\item	Les composante sont comonotones ssi la fonction de répartition conjointe du vecteur est la borne supérieure de Fréchet $M$.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{algo2}[Simulation des réalisations d'un vecteur de v.a. comonotone]
+Soit le vecteur de v.a. comonotones $\underline{X}	=	(X_{1}, X_{2}, \dots, X_{n})$.
+\begin{enumerate}
+	\item	On simule une réalisation $U^{(j)}$ d'une loi $U(0, 1)$.
+	\item	On calcule le vecteur de réalisations $X^{(j)}_{1}	=	F_{X_{1}}^{-1}(U^{(j)}), \dots, X^{(j)}_{n}	=	F_{X_{n}}^{-1}(U^{(j)})$.
+\end{enumerate}
+\end{algo2}
+
+\begin{definitionNOHFILLpropos}[Additivité des mesures de risque]
+Soit un vecteur de v.a. comonotones $\underline{X}	=	(X_{1}, X_{2}, \dots, X_{n})$ et $S	=	\sum_{i = 1}^{n} X_{i}$.
+Alors, $S	=	\sum_{i = 1}^{n}F_{X_{i}}^{-1}(U)	=	\phi(U)$.
+\begin{align*}
+	VaR_{\kappa}(S)	
+	&=	\sum_{i = 1}^{n} VaR_{\kappa}(X_{i})	\\
+	TVaR_{\kappa}(S)	
+	&=	\sum_{i = 1}^{n} TVaR_{\kappa}(X_{i})
+\end{align*}
+
+Et 
+\begin{align*}
+	\text{E}[S \times \bm{1}_{\{S > d\}}]	
+	&=	\sum_{i = 1}^{n} \int_{\phi^{-1}(d)}^{1} F^{-1}_{X_{i}}(u) du
+\end{align*}
+\end{definitionNOHFILLpropos}
+
+
+
+\subsubsection{Antimonotonicité}
+L'antimonotonicité correspond à la relation de dépendance \textbf{négative} parfaite définie pour des paires de v.a.
+
+\begin{definitionNOHFILLprop}[Antimonotonicité]
+Les composantes du couple de v.a. $\underline{X}	=	(X_{1}, X_{2})$ sont antimonotoniques ssi il existe une v.a. $Z$, une fonctions croissante $\phi_{1}$ et une fonction décroissantes $\phi_{2}$  telles que :
+\begin{align*}
+	(X_{1}, X_{2})
+	&\overset{d}{=}	\left(\phi_{1}(Z), \phi_{2}(Z)\right)
+\end{align*}
+\begin{itemize}
+	\item	Donc, si la fonction de répartition conjointe est la borne inférieure de Fréchet $F^{-}_{X_{1}, X_{2}}$.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{algo2}[Simulation des réalisations d'un couple de v.a. antimonotones]
+Soit le couple de v.a. antimonotones $(X_{1}, X_{2})$.
+\begin{enumerate}
+	\item	On simule une réalisation $U^{(j)}$ d'une loi $U(0, 1)$.
+	\item	On calcule le vecteur de réalisations $X^{(j)}_{1}	=	F_{X_{1}}^{-1}(U^{(j)}), X^{(j)}_{2}	=	F_{X_{2}}^{-1}(1 - U^{(j)})$.
+\end{enumerate}
+\end{algo2}
+
+\columnbreak
+\subsubsection{Notation}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$(X_{1}^{+}, X_{2}^{+})$]	Couple de v.a. comonotones avec \lfbox[formula]{$F_{X_{1}^{+}, X_{2}^{+}}(x_{1}, x_{2})	=	M(x_{1}, x_{2})	=	\min\left(F_{1}(x_{1}); F_{2}(x_{2})\right)$}.
+	\item[$(X_{1}^{-}, X_{2}^{-})$]	Couple de v.a. antimonotones avec \lfbox[formula]{$F_{X_{1}^{-}, X_{2}^{-}}(x_{1}, x_{2})	=	W(x_{1}, x_{2})	=	\max\left(F_{1}(x_{1}) + F_{2}(x_{2}) - 1; 0\right)$}.
+	\item[$(X_{1}^{\perp}, X_{2}^{\perp})$]	Couple de v.a. indépendantes avec \lfbox[formula]{$F_{X_{1}^{\perp}, X_{2}^{\perp}}(x_{1}, x_{2})	=	W(x_{1}, x_{2})	=	F_{1}(x_{1}) \times F_{2}(x_{2})$}.
+\end{description}
+\end{distributions}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\Delta_{a_{i}, b_{i}}F_{\underline{X}}(\underline{x})$]	$F_{\underline{X}}(x_{1}, \dots, b_{i}, \dots, x_{n})	-	F_{\underline{X}}(x_{1}, \dots, a_{i}, \dots, x_{n})$.
+		\begin{itemize}
+		\item	Pour $n = 2$, $\Pr(\underline{a}	<	X	\leq		b)	=	\Delta_{a_{1}, b_{1}}\Delta_{a_{2}, b_{2}} F_{\underline{X}}(\underline{x})	=	F_{\underline{X}}(b_{1}, b_{2}) - F_{\underline{X}}(a_{1}, b_{2}) - F_{\underline{X}}(b_{1}, a_{2}) + F_{\underline{X}}(a_{1}, a_{2})$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+
+\columnbreak
+\subsection{Lois composées multivariées}
+%%%	----------------------------------------
+%%%	je ne sais pas si ça vaut la peine d'inclure ceci :
+%L'analogue de la relation récursive de la famille $(a, b, 0)$ pour le couple $(M_{1}, M_{2}) \sim \text{PBiv}(\lambda_{1}, \lambda_{2}, \alpha_{0})$ avec le point de départ \lfbox[formula]{$f_{M_{1}, M_{2}}(0, 0)	=	\textrm{e}^{-\lambda_{1} - \lambda_{2} + \alpha_{0}}$} pour :
+%
+%%\lfbox[conditions]{$m_{1} \in \mathbb{N}^{+}, m_{2}	=	0$}, est \lfbox[formula]{$f_{M_{1}, M_{2}}(m_{1}, m_{2})	=	\frac{\lambda_{1} - \alpha_{0}}{m_{1}}f_{M_{1}, M_{2}}(m_{1} - 1, 0)$}.
+%
+%\lfbox[conditions]{$m_{1} \in \mathbb{N}^{+}, m_{2}	\in \mathbb{N}^{+}$}, est \lfbox[formula]{$f_{M_{1}, M_{2}}(m_{1}, m_{2})	=	\frac{\lambda_{1} - \alpha_{0}}{m_{1}}f_{M_{1}, M_{2}}(m_{1} - 1, m_{2})$}\\ \lfbox[formula]{$+ \frac{\alpha_{0}}{m_{1}}f_{M_{1}, M_{2}}(m_{1} - 1, m_{2} - 1)$}. 
+%%%	----------------------------------------
+
+
+\begin{definitionNOHFILL}[Loi Poisson composée]
+Soit : 
+\begin{itemize}
+	\item	Les v.a. indépendantes $K_{0}, K_{1}, \dots, K_{n}$ avec :
+		\begin{itemize}
+		\item	\lfbox[formula]{$K_{0} \sim  \text{Pois}(\alpha_{0})$} pour \lfbox[conditions]{$0	\leq	\alpha_{0}	\leq	\min(\lambda_{1}; \dots; \lambda_{n})$}, 
+		\item	\lfbox[formula]{$K_{i} \sim  \text{Pois}(\alpha_{i} = \lambda_{i} - \alpha_{0})$} pour \lfbox[conditions]{$i	=	1, 2, \dots, n$}.
+		\end{itemize}
+	\item	Le vecteur de v.a. de fréquence $(M_{1}, \dots, M_{n})$ obéit à une loi de Poisson multivariée avec choc commun. 
+		\begin{itemize}
+		\item	Les composantes du vecteur sont définies par $M_{i}	=	K_{i} + K_{0}$.
+		\item	Alors, \lfbox[formula]{$M_{i}	\sim \text{Pois}(\lambda_{i})$}.
+		\end{itemize}
+	\item	Le vecteur de v.a. $(X_{1}, \dots, X_{n})$ obéit à une loi de Poisson composée multivariée.
+\end{itemize}
+Alors, \lfbox[formula]{$S	=	\sum_{i	=	1}^{n}X_{i}	\sim	\sim \text{PComp}(\lambda_{S}; F_{C})$} où :
+\begin{itemize}
+	\item	\lfbox[conditions]{$\lambda_{S}	=	\sum_{i	=	1}^{n}\lambda_{i}	-	(n - 1)\alpha_{0}$}.
+	\item	\lfbox[conditions]{$F_{C}(x)	=	\sum_{i	=	1}^{n}\left\{\frac{\lambda_{i} - \alpha_{0}}{\lambda_{S}} F_{B_{i}}(x)\right\} + \frac{\alpha_{0}}{\lambda_{S}} F_{B_{1} + \dots + B_{n}}(x)$}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+
+\pagebreak 
 \section{Théorie des copules}
 
 
