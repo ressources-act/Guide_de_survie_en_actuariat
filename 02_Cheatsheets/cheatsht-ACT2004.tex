@@ -15,7 +15,7 @@
 %% -----------------------------
 \def\SectionColor{burntorange}
 \def\SubSectionColor{burntsienna}
-\def\SubSubSection{burntsienna}
+\def\SubSubSectionColor{burntsienna}
 %% -----------------------------
 %% Colour setup for prestations
 %%	Ajoute couleurs sur les trêmas des signes de prestations
@@ -33,33 +33,44 @@
 %
 % thin space, limits underneath in displays
 %
-\DeclareMathOperator*{\argmax}{arg\,max} 
-%
-% Redefine authors
-%
-\def\auteur{Gabriel Crépeault-Cauchon, Nicholas Langevin et Alec James van Rassel}
-
+%\DeclareMathOperator*{\argmax}{arg\,max} 
 %% -----------------------------
 %% Début du document
 %% -----------------------------
 \begin{document}
 
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT2004}
+
+\newpage
+
+\raggedcolumns
 \footnotesize % Écrire petit (peut être modifié)
 \begin{multicols*}{3} 	% Nombre de colonnes (peut être changé plus tard.)
 \section*{Rappel de Math. financière}
 \subsection*{Facteurs d'actualisation}
 Où les dénominateurs sont à être interprété en REGEX.\\
 Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte} pour une une \textcolor{cyan}{annuité due} ou le taux d'intérêt pour une \textcolor{black}{immédiate}.
+
+\setlength{\mathindent}{-1cm}
+\begin{minipage}{0.5\columnwidth}
 \begin{align*}
 	a(t) 
 		&= 	(1 + i)^{t} 
-		= 	(1 - d)^{-t}	&
+		= 	(1 - d)^{-t}		\\
+	&= 	e^{\int_{0}^{t} \delta_s ds} % va avec a(t)	
+\end{align*}
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+\begin{align*}
 	v(t) 
 		&= 	(1 + i)^{-t} 
 		= 	(1 - d)^{t}	 \\
-	&= 	e^{-\int_{0}^{t} \delta_s ds} % va avec a(t)
+	&= 	e^{-\int_{0}^{t} \delta_s ds} % va avec a(t)	
 \end{align*}
-
+\end{minipage}
 \begin{align*}
 	i 	&= \left( 1 + \frac{i^{(m)}}{m} \right)^{m} - 1 &
 	d	&= 	\frac{i}{1 + i} &
@@ -99,7 +110,7 @@ Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte
 %	(\bar{I}\bar{a})_{\angl{n}i} &= \frac{\bar{a}_{\angl{n}i} - n e^{-\delta n}}{\delta} &
 %	(\bar{D}\bar{a})_{\angl{n}i} &= \frac{n - \bar{a}_{\angl{n}i}}{\delta} 
 %\end{align*}	
-
+%
 %Rentes avec croissance géométrique
 %\begin{align*}
 %	\cumlaut[cyan]{a}_{\angl{n}i^{R}}
@@ -114,6 +125,8 @@ Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte
 %&\text{Taux d'intérêt \underline{nominal} \textit{annuel}} & & i^{(m)} = m \left( (1 + i)^{1/m} - 1 \right)
 %\end{align*}
 
+\setlength{\mathindent}{1cm}
+
 \subsection*{Sommations}
 \begin{align*}
 \sum_{k = m}^{n} r^k &= r^{m} \frac{1 - r^{n - m + 1}}{1 - r} &
@@ -122,54 +135,166 @@ Pour exemple, pour la première c’est soit le \textcolor{cyan}{taux d'escompte
 \sum_{k = 1}^{n}k^2 &= \frac{n(n + 1)(2n + 1)}{6} \\
 \end{align*}
 
+\newpage
+
 \section{Survie et mortalité}
 \setcounter{subsection}{1}
 \subsection{Probabilités de survie et de décès}
-\begin{itemize}
-\item[$X$ : ] Âge au décès d'un nouveau-né
-\item[$T_x$ : ] Durée de vie résiduelle d'un individu d'âge $x$.
-\[T_x = (X-x | X \geq x) \]
-\[ f_{T_x} = \px[t]{x} \mu_{x+t} \]
-\[ F_{T_x}   =\qx[t]{x} = \frac{S_X(x) - S_X(x+t)}{S_X(x)}  \]
-\[ \prob{t \leq T_x \leq t+u} = \qx[t|u]{x} = \px[t]{x} \cdot \qx[u]{x+t} = \qx[t + u]{x} - \qx[t]{x} \]
-\[ \qx[t + y]{x} = \qx[t]{x} + \px[t]{x} \cdot \qx[y]{x + t}\]
-\[S_{T_x}(t) = \exp \left\{ - \int_{0}^{t} \mu_{x+s} ds \right\} = \exp \left\{ - \int_{x}^{x + t} \mu_{s} ds \right\}  \]
-\[T_x \in \mathbb{R}^+ \]
+\begin{description}
+	\item[$(x)$]	Dénote une personne d'âge $x$;
+	\item[$\mu_{x}$ : ] Force de mortalité pour un individu d'âge $x$.
+		\begin{align*}
+		\mu_{x}
+		&=	\frac{f_{X}(x)}{S_X(x)} 
+		=	-\derivee{x} \Big( \ln(S_{x}(x))\Big)	\\
+		\end{align*}
+\end{description}
 
-\item[$K_x$ : ] Durée de vie résiduelle entière d'un individu d'âge $x$.
-\[K_x = \lfloor T_x \rfloor \]
-\[\prob{K_x = k} = \prob{\lfloor T_x \rfloor = k} = \px[k|]{x} \]
-\[K_x \in \mathbb{Z}^+ \]
+\begin{definitionNOHFILLsub}[Durée de vie future restante $T_{x}$]
+Pour un individu d'âge $x$, la variable aléatoire continue $T_{x}$ représente le temps restant avant de décéder.\\
 
-\item[$\mu_x$ : ] Force de mortalité pour $(x)$
-\[\mu_x = \frac{f_X(x)}{S_X(x)} = -\derivee{x} \Big( \ln(S_X(x)\Big) \]
-\[\mu_{x+t} = - \derivee{t} \Big( \ln ( \px[t]{x}) \Big) \]
-\[\alpha\mu_{x+s} + h(s) = (\px[t]{x})^\alpha e^{-\int_{0}^{t}h(s)ds } \]
-
-
-\item[$R_x$ : ] Durée de vie résiduelle fractionnaire d'un individu d'âge $x$.
-\[R_x = T_x - K_x\]
-\[R_x \in [0, 1) \]
-
-\item[$J^{(m)}_x$ : ] Nombre de m-ème d'années vécus durant l'année du décès.
-\[J^{(m)}_x= [m R_x] \]
-\[J^{(m)}_x \in \{0, 1, 2, \dots, m - 1) \]
-
-\item[$H^{(m)}_x$ : ] Durée de vie résiduelle d'un individu d'âge $x$ exprimé en m-ème années.
-\[H^{(m)}_x= [m T_x] \]
-\[H^{(m)}_x \in \mathbb{Z}^+ \]
-
-
+\begin{itemize}[leftmargin = *]
+	\item	\textbf{L'âge-au-décès} pour $(x)$ est alors $x + T_{x}$;
+	\item	Pour un nouveau-né avec $(x) = (0)$, on dénote $T_{x} = T_{0} \equiv X$;
+	\item	Donc, on ne conditionne par sur l'obtention d'un certain âge et $F_{T_{0}}(x) \equiv F_{X}(x)$.
 \end{itemize}
+\tcbline
+\begin{description}
+	\item[$F_{T_{x}}(t)$]	La probabilité que $(x)$ ne survive pas passé l'âge de $x + t$ ans;
+		\begin{itemize}[leftmargin = *]
+		\item	En anglais, nous l'appelons \og \textit{the lifetime distribution from age $x$} \fg{};	
+		\item	On dénote \icbox{$F_{T_{x}}(t) = \Pr(T_{x} \leq t) = \qx[t]{x}$};
+		\item	On pose que \icbox{$\Pr(T_{x} \leq t) \equiv \Pr(T_{0} \leq x + t | T_{0} > x)$}.
+		\end{itemize}
+\end{description}
+
+Avec cette hypothèse, on trouve les relations suivantes \icbox[red][palechestnut]{pour $t \geq 0$}:
+\begin{align*}
+	\qx[t]{x}
+	&\equiv	\Pr(T_{x} \leq t)  	\\
+	&=	\Pr(T_{0} \leq x + t | T_{0} > x) 
+	\equiv	\Pr(X \leq x + t | X > x) \\
+	&=	\frac{F_{X}(x + t) - F_{X}(x)}{\textcolor{teal}{1 - F_{X}(x)}}
+	\equiv	\frac{S_{X}(x) - S_{X}(x + t)}{\textcolor{teal}{S_{X}(x)}}
+\end{align*}
+
+\begin{description}
+	\item[$S_{T_{x}}(t)$]	La probabilité que $(x)$ survive pour au moins $t$ années, surnommée la \textbf{fonction de survie}.
+		\begin{itemize}[leftmargin = *]
+		\item	On dénote \icbox{$S_{T_{x}}(t) = \Pr(T_{x} > t) = \px[t]{x}$}.
+		\end{itemize}
+\end{description}
+
+\tcbline
+
+Avec cette notation, on trouve les relations suivantes:
+\begin{align*}
+	\Pr(t	<	T_{x}	\leq	t + u)
+	&= \qx[t|u]{x}	\\
+	&\equiv \px[t]{x} \, \qx[u]{x+t}	\\
+	&\equiv \qx[t + u]{x} - \qx[t]{x}	\\
+	\qx[t + y]{x} 
+	&= \qx[t]{x} + \px[t]{x} \, \qx[y]{x + t}
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Durée de vie entière future restante $K_{x}$]
+Pour un individu d'âge $x$, la variable aléatoire \textbf{discrète} $K_{x}$ représente le nombre d'années restantes avant de décéder.\\
+
+\begin{itemize}[leftmargin = *]
+	\item	On peut penser à $K_{x}$ comme le nombre d'années entières restantes à vivre pour l'individu d'âge $x$;
+	\item	On a donc que \icbox{$K_x = \lfloor T_x \rfloor$};
+	\item	Il s'ensuit que $\Pr(K_x = k)	=	\Pr(\lfloor T_{x} \rfloor = k)	=	\Pr(k	\leq	T_{x}	< k + 1)$;
+	\item	On dénote \icbox{$\Pr(K_x = k)	=	\px[k|]{x}$}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Partie de l'année du décès vécue $R_{x}$]
+Pour un individu d'âge $x$, la variable aléatoire \textbf{continue} $R_{x}$ représente la portion de l'année du décès vécue.\\
+
+\begin{itemize}[leftmargin = *]
+	\item	On a donc que \icbox{$R_{x} = T_{x} - K_{x}$}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Durée de vie entière future restante en $m^{\text{e}}$ d'années $H^{(m)}_{x}$]
+Pour un individu d'âge $x$, la variable aléatoire \textbf{discrète} $H^{(m)}_{x}$ représente le nombre de $m^{\text{e}}$ d'années restant avant le décès.\\
+
+\begin{itemize}[leftmargin = *]
+	\item	On a donc que \icbox{$H^{(m)}_{x}	=	\lfloor m T_{x} \rfloor$}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Fraction de l'année du décès vécue $J^{(m)}_{x}$]
+Pour un individu d'âge $x$, la variable aléatoire \textbf{discrète} $J^{(m)}_{x}$ représente le nombre de $m^{\text{e}}$ d'années vécus lors de l'année du décès.\\
+
+\begin{itemize}[leftmargin = *]
+	\item	On a donc que \icbox{$H^{(m)}_{x}	=	\lfloor m R_{x} \rfloor$}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\textbf{Exemple}:	Soit un décès au temps $T_{x} = 14.5$, on a:
+\begin{align*}
+	K_{x}	
+	&=	\lfloor	14.6	\rfloor	
+	=	14	\\
+	R_{x}
+	&=	14.6 - 14
+	=	0.6	\\
+	J^{(12)}_{x}
+	&=	\lfloor	12 \times 0.6	\rfloor	
+	=	\lfloor	7.2	\rfloor	
+	=	7	\\
+	H^{(12)}_{x}
+	&=	\lfloor	12 \times 14.6	\rfloor	
+	=	\lfloor	175.2	\rfloor	
+	=	175		\\
+\end{align*}
+
+\textbf{En bref}:
+\begin{align*}
+	T_{x} 
+	&\in	\mathbb{R}^{+}	\\
+	K_{x} 
+	&\in	\{0, 1, 2, \dots\}	\\
+	R_{x} 
+	&\in	[0, 1)	\\
+	H^{(m)}_{x} 
+	&\in	\{0, 1, 2, \dots\}	\\
+	J^{(m)}_{x} 
+	&\in	\{0, 1, 2, \dots, m - 1\}
+\end{align*}
+
+\subsubsection*{Relations}
+\begin{align*}
+	\mu_{x+t} 
+	&=	- \derivee{t} \Big( \ln(\px[t]{x}) \Big)	\\
+	\alpha \mu_{x + s} + h(s) 
+	&=	(\px[t]{x})^{\alpha} \textrm{e}^{-\int_{0}^{t} h(s)ds}	\\
+	\px[t]{x}
+	&=	\exp\left\{ -\int_{0}^{t} \mu_{x + s} ds \right\} 	\\
+	&\equiv	\exp\left\{ -\int_{x}^{x + t} \mu_{s} ds \right\}
+\end{align*}
+
+\begin{align*}
+	f_{T_{x}} 
+	&=	\px[t]{x} \mu_{x + t}	
+\end{align*}
+
+
+\columnbreak
 
 \subsection{Lois de mortalité}
-\subsubsection*{Loi de Moivre}
-Pas très réaliste car assume une chance \textbf{uniforme} de mourir n'importe quand alors qu'en réalité une personne agée de 90 ans a des plus grandes chances de mourir qu'un jeune de 30 ans.
- 
+\begin{rappel_enhanced}[Loi de Moivre]
+Pas très réaliste car on suppose que la chance de mourir est \textbf{uniforme} alors qu'en réalité une personne âgée de 90 ans a de plus grandes chances de mourir qu'un jeune de 30 ans.	\\
 C'est la seule loi avec un \textbf{support fini}. 
 
-\begin{center}
-$T_x \sim	\text{Unif}(0, \omega - x)$
+\begin{gather}
+\begin{align*}
+	T_{x} 
+	&\sim	\text{Unif}(0, \omega - x)
+\end{align*}
+\end{gather}
 
 \begin{align*}
 %	X &\sim \text{Unif}(0, \omega) \\
@@ -182,48 +307,69 @@ $T_x \sim	\text{Unif}(0, \omega - x)$
 	\qx[k |]{x} 
 		&=	\frac{1}{\omega - x}
 \end{align*}
-\end{center}
+
+\tcbline
 
 \textbf{Généralisation}:
 
 \begin{align*}
 	\px[t]{x} 
-		&= \left( 1 - \frac{t}{\omega - x} \right)^{\alpha} &
-	\mu_x &=	\frac{\alpha}{\omega - x}	&
-	\eringx{x}	&=	\frac{\omega - x}{\alpha + 1}
+	&= \left( 1 - \frac{t}{\omega - x} \right)^{\alpha} &
+	\mu_x 
+	&=	\frac{\alpha}{\omega - x}	
 \end{align*}
+\begin{align*}
+	\eringx{x}	
+	&=	\frac{\omega - x}{\alpha + 1}
+\end{align*}
+\end{rappel_enhanced}
 
-\subsubsection*{Loi Exponentielle}
 
+\begin{rappel_enhanced}[Loi Exponentielle]
 \begin{center}
 \begin{align*}
-	T_x 			&\sim 	\mathrm{Exp}(\mu) &
-	\px[t]{x} 	&= 		e^{-\mu t}	
+	T_x 			
+	&\sim 	\mathrm{Exp}(\mu) &
+	\px[t]{x} 	
+	&= 		e^{-\mu t}	\\
 \end{align*}
 \begin{align*}
 	T_x \sim \text{Exp}(\mu) &\Rightarrow K_x \sim \text{Géo}(p = 1 - e^{-\mu}) 
 \end{align*}
 \end{center}
+\end{rappel_enhanced}
 
-\subsubsection*{Loi de Makeham}
+
+\begin{rappel_enhanced}[Loi de Makeham]
 \begin{align*}
-	X &\sim \text{Makeham}(A, B, c) \\
-	A &: \text{risque d'accident} \\
-	Bc^x &: \text{risque  lié au vieillissement} 
+	X &\sim \text{Makeham}(A, B, c) 
 \end{align*}
+\begin{description}
+	\item[$A$]	risque d'accident;
+	\item[$Bc^{x}$]	risque lié au vieillissement.
+\end{description}
+
 \begin{align*}
-	\mu_x &= A + B c^x &
+	\mu_x 
+	&=	A + B c^{x} &
 %	,\: x \geq 0 \\
-	\px[t]{x} &= e^{-At - \frac{B c^x}{ln(c)}(c^t - 1)}
+	\px[t]{x}
+	&=	\textrm{e}^{-At - \frac{B c^{x}}{\ln(c)}(c^{t} - 1)}
 %	,\: t \geq 0 
 \end{align*}
-	
-\subsubsection*{Loi de Gompertz}
+
+\tcbline
+
+\begin{rappel_enhanced}[Loi de Gompertz]
+	\setlength{\mathindent}{-1cm}
 \begin{align*}
 	X \sim \text{Makeham}(A = 0, B, c) &\Leftrightarrow X \sim \text{Gompertz}(B, c) 
 \end{align*}
+	\setlength{\mathindent}{1cm}
+\end{rappel_enhanced}
+\end{rappel_enhanced}
 
-\subsubsection*{Loi de Weibull}
+\begin{rappel_enhanced}[Loi de Weibull]
 \begin{align*}
 	X &\sim \text{Weibull}(k, n) \\
 	\mu_x &= k x^n	&
@@ -231,68 +377,125 @@ $T_x \sim	\text{Unif}(0, \omega - x)$
 	\px[t]{x} &= e^{-\frac{k}{n + 1}[(x + t)^{n + 1} - x^{n + 1}]}
 %	,\: t \geq 0 
 \end{align*}
+\end{rappel_enhanced}
 
 
+\columnbreak
 \subsection{Tables de mortalité}
-\begin{itemize}
-\item[$\ell_0$ : ] Nombre d'individus initial dans une cohorte.
-\item[$\ell_x$ : ] Nombre d'invidu de la cohorte ayant survécu jusqu'à l'âge $x$.
-\item[$\prescript{}{n}d_{x}$ : ] Nombre de décès entre l'âge $x$ et $x+n$.
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\ell_{0}$]	Nombre d'individus initial dans une cohorte;
+	\item[$\ell_{x}$]	Nombre d'individus de la cohorte ayant survécu jusqu'à l'âge $x$;
+	\item[$\prescript{}{n}d_{x}$]	Nombre de décès entre l'âge $x$ et $x + n$.
+\end{description}
+\end{distributions}
 
 \begin{align*}
-\ell{x} = \sum_{y = x}^{\omega - 1} \dx{y} \\
-\qx[t]{x} = \frac{\ell_x - \ell_{x+t}}{\ell_x} &
-\px[t]{x} = \frac{\ell_{x+t}}{\ell_x} \\
-\qx[t|u]{x} = \frac{\dx[u]{x+t}}{\ell_x}
+	\ell{x} 
+	&=	\sum_{y = x}^{\omega - 1} \dx{y}	\\
+	\qx[t]{x} 
+	&=	\frac{\ell_x - \ell_{x+t}}{\ell_x}	&
+	\px[t]{x} 
+	&=	\frac{\ell_{x+t}}{\ell_x}	\\
+	\qx[t|u]{x} 
+	&=	\frac{\dx[u]{x+t}}{\ell_x}
 \end{align*}
 
-
-\end{itemize}
 
 
 \subsection{Mortalité sélecte et ultime}
-\begin{itemize}
-\item[${[}x{]}$ : ] âge de la sélection \textit{(pas une valeur entière)}.
-\item[${[}x{]} + j$ : ] âge atteint où $j$ est le temps écoulé depuis la sélection.
-\item[$r$: ] \textbf{Période sélecte} de durée $r$ durant laquelle les effets de la sélection sont significatifs après laquelle:
+\begin{distributions}[Notation]
+\begin{description}
+	\item[${[}x{]}$]	Âge à la sélection \textit{(pas une valeur entière)};
+%\item[${[}x{]} + j$ : ] âge atteint où $j$ est le temps écoulé depuis la sélection.
+	\item[$r$]	\textbf{Période sélecte} de durée $r$ durant laquelle les effets de la sélection sont significatifs après laquelle:
+		\begin{align*}
+		\qx{[x] + j} 
+		&= \qx{x + j} \forall j = r, r + 1, r + 2, \dots	\\
+		\ell_{[x] + r + j} 
+		&= \ell_{[x]} \px[r + j]{[x]} = \ell_{[x]} \px[r]{[x]} \px[j]{x + r}
+		\end{align*}
+\end{description}
+\end{distributions}
+
+\columnbreak
+\subsection{Hypothèses pour les âges fractionnaires}
+Si nous avons uniquement de l'information sur la mortalité en temps discret (alias, $K_{x}$) on peut estimer la mortalité $T_x$ avec des hypothèse pour les âges fractionnaires.\\
+
+%Pour $x \in \entiers$.
+
+\begin{definitionNOHFILL}[Distribution uniforme des décès (DUD)]
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{Uniform Distribution of Deaths (UDD)} \fg{};
+	\item	Les décès sont répartis uniformément sur l'année;
+	\item	Une mortalité qui suit la loi de De Moivre implique une DUD, mais une DUD n'implique pas une mortalité qui suit la loi de De Moivre.
+\end{itemize}
+\tcbline
+L'hypothèse d'une DUD est en fait l'interpolation linéaire, \icbox[red][palechestnut]{$\forall t \in [0, 1]$}:
 \begin{align*}
-	\qx{[x] + j} &= \qx{x + j} \forall j = r, r + 1, r + 2, \dots \\
-	\ell_{[x] + r + j} &= \ell_{[x]} \px[r + j]{[x]} = \ell_{[x]} \px[r]{[x]} \px[j]{x + r}
+	S_{X}(x + t) 
+	&=	(1 - t) \times S_X(x) + t \times S_X(x + 1)	\\
 \end{align*}
+
+On peut généraliser l'interpolation pour un intervalle $c$ de plus d'un an, \icbox[red][palechestnut]{$\forall t \in [0, c]$} :
+\begin{align*}
+	S_{X}(x + t) 
+	&=	\frac{(c - t)}{c} \times S_X(x) + \frac{t}{c} \times S_X(x + 1)	
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	Par exemple, si la mortalité est disponible en groupes d'âges quinquennaux, on pose $c = 5$.
+\end{itemize}
+\end{definitionNOHFILL}
+
+On trouve les formules types où habituellement $\textcolor{teal}{c = 1}$:
+\begin{align*}
+	\qx[t]{x} 
+	&=	\left(\frac{t}{\textcolor{teal}{c}}\right) \qx[\textcolor{teal}{c}]{x}	\\
+	\mu_{x + t} 
+	&=	\frac{\frac{1}{\textcolor{teal}{c}} \qx[\textcolor{teal}{c}]{x}}{1 - \frac{t}{\textcolor{teal}{c}} \qx[\textcolor{teal}{c}]{x}}	\\
+	%&\Leftrightarrow \frac{\frac{\partial}{\partial t}\qx[t]{x}}{\px[t]{x}} \\
+	\qx[y]{x + t} 
+	&=	\frac{\left(\frac{y}{\textcolor{teal}{c}}\right) \qx[\textcolor{teal}{c}]{x}}{1 -\left(\frac{t}{\textcolor{teal}{c}}\right) \qx[\textcolor{teal}{c}]{x}}
+\end{align*}
+sous condition que $t \in [0, \textcolor{teal}{c}]$, $x \in \{0, \textcolor{teal}{c}, 2\textcolor{teal}{c}, \dots\}$, et $y \in [0, \textcolor{teal}{c} - t]$.
+
+\begin{itemize}[leftmargin = *]
+	\item	La force de mortalité à la même formule que la fonction de survie sous \textbf{DUD} car la \textit{force de mortalité est appliquée \underline{uniformément}}.
 \end{itemize}
 
-\subsection{Hypothèses pour les âges fractionnaires}
-Pour $t \in [0,1]$ et $x \in \entiers$.
+\begin{definitionNOHFILL}[Force constante de mortalité (FC)]
+\begin{itemize}[leftmargin = *]
+	\item	En anglais, \og \textit{Constant Force of Mortality} \fg{};
+	\item	On peut visualiser la force de mortalité comme étant une fonction en escalier---elle peut uniquement changer aux années entières;
+	\item	La force de mortalité est donc dite d'être "constante localement sur chaque année d'âge".
+\end{itemize}
 
-\textbf{Distribution uniforme des décès (DUD)} \\
-Décès répartis uniformément sur l'année.
+\tcbline
 
+L'hypothèse d'une FC est en fait l'interpolation exponentielle, \icbox[red][palechestnut]{$\forall t \in [0, 1]$}:
 \begin{align*}
-S_X(x + t) &= (1 - t) \times S_X(x) + t \times S_X(x + 1),  &t \in [0, 1] \\
-S_X(x + t) &= \frac{(c - t)}{c} \times S_X(x) + \frac{t}{c} \times S_X(x + 1),  &t \in [0, c] \\
-\end{align*}
-\text{les conditions pour t et x appliquent aux 3 équations suivantes}
-\begin{align*}
-\qx[t]{x} &= \left(\frac{t}{c}\right) \qx[c]{x},  &t \in [0, c] \\
-\mu_{x + t} &= \frac{\frac{1}{c} \qx[c]{x}}{1 - \frac{t}{c} \qx[c]{x}}, &x \in \{0, c, 2c, \dots\} \\
-%&\Leftrightarrow \frac{\frac{\partial}{\partial t}\qx[t]{x}}{\px[t]{x}} \\
-\qx[y]{x + t} &= \frac{\left(\frac{y}{c}\right) \qx[c]{x}}{1 -\left(\frac{t}{c}\right) \qx[c]{x}}, &y \in [0, c - t] 
+	S_{X}(x + t) 
+	&=	\left(S_{x}(x)\right)^{1 - t} + \left(S_{x}(x + 1)\right)^{t}	\\
 \end{align*}
 
-On note que la force de mortalité à la même formule que la \\ fonction de survie car avec \textbf{DUD}, la force est uniformément \\ appliquée.
-
-On note que la force de mortalité à la même formule que la \\ fonction de survie car avec \textbf{DUD}, la force est uniformément \\ appliquée.
-
-\textbf{Force constante (FC)}
+On peut généraliser l'interpolation pour un intervalle $c$ de plus d'un an, \icbox[red][palechestnut]{$\forall t \in [0, c]$} :
 \begin{align*}
-S_X(x + t) &= S_X(x)^{(1 - t)} + S_X(x + 1)^t,  &t \in [0, 1] \\
-S_X(x + t) &= S_X(x)^{\frac{(c - t)}{c}} + S_X(x + 1)^{\frac{t}{c}},  &t \in [0, c] \\
+	S_{X}(x + t) 
+	&=	\left(S_{x}(x)\right)^{\frac{(c - t)}{c}} + \left(S_{x}(x + c)\right)^{\frac{t}{c}}	
 \end{align*}
+\end{definitionNOHFILL}
+
+On trouve les formules types où habituellement $\textcolor{teal}{c = 1}$:
 \begin{align*}
-%\ell_{x+t} &= \ell_x^{(1-t)} \ell_{x+1}^{(t)} \\
-\mu_{x + t} &= -\frac{1}{c}ln(\px[c]{x}), & t \in[0, c] \\
-\qx[y]{x + t} &= 1 - (\px[c]{x})^{\frac{y}{c}}, & t \in[0, c],  y \in [0, c - t] \\
+%	\ell_{x + t} 
+%	&=	\ell_{x}^{(1 - t)} \ell_{x + 1}^{(t)} \\
+	\mu_{x + t} 
+	&=	-\frac{1}{\textcolor{teal}{c}} \ln(\px[\textcolor{teal}{c}]{x})	\\
+	\qx[y]{x + t} 
+	&=	1 - (\px[\textcolor{teal}{c}]{x})^{\frac{y}{\textcolor{teal}{c}}}	\\
 \end{align*}
+sous condition que $t \in[0, \textcolor{teal}{c}]$, $x \in \{0, \textcolor{teal}{c}, 2\textcolor{teal}{c}, \dots\}$, et $y \in [0, \textcolor{teal}{c} - t]$.
+
 % Tableau repris de Nicholas Langevin dans l'ancienne feuille de formules
 %\textbf{Tableau résumé lorsque} $c = 1$\\
 %\[
@@ -313,82 +516,124 @@ S_X(x + t) &= S_X(x)^{\frac{(c - t)}{c}} + S_X(x + 1)^{\frac{t}{c}},  &t \in [0,
 %\end{array}
 %\]
 %\\
-Sous: 
+
+\subsubsection*{Notes sur les durées de vies}
+
+Sous l'hypothèse de \textbf{DUD}, on pose que la mortalité au courant d'une année est uniforme; la probabilité de décéder est la même peu importe le moment de l'année. Puisque $R_{x}$ est la mortalité au courant de l'année, il s'ensuit qu'elle est indépendante de $K_{x}$; alias, \icbox[red][palechestnut]{$K_{x} \overset{DUD}{\bot} R_{x}$}.
+
+Sous l'hypothèse de la \textbf{force constante}, on peut penser à la force de mortalité comme une fonction en forme d'escalier. Elle peut uniquement changer aux années entières. Alors, $K_{x}$ et $R_{x}$ seront uniquement indépendantes si la probabilité de décès est la même peu importe l'âge atteint (par exemple, si la mortalité suit une loi géométrique). Dans ce cas rare, on dit que \icbox[red][palechestnut]{si $\px{x + k}	=	\px{x}, \ \forall k \in \{0, 1, ... \}$} alors \icbox[red][palechestnut]{$K_{x} \overset{FC}{\bot} R_{x}$}.
+
+\columnbreak
+\subsection{Caractéristiques individuelles}
+%Lorsque $0 \leq x < \omega $, défini les fonctions suivantes pour 2 cas possible.
+
+\subsubsection{Cas continu ($T_{x}$)}
+Dans le cas où l'on connaît la fonction de densité ou répartition, on peut obtenir l'information "complète" (alias, continu) sur la mortalité d'un assuré d'âge $x$.
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\eringx{x}$]	Espérance de vie complète pour un individu d'âge $x$;
+		\begin{itemize}[leftmargin = *]
+		\item	En anglais, \og \textit{complete-expectation-of-life} \fg{};
+		\item	On dit "complète" puisqu'on intègre sur la durée de vie future continue ("complète") $T_{x}$ de l'assuré.
+		\end{itemize}
+	\item[$m(x)$]	La durée médiane de vie future pour un individu d'âge $x$.
+		\begin{itemize}[leftmargin = *]
+		\item	En anglais, \og \textit{median future lifetime} \fg{};
+		\item	$m(x)$ représente alors dans combien de temps la population âgée de $x$ aujourd'hui aura diminue de moitié. 
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{align*}
+	\eringx{x}
+	=	\esp{T_{x}}
+	&=	\int_{0}^{\omega - x} t \px[t]{x} \mu_{x + t} dt	\\
+	&=	\int_{0}^{\omega - x} \px[t]{x} dt	\qquad\qquad\quad\quad	\text{si } \limz{t}{\infty} t \px[t]{x} = 0
+\end{align*}
+		
+\begin{align*}
+	\text{Var}(T_{x})
+	&=	\int_{0}^{\omega - x} t^{2} \px[t]{x} \mu_{x + t} dt	\\
+	&=	\int_{0}^{\omega - x} 2t  \px[t]{x} dt - \left(\eringx{x}\right)^{2}	\qquad\quad	\text{si } \limz{t}{\infty} t \px[t]{x} = 0
+\end{align*}
+
+\textbf{Médiane} : 
+Pour trouver la médiane $m(x)$, on l'isole de l'égalité suivante:
+\begin{align*}
+	\Pr\left(T_{x} \leq m(x)\right)
+	&=	\qx[m(x)]{x} 
+	=	\frac{1}{2}
+\end{align*}
+
+\textbf{Mode} : Le moment $t$ où la population âgée de $x$ aujourd'hui ($\ell_{x}$) connaissent le plus de décès.\\
+On cherche donc le moment $t$ qui va maximiser $f_{T_{x}}(t) \equiv \px[t]{x} \mu_{x + t}$, alias \icbox[red][palechestnut]{$\argmax_t \px[t]{x} \mu_{x + t}$}.\\
+
+Donc, on pose la dérivée égale à 0:
+\begin{align*}
+	\deriv{t}{} f_{T_{x}}(t) 
+	&=	0
+\end{align*}
+
+Mais, il faut tenir en compte: 
 \begin{enumerate}
-	\item[\textbf{DUD} : ] $K_x \bot R_x$
-	\item[\textbf{FC} : ] $K_x \bot R_x$ ssi $p_{x + k} = p_{x} \ \forall k \in \{0, 1, ... \}$
+	\item	Les \textit{bornes} pour s'assurer que le $t$ en fait parti;
+	\item	Que le résultat est un \textit{maximum}.
 \end{enumerate}
 
-\subsection{Caractéristiques individuelles}
+\subsubsection{Cas discret ($K_{x}$)}
+En pratique, il est rare d'avoir une fonction qui décrit la mortalité en temps continu. Ce qui est plutôt disponible est la mortalité à des intervalles de temps sous forme d'une table; les "caractéristiques" disponibles sont celles de $K_{x}$. 
 
-Lorsque $0 \leq x < \omega $, défini les fonctions suivantes pour 2 cas possible.
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$e_{x}$]	Espérance de vie abrégée pour un individu d'âge $x$.
+		\begin{itemize}[leftmargin = *]
+		\item	En anglais, \og \textit{curtate-expectation-of-life} \fg{};
+		\item	On dit "abrégé" puisqu'on somme aux années entières la mortalité $K_{x}$ de l'assuré.
+		\end{itemize}
+\end{description}
+\end{distributions}
 
-\subsubsection*{Utilisant $T_x$}
-Si nous connaissons déjà la fonction de répartition/densité de $T_x$ on peut trouver:\\
+\begin{align*}
+	e_{x}
+	=	\esp{K_{x}}
+	&=	\sum_{k = 0}^{\omega - x - 1} k \ \qx[k | ]{x}	\\
+	&=	\sum_{k = 1}^{\omega - x} \px[k]{x} 	\qquad\qquad\qquad\qquad\;	\text{si } \limz{k}{\infty} (k + 1) \px[k + 1]{x} = 0
+\end{align*}
+\begin{align*}
+	\text{Var}(K_{x}) 
+	&=	\sum_{k = 0}^{\omega - x - 1}\left\{ k^{2} \ \qx[k | ]{x} \right\} - \left(e_{x}\right)^2	\\
+	&=	\sum_{k = 0}^{\omega - x - 1}\left\{ (2k - 1) \ \px[k]{x} \right\} - \left(e_{x}\right)^2 \quad \text{si } \limz{k}{\infty} (k + 1)^{2} \px[k + 1]{x} = 0	\\
+\end{align*}
 
-\textbf{Espérance} : Espérance de la durée de vie future complète d'une personne d'âge x.
-	\[	
-		\esp{T_x} = 
-		\eringx{x} =  
-		\int_{0}^{\omega - x} t \px[t]{x} \mu_{x+t} dt = 
-		\int_{0}^{\omega - x} \px[t]{x} d
-	\]
-\textbf{Variance}
-	\begin{align*}
-		V(T_x) &= 
-		\int_{0}^{\omega - x} t^2 \px[t]{x} \mu_{x+t} dt = 
-		\int_{0}^{\omega - x} 2 t  \px[t]{x} dt - \left(\eringx{x}\right)^2 
-	\end{align*}
-\textbf{Médiane} : Le nombre d'années avant que la population d'âge $x$ aujourd'hui diminue de moitié. \\
-	Pour la trouver il suffit d'isoler:
-	\[
-		Pr[T_x \leq m(x)] = \qx[m(x)]{x} = \frac{1}{2}
-	\]
-\textbf{Mode} : Le moment où la population d'âge $x$ aujourd'hui connaisse le plus de décès.\\
-	Pour le trouver, il faut le: 
-	\[ \argmax_t \px[t]{x} \mu_{x + t} \]
-	On peut uiliser la dérivée pour le trouver, mais il faut se méfier \textbf{des bornes} et que le résultat est un \textbf{maximum}.
-	\[
-		\derivee{t} f_{T_x}(t) = 0
-	\]	
-
-\subsubsection*{Utilisant $K_x$}
-Si nous connaissons que la table de mortalité, les seules caractéristiques disponibles sont celles de $K_x$. \\
-Pour obtenir celles de $T_x$ il faut poser un hypothèse pour les âges fractionnaires.\\
-
-\textbf{Espérance} : Espérance du nombre d'années entières à vivre pour une personne d'âge x \textit{(espérance de vie abrégée)}.
-	\[	
-		\esp{K_x} = 
-		e_{x} =  
-		\sum_{k = 0}^{\omega - x - 1} k \ \qx[k | ]{x} =  
-		\sum_{k = 1}^{\omega - x} \px[k]{x} 
-	\]
-
-\textbf{Variance} :  
-	\begin{align*}
-		V(K_x) &= 
-		\sum_{k = 0}^{\omega - x - 1} k^2 \ \qx[k | ]{x} - \left(e_{x}\right)^2 
-	\end{align*}
-
-\textbf{Médiane} : Solution tel que:
-	\begin{align*}
-		Pr[K_x < m] &< \frac{1}{2} &
-		Pr[K_x \leq m] &\geq \frac{1}{2} 
-	\end{align*}
+\textbf{Médiane} : Isoler $m(x)$ des égalités suivantes:
+\begin{align*}
+	Pr[K_{x} 	<	 m(x)] 
+	&<		\frac{1}{2}	&
+	Pr[K_{x} 	\leq	 m(x)] 
+	&\geq	\frac{1}{2} 
+\end{align*}
 
 \textbf{Mode} : 
-	\[ \argmax_k \text{Pr}[K_x = k] \]
+\begin{align*}
+	\argmax_k \text{Pr}[K_x = k]
+\end{align*}
 
+\subsubsection*{Hypothèses fractionnaires}
 
 Liens entre les fonctions pour $K_x$ et $T_x$:\\
 \begin{align*}
-	\eringx{x} &= E[T_x] = E[K_x] + E[R_x] \\
-	&\stackrel{DUD}= e_x + \frac{1}{2} \\
-	V(T_x) = &V(K_x + R_x) \stackrel{\bot}= V(K_x) + V(R_x) \\
-	\stackrel{DUD}= &V(K_x) + \frac{1}{12} 
+	\eringx{x} 
+	&=	\esp{T_{x}} 
+	=	E[K_x] + E[R_x]	\\
+	&\overset{DUD}{=}	e_x + \frac{1}{2}	\\
+	\text{Var}(T_{x})
+	&=	V(K_x + R_x) 
+	\overset{\bot}{=}	V(K_x) + V(R_x) \\
+	&\overset{DUD}{=}	V(K_x) + \frac{1}{12} 
 \end{align*}
 
-\subsubsection*{Variables censurées}
+\subsubsection{Variables censurées}
 L'espérance de vie future \textbf{d'ici} $n$ années d'un assuré d'âge $x$ (\textit{entre les âges $x$ et $x+n$}).\\
 
 Espérance de vie \textbf{complète} temporaire \textit{n} années .
@@ -407,7 +652,7 @@ e_{x:\angln} &= \esp{K_x \wedge n} \\
 && n \in \{0, 1, \dots, \omega - x - 1\}
 \end{align*}
 
-\subsubsection*{Variables tronquées}
+\subsubsection{Variables tronquées}
 L'espérance de vie future \textbf{conditionnelle} au \textbf{décès} dans les $n$ prochaines années d'un assuré d'âge $x$ (\textit{entre les âges $x$ et $x+n$}).
 
 \begin{align*}
@@ -423,7 +668,7 @@ Lien entre espérance tronquée et censurée.
 		&\stackrel{\bot}= e_{x:\angln} + \frac{\qx[n]{x}}{2} 
 \end{align*}
 
-\subsubsection*{Formules de récurrence}
+\subsubsection{Formules de récurrence}
 
 \begin{align*}
 	\eringx{x:\angln} &= \eringx{x:\angl{m}} + \px[m]{x} \eringx{x + m:\angl{n - m}}, & 0 \leq m \leq n \leq \omega - x  \\
@@ -438,6 +683,7 @@ Lien entre espérance tronquée et censurée.
 %	\text{et } e_{\omega - 1} &= 0 \ \text{comme valeur de départ}
 \end{align*}
 
+\columnbreak
 \subsection{Caractéristiques de groupe}
 \begin{itemize}
 %\item[$I_j(x)$ : ] Indicateur de survie du $j$\up{e} individu jusqu'à l'âge $x$.
@@ -522,6 +768,7 @@ $\text{Cov}( \text{A}, \text{B} ) = \esp{A \cap B} - \frac{\esp{A}\esp{B}}{\ell{
 %	\ell_x &= \ell_a S_{T_a}(x - a) = \ell_a \ \px[x - a]{a}
 %\end{align*}
 
+\newpage
 
 \section{Contrats d'assurance-vie}
 %Le paiement est soit en continu, soit à la fin de l'année ou à la fin de la $\frac{1}{m}$ d'année.
@@ -648,11 +895,11 @@ Généralement, on suppose les $n$ différents contrats $Z_{j}$ d'être identiqu
 Cependant, si les contrats ne sont \textbf{\textit{pas identique}}, la \textbf{prime varie }selon le contrat.
 \begin{enumerate}
 	\item[1. ] Pour chaque type de contrat le \textbf{principe d'équivalence} ne change pas, $\esp{Z} = \pi$.
-	\item[3. ] Pour le \textbf{Principe du quantile }on veut maintenant une \textbf{surchage égale} pour tous les contrats et donc le plus petite h telle que $Pr(S \le h) \ge p$.
+	\item[3. ] Pour le \textbf{Principe du quantile }on veut maintenant une \textbf{surcharge égale} pour tous les contrats et donc le plus petite h telle que $Pr(S \le h) \ge p$.
 	\item[$h$ : ] Prime collective sous le principe du quantile.
 \end{enumerate}
 
-Doit trouver la surchage $\theta$ qui, lorsqu'appliqué à chacune des espérances individuelles, donnera la prime collective au total.
+Doit trouver la surcharge $\theta$ qui, lorsque appliqué à chacune des espérances individuelles, donnera la prime collective au total.
 
 \begin{enumerate}
 	\item[$\theta$ : ] \textbf{Surchage}
@@ -660,7 +907,7 @@ Doit trouver la surchage $\theta$ qui, lorsqu'appliqué à chacune des espéranc
 		\pi &= (1 + \theta) \esp{Z} \\
 		h &= (1 + \theta) \esp{S} 
 \end{align*}
-	\item[] \textbf{Suprime}
+	\item[] \textbf{Surprime}
 	\[
 		\theta \esp{Z}
 	\]
@@ -1065,7 +1312,7 @@ Est en vigueur tant que l'assuré est en vie et verse une prestation au moment d
 \end{align*}
 
 	\item[] Le capital \textbf{décroît continûment}.\\
-	Prévoit une prestation de n \$ pour un décès immédiat, par la suite la prestation décroît linéairement jusquà 0 \$ au bout de n années.
+	Prévoit une prestation de n \$ pour un décès immédiat, par la suite la prestation décroît linéairement jusqu'à 0 \$ au bout de n années.
 
 \begin{align*}
 	\DbA*_{\termxn} &= \int_0^{n} (n - t) v^t \px[t]{x} \mu_{x+t} dt \\
@@ -1712,7 +1959,23 @@ Généralisation avec multiple de la force d'intérêt
 		\right]
 \end{align*}
 
+\newpage
+
 \section{Contrats de rente}
+
+On note que pour les contrats de rente, chaque paiement est conditionnel à la survie du rentier jusqu'au moment du paiement \textit{(à moins de se trouver dans une période garantie)}.
+
+\begin{formula}{Double force}
+\begin{align*}
+	\prescript{2}{}{i}
+	&=	2 i + i^{2}		&
+	\prescript{2}{}{d}
+	&=	2 d - d^{2}
+\end{align*}
+\end{formula}
+
+\setcounter{subsection}{1}
+\subsection{Rentes continues}
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes nivelées}}
 
@@ -1720,10 +1983,12 @@ Généralisation avec multiple de la force d'intérêt
 \begin{align*}
 \overline{Y}_{x}	&  = \ax*{\angl{T_{x}}} = \frac{1-v^{T_x}}{\delta} = \frac{1 -\overline{Z}_x}{\delta} \\
 \ax*{x} 
-	& = \int_{0}^{\omega - x}  \ax*{\angl{T_{x}}}  \px[t]{x} \mu_{x+t} dt \\
+	& = \int_{0}^{\omega - x}  \ax*{\angl{t}}  \px[t]{x} \mu_{x+t} dt \\
 	& = \int_{0}^{\omega - x} v^t \px[t]{x} dt \\
 	& = \frac{1 - \Ax*{x}}{\delta} \\
-\variance{Y}	& = \variance{\frac{1- v^{T_x}}{\delta}} =  \frac{\Ax*[][2]{x} - \Ax*{x}^2}{\delta^2} 
+\variance{Y}	 
+	&=	\frac{\Ax*[][2]{x} - \Ax*{x}^2}{\delta^2} 
+	=	\frac{2}{\delta} (\ax*{x} - \prescript{2}{}{\ax*{x}}) - \ax*{x}^2
 \end{align*}
 
 \paragraph{Rente temporaire $n$ années} Ce contrat de rentes prévoit payer une rente à l'assuré s'il est en vie, au maximum $n$ années.
@@ -1737,8 +2002,10 @@ Généralisation avec multiple de la force d'intérêt
 	& = \int_{0}^{n} \ax*{\angl{t}} \  \px[t]{x} \  \mu_{x+t} dt + \ax*{\angln} \ \px[n]{x} \\
 	& = \int_{0}^{n} v^t \px[t]{x} dt \\
 	& = \frac{1 - \Ax*{x:\angln}}{\delta} \\
-\variance{\overline{Y}_{x:\angln}}	& = \frac{\Ax*[][2]{x:\angln} - \Ax*{x:\angln}^2}{\delta^2} 
- \end{align*}
+\variance{\overline{Y}_{x:\angln}}	
+	& = 	\frac{\Ax*[][2]{x:\angln} - \Ax*{x:\angln}^2}{\delta^2} 
+	=	\frac{2}{\delta} (\ax*{x:\angln} - \prescript{2}{}{\ax*{x:\angln}}) - \ax*{x:\angln}^2
+\end{align*}
 
 \paragraph{Rente viagère différée $m$ années} C'est un contrat de rente viagère, qui débute dans $m$ années (si $(x)$ est en vie).
 \begin{align*}
@@ -1749,9 +2016,10 @@ v^m \ax*{\angl{T_x - m}}	& T_x 	 	>			m	\\
 = \frac{\overline{Z}_{x:\itop{\angl{m}}} - \prescript{}{m|}{\overline{Z}}_{x}}{\delta} \\ 
 \ax*[m|]{x}	
 	& = \int_{m}^{\omega - x} \ax*{\angl{t - m}} \px[t]{x} \mu_{x+t} dt \\
-	& = \Ex[m]{x} \ax*{x+m} \\
-	& = \ax*{x} - \ax*{x:\angl{m}} 
+	& = \Ex[m]{x} \ax*{x+m} 
+	 = \ax*{x} - \ax*{x:\angl{m}} 
 \end{align*}
+On note que $\prescript{}{m|}{\overline{Y}}_{x} = \overline{Y}_{x} - \overline{Y}_{x:\angl{m}}$
 
 \paragraph{Rente garantie (certaine) $n$ années} Le contrat prévoit une rente minimale de $n$ années, pouvant se prolonger jusqu'au décès de l'assuré.
 \begin{align*}
@@ -1761,48 +2029,627 @@ Y & = \begin{cases}
 \end{cases} = \overline{Y}_{x:\angln} + \prescript{}{n|}{Y}_x \\
 \ax*{\joint{x:\angln}}	
 	& =\ax*{\angln} \cdot \qx[n]{x} + \int_{n}^{\infty} \ax*{\angl{t}} \px[t]{x} \mu_{x+t} dt \\
-	& = \ax*{\angln} + \ax*[n|]{x} \\
+	& = \ax*{\angln} + \ax*[n|]{x} 
 \end{align*}
 
+\paragraph{Valeur actuarielle accumulée}
+
+\begin{align*}
+	\bar{s}_{x:\angln}
+	&=	\frac{\ax*{x:\angln}}{\prescript{}{n}{E}_{x}}
+\end{align*}
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes variant arithmétiquement}}
 
-\paragraph{Rente viagère croissant annuellement} 
+\paragraph{Rentes variant annuellement}
 
-\paragraph{Rente temporaire $n$ années croissant annuellement} 
+Limitons à les exprimer comme une somme de rentes dont le taux de paiement est constant.
 
-\paragraph{Rente viagère croissant annuellement pendant $n$ années} 
+\textbf{Croissante}
 
-\paragraph{Rente temporaire $n$ années décroissant annuellement} 
+\begin{align*}
+	\actsymb[\textcolor{teal}{r|}]{(I_{\angl{\textcolor{indigo(web)}{m}}}\bar{a})}{x:\angl{\textcolor{cobalt}{n}}}	
+	&=	\int_{\min(T, \textcolor{teal}{r})}^{\min(T, \textcolor{teal}{r} + \textcolor{cobalt}{n})} \min(\textcolor{indigo(web)}{m}, [u + 1 - \textcolor{teal}{r}]) \e{-\delta u} du	\\
+	\text{E}[\actsymb[\textcolor{teal}{r|}]{(I_{\angl{\textcolor{indigo(web)}{m}}}\bar{a})}{x:\angl{\textcolor{cobalt}{n}}}]
+	&=	\sum_{k = 0}^{\textcolor{indigo(web)}{m} - 1} \ax*[\textcolor{teal}{r} + k|]{x:\angl{\textcolor{cobalt}{n} - k}}
+\end{align*}
 
+\textbf{Décroissante}
 
-\paragraph{Rente viagère croissant continûment} 
+\begin{align*}
+	\actsymb[\textcolor{teal}{r|}]{(I_{\angl{\textcolor{indigo(web)}{m}}}\bar{a})}{x:\angl{\textcolor{cobalt}{n}}}	
+	&=	\int_{\min(T, \textcolor{teal}{r})}^{\min(T, \textcolor{teal}{r} + \textcolor{cobalt}{n})} \min(\textcolor{indigo(web)}{m}, [u + 1 - \textcolor{teal}{r}]) \e{-\delta u} du	\\
+	\text{E}[\actsymb[\textcolor{teal}{r|}]{(I_{\angl{\textcolor{indigo(web)}{m}}}\bar{a})}{x:\angl{\textcolor{cobalt}{n}}}]
+	&=	\sum_{k = 0}^{\textcolor{indigo(web)}{m} - 1} \ax*[\textcolor{teal}{r} + k|]{x:\angl{\textcolor{cobalt}{n} - k}}
+\end{align*}
 
-\paragraph{Rente temporaire $n$ années croissant continûment} 
+\paragraph{Rentes variant continûment}
 
-\paragraph{Rente viagère croissant continûment pendant $n$ années} 
+\textbf{Croissante}
 
-\paragraph{Rente temporaire $n$ années décroissant continûment} 
-
-
-\paragraph*{liens entre rentes croissantes et décroissantes}
-
-
+\textbf{Décroissante}
+%
+%\paragraph{Rente viagère croissant annuellement} 
+%
+%
+%\paragraph{Rente temporaire $n$ années croissant annuellement} 
+%
+%\paragraph{Rente viagère croissant annuellement pendant $n$ années} 
+%
+%\paragraph{Rente temporaire $n$ années décroissant annuellement} 
+%
+%
+%\paragraph{Rente viagère croissant continûment} 
+%
+%\paragraph{Rente temporaire $n$ années croissant continûment} 
+%
+%\paragraph{Rente viagère croissant continûment pendant $n$ années} 
+%
+%\paragraph{Rente temporaire $n$ années décroissant continûment} 
+%
+%
+%\paragraph*{liens entre rentes croissantes et décroissantes}
+%
 
 
 \subsubsection*{\textcolor{amber(sae/ece)}{Rentes variant exponentiellement}}
 
+\begin{align*}
+	\prescript{}{m |}{\bar{Y}}^{\text{indexée}}_{x:\angln}
+	&=	
+	\left\{
+	\begin{matrix}
+		0,	&	T \le m \\
+		\e{-\tau m} \e{-(\delta - \tau)m} \ax*{\angl{T - m}\delta - \tau},	&	m < T \le m + n \\
+		\e{-\tau m} \e{-(\delta - \tau)m} \ax*{\angl{n}\delta - \tau},	&	T > m + n
+	\end{matrix}
+	\right.	\\
+	\text{E}[\prescript{}{m |}{\bar{Y}}^{\text{indexée}}_{x:\angln}]
+	&=	\e{-\tau m} \cdot \prescript{\delta - \tau}{m|}{\bar{a}}_{x:\angln}
+\end{align*}
 
+\subsection{Rentes discrètes}
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Rentes nivelées}}
+
+\paragraph{Rente viagère}
+Pour $K = 0, 1, 2,\dots$ on obtient:
+\setlength{\mathindent}{-1cm}
+
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Début de période
+\end{center}
+\begin{align*}
+	\ddot{Y}_{x}
+	&=	\ddot{a}_{\angl{K + 1}}\\
+	&=	\frac{1}{d} \left[ 1 - Z_{x} \right]	\\
+	\text{E}[\ddot{Y}_{x}]	
+	&=	\ddot{a}_{x}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} \ddot{a}_{\angl{k + 1}} \ \px[k]{x} \ \qx{x + k}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} v^{k} \ \px[k]{x}	
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Fin de période
+\end{center}
+\begin{align*}
+	Y_{x}
+	&=	\ax{\angl{K}}
+%	, \quad		K = 0, 1, 2,\dots	
+\\
+	&=	\frac{1}{i} \left[ 1 - (1 + i) Z_{x} \right]	\\
+	\text{E}[Y_{x}]	
+	&=	\ax{x}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} \ax{k} \ \px[k]{x} \ \qx{x + k}	\\
+	&=	\sum_{k = 1}^{\omega - x - 1} v^{k} \ \px[k]{x}
+\end{align*}
+\end{minipage}
+
+On note que:
+\begin{formula}{Variance rente}
+\begin{align*}
+	\text{Var}(\ddot{Y}_{x\textcolor{cobalt}{:\angln}})
+	&=	\frac{1}{d^{2}}(\actsymb[][2]{A}{x\textcolor{cobalt}{:\angln}} - \Ax{x\textcolor{cobalt}{:\angln}}^{2})
+	=	\text{Var}(Y_{x})	\\
+	&=	\frac{2}{d}(\ddot{a}_{x\textcolor{cobalt}{:\angln}} - \actsymb[][2]{\ddot{a}}{x\textcolor{cobalt}{:\angln}}) + \actsymb[][2]{\ddot{a}}{x\textcolor{cobalt}{:\angln}} - (\ddot{a}_{x\textcolor{cobalt}{:\angln}})^{2}
+\end{align*}
+\end{formula}
+
+Relation entre début et fin de période :
+\begin{align*}
+	Y_{x}	
+	&=	\ax{\angl{K}}	
+	\Leftrightarrow	\ddot{a}_{\angl{K + 1}} - 1 
+	=	\ddot{Y}_{x} - 1 	\\
+	\Rightarrow \ax{x} 
+	&= \ddot{a}_{x} - 1
+\end{align*}
+
+Relation de récurrence:
+
+\begin{minipage}{0.5\columnwidth}
+\begin{align*}
+	\ax{x} 
+	&= v \px{x}	+	v \px{x}	 \ax{x + 1}	\\
+	&= v \px{x}\ddot{a}_{x + 1}	
+\end{align*}
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+\begin{align*}
+	\ddot{a}_{x} 
+	&= \ddot{a}_{x:\angln}	+	\Ex[n]{x}	 \ax{x + n}	\\
+\end{align*}
+\end{minipage}
+
+
+\paragraph{Rente temporaire $n$ années}
+
+Pour une temporaire on ajoute une limite jusqu'où sommer:\\
+on obtient:
+\begin{align*}
+	\cumlaut[cyan]{Y}_{x:\angln} 
+	&= 	\begin{cases}
+			\cumlaut[cyan]{a}_{\angl{K \textcolor{cyan}{+ 1}}}	& , K = 0, 1, \dots, n - 1 \\
+			\cumlaut[cyan]{a}_{\angln}			& , K = n, n + 1 \\
+		\end{cases} 	\\
+\end{align*}
+
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Début de période
+\end{center}
+\begin{align*}
+	\ddot{Y}_{x:\angln} 
+%	&= 	\begin{cases}
+%			\ddot{a}_{\angl{K + 1}}	& , K = 0, 1, \dots, n - 1 \\
+%			\ddot{a}_{\angln}		& , K = n, n + 1, \dots \\
+%		\end{cases} \\
+	&=	\frac{1}{d} \left[ 1 - Z_{x:\angln} \right]	\\
+	\ddot{a}_{x:\angln}	
+	&=	\sum_{k = 0}^{n - 1} \ddot{a}_{\angl{k + 1}} \ \px[k]{x} \ \qx{x + k}	+	\ddot{a}_{\angln} \px[n]{x}	\\
+	&=	\sum_{k = 0}^{n - 1} v^{k} \px[k]{x}
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Fin de période
+\end{center}
+\begin{align*}
+	Y_{x:\angln} 
+%	&= 	\begin{cases}
+%			a_{\angl{K}}	& , K = 0, 1, \dots, n - 1 \\
+%			a_{\angln}	& , K = n, n + 1, \dots \\
+%		\end{cases} \\
+	&=	\frac{1}{i}\left[ 1 - (1 + i) Z_{x:\angl{n + 1}}\right] 	\\
+	a_{x:\angln}	
+	&=	\sum_{k = 0}^{n - 1} a_{\angl{k}} \ \px[k]{x} \ \qx{x + k}	+	a_{\angln} \px[n]{x}	\\
+	&=	\sum_{k = 1}^{n} v^{k} \px[k]{x}
+\end{align*}	
+\end{minipage}
+\setlength{\mathindent}{1cm}
+
+Et:
+\begin{align*}
+	\prescript{}{n|}{\ddot{a}_{x}}
+	&=	\ddot{a}_{x} - \ddot{a}_{x:\angln}	&
+	a_{x:\angln}
+	&=	\ddot{a}_{x:\angln} - 1 + \Ex[n]{x}
+\end{align*}
+
+\paragraph{Rente garantie $n$ années}
+On obtient:
+\begin{align*}
+	\cumlaut[cyan]{Y}_{\overline{x:\angln}} 
+	&= 	\begin{cases}
+			\cumlaut[cyan]{a}_{\angln}	& , K = 0, 1, \dots, n - 1 \\
+			\cumlaut[cyan]{a}_{\angl{K \textcolor{cyan}{+ 1}}}			& , K = n, n + 1 \\
+		\end{cases} 	\\
+\end{align*}
+
+\setlength{\mathindent}{-1cm}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Début de période
+\end{center}
+\begin{align*}
+	\ddot{a}_{\overline{x:\angln}}	
+	&=	\ddot{a}_{\angln} \qx[n]{x} + \sum_{k = n}^{\omega - x - 1} \ddot{a}_{\angl{k + 1}}  \px[k]{x}  \qx{x + k}	\\
+	&=	\sum_{k = 0}^{n - 1} v^{k} + \sum_{k = n}^{\omega - x - 1} v^{k} \px[k]{x}	\\
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Fin de période
+\end{center}
+\begin{align*}
+	a_{\overline{x:\angln}}	
+	&=	a_{\angln} \qx[n]{x} + \sum_{k = n}^{\omega - x - 1} a_{\angl{k}}  \px[k]{x}  \qx{x + k}	\\
+	&=	\sum_{k = 1}^{n} v^{k} + \sum_{k = n + 1}^{\omega - x - 1} v^{k} \px[k]{x}	\\
+\end{align*}
+\end{minipage}
+\setlength{\mathindent}{1cm}
+
+De plus:
+\begin{align*}
+	\text{E}[\ddot{Y}_{\overline{x:\angln}}^{2}]	
+	&=	\frac{2}{d} \left(\ddot{a}_{\overline{x:\angln}} - \prescript{2}{}{\ddot{a}_{\overline{x:\angln}}}\right) + \prescript{2}{}{\ddot{a}_{\overline{x:\angln}}}	\\
+	\cumlaut[cyan]{a}_{\overline{x:\angln}}			
+	&=	\cumlaut[cyan]{a}_{\angln} + \prescript{}{n|}{\cumlaut[cyan]{a}_{x}}
+\end{align*}
+
+
+\paragraph{Rente différée $n$ années}
+
+on obtient:
+\begin{align*}
+	\prescript{}{n|}{\cumlaut[cyan]{Y}}_{x} 
+	&= 	\begin{cases}
+			0	& , K = 0, 1, \dots, n - 1 \\
+			v^{n} \cumlaut[cyan]{a}_{\angl{K \textcolor{cyan}{+ 1} - n}}			& , K = n, n + 1 \\
+		\end{cases} 	\\
+\end{align*}
+
+\setlength{\mathindent}{-1cm}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Début de période
+\end{center}
+\begin{align*}
+	\prescript{}{n|}{\ddot{Y}}_{x}
+	&=	\frac{1}{d} \left[ Z_{x:\nthtop{1}{\angln}} - \prescript{}{n|}{Z_{x}} \right]	\\
+	\prescript{}{n|}{\ddot{a}}_{x}	
+	&=	\sum_{k = n}^{\omega - x - 1} v^{n} \ddot{a}_{\angl{k + 1 - n}} \ \px[k]{x} \ \qx{x + k}	\\
+	&=	\sum_{k = n}^{\omega - x - 1} v^{k} \px[k]{x}
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Fin de période
+\end{center}
+\begin{align*}
+	\prescript{}{n|}{Y}_{x}
+	&=	\frac{1}{d} \left[ Z_{x:\nthtop{1}{\angl{n + 1}}} - \prescript{}{n + 1|}{Z_{x}} \right]	\\
+	\prescript{}{n|}{a}_{x}
+	&=	\sum_{k = n}^{\omega - x - 1} v^{n} a_{\angl{k - n}} \ \px[k]{x} \ \qx{x + k}	\\
+	&=	\sum_{k = n + 1}^{\omega - x - 1} v^{k} \px[k]{x}
+\end{align*}	
+\end{minipage}
+\setlength{\mathindent}{1cm}
+
+De plus:
+\begin{align*}
+	\prescript{}{n|}{\ddot{a}}_{x}
+	&=	\Ex[n]{x} \ddot{a}_{x + n}	
+	=	\ddot{a}_{x} - \ddot{a}_{x:\angln}	\\
+	&=	v \px{x} \prescript{}{n - 1|}{\ddot{a}}_{x + 1}	\\
+	\prescript{}{n|}{a}_{x}
+	&=	\prescript{}{n + 1|}{\ddot{a}}_{x}
+	=	\prescript{}{n|}{\ddot{a}}_{x} - \Ex[n]{x}
+\end{align*}
+
+\paragraph{Valeur actuarielle accumulée}
+
+On obtient:
+\begin{align*}
+	\cumlaut[cyan]{s}_{x:\angln}
+	&=	\frac{\cumlaut[cyan]{a}_{x:\angln}}{\Ex[n]{x}}	
+\end{align*}
+	
+\subsubsection*{\textcolor{amber(sae/ece)}{Rentes à paiement variant arithmétiquement}}
+
+\textbf{Rente viagère croissante}
+\begin{align*}
+	\cumlaut[cyan]{Y}
+	&=	(I\cumlaut[cyan]{a})_{\angl{K \textcolor{cyan}{+ 1}}}, K = 0, 1, 2, \dots	\\
+\end{align*}
+
+\setlength{\mathindent}{-1cm}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Début de période
+\end{center}
+\begin{align*}
+	\text{E}[\ddot{Y}]
+	&=	(I\ddot{a})_{x}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} (I\ddot{a})_{\angl{K + 1}} \qx[k|]{x}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} (k + 1) v^{k} \px[k]{x}
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Fin de période
+\end{center}
+\begin{align*}
+	\text{E}[\ddot{Y}]
+	&=	(Ia)_{x}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} (Ia)_{\angl{K}} \qx[k|]{x}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} k v^{k} \px[k]{x}
+\end{align*}
+\end{minipage}
+\setlength{\mathindent}{1cm}
+
+De plus:
+\begin{align*}
+	(Ia)_{x}
+	&=	(I\ddot{a})_{x}	-	\ddot{a}_{x}
+\end{align*}
+
+\textbf{Rente temporaire $n$ années croissante}
+on obtient:
+\begin{align*}
+	\cumlaut[cyan]{Y}
+	&= 	\begin{cases}
+			(I\cumlaut[cyan]{a})_{\angl{K \textcolor{cyan}{+ 1}}}	& , K = 0, 1, \dots, n - 1 \\
+			(I\cumlaut[cyan]{a})_{\angln}			& , K = n, n + 1 \\
+		\end{cases} 	\\
+\end{align*}
+
+\setlength{\mathindent}{-1cm}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Début de période
+\end{center}
+\begin{align*}
+	\text{E}[\ddot{Y}]
+	&=	(I\ddot{a})_{x:\angln}	\\
+	&=	\sum_{k = 0}^{n - 1} (I\ddot{a})_{\angl{k}} \qx[k|]{x} + (I\ddot{a})_{\angln} \px[n]{x}	\\
+	&=	\sum_{k = 0}^{n - 1} (k + 1) v^{k} \px[k]{x}
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{center}
+Fin de période
+\end{center}
+\begin{align*}
+	\text{E}[\ddot{Y}]
+	&=	(Ia)_{x:\angln}	\\
+	&=	\sum_{k = 0}^{n - 1} (Ia)_{\angl{k}} \qx[k|]{x} + (Ia)_{\angln} \px[n]{x}	\\
+	&=	\sum_{k = 0}^{n - 1} k v^{k} \px[k]{x}
+\end{align*}
+\end{minipage}
+\setlength{\mathindent}{1cm}
+
+Relations
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,112.33332824707031); %set diagram left start at 0, and has height of 112.33332824707031
+
+%Shape: Rectangle [id:dp23743660277011203] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 233; blue, 123 }  ,fill opacity=0.42 ] (73.5,19.67) -- (91.5,19.67) -- (91.5,30.67) -- (73.5,30.67) -- cycle ;
+%Shape: Rectangle [id:dp3879051271909024] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 233; blue, 123 }  ,fill opacity=0.42 ] (100.5,14.67) -- (125.5,14.67) -- (125.5,33.67) -- (100.5,33.67) -- cycle ;
+%Shape: Rectangle [id:dp03448573840663194] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 233; blue, 123 }  ,fill opacity=0.47 ] (149.5,9.67) -- (318.5,9.67) -- (318.5,59.67) -- (149.5,59.67) -- cycle ;
+
+
+% Text Node
+\draw (234,34.67) node  [align=left] {{\scriptsize le dernier paiement est omis}\\{\scriptsize  et donc on l'actualise les n années }\\{\scriptsize avec la probabilité des survire }};
+% Text Node
+\draw (76,22) node  [align=left] {$\displaystyle \ddot{a}_{x:\angln} =\ddot{a}_{x:\angl{n-1}} + \prescript{}{n}{E}_{x}$};
+
+
+\end{tikzpicture}
+
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,112.33332824707031); %set diagram left start at 0, and has height of 112.33332824707031
+
+%Shape: Rectangle [id:dp3858902931241821] orange v block increasing
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.62 ] (125.5,43.67) -- (135.5,43.67) -- (135.5,56.67) -- (125.5,56.67) -- cycle ;
+%Shape: Rectangle [id:dp7465530530217059] green px block
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=0.47 ] (135.5,45.67) -- (146.5,45.67) -- (146.5,55.67) -- (135.5,55.67) -- cycle ;
+%Shape: Rectangle [id:dp8495101049962321] 1st greenx + 1 block
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=0.62 ] (165.5,49.67) -- (185.5,49.67) -- (185.5,60.67) -- (165.5,60.67) -- cycle ;
+%Shape: Rectangle [id:dp36994320892995547] 1st  orange  n - 1 block
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.47 ] (186,49.67) -- (200,49.67) -- (200,60.67) -- (186,60.67) -- cycle ;
+%Shape: Rectangle [id:dp1898439661348572]  2nd green + 1 block
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=0.62 ] (220.5,49.67) -- (238.5,49.67) -- (238.5,60.67) -- (220.5,60.67) -- cycle ;
+%Shape: Rectangle [id:dp03149696608438113] 2nd orange   n - 1 block
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.47 ] (240.5,49.67) -- (255.5,49.67) -- (255.5,61.67) -- (240.5,61.67) -- cycle ;
+
+%Shape: Rectangle [id:dp7775719352783113] increasing purple block 1
+\draw  [draw opacity=0][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=0.6 ] (101.5,43.67) -- (110.5,43.67) -- (110.5,59.67) -- (101.5,59.67) -- cycle ;
+%Shape: Rectangle [id:dp9965093175636532]  purple block text
+\draw  [draw opacity=0][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=0.6 ] (58.5,24.67) -- (124.5,24.67) -- (124.5,38.67) -- (58.5,38.67) -- cycle ;
+%Shape: Rectangle [id:dp0964386040865417]  normal purple block
+\draw  [draw opacity=0][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=0.6 ] (90.5,88.67) -- (99.5,88.67) -- (99.5,106.67) -- (90.5,106.67) -- cycle ;
+
+%Shape: Rectangle [id:dp9797760376103071]  green block
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=0.47 ] (170.5,68.67) -- (277.5,68.67) -- (277.5,84.67) -- (170.5,84.67) -- cycle ;
+%Shape: Rectangle [id:dp6380779624845654] orange
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.62 ] (26.5,67.67) -- (158.5,67.67) -- (158.5,84.67) -- (26.5,84.67) -- cycle ;
+
+%Shape: Rectangle [id:dp4496942612775052]  greeen px 2nd line
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=0.47 ] (123.5,91.67) -- (134.5,91.67) -- (134.5,107.67) -- (123.5,107.67) -- cycle ;
+%Shape: Rectangle [id:dp9907023414007512] orange block v 2nd line
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.36 ] (123.5,107.67) -- (117.5,107.67) -- (117.5,91.67) -- (123.5,91.67) -- cycle ;
+%Shape: Rectangle [id:dp8016901331617778] green  x + 1
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=0.36 ] (154.5,105.67) -- (140.5,105.67) -- (140.5,96.67) -- (154.5,96.67) -- cycle ;
+%Shape: Rectangle [id:dp21968758506467512] orangen - 1
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.47 ] (157.5,96.67) -- (171.5,96.67) -- (171.5,105.67) -- (157.5,105.67) -- cycle ;
+
+
+% Text Node
+\draw (118,98) node  [align=left] {$\displaystyle \ddot{a}_{x:\angl{n}} =1\ +\ vp_{x}\ddot{a}_{x+1:\angl{n-1}}$};
+% Text Node
+\draw (90,31) node  [align=left] {{\scriptsize 1er paiement}};
+% Text Node
+\draw (92.5,76.17) node  [align=left] {{\scriptsize actualiser l'année de moins}};
+% Text Node
+\draw (224,76) node  [align=left] {{\fontfamily{helvet}\selectfont {\scriptsize survire l'année de plus}}};
+% Text Node
+\draw (159,51) node  [align=left] {$\displaystyle ( I\ddot{a})_{x:\angl{n}} = 1\ +\ vp_{x}$ $\displaystyle [( I\ddot{a})_{x+1:\angl{n - 1}} +\ddot{a}_{x+1:\angl{n-1}}]$};
+
+
+\end{tikzpicture}
+
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Rentes variant exponentiellement}}
+
+\begin{align*}
+	\prescript{}{m|}{\ddot{Y}}^{inf}_{x:\angln}
+	&=	\sum_{k = m}^{\min(K, m + n -1)} (1 + inf)^{k - m} v^{k}, K = 0, 1, 2 \dots	
+\end{align*}
+
+
+\subsection{Rentes payables m fois l'an}
+
+\paragraph{Rente viagère}
+on obtient:
+\begin{align*}
+	\ddot{Y}_{x}^{(m)} 
+	&= 	\sum_{h = 0}^{m K + J^{(m)}} \frac{1}{m} v^{\frac{h}{m}}	\\
+	&= 	\ddot{a}^{(m)}_{\angl{K + \frac{J^{(m)} + 1}{m}}}	\\
+	&=	\frac{1}{d^{(m)}} \left[ 1 - v^{K + \frac{J^{(m)} + 1}{m}} \right]	\\
+	&=	\frac{1}{d^{(m)}} \left( 1 - Z_{x}^{(m)} \right)			&K = 0, 1, 2, \dots	\\
+	&\	&J^{(m)} = 0, 1, \dots, m - 1
+\end{align*}
+
+avec ${Y}_{x}^{(m)} = \ddot{Y}_{x}^{(m)} - \frac{1}{m}$.
+
+De plus:
+\begin{align*}
+	\ddot{Y}_{x}^{(m)} = \ddot{a}_{x}^{(m)}
+	&= 	\sum_{k = 0}^{\omega -x - 1}\sum_{j = 0}^{m - 1} \ddot{a}^{(m)}_{\angl{k + \frac{j + 1}{m}}} \ \qx[k + \frac{j}{m}	| \frac{1}{m}]{x}\\
+	&\Leftrightarrow 	\sum_{h = 0}^{m (\omega - x) - 1} \ddot{a}^{(m)}_{\angl{\frac{h + 1}{m}}} \ \qx[\frac{h}{m}	| \frac{1}{m}]{x}\\
+	&= 	\sum_{k = 0}^{\omega -x - 1}\sum_{j = 0}^{m - 1} \frac{1}{m} v^{k + \frac{j}{m}} \px[k + \frac{j}{m}]{x}	\\
+	&\Leftrightarrow 	\sum_{h = 0}^{m (\omega - x) - 1} \frac{1}{m} v^{\frac{h}{m}} \px[\frac{h}{m}]{x}
+\end{align*}
+
+et:
+\begin{align*}
+	\text{Var}(\ddot{Y}_{x}^{\textcolor{red}{(m)}})
+	&=	\frac{2}{d^{\textcolor{red}{(m)}}}
+		(\ddot{a}_{x}^{\textcolor{red}{(m)}} - \prescript{2}{}{\ddot{a}}_{x}^{\textcolor{red}{(m)}}) + 
+		\prescript{2}{}{\ddot{a}}_{x}^{\textcolor{red}{(m)}} - 
+		(\ddot{a}_{x}^{\textcolor{red}{(m)}})^{2}
+\end{align*}
+
+\subsubsection*{Hypothèse DUD}
+
+\begin{align*}
+	\ddot{a}_{x}^{(m)}
+	&=	\alpha(m)\ddot{a}_{x}	-	\beta(m)		\\
+	\ddot{a}_{x\textcolor{cobalt}{:\angln}}^{(m)}
+	&=	\alpha(m)\ddot{a}_{x\textcolor{cobalt}{:\angln}}	-	\beta(m)\textcolor{cobalt}{(1 - \Ex[n]{x})}		\\
+	\prescript{}{\textcolor{amethyst}{n|}}{\ddot{a}}_{x}^{(m)}
+	&=	\alpha(m)\prescript{}{\textcolor{amethyst}{n|}}{\ddot{a}}_{x}	-	\beta(m)\textcolor{amethyst}{\Ex[n]{x}}		\\
+	\ddot{a}_{\textcolor{azure(colorwheel)}{\overline{x:\angln}}}^{(m)}
+	&=	\alpha(m)\ddot{a}_{\textcolor{azure(colorwheel)}{\overline{x:\angln}}}	-	\beta(m)\textcolor{azure(colorwheel)}{(1 - v^{n} + \Ex[n]{x})}		
+\end{align*}
+\begin{align*}
+	\alpha(m)	
+	&=	\frac{id}{i^{(m)}d^{(m)}}	&
+	\beta(m)	
+	&=	\frac{i - i^{(m)}}{i^{(m)}d^{(m)}}
+\end{align*}
+
+\subsubsection*{Hypothèse traditionnelle}
+
+Le seul changement de DUD sont les formules pour le $\alpha(m)$ et $\beta(m)$, le reste de l'équation reste pareille. \\
+La différence est que l'hypothèse traditionnelle suppose la linéarité du \textbf{facteur d'actualisation actuarielle} $\Ex[n]{x}$ au lieu de uniquement supposer la linéarité de la \textit{mortalité} $\px[t]{x}$.
+
+Pour $x = 0, 1, 2, \dots$ et $0 \le t \le 1$
+\begin{align*}
+	\Ex[t]{x}
+	&=	(1 - t) + t \Ex[1]{x}	
+\end{align*}
+
+Et donc, pour le cas d'une rente viagère, on trouve:
+\begin{align*}
+	\ddot{a}_{x}^{(m)}
+	&= 	\sum_{k = 0}^{\omega -x - 1}\sum_{j = 0}^{m - 1} \frac{1}{m} \Ex[k + \frac{j}{m}]{x}	\\
+	&= 	\sum_{k = 0}^{\omega -x - 1} \frac{1}{m} \Ex[k]{x}	\times \sum_{j = 0}^{m - 1} \Ex[\frac{j}{m}]{x + k} \\
+	&=	\ddot{a}_{x} - \frac{m - 1}{2m}	
+\end{align*}
+
+Où les nouveaux paramètres sont:
+\begin{align*}
+	\alpha(m)
+	&=	1	&
+	\beta(m)
+	&=	\frac{m - 1}{2m}	\\
+\end{align*}
+
+Une équation utile pour les rentes de fin de période est 
+\begin{align*}
+	\gamma(m) 
+	&=	\alpha(m) - \beta(m) - \frac{1}{m}	\\
+	&\overset{DUD}{=} \frac{d^{(m)} - d}{i^{(m)} d^{(m)}}	\\
+	&\overset{Trad.}{=} \frac{m - 1}{2m}	
+\end{align*}
+Il suffit de remplacer $-\beta(m)$ par $+\gamma(m)$ pour obtenir les formules des rentes en fin de période.
+
+
+\subsubsection*{Approximation de Woolhouse}
+
+\begin{align*}
+	\ax**{x\color{airforceblue}{:\angln}}[(m)]	
+	&\approx	\ax**{x\textcolor{airforceblue}{:\angln}}	-	
+		\frac{m - 1}{2m} \textcolor{airforceblue}{\left( 1 - \Ex[n]{x} \right)}	-	
+		\frac{m^{2} - 1}{12m^{2}}(\delta + \mu_{x} \textcolor{airforceblue}{- \Ex[n]{x} (\delta + \mu_{x + n})})		\\
+	\mu_{x}
+	&\approx		-	\frac{1}{2} \left( \ln \px{x - 1} + \ln \px{x} \right)
+\end{align*}	
+
+
+\subsubsection*{\textcolor{amber(sae/ece)}{Autres rentes payables m fois l'an}}
+
+
+\newpage
 
 \section{Primes nivelées}
-\subsection{Notation et définitions}
-On définit $L$ comme la perte à l'émission d'un contrat pour l'assureur. Dans ce chapitre, le paiement de la PUN s'étalle sur une période de temps, et est conditionnel  à la survie de l'assuré. Dans le cas d'une assurance-vie,
-\[L = Z - Y\]
-où $Z$ est la valeur présente actuarielle est prestations à payer et $Y$ la valeur présente actuarielle des primes à recevoir. De même, pour les rentes,
-\[L = Y_1 - Y_2\]
-où $Y_1$ représente la valeur présente actuarielle des prestations de rente à payer et $Y_2$ la valeur présente actuarielle des primes à recevoir. \\
 
-On définit la prime nette nivellée $\pi$ selon 3 principes. 
+\setcounter{subsection}{5}
+\subsection{Retour de primes}
+
+\begin{itemize}
+\item	Certains contrats vont prévoir un remboursement des cotisations (accumulées au taux $j$) en cas du décès du détenteur de police pendant la période différée.\\
+		La logique est que, par exemple, le détenteur peut se sentir lésé s'il paye ses cotisations pendant une période différée et décède avant de recevoir de primes; c'est actuariellement juste, mais ça semble être injuste.
+\item 	Soit la v.a. \textit{(de la valeur actualisée)} du retour de primes $W$:
+\begin{align*}
+	W 
+	&=	\begin{cases}
+			v^{K + 1}_{i} \sx**{\angl{K + 1}j} 	& 	K = 0, 1, ..., n - 1 \\
+			0	&	K = n, n + 1, \dots	\\
+		\end{cases}
+\end{align*}
+où $j < i$. Si $j = i$, alors la première ligne se simplifie à $\ax**{\angl{K + 1}j}$ et si $j = 0$ alors elle se simplifie à $(K + 1) v_{i}^{K + 1}$.
+\item 	Aussi, on trouve que
+\[
+	\text{E}[W] 
+	= 	\sum_{k=0}^{n - 1} v_i^{k+1} \sx**{\angl{k+1} j} \qx[k|]{x} 
+	= 	\frac{1 + j}{j} \left( {A}_{\nthtop{1}{x}:\angln i^{*}} - A_{\nthtop{1}{x}:\angln}\right)
+\]
+où $i^{*} = \frac{i - j}{1 + j}$
+\item	La variable aléatoire de perte à l'émission devient:
+	\begin{equation*}
+	L(\pi) = Z - \pi Y + \pi W
+	\end{equation*}\\
+		Sous le principe d'équivalence, on obtient:
+	\begin{equation*}
+	\pi = \frac{\text{E}[Z]}{\text{E}[Y] - \text{E}[W]}
+	\end{equation*}
+\end{itemize}
+
+\setcounter{subsection}{0}
+\subsection{Notation et définitions}
+On définit $L$ comme la perte à l'émission d'un contrat pour l'assureur. Dans ce chapitre, le paiement de la PUN s'étale sur une période de temps, et est conditionnel à la survie de l'assuré. 
+On défini $L$ comme étant $L = Z - Y$ \textit{\textbf{mais}} ces derniers n'ont pas nécessairement la même signification qu'avant:
+\begin{itemize}
+	\item[$Z$:] La v.a. qui sous-tend le contrat d'assurance \textbf{\textit{OU}} de rente acheté par l'individu.
+	\item[$Y$:] La v.a. qui sous-tend l'engament de l'assuré à verser des primes.
+\end{itemize}
+
+On définit la prime nette nivelée $\pi$ selon 3 principes. 
 
 \subsection{Principe d'équivalence (PE)}
 Sous le principe d'équivalence, $\pi^{PE}$ est la solution de
@@ -1842,22 +2689,26 @@ Où $Z \sim N(0,1)$ et $\Phi$ la fonction de répartition de $Z$. Le défi se tr
 & = \variance{Z}  + \variance{Y} - 2 \left( \esp{ZY} - \esp{Z} \esp{Y} \right) \\
 \end{align*}
 
-\subsection{Retour de primes}
-\begin{itemize}
-\item Certains contrats (surtout rentes différée) vont prévoir un remboursement partiel ($\alpha$) ou total des cotisations (accumulées au taux $j < i$)\footnote{Le taux $i$ est le taux préférentiel de l'assureur, tandis que le taux $j$ est le taux offert à l'assuré pour l'accumulation de ses cotisations dans sa clause de retour de primes.} en cas de décès de l'assuré pendant la période différée.
-\item On introduit la v.a. $W$, qui représente la valeur présente actuarielle d'un retour de prime, telle que
-\begin{align*}
-W = 
-\begin{cases}
-\alpha \pi v_i^{K_x + 1} \sx**{\angl{K_x + 1}j} & K_x = 0, 1, ..., n-1 \\
-0	& K_x = n, n+1, ... \\
-\end{cases}
-\end{align*}
-Alors,
-\[L = Y_1 - Y_2 + W\]
-\item Aussi, on trouve que
-\[\esp{W} = \sum_{k=0}^{n - 1} \alpha \pi v_i^{k+1} \sx**{\angl{k+1} j} \qx[k|]{x} = \alpha \pi \psi\]
-\end{itemize}
+%\subsection{Retour de primes}
+%%%% version A2018 %%%%
+%\begin{itemize}
+%\item Certains contrats vont prévoir un remboursement partiel ($\alpha$) ou total des cotisations (accumulées au taux $j < i$)\footnote{Le taux $i$ est le taux préférentiel de l'assureur, tandis que le taux $j$ est le taux offert à l'assuré pour l'accumulation de ses cotisations dans sa clause de retour de primes.} en cas de décès de l'assuré pendant la période différée.
+%\item On introduit la v.a. $W$, qui représente la valeur présente actuarielle d'un retour de prime, telle que
+%\begin{align*}
+%W = 
+%\begin{cases}
+%\alpha \pi v_i^{K_x + 1} \sx**{\angl{K_x + 1}j} & K_x = 0, 1, ..., n-1 \\
+%0	& K_x = n, n+1, ... \\
+%\end{cases}
+%\end{align*}
+%Alors,
+%\[L = Y_1 - Y_2 + W\]
+%\item Aussi, on trouve que
+%\[\esp{W} = \sum_{k=0}^{n - 1} \alpha \pi v_i^{k+1} \sx**{\angl{k+1} j} \qx[k|]{x} = \alpha \pi \psi\]
+%\end{itemize}
+%%%% ------------ %%%%
+
+
 
 \subsection{Primes brutes}
 \begin{itemize}

@@ -1,0 +1,108 @@
+% ACT-4105
+% Classification spéciale
+\section{Classification spéciale}
+\subsection{Analyse de territoire}
+%TODO
+\hl{TODO : il manque des infos}
+
+\begin{itemize}
+\item Déterminer les unités géographiques
+\item Calculer l'estimateur géographique
+\item Lissage (\textit{smoothing})
+\begin{itemize}
+	\item Basé sur la distance
+	\item Basé sur les unités adjacents
+\end{itemize}
+\item Regroupement de territoires
+\item Calculer les différentiels par territoire
+\end{itemize}
+
+\subsection{Tarification des limites augmentées} On utilise les \textit{increased limit factors} (ILF) pour augmenter le taux de base si l'assuré sélectionne une limite $H$ supérieure à la limite de base $B$. Le ILF indiqué est
+\begin{equation}
+ILF_I(H) = \frac{(\overline{L+E_L})_H}{(\overline{L+E_L})_B}
+\end{equation}
+
+Si la fréquence et la sévérité sont indépendants, on a
+
+\begin{equation}
+ILF_I(H) =\frac{\text{Fréquence}_H \times \text{Sévérité}_H}{\text{Fréquence}_B \times \text{Sévérité}_B}
+\end{equation}
+
+Si la fréquence est la même (peu importe la limite), alors on peut simplifier à 
+
+\begin{align*}
+ILF_I(H) =\frac{\text{Sévérité}_H}{\text{Sévérité}_B} = \frac{LAS(H)}{LAS(B)}
+\end{align*}
+où $LAS(H)$ est le \textit{limited average severity at $H$ limit}.
+
+\subsubsection{Approche standard de calcul des ILF (sinistres censurés)}
+Voir exemple 13.2 au besoin. De façon générale, pour $H_1 \leq H_2$, on a
+\begin{align*}
+LAS(H_2) = LAS(H_1) + LAS(H_2 - H_1 | X \geq H_1) \prob{X \geq H_1}
+\end{align*}
+On doit utiliser les sinistres projetés (avec facteur de tendance) à l'ultime
+
+\subsection{Tarificaiton de franchise}
+
+\subsubsection{\textit{Loss Elimination Ratio (LER) approach}}
+Dans le cas discret,
+\begin{align*}
+LER(d) = 1 - \frac{\sum_{x_i} \max (x_i - d ; 0)}{\sum_{x_i} x_i}
+\end{align*}
+Dans le cas continu,
+\hl{TODO}
+
+Si on veut mesurer le LER suite à un changement de franchise (de $B$ à $D$) : 
+\begin{align*}
+LER(B \rightarrow D) = \frac{(L + E_L)_B - (L+E_L)_D}{(L+E_L)_B}
+\end{align*}
+
+\subsection{Grosseurs des risques en \textit{workers compensation}}
+
+\subsubsection{Composante de frais (\textit{fees component}} En \textit{Workers Compensation}, on utilise la méthode \textit{All Variable Approach} pour déterminer la provision pour frais. Or, une petite compagnie (i.e. petite prime) seront sous-tarifé par rapport aux frais et l'inverse pour les grandes compagnies. \textbf{on doit apporter quelques ajustements}
+\begin{itemize}
+\item Calculer une provision pour frais qui s'appliquera seulement sur le premier 5000\$.
+\item Charger un frais constant à tous les risques
+\item Accorder un rabais aux polices ayant une prime supérieure à un certain montant (\textbf{escompte graduée}).
+\end{itemize}
+
+\paragraph{Calcul de l'escompte graduée} \hl{Voir au besoin exemple 13.5}
+
+
+\subsubsection{Composante de perte (\textit{loss components})} Les petits risques ont tendance à avoir une expérience (en \% de la prime) moins favorables que les gros risques. Il faut donc ajouter un frais constant pour perte, afin que la prime soit adéquate
+\hl{Voir exemple 13.6}
+
+\subsection{Assurance à la valeur (\textit{Insurance-to-value, ITV})} Lorsqu'un assuré est en sous-assurance, la prime n'est pas suffisante pour couvrir les paiements espérés. Il y a 2 façon de régler les problèmes de sous-assurance : coassurance ou chager une prime qui tient réellement compte des sinistres espérés.
+
+\subsubsection{Coassurance}
+% Début split en 2 colonnes
+\begin{multicols*}{2}
+L'indemnité payée par l'assureur est
+\begin{align*}
+I = L \times \frac{F}{cV}
+\end{align*}
+Donc, la pénalité est définie par
+\begin{align*}
+e = 
+\begin{cases}
+L - I	& , L \leq F \\
+F - I 	& , F < L < cV \\
+0		& , L \geq cV \\
+\end{cases}
+\end{align*}
+\vfill
+\columnbreak
+où
+\begin{description}
+\item[I] Indemnité
+\item[L] Montant du sinistre après franchise
+\item[F] Montant d'assurance sur la police
+\item[V] Valeur de la propriété
+\item[c] \% de coassurance exigé par le contrat
+\item[e] pénalité
+\end{description}
+\end{multicols*}
+% fin split en 2 colonnes
+
+\subsubsection{Variation des taux selon le niveau d'assurance à la valeur}
+\hl{TODO: par sûr de comprendre}

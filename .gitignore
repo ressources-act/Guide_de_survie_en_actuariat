@@ -9,3 +9,16 @@
 *.DS_Store
 *synctex.gz
 .DS_Store
+MAS-I/src/skewness_interpretation.jpg
+MAS-I/src/Illustration-skewness-and-kurtosis.png
+MAS-I/simul.R
+MAS-I/normal.txt
+MAS-I/normal-3.txt
+MAS-I/MAS-I Revision.tex
+MAS-I/MAS-I Revision.pdf
+MAS-I/cheatsht-preamble.tex
+MAS-I/.vscode/settings.json
+00_Archive/H19-ACT2011/GRF_II Revision.dvi
+02_Cheatsheets/cheatsht-distributions-ACT1002.tex
+02_Cheatsheets/cheatsht-distributions-ACT1002.pdf
+02_Cheatsheets/.Rhistory

@@ -1,5 +1,6 @@
-%% Aide-mémoire
-\documentclass[french, landscape]{article}
+% Template pour faire aide-mémoire
+\documentclass[10pt, french]{article}
+
 %% -----------------------------
 %% Préambule
 %% -----------------------------
@@ -7,15 +8,27 @@
 %% -----------------------------
 %% Variable definition
 %% -----------------------------
-\def\cours{Mathématiques actuarielles IARD1}
+\def\cours{Mathématiques actuarielles IARD I}
 \def\sigle{ACT-2005}
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
 \def\SectionColor{red!80!white}
 \def\SubSectionColor{red!30!black}
+\def\SubSubSectionColor{red!30!black}
 %% -----------------------------
 %% Début du document
 %% -----------------------------
 \begin{document}
 
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{contributeurs/contrib-ACT2005}
+
+\newpage
+
+\raggedcolumns
 \small
 \begin{multicols*}{3} % Nombre de colonnes (peut être changé plus tard.)
 
@@ -174,6 +187,7 @@ CV				& = \frac{\sigma}{\mu} \\
 \end{itemize}
 
 \setcounter{section}{7}
+\columnbreak
 \section{Fréquence et sévérité avec modifications aux contrats}
 
 \subsubsection*{Déductible ordinaire}
@@ -306,6 +320,7 @@ Y^{(L\textcolor{blue}{|P)}}_{(O)} &=
 \end{align*}
 
 \setcounter{section}{13}
+\columnbreak
 \section{Estimation non-paramétrique des fonctions de répartition et de survie}
 
 \subsection*{Distribution empirique avec données complètes}
@@ -403,15 +418,17 @@ Ceci correspond donc à l'estimateur de \textbf{Kaplan-Meier}:
 	S_{m}(t) &= \prod\limits_{j \le t} \left( 1 - \frac{S_j}{r_j} \right) \\		
 \end{align*}
 \end{formula}
-%
+
 %Pour trouver la variance, nous utilisons la \textbf{méthode Delta} :
-%	\[
-%		V\big(g(\widehat{\theta})\big) = \big(g'(\widehat{\theta}_{0})\big)^2 V(\widehat{\theta})
-%	\]
+%\begin{align*}
+%	\text{Var}\big(g(\widehat{\theta})\big) 
+%	&= \big(g'(\widehat{\theta}_{0})\big)^2 \text{Var}(\widehat{\theta})
+%\end{align*}
 %Pour ensuite obtenir:
-%	\begin{align*}
-%		V(S_n(t)) &= \big( S_n(t) \big)^2 \sum_{j \le t}\frac{q_j}{r_j p_j} 
-%	\end{align*}
+%\begin{align*}
+%	\text{Var}(S_n(t)) 
+%	&= \big( S_n(t) \big)^2 \sum_{j \le t}\frac{q_j}{r_j p_j} 
+%\end{align*}
 
 La \textbf{Formule de Greenwood} estime la variance de la fonction de survie \textbf{Kaplan-Meier}:
 \begin{formula}{Formule de Greenwood}
@@ -458,149 +475,604 @@ La variance de l'estimateur Nelson-\AA alen est estimée par la \textbf{formule 
 
 \textbf{Méthode d'efron}: Poser que $S_m(y) = 0$ $\forall y \ge y_{\text{max}}$.
 
+Il est bon de noter que le résulat pour la variance de XXX à été obtenu avec la \textbf{méthode de Delta} qui consiste aux deux premiers termes de l'expansion Taylor:
+\begin{formula}{méthode de Delta}
+\begin{align*}
+	g(\hat\theta)
+	&\approx	 g(\theta) + g'(\theta) (\hat\theta - \theta)
+\end{align*}
+\end{formula}
+
+\setcounter{section}{5}
+
+\columnbreak
+\section{Création de nouvelles lois}
+
+\begin{algo}{Multiplication par une constante}
+Ceci équivaut à appliquer l'inflation uniformément pour tous les niveaux de pertes et est donc un \textbf{changement d'échelle}.
+
+Soit $Y = \theta X$, alors:
+
+\begin{align*}
+	F_Y(y)
+	&=	\Pr(Y \leq y)	
+	=	\Pr(\theta X \leq y)	\\
+	&=	\Pr\left(X \leq \frac{y}{\theta}\right)	
+	=	F_X\left(\frac{y}{\theta}\right)	\\
+\Rightarrow	f_Y(y)
+	&=	\frac{1}{\theta} f_X\left(\frac{y}{\theta}\right)
+\end{align*}
+
+On déduit donc que le paramètre $\theta > 0$ est un \textit{paramètre d'échelle} pour la variable aléatoire $Y$.
+
+\end{algo}
+
+\begin{algo}{Élévation à une puissance}
+
+Soit la variable aléatoire de pertes $X$ et $Y = X^{\frac{1}{\tau}}$, alors:
+
+\begin{align*}
+	F_Y(y)
+	&=	\Pr(Y \leq y)	
+	=	\Pr(X^{\frac{1}{\tau}} \leq y)	\\
+	&=	\Pr\left(X \leq y^{\tau}\right)	
+	=	F_X\left(y^{\tau}\right)	\\
+\Rightarrow	f_Y(y)
+	&=	\shortminus \tau y^{\tau - 1} f_X\left(y^{\tau}\right)
+\end{align*}
+
+Et on note la terminologie suivante:
+
+\begin{tabular}{|l | l |}
+\hline
+	$\tau > 0$	&	$Y$ est une \textit{\textbf{transformation}} de $X$	\\
+	$\tau = -1$	&	$Y$ est \textit{\textbf{l'inverse}} de $X$	\\
+	$\tau < 0$	&	$Y$ est une \textit{\textbf{transformation inverse}} de $X$	\\	\hline
+\end{tabular}
+
+\end{algo}
+
+\begin{algo}{Exponentielle}
+
+Soit la variable aléatoire de pertes $X$ et $Y = \te{X}$, alors:
+
+\begin{align*}
+	F_Y(y)
+	&=	\Pr(Y \leq y)	
+	=	\Pr(\e{X} \leq y)	\\
+	&=	\Pr\left(X \leq \ln y \right)	
+	=	F_X\left(\ln y \right)	\\
+\Rightarrow	f_Y(y)
+	&=	\frac{1}{y} f_X\left(\ln y \right), y > 0
+\end{align*}
+
+On dit donc que $Y$ est la \textit{log-loi} où $\ln Y = X$ est la loi.
+
+\end{algo}
+
+\begin{algo}{Mélange}
+
+\end{algo}
+
+% pas couvert dans le cours mais dans l'exam apparament
+%\begin{algo}{Raccordement de distributions (splicing)}
+%
+%\end{algo}
+
+%\begin{algo}{Frailty models}
+%
+%\end{algo}
+
+\setcounter{section}{8}
+
+\columnbreak
 \section{Fonction génératrice cumulante}
 Soit la fonction génératrice des moments $M_X(t)$, telle que
 \[M_X(t) = \esp{e^{tX}}\]
 Alors, la fonction génératrice cumulante $K_X(t)$ est définie comme
-\[K(t) = \derivee{t} \ln M_X(t)\]
+\[K(t) = \ln M_X(t)\]
 De plus, la fonction génératrice cumulante a les propriétés suivantes : 
 \begin{align*}
 K'(t) \eval_{t = 0} & =   \esp{X} \\
 K''(t) \eval_{t=0} & = \variance{X} \\
 \end{align*}
 
-
+\setcounter{section}{9}
+\columnbreak
 \section{Frequentist estimation}
 \subsection*{Méthode des moments}
-On résoud $p$ équations à $p$ inconnus, telles que
-\[\hat{\mu}_k' = \mu_k'\]
+
+Soit un échantillon aléatoire de taille $n$ (iid), on pose $\hat\mu_{k}' = \mu_{k}'$.
+
+\begin{algo}{Estimateur par la méthode des moments}
+Un estimateur par la méthode des moments de $\theta$ est alors toute solution des $p$ équations
+\begin{equation*}
+	\mu_{k}'(\theta) = \hat\mu_{k}', \quad	k = 1, 2, \dots, p
+\end{equation*}
+\end{algo}
+
+La raison pour cet estimateur est que la distribution empirique aura les même $p$ premiers moments centrés à 0 que la distribution paramétrique.
+ 
+
+Lorsque les données sont \textbf{censurées}, on pose $\hat\mu_{k}' = \text{E}[\min(X; u)^{k}]$.
+
+Lorsque les données sont \textbf{tronquées}, on pose $\hat\mu_{k}' = \text{E}[X^{k} | X > d]$.
+
 
 \subsection*{Méthode des percentiles}
-On résoud $p$ équations à $p$ inconnus (paramètres) telles que
-\[F_n(\hat{\pi}_{g_i}) = g_i \quad  i = 1, ..., p\]
-où $\hat{\pi}_{g_i}$ est le $g_i$\up{e} quantile de la fonction empirique.
 
-\subsubsection*{Smoothed empirical estimate}
-Parfois, le quantile recherché tombe entre 2 \emph{marches} de la fonction empirique. On utilise l'approximation linéaire suivante avec les statistiques d'ordre $X_{(j)}$ : 
-\[\hat{\pi}_{g}  = (1-h)X_{(j)} + h X_{(j+1)} \]
-avec $j = \lfloor (n+1)g \rfloor$ et $h = (n+1) g - j$.
+
+Soit un échantillon aléatoire de taille $n$ (iid), on pose $\hat\pi_{g}(\theta) = \pi_{g}(\theta)$.
+
+\begin{algo}{Estimation de $\theta$ par la méthode du \guillemotleft Percentile Matching \guillemotright}
+L'estimation de $\theta$ est alors toute solution des $p$ équations:
+\begin{equation*}
+	F(\hat\pi_{g_{k}} | \theta)	=	g_{k}, \quad	k = 1, 2, \dots, p
+\end{equation*}
+\end{algo}
+
+La raison pour cet estimateur est que le modèle produit aura $p$ pourcentiles qui vont \guillemotleft matcher \guillemotright les données.
+
+Lorsque les données sont \textbf{censurées}, on doit s'assurer que les pourcentiles sont en dedans de la portion des données non-censurées.
+
+Lorsque les données sont \textbf{tronquées}, on doit \guillemotleft matcher \guillemotright les pourcentiles aux pourcentiles de la distribution conditionnelle.
+
+Il peut arriver que les pourcentiles de distributions ne soient pas unique, par exemple dans le cas de données discrètes lorsque le quantile recherché peut tomber entre 2 \emph{marches} de la fonction empirique, ou mal-définis.
+Il est alors utile de définir une méthode d'interpolation des quantiles (bien qu'il n'en n'existe pas une officielle définitive).
+
+Soit le \guillemotleft \textbf{smoothed empirical estimate} \guillemotright d'un pourcentile:
+
+\begin{algo}{\guillemotleft smoothed empirical estimate \guillemotright}
+On utilise les statistiques d'ordre de l'échantillon $x_{(1)} \le x_{(2)} \le \dots \le x_{(n)}$ pour l'interpolation suivant:
+\begin{align*}
+	\hat\pi_{\kappa}
+	&=	(1 - h)x_{(j)} + h x_{(j + 1)}, \quad \text{ où }	
+\end{align*}
+\begin{align*}
+	j
+	&=	\lfloor (n + 1) \kappa \rfloor	&
+	&\text{ et }	&
+	h
+	&=	(n + 1) \kappa - j
+\end{align*}
+\end{algo}
+
 
 \subsection*{Méthode du maximum de vraisemblance (\emph{MLE})}
-\subsubsection*{Données complètes}
-On définit la fonction de vraisemblance  $L(\theta)$telle que
-\[L(\theta) = \prod_{i=1}^{n} f(x_i ; \theta)\]
-Et la fonction de log-vraisemblance $\ell(\theta)$
-\[\ell(\theta) = \sum_{i=1}^{n}  \ln f(x_i ; \theta) \]
-L'estimateur du maximum de vraisemblance $\bm{\theta}$ maximiser $L(\theta)$ ou $\ell(\theta)$, i.e.
-\[\derivee{\theta} \ell(\theta) \eval_{\theta = \hat{\theta}_{MLE}}  = 0\]
 
-\subsubsection*{Données groupées}
-Si les données sont groupées, alors on utilise une forme plus générale de la fonction de vraisemblance : 
-\[L(\theta) =  \prod_{j=1}^{k}  \left( F_X(c_{j} ; \theta) - F_X(c_{j-1} ; \theta) \right)^{n_j}   \]
-où $F_X$ est la fonction de répartition théorique de la distribution qu'on suppose la distribution de notre estimateur \emph{MLE}. Si les données sont censurés à la classe $c_{j-1}$, alors on utilise $(1-F_X(c_{j-1}; \theta))$.
+Nous cherchons à maximiser la probabilité d'observer les données.
+Ceci est fait par la vraisemblance $\mathcal{L}(\theta; x)$ ou, puisque le logarithme ne change pas le maximum, la log-vraisemblance $\ell(\theta; x)$ où:
+
+\begin{algo}{Maximum de vraisemblance}
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	\mathcal{L}(\theta; x)
+	&=	\prod_{i = 1}^{n}	f(x_{i}; \theta)	&
+	&\text{et}	&
+	\ell(\theta; x)
+	&=	\sum_{i = 1}^{n} \ln	f(x_{i}; \theta)	
+\end{align*}
+\setlength{\mathindent}{1cm}
+et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qui maximise la fonction de vraisemblance.
+\end{algo}
+Cependant, il peut être pratique de généraliser cette fonction de vraisemblance pour les cas de données censurées ou tronquées.
+
+Soit un ensemble de données comportant n événements $A_{1}, \dots, A_{n}$ avec $A_{j}$ étant tout ce qui fut observé pour la $j^{\text{e}}$ observation; c'est-à-dire que $A_{j}$ pourrait être une observation unique ou un intervalle (par exemple, dans le cas de données groupées).
+
+De plus, un suppose que $A_{j}$ est une observation de la variable aléatoire $X_{j}$ et que les variables aléatoires $X_{1}, \dots, X_{n}$ ne doivent pas obligatoirement avoir la même distribution paramétrique; cependant, elles doivent tous dépendent du même vecteur paramétrique $\bm\theta$.
+Finalement, comme dans les deux autres cas, les variables aléatoires sont supposées indépendantes.
+
+\begin{align*}
+	\mathcal{L}(\theta; x)
+	&=	\prod_{j = 1}^{n}	\Pr(X_{j} \in A_{j} ; \theta)		
+\end{align*}
+
+Pour faire le lien avec la définition précédente, dans le cas où $A_{j}$ est un point unique et que la distribution est continue $\Pr(X_{j} \in A_{j} | \theta) = f(x_{i}; \theta)$.
+
+\begin{algo}{Données modifiées}
+Pour le cas de données groupées, les observations $c_{0} < c_{1} < \dots < c_{k}$ contiennent $n_{j}$ observations par intervalle $(c_{j - 1}, c_{j}]$.
+
+Dans le cas des données censurées, on multiplie les fonctions de densité pour les données non-censurées et on remplace la densité pour la fonction de survie pour les données censurées; soit $n_{NC}$ le nombre de données non-censurées et $n_{C}$ le nombre censurées tel que $n = n_{NC} + n_{C}$.
+
+La fonction de vraisemblance est donc:
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	\mathcal{L}(\theta; x)
+	&=	\prod_{j = 1}^{n}	\left[ F(c_{j}|\theta) - F(c_{j-1}|\theta)\right]^{n_{j}},	\;	\text{groupé}	\\
+	&=	\left(\prod_{j = 1}^{n_{NC}}f(x_{i}; \theta) \right)	\left(\prod_{j = n_{NC} + 1}^{n} S(x_{i} ; \theta) \right),	\;	\text{censuré}	\\
+	&=	\prod_{j = 1}^{n}	\frac{f(x_{i}; \theta)}{S(d ; \theta)},	\;	\text{tronqué}
+\end{align*}
+\setlength{\mathindent}{1cm}
+\end{algo}
 
 \subsection*{Variance des estimateurs et intervalle de confiance}
 
+Soit, sous certaines conditions de régularité, l'\textbf{information de Fisher} $I(\theta)$:
 
+\begin{formula}{Information de Fisher}
+\begin{align*}
+	I(\theta) 
+	&= 	\text{E}\left[\left( \derivee{\theta} \ell(\theta) \right)^2\right]	\\
+	&\Leftrightarrow	-\text{E}\left[\frac{\partial^2}{\partial \theta^2} \ell(\theta)\right]	\\
+\end{align*}
+La simplification (2ème équation) est pour le cas où les observations sont (iid) et ont donc tous la même fonction de log-vraisemblance.
+\end{formula}
+
+Si l'information n'est pas connue, on peut l'estimer avec \textbf{l'information observée} : 
+\begin{formula}{Information de Fisher observée}
+\begin{align*}
+	\hat{I}(\hat{\theta}) 
+	&= 	\sum_{i=1}^{n} 	\left( \derivee{\theta} \ln f(x_i ; \theta) \eval_{\theta = \hat{\theta}} \right)^2 	\\
+	&= 	-\sum_{i=1}^{n}	\frac{\partial^2}{\partial \theta^2} \ln f(x_i ; \theta) \eval_{\theta = \hat{\theta}} 
+\end{align*}
+\end{formula}
 
 \subsubsection*{Estimation de la variance de $\hat{\theta}$}
-L'information de Fisher $I(\theta)$ est définie par
-\[I(\theta) = -\esp{\frac{\partial^2}{\partial \theta^2} \ell(\theta)} = \esp{\left( \derivee{\theta} \ell(\theta) \right)^2}\]
-Si l'information n'est pas connue, on peut l'estimer avec \emph{l'information observée} : 
-\[\hat{I}(\hat{\theta}) = \sum_{i=1}^{n} \left( \derivee{\theta} \ln f(x_i ; \theta) \eval_{\theta = \hat{\theta}} \right)^2 = - \sum_{i=1}^{n}  \frac{\partial^2}{\partial \theta^2} \ln f(x_i ; \theta) \eval_{\theta = \hat{\theta}}\]
-Ainsi, on peut calculer la variance de l'estimateur $\hat{\theta}_{MLE}$ telle que
-\[\variance{\hat{\theta}} = I(\theta)^{-1}\]
+Ainsi, on peut calculer la variance de l'estimateur $\hat{\theta}_{MLE}$ tel que
+\[
+	\text{Var}(\hat{\theta})
+	= 	I(\theta)^{-1}
+\]
 
 \subsubsection*{Intervalle de confiance pour $\hat{\theta}$}
-Lorsque $n \to \infty$, $\hat{\theta} \sim N(\theta,	\variance{\hat{\theta}})$. Alors, on peut trouver un IC pour l'estimateur au seuil $1 - \alpha$ : 
-\[\theta \in \Big [   \hat{\theta} \pm z_{\alpha/2} \sqrt{\mathrm{Var}(\hat{\theta})} \Big ]\]
-
+Lorsque $n \to \infty$, $\hat{\theta} \sim N(\theta,	\variance{\hat{\theta}})$ on peut trouver un IC pour l'estimateur au seuil de $1 - \alpha$ : 
+\[
+	\theta 
+	\in 	\Big[
+		\hat{\theta} \pm z_{\alpha/2} \sqrt{\mathrm{Var}(\hat{\theta})} 
+		\Big]
+\]
 
 \subsubsection*{Méthode delta pour estimer la variance d'une transformation de $\hat{\theta}$}
 Lorsqu'on veut calculer la variance d'une autre quantité que le paramètre $\hat{\theta}$ lui-même, on peut utiliser la méthode Delta : 
-\[\variance{h(\hat{\theta})}  = \left( \derivee{\theta} h(\theta) \right)^2 \variance{\hat{\theta}}\]
+\[
+	\variance{h(\hat{\theta})}
+	= 	\left( \derivee{\theta} h(\theta) \right)^2 \variance{\hat{\theta}}
+\]
 Dans un contexte multivarié, où $\bm{\hat{\theta}}$ est un vecteur d'estimateurs, alors on a
 \begin{align*}
-\variance{h(\hat{\theta})}	& = \bm{h}^{\top} I(\theta)^{-1} \bm{h}
+	\text{Var}\big(h(\hat{\theta})\big)	
+	&= 	\bm{h}^{\top} I(\theta)^{-1} \bm{h}
 \end{align*}
 où $\bm{h}$ est le vecteur des dérivées partielle de $h(\theta)$ : 
 \begin{align*}
-\bm{h}	& = 
-\begin{bmatrix}
-\derivee{\theta_1} h(\theta) \\
-\derivee{\theta_2} h(\theta) \\
-... \\
-\derivee{\theta_k} h(\theta) \\
-\end{bmatrix}
+	\bm{h}	
+	&=	\begin{bmatrix}
+			\derivee{\theta_1} h(\theta) \\
+			\derivee{\theta_2} h(\theta) \\
+			... \\
+			\derivee{\theta_k} h(\theta) \\
+		\end{bmatrix}
 \end{align*}
 
+
+\setcounter{section}{14}
+\columnbreak
+\section{Sélection de modèles}
+
+Il est essentiel de ne pas oublier que peu importe le modèle sélectionné, il sera une \textbf{approximation} de la réalité; \guillemotleft all models are wrong, but some are more useful than others \guillemotright.
+
+\subsection*{Chi-Square \emph{Goodness-of-fit}}
+
+On veut valider que les prévisions du modèle ne sont pas trop différentes des valeurs empiriques observées. 
+Alias, that the predictions of the model has a \textbf{good fit} to the empirical data with similar percentiles.
+
+On valide alors l'adéquation d'un modèle avec $p$ variables explicatives et $n$ observations en calculant la quantité $X^2$ : 
+\begin{algo}{Test d'adéquation du Khi-Carré}
+\begin{align*}
+	X^2 
+	&= 	\frac{\sum_{j = 1}^{k} n(\hat{p}_j - p_{nj})^2 }{\hat{p}_j} 
+	\sim	\chi^{2}_{k - p - 1}
+\end{align*}
+où 
+\begin{enumerate}
+	\item[$\hat{p}_j$:]	Probabilité (selon le modèle) d'observer une valeur dans la $j^{e}$ classe.
+	\item[$p_{nj}$:]	Proportion empirique des observations dans la $i^{e}$ classe.
+\end{enumerate}
+\end{algo}
+
+
+On peut récrire ce test sous la forme suivante:
+\begin{algo}{Test d'adéquation du Khi-Carré (autre forme)}
+On pose 
+\begin{itemize}
+	\item	$n_{j}$ est le nombre de données dans le groupe $(c_{j - 1}, c_{j}]$,
+	\item	$j \in \{1, \dots, k \}$,
+	\item	$k$ est le nombre de groupes et
+	\item	$\sum_{j = 1}^{k}n_{j} = n$.
+\end{itemize}
+
+La statistique de test est donc:
+\begin{align*}
+	Q 
+	&= 	\frac{\sum_{j = 1}^{k} (E_j - n_{j})^2 }{E_j} 
+\end{align*}
+où
+\begin{itemize}
+	\item	Asymptotiquement, $Q \sim	\chi^{2}_{k - p - 1}$ et 
+	\item	$p$ est le nombre de paramètres estimés,
+	\item	$E_{j} = n [F(c_{j}; \hat{\bm\theta}) - F(c_{j - 1}; \hat{\bm\theta})]$.
+\end{itemize}
+On rejète $H_{0}$ si $Q > \chi_{k - p - 1, \alpha}^{2}$.
+\end{algo}
+
+On peut également effectuer le test LRT pour valider l'adéquation du modèle.
+
 \subsection*{Test du rapport de vraisemblance (\emph{LRT})}
-On veut tester si le modèle réduit avec $\theta_0$, qui est une \emph{bonne} simplification de $\theta_1$, le modèle complet. Alors, on teste si la différence dans les log-vraisemblance est significative : 
-\[T = 2 \left( \ell(\theta) - \ell(\theta_0) \right) \sim  \chi_{dl_1 - dl_0, 1-\alpha}^2\]
-où $dl_1$ est le nombre de paramètres non-fixés du modèle complet et $dl_0$ le nombre de paramètres non-fixés du modèle réduit. \textbf{On va rejeter $H_0$ si $T >\chi_{dl_1 - dl_0, 1-\alpha}^2 $ (test unilatéral)}, en concluant que le modèle réduit n'est pas une bonne simplification du modèle de l'hypothèse alternative.
+On utilise la statistique du khi-carré pour comparer deux modèles; la question est si le modèle sous $H_{1}$ est une représentation de la population mieux ajustée que le modèle sous $H_{0}$. 
+On note que le modèle sous $H_{1}$ doit être une simplification de celui sous $H_{0}$.
+
+En bref, on test si le modèle réduit avec $\theta_0$ est une \emph{bonne} simplification du modèle complet en testant si la différence des log-vraisemblances est significative : 
+\begin{algo}{Test du rapport de vraisemblance (LRT)}
+\[
+	T 
+	= 		2 \left( \ell(\theta) - \ell(\theta_0) \right)
+	\sim		\chi_{dl_1 - dl_0, 1 - \alpha}^2
+\]
+\end{algo}
+où $dl_1$ est le nombre de paramètres non-fixés du modèle complet et $dl_0$ le nombre de paramètres non-fixés du modèle réduit. 
+
+\textbf{On va rejeter $H_0$ si $T >\chi_{dl_1 - dl_0, 1-\alpha}^2 $ (test unilatéral)} et conclure que le modèle réduit n'est pas une bonne simplification du modèle complet.
 
 \subsubsection*{Construction d'un intervalle de confiance par inversion du \emph{LRT}}
-Si $\theta_0$ est un paramètre adéquat pour le modèle réduit, alors la statistique $T$ du \emph{LRT} ne dépassera pas le quantile théorique $\chi_{dl, 1- \alpha^2}$. Alors, on veut trouver $\hat{\theta}_0$ tel que
+Si $\theta_0$ est un paramètre adéquat pour le modèle réduit, alors la statistique $T$ du \emph{LRT} ne dépassera pas le quantile théorique $\chi_{dl, 1- \alpha^2}$. 
+Alors, on veut trouver $\hat{\theta}_0$ tel que
 \[2 \left( \ell(\theta) - \ell(\theta_0) \right) \leq  \chi_{dl_1 - dl_0, 1-\alpha}^2\]
 On trouvera une équation du genre $g(\theta) \leq 0$, où $g$ sera une fonction avec deux racines définies, qui correspondent aux bornes de l'intervalle de confiance pour les valeurs de $\hat{\theta}_0$ : 
+
 \begin{center}
-\includegraphics[scale=0.07]{src/ACT-2005/Q13-57_visualisation.png}
+	\includegraphics[scale = 0.07]{src/Q13-57_visualisation.png}
 \end{center}
 
-\section{Sélection de modèles}
-\subsection*{Chi-Square \emph{Goodness-of-fit}}
-On veut valider l'adéquation du modèle qu'on propose avec ce test. On calcule la quantité $X^2$ : 
-\[X^2 = \frac{\sum_{j=1}^{k}(E_j - O_j)^2 }{E_j}\]
-où $E_j = n \hat{p}_i$ est le nombre de valeurs qu'on s'attend à avoir dans la $i$\up{e} classe et $O_j = n p_{ni}$ le nombre d'observations dans la $i$\up{e} classe. On peut prouver que
-\[X^2 \sim \chi_{k-p-1}^2\] \\
+\subsection*{Méthode de Delta multivariée}
+\begin{definitionNOHFILL}[Méthode de Delta multivariée]
+Soit la variable aléatoire multivariée de \textbf{dimension $k$} et de \textbf{taille d'échantillon $n$} $\bm{X_{n}} = [X_{1n}, \dots, X_{kn}]^{\top}$.
 
-On peut aussi faire le test LRT pour valider l'adéquation aussi.
+On pose:
+\begin{enumerate}
+	\item	$\bm{X_{n}}$ est asymptotiquement normale \textit{(multivariée)} de 
+	\item	moyenne $\bm\theta$ et
+	\item	matrice de covariance $\frac{\bm\Sigma}{n}$,
+\end{enumerate}
+où les paramètres $\bm\theta$ et $\bm\Sigma$ ne dépendent pas de la taille d'échantillon $n$. 
+
+On note que puisque $\bm{X_{n}}$ est asymptotiquement normale, ils deviennent les paramètres de la normale multivariée.
+\\
+\hrule\hrulefill
+
+Soit la fonction $\bm{G_{n}} = g(X_{1n}, \dots, X_{kn})$.
+
+On pose:
+\begin{enumerate}
+	\item	$\bm{G_{n}}$ est également asymptotiquement normale \textit{(\textbf{pas} multivariée)} mais de 
+	\item	moyenne g($\bm\theta$) et
+	\item	\textbf{\textit{variance}} $\frac{\bm{A}^{\top}\bm\Sigma\bm{A}}{n}$,
+\end{enumerate}
+où $\bm{A}$ est le gradient (c.-à-d., le vecteur des k premières dérivées) de $g(\bm\theta)$ évalué aux vrais paramètres $\bm\theta$ de $\bm{X_{n}}$; $\bm{A} = \left[\deriv{\theta_{1}}g, \dots, \deriv{\theta_{k}}g\right]^{\top} \bigg|_{\bm\theta}$.
+\\
+\hrule\hrulefill
+
+Alors, on obtient:
+\begin{formula}{Variance estimée méthode de Delta multivariée}
+\begin{align*}
+	\widehat{\text{Var}}(\hat{\bm\theta})
+	&=	\frac{\hat{\bm{A}}^{\top} \hat{\bm\Sigma} \hat{\bm{A}}}{n}
+\end{align*}
+\end{formula}
+\end{definitionNOHFILL}
+
+\begin{examplebox}{Exemple avec une lognormale}
+Puisque ce concept est très théorique et difficile à conceptualiser, nous jugeons pertinent d'inclure un exemple.
+\\\hrulefill
+
+On veut l'estimateur de la moyenne d'une distribution log-normale où:
+\begin{equation*}
+	\text{E}[X]	=	\e{\mu + \sigma^{2}/2}	=	g(\mu, \sigma)	=	g(\bm\theta)	\\
+\end{equation*}
+On peut trouver (\textit{pas démontré ici}) que les EMV sont:
+\begin{align*}
+	\hat{\mu}
+	&=	\frac{1}{n} \sum_{i = 1}^{n} \ln x_{i}	&
+	\hat{\sigma}
+	&=	\frac{1}{n} \sum_{i = 1}^{n} (\ln x_{i} - \hat{\mu})^{2}	\\
+\end{align*}
+Donc, l'EMV de $g(\mu, \sigma)$ est:
+\begin{equation*}
+	g(\hat{\mu}, \hat{\sigma})	=	\e{\hat{\mu} + \hat{\sigma}^{2}/2}	=	g(\hat{\bm\theta})	\\
+\end{equation*}
+De plus, on peut trouver \textit{(encore, pas montré ici)} que la matrice de covariance est:
+\begin{align*}
+	\frac{\bm\Sigma}{n}
+	=	\frac{1}{\bm{I}(\mu, \sigma)}	
+	&=	\begin{bmatrix}
+			\frac{\sigma^{2}}{n}	&	0						\\
+			0					&	\frac{2\sigma^{4}}{n}	\\
+		\end{bmatrix}
+\end{align*}
+où $\bm{I}$ est l'information de Fisher.
+
+De plus:
+\begin{align*}
+	\bm{A}
+	&=
+	\begin{bmatrix}
+		\deriv{\mu}g(\mu, \sigma)	\\
+		\deriv{\sigma}g(\mu, \sigma)	\\
+	\end{bmatrix}
+	\Leftrightarrow
+	\begin{bmatrix}
+		\deriv{\theta_{1}}g(\bm\theta)	\\
+		\deriv{\theta_{2}}g(\bm\theta)	\\
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		\e{{\mu} + {\sigma}^{2}/2}	\\
+		\sigma\e{{\mu} + {\sigma}^{2}/2}	\\
+	\end{bmatrix}
+\end{align*}
+\setlength{\mathindent}{-1.5cm}
+
+Finalement, on obtient:
+\begin{align*}
+	\text{E}[g(\hat{\mu}, \hat{\sigma})]	
+	&=	\text{E}[g(\hat{\bm\theta})]
+	\underset{n \rightarrow \infty}{=}	\e{\mu + {\sigma}^{2}/2}	
+\end{align*}
+\begin{align*}
+	\text{Var}[g(\hat{\mu}, \hat{\sigma})]	
+	&=	\text{Var}[g(\hat{\bm\theta})]	\\
+	&\underset{n \rightarrow \infty}{=}	\hat{\bm{A}}^{\top} \frac{\hat{\bm{\Sigma}}}{n} \hat{\bm{A}}	\\
+	&=	\Bigg[
+	\begin{bmatrix}
+		\e{\hat{\mu} + \hat{\sigma}^{2}/2}	\\
+		\sigma\e{\hat{\mu} + \hat{\sigma}^{2}/2}	\\
+	\end{bmatrix}^{\top} 
+	\begin{bmatrix}
+		\frac{\hat\sigma^{2}}{n}	&	0						\\
+		0					&	\frac{2\hat\sigma^{4}}{n}	\\
+	\end{bmatrix}
+	\begin{bmatrix}
+		\e{\hat{\mu} + \hat{\sigma}^{2}/2}	\\
+		\sigma\e{\hat{\mu} + \hat{\sigma}^{2}/2}	\\
+	\end{bmatrix} 
+		\Bigg] _{\bm{\theta}}	\\
+	&=	\e{2\mu + \sigma^{2}} \left( \frac{\sigma^{2}}{n} + \frac{\sigma^{4}}{2n} \right)
+\end{align*}
+\end{examplebox}
+
+\setlength{\mathindent}{1cm}
+
+
 
 \subsection*{Critères de sélection}
-Pour chosir entre plusieurs modèles, on peut, entre autres, se baser sur les critères suivants : 
+
+Le livre introduit 2 concepts:
+\begin{description}
+	\item[Parsimony:] À moins d'évidence considérable au contraire, le modèle le plus simple est toujours préféré.
+	\item	Si on essaye assez de modèles, éventuellement un va sembler être bien ajusté même s'il ne l'est pas. 
+	Il est donc essentiel de restreindre le nombre de modèles possibles.
+\end{description}
+
+De plus, le livre affirme qu'il y a deux méthodes de sélection de modèle; par jugement et par valeur de test.
+
+Pour choisir entre plusieurs modèles selon une valeur, on peut, entre autres, se baser sur les critères suivants : 
 \begin{enumerate}
 \item la plus \textbf{faible valeur} pour le test \textbf{Kolmogorov-Smirnov} ; 
-\item  la plus \textbf{faible valeur} pour le test \textbf{Anderson-Darling} ;
-\item  la plus \textbf{faible valeur} pour le test \textbf{Goodness-of-fit} ;
+\item la plus \textbf{faible valeur} pour le test \textbf{Anderson-Darling} ;
+\item la plus \textbf{faible valeur} pour le test \textbf{Goodness-of-fit} ;
 \item la plus \textbf{haute valeur} pour la \textbf{\emph{p-value} du test Goodness-of-fit} ; 
 \item la plus \textbf{haute valeur} pour la \textbf{fonction de vraisemblance à son maximum}.
 \end{enumerate}
 
-\section{Estimation bayésienne}
-\begin{definition}[Distribution \emph{a priori}]
-Soit un paramètre $\theta$ d'une distribution quelconque. Afin de réaliser une estimation Bayésienne, on connaît \emph{a priori} la distribution que prend le paramètre $\theta$, qu'on dénote par $\pi(\theta)$. \\
+Le problème avec tous ces test (sauf la p-value du khi-carré) est qu'ils ne respectent pas le principe de \textit{parsimony}. 
+Le modèle le plus complexe sera toujours préférable puisqu'il aura un meilleur ajustement pour les données.
+La distinction avec la p-value du test du khi-carré est que le nombre de paramètres est pris en compte dans l'obtention du seuil.
 
-Alors, notre distribution des pertes est conditionnée par rapport à la valeur que $\theta$ prend (i.e. $f_{X|\Theta}$).
+Ceci est d'ailleurs d'où provient les tests d'AIC et de BIC. L'AIC pénalise les différents modèles selon le nombre de paramètres, le BIC les pénalisent proportionnellement au nombre d'observation.
+
+\subsubsection*{Critère d'information d'Akaike (AIC) et critère Bayésien de Schwarz (BIC)}
+On obtient alors que pour $n$ observation et un modèle avec $p$ paramètres:
+\begin{itemize}
+\item[AIC:] Ce critère est le plus utilisé dans la pratique et permet d'évaluer la qualité de l'ajustement d'un modèle. 
+	\[ 
+		AIC = - \ell + 2 p
+	\]
+L'AIC prend en compte à la fois la qualité des prédictions du modèle et sa complexité.
+\item[BIC:] BIC est similaire à l'AIC, mais la pénalité des paramètres dépend de la taille de l'échantillon.
+	\[ 
+		BIC = \ell - \frac{p}{2} \ln n
+	\]
+\item On cherche donc à minimiser ces 2 critères.
+\end{itemize}
+
+\setcounter{section}{12}
+\columnbreak
+\section{Estimation bayésienne}
+
+Avec l'estimation fréquentielle, on pose une distribution pour les données \textbf{fixée} \textit{\textbf{mais}} \textbf{inconnue}. De plus, nos décisions sont axées plus avec les possibilités liés à d'autres échantillons pouvant être obtenus qu'avec notre échantillon de données.
+
+L'approche Bayésienne quant à elle pose que seul les données réellement observées sont pertinentes et que c'est la distribution de la population qui est variable.
+L'approche est décrite par les définitions des distributions a priori et à postériori avec le théorème de Bayes pour trouver la solution.
+
+\begin{definition}[Distribution \emph{a priori}]
+Dénoté $\pi(\theta)$, représente nos opinions des chances que différentes valeurs de $\theta$ sont la vraie valeur du paramètre. 
+Par conséquent, elle est définie sur l'espace des valeurs possible pour le paramètre $\theta$.
 \end{definition}
 
+La difficulté repose justement à déterminer une distribution a priori convaincante; pour traiter la possibilité d'avoir aucune ce qu'est la distribution a priori, on peut élargir la définition:
+\begin{definition}[Distribution \emph{a priori} impropre]
+Une distribution pour laquelle les probabilités (ou fonction de densité) sont non-négatives et dont leur somme (ou intégral) est infini.
+\end{definition}
 
-\begin{definition}[Distribution \emph{a posteriori}]
-La distribution \emph{a posteriori} nous permet de savoir avec quelle probabilité non-nulle notre paramètre $\theta$ peut prendre une certaine valeur, sachant qu'on a observé certains $x$, qu'on dénote comme $\pi_{\Theta | X}(\theta | x)$ : 
+\begin{definitionNOHFILL}[Distribution du modèle]
+Dénoté $f_{\bm{X} | \Theta}(\bm{x} | \theta)$, elle est la distribution de probabilité des données tel que collecté étant donné une valeur précise de $\theta$ 
+\end{definitionNOHFILL}
+
+\begin{rappel}{Rappel distribution conjointe et marginale}
+Fonction conjointe:
+\begin{equation*}
+	f_{\bm{X}, \Theta}(\bm{x}, \theta)
+	=	f_{\bm{X}|\Theta}(\bm{x} | \theta) \pi(\theta)
+\end{equation*}
+Fonction marginale de $\bm{x}$:
+\begin{equation*}
+	f_{\bm{X}}(\bm{x})
+	=	\int f_{\bm{X}|\Theta}(\bm{x} | \theta) \pi(\theta) d\theta
+\end{equation*}
+\end{rappel}
+
+\begin{definitionNOHFILL}[Distribution \emph{a posteriori}]
+Dénoté $\pi_{\Theta | \bm{X}}(\theta | \bm{x})$, elle représente la distribution de probabilité des paramètres conditionnelle aux données observées. 
+La distribution \emph{a posteriori} nous permet donc de savoir avec quelle probabilité (non-nulle) les paramètre $\bm\theta$ peuvent prendre certaine valeurs spécifiques sachant qu'on a observé certains $x$: 
 \begin{equation}
 \label{eq:dist_posteriori}
-\pi_{\Theta | X}(\theta | x) = \frac{f_{\Theta, X}(\theta, x)}{f_{X}(x)} = \frac{f_{X|\Theta}(x | \theta) \pi(\theta)}{\int f_{X|\Theta}(x | \theta) \pi(\theta) d \theta} 
+	\pi_{\Theta | \bm{X}}(\theta | \bm{x})
+	= 	\frac{f_{\Theta | \bm{X}}(\theta | \bm{x})}{f_{X}(x)} 
+	= 	\frac{f_{\bm{X}|\Theta}(\bm{x} | \theta) \pi(\theta)}{\int f_{\bm{X}|\Theta}(\bm{x} | \theta) \pi(\theta) d\theta} 
 \end{equation}
-L'idée est de remplacer les différentes distributions dans l'\autoref{eq:dist_posteriori}, et en déduire une distribution avec une paramétrisation différente\footnote{Souvent, la distribution \emph{a posteriori} aura la même distribution que celle \emph{a priori}, mais avec des paramètres différents.}.
-\end{definition}
 
-\paragraph{L'estimateur Bayésien} L'estimateur Bayésien est défini comme l'espérance du paramètre $\theta$, sachant la distribution de $X$. En d'autres mots, on veut l'espérance de la distribution \emph{a posteriori} : 
+L'idée est de remplacer les différentes distributions dans l'\autoref{eq:dist_posteriori}, et en déduire une distribution avec une paramétrisation différente\footnote{Souvent, la distribution \emph{a posteriori} aura la même distribution que celle \emph{a priori}, mais avec des paramètres différents.}.
+\end{definitionNOHFILL}
+
+De plus, on défini la distribution pour les nouvelles observations:
+\begin{definitionNOHFILL}[Distribution prédictive du modèle]
+Dénoté $f_{Y | \bm{X}}(y | \bm{x})$, elle est la distribution de probabilité d'une nouvelle observation $y$ étant étant donné les données $\bm{x}$.
+
+La fonction de densité d'une nouvelle observation étant donné la valeur du paramètre.
+\begin{equation*}
+	f_{Y | \bm{X}}(y | \bm{x})
+	=	\int f_{Y|\Theta}(y | \theta) \pi_{\Theta | \bm{X}}(\theta | \bm{x}) d\theta
+\end{equation*}
+
+\end{definitionNOHFILL}
+
+
+\paragraph{L'estimateur Bayésien} L'estimateur Bayésien est défini comme l'espérance du paramètre $\theta$, sachant la distribution de $X$. 
+En d'autres mots, on veut l'espérance de la distribution \emph{a posteriori} : 
+
+\begin{algo}{Estimateur Bayésien}
 \begin{equation}
 \label{eq:estimateur_bayes}
-\hat{\theta}_{BAYES} = \esp{\Theta | X}
+	\hat{\theta}_{BAYES} 
+	=	\esp{\Theta | X}
 \end{equation}
+\end{algo}
 
- \section{Rappel de probabilité}
- \subsection*{Certaines lois à savoir}
- \begin{tabular}{|a| * {4}{C|}}
- \hline
- \rowcolor{red!30!white}\text{Loi} & \prob{X = x} \text{ ou } f_X(x) & \esp{X} & Var(X) & M_X(t) \\\hline
- Bin(n,p)	& \binom{n}{x} p^x (1-p)^{n-x} & np & np(1-p) & \left( (1-p) + p^t \right)^n \\\hline
- Pois(\lambda) & \frac{e^{-\lambda} \lambda^x}{x!} & \lambda & \lambda & e^{\lambda(t-1)} \\\hline
- Gamma(\alpha, \lambda) & \frac{\lambda^{\alpha} x^{\alpha-1} e^{-\lambda x}}{\Gamma(\alpha)} & \frac{\alpha}{\lambda} & \frac{\alpha}{\lambda^2} & \left( \frac{\lambda}{\lambda - t} \right)^\alpha \\\hline
- Normale(\mu, \sigma^2) & \frac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{1}{2} \left( \frac{x-\mu}{\sigma} \right)^2} & \mu & \sigma^2 & e^{\mu t + \frac{\sigma^2 t^2}{2}} \\\hline
- \end{tabular}
+\setcounter{section}{-1}
+\columnbreak
+\section{Rappel de probabilité}
+\subsection*{Certaines lois à savoir}
+\begin{tabular}{|a| * {4}{C|}}
+	\hline
+	\rowcolor{red!30!white}
+	\text{Loi} 				&	\prob{X = x} \text{ ou } f_X(x) 		&	\esp{X}	&	Var(X) 	& 	M_X(t) 							\\\hline
+	Bin(n,p)					& 	\binom{n}{x} p^x (1-p)^{n-x} 		&	np 		&	np(1-p) 	& 	\left( (1-p) + p^t \right)^n 	\\\hline
+	Pois(\lambda) 			&	\frac{e^{-\lambda} \lambda^x}{x!} 	&	\lambda 	& 	\lambda 	& 	e^{\lambda(t-1)} 				\\\hline
+	Gamma(\alpha, \lambda) 	& 	\frac{\lambda^{\alpha} x^{\alpha-1} e^{-\lambda x}}{\Gamma(\alpha)} 						& 	\frac{\alpha}{\lambda} 	&	\frac{\alpha}{\lambda^2}	& 	\left( \frac{\lambda}{\lambda - t} \right)^\alpha 	\\\hline
+	Normale(\mu, \sigma^2) 	& 	\frac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{1}{2} \left( \frac{x-\mu}{\sigma} \right)^2} 	& 	\mu 						&	\sigma^2 					& 	e^{\mu t + \frac{\sigma^2 t^2}{2}} 				\\\hline
+\end{tabular}
  
- \subsection*{Rappels d'algèbre linéaire}
+\subsection*{Rappels d'algèbre linéaire}
 \subsubsection*{Matrice transposée} la matrice transposée est définie par $\bm{A}^\top$, telle que
 \begin{align*}
 \bm{A}^{\top} & = 
@@ -620,17 +1092,17 @@ c	& d \\
 = ad - bc
 \end{align*}
 
-\subsubsection*{Inverse d'une matrice} L'équivalent de l'opération $\frac{1}{\bm{A}}$ en algèbre linéaire est de calculer la matrice inverse de $\bm{A}^{-1}$, telle que
+\subsubsection*{Inverse d'une matrice} L'équivalent de l'opération $\frac{1}{\bm{A}}$ en algèbre linéaire est de calculer la matrice inverse de $\bm{A}^{-1}$, telle que		
 \begin{align*}
 \bm{A}^{-1}	& = \frac{1}{\det(\bm{A})}
 \begin{bmatrix}
-a	& -c \\
--b	& d \\
+d	& -c \\
+-b	& a \\
 \end{bmatrix}
 \end{align*}
 où on multiple par la matrice adjointe de $\bm{A}$. Il faut normalement calculer les cofacteurs, mais le cas à 2 dimensions est un cas simplifié.
 
-
+\pagebreak
 
 \end{multicols*}
 

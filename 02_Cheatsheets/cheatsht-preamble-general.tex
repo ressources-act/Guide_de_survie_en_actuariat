@@ -16,12 +16,13 @@
 \usepackage[T1]{fontenc}
 \usepackage{babel}
 \usepackage{lmodern}
-
+\usepackage[colorinlistoftodos]{todonotes}
 %% -----------------------------
 %% Variable definition
 %% -----------------------------
-\def\auteur{Gabriel Crépeault-Cauchon / Nicholas Langevin}
+\def\auteur{\href{https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/contributeurs/contributeurs-cheatshts.pdf}{\faGithub \ Liste des contributeurs}}
 \def\BackgroundColor{white}
+\usepackage{xargs} % for more logical new function creation
 
 %% -----------------------------
 %% Margin and layout
@@ -65,12 +66,15 @@
 %% -----------------------------
 \usepackage[fleqn]{amsmath}
 \usepackage{amsthm,amssymb,latexsym,amsfonts}
+\usepackage{gensymb}
 \usepackage{empheq}
 \usepackage{numprint}
 \usepackage{dsfont} % Pour avoir le symbole du domaine Z
-
+%\usepackage{bigints} % pour des gros intégrales
 % Mathematics shortcuts
-
+\usepackage{scalerel,stackengine,amsmath}
+\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
+    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
 \newcommand{\reels}{\mathbb{R}}
 \newcommand{\entiers}{\mathbb{Z}}
 \newcommand{\naturels}{\mathbb{N}}
@@ -82,10 +86,63 @@
 \newcommand{\variance}[1]{\mathrm{Var} \left( #1   \right)}
 \newcommand{\covar}[1]{\mathrm{Cov} \left( #1   \right)}
 \newcommand{\laplace}{\mathcal{L}}
-\newcommand{\deriv}[2][]{\frac{\partial^{#1}}{\partial #2^{#1}}}
+\newcommand{\deriv}[3][]{\frac{\partial^{#1}#3}{\partial #2^{#1}}}
 \newcommand{\e}[1]{\mathrm{e}^{#1}}
 \newcommand{\te}[1]{\text{exp}\left\{#1\right\}}
 \DeclareMathSymbol{\shortminus}{\mathbin}{AMSa}{"39}
+%%	Example usage:	\sumz{n}{i = 1} <=> \overset{n}{\underset{i = 1}{\sum}}
+\newcommand{\sumz}[2]{\overset{#1}{\underset{#2}{\sum}}}
+%%	Example usage:	\limz{h}{0} <=> \underset{h \rightarrow 0}{\lim}
+\newcommand{\limz}[2]{\underset{#1 \rightarrow #2}{\lim}}
+%%	Example usage:	\LVx{h}	<=>	\actsymb[h]{L}{}[]
+%%					\LVx[n]{h}	<=>	\actsymb[h]{L}{}[n]
+\newcommand{\LVx}[2][]{\actsymb[#2]{L}{}[#1]}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+%%%	\icbox{<frame color>}{<background color>}{<text>}
+\newcommandx{\icbox}[3][1 = bleudefrance, 2 = beaublue]{\fcolorbox{#1}{#2}{#3}}
+%%	other good color combo is azure(colorwheel) arsenic
+\usepackage{longfbox}
+%	voir cette page, paquetage avec CSS https://ctan.math.illinois.edu/macros/latex/contrib/longfbox/longfbox.html
+\newfboxstyle{rappel}{
+	background-color = tealblue!20!white, 
+	border-style = outset,
+	breakable = true,
+%	
+	border-color = tealblue,
+	border-radius = 1ex, 
+%
+	padding-bottom = 0.2ex,
+	padding-top = 0.2ex,
+	padding-left = 0.4ex,
+	padding-right = 0.4ex,
+%	
+	border-top-width = 0.3ex,
+	border-bottom-width = 0.3ex,
+%
+	border-left-width = 1ex, 
+	border-bottom-left-radius = 0.2ex,
+%	
+	border-right-width = 1ex, 
+	border-top-right-radius = 0.2ex,
+%	
+}
+\newfboxstyle{formula}{ 
+	background-color = beaublue, 
+	border-color = bleudefrance
+}
+\newfboxstyle{imphl}{ 
+	padding = 0pt,
+	margin = 0pt,
+	baseline-skip = false,
+	background-color = palechestnut!60!white, 
+	border-color = white
+}
+\newfboxstyle{conditions}{ 
+	background-color = palechestnut, 
+	border-color = red
+}
+\newcommandx{\rcbox}[3][1 = bleudefrance, 2 = beaublue]{\lfbox[border-radius = 0.5ex, background-color = #2, border-color = #1]{#3}}
 
 % To indicate equation number on a specific line in align environment
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
@@ -108,7 +165,7 @@
 %% -----------------------------
 %% tcolorbox configuration
 %% -----------------------------
-\usepackage{tcolorbox}
+\usepackage[most]{tcolorbox}
 \tcbuselibrary{xparse}
 \tcbuselibrary{breakable}
 
@@ -121,8 +178,54 @@
 	breakable, 
 	pad at break* = 0mm, 						% to split the box
 	title = {#1},
-	after title = {\large \hfill \faBook}
+	after title = {\large \hfill \faBook},
 }
+%%
+%% Coloured box "definition2" for definitions
+%%
+\DeclareTColorBox{definitionNOHFILL}{ o }				% #1 parameter
+{
+	colframe=blue!60!green,colback=blue!5!white, % color of the box
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	before title = {\faBook \quad },
+	breakable
+}
+%%
+%% Coloured box "definition2" for definitions
+%%
+\DeclareTColorBox{definitionNOHFILLsub}{ o }				% #1 parameter
+{
+	colframe=blue!40!green,colback=blue!5!white, % color of the box
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	before title = {\faNavicon \quad }, %faBars  faGetPocket
+	breakable
+}
+%%
+%% Coloured box "definition3" for propriétés
+%%
+\DeclareTColorBox{definitionNOHFILLprop}{ o }				% #1 parameter
+{
+	colframe=amber(sae/ece),colback=amber(sae/ece)!5!white, % color of the box
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	before title = {\faGetPocket \quad }, %faBars  faGetPocket
+	breakable
+}
+%%
+%% Coloured box "definition3" for propriétés
+%%
+\DeclareTColorBox{definitionNOHFILLpropos}{ o }				% #1 parameter
+{
+	colframe=carmine,colback=carmine!5!white, % color of the box
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	before title = {\faColumns \quad }, %\faEllipsisH  faColumns
+	breakable
+}
+
+
 %%
 %% Coloured box "algo" for algorithms
 %%
@@ -130,7 +233,69 @@
 {
 	colback = blue!5!white,
 	colframe = blue!75!black,
-	fonttitle = \bfseries,title=#1
+	title=#1,
+	fonttitle = \bfseries,
+	breakable
+}
+%%
+%% Coloured box "conceptgen" for points adding to a concept's deifintion
+%%
+\newtcolorbox{conceptgen}[ 1 ]
+{
+	breakable,
+	colback = beaublue,
+	colframe = airforceblue,
+	title=#1,
+	fonttitle = \bfseries
+}
+%%
+%% Coloured box "rappel" pour rappel de formules
+%%
+\DeclareTColorBox{conceptgen_enhanced}{ o }
+{
+	enhanced,
+	title = #1,
+	colback=beaublue, % color of the box
+%	colframe=blue(pigment),
+%	colframe=arsenic,	
+	colbacktitle=airforceblue,
+	fonttitle = \bfseries,
+	breakable,
+	boxed title style={size=small,colframe=arsenic} ,
+	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
+}
+%%
+%% Coloured box "probch1" pour formules relatives au 1er chapitre de prob
+%%
+\newtcolorbox{probch1}[ 1 ]
+{
+	colback = ao(english)!40!white,
+	colframe = forestgreen(traditional),
+	fonttitle = \bfseries,	
+	breakable,
+	title=#1
+}
+%%
+%% Coloured box "probch2" pour formules relatives au 1er chapitre de prob
+%%
+\newtcolorbox{probch2}[ 1 ]
+{
+	colback = orange!50!white,
+	colframe = burntorange,
+	fonttitle = \bfseries,	
+	breakable,
+	title=#1
+}
+%%
+%% Coloured box "probch3" pour formules relatives au 3ème chapitre de prob
+%%
+\newtcolorbox{probch3}[ 1 ]
+{
+	colback = ruddypink,
+	colframe = burgundy,
+	fonttitle = \bfseries,	
+	breakable,
+	title=#1
 }
 %%
 %% Coloured box "formula" for formulas
@@ -138,8 +303,89 @@
 \newtcolorbox{formula}[ 1 ]
 {
 	colback = green!5!white,
-	colframe = green!75!black,
+	colframe = green!70!black,
+	breakable,
+	fonttitle = \bfseries,
+	title=#1
+}
+%%
+%% Coloured box "formula" for formulas
+%%
+\DeclareTColorBox{algo2}{ o }
+{
+	enhanced,
+	title = #1,
+	colback=blue!5!white,	
+	colbacktitle=blue!75!black,
+	fonttitle = \bfseries,
+	breakable,
+	boxed title style={size=small,colframe=arsenic} ,
+	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
+}
+%%
+%% Coloured box "examplebox" for formulas
+%%
+\newtcolorbox{examplebox}[ 1 ]
+{
+	colback = beaublue,
+	colframe = amethyst,
+	breakable,
 	fonttitle = \bfseries,title=#1
+}
+%%
+%% Coloured box "rappel" pour rappel de formules
+%%
+\newtcolorbox{rappel}[ 1 ]
+{
+	colback = ashgrey,
+	colframe = arsenic,
+	breakable,
+	fonttitle = \bfseries,title=#1
+}
+%%
+%% Coloured box "rappel" pour rappel de formules
+%%
+\DeclareTColorBox{rappel_enhanced}{ o }
+{
+	enhanced,
+	title = #1,
+	colback=ashgrey, % color of the box
+%	colframe=blue(pigment),
+%	colframe=arsenic,	
+	colbacktitle=arsenic,
+	fonttitle = \bfseries,
+	breakable,
+	boxed title style={size=small,colframe=arsenic} ,
+	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
+}
+%%
+%% Coloured box "notation" for notation and terminology
+%%
+\DeclareTColorBox{distributions}{ o }			% #1 parameter
+{
+	enhanced,
+	title = #1,
+	colback=gray(x11gray), % color of the box
+%	colframe=blue(pigment),
+	colframe=arsenic,	
+	colbacktitle=aurometalsaurus,
+	fonttitle = \bfseries,
+	boxed title style={size=small,colframe=arsenic} ,
+	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
+	breakable
+%	left=0pt,
+%  	right=0pt,
+%    box align=center,
+%    ams align*
+%  	top=-10pt
+}
+\newtcolorbox{contrib}[ 1 ]
+{
+	colback = babyblueeyes,
+	colframe = airforceblue,
+	fonttitle = \bfseries,
+	title = {#1},
+	valign = center
 }
 
 %% -----------------------------
@@ -159,24 +405,71 @@
 %% -----------------------------
 \usepackage{color, soulutf8, colortbl}
 
+
 %
 %	Colour definitions
 %
-\definecolor{indigo(web)}{rgb}{0.29, 0.0, 0.51}
-\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\definecolor{armygreen}{rgb}{0.29, 0.33, 0.13}	%	army
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}	% pastel green militariesque
+\definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
+\definecolor{calpolypomonagreen}{rgb}{0.12, 0.3, 0.17}
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
+\definecolor{lightgreen}{rgb}{0.2, 0.95, 0.2}
+
+\definecolor{antiquebrass}{rgb}{0.8, 0.58, 0.46}	% brown-ish light cardboard color
+
+\definecolor{blue(munsell)}{rgb}{0.0, 0.5, 0.69}
+\definecolor{blue(matcha)}{rgb}{0.596, 0.819, 1.00}
+\definecolor{blue(munsell)-light}{rgb}{0.5, 0.8, 0.9}
+\definecolor{bleudefrance}{rgb}{0.19, 0.55, 0.91}
+\definecolor{blizzardblue}{rgb}{0.67, 0.9, 0.93}	%	mr.freeze light baby blue 
+\definecolor{bondiblue}{rgb}{0.0, 0.58, 0.71}	%	darker cyan type inidgo blue
+\definecolor{blue(pigment)}{rgb}{0.2, 0.2, 0.6}
+\definecolor{bluebell}{rgb}{0.64, 0.64, 0.82}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{beaublue}{rgb}{0.74, 0.83, 0.9}    % almost white
+\definecolor{blue_rectangle}{RGB}{83, 84, 244}		% ACT-2004
+\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}	% nice light blue-ish
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}	%	almost green ish blue ish
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
+
+\definecolor{indigo(web)}{rgb}{0.29, 0.0, 0.51}	% purple-ish
+\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}	%	pastel matte (darkerish) purple ish
+\definecolor{darkpastelpurple}{rgb}{0.59, 0.44, 0.84}	%	pretty purple
+\definecolor{gray(x11gray)}{rgb}{0.75, 0.75, 0.75}
+\definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
+\definecolor{bulgarianrose}{rgb}{0.28, 0.02, 0.03}	%	dark maroon type 
+\definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}		%	light red pinktinybit ish
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{eggshell}{rgb}{0.94, 0.92, 0.84}
 \definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
-\definecolor{darkpastelpurple}{rgb}{0.59, 0.44, 0.84}
 \definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}			
-\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}		
-\definecolor{burntsienna}{rgb}{0.91, 0.45, 0.32}		
-\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}		% ACT-2003
-\definecolor{amber(sae/ece)}{rgb}{1.0, 0.49, 0.0} 	% ACT-2004
+\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}		% prertty apple dark pastel (light) green
 \definecolor{green_rectangle}{RGB}{131, 176, 84}		% ACT-2004
 \definecolor{red_rectangle}{RGB}{241,112,113}		% ACT-2004
-\definecolor{blue_rectangle}{RGB}{83, 84, 244}		% ACT-2004
 \definecolor{amethyst}{rgb}{0.6, 0.4, 0.8}
 \definecolor{amethyst-light}{rgb}{0.6, 0.4, 0.8}
+\definecolor{ruddypink}{rgb}{0.88, 0.56, 0.59}
 
+\definecolor{amber(sae/ece)}{rgb}{1.0, 0.49, 0.0} 	%	pretty orange ish
+\definecolor{burntsienna}{rgb}{0.91, 0.45, 0.32}		%%	lighter pastel orange
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}		%%	imilar but deeper orange
+\definecolor{orange-red}{rgb}{1.0, 0.27, 0.0}
+
+\definecolor{tealblue}{rgb}{0.21, 0.46, 0.53}
+
+\definecolor{battleshipgrey}{rgb}{0.52, 0.52, 0.51}  % lilght ish gray
+\definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}			% dark grey-black-ish
+\definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}			% light green-beige-ish gray
+\definecolor{gray(x11gray)}{rgb}{0.75, 0.75, 0.75}
+
+\definecolor{carmine}{rgb}{0.59, 0.0, 0.09} 			% deep red
+\definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
+\definecolor{brickred}{rgb}{0.8, 0.25, 0.33}
+\definecolor{chestnut}{rgb}{0.8, 0.36, 0.36}		% pink red ish light
+\definecolor{palechestnut}{rgb}{0.87, 0.68, 0.69}
+\definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}
+\definecolor{forestgreen(traditional)}{rgb}{0.0, 0.27, 0.13}
 %
 % Useful shortcuts for coloured text
 %
@@ -229,6 +522,7 @@
 \usepackage{sectsty}
 \sectionfont{\color{\SectionColor}}
 \subsectionfont{\color{\SubSectionColor}}
+\subsubsectionfont{\color{\SubSubSectionColor}}
 
 %% -----------------------------
 %% Footer/Header Customization
@@ -236,6 +530,7 @@
 \usepackage{lastpage}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+
 %
 % Header
 %
@@ -248,8 +543,7 @@
 %
 \fancyfoot{}		% Reset
 \fancyfoot[R]{\thepage ~de~ \pageref{LastPage}}
-\fancyfoot[L]{\href{https://github.com/gabrielcrepeault/latex-template}{\faGithub \ gabrielcrepeault/latex-template}}
-
+\fancyfoot[L]{\href{https://github.com/ressources-act/Guide_de_survie_en_actuariat}{\faGithub \ ressources-act/Guide de survie en actuariat}}
 %
 % Page background color
 %

@@ -1,21 +1,29 @@
 % !TEX encoding = UTF-8 Unicode
 % LaTeX Preamble
 % Author : Gabriel Crépeault-Cauchon
-% Last update : 08/09/2019
+% Last update : 10/10/2019 by Alec James van Rassel
+%
 % ---------------------------------------------
 % BEGINNING OF PREAMBLE
 % ---------------------------------------------
-% Encoding packages
+%
+%%% -----------------------------
+%%% Encoding packages
+%%% -----------------------------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{babel}
 \usepackage{lmodern}
 
-% HYPERREF (URL's and Link options)
+%%% -----------------------------
+%%% Options for URLs and links
+%%% -----------------------------
 \usepackage{hyperref}
 \hypersetup{colorlinks = true, urlcolor = red!60!black, linkcolor = red!60!black}
 
-% POLICY (choose one of them)
+%%% -----------------------------
+%%% Document policy (uncomment only one)
+%%% -----------------------------
 %	\usepackage{concrete}
 %	\usepackage{mathpazo}
 %	\usepackage{frcursive} %% permet d'écrire en lettres attachées
@@ -23,61 +31,168 @@
 % 	\usepackage{mathptmx}
 %	\usepackage{fourier} 
 
-% Mathematics configuration
+%%% -----------------------------
+%%% Math configuration
+%%% -----------------------------
 \usepackage{amsmath,amsthm,amssymb,latexsym,amsfonts}
 \usepackage{empheq}
 \usepackage{numprint}
-\usepackage{dsfont} 
+\usepackage{dsfont} 	% Pour avoir le symbole du domaine Z
 
-
-% Tcolorbox config
+%% -----------------------------
+%% tcolorbox configuration
+%% -----------------------------
 \usepackage{tcolorbox}
 \tcbuselibrary{xparse}
 \tcbuselibrary{breakable}
 
-% Définition Boite pour exemple
-\newcounter{ex}[section]
-\DeclareTColorBox{exemple}{ o }% #1 parameter
-{colframe=green!20!black,colback=green!5!white, % color of the box
-breakable, pad at break*=0mm, % to split the box
-before title = {\textbf{Exemple \stepcounter{ex} \arabic{chapter}.\arabic{section}.\arabic{ex} }},
-IfValueTF = {#1}{title= {#1}}{title= \hphantom},
-after title = {\large \hfill \faWrench}
-}
-
-%% Définition boite pour définition
+%%
+%% Coloured box "definition" for definitions
+%%
 \newcounter{def}[section]
-\DeclareTColorBox{definition}{ o }% #1 parameter
-{colframe=blue!60!green,colback=blue!5!white, % color of the box
-breakable, pad at break*=0mm, % to split the box
-before title = {\textbf{Définition \stepcounter{def} \arabic{chapter}.\arabic{section}.\arabic{def} }},
-title = {#1},
-after title = {\large \hfill \faBook}
+\DeclareTColorBox{definition}{ o }				% #1 parameter
+{
+	colframe=blue!60!green,colback=blue!5!white, % color of the box
+	breakable, 
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	after title = {\large \hfill \faBook}
 }
-
+%%
+%% Coloured box "algo" for algorithms
+%%
+\newtcolorbox{algo}[ 1 ]
+{
+	colback = blue!5!white,
+	colframe = blue!75!black,
+	fonttitle = \bfseries,title=#1
+}
+%%
+%% Coloured box "formula" for formulas
+%%
+\newtcolorbox{formula}[ 1 ]
+{
+	colback = green!5!white,
+	colframe = green!75!black,
+	fonttitle = \bfseries,title=#1
+}
+%%
+%% Coloured box "exemple" for examples
+%%
+\newcounter{ex}[section]
+\DeclareTColorBox{exemple}{ o }	% #1 parameter
+{
+	colframe = green!20!black,
+	colback = green!5!white, % color of the box
+	breakable, 
+	pad at break* = 0mm, % to split the box
+	before title = 
+	{
+		\textbf{Exemple \stepcounter{ex} \arabic{chapter}.\arabic{section}.\arabic{ex} }
+	},
+	IfValueTF = {#1}{title= {#1}}{title= \hphantom},
+	after title = {\large \hfill \faWrench}
+}
 \DeclareTColorBox{note}{ o }
     {colframe=black,
      colback=white,
      sharp corners,
      pad at break*=0mm,
      IfValueTF={#1}{title={#1}, fonttitle=\bfseries}{title=Note, fonttitle=\bfseries}}
+%%
+%% Coloured box "theo-ann" pour théorèmes de l'annexe
+%%
+\newtcolorbox{theo-ann}[ 1 ]
+{
+	colback = ashgrey,
+	colframe = arsenic,
+	fonttitle = \bfseries,title=#1
+}
+%%
+%% Coloured box "preuve-ann" pour preuves dans l'annexe
+%%
+\newtcolorbox{preuve-ann}[ 1 ]
+{
+	colback = carolinablue,
+	colframe = celestialblue,
+	fonttitle = \bfseries,title=#1
+}
+%%
+%% Coloured box "crit-ann" pour critères de la preuve dans l'annexe
+%%
+\newtcolorbox{crit-ann}[ 1 ]
+{
+	colback = classicrose,
+	colframe = crimsonglory,
+	fonttitle = \bfseries,title=#1
+}
 
 
-% Graphics and picture import Packages
+%% -----------------------------
+%% Graphics and pictures
+%% -----------------------------
 \usepackage{graphicx}
 \usepackage{pict2e}
+\usepackage{tikz}
+%
+% Special symbols packages
+%
+\usepackage[tikz]{bclogo}
+%% -----------------------------
+%% Fontawesome for special symbols
+%% -----------------------------
+\usepackage{fontawesome}
 
-% insert PDF package
+%% -----------------------------
+%% insert pdf pages into document
+%% -----------------------------
 \usepackage{pdfpages}
 
-% Color package
+%% -----------------------------
+%% Color configuration
+%% -----------------------------
 \usepackage{color, soulutf8, colortbl}
 
-% Mathematics table
-\usepackage{array}   % for \newcolumntype macro
-\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+%
+%	Colour definitions
+%
+\definecolor{darkpastelpurple}{rgb}{0.59, 0.44, 0.84}
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}		
+\definecolor{tocColor}{HTML}{8A2507}	
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}		
+\definecolor{burntsienna}{rgb}{0.91, 0.45, 0.32}		
+\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}		% ACT-2003
+\definecolor{amber(sae/ece)}{rgb}{1.0, 0.49, 0.0} 	% ACT-2003
+\definecolor{green_rectangle}{RGB}{131, 176, 84}		% ACT-2004
+\definecolor{red_rectangle}{RGB}{241,112,113}		% ACT-2004
+\definecolor{blue_rectangle}{RGB}{83, 84, 244}		% ACT-2004
+\definecolor{amethyst}{rgb}{0.6, 0.4, 0.8}
+\definecolor{amethyst-light}{rgb}{0.6, 0.4, 0.8}
+\definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}			% dark grey-black-ish
+\definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}			% light green-beige-ish gray
+\definecolor{celestialblue}{rgb}{0.29, 0.59, 0.82}	%	darker baby royal pastel blue
+\definecolor{carolinablue}{rgb}{0.6, 0.78, 0.89}		%	light baby blue-pastel ish
+\definecolor{classicrose}{rgb}{0.98, 0.8, 0.91}		%	very light pastel red
+\definecolor{crimsonglory}{rgb}{0.75, 0.0, 0.2}		%	dark wine red
 
-% usefull shortcut for colored text
+%% -----------------------------
+%% Mathematics table
+%% -----------------------------
+\usepackage{array}   		% for \newcolumntype macro
+%% -----------------------------
+%% Tabular column type configuration
+%% -----------------------------
+\newcolumntype{C}{>{$}c<{$}} % math-mode version of "l" column type
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{R}{>{$}r<{$}} % math-mode version of "l" column type
+\newcolumntype{f}{>{\columncolor{green!20!white}}p{1cm}}
+\newcolumntype{g}{>{\columncolor{green!40!white}}m{1.2cm}}
+\newcolumntype{a}{>{\columncolor{red!20!white}$}p{2cm}<{$}}	% ACT-2005
+% configuration to force a line break within a single cell
+\usepackage{makecell}
+%
+%	Useful shortcuts for colored text
+%
 \newcommand{\orange}{\textcolor{orange}}
 \newcommand{\red}{\textcolor{red}}
 \newcommand{\cyan}{\textcolor{cyan}}
@@ -87,76 +202,86 @@ after title = {\large \hfill \faBook}
 \newcommand{\purple}{\textcolor{magenta}}
 \newcommand{\yellow}{\textcolor{yellow}}
 
-% Colors define
-\definecolor{darkgreen}{RGB}{37, 128, 40}
-\definecolor{tocColor}{HTML}{8A2507}
-
+%% -----------------------------
+%% Enumerate environment configuration
+%% -----------------------------
+%
 % Custum enumerate & itemize Package
+%
 \usepackage{enumitem}
+%
 % French Setup for itemize function
+%
 \frenchbsetup{StandardItemLabels=true}
+%
+% Change default label for itemize
+%
+\renewcommand{\labelitemi}{\faAngleRight}
 
-% Mathematics shortcut
+%%%
+%%%	Mathematics shortcuts
+%%%
 \usepackage{cancel}
+
 \newcommand{\reels}{\mathbb{R}}
 \newcommand{\entiers}{\mathbb{Z}}
 \newcommand{\naturels}{\mathbb{N}}
 \newcommand{\eval}{\biggr \rvert}
-\newcommand{\esp}[2][]{\mathrm{E}_{#1} \left[ #2 \right]} % espérance
-\newcommand{\variance}[1]{\mathrm{Var} \left( #1 \right)} % variance
-\newcommand{\covar}[1]{\mathrm{Cov} \left( #1 \right)} % variance
-\newcommand{\prob}[1]{\Pr \left( #1 \right)} % probabilité entre parenthèses
+\newcommand{\derivee}[1]{\frac{\partial}{\partial #1}}
+\newcommand{\prob}[1]{\Pr \left( #1 \right)}	% probabilité entre parenthèses
+\newcommand{\esp}[1]{\mathrm{E} \left[ #1 \right]} 
+\newcommand{\variance}[1]{\mathrm{Var} \left( #1 \right)}
+\newcommand{\covar}[1]{\mathrm{Cov} \left( #1   \right)}
 \newcommand{\laplace}{\mathcal{L}}
 \newcommand{\matr}[1]{\mathbf{#1}} % Notation matricielle
 \DeclareMathOperator{\Tr}{Tr}
 \newcommand{\fgp}{\mathcal{P}}
 \DeclareMathOperator{\Adj}{Adj}
-\newcommand{\derivee}[1]{\frac{\partial}{\partial #1}}
 \newcommand{\indic}[1]{\mathds{1}_{\{ #1 \}}}
 \newcommand{\VaR}[2][k]{\mathrm{VaR}_{#1}{\left( #2 \right)}}
 \newcommand{\TVaR}[2][k]{\mathrm{TVaR}_{#1}{\left( #2 \right)}}
 \newcommand{\hatY}{\hat{Y}}
 \newcommand{\hatbeta}{\hat{\beta}}
 \newcommand{\sumn}{\sum_{i=0}^n}
-
-
-
-
-
-
-% Matricial anotation for math symbols (\bm{•})
-% à enlever éventuellement, j'ai ajouté la macro \matr{} à la place.
-\usepackage{bm}
-
-% Actuarial notation package
+%
+%	Actuarial notation packages
+%
 \usepackage{actuarialsymbol}
 \usepackage{actuarialangle}
+%
+%	Matrix notation for math symbols (\bm{})
+%
+% 	NOTE: 
+%	+ à enlever éventuellement, j'ai ajouté la macro \matr{} à la place.
+\usepackage{bm}
 
-% To indicate equation number on a specific line in align environment
+%
+% 	To indicate equation number on a specific line in align environment
+%
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 
-% Other shortcut
+% Other shortcuts
 \newcommand{\p}{\paragraph{}}
 \newcommand{\n}{\newline}
 
 % source : https://tex.stackexchange.com/questions/112576/math-mode-in-tabular-without-having-to-use-everywhere
 
-
-
-% Special symbols package
- \usepackage[tikz]{bclogo}
-\usepackage{fontawesome}
-
-% Retire l'indentation automatique de Latex
+%
+%	Retire l'indentation automatique de Latex
+%
 \setlength{\parindent}{0pt}
 
-% Utilisé pour la page couverture
+%
+%	Utilisé pour la page couverture
+% 
 \usepackage[absolute]{textpos} % Textblock environement
 \usepackage{anyfontsize} % Avoir un gros titre
 \usepackage{titling} % Avoir un gros titre
 \usepackage{changepage} % ajustwidth environement
 
+%
 % Pour afficher du code
+%
 \usepackage{listings}
 
 \definecolor{codegray}{gray}{0.9}
@@ -186,35 +311,96 @@ after title = {\large \hfill \faBook}
 \usepackage{lstlinebgrd}
 \definecolor{grayComment}{HTML}{8D90B8}
 \lstset{
-language=R,                     % the language of the code
-basicstyle=\ttfamily, % the size of the fonts that are used for the code
-% numbers=left,                   % where to put the line-numbers
-% numberstyle=\color{blue},  % the style that is used for the line-numbers
-% stepnumber=1,                   % the step between two line-numbers. If it is 1, each line
-% will be numbered
-numbersep=5pt,                  % how far the line-numbers are from the code
-backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
-linebackgroundcolor=\color{white},
-showspaces=false,               % show spaces adding particular underscores
-showstringspaces=false,         % underline spaces within strings
-showtabs=false,                 % show tabs within strings adding particular underscores
-frame=single,                   % adds a frame around the code
-rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
-tabsize=2,                      % sets default tabsize to 2 spaces
-captionpos=b,                   % sets the caption-position to bottom
-breaklines=true,                % sets automatic line breaking
-breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	language = R,                     % the language of the code
+	basicstyle = \ttfamily, % the size of the fonts that are used for the code
+% 	numbers = left,                   % where to put the line-numbers
+% 	numberstyle = \color{blue},  % the style that is used for the line-numbers
+% 	stepnumber = 1,                   % the step between two line-numbers. If it is 1, each line will be numbered
+	numbersep = 5pt,                  % how far the line-numbers are from the code
+	backgroundcolor = \color{white},  % choose the background color. You must add \usepackage{color}
+	linebackgroundcolor = \color{white},
+	showspaces = false,               % show spaces adding particular underscores
+	showstringspaces = false,         % underline spaces within strings
+	showtabs = false,                 % show tabs within strings adding particular underscores
+	frame = single,                   % adds a frame around the code
+	rulecolor = \color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+	tabsize = 2,                      % sets default tabsize to 2 spaces
+	captionpos = b,                   % sets the caption-position to bottom
+	breaklines = true,                % sets automatic line breaking
+	breakatwhitespace = false,        % sets if automatic breaks should only happen at whitespace
 %   keywordstyle=\color{functionR},      % keyword style
-commentstyle=\color[HTML]{9F0808},  %\color[HTML]{8D90B8},   % comment style
+	commentstyle = \color[HTML]{9F0808},  %\color[HTML]{8D90B8},   % comment style
 %   stringstyle=\color[HTML]{1D9507},      % string literal style
-moredelim=**[is][\color{grayComment}]{@}{@}, % couleur manuel
-literate=%
-{à}{{\`a}}1
-{é}{{\'e}}1
-{è}{{\`e}}1
+	moredelim = **[is][\color{grayComment}]{@}{@}, % couleur manuel
+	literate = %
+		{à}{{\`a}}1
+		{é}{{\'e}}1
+		{è}{{\`e}}1
 } 
 
+%%% -----------------------------
+%%% Cheatsheets customization
+%%% -----------------------------
 
+%%% -----------------------------
+%%% Variable definition
+%%% -----------------------------
+%\def\auteur{Gabriel Crépeault-Cauchon / Nicholas Langevin}
+%\def\BackgroundColor{white}
+%
+%%% -----------------------------
+%%% Margin and layout
+%%% -----------------------------
+%% Determine the margin for cheatsheet
+%\usepackage[landscape, hmargin=1cm, vmargin=1.7cm]{geometry}
+%\usepackage{multicol}
+%
+%%% Remove automatic indentation after section/subsection title.
+%%\setlength{\parindent}{0cm}
+%
+%% Save space in cheatsheet by removing space between align environment and normal text.
+%\usepackage{etoolbox}
+%\newcommand{\zerodisplayskips}{%
+%  \setlength{\abovedisplayskip}{0pt}%
+%  \setlength{\belowdisplayskip}{0pt}%
+%  \setlength{\abovedisplayshortskip}{0pt}%
+%  \setlength{\belowdisplayshortskip}{0pt}}
+%\appto{\normalsize}{\zerodisplayskips}
+%\appto{\small}{\zerodisplayskips}
+%\appto{\footnotesize}{\zerodisplayskips}
+%
+%%% -----------------------------
+%%% Section Font customization
+%%% -----------------------------
+%\usepackage{sectsty}
+%\sectionfont{\color{\SectionColor}}
+%\subsectionfont{\color{\SubSectionColor}}
+%
+%%% -----------------------------
+%%% Footer/Header Customization
+%%% -----------------------------
+%\usepackage{lastpage}
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%
+%%
+%% Header
+%%
+%\fancyhead{} 	% Reset
+%\fancyhead[L]{Aide-mémoire pour~ \cours ~(\textbf{\sigle})}
+%\fancyhead[R]{\auteur}
+%
+%%
+%% Footer
+%%
+%\fancyfoot{}		% Reset
+%\fancyfoot[R]{\thepage ~de~ \pageref{LastPage}}
+%\fancyfoot[L]{\href{https://github.com/gabrielcrepeault/latex-template}{\faGithub \ gabrielcrepeault/latex-template}}
+%
+%%
+%% Page background color
+%%
+%\pagecolor{\BackgroundColor}
 
 
 
