@@ -17,8 +17,3 @@ jobs:
         with:
           name: contributeurs-cheatshts
           path: 02_Cheatsheets/contributeurs/contributeurs-cheatshts.pdf
-      - name: Download a Build Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: contributeurs-cheatshts
-          path: 02_Cheatsheets/contributeurs/contributeurs-cheatshts.pdf
