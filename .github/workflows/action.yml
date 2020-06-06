@@ -17,3 +17,9 @@ jobs:
         with:
           name: contributeurs-cheatshts
           path: 02_Cheatsheets/contributeurs/contributeurs-cheatshts.pdf
+      - name: copy file
+        uses: canastro/copy-file-action@master
+        with:
+          source: "02_Cheatsheets/contributeurs/contributeurs-cheatshts.pdf"
+          target: "02_Cheatsheets/contributeurs/contributeurs-cheatshts-2.pdf"
+
