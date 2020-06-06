@@ -1,5 +1,5 @@
 name: Github Actions CI
-on
+on:
   push:
     branches:
       - master
