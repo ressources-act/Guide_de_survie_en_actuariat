@@ -1,6 +1,3 @@
-name: paper-maker
-description: Automagically build LaTex manuscripts and push the latest PDF back to GitHub
-
 on: push
 
 branding:
