@@ -9,5 +9,5 @@ jobs:
       - name: Compile LaTeX document
         uses: dante-ev/latex-action@master
         with:
-          root_file: 02_Cheatsheets/contributeurs/contributeurs-cheatshts.tex
           working_directory: 02_Cheatsheets/contributeurs/
+          root_file: contributeurs-cheatshts.tex
