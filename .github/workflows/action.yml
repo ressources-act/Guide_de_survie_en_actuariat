@@ -1,9 +1,5 @@
 on: push
 
-branding:
-  icon: 'zap'
-  color: 'blue'
-
 jobs:
   build:
     runs-on: ubuntu-latest
