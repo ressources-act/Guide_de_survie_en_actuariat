@@ -16,7 +16,7 @@ ACT-9999
 + 
 + 
   
-  
+<!--- Soit mettre un x entre les carrés ou tu pourrais le faire après avoir créé le PR. -->
 ##  Checklist
 - [ ] Le code exécute ?
 - [ ] Le fichier de contributions a été mis à jour si nécessaire ?  ([voir ce document du dépôt](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/contributeurs/contributeurs-cheatshts.pdf) pour une description des rôles)
