@@ -7,7 +7,7 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v1
       - name: Compile LaTeX document
-        uses: dante-ev/latex-action@master
+        uses: xu-cheng/latex-action@master
         with:
           working_directory: 02_Cheatsheets/contributeurs/
           root_file: contributeurs-cheatshts.tex
