@@ -1,0 +1,125 @@
+% !TEX encoding = UTF-8 Unicode
+% LaTeX Preamble
+% Author : Gabriel Crépeault-Cauchon
+% Last update : 07/10/2018
+
+% HOW-TO : copy-paste this file in the same directory as your .tex file, and add in your preamble the next command right after you have specified your documentclass : 
+% \input{preambule_utf8.tex}
+
+% ---------------------------------------------
+% BEGINNING OF PREAMBLE
+% ---------------------------------------------
+% Encoding packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{lmodern}
+
+% HYPERREF (URL's and Link options)
+\usepackage{hyperref}
+\hypersetup{colorlinks = true, urlcolor = blue, linkcolor = red!60!black}
+
+% POLICY (choose one of them)
+	%\usepackage{concrete}
+	\usepackage{mathpazo}
+%	\usepackage{frcursive} %% permet d'écrire en lettres attachées
+ %\usepackage{aeguill}
+% 	\usepackage{mathptmx}
+%	\usepackage{fourier} 
+
+% Mathematics configuration
+\usepackage{amsmath,amsthm,amssymb,latexsym,amsfonts}
+\usepackage{empheq}
+\usepackage{numprint}
+\usepackage{dsfont} 
+
+
+% Tcolorbox config
+\usepackage{tcolorbox}
+\tcbuselibrary{xparse}
+\tcbuselibrary{breakable}
+%% Définition Boite pour exemple
+\newcounter{ex}[section]
+\DeclareTColorBox{exemple}{ o }% #1 parameter
+{colframe=green!20!black,colback=green!5!white, % color of the box
+breakable, pad at break*=0mm, % to split the box
+before title = {\textbf{Exemple \stepcounter{ex} \arabic{chapter}.\arabic{section}.\arabic{ex} }},
+IfValueTF = {#1}{title= {#1}}{title= \hphantom},
+after title = {\large \hfill \faWrench}
+}
+
+%% Définition boite pour définition
+\newcounter{def}[section]
+\DeclareTColorBox{definition}{ o }% #1 parameter
+{colframe=blue!60!green,colback=blue!5!white, % color of the box
+breakable, pad at break*=0mm, % to split the box
+before title = {\textbf{Définition \stepcounter{def} \arabic{chapter}.\arabic{section}.\arabic{def} }},
+title = {#1},
+after title = {\large \hfill \faBook}
+}
+
+
+% Graphics and picture import Packages
+\usepackage{graphicx}
+\usepackage{pict2e}
+
+% insert PDF package
+\usepackage{pdfpages}
+
+% Color package
+\usepackage{color, soulutf8, colortbl}
+
+% usefull shortcut for colored text
+\newcommand{\orange}{\textcolor{orange}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\cyan}{\textcolor{cyan}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\green}{\textcolor{green}}
+\newcommand{\purple}{\textcolor{magenta}}
+\newcommand{\yellow}{\textcolor{yellow}}
+
+% Custum enumerate & itemize Package
+\usepackage{enumitem}
+% French Setup for itemize function
+\frenchbsetup{StandardItemLabels=true}
+
+% Mathematics shortcut
+\usepackage{cancel}
+\newcommand{\reels}{\mathbb{R}}
+\newcommand{\entiers}{\mathbb{Z}}
+\newcommand{\naturels}{\mathbb{N}}
+\newcommand{\eval}{\biggr \rvert}
+\newcommand{\esp}[1]{\mathrm{E} \left[ #1 \right]} % espérance
+\newcommand{\variance}[1]{\mathrm{Var} \left( #1 \right)} % variance
+\newcommand{\covar}[1]{\mathrm{Cov} \left( #1 \right)} % variance
+\newcommand{\prob}[1]{\Pr \left( #1 \right)} % probabilité entre parenthèses
+\newcommand{\laplace}{\mathcal{L}}
+\newcommand{\matr}[1]{\mathbf{#1}} % Notation matricielle
+
+% Matricial anotation for math symbols (\bm{•})
+\usepackage{bm}
+
+
+% Actuarial notation package
+\usepackage{actuarialsymbol}
+\usepackage{actuarialangle}
+
+% To indicate equation number on a specific line in align environment
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+% Other shortcut
+\newcommand{\p}{\paragraph{}}
+\newcommand{\n}{\newline}
+\newcommand{\derivee}[1]{\frac{\partial}{\partial #1}}
+\newcommand{\indic}[1]{\mathds{1}_{\{ #1 \}}}
+
+% Special symbols package
+\usepackage[tikz]{bclogo}
+\usepackage{fontawesome}
+
+% Retire l'indentation automatique de Latex
+\setlength{\parindent}{0pt}
+
+% ---------------------------------------------
+% END OF PREAMBLE
+% ---------------------------------------------

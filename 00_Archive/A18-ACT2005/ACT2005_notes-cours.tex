@@ -3,8 +3,8 @@
 \documentclass[12pt, french]{report}
 
 % Lien vers un template de préambule
-\input{../document_principal/preambule_utf8.tex}
-%\input{/preambule/code-listing_setup.tex}
+\input{preambule/preambule_utf8.tex}
+% \input{preambule/code-listing_setup.tex}
 
 % Information sur le document
 \title{Mathématiques actuarielles IARD-1 \\
@@ -12,6 +12,9 @@ ACT-2005 \\
 Notes de cours}
 \author{Gabriel Crépeault-Cauchon \\
 Nicholas Langevin}
+
+% Ajout temporaire, à mettre dans le préambule éventuellement
+\usepackage{mathrsfs}
 
 
 % -----------------------------------
@@ -28,13 +31,55 @@ Nicholas Langevin}
 
 % --- RÉSUMÉ ---
 \begin{abstract}
-Ce document résume les notes de cours prises en classe dans le cours de Mathématiques actuarielles IARD-1, ainsi que des notions prises du livre \textit{LOSS MODELS - From Data to Decisions, 4\up{th} edition}.
+Ce document résume les notes de cours prises en classe dans le cours de Mathématiques actuarielles IARD-1, ainsi que des notions prises du livre \textit{LOSS MODELS - From Data to Decisions, 4\up{th} edition}. Il est séparé en 2 parties : la matière qui a été couverte avant et après l'examen partiel. \\
+
+Le chapitre correspondant dans le \emph{Loss Models, 4\up{th} edition} est indiqué entre parenthèse des chapitres. \\
+
+De plus, ce document essaie le plus possible de suivre la numérotation des sections du \emph{Loss Models}. C'est pourquoi il arrive parfois qu'il y ait des sauts de section. \\
+
+Un aide-mémoire a été créé en lien avec cette matière. Il est disponible  \href{https://github.com/gabrielcrepeault/latex-template/tree/master/act-cheatsheet/A18-ACT2005}{dans le répertoire GitHub suivant \faGithub}. \\
+
+Finalement, il y a une section à la fin des chapitres qui indique les exercices recommandés dans le livre, intitulée \textbf{Exercices recommandés}.
 \end{abstract}
 % --------------
 
 
-\setcounter{chapter}{2} % Pour aller directement au chapitre 3
-\chapter{Quantités des distributions à connaître}
+\part{Matière pour l'examen partiel}
+
+\chapter{Quelques rappels de Probabilité}
+La loi gamma : 
+\begin{align*}
+\Gamma(\alpha) = \int_{0}^{\infty} x^{\alpha-1} e^{-x} dx
+\end{align*}
+De plus, on a
+\[\Gamma(\alpha) = (\alpha-1) \Gamma(\alpha-1)\]
+et
+\[\Gamma(n) = (n-1)!\]
+
+\section{Fonction de survie}
+On a
+\begin{align*}
+\esp{X} & = \int_{-\infty}^{\infty} x f_X(x) dx \\
+	& = \int_{-\infty}^{\infty} S_X(x) dx \\
+\end{align*}
+De plus,
+\begin{align*}
+f_X(x) = - \derivee{x} S_X(x)
+\end{align*}
+\begin{proof}
+\begin{align*}
+f_X(x)	&  =-  \derivee{x} S_X(x)  \\
+	&=-  \derivee{x} (1  - F_X(x))  \\
+	& = - (- f_X(x)) \\
+	& = f_X(x) \\
+\end{align*}
+\end{proof}
+
+
+
+
+
+\chapter{Quantités des distributions à connaître (3)}
 \section{Moments}
 
 \paragraph{\textit{Raw moments}}
@@ -74,7 +119,7 @@ Le coefficient d'asymétrie, aussi appelé \textit{skewness}, est défini par
 Soit le 3\up{e} moment standarisé. Si $S_k = 0$, alors la distribution tend vers une loi normale, telle qu'on le voit sur la figure ci-dessous : 
 
 \begin{center}
-\includegraphics[scale=0.4]{../MAS-I/src/skewness_interpretation.jpg}
+\includegraphics[scale=0.4]{Figures/skewness_interpretation.jpg}
 \end{center}
 
 \paragraph{Coefficient d'applatissement}
@@ -116,7 +161,7 @@ La v.a. $Y$ est dite \textit{censurée à droite et shifted}
 \begin{exemple}[lien entre le déductible et la limite]
 On peut faire le lien entre le déductible et la limite : 
 \begin{center}
-%\includegraphics[scale=0.45]{../MAS-I/src/distinction_loss-deductible-limit}
+\includegraphics[scale=0.45]{Figures/distinction_loss-deductible-limit}
 \end{center}
 \end{exemple}
 
@@ -135,6 +180,13 @@ On peut faire le lien entre le déductible et la limite :
 %\begin{equation}
 %    E[x^k] = C_k k!
 %\end{equation}
+
+\section{Percentile}
+\label{sec:percentile}
+On définit le $p$\up{e} quantile (\emph{percentile} en anglais) $\pi_p$ comme étant la valeur minimale que $X$ prend tel que $F_X(\pi_p) \geq p$. \\
+
+Il arrive parfois (en contexte où $x$  est discret) que le $p$ percentile demandé tombe dans une \emph{marche}. Il faut alors considérer les bornes de la fonction pour déterminer quelle valeur de $x$ correspond au quantile demandé.
+
 
 \section{Queue de distribution}
 \subsection{Classification selon les moments}
@@ -194,12 +246,11 @@ Soit une distribution ayant fonction de densité $f_X(x)$ et fonction de hazard 
 \item Note : on peut aussi comparer les distributions entre-elles : si une distribution voit son $h_1(x)$ augmenter plus rapidement que l'autre (i.e. $h_2(x)$), alors la deuxième distribution a une aile de distribution plus lourde.
 \end{enumerate}
 
+\section{Exercices recommandés}
+À compléter
 
 
-
-
-\setcounter{chapter}{7}
-\chapter{Fréquence et sévérité avec modifications aux contrats}
+\chapter{Fréquence et sévérité avec modifications aux contrats (8)}
 \setcounter{section}{1}
 \section{Déductibles}
 \subsection{Ordinary deductible}
@@ -495,15 +546,17 @@ Y^L =
 	& = (1+r) \left( \esp{X \wedge \frac{u}{1+r}} - \esp{X \wedge \frac{d}{1+r}}   \right) \\
 \end{align*}
 
+\section{Exercices recommandés}
+À compléter
 
 
 
 
 
-\setcounter{chapter}{10}
-\chapter{Estimation de données complètes}
+\chapter{Estimation de données complètes (11)}
+\label{chap:estimation_Fn}
 \setcounter{section}{1}
-% Commence à la section 11.2
+% Commence à la section 11.2 dans le Loss Models 4th edition
 
 \section{Estimation de données complètes}
 \subsection{Estimation de la fonction de répartition empirique}
@@ -527,7 +580,7 @@ F_n(t) =
 où $t \in [0, x_{(n)}]$.
 
 \begin{center}
-%\includegraphics[scale=0.3]{Figures/Fct_de_repartition_empirique}
+\includegraphics[scale=0.3]{Figures/Fct_de_repartition_empirique}
 \end{center}
 
 
@@ -550,7 +603,7 @@ Var \left( F_n(t) \right) & = \frac{1}{n^2}  n F(t) S(t) \\
 \end{enumerate}
 
 \subsection{\textit{Cumulative hazard-rate function}}
-On utilise cette fonction pour réussir à estimer la fonction de densité et le \textit{hazard rate} empirique. En effet, puisque la distribution empirique est discrète, on ne peut pas dériver $F_n(x)$ pour obtenir $f_n(x)$ et $h_n(x)$. La fonction de hazard cumulative se définit par
+On utilise cette fonctoin pour pouvoir réussir à estimer la fonction de densité et le \textit{hazard rate} empirique. En effet, puisque la distribution empirique est discrète, on ne peut pas dériver $F_n(x)$ pour obtenir $f_n(x)$ et $h_n(x)$. La fonction de hazard cumulative se définit par
 \begin{equation}
 H_X(x) = - \ln S_X(x)
 \end{equation}
@@ -610,7 +663,7 @@ On peut déterminer la valeur empirique de $F_n(x)$ aux bornes des classes, avec
 \begin{align*}
 F_n(x) = \frac{\sum_{i=1}^{j} n_i}{n}
 \end{align*}
-où $n_i$ est le nombre d'observations qui sont entre $c_{j-1}$ et $c_j$. Toutefois, pour les valeurs entre deux bornes $c_0 < c_1 < ... < c_k$, il faut approximer avec la fonction OGIV ci-dessous : 
+où $n_i$ est le nombre d'observations qui sont entre $c_{j-1}$ et $c_j$. Toutefois, pour les valeurs entre deux bornes $c_0 < c_1 < ... < c_k$, il faut approximer avec la fonction OGIVE ci-dessous : 
 
 \begin{equation}
 \label{eq:repart-OGIVE}
@@ -638,7 +691,43 @@ f_n(x) 	& = \derivee{x} F_x(x) \\
 \end{align*}
 \end{enumerate}
 
-\chapter{Estimation de données modifiées}
+\begin{exemple}[Fonction R \texttt{ogive}]
+Du package \href{https://cran.r-project.org/web/packages/actuar/actuar.pdf}{actuar}, on peut utiliser la fonction \texttt{ogive()} pour calculer les probabilités empiriques à des points précis de nos données lorsqu'elles sont groupées, mais aussi interpoler entre 2 valeurs : 
+\begin{verbatim}
+## Fonction OGIVE du package actuar de Vincent Goulet
+## Exemple numéro 5.2 du Loss Models
+## page 68, 4e édition
+library(actuar)
+
+## On définit le vecteur cj des bornes et
+## un vecteur nj des fréquences empiriques
+# note : il faut forcer une borne supérieure
+cj <- c(0, 300, 350, 400, 450, 500, 600, 2000)
+nj <- c(42, 3, 5, 5, 0, 5, 40)
+
+# On calcule la fonction ogive avec la fonction du même nom
+Fn <- ogive(cj, nj)
+
+y <- 500 / (1.1)^3
+# On calcule la probabilité demandée
+1 - Fn(y)
+[1] 0.5243426
+
+# On peut aussi faire un graphique de la
+## fonction empirique OGIVE
+plot(Fn)
+\end{verbatim}
+Et on obtient le graphique suivant : 
+\begin{center}
+\includegraphics[scale=0.5]{Figures/R-ogive-plot.png}
+\end{center}
+\end{exemple}
+
+\section{Exercices recommandés}
+À compléter
+
+
+\chapter{Estimation de données modifiées (12)}
 \section{Point estimation}
 \subsection{Définitions importante}
 Un vocabulaire spécifique aux données modifiées est utilisé, soit
@@ -694,6 +783,523 @@ On s'intéresse à l'espérance et la variance de la fonction de survie $S_n$, q
 \hl{Section à compléter}
 
 
+\section{Exercices recommandés}
+À compléter
+
+
+
+\part{Matière pour l'examen final}
+
+\chapter{Continuous models (5)}
+
+\section{Multiplication par une constante}
+Soit $X$ la v.a. représentant les pertes et $\theta$ un paramètre d'échelle (\emph{scale parameter}). On peut définir la v.a. $Y$ par
+\[Y = \theta X \]
+Alors,
+\begin{align*}
+F_Y(y) 	 & = \prob{Y \leq y} \\ 
+	& =\prob{\theta X \leq y} \\
+	& = \prob{X \leq \frac{y}{\theta}} \\
+	& = F_X \left( \frac{y}{\theta} \right) \\ \numberthis
+\end{align*}
+Et on peut aussi trouver que
+\begin{align*}
+f_Y(y) & = \derivee{y} F_Y(y) \\
+	& = \derivee{y} \left\{ F_X \left( \frac{y}{\theta} \right)     \right\} \\
+	& = \frac{1}{\theta} f_X \left( \frac{y}{\theta} \right) \\ \numberthis
+\end{align*}
+
+\paragraph{À noter} Si on doit appliquer une transformation impliquant une puissance (\emph{raising to a power}, voir section \autoref{sec:raise-to-power}), on applique cette dernière transformation avant d'appliquer le paramètre d'échelle $\theta$.
+
+
+\section{Raising to a power}
+% Label pour faire référence la section précédente.
+\label{sec:raise-to-power}
+
+Soit $X$ une v.a. représentant la perte avec une loi de probabilité quelquonque et la v.a. $Y$ tel que
+\[Y = X^{\frac{1}{\tau}} \]
+avec $\tau > 0$. On peut trouver $F_Y(y)$ ainsi que $f_Y(y)$ : 
+\begin{align*}
+F_Y(y) & = \prob{Y \leq y} \\
+	& = \prob{ X^{\frac{1}{\tau}} \leq y} \\
+	& = \prob{X \leq y^\tau} \\
+	& = F_X \left( y^\tau \right) \\ \numberthis
+\end{align*}
+et
+\begin{align*}
+f_Y(y)	& = \derivee{y} F_y(y) \\
+	& = \derivee{y}  F_X \left( y^\tau \right) \tau y^{\tau -1} f_X \left(y^\tau   \right) \\ \numberthis
+\end{align*}
+
+\paragraph{Note} On préfère toujours des paramètres positifs, donc on va ajuster les formules avec des constantes négatives dans certains cas.
+
+\begin{exemple}[Notation dans le livre \emph{Loss Models}]
+La notation utilisée par le livre est la suivante : 
+\begin{enumerate}[label=\faAngleRight]
+\item si $\tau > 0$ : \emph{transformed}
+\item si $\tau =  -1$ : \emph{inverse}
+\item si $\tau < 0$ et $\tau \neq 1$ : \emph{inverse-transformed}
+\end{enumerate}
+\end{exemple}
+
+\section{Exponentiation}
+Soit $X$ une v.a. représentant la perte. On définit $Y$ comme
+\[Y = \exp(X)  \]
+Alors, on trouve
+\begin{align*}
+F_Y(y)	& = \prob{Y \leq y } \\
+	& = \prob{e^X \leq y } \\
+	& = \prob{X \leq \ln y} \\
+	& = F_x( \ln y) \\ \numberthis
+\end{align*}
+et 
+\begin{align*}
+f_Y(y)	& = \derivee{y} F_Y(y) \\
+	& = \derivee{y} \left\{F_x( \ln y)   \right\} \\
+	& = \frac{1}{y} f_X(\ln y) \\ \numberthis
+\end{align*}
+
+\paragraph{Note} La loi Log-Normale est en fait une transformation exponentielle de la Loi Normale.
+
+\section{Lois mélanges}
+On peut créer des lois mélanges. En effet, il arrive qu'on ait une distribution dont l'un des paramètres est lui-même distribué aléatoirement selon une autre distribution, tel que
+\[ X | \Lambda \sim \text{une certaine loi}   \]
+\[ \Lambda \sim \text{une autre loi (ou la même!)} \] 
+
+On peut trouver les fonctions de densité et de répartition de ces différentes lois : 
+\begin{equation}
+f_X(x) = \int_{- \infty}^{\infty} f_{X|\Lambda}(x | \lambda) f_\Lambda(\lambda) d \lambda
+\end{equation}
+\begin{equation}
+F_X(x) = \int_{- \infty}^{\infty} F_{X | \Lambda}(x | \lambda) f_\Lambda(\lambda) d \lambda
+\end{equation}
+De plus, on peut trouver l'espérance et la variance de ces lois mélanges avec les théorèmes de l'espérance et la variance conditionnelle : 
+\begin{equation}
+\esp{X} = \esp{ \esp{X | \Lambda} }
+\end{equation}
+\begin{equation}
+Var(X) = \esp{Var(X | \Lambda)} + Var \left( \esp{X | \Lambda}   \right)
+\end{equation}
+
+
+\section{Frailty models}
+%% À valider si c'est à l'examen!
+\red{Est sur le syllabus des examens professionnels, mais ne semble pas être à l'étude pour le cours IARD1 ...} \\
+
+Soit un paramètre $\Lambda > 0$ (\emph{frailty random variable}) qu'on va utiliser pour trvouer la \emph{hazard-rate} conditionnel $h_{X | \Lambda}$ tel que
+\begin{equation}
+h_{X | \Lambda}(x | \lambda) = \lambda a(x)
+\end{equation}
+où $a(x)$ est une fonction quelquonque et la distribution de $\Lambda = \lambda$ est connu. Alors, on peut trouver la fonction de survie de $S_{X | \Lambda}(x | \lambda)$ avec des des propriétés que l'on connait : 
+\begin{align*}
+S_{X | \Lambda}(x | \lambda) & = e^{- \int_{0}^{x} h_{X | \Lambda}(t | \lambda) dt} \\
+	& = e^{- \lambda A(x)} \\
+	& = M_\Lambda \left( - A(x) \right) \\
+	& = \laplace_\Lambda \left( A(x) \right) \\
+\end{align*}
+
+
+\section{Splicing}
+Soit $X_1, ..., X_k$ les différentes distributions que peut prendre la v.a. $X$ et $\alpha_i$ la probabilité que $X \sim X_i \quad , i = 1,2, ..., k$.  Pour $\sum_ \alpha = 1$, on a donc
+\begin{align*}
+f_X(x)	& = 
+\begin{cases}
+\alpha_1 f_1(x)	& , c_0 < x < c_1 \\
+\alpha_2 f_2(x)	& , c_2 < x < c_2 \\
+...							& \\
+\alpha_k f_1(k)	& , c_{k-1} < x < c_k \\
+\end{cases}
+\end{align*}
+
+\paragraph{Note} Dans un problème, on peut soit demander de calculer la fonction de répartition à un certain point, ou encore nous demander de trouver les coefficients $\alpha_i$ en connaissant les différentes fonctions de répartition et les probabilités rattachées.
+
+
+\section{Exercices recommandés}
+Les exercices recommandés dans le \emph{Loss Models, 4\up{th} edition} pour ce chapitre sont les suivants : 
+\begin{enumerate}[label=\faAngleRight]
+\item 5.1 à 5.6
+\item 5.8 à 5.11
+\item 5.17 à 5.19
+\end{enumerate}
+
+
+
+\chapter{Modèle de perte aggrégée (9)}
+
+\section{Modèle composé (fréquence-sévérité) pour les pertes aggrégées}
+On définit les variables aléatoires suivantes : 
+\begin{enumerate}[label=\faAngleRight]
+\item $S$ : Perte totale pour le portefeuille au complet ;
+\item $N$ : Nombre de réclamations observées dans l'intervalle de temps. (\textbf{fréquence}) ;
+\item $X_1, ..., X_n$ : Montant de perte relié à la $i$\up{e} réclamation (\textbf{sévérité}).\footnote{Les $X_i$ sont iid et indépendants de $N$.}
+\end{enumerate}
+On a donc
+\[ S = X_1 + ... X_n  \]
+et on peut trouver diverses quantités, tel que la fonction de répartition : 
+\begin{equation}
+F_S(x) = \sum_{n=0}^{\infty} F_X^{*n}(x) \prob{N = n}
+\end{equation}
+où $F_X^{*n} = \prob{X_1 + ... + X_n \leq n}$. \\
+
+On peut aussi obtenir la fonction gnératrice des moments : 
+\begin{equation}
+\mathcal{M}_S(t) = \mathcal{P}_N \left( \mathcal{M}_X(t) \right) 
+\end{equation}
+L'espérance et la variance peuvent être obtenues avec les propriétés d'espérance et variance conditionnelle : 
+\begin{align*}
+\esp{S}	& = \esp{ \esp{S | N}} \\
+	& = \esp{\esp{\sum_{i=1}^{n} X_i  }} \\
+	& = \esp{\sum_{i=1}^{n} \esp{X_i}} \\
+	& \overset{iid}{=} \esp{N \esp{X}} \\
+	& = \esp{N} \esp{X} \\ \numberthis
+\end{align*}
+
+\begin{align*}
+\variance{S}	& = \variance{\esp{S | N}}  + \esp{\variance{S | N}} \\
+	& = \variance{\esp{\sum_{i=1}^{n} X_i}} + \esp{\variance{\sum_{i=1}^{n} X_i}} \\
+	& \variance{ \sum_{i=1}^{n} \esp{X_i}} + \esp{\sum_{i=1}^{n} \variance{X_i}} \quad \text{, par indépendance des $X_i$} \\
+	& \overset{iid}{=} \variance{N \esp{X}} + \esp{N \variance{X}} \\
+	& = \esp{X}^2 \variance{N} + \esp{N} \variance{X} \\ \numberthis
+\end{align*}
+
+
+\section{Exercices recommandés}
+Les exercices recommandés dans le \emph{Loss Models, 4\up{th} edition} pour ce chapitre sont les suivants : 
+\begin{enumerate}[label=\faAngleRight]
+\item 9.34 et 9.36
+\end{enumerate}
+
+
+
+\chapter{Frequentist estimation (13)}
+
+
+\section{Méthode des moments}
+On cherche à estimer les paramètres de la distribution de nos données, sachant que la distribution suit une loi quelconque. \\
+
+Si on a $p$ paramètres à estimer, alors il faudra calculer les $p$ premiers moments empiriques de la distribution, soit
+\begin{equation}
+\hat{\mu}_k^\prime = \sum_{i=1}^{n} x_i^k
+\end{equation}
+
+Puis d'utiliser cette quantité empirique pour résoudre le système d'équation à $p$ inconnus tel que $\hat{\mu_k^\prime} = \mu_k^\prime$.
+
+\section{Méthode des percentiles}
+Pour un rappel sur les percentiles, voir la \autoref{sec:percentile}. Cette méthode est appelée en anglais \emph{percentile matching estimate}. \\
+
+Un peu comme la méthode des moments, on utilise une quantité qu'on peut calculer empiriquement, soit la fonction de répartition empirique, pour pouvoir résoudre le système d'équations à $p$ variables tel que
+\[F_n(\hat{\pi}_{g_i}) = g_i \]
+où
+\begin{enumerate}[label=\faAngleRight]
+\item $\hat{\pi}_{g_i} = F_n^{-1}(g_i)$, $i = 1, ... ,p$
+\item $F_n$ : la fonction de répartition empirique\footnote{L'estimation de la fonction de répartition empirique est couvert au \autoref{chap:estimation_Fn}.}
+\item $p$ : nombre de paramètres de la distribution à estimer.
+\end{enumerate}
+
+\subsection{Smoothed empirical estimate}
+Il arrive parfois que le percentile arrive entre 2 \emph{marche} de la fonction de répartition empirique. Dans cette situation, $\hat{\pi}_{g}$ doit être approximé de façon linéaire avec les statistiques d'ordre : 
+\begin{equation}
+\hat{\pi}_g = (1-h) X_{(j)} + h X_{(j+1)}
+\end{equation}
+où
+\begin{enumerate}[label=\faAngleRight]
+\item $j = \lfloor (n+1) g \rfloor$ et $h = (n+1) g - j$
+\item $X_{(j)}$ la $j$\up{e} statistique d'ordre de l'échantillon empirique $X$.
+
+\end{enumerate}
+
+
+
+
+
+
+\section{Méthode du maximum de vraisemblance}
+\subsection{Données complètes}
+aussi appelé \emph{Maximum log-likelihood estimator (MLE)}. On cherche à estimer le paramètre $\hat{\theta}$ en maximisant la fonction de vraisemblance \footnote{Il arrive parfois que la seule façon de trouver le paramètre qui maximise $L(\theta)$ est en utilisant des \href{https://gitlab.com/vigou3/methodes-numeriques-en-actuariat}{méthodes numériques}}.
+
+\begin{definition}[Fonction de vraisemblance]
+La fonction de vraisemblance $L(\theta  | x)$ est la probabilité d'obtenir un échantillon $x_1, ..., x_n$ d'une distribution $f_X(x)$ ayant le vecteur de paramètres ${\theta}$. Alors,
+\begin{equation}
+\label{eq:fct_vraisemblance}
+L(\theta)	= \prod_{i=1}^{n} f_X(x_i ; \theta)
+\end{equation}
+On peut aussi trouver la fonction de log-vraisemblance $\ell(\theta)$ (qui est souvent plus facile à dériver) : 
+\begin{equation}
+\label{eq:fct_log-vraisemblance}
+\ell(\theta) = \sum_{i=1}^{n} \ln f_X(x_i ; \theta)
+\end{equation}
+\end{definition}
+\paragraph{Estimation du paramètre $\theta$} On détermine l'estimateur du maximum de vraisemblance (\emph{MLE} en anglais)\footnote{L'abbréviation en français est EMV, mais on utilise surtout \emph{MLE} pour Maximum likelihood estimator.} tel qu'on maximise l'\autoref{eq:fct_vraisemblance}. Intuitivement, on va donc trouver le paramètre $\theta$ tel que
+\[\derivee{\theta} L(\theta) = 0\]
+Puisque la fonction de vraisemblance peut parfois être difficile à dériver, on utilise souvent la fonction de log-vraisemblance (\autoref{eq:fct_log-vraisemblance}) : 
+\[\derivee{\theta} \ell(\theta) = 0\]
+\paragraph{Estimation du vecteur de paramètres $\boldsymbol{\theta}$}
+Si on doit estimer plusieurs paramètres $\theta_i$ pour la fonction $f_X$, on procède de la même façon, en dérivant partiellement la fonction de vraisemblance (ou log-vraisemblance) par rapport à chacun des paramètres $\theta_i$ et en posant ces dérivées égales à 0.
+
+\subsection{Données groupées}
+Lorsque les données sont groupées dans les intervalles $c_0 < c_1 < ... < c_k$, la fonction de vraisemblance $L(\theta)$ est différente. $X \sim Multinomiale(\matr{n}, \matr{p})$. Alors,
+\begin{equation}
+L(\theta) = \prob{n_1, n_2, ..., n_k ; \theta} = \binom{n}{n_1, ..., n_k} p_1^{n_1} ... p_k^{n_k}
+\end{equation}
+Dans le contexte de données groupées, on a que $p_j= \prob{X_j \in (c_{j-1}, c_{j})}$. Donc, la fonction de vraisemblance est
+\[L(\theta) =  \prod_{j=1}^{n}  \left( F_X(c_{j} | \theta) - F_X(c_{j-1} | \theta) \right)^{n_j}   \]
+Et la fonction de log-vraisemblance (en enlevant la constante combinatoire) est donc
+\begin{equation}
+\label{eq:log-vraisemblance_group}
+\ell(\theta)  = \sum_{j=1}^{k} n_j \ln \left( F_X(c_{j} ; \theta) - F_X(c_{j-1} ; \theta) \right) \\
+\end{equation}
+
+\subsection{Données censurées}
+Si une donnée est censurée, on l'interprète comme une donnée groupée dont l'intervalle va jusqu'à $\infty$. On remplace $f_X(x_j )$ par $1 - F_X(x_j )$.
+
+\subsection{Données tronquées}
+Si une donnée est tronquée, on a 2 options : 
+\begin{enumerate}
+\item On soustrait de chacune des observations le point de troncation $d$ ; 
+\item \textbf{(Méthode plus souvent utilisée)} : On conditionne pour que les données sous le point de troncation $d$ ne soient pas considérées, i.e. on remplace $f(x_j | \theta)$ par $\frac{f(x_j | \theta)}{1 - F(d)}$. 
+\end{enumerate}
+
+
+
+
+\section{Calcul de la variance et intervalle de confiance}
+L'explication donnée ici est reprise de l'ouvrage \emph{Modélisation des sinistres avec R}\footnote{\href{https://libre.act.ulaval.ca/fileadmin/Portail_libre/ACT-2005/Notes\%20de\%20cours/distributions_sinistres.pdf}{Ouvrage de Vincent Goulet}, section 5.5 (page 203 à 212)}.  \\
+
+Lorsque $n \to \infty$, on sait que le vecteur de paramètres $\bm{\hat{\theta}} \sim N(\theta, \mathrm{Var}(\bm{\hat{\theta}}))$, avec $\mathrm{Var}(\bm{\hat{\theta}}) = I(\bm{\theta})^{-1}$\footnote{Pour un rappel sur les matrices inverses, voir l'annexe \ref{annexe:algebre-lineaire}.}.
+
+\begin{definition}[Information de Fisher]
+La matrice d'information de Fisher est définie par
+\begin{equation}
+I(\theta) = -n \esp{\frac{\partial^2}{\partial \theta^2} \ln f_X(x ; \theta)} = n \esp{\left( \derivee{\theta} \ln f_X(x ; \theta) \right)^2}
+\end{equation}
+La première version étant seulement applicable dans le cas où toutes les variables et observations sont \emph{iid}, on utilise plus souvent la version généralisée : 
+\begin{equation}
+I(\theta) = -\esp{\frac{\partial^2}{\partial \theta^2} \ell(\theta)} = \esp{\left( \derivee{\theta} \ell(\theta) \right)^2}
+\end{equation}
+Il arrive qu'on remplace l'espérance par \emph{l'observation observée} dans les équations ci-dessus, lorsqu'elle est trop compliquée à calculer. On définit \emph{l'information observée} telle que
+\begin{equation}
+\hat{I}(\hat{\theta}) = \sum_{i=1}^{n} \left( \derivee{\theta} \ln f(x_i ; \theta) \eval_{\theta = \hat{\theta}} \right)^2 = - \sum_{i=1}^{n}  \frac{\partial^2}{\partial \theta^2} \ln f(x_i ; \theta) \eval_{\theta = \hat{\theta}}
+\end{equation}
+
+
+\end{definition}
+
+Donc, on peut calculer un intervalle de confiance (bilatéral) au seuil $1-\alpha$ autour de $\theta$ : 
+\begin{align*}
+\prob{-z_{\alpha/2} < \frac{\hat{\theta} - \theta}{\sqrt{\mathrm{Var}(\hat{\theta})}}  < z_{ \alpha/2} } & = 1 - \alpha \\
+\prob{\hat{\theta} - z_{\alpha/2} \sqrt{\mathrm{Var}(\hat{\theta})}, \hat{\theta} + z_{\alpha/2} \sqrt{\mathrm{Var}(\hat{\theta})}} & = 1 - \alpha \\
+\end{align*}
+D'où l'IC au seuil $1 - \alpha$ est
+\begin{equation}
+\theta \in \Big [   \hat{\theta} \pm z_{\alpha/2} \sqrt{\mathrm{Var}(\hat{\theta})} \Big ]
+\end{equation}
+
+
+
+
+
+
+\subsection{Méthode delta}
+Dans certains cas, on désire approximer une autre quantité que le paramètre lui-même, qui est en fait une transformation $h(\theta)$ de ce dernier. On doit utiliser la méthode Delta, qui fait une approximation de Taylor de premier ordre sur la fonction $h(\theta)$. Alors, on a que
+\begin{align*}
+h(\hat{\theta)} \approx h(\theta) + \derivee{\theta} h(\theta) (\hat{\theta} - \theta)
+\end{align*}
+On a que
+\begin{align*}
+\esp{h(\hat{\theta})} = h(\hat{\theta})
+\end{align*}
+et
+\begin{align*}
+\variance{\hat{\theta}}	& = \variance{h(\theta) +   \derivee{\theta} h(\theta) (\hat{\theta} - \theta)} \\
+& = \left( \derivee{\theta} h(\theta) \right)^2 \variance{\hat{\theta}} \\
+\end{align*}
+Dans un contexte multivarié (où il faut estimer plus d'un paramètre), on a
+\begin{align*}
+\variance{h(\hat{\theta})}	& = \bm{h}^{\top} I(\theta)^{-1} \bm{h}
+\end{align*}
+où $\bm{h}$ est le vecteur des dérivées partielle de $h(\theta)$ : 
+\begin{align*}
+\bm{h}	& = 
+\begin{bmatrix}
+\derivee{\theta_1} h(\theta) \\
+\derivee{\theta_2} h(\theta) \\
+... \\
+\derivee{\theta_k} h(\theta) \\
+\end{bmatrix}
+\end{align*}
+
+\section{Likelihood Ratio Test (LRT)}
+Le test du rapport de vraisemblance (\emph{Likelihood ratio test}) permet de valider si la fonction de vraisemblance d'un modèle avec paramètres \emph{contraints} est proche de la fonction de vraisemblance maximisée lorsqu'il n'y a aucune contrainte sur les paramètres. Ce test a plusieurs applications, notamment ici et dans l'ajustement de modèles linéaires généralisés. Une application directe dans la \autoref{sec:likelihood-ratio-test} est présentée. En résumé, on la mesure statistique du test est  la suivante : 
+\begin{align*}
+\lambda = \frac{L(\hat{\theta}_0)}{L(\hat{\theta})}
+\end{align*}
+où
+\begin{enumerate}[label=\faAngleRight]
+\item $L(\theta_0)$ représente la fonction de vraisemblance du modèle avec paramètres contraints ;
+\item $\ell(\theta)$ représente la fonction de vraisemblance pour le modèle complet.
+\end{enumerate}
+
+On peut prouver que
+\begin{equation}
+\label{eq:lrt_general}
+-2 \ln \lambda  \sim \chi_{dl_1 - dl_0}^2
+\end{equation}
+
+où
+\begin{enumerate}[label=\faAngleRight]
+\item $dl_1$ représente le nombre de degrés de libertés du modèle complet (i.e. le nombre de paramètres qu'on peut modifier, qui ne sont pas fixés)
+\item $dl_0$ le nombre de paramètres non fixés du modèle avec paramètres contraints à tester
+
+\end{enumerate}
+
+où  et .  \\
+
+Dans le contexte d'estimation de paramètres, on aura le modèle complet  qui correpond en fait 
+
+Souvent, l'\autoref{eq:lrt_general} est plutôt présentée comme
+\begin{equation}
+\label{eq:lrt_appliquée}
+2 \left( \ell(\theta) - \ell(\theta_0) \right) \sim \chi_{dl_1 - dl_0}^2
+\end{equation}
+
+\paragraph{Le test LRT} le ratio $\lambda$ sera toujours $\leq 1$, car le modèle avec paramètres estimés ne peut pas estimer parfaitement la distribution. Toutefois, on veut que la différence entre la logvraisemblance de la distribution ($\ell(\theta)$) et celle du modèle avec paramètres estimés ($\ell(\theta_0)$) ne soit pas significativement trop élevée\footnote{Autrement dit, on va rejeter $H_0$ que le modèle avec les paramètres estimés est adéquat si la statistique $\lambda$ dépasse le quantile $\chi^2$.}, i.e.
+\begin{equation}
+\label{eq:lrt_acceptation}
+2 \left( \ell(\theta) - \ell(\theta_0) \right) \leq  \chi_{dl_1 - dl_0, 1-\alpha}^2
+\end{equation}
+
+
+\paragraph{Construction d'un intervalle de confiance} Comme n'importe quel test d'hypothèse, il est possible avec le LRT de construire un intervalle de confiance autour de nos paramètres estimés en \emph{inversant} le test. En effet, $\hat{\theta}_0$ doit être le paramètre qui respecte l'\autoref{eq:lrt_acceptation} à un seuil $1 - \alpha$.
+
+\begin{exemple}[Exemple avec Q13.57 du Loss Models]
+\begin{center}
+\includegraphics[scale=0.3]{src/LM-Q13-57.png}
+\end{center}
+On sait que $\hat{\alpha} = 2,848$ et $\hat{\theta} = 100$. \\
+Trouver l'intervalle de confiance à 95\% en inversant le test du ratio de vraisemblance (LRT).
+\tcblower %% RÉPONSE
+\begin{enumerate}[label=(\arabic*)]
+\item On peut trouver que la fonction de densité est
+\begin{align*}
+f(x ; \alpha)	& = \derivee{\alpha} F(x ; \alpha) \\
+& = \derivee{\alpha} \left( 1 - \left( \frac{100}{x} \right)^\alpha \right) \\
+& = \frac{\alpha 100^\alpha}{x^{\alpha+1}} \\
+\end{align*}
+
+\item Les fonctions de vraisemblance $L$ et log-vraisemblance $\ell$ sont, respectivement
+\begin{align*}
+L(\alpha)	& = \prod_{i=1}^{20} f(x_i ; \alpha) \\
+& = \prod_{i=1}^{20} \frac{\alpha 100^\alpha}{x^{\alpha+1}}  \\
+\end{align*}
+et 
+\begin{align*}
+\ell(\alpha)	& = \ln L(\alpha) \\
+& = \sum_{i=1}^{20} \ln (\alpha) + \alpha \ln (100) - (\alpha+1) \ln (x_i) \\
+& = 20 \ln (\alpha) + 20 \alpha  \ln (100) - (\alpha + 1) \sum_{i=1}^{20} \ln (x_i) \\
+\shortintertext{Avec la fonction \texttt{DATA} de la calculatrice TI-30XS, on peut facilement calculer le terme $\sum_{i=1}^{20} \ln x_i = 99,125$. En remplaçant $\alpha$ par $\hat{\alpha} = 2,848$, on obtient donc} \\
+\ell(\alpha) & = - 98,190166 \\
+\end{align*}
+
+\item On peut trouver $\hat{\alpha}_0$ qui résoud
+\begin{align*}
+2 (\ell(\hat{\alpha}) - \ell(\hat{\alpha}_0)) & \leq \chi_{1, 0.95}^2 \\
+2 (-98,190166 - \big( 20 \ln (\hat{\alpha}_0) + & \\ 
+20 \hat{\alpha}_0  \ln (100) - (\hat{\alpha}_0 + 1) 99,125 \Big) & \leq 3,841 \\
+-196,38033 - 40 \ln \hat{\alpha}_0 - 40 \hat{\alpha}_0 \ln 100 + 198,25 (\hat{\alpha}_0 + 1) &  \leq 3,841\\
+-200,2213- 40 \ln \hat{\alpha}_0 - 40 \hat{\alpha}_0 \ln 100 + 198,25 (\hat{\alpha}_0 + 1) &  \leq 0 \\
+\end{align*}
+Avec la fonction \texttt{TABLE} de la calculatrice TI-30XS, on peut entrer cette fonction, et tester pour des valeurs de $\hat{\alpha}_0$ jusqu'à résolution. On doit obtenir une borne $L < \hat{\alpha}$ et une borne $U > \hat{\alpha}$.
+
+\item Graphiquement,
+\begin{center}
+\includegraphics[scale=0.1]{Figures/Q13-57_visualisation.png}
+\end{center}
+
+\item Alors,
+\begin{align*}
+\alpha \in \left[ 1,77 ; 4,28 \right]
+\end{align*}
+\end{enumerate}
+\end{exemple}
+
+
+
+
+
+% Dernière section du chapitre
+\section{Exercices recommandés}
+Les exercices recommandés dans le \emph{Loss Models, 4\up{th} edition} pour ce chapitre sont les suivants : 
+\begin{enumerate}[label=\faAngleRight]
+\item Méthode des moments et percentiles : 13.1 à 13.22
+\item \emph{MLE} : 13.30, 13.32, 13.33, 13.37, 13.38 à 13.40, 13.45 à 13.51 et 13.54 à 13.57
+\item Variance et intervalle de confiance : 13.62 à 13.72
+\item Non-normal confidence interval : 13.74 
+\end{enumerate}
+
+
+
+
+
+\chapter{Sélection de modèles (16)}
+\section{Introduction}
+Il existe plusieurs tests (graphiques, tests d'hypothèses, etc.) pour valider si un modèle est adéquat. Les 2 tests vus dans le cadre du cours sont le \emph{Goodness-of-fit} et le \emph{Likelihood ratio test}. Souvent, certaines valeurs de ces tests peuvent aussi être utilisées pour comparer différents modèles entre-eux. 
+
+\section{\emph{Goodness-of-fit} Chi-Square test}
+\label{sec:goodness-of-fit}
+Avec le test \emph{Goodness-of-fit}, on cherche à valider que les \emph{prédictions} du modèle ne sont pas trop différentes des valeurs empiriques observées. On valide le tout avec une mesure très similaire à l'erreur quadratique, dénotée $X^2$ : 
+\begin{align*}
+X^2 = \frac{\sum_{i=1}^{k} n(\hat{p}_i - p_{ni})^2 }{\hat{p}_i}
+\end{align*}
+où
+\begin{enumerate}[label=\faAngleRight]
+\item $\hat{p}_i$ est la probabilité (selon le modèle) d'observer une valeur dans la $i$\up{e} classe ;
+\item $p_{ni}$ est la probabilité empirique observée d'observations dans la $i$\up{e} classe ;
+\item $n$ est le nombre d'observations.
+\end{enumerate}
+Toutefois, le \emph{Loss Models} utilise toujours la formule suivante pour les exercices :
+\begin{equation}
+X^2 = \frac{\sum_{j=1}^{k}(E_j - O_j)^2 }{E_j}
+\end{equation}
+où $E_j = n \hat{p}_i$ est le nombre de valeurs qu'on s'attend à avoir dans la $i$\up{e} classe et $O_j = n p_{ni}$ le nombre d'observations dans la $i$\up{e} classe. \\
+
+De plus, on peut prouver que
+\[X^2 \sim \chi_{k-p-1}^2\]
+où $k$ est le nombre de classes (on généralise pour le cas où les données seraient groupés)et $p$ le nombre de paramètres qui varient dans le modèle. Formellement, le test d'hypothèse est : 
+\begin{description}
+\item[$H_0$ : ] $X^2 \leq  \chi_{k-p-1}^2$
+\item[$H_1$ : ] $X^2 > \chi_{k-p-1}^2$
+\end{description}
+
+
+
+\section{\emph{Likelihood Ratio Test} (LRT)}
+\label{sec:likelihood-ratio-test}
+En utilisant la statistique du Chi-carré, on cherche à valider que la différence entre la fonction de log-vraisemblance du modèle complet versus le modèle proposé n'est pas significativement trop élevée, sans quoi on devra rejeter $H_0$, et alors le modèle avec contraintes ne sera pas une bonne simplification du modèle complet. On teste la \emph{significativité} avec la statistique $T$ telle que
+\begin{equation}
+T = 2 \left( L_1 - L_0 \right) \sim \chi_{dl = k_1 - k_0}^{2}
+\end{equation}
+où $L_1  = \ell(\theta_{(H_1)})$ et $L_0 = \ell(\theta_{(H_0)})$, $k_1$ est le nombre de paramètres \emph{libres} (i.e. qu'on peut modifier) du modèle complet et $k_0$ le nombre de paramètres libres du modèle avec contraintes.
+
+
+\section{Critères de sélection d'un modèle}
+L'expérience compte pour beaucoup dans la sélection du bon modèle. Il y a toutefois quelques critères et statistiques qu'on peut analyser et comparer entre les modèles pour faire certains choix : on va préférer un modèle avec
+\begin{enumerate}
+\item la plus \textbf{faible valeur} pour le test \textbf{Kolmogorov-Smirnov} ; 
+\item  la plus \textbf{faible valeur} pour le test \textbf{Anderson-Darling} ;
+\item  la plus \textbf{faible valeur} pour le test \textbf{Goodness-of-fit} ;
+\item la plus \textbf{haute valeur} pour la \textbf{\emph{p-value} du test Goodness-of-fit} ; 
+\item la plus \textbf{haute valeur} pour la \textbf{fonction de vraisemblance à son maximum}.
+\end{enumerate}
+
+
+
+
+\section{Exercices recommandés}
+\begin{description}
+\item[Test Kolmogorov-Smirnov] 16.4 et 16.5\footnote{Cette matière n'est pas testée à l'examen final A2018 en IARD1.}
+\item[Goodness-of-fit test et LRT] 16.10 à 16.15
+\item[Critères de sélection] 16.23 et 16.24
+\end{description}
 
 
 
@@ -701,6 +1307,213 @@ On s'intéresse à l'espérance et la variance de la fonction de survie $S_n$, q
 
 
 
+
+\chapter{Estimation Bayésienne (15)}
+\section{Définition de l'estimateur Bayésien}
+\begin{definition}[Distribution \emph{a priori}]
+Soit un paramètre $\theta$ d'une distribution quelconque. Afin de réaliser une estimation Bayésienne, on connaît \emph{a priori} la distribution que prend le paramètre $\theta$, qu'on dénote par $\pi(\theta)$. \\
+
+Alors, notre distribution des pertes est conditionné par rapport à la valeur que $\theta$ prend (i.e. $f_{X|\Theta}$).
+\end{definition}
+
+\begin{definition}[Distribution \emph{a posteriori}]
+La distribution \emph{a posteriori} nous permet de savoir avec quelle probabilité non-nulle notre paramètre $\theta$ peut prendre une certaine valeur, sachant qu'on a observé certains $x$, qu'on dénote comme $\pi_{\Theta | X}(\theta | x)$ : 
+\begin{equation}
+\label{eq:dist_posteriori}
+\pi_{\Theta | X}(\theta | x) = \frac{f_{\Theta, X}(\theta, x)}{f_{X}(x)} = \frac{f_{X|\Theta}(x | \theta) \pi(\theta)}{\int f_{X|\Theta}(x | \theta) \pi(\theta) d \theta} 
+\end{equation}
+L'idée est de remplacer les différentes distributions dans l'\autoref{eq:dist_posteriori}, et en déduire une distribution avec une paramétrisation différente\footnote{Souvent, la distribution \emph{a posteriori} aura la même distribution que celle \emph{a priori}, mais avec des paramètres différents.}.
+\end{definition}
+
+\paragraph{L'estimateur Bayésien} L'estimateur Bayésien est défini comme l'espérance du paramètre $\theta$, sachant la distribution de $X$. En d'autres mots, on veut l'espérance de la distribution \emph{a posteriori} : 
+\begin{equation}
+\label{eq:estimateur_bayes}
+\hat{\theta}_{BAYES} = \esp{\Theta | X}
+\end{equation}
+
+\paragraph{Propriétés de l'estimateur} Voici quelques propriétés importantes de l'estimateur : 
+\begin{enumerate}[label = \faAngleRight]
+\item $\hat{\theta}_{BAYES}$ est biaisé (comparativement à l'estimateur MLE qui est non-biaisé) ;
+\item Par contre, l'estimateur Bayésien a une plus petite variance que l'estimateur MLE. On sacrifie donc le Biais pour diminuer la variance de l'estimateur ;
+\item \textbf{Remarque} : Si $n$ est grand,  il peut être préférable d'utiliser l'estimateur MLE.
+\end{enumerate}
+
+\subsection{Estimation par simulation}
+Une fois qu'on a développé et trouver la distribution \emph{a posteriori} de$\Theta | X$ (\autoref{eq:dist_posteriori}), alors on peut facilement simuler l'estimateur Bayésien :
+\begin{enumerate}
+\item 
+\end{enumerate}
+
+
+\begin{exemple}[Exemple avec la Loi de Poisson]
+Soit $X | \Lambda \sim Pois(\Lambda)$ et $\Lambda \sim \Gamma(\alpha, \theta)$. Alors, on a la distribution \emph{a priori} suivante : 
+\[\Lambda \sim \pi(\lambda) = \frac{\lambda^{\alpha -1}}{\Gamma(\alpha) \theta^\alpha} e^{-\lambda / \theta} \] 
+Évidemment, on va s'attendre à ce que la distribution \emph{a posteriori} obéisse à une loi Gamma aussi. On a (avec $c(x)$ une constante) : 
+\begin{align*}
+\pi_{\Lambda | X}( \lambda | x) &  =c(x) \frac{\lambda^{\alpha -1} e^{-\lambda / \theta}}{\Gamma(\alpha) \theta^{\alpha}} \frac{\lambda^{\alpha} e^{-\lambda}}{x!} \\
+& = k(x) \lambda^{x + \alpha - 1} e^{-\lambda\left( \frac{1}{\theta} + \lambda \right)} \\
+\end{align*}
+avec $c(x)$ et $k(x)$ des constantes uniquement fonction de $x$. \\
+
+On trouve donc que $\pi_{\Lambda | X}( \lambda | x)  \sim \Gamma\left( \alpha' = x + \alpha, \beta' = \left(\frac{1}{\theta} + 1 \right)^{-1} \right)$
+
+Puisque l'estimateur Bayésien est l'espérance de la distribution \emph{a posteriori}, on a
+\begin{align*}
+\hat{\lambda}_{BAYES} & = \esp{\Lambda | X} \\
+& = \int \lambda \cdot \pi_{\Lambda | X}( \lambda | x) d \lambda \\
+& = \alpha' \beta' \\
+& = (x + \alpha) \left( \frac{\theta}{1 + \theta} \right) \\
+\end{align*}
+\end{exemple}
+
+\begin{exemple}[Cas plus général ...]
+On a le modèle suivant pour $X$, tel que
+\begin{align*}
+f_{X_1, ..., X_n | \Lambda}(x_1, ..., x_n | \lambda) & = \frac{\lambda^{x_1} e^{-\lambda}}{x_1 ! } ... \frac{\lambda^{x_n} e^{-\lambda}}{x_n !} \\
+\end{align*}
+Ainsi que la distriution \emph{a priori} telle que
+\begin{align*}
+\Lambda \sim \pi(\lambda) = \frac{\lambda^{\alpha -1}}{\Gamma(\alpha) \theta^{\alpha}} e^{-\lambda / \theta} \\
+\end{align*}
+Alors, la distribution \emph{a posteriori} est donc
+\begin{align*}
+f_{\Lambda | X}(\lambda | x)	& = c(x) \frac{\lambda^{\alpha-1}}{\Gamma(\alpha) \theta^{\alpha}} e^{-\lambda / \theta} \cdot \frac{\lambda^{x_1} e^{-\lambda}}{x_1 !} ... \frac{\lambda^{x_n} e^{-\lambda}}{x_n !} \\
+& = k(x) \lambda^{\sum x_i + \alpha - 1} e^{-\lambda/ \theta} e^{-n \lambda} \\
+& = k(x) \lambda^{\sum x_i + \alpha - 1} e^{-\lambda \left( \frac{1}{\theta} + n \right)} \\
+\end{align*}
+On déduit donc que la distribution \emph{a posteriori} obéit à une loi Gamma de paramètres $\alpha' = \sum x_1 + \alpha$ et $\beta' =\left( \frac{1}{\theta} + n \right)^{-1} = \frac{\theta}{1 + n \theta}$. Alors, on déduit facilement l'estimateur Bayésien : 
+\begin{align*}
+\hat{\lambda}_{BAYES} & = \alpha' \beta' \\
+& =\frac{ \theta \left( \sum_{i=1}^{n} x_i + \alpha \right)}{1 + n \theta} \\
+& =  \frac{n \theta}{1 + n \theta} \left( \frac{\sum_{i=1}^{n} x_i}{n} \right) + \frac{1}{1 + n \theta} (\alpha \theta) \\
+& = \frac{n \theta}{1 + n \theta} \hat{\lambda}_{MLE} + \frac{1}{1 + n \theta} \underbrace{(\alpha \theta)}_{\text{Moy. distr. \emph{a priori}}} \\
+\end{align*}
+\end{exemple}
+\paragraph{Remarque} On peut donc voir l'estimateur Bayésien comme une moyenne pondérée entre l'estimateur du maximum de vraisemblance et la moyenne de la distribution \emph{a priori}. Lorsque $n \to \infty$, l'estimateur Bayésien sera semblable à l'EMV.
+
+\begin{exemple}[Exemple avec la loi Normale]
+On prend le modèle $Y|\Theta = \frac{\sum_{i=1}^{n} x_i}{n} \sim N \left(\theta, \frac{\sigma^2}{n} \right)$, avec $\sigma^2$ connu. La densité \emph{a priori} obéit aussi à une loi normale, telle que $\Theta \sim N(\theta_0, \sigma^2_0)$, où $\theta_0, \sigma^2_0$ sont connus. On va donc s'attendre à avoir une distribution \emph{a posteriori} qui va suivre une loi normale aussi. Alors, la distribution \emph{a posteriori} $\pi_{\Theta | X}(\theta | x)$ peut être trouvée : 
+\begin{align*}
+\pi_{\Theta | X}(\theta | x) = c(y) e^{\frac{-(y-\theta)^2}{2 (\sigma^2/n)}} e^{\frac{-(\theta - \theta_0)^2}{2(\sigma_0^2}}
+\end{align*}
+On va essayer de jumeler les 2 exposants des $e$, pour retrouver une certaine forme de la loi normale : 
+\begin{align*}
+\frac{(y-\theta)^2}{2 (\sigma^2/n)} + \frac{(\theta - \theta_0)^2}{2(\sigma_0^2}  & = \frac{\sigma_0^2 (y-\theta)^2 + \frac{\sigma^2}{n} (\theta - \theta_0)^2}{2 \frac{\sigma^2}{n} \sigma_0^2} \\
+\end{align*}
+Si on développe les termes séparément : 
+\begin{align*}
+\sigma_0^2 (y - \theta)^2 & = \sigma_0^2 (y^2 + \theta^2 - 2 \theta y) \\
+\end{align*}
+et
+\begin{align*}
+\frac{\sigma^2}{n} (\theta - \theta_0)^2 & = \frac{\sigma^2}{n} (\theta^2 + \theta_0^2 - 2 \cdot \theta \cdot \theta_0) \\
+\end{align*}
+Alors,
+\begin{align*}
+\sigma_0^2 (y - \theta)^2 + \frac{\sigma^2}{n} (\theta - \theta_0)^2 & = \left( \sigma_0^2 + \frac{\sigma^2}{n} \right) \theta^2 - 2 \left( y \sigma_0^2  + \theta_0 \frac{\sigma^2}{n}  \right) \theta
+\end{align*}
+Alors, la distribution \emph{a posteriori} peut être ré-écrite comme
+\begin{align*}
+\pi_{\Theta | X}(\theta | x) & = k(y) \exp \left \{ - \frac{1}{2} \left( \theta^2 - 2 ( \frac{y \sigma_0^2 + \theta_0 \frac{\sigma^2}{n}}{\sigma^2 + \frac{\sigma^2}{n}} \right) \theta /  \frac{\frac{\sigma^2}{n} \sigma_0^2}{\sigma_0^2 + \frac{\sigma^2}{n}}       \right \}
+\end{align*}
+Si on manipule le numérateur, on trouve
+\begin{align*}
+\pi_{\Theta | X}(\theta | x) & = k(y) \exp \left \{ - \frac{1}{2 \gamma} \left( \theta - \frac{y \sigma_0^2 + \theta_0 \frac{\sigma^2}{n}}{\sigma_0^2 + \frac{\sigma-2}{n}} \right)^2   \right \}
+\end{align*}
+Donc
+\[\pi_{\Theta | X}(\theta | x)  \sim N(\mu', \sigma' = \gamma) \]
+où $\mu' = \frac{y \sigma_0^2 + \theta_0 \frac{\sigma^2}{n}}{\sigma_0^2 + \frac{\sigma^2}{n}}$. On peut aussi le ré-écrire (aussi appelé estimateur de crédibilité, sera vu en IARD2) : 
+\begin{align*}
+\hat{\theta}_{BAYES} = \left( \frac{\sigma_0^2}{\sigma_0^2 + \frac{\sigma^2}{n}} \right) \bar{x} + \left( \frac{\sigma^2 / n}{\sigma_0^2 + \frac{\sigma^2}{n}} \right) \theta_0
+\end{align*}
+\end{exemple}
+
+
+
+\section{Exercices recommandés}
+Les exercices recommandés dans le \emph{Loss Models, 4\up{th} edition} pour ce chapitre sont les suivants : 
+\begin{enumerate}[label=\faAngleRight]
+\item  15.14 a 15.18,15.21 a 15.27
+\end{enumerate}
+.
+
+
+
+\part{Annexes}
+
+% DÉBUT DE L'ANNEXE
+\appendix
+\chapter{Jeux de données du Loss Models}
+Voici les jeux de données qui sont utilisés dans le Loss Models, qui sont constamment utilisés dans les exercices du livre.
+
+\section{Data set A}
+\begin{center}
+\includegraphics[scale=0.5]{src/Data-Set-A.png}
+\end{center}
+
+
+\section{Data set B}
+\begin{center}
+\includegraphics[scale=0.5]{src/Data-Set-B.png}
+\end{center}
+
+
+\section{Data set C}
+\begin{center}
+\includegraphics[scale=0.5]{src/Data-Set-C.png}
+\end{center}
+
+\section{Data set D1}
+\begin{center}
+\includegraphics[scale=0.5]{src/Data-Set-D1.png}
+\end{center}
+
+
+\section{Data set D2}
+\begin{center}
+\includegraphics[scale=0.5]{src/Data-Set-D2.png}
+\end{center}
+
+
+\chapter{Rappels mathématiques}
+\section{Algèbre linéaire}
+\label{annexe:algebre-lineaire}
+Soit la matrice $\bm{A}$, telle que
+\begin{align*}
+\bm{A}	& = 
+\begin{bmatrix}
+a	& b \\
+c	& d \\
+\end{bmatrix}
+\end{align*}
+\paragraph{Matrice transposée} la matrice transposée est définie par $\bm{A}^\top$, telle que
+\begin{align*}
+\bm{A}^{\top} & = 
+\begin{bmatrix}
+a	& -c \\
+-b	& d \\
+\end{bmatrix}
+\end{align*}
+
+\paragraph{Déterminant d'une matrice} On peut calculer le déterminant $\det(\bm{A})$ de la matrice $\bm{A}$ tel que
+\begin{align*}
+\det(\bm{A})	  = 
+\begin{vmatrix}
+a	& b \\
+c	& d \\
+\end{vmatrix}
+= ad - bc
+\end{align*}
+
+\paragraph{Inverse d'une matrice} L'équivalent de l'opération $\frac{1}{\bm{A}}$ en algèbre linéaire est de calculer la matrice inverse de $\bm{A}^{-1}$, telle que
+\begin{align*}
+\bm{A}^{-1}	& = \frac{1}{\det(\bm{A})}
+\begin{bmatrix}
+a	& -c \\
+-b	& d \\
+\end{bmatrix}
+\end{align*}
+où on multiple par la matrice adjointe de $\bm{A}$. Il faut normalement calculer les cofacteurs, mais le cas à 2 dimensions est un cas simplifié.
 
 
 
