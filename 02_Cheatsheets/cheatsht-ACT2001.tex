@@ -1525,6 +1525,25 @@ Soit le couple de v.a. antimonotones $(X_{1}, X_{2})$.
 \end{description}
 \end{distributions}
 
+\columnbreak
+\subsection{Loi multivariées}
+\begin{definitionNOHFILL}[Loi de Poisson bivariée de Teicher]
+Soit : 
+\begin{itemize}
+	\item	Le couple de v.a. $(M_{1}, M_{2})$ où $M_{i} \sim \text{pois}(\lambda_{i})$ pour $i	=	1, 2$.
+	\item	Les v.a. indépendantes $K_{0}, K_{1}, K_{2}$ avec $K_{i}	\sim \text{Pois}(\alpha_{i})$ pour $i	=	0, 1, 2$ et $\alpha_{i}	=	\lambda_{i}	-	\alpha_{0}$ pour $i	=	1, 2$ où $0	\leq	\alpha_{0}	\leq	\min(\lambda_{1}, \lambda_{2})$.
+\end{itemize}
+
+On défini $M_{i}	=	K_{i} + K_{0}$ pour $i	=	1, 2$.
+\begin{itemize}
+	\item	$K_{i}$ représente la fréquence d'un \og choc \fg{} spécifique à la $i^{\text{e}}$ ligne d'affaires pour $i = 1, 2$.
+	\item	$K_{0}$ représente la fréquence d'un \og choc \fg{} commun aux deux lignes d'affaires.
+\end{itemize}
+
+Donc, $(M_{1}, M_{2})	\sim \text{PBivTeicher}(\lambda_{1}, \lambda_{2}, \alpha_{0})$.
+\end{definitionNOHFILL}
+
+
 
 \columnbreak
 \subsection{Lois composées multivariées}
@@ -1537,6 +1556,15 @@ Soit le couple de v.a. antimonotones $(X_{1}, X_{2})$.
 %\lfbox[conditions]{$m_{1} \in \mathbb{N}^{+}, m_{2}	\in \mathbb{N}^{+}$}, est \lfbox[formula]{$f_{M_{1}, M_{2}}(m_{1}, m_{2})	=	\frac{\lambda_{1} - \alpha_{0}}{m_{1}}f_{M_{1}, M_{2}}(m_{1} - 1, m_{2})$}\\ \lfbox[formula]{$+ \frac{\alpha_{0}}{m_{1}}f_{M_{1}, M_{2}}(m_{1} - 1, m_{2} - 1)$}. 
 %%%	----------------------------------------
 
+\begin{rappel}{Covariance totale}
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+    \text{Cov}(X_{1}, X_{2})
+    &=  \text{E}_{M_{1}, M_{2}}\left[\text{Cov}(X_{1}, X_{2} | M_{1}, M_{2})\right] + \\ &\text{Cov}_{M_{1}, M_{2}}\left( \text{E}\left[X_{1}| M_{1}, M_{2}\right]\text{E}\left[X_{2}| M_{1}, M_{2}\right]\right)
+\end{align*}
+\setlength{\mathindent}{1cm}
+\end{rappel}
+
 
 \begin{definitionNOHFILL}[Loi Poisson composée]
 Soit : 
@@ -1546,7 +1574,7 @@ Soit :
 		\item	\lfbox[formula]{$K_{0} \sim  \text{Pois}(\alpha_{0})$} pour \lfbox[conditions]{$0	\leq	\alpha_{0}	\leq	\min(\lambda_{1}; \dots; \lambda_{n})$}, 
 		\item	\lfbox[formula]{$K_{i} \sim  \text{Pois}(\alpha_{i} = \lambda_{i} - \alpha_{0})$} pour \lfbox[conditions]{$i	=	1, 2, \dots, n$}.
 		\end{itemize}
-	\item	Le vecteur de v.a. de fréquence $(M_{1}, \dots, M_{n})$ obéit à une loi de Poisson multivariée avec choc commun. 
+	\item	Le vecteur de v.a. de fréquence $(M_{1}, \dots, M_{n})$ obéit à une loi de Poisson multivariée de Teicher (avec choc commun). 
 		\begin{itemize}
 		\item	Les composantes du vecteur sont définies par $M_{i}	=	K_{i} + K_{0}$.
 		\item	Alors, \lfbox[formula]{$M_{i}	\sim \text{Pois}(\lambda_{i})$}.
