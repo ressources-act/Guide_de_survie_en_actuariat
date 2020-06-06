@@ -14,9 +14,6 @@ jobs:
       with:
         root_file: contributeurs-cheatshts.tex
         working_directory: 02_Cheatsheets/contributeurs/
-    - name: Check pdf files
-      run: |
-        file 02_Cheatsheets/contributeurs/contributeurs-cheatshts.tex.pdf | grep -q ' PDF '
     - name: Upload file
       run: |
         # configure git
