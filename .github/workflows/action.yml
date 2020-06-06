@@ -11,8 +11,9 @@ jobs:
         with:
           working_directory: 02_Cheatsheets/contributeurs/
           root_file: contributeurs-cheatshts.tex
+          post_compile: "latexmk -c"
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
         with:
           name: contributeurs-cheatshts
-          path: 02_Cheatsheets/contributeurs
+          path: 02_Cheatsheets/contributeurs/contributeurs-cheatshts.pdf
