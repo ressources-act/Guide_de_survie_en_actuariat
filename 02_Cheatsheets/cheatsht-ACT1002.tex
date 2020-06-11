@@ -46,34 +46,23 @@
 \begin{probch1}{L'analyse combinatoire}
 \begin{description}
   \item[Principe de base de comptage :] Pour une expérience 1 avec m résultats possibles et une expérience 2 avec n résultats possibles, il y a m x n possibilités.
-\end{description}
-\begin{description}
   \item[Permutations :] Nombre d'arrangements en tenant compte de l'ordre. La façon de dénombrer les arrangements dépend du type de question.
-  \begin{description}
-	\item[$Exemples$ :] Combien de façons peut-on arranger les chiffres 1, 2, 3 et 4 dans un nombre à 4 chiffres? La réponse est {4!}. La réponse serait la même avec les chiffres 1, 2, 2 et 3, car les deux chiffres 2 ne sont pas considérés comme identiques. 
-	\item[] Toutefois, si on demande combien de façons peut-on distribuer 12 cadeaux différents à 4 personnes, la réponse sera $ 4^{12} $ étant donné que chaque cadeau peut aller à quatre personnes.
-	\end{description}
-\end{description}
-\begin{description}
+	  \item[$Exemples$ :] Combien de façons peut-on arranger les chiffres 1, 2, 3 et 4 dans un nombre à 4 chiffres? La réponse est {4!}. La réponse serait la même avec les chiffres 1, 2, 2 et 3, car les deux chiffres 2 ne sont pas considérés comme identiques. 
+	  \item[] Toutefois, si on demande combien de façons peut-on distribuer 12 cadeaux différents à 4 personnes, la réponse sera $ 4^{12} $ étant donné que chaque cadeau peut aller à quatre personnes.
 	\item[Combinaisons :] Nombre d'arrangements en \textbf{ne} tenant \textbf{pas} compte de l'ordre.
-	\begin{description}
 	 \item[$Exemples$ :] En reprenant l'exemple des permutations, mais avec les chiffres 1, 1, 1, 2 et 2, il y aurait 5!/(3!2!) combinaisons puisque les trois 1 et les deux 2 sont considérés identiques.
-	 \end{description}
-\end{description}
-\begin{description}
 	 \item[Coefficient binomial :] De l'exemple précédent, on peut observer l'existence du coefficient binomial, qui est défini selon la formule :
 	 \begin{align*}
 	 \binom{n}{k}
 	 &= \frac{n!}{k! \,(n-k)!}
 	 \end{align*}
-\end{description}
-\begin{description}
   \item[Coefficient multinomial :] La généralisation du coefficient binomial va comme suit :
   \begin{align*}
   \binom{n}{k_1, k_2, ..., k_m}
   &= \frac{n!}{(k_1)! \, (k_2)! \, ..., (k_m)!}
   \end{align*}
   \item[] Où {$n = \sum_{i = 1}^{m} k_i$}
+<<<<<<< Updated upstream
   \item[Théorème multinomial :] Le coefficient multinomial aide à trouver les coefficients devant les variables lors du développement de multinômes. 
   \begin{itemize}
 	  \item Afin de mieux comprendre le théorème multinomial, voici un exemple :
@@ -97,6 +86,13 @@
   \begin{itemize}
 	  \item La solution à ce type de problème est donnée par $\binom{n-1}{r-1}$.
   \end{itemize} 
+=======
+  \item[Théorème multinomial :] Le coefficient multinomial aide à trouver les coefficients devant les variables lors du développement de multinômes. Afin de mieux comprendre le théorème multinomial, voici un exemple :
+  \item[]{$(-3x+5y^2)^4 = \sum_{}^{} \binom{4}{n_1 , n_2} (-3x)^{n_1} (5y^{2})^{n_2}$}
+  \item[] Si on cherche le coefficient devant les variables $x^{3}y^{2}$, on remplace $n_1$ par 3 et $n_2$ par 1 et on obtient -540.
+  \item[Solutions entières non-négatives :] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants». Il peut y avoir aucun objet dans un «contenant». La solution à ce type de problème est donnée par $\binom{n+r-1}{r-1}$ où n est le nombre d'objets et r le nombre de «contenants». Si l'est mentionné dans le problème qu'il n'est pas nécessaire d'utiliser tous les objets pour les mettre dans les contenants, on peut rajouter un contenant pour les objets «non-utilisés».
+  \item[Solutions entières positives:] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants» et ce, de façon à ce que chaque «contenant» ait au moins un objet. La solution à ce type de problème est donnée par $\binom{n-1}{r-1}$.
+>>>>>>> Stashed changes
 \end{description}
 \end{probch1}
 
