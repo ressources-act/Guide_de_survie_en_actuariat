@@ -1,0 +1,19 @@
+name: Build LaTeX document
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v1
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@master
+        with:
+          working_directory: 02_Cheatsheets/contributeurs/
+          root_file: contributeurs-cheatshts.tex
+          post_compile: "latexmk -c"
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: contributeurs-cheatshts
+          path: 02_Cheatsheets/contributeurs/contributeurs-cheatshts.pdf

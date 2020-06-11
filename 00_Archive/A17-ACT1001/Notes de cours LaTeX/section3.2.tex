@@ -1,0 +1,174 @@
+% section 3.2 math fin
+
+\bcattention $j_t = j \forall\ t$ et $K_t = K \quad$ pour $t= 1,2,...,n$
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+L = K \ax{\angln j}
+\end{empheq}
+
+Donc $OB_0 = L \quad, OB_n = 0$
+
+\underline{$OB_t$ avec la méthode \textbf{rétrospective}}
+\begin{align*}
+OB_t = L(1+j)^t - K \sx{\angl{t} j} \quad t = 1,2,...,n
+\end{align*}
+
+
+\underline{$OB_t$ avec la méthode \textbf{prospective}}
+\begin{align*}
+OB_t = K \ax{\angl{n-t} j} \quad t = 0,1,2,...,n-1
+\end{align*}
+
+\begin{equation*}
+K_T = nK
+\end{equation*}
+
+\begin{align*}
+PR_t 	& = OB_{t-1} - OB_t \\
+	& = K(\ax{\angl{n-t+1} j} - \ax{\angl{n-t} j} \\
+	& = K(1+j)^{-(n-t+1)} \\
+	& = Kv^{n-t+1} \rightarrow \text{progression géométrique}\\
+\end{align*}
+
+\begin{align*}
+I_t 	& = K_t - PR_t \\
+	& = K(1 - v^{n-t+1}) \\
+\end{align*}
+
+\begin{align*}
+I_T	& = K_T - PR_T \\
+	& = nK - L \\
+\end{align*}
+
+Si $K_t = K_{t+1}$ et $j_t = j_{t+1} = j$, alors
+
+\begin{equation*}
+PR_{t+1} = PR_t(1+j)
+\end{equation*}
+\begin{proof}
+\begin{align*}
+PR_{t+1}		& = K - OB_t j \\
+			& = K - (OB_{t-1}(1+j) - K) j \\
+			& = K + Kj - OB_{t-1} j(1+j) \\
+			& = K(1+j) - OB_{t-1} j(1+j) \\
+			& = (K - OB_{t-1}j)(1+j) \\
+			& = PR_t(1+j) \\
+\end{align*}
+\end{proof}
+
+\bcinfo Au Canada, les taux sont mesuré $i$ ou $i^{(2)}$.
+
+Supposons $N$ années de versements mensuels, $n = 12N$.
+
+\begin{align*}
+L	& = K \ax{\angl{12N} j} \\
+	& = 6K \ax{\angl{2N} i^{(2)}/2}[(6)] \\
+	& = 12K \ax{\angl{N} i}[(12)] 
+\end{align*}
+
+\bcinfo Au États-Unis, $i^{(12)}$
+
+\begin{equation*}
+L = K \ax{\angl{12N} i^{(12)}/12}
+\end{equation*}
+
+Ça peut paraître moins cher, mais il y a des frais $F$!
+
+Si on veut trouver le vrai taux,
+\begin{equation*}
+L - F = K \ax{\angl{12N} j^{(12)}/12}
+\end{equation*}
+\p
+Supposons un emprunt initial (par exemple, un hypothèque) de $L$ sur $N$ années. Le taux initial $i^{(2)}$ fixé pour $n$ années. Les versmements mensuels sont égaux. On sait aussi que le prêt initial est contracté à la banque A.
+
+\begin{align*}
+L = 6K \ax{\angl{2N} i^{(2)}/2}[(6)] \\
+K = \frac{L}{6 \ax{\angl{2N} i^{(2)}/2}[(6)]} \\
+\end{align*}
+
+
+Au bout de $n$ années, est-ce qu'on change pour la banque B? On choisit $i_A^{(2)}$ ou $i_B^{(2)}$ ?
+
+Pour répondre à cette question, calculons les 2 soldes : 
+
+\begin{align*}
+OB_{12n} = 6K \ax{\angl{2(N-n)} i^{(2)}/2}[(6)]
+\end{align*}
+Mais il faut aussi considérer les frais $F$ pour changer...
+
+\begin{enumerate}
+\item Supposons qu'on peut financer $F$ dans le nouveau prêt à la banque B. On va comparer les versements : si $K_A \le K_B$, ça ne sert à rien de changer!
+	\begin{enumerate}
+	\item 
+	\begin{equation*}
+	OB_{12n}  = 6K_A \ax{\angl{2(N-n)} i_A^{(2)}/2}[(6)]
+	\end{equation*}
+	\item
+	\begin{equation*}
+	OB_{12n} + F = 6K_B \ax{\angl{2(N-n)} i_B^{(2)}/2}[(6)] \\
+	\end{equation*}
+	\end{enumerate}
+	
+\item Supposons que les frais $F$ \underline{ne sont pas financés} (contexte à l'américaine).
+\begin{align*}
+OB_{12n}		& = 6K_B \ax{\angl{2(N-n)} i_B^{(2)}/2}[(6)] \\
+OB_{12n} - F	& = 6K_B \ax{\angl{2(N-n)} i_{B^*}^{(2)}/2}[(6)] \\
+\end{align*} 	
+\end{enumerate}
+
+\subsubsection*{Exemple}
+$
+\begin{aligned}
+N =25	&\quad n = 5	&\quad i=6\%	&\quad L = 100000\\
+\end{aligned}
+$
+
+Trouver le montant des paiements mensuels égaux : 
+\begin{align*}
+100000	& = 12K \ax{\angl{25} 6\%}[(12)] \\
+... \\
+k		& = 634,620844 \$ \\
+\end{align*}
+
+Solde : 
+
+\begin{align*}
+OB_{60}	& = 12K \ax{\angl{20} 6\%}[(12)] \\
+		& = .... \\
+		& = 89 725,429508\$ \\
+\end{align*}
+
+Options : 
+\begin{enumerate}
+\item renouveler à $i_A = 4\%$ 
+\item ou refinancer à $i_B = 3,75\%$ mais pénalité de $2000\$$
+\end{enumerate}
+
+\begin{enumerate}
+	\item 
+\begin{align*}
+OB_{60} 	& = 12K_A \ax{\angl{20} 4\%}[(12)] \\
+		& = ... \\
+	K_A	& = 540,343367
+\end{align*}
+
+\begin{align*}
+Ob_{60}	& = K_B \ax{\angl{20} 3,75\%}[(12)] \\
+		& = ... \\
+K_B		& = 540,829142 \\
+\end{align*}
+	
+	\item
+\begin{align*}
+OB_{60}	& = 12K_B^* \ax{\angl{20} 3,75\%}[(12)] \\
+		& = ... \\
+K_B^*	& = 529,036793 \\
+\end{align*}
+
+\begin{align*}
+OB_{60} - 2000		& = 12 K_B^* \ax{\angl{20} i_B^*}[(12)] \\
+				& = ... \\
+		i_B^*	& = 4,016598\% \\  
+\end{align*}	
+\end{enumerate}
+

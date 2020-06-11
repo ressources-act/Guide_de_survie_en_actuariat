@@ -1,0 +1,195 @@
+
+% SECTION 1.1 : Accumulation d'intérêt et taux d'intérêt effectif
+\begin{remarque}
+par convention, le taux d'intérêt est \underline{annuel} (exemple $8\%/$an).
+\end{remarque}
+
+\p
+Cela implique, conceptuellement, que les intérêts sont versés annuellement et qu'ils sont réinvestis.
+
+\subsection*{exemple}
+Dépôt de $100\ 000\$$. Taux d'intérêt de $2\%/$an.
+\p
+\begin{tabular}{lll}
+À $t=1$, & $C+Ci=C(1+i)$ 				\\
+À $t=1$, & $C(1+i)+C(1+i)i=C(1+i)^2$ 		\\
+À $t=1$, & $C(1+i)^{n-1}+c(1+i)^{n-1}i=C(1+i)^n$ 
+\end{tabular}
+\p
+
+Question en suspens : mais que vaut le dépôt si $t \not\exists\ \mathbb{Z} ?$
+
+Réponses : 
+\begin{itemize}
+	\item{il est possible qu'il vaille $C(1+i)^{\lfloor{} t \rfloor{}}$} si aucun intérêt n'Est versé en cas de retrait en cours d'année.
+	\item{on est en présence d'intérêt composé (\emph{compound}) ou simple}
+\end{itemize}
+
+\subsection*{Notation}
+$a(t)=$ facteur d'accumulation (\emph{accumulation factor}) de $0\ à\ t$
+
+$A(t)=$ fonction de montant accumulé
+\p
+\hl{\textbf{Attention} : il faut positionner $t=0$!}
+\p
+Voici nos 2 premières équations d'accumulation
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+A(t)=A(0) \cdot\ a(t)
+\end{empheq}
+
+où
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}	% formule à réutiliser pour mettre une équation dans une «boîte»
+a(t)=(1+i)^t
+\end{empheq}
+
+\begin{remarque}
+\hl{Par défaut, l'intérêt est composé, sauf pour certains produits qui ont leur propre type de taux.}
+\end{remarque}
+
+\subsection*{Exemple 1.3 (rectifié) du livre}
+Monsieur Tremblay dépose $1\ 000\$$ dans son compte de 2010-12-31. Les intérêts, au taux annuel de $5\%$, sont versés le 31 décembre. Il retire $200\$$ le 2012-12-31, dépose $100\$$ le 2013-12-31 et retire $250\$$ le 2015-12-31.
+\p
+Quel est le solde de compte (\emph{balance}) le 2017-12-31?
+\p
+
+\underline{1\up{ère} approche : }
+\p
+
+\fbox{\begin{tabular}{llr}				% bel exemple de tableau
+\textbf{Date}	&\textbf{Solde du compte}											\\
+2010-12-31	&						& $=1\ 000,00\$$						\\
+2012-12-31	&	$1\ 000(1,05)^2-200$	& $=902,50\$$							\\
+2013-12-31	&	$902,50(1,05)+100$		&$=1\ 047,62\$$						\\
+2015-12-31	&	$1\ 047,625(1,05)^2-250$&$=905,0066\$$						\\
+2017-12-31	&	$905,0066(1,05)^2$		&$=\textbf{997,77\$}$				
+\end{tabular}}
+\p
+\underline{2\up{ième} approche : }
+\p
+$1000(1,05)^7-200(1,05)5+100(1,05)^4-250(1,05)^2=\textbf{997,77\$}$
+\p
+Il suffit d'avancer les différents montants dans le temps, en considérant l'intérêt gagné (lors de dépôts supplémentaires) et l'intérêts perdu (lors de retrait supplémentaire). \hl{le choix de $t=0$ n'est pas important! Il suffit juste de compte le nombre d'années entre nos 2 dates} :
+
+	\begin{gather*}
+	\frac{a(t+5)}{a(t)}=\frac{1+i)^{t+5}}{(1+i)^t}=(1+i)^5
+	\end{gather*}
+
+Si on change le contexte, et qu'on ferme le compte le 2018-03-31 : 
+\p
+\begin{tabular}{lll}
+en mois,	& $997,77(1,05)^{\frac{3}{12}}$			& $=1\ 000,01\$$			\\
+en jours,	& $997,77(1,05)^{\frac{31+28+31}{365}}$	& $=1\ 000,01\$$
+\end{tabular}
+
+\subsection*{Exemple}
+Madame Roy a $1\ 000\$$ à déposer.
+\p
+a) Quelle sera la valeur accumulée dans 5 ans si $i=3\%$?
+\p
+	\begin{gather*}
+	1000(1,03)^5=1159,27\$ 
+	\end{gather*}
+\p
+b) Combien de temps faudra-t-il pour accumuler $1200\$$
+
+si $i=3\%$?
+\p
+	\begin{gather*}					% Exemple à réutiliser pour développer une démarche math
+	1000(1,03)^t=1200			\\
+	1,03^t=1,2					\\
+	t\ln(1,03)=\ln(1,2)			\\
+	t=\frac{\ln(1,2)}{\ln(1,03)}		\\
+	t=6,168 ans				\\
+	\end{gather*}
+
+c) Quel taux $i$ faudra-t-il utiliser pour accumuler $1\ 200\$$ en 5 ans?
+\p
+	\begin{gather*}					% Exemple à réutiliser pour développer une démarche math
+	1000(1+i)^5=1200			\\
+	1+i=(\frac{1200}{1000})^\frac{1}{5} \egal \textbf{i=0,0371=3,71\%}
+	\end{gather*}
+
+\subsection{Intérêt simple}			% DÉBUT SOUS SECTION SUR L'INTÉRÊT SIMPLE
+On sait que par défaut, l'intérêt est composé. \textbf{L'intérêt simple est souvent utilisé lorsque $t<1$.}
+
+% GRAPHIQUE À INSÉRER ICI PLUS TARD!!!
+
+\hl{En contexte \textbf{d'intérêt simple}, $t=0$ au début de la transaction.}
+
+
+\newpage			% j'ai forcé un changement de page, car de toute façon on ca insérer un graph plus tard ici
+\subsection*{Exemple 1.4 du livre (écourté)}
+
+Le 31 janvier, Monsieur Tremblay emprunte (intérêt simple) à Mdame Roy et lui remet un billet à ordre de $5\ 000\$$ (\emph{promisory note}). Selon le billet, remboursement le 30 avril, $i=12\%$. Le 1\up{er} mars, Madame Roy vend le billet à Monsieur Gagnon. Monsieur Gagnon demande $i=15\%$.
+\p
+a) Combien devra payer Monsieur Tremblay le 30 avril?
+\p
+$28+31+30=89$ jours d'écoulés : 
+	\begin{gather*}
+	5000(1+\frac{89}{365}*0,12)=5\ 146,30\$
+	\end{gather*}
+\p
+b) Combien paye Monsieur Gagnon le 1\up{er} mars?
+\p
+nombre de jours$=30+30=60$.
+	\begin{gather*}
+	x(1+\frac{60}{365}*0,15)=5\ 146,30 \egal x=5\ 022,46\$
+	\end{gather*}
+\p
+c) Quel taux $i$ réalise Madame Roy?
+	\begin{gather*}
+	5000(1+\frac{29}{365}*i)=5\ 022,46 \egal i=5,65\%
+	\end{gather*}
+
+\subsection*{on revient au contexte d'intérêt composé...} % FIN SOUS-SECTION INTÉRÊT SIMPLE
+Question : Est-ce que le taux est nécessairement annuel?
+
+Réponse : Non!
+\begin{description}		% Template lorsqu'on a des définitions de variables, créé d'abord dans le préambule
+	\item[\Large{$i$}] taux d'intérêt effectif \emph{ annuel}
+	\item[\Large{$j$}] taux d'intérêt effectif \emph{par période}
+\end{description}
+
+\subsection*{Exemple}
+Georgette a $1\ 000\$$ à déposer, quelle sera la valeur de son investissement dans 2 ans si :
+\p
+\begin{tabular}{llr}
+a)	& $j=1\%/mois$			& $1000(1,01)^24=1\ 069,73\$$			\\
+b)	& $j=2\%/trimestre$		& $1000(1,02)^8=1\ 171,66\$$				\\
+c)	& $j=6\%/semestre$		& \hl{$1000(1,06)^4=1\ 262,48\$$}				\\
+d)	& $i=12,36\%$			& \hl{$1000(1,1236)^2=1\ 262,48\$$}		\\
+\end{tabular}
+
+\begin{definition}
+2 taux d'intérêt sont dit équivalents si on obtient la même valeur accumulée en utilisant l'un ou l'autre.
+\end{definition}
+
+\begin{definition}		% numérotation de définitions
+Le taux d'intérêt annuel effectif est la différence entre les valeurs de début et fin d'année.
+\end{definition}
+
+\textbf{Calcul :} 
+	\begin{equation}
+	i=\frac{(valeur\ fin\ d'année) - (valeur\ début\ d'année)}{(valeur\ début\ d'année)}
+	\end{equation}
+également,	
+	\begin{equation}
+	i=\frac{(valeur\ fin\ d'année)}{(valeur\ début\ d'année)}-1
+	\end{equation}
+	
+Question : est-ce que le taux d'intérêt est nécessairement constant?
+Non!
+Il faut donc préciser la période $t$ en question.
+
+\begin{definition}
+$i_t$ est le taux d'intérêt annuel en vigueur de $(t-1)$ à $(t)$.
+\end{definition}
+
+	\begin{equation}
+	i_t=\frac{a(t)-a(t-1)}{a(t-1)}
+	\end{equation}
+Ce qui équivaut aussi à :
+	\begin{equation}
+	i_t=\frac{a(t)}{a(t-1)}-1
+	\end{equation}

@@ -1,0 +1,135 @@
+% 1.6 La Force d'intérêt
+
+On a vu que plus un taux d'intérêt est capitalisé souvent dans une année ($m/$an), le taux effectif annuel augmente. Qu'en est-il si le taux d'intérêt est capitalisé \underline{\hl{continûment}}, soit $m=\infty$?
+
+\begin{gather*}
+\lim_{m \to \infty} i^{(m)} = i^{(\infty)} = \lim_{m \to \infty} m \left[ (1+i)^{\frac{1}{m}} - 1 \right] = 0 \cdot 0 ?\\
+\text{(Il faut appliquer la règle de l'Hôpital...)} \\
+... \\
+= \ln (1+i) = \delta
+\end{gather*}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+\lim_{m \to \infty} i^{(m)} = \ln (1+i) = \delta
+\end{empheq}
+
+Même principe pour le taux d'escompte ($d$) : 
+
+\begin{gather*}
+\lim_{m \to \infty} d^{(m)} = d^{(\infty)} = \lim_{m \to \infty} \frac{\left[ 1 - (1-d)^{\frac{1}{m}} \right]}{1/m} = \frac{0}{0}? \\
+\text{(Il faut appliquer la règle de l'Hôpital...)} \\
+... \\
+= -\ln (1-d) = \ln \left ( \frac{1}{1-d} \right) \\
+= \ln (1+i) = \delta \\
+\end{gather*}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+\lim_{m \to \infty} d^{(m)} = \ln \left( \frac{1}{1-d} \right) = \delta
+\end{empheq}
+
+Rappel : 
+\begin{equation*}
+\lim_{m \to \infty} \left( 1 + \frac{i^{(m)}}{m} \right)^m \egal \lim_{n \to \infty} \left( 1 + \frac{t}{n} \right)^n = e^{t}
+\end{equation*}
+
+Donc, on peut trouver que le taux $i$ (en contexte de force d'intérêt) est représenté par : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+\lim_{m \to \infty} i = e^{i^{(m)}}
+\end{empheq}
+
+On peut aussi prouver l'équation du facteur d'accumulation en contexte de force d'intérêt (dans l'hypothèse d'une force d'intérêt continue : 
+
+\begin{gather*}
+a(t) = (1+i)^t \\
+\ln a(t) = \ln \left( (1+i)^t \right) \\
+\ln a(t) = t \cdot \ln(1+i) \\
+\ln a(t) = t \cdot \delta \\
+e^{\ln a(t)} = e^{t \cdot \delta} \\
+a(t) = e^{\delta t}
+\end{gather*}
+
+\subsection{Croissance continue de l'investissement}
+% pour faire le d rond du symbole de dérivée, on fais la commande \partial
+Dans un contexte de la croissance d'un investissement de $(t)$ à $(t+1)$, le taux d'intérêt effectif se calcule comme suit : 
+
+\begin{gather*}
+\frac{A(t+1) - A(t)}{A(t)} = \frac{a(t+1) - a(t)}{a(t)}
+\end{gather*}
+
+Si c'est pour la période de $(t)$ à $(t+\blue{h})$ : 
+
+\begin{gather*}
+\frac{A(t+\blue{h}) - A(t)}{A(t)} = \frac{a(t+\blue{h}) - a(t)}{a(t)}
+\end{gather*}
+
+Si $\blue{h}$ représente le temps (en année), $h$ peut être égal à $\frac{1}{12}$, qui représente un mois.
+
+On trouve donc le taux effectif mensuel ainsi : 
+\begin{gather*}
+\frac{A(t+\blue{\frac{1}{12}}) - A(t)}{A(t)} = \frac{a(t+\blue{\frac{1}{12}}) - a(t)}{a(t)}
+\end{gather*}
+
+Et on trouve le taux nominal annuel capitalisé mensuellement($i^{(12)})$ ainsi : 
+\begin{gather*}
+\darkgreen{12} \cdot \frac{A(t+\blue{\frac{1}{12}}) - A(t)}{A(t)} = \frac{a(t+\blue{\frac{1}{12}}) - a(t)}{\darkgreen{\frac{1}{12}} \cdot a(t)} = \frac{a(t+\blue{h}) - a(t)}{\darkgreen{h} \cdot a(t)}
+\end{gather*}
+
+Si on fais tendre $ h \to 0$ : 
+\begin{gather*}
+\lim_{h \to 0} \frac{a(t+h) - a(t)}{h \cdot a(t)} \\
+= \purple{\lim_{h \to 0} \frac{a(t+h) - a(t)}{h}} \cdot \lim_{h \to 0} \frac{1}{a(t)} \\
+= \frac{\purple{a'(t)}}{a(t)} \Rightarrow \text{\purple{c'est la définition d'une dérivée.}}\\
+\end{gather*}
+
+Alors,
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+\delta_t = \frac{a'(t)}{a(t)} = \frac{\partial}{\partial t} \ln a(t)
+\end{empheq}
+
+\subsection{Croissance d'un investissement basé sur la force d'intérêt}
+On sait que  
+\begin{gather*}
+\delta_t = \frac{a'(t)}{a(t)} = \frac{\partial}{\partial t} \ln a(t)
+\end{gather*}
+
+Donc,
+
+\begin{gather*}
+\int_0^t \delta_s ~ds = \int_0^t \frac{\partial}{\partial s} \ln a(s) ~ds = \ln a(s)\eval_0^t = \ln a(t) - \ln a(0) = \ln a(t) - \ln (1) \\
+\Rightarrow \int_0^t \delta_s ~ds = \ln a(t) \\
+\end{gather*}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+a(t) = e^{\int_0^t \delta_s ~ds}
+\end{empheq}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+A(t) = A(0) \cdot a(t)  = A(0) \cdot e^{\int_0^t \delta_s ~ds}
+\end{empheq}
+
+\textbf{Note} : il faut faire la somme de toutes les intégrales lorsque l'équation de $\delta_t$ change d'une période à l'autre.
+
+\begin{gather*}
+A(n) - A(m) = \text{intérêts gagnés} \\
+A(m) \cdot \frac{a(n)}{a(m)} - A(m) = \text{intérêts gagnés} \\
+\end{gather*}
+
+Et on peut déduire le facteur d'accumulation entre 2 périodes déterminées : 
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+\frac{a(n)}{a(m)} = \frac{e^{\int_0^n \delta_s ~ds}}{e^{\int_0^m \delta_s ~ds}} = e^{\int_m^n \delta_s ~ds}
+\end{empheq}
+
+\subsection{Force d'intérêt constante}
+Tel que déterminé dans l'introduction de cette section, lorsque notre $\delta$ reste constant pendant toute la période ($\delta_t = \delta, \quad \forall\ t$) : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+a(t) = e^{\delta t}
+\end{empheq}
+
+et
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+v(t) = e^{-\delta t}
+\end{empheq}
+

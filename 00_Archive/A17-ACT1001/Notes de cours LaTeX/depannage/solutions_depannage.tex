@@ -1,0 +1,162 @@
+\documentclass[12pt, french]{report}
+\input{preambule_sol_depanmathfin.tex}
+% Préambule chargé d'un autre document
+
+\begin{document}
+% ------------------------------------------------------------------------------
+\tableofcontents
+% ------------------------------------------------------------------------------
+\chapter{Mesure du taux d'intérêt}
+\section{Questions}
+\includepdf[pages = 1-]{questions/depanchap1.pdf}
+
+
+
+\chapter{Évaluation de rente}
+\section{Questions}
+\includepdf[pages = 1-]{questions/depanchap2.pdf}
+
+
+
+\chapter{Remboursement d'un prêt}
+\section{Questions}
+\includepdf[pages = 1-]{questions/depanchap3.pdf}
+
+
+
+\chapter{Évaluation d'une obligation}
+\section{Questions}
+\includepdf[pages = 1-]{questions/depanchap4.pdf}
+
+
+
+\chapter{Mesure du taux de rendement}
+\section{Questions}
+\includepdf[pages = 1-]{questions/depanchap5.pdf}
+
+
+% CHAPITRE 6
+\chapter{Structure par échéance des taux d'intérêt}
+\input{section/chap6.tex}
+
+
+\chapter{Duration et immunisation}
+\section{Questions}
+\includepdf[pages = 1-]{questions/depanchap7.pdf}
+
+\begin{enumerate}
+  \item
+  \begin{enumerate}
+    \item Rappel de la formule pour trouver la duration :
+    \begin{align*}
+      D = \frac{\sum_{t=1}^n t K_t (1+i)^{-t}}{\text{Prix flux monétaire}}
+    \end{align*}
+    Alors,
+    \begin{align*}
+      \text{Prix} & = (Fr - Cj) \ax{\angl{5} 4\%} + C \\
+                  & = (4 - 6) \left( \frac{1 - (1,06)^{-5}}{0,06} \right) + 100 \\
+                  & = 95,57527243 \\
+      \end{align*}
+    Ensuite,
+    \begin{align*}
+      \sum_{t=1}^5 t K_t (1,06)^{-t} & = (1)(4)(1,06)^{-1} + (2)(4)(1,06)^{-2} \\
+          & + (3)(4)(1,06)^{-3} + (4)(4)(1,06)^{-4} + (5)(104)(1,06)^{-5} \\
+          & = 422,2167363 \\
+    \end{align*}
+    Si on remet tout ensemble,
+    \begin{align*}
+      D   & = \frac{422,2167363}{95,56430512} \\
+          & = 4,61059 \\
+    \end{align*}
+    On peut rapidement trouver la duration modifiée :
+    \begin{align*}
+      MD = \frac{D}{(1+i)} = \frac{4,61059}{1,06} = 4,349613208 \\
+    \end{align*}
+
+    Pour la convexité, c'est presque le même calcul que la duration :
+    \begin{align*}
+      C = \frac{\sum_{t=1}^n t^2 K_t (1+i)^{-t}}{\text{Prix flux monétaire}}
+    \end{align*}
+
+    Donc,
+    \begin{align*}
+      \sum_{t=1}^5 t^2 K_t (1,06)^{-t} & = (1)^2(4)(1,06)^{-1} + (2)^2(4)(1,06)^{-2} \\
+          & + (3)^2(4)(1,06)^{-3} + (4)^2(4)(1,06)^{-4} + (5)^2(104)(1,06)^{-5} \\
+          &  = 2041,805066 \\
+    \end{align*}
+    La convexité est donc :
+    \begin{align*}
+      C   & = \frac{2041,805066}{95,57527243} \\
+          & = 21,36331934 \\
+    \end{align*}
+    Et on peut calculer la convexité modifiée via cette relation  :
+    \begin{align*}
+      MC = \frac{C + D}{(1+i)^2} = \frac{4,61059 + 21,36331934}{(1,06)^2} = 23,11668685 \\
+    \end{align*}
+    \item Petite précision sur la notation utilisée dans la solution :
+    $P_i$ est le prix de l'obligation à un taux d'intérêt $i$.
+    \p
+    $y = 0,06$, $y+h = 0,059$, alors $h = 0,01$.
+
+    Pour le premier degré,
+    \begin{align*}
+      P_{y+h}     & \approx P_y - h \cdot P_y \cdot DM \\
+      P_{0,059}   & \approx P_{0,06} - 0,001 P_{0,06} DM \\
+                  & \approx (91,575) - 0,001(91,575)(4,34962) \\
+                  & \approx 91,97359 \\
+    \end{align*}
+    Et au deuxième degré,
+    \begin{align*}
+      P_{y+h}     & \approx P_y - h \cdot P_y \cdot DM + \frac{1}{2} h^2 \cdot CM \\
+                & \approx P_{0,06} - 0,001 P_{0,06} DM + \frac{1}{2}(-0,001)^2 CM \\
+                & \approx 91,575 - 0,001(91,575)(4,34962) + \frac{1}{2}(-0,001)^2(23,11668685) \\
+                & \approx 91,974687 \\
+    \end{align*}
+  \end{enumerate} % fin numéro 1
+  \item
+  \begin{enumerate}
+    \item
+
+    \begin{tabular}{|c|c|}
+      \hline
+      Duration (D)            & 2,22889 \\
+      \hline
+      Duration modifiée (MD)  & 2,063786 \\
+      \hline
+      Convexité (C)           & 5,544830427 \\
+      \hline
+      Convexité Modifiée (MC) & 6,664711609 \\
+      \hline
+    \end{tabular}
+    \item Avec $h = 0,01\% = 0,0001$,
+    \p
+    Au premier degré : $P_{0,0801} \approx 462,422963$
+
+    Au deuxième degré : $P_{i+h} \approx 462,422978$
+  \end{enumerate} % fin du numéro 2
+  \item 
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

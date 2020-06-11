@@ -1,0 +1,81 @@
+% Préambule
+
+ % une des 2 commandes permet d'avoir des accents
+	%
+	\usepackage{babel}
+	\usepackage[T1]{fontenc}
+	  \usepackage[utf8]{inputenc}
+		% permet d'inclure les réglages pour le français
+	\usepackage{amsmath,amsthm,amssymb,latexsym,amsfonts}
+								%SYMBOLES MATHÉMATIQUES
+	\usepackage{eqnarray}	% pour faire des équations alignés
+	\usepackage{empheq}	% permet de mettre en encadré des équations mathématiques!
+	\usepackage{bookman}	% POLICES SPÉCIALES
+	\usepackage{multicol}	% pour faire des colonnes multiples
+%!!!!!!!! pour mettre des formules en vert standardisée :  !!!!!!!
+% \begin{empheq} [box=\fcolorbox{black}{green}]{equation} et on conclut avec \end{empheq}
+	
+	\usepackage{numprint}	% permet d'utiliser du contenu numérique avancé
+	\usepackage{graphicx}	% permet d'inclure des images dans un fichier
+	\usepackage{hyperref}	% permet de faire des hyperliens dans le document
+	\usepackage{color,soul}	% permet de surligner en jaune	
+	\usepackage[dvipsnames]{xcolor}	% permet de mettre des boîte en couleur
+	\usepackage{pdfpages}	% permet d'insérer un PDF dans ce fichier PDF (avec la fonction \includepdf[pages = {}]								{nomdupdf.pdf}
+	\usepackage{pict2e}		% ajoute des fonctionnalités pour dessiner en programmation
+	\usepackage[tikz]{bclogo}
+	
+% PACKAGE DE VINCENT GOULET ET DAVID BEAUCHEMIN POUR DES SYMBOLES D'ACTUARIAT : 
+	\usepackage{actuarialangle}
+	\usepackage{actuarialsymbol}
+	\usepackage{cancel}
+	\usepackage{colortbl}
+
+
+
+
+	
+% COULEUR
+	\definecolor{orange}{rgb}{0.99,0.69,0.07}
+	\newcommand{\orange}{\textcolor{orange}}
+	\newcommand{\red}{\textcolor{red}}
+	\newcommand{\blue}{\textcolor{blue}}
+	\newcommand{\green}{\textcolor{green}}
+	\newcommand{\purple}{\textcolor{magenta}}
+	\newcommand{\yellow}{\textcolor{yellow}}	
+	\newcommand{\darkgreen}{\textcolor{Green}}
+	\newcommand{\navyblue}{\textcolor{NavyBlue}}
+
+
+% OPTIONS AJOUTÉES POUR LES COULEURS DE TOUCHE DE LA CALCULATRICE	
+
+	\newcommand{\touche}{\fcolorbox{black}{lightgray}}
+	\newcommand{\second}{\fcolorbox{black}{yellow}{2nd}}
+	\newcommand{\eval}{\biggr\rvert}
+	
+% CRÉATION DE NOUVELLES COMMANDES, pour se faire des raccourcis
+	\newcommand{\p}{\paragraph{}}
+	\newcommand{\egal}{\Leftrightarrow}
+	\newcommand{\n}{\newline{}}
+	
+% Création de «Theorem» : ça me crée une série de théorème, convention, exemple numérotés
+	\newtheorem{conv}{Convention}
+	\newtheorem{definition}{\purple{Définition}}
+	\newtheorem{remarque}{\blue{Remarque}}	
+	
+% définition des symboles mathématiques : entiers, reels
+	\newcommand{\reels}{\mathbb{R}}
+	\newcommand{\entiers}{\mathbb{Z}}
+	
+% création d'un nouvel environnement pour les formules mathématiques encadrées en vert qui reviennent très souvent!
+
+
+% package enuitem pour personnaliser ses listes  à puces et numéro!
+	\usepackage{enumitem}	
+
+
+% Présentation document
+	\title{Notes de cours \\ Mathématiques financières \\ Automne 2017 \\ ACT-1001}
+	\author{Gabriel Crépeault-Cauchon}
+	\date{Dernière mise à jour : \today}
+
+% fin du préambule	

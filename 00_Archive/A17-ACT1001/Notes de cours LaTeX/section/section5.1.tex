@@ -1,0 +1,229 @@
+% début section 5.1
+Il y a une fonction sur la calculatrice \touche{NPV}, mais il ne pourra pas être utilisé à l'examen.
+\p
+Valeur actualisée nette $=$ \emph{Net Present Value}
+\p
+Est-ce qu'on préfère un TRI élevé ou faible? Ça dépend de quel côté de l'équation on se trouve! Si on emprunte, on préfère un TRI \underline{faible}. À l'inverse, on préfère un TRI \underline{élevé} si on prête de l'argent.
+
+\subsection{Définition du taux de rendement interne}
+\paragraph{Définition} \emph{Le} (n'importe lequel) taux d'intérêt pour lequel
+VA(paiements faits) - VA(versements reçus).
+\begin{description}
+\item[VA] valeur actualisée
+\item[paiements faits] sorties de fonds
+\item[versements reçus] entrées de fonds
+\end{description}
+la VAN est donc une équation de valeur!
+\p
+\bcattention il faut que les deux VA soient \underline{calculés au même moment}. Mais on pourrait aussi se placer ailleurs (évaluer à $t \ne 0$) et même prendre des valeurs accumulés.
+\p
+\underline{Jusqu'à maintenant}, nous avions une seule solution possible pour le taux $j$ et le problème était tel que $j>0$. Il en était ainsi parce que les entrées de fonds suivaient les sorties de fonds (ou l'inverse). Il n'y avait donc qu'un seul changement de signe dans les flux monétaires (\emph{Cash-flows}).
+\p
+On va généraliser. Supposons qu'il y a des flux monétaires à $0 = t_0 < t_1 < t_2 < ... < t_n$.
+\p
+soit $A_k \ge 0$, l'entrée de fonds à $t_k, \quad k=0,1,...,n$
+\p
+Soit $B_k \ge 0$, la sortie de fonds à $t_k, \quad k=0,1,...,n$
+\p
+Équation de valeur : 
+\begin{align*}
+\sum_{k=0}^n A_k v^{t_k} = \sum_{k=0}^n B_k v^{t_k} \\
+\sum_{k=0}^n (A_k - B_k) v^{t_k} = 0 \\
+\end{align*}
+Soit $C_k = A_k - B_k$ le flux monétaire \underline{net} à $t_k, \quad k = 0,1,...,n$. \red{Donc si $C_k < 0$, c'est une sortie de fonds \underline{nette}}. Et si \darkgreen{$C_k >0$, c'est une entrée de fonds \underline{nette}.}
+\p
+\paragraph{Définition} : le TRI est \underline{n'importe quel} taux d'intérêt $j$ qui vérifie l'égalité suivante: 
+\begin{equation*}
+\sum_{k-0}^n C_k(1+j)^{-t_k} = 0
+\end{equation*} 
+où $j$ est un taux effectif par période et les $t_k$ sont mesurées en périodes.
+\p
+\fbox{\bcsmbh Nous supposons toujours l'intérêt composé}
+\p
+\fbox{\bcattention Le TRI peut être négatif et il peut y avoir plus d'une solution...}
+
+\subsubsection*{Exemple 5.1}
+$t_0 = 0 \quad t_1 = \frac{1}{2} \text{ an} \quad t_2 = 1	\quad t_3 = 1 \frac{1}{2}$
+\begin{align*}
+C_0 	& = 0 - 1000 \times 5 \times 1,02 \\
+	& = -5100 \\
+\\
+C_1	& = 1000 \times 0,20 - \underbrace{200}_{4 \times 50} \\
+	& = 0 \\
+\\
+C_2	& = 0 - 500 \times 4,50 \times 1,02 \\
+	& = -2295\\
+\\
+C_3	& = (1550 \times 0,25 \times + 1550 \times 5 \times 0,98) - 0 \\
+	& = 7982,50 \\
+\end{align*}
+L'équation à poser : 
+\begin{align*}
+-5100- 2295(1+i)^{-1} + 7982,50(1+i)^{-1,5} = 0 \\
+\end{align*}
+Claire ne s'attend pas à ce qu'on soit capable de résoudre une équation de 3\up{e} degré, \hl{mais on doit être capable d'utiliser le discriminant d'une quadratique}.
+\p
+Si on utilise la calculatrice BA II-Plus
+\begin{center}
+\begin{tabular}{ll}
+\touche{CFo}	& $= C_0$ \\
+\touche{C01}	& $= C_1$ \\
+\touche{F01}	& = fréquence \\
+\touche{IRR} \touche{CPT}	& = TRI \\
+\end{tabular}
+\end{center}
+
+\bcattention Remarque : Les flux monétaires doivent être également espacés ($t_{k-1} - t_k = \Delta t, \quad k = 0,1,...,n$). Cela peut nécessiter l'ajout de paiements de 0$\$$, pour mettre tous les paiements sur la même base.
+\p
+\bcattention La BA II Plus trouve \underline{un} taux effectif par période ($\Delta t$)
+\p
+alors,
+\begin{tabular}{ll}
+\touche{CF} \\
+-5100 \touche{ENTER} \\
+\touche{$\downarrow$} 0 \touche{ENTER} \\
+\touche{$\downarrow$} 1 \touche{ENTER} \\
+\touche{$\downarrow$} -2295 \touche{ENTER} \\
+\touche{$\downarrow$} 1 \touche{ENTER} \\
+\touche{$\downarrow$} 7982.5 \touche{ENTER} \\
+\touche{$\downarrow$} 1 \touche{ENTER} \\
+\touche{IRR} \touche{CPT} = 3.246381644(\%)\\
+\end{tabular}
+Sauf que le taux trouvé est $j = \frac{i^{(2)}}{2} =0,03246381644 $, alors
+\begin{align*}
+i = (1+j)^2 - 1 = 0,06598
+\end{align*}
+
+
+\subsection{Unicité du TRI}
+\paragraph{résultats pertinents de l'exercice 5.1.6}
+Soit l'équation $\sum_{k=0}^n C_k v^k = 0$ où $v = \frac{1}{1+j}$ est le facteur d'actualisation pour une période ($t_0 = 0, t_{k-1} - t_k = \Delta t, \quad k = 0,1,...,$).
+\p
+Implicitement, $C_0 \ne 0 \quad C_n \ne 0$
+
+\subsubsection*{Résultat 1}
+Cette équation a au plus $m$ solutions $v >0$ où $m$ est le nombre de changement de signe dans la suite $\{C_0, C_1, C_2, ..., C_n \}$
+\p
+\bcattention Zéro (0) est neutre. Il n'entraîne pas de changements de signe.
+\p
+\bcattention Ce n'est pas parce que $v > 0$ que nécessairement $j >0$. Si $v>0$, alors on est sûr que $j > -100\%$. 
+
+\subsubsection*{Résultat 2}
+Il y a une seule solution $j> -100\%$ si la suite $\{C_0, C_1, C_2, ..., C_n \}$ a un seul changement de signe.
+
+\subsubsection*{Résultat 3}
+Soit $F_k = \sum_{s=0}^k C_s$ le flux monétaire cumulatif de $t_0$ à $t_k$. Il y a une seule solution $j >0$ si la suite$\{F_0, F_1, ..., F_n \}$ n'a qu'un changement de signe.
+\p
+On suppose de facto,
+\begin{align*}
+C_0 \ne 0 \\
+F_n \ne 0 \\
+\end{align*}
+
+\subsubsection*{Exemple 5.2}
+Équations quadratiques avec  0,1 ou 2 solutions : 
+\begin{align*}
+C_0 + C_1v + C_2v^2 = 0
+\end{align*}
+Dans l'exemple 5.2 ... $C_0 = -1 \quad C_1 = 2,3 \quad C_2 \in \{-1,33 ; -1,32 ; -1,3125 ; -1,2825 \}$
+\p
+\begin{itemize}
+\item Le résultat 2 n'est pas applicable
+\item Le résultat 1 $\rightarrow \le 2$ solutions (pas pertinent, on n'avance pas)
+\item Résultat 3 $F_0 = -1 \quad F_1 = 1,3 \quad F_2 \in \{-0,03 ; -0,02 ; -0,0125 ; 0,0175\}$ 
+\n
+Ce résultat n'est pas intéressant pour a) b) c), mais il est utile le d)
+\end{itemize}
+
+{\remarque l'équation pour trouver le TRI suppose que le même taux s'applique, qu'on soit à découvert ou non, que $F_k$ soit positif ou négatif.}
+
+\subsection{Évaluation de projet en utilisant la valeur actualisée nette}
+Au lieu de comparer les TRI, on va comparer les VAN (valeur actualisées nettes). On veut la VAN la plus élevée possible (et $\ge 0$). Implicitement, on sait que c'est le taux utilisé pour actualiser.
+\p
+À quel taux actualise-t-on? Au taux d'intérêt de préférence de l'individu (au \emph{taux d'intérêt décrété}!)
+\p
+\bcattention Le choix (décision) est sensible au taux utilisé.
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+VAN = \sum_{k=0}^n C_k v^{t_k}
+\end{empheq}
+(Souvent, $C_0 < 0$ et $C_k \ge 0 \quad k = 1,...,n$)
+
+\begin{description}
+\item[Coût du capital] taux d'intérêt de préférence (\emph{interest preference rate})
+\end{description}
+
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+TRI = i \text{ tel que } VAN=0
+\end{empheq}
+
+\section{Taux de rendement pondéré en dollars et par période}
+Traduction de l'anglais : 
+\begin{description}
+\item[Dollar-weighted] pondéré par dollars
+\item[Time-weighted] pondéré par période
+\end{description}
+\p
+\blue{But} : Calculer le taux de rendement \underline{annuel} d'un fonds commun de placement ou d'une caisse de retraite.
+
+\subsection{Taux de rendement pondéré en dollar}
+C'est un TRI...
+\begin{enumerate}[label=\alph*)]
+\item sur base \hl{d'intérêt simple}
+\item avec équation de valeur posée à $t=1$
+\item et compteur remis à 0 séparément au moment de chaque transaction.
+\end{enumerate}
+\p
+Soit
+\begin{description}
+\item[$A$:] valeur du fonds à $t=0$
+\item[$B$:] valeur du fonds à $t=1$
+\item[$C_k$:] flux monétaire net à $t_k$
+\end{description}
+Équation : 
+\begin{equation*}
+A(1+i) + \sum_{k=1}^n C_k (1 + (1-t_k)i) = B
+\end{equation*}
+Si on isole $i$, on obtient : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+i = \frac{I}{A + \sum_{k=1}^n C_k (1-t_k)}
+\end{empheq}
+où $I = B - (A + \sum_{n=1}^n C_k)$
+\p
+On peut aussi faire une approximation (s'il y a beaucoup de $t_k$) : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+i \approx \frac{I}{A + \frac{1}{2} \sum_{n=1}^n C_k}
+\end{empheq}
+
+\subsection{Taux de rendement pondéré par période}
+\emph{Composition} des taux de rendement réalisée par période entre flux monétaires successifs.
+
+\subsubsection*{Petit exemple}
+\begin{tabular}{ll}
+2016-01-01	& $A$	\\
+2016-02-28	& depuis le 1\up{er} janvier, rendement \blue{1\%} \\
+2016-02-28	& dépôt ou retrait \\
+2016-09-30	& depuis le dépôt et avant le prochain dépôt, rendement \blue{2\%} \\
+\end{tabular}
+Puis, entre après le dépôt du 30 septembre et le 31 décembre, il y a eu un rendement de \blue{0,5\%} pendant cette période.
+\p
+Si on fais le produit de tous les rendements de périodes qu'on a calculé pour la période, on obtient le rendement annuel!
+
+\begin{description}
+\item[$A$:] valeur du fonds à $t=0$
+\item[$B$:] valeur du fonds à $t=1$
+\item[$C_k$:] flux monétaire net à $t_k, \quad 0 < t_k < 1, \quad k=1,...,n$
+\item[$F_k$:] valeur du fonds à $t_k^-$ (juste avant le flux monétaire net $C_k$)
+\end{description}
+Équation : 
+\begin{empheq} [box=\fcolorbox{black}{green}]{equation}
+1 + i = \left( \frac{F_1}{A} \right) \times \left( \frac{F_2}{F_1 + C_1} \right) \times \left( \frac{F_2}{F_2 + C_2} \right) \times ... \times \left( \frac{F_n}{F_{n-1} + C_{n-1}} \right) \times \left( \frac{B}{F_n + C_n} \right)
+\end{empheq}
+
+\bcattention il est possible qu'on vous donne plutôt, comme dans l'exemple 5.4 du livre, des valeurs à $t_k^+$ (c'est-à-dire qu'on nous donne des $C_k$ et des $F_k + C_k$).
+
+\subsection{Applications et illustrations}
+\subsubsection{Méthode du portefeuille (\emph{Portfolio method})}
+Le taux d'intérêt qui s'applique ne dépend que de l'année civile courante.
+
+\bcsmbh Cette section est toujours dans un contexte d'intérêt composé.
