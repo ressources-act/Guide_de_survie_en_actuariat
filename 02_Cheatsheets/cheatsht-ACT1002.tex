@@ -46,47 +46,60 @@
 \begin{probch1}{L'analyse combinatoire}
 \begin{description}
   \item[Principe de base de comptage :] Pour une expérience 1 avec m résultats possibles et une expérience 2 avec n résultats possibles, il y a m x n possibilités.
-\end{description}
-\begin{description}
   \item[Permutations :] Nombre d'arrangements en tenant compte de l'ordre. La façon de dénombrer les arrangements dépend du type de question.
-  \begin{description}
-	\item[$Exemples$ :] Combien de façons peut-on arranger les chiffres 1, 2, 3 et 4 dans un nombre à 4 chiffres? La réponse est {4!}. La réponse serait la même avec les chiffres 1, 2, 2 et 3, car les deux chiffres 2 ne sont pas considérés comme identiques. 
-	\item[] Toutefois, si on demande combien de façons peut-on distribuer 12 cadeaux différents à 4 personnes, la réponse sera $ 4^{12} $ étant donné que chaque cadeau peut aller à quatre personnes.
-	\end{description}
-\end{description}
-\begin{description}
+	  \item[$Exemples$ :] Combien de façons peut-on arranger les chiffres 1, 2, 3 et 4 dans un nombre à 4 chiffres? La réponse est {4!}. La réponse serait la même avec les chiffres 1, 2, 2 et 3, car les deux chiffres 2 ne sont pas considérés comme identiques. 
+	  \item[] Toutefois, si on demande combien de façons peut-on distribuer 12 cadeaux différents à 4 personnes, la réponse sera $ 4^{12} $ étant donné que chaque cadeau peut aller à quatre personnes.
 	\item[Combinaisons :] Nombre d'arrangements en \textbf{ne} tenant \textbf{pas} compte de l'ordre.
-	\begin{description}
 	 \item[$Exemples$ :] En reprenant l'exemple des permutations, mais avec les chiffres 1, 1, 1, 2 et 2, il y aurait 5!/(3!2!) combinaisons puisque les trois 1 et les deux 2 sont considérés identiques.
-	 \end{description}
-\end{description}
-\begin{description}
 	 \item[Coefficient binomial :] De l'exemple précédent, on peut observer l'existence du coefficient binomial, qui est défini selon la formule :
 	 \begin{align*}
 	 \binom{n}{k}
 	 &= \frac{n!}{k! \,(n-k)!}
 	 \end{align*}
-\end{description}
-\begin{description}
   \item[Coefficient multinomial :] La généralisation du coefficient binomial va comme suit :
   \begin{align*}
   \binom{n}{k_1, k_2, ..., k_m}
   &= \frac{n!}{(k_1)! \, (k_2)! \, ..., (k_m)!}
   \end{align*}
   \item[] Où {$n = \sum_{i = 1}^{m} k_i$}
+<<<<<<< Updated upstream
+  \item[Théorème multinomial :] Le coefficient multinomial aide à trouver les coefficients devant les variables lors du développement de multinômes. 
+  \begin{itemize}
+	  \item Afin de mieux comprendre le théorème multinomial, voici un exemple :
+	  	\setlength{\mathindent}{-1cm}
+		  \begin{align*}
+			(-3x+5y^2)^4 
+			&=	\sum_{}^{} \binom{4}{n_1 , n_2} (-3x)^{n_1} (5y^{2})^{n_2}
+		  \end{align*}
+		\setlength{\mathindent}{1cm}
+	 \item Si on cherche le coefficient devant les variables $x^{3}y^{2}$, on remplace $n_1$ par 3 et $n_2$ par 1 et on obtient -540.
+\end{itemize} 
+\end{description}  
+\begin{description}
+  \item[Solutions entières non-négatives :] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants». 
+	\begin{itemize}
+		\item Il peut y avoir aucun objet dans un «contenant». 
+		\item La solution à ce type de problème est donnée par $\binom{n+r-1}{r-1}$ où n est le nombre d'objets et r le nombre de «contenants». 
+		\item S'il est mentionné dans le problème qu'il n'est pas nécessaire d'utiliser tous les objets pour les mettre dans les contenants, on peut rajouter un contenant pour les objets «non-utilisés».
+	\end{itemize}
+  \item[Solutions entières positives:] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants» et ce, de façon à ce que chaque «contenant» ait au moins un objet. 
+  \begin{itemize}
+	  \item La solution à ce type de problème est donnée par $\binom{n-1}{r-1}$.
+  \end{itemize} 
+=======
   \item[Théorème multinomial :] Le coefficient multinomial aide à trouver les coefficients devant les variables lors du développement de multinômes. Afin de mieux comprendre le théorème multinomial, voici un exemple :
   \item[]{$(-3x+5y^2)^4 = \sum_{}^{} \binom{4}{n_1 , n_2} (-3x)^{n_1} (5y^{2})^{n_2}$}
   \item[] Si on cherche le coefficient devant les variables $x^{3}y^{2}$, on remplace $n_1$ par 3 et $n_2$ par 1 et on obtient -540.
-\end{description}  
-\begin{description}
   \item[Solutions entières non-négatives :] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants». Il peut y avoir aucun objet dans un «contenant». La solution à ce type de problème est donnée par $\binom{n+r-1}{r-1}$ où n est le nombre d'objets et r le nombre de «contenants». Si l'est mentionné dans le problème qu'il n'est pas nécessaire d'utiliser tous les objets pour les mettre dans les contenants, on peut rajouter un contenant pour les objets «non-utilisés».
   \item[Solutions entières positives:] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants» et ce, de façon à ce que chaque «contenant» ait au moins un objet. La solution à ce type de problème est donnée par $\binom{n-1}{r-1}$.
+>>>>>>> Stashed changes
 \end{description}
 \end{probch1}
 
 \pagebreak
 \section{Chapitre 2: Axiomes de probabilité}
-
+%faut trouver une façon de ramener les colonnes à gaucher comme dans probch1 FC
+% effectivement,  pas encore trouvé comment (AJvR)
 \begin{rappel}{Domaine et définition}
 \begin{description}
 	\item[Random Process:]	Famille de variable aléatoires $\{X_{t}: t \in T\}$ qui associe un espace d'états $\Omega$ à un ensemble $S$.
@@ -117,11 +130,43 @@
 \end{rappel}
 
 \begin{probch2}{Concepts et opérations sur les ensembles}
-\begin{description}
-  \item[L'union ({$\displaystyle \cup$}) :] On peut le définir par un ou. Si l'événement A est d'avoir 3 sur un dé et l'événement B est d'avoir 4 sur ce même dé, les résultats possibles de A{$\displaystyle \cup$}B est 3 et 4.
-  \item[L'intersection ({$\displaystyle \cap$}) :] On peut le définir par un et. Si l'événement A est d'avoir un chiffre pair sur un dé et que l'événement B est d'avoir 5 ou 6 sur ce même lancer de dé, le résultat de A{$\displaystyle \cap$}B est 6, car 6 est un nombre pair et fait partie de l'ensemble B.
+\begin{description} 
+
+%ce serait bien d'avoir des diagrammes de Venn pour des exemples, ce serait plus visuel et surtout moins encombré FC
+
+  \item[L'union ({$\cup$}) :] On peut le définir par un ou. 
+  	\begin{itemize}
+  	\item	Si l'événement A est d'avoir 3 sur un dé et l'événement B est d'avoir 4 sur ce même dé, les résultats possibles de A{$\cup$}B est 3 et 4.
+  	\end{itemize}
+  \item[L'intersection ({$\cap$}) :] On peut le définir par un et. 
+  	\begin{itemize}
+  	\item	Si l'événement A est d'avoir un chiffre pair sur un dé et que l'événement B est d'avoir 5 ou 6 sur ce même lancer de dé, le résultat de $A \cap B$ est 6, car 6 est un nombre pair et fait partie de l'ensemble B. 
+  	\end{itemize}
+  \item[Complémentaire :] Un événement quelconque est le complémentaire d'un événement A lorsqu'il correspond à tous les résultats de $\Omega$ excluant les résultats de A. 
+  	\begin{itemize}
+  	\item	Un exemple est l'événement «Avoir un nombre pair sur un dé»; un événement complémentaire serait donc «Avoir un nombre impair sur un dé». 
+  	\item	Le complémentaire d'un événement A est désigné par {$\overline{\rm A}$}, $A^{c}$ et $A^{t}$.
+  	\end{itemize}
+  %C'est quoi le nom des symboles qui suivent, cad la somme d'unions et d'intersections? 
+  \item[«Somme d'unions»($\bigcup_{i=1}^{n} A_i$) :] Représentation plus simple et courte de $A_1 cup A_2 \cup \dots \cup A_n$
+  \item[«Somme d'intersections»($\bigcap_{i=1}^{n} A_i$) :] Représentation plus simple et courte de $A_1 \cap A_2 \cap \dots \cap A_n$
+  \item[Opérations sur les ensembles :] Les événements peuvent agir à un certain point comme des termes mathématiques, c'est-à-dire qu'on peut effectuer des opérations avec ceux-ci.
+  \item[Commutativité :] $A_1	\cup	A_2	=	A_2 \cup A_1$
+  \item[] $A_1	\cap	A_2	=	A_2 \cap A_1$
+  \item[Associativité :] ($(A_1 \cup A_2)	\cup A_3	=	A_1 \cup		(A_2 \cup A_3)$)
+  \item[] ($(A_1 \cap A_2)	\cap A_3	=	A_1 \cap		(A_2 \cap A_3)$)
+  \item[Distributivité :] $(A_1 \cup A_2)	\cap A_3 = (A_1 \cap A_3) \cup (A_2 \cap A_3)$)
+  \item[] $(A_1 \cap A_2)	\cup A_3 = (A_1 \cup A_3) \cap (A_2 \cup A_3)$)
+  \item[Loi de DeMorgan :] $(\bigcup_{i = 1}^{n} A_{i})^{c} = (\bigcap_{i=1}^{n} A_i^{c})$
+  \item[] $(\bigcap_{i = 1}^{n} A_{i})^{c} = (\bigcup_{i=1}^{n} A_i^{c})$
 \end{description}
 \end{probch2}
+
+\begin{axioms}{Axiomes de probabilité}
+\begin{description}
+  \item[Définition :] Des axiomes de probabilités sont en quelque sorte des règles, des contraintes ou des formules relatives aux probabilités.
+\end{description}
+\end{axioms}{Axiomes de probabilité}
 
 \pagebreak
 \section{Chapitre 3: Probabilité conditionnelle}

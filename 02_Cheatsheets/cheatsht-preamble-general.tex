@@ -276,12 +276,23 @@
 	title=#1
 }
 %%
-%% Coloured box "probch2" pour formules relatives au 1er chapitre de prob
+%% Coloured box "probch2" pour formules relatives au 2e chapitre de prob
 %%
 \newtcolorbox{probch2}[ 1 ]
 {
 	colback = orange!50!white,
 	colframe = burntorange,
+	fonttitle = \bfseries,	
+	breakable,
+	title=#1
+}
+%%
+%% Coloured box "axioms" pour formules relatives à la dernière partie du chapitre 2 de prob
+%%
+\newtcolorbox{axioms}[ 1 ]
+{
+	colback = blue!10!white,
+	colframe = blue!70!white,
 	fonttitle = \bfseries,	
 	breakable,
 	title=#1
@@ -453,7 +464,7 @@
 
 \definecolor{amber(sae/ece)}{rgb}{1.0, 0.49, 0.0} 	%	pretty orange ish
 \definecolor{burntsienna}{rgb}{0.91, 0.45, 0.32}		%%	lighter pastel orange
-\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}		%%	imilar but deeper orange
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}		%%	similar but deeper orange
 \definecolor{orange-red}{rgb}{1.0, 0.27, 0.0}
 
 \definecolor{tealblue}{rgb}{0.21, 0.46, 0.53}
