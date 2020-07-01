@@ -22,3 +22,5 @@ MAS-I/.vscode/settings.json
 02_Cheatsheets/cheatsht-distributions-ACT1002.tex
 02_Cheatsheets/cheatsht-distributions-ACT1002.pdf
 02_Cheatsheets/.Rhistory
+*.rdb
+02_Cheatsheets/.Rhistory
