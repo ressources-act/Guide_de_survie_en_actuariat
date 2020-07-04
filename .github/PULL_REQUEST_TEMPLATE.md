@@ -5,15 +5,12 @@
 <!--- Inscrire dans cette section les cours / fichiers pour lesquels t'as ajouté quelque chose de nouveau. -->
 ## Ajouts
 ACT-9998
-
-+ 
 + 
   
 <!--- Inscrire dans cette section les cours / fichiers pour lesquels t'as modifié quelque chose qui était déjà présent. -->
 ## Modifications
 ACT-9999
 
-+ 
 + 
   
 <!--- Soit mettre un x entre les carrés ou tu pourrais le faire après avoir créé le PR. -->
