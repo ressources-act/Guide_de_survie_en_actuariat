@@ -2,6 +2,7 @@
 \documentclass[10pt, french]{article}
 
 
+
 %% -----------------------------
 %% Préambule
 %% -----------------------------
@@ -1101,7 +1102,110 @@ Alors pour $S_{n} = \sum_{i = 1}^{n} X_{i}$ :
 où $\mathcal{L}$ représente la convergence en distribution ("law").
 \end{algo}
 
-\end{multicols*}
 
+\pagebreak
+\section{Méthodes numériques}
+\subsection{Génération de nombres aléatoires uniformes}
+\begin{definitionNOHFILL}[Congruence]
+Les nombres $a$ et $b$ sont dits \textit{équivalents}, ou \textbf{congruents modulo $m$} si leur différence est divisible par $m$.
+\begin{align*}
+	a	\equiv	b	\mod		m	
+	\Leftrightarrow	\frac{b	-	a}{m}	=	k, k		\in	\mathbb{Z}
+\end{align*}
+
+P. ex. :
+\begin{itemize}
+	\item	$5	\equiv	14 \mod 3$ car $\frac{14 - 5}{3}	=3$---14 et 5 sont distants de 9, un multiple de 3.
+	\item	$-1	\equiv	5 \mod 2$ car $\frac{5 - (-1)}{3}	=2$---5 et -1 sont distants de 6, un multiple de 3.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Générateurs congruentiels linéaires]
+Tout nombre dans la suite générée détermine le nombre suivant avec la relation \lfbox[formula]{$x_{i}	=	(ax_{i - 1} + c)\mod m$} où \lfbox[conditions]{$0 \leq x_{i} < m$} et :
+\begin{description}
+	\item[$a$]	Multiplicateur.
+	\item[$c$]	L'incrément.
+		\begin{itemize}
+		\item	Si $c	=	0$, le générateur est \textit{multiplicatif}.
+		\item	Sinon, il est \textit{mixe}.
+		\end{itemize}
+	\item[$m$]	Le module.
+	\item[$x_{0}$]	L'amorce (\og \textit{seed} \fg{}).
+\end{description}
+
+\begin{itemize}
+	\item	Pour générer des nombres entre 0 et 1, on défini $u_{i}	=	\frac{x_{i}}{m}$
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\columnbreak
+\subsection{Arithmétique des ordinateurs}
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Unité}}	&	\textcolor{white}{\textbf{Capacité}}	&	\textcolor{white}{\textbf{Symbole}}		\\\hline
+Bit	&	1 b	&	b	\\\hline
+Octet (« \textit{byte} ») \fg{}	&	8 b	&	o	\\\hline
+Kilooctet	&	1\ 024 o	&	ko	\\\hline
+Megaoctet	&	1\ 048\ 576 o	&	mo	\\\hline
+Gigaoctet	&	1\ 073\ 741\ 824 o	&	go	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{definitionNOHFILL}[Base de numération $b$]
+Une "base" de numération correspond au nombre de chiffres utilisé pour représenter des nombres.
+\begin{itemize}
+	\item	Nous utilisons la base 10 comportant 10 chiffres ($0, 1, \dots, 8, 9$).
+	\item	La base 2 correspond au binaire avec $0$ et $1$ comme chiffres.
+	\item	Au delà de 10, on utilise des lettres pour représenter des chiffres.
+	\item	P. ex., la base 12 a les chiffres $0, 1, 2, \dots, 9, A, B, C$.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Représentation d'un nombre sous une base quelconque]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$x$]	Nombre composé de $m$ chiffres (ou symboles).
+	\item[$b$]	Base de numération.
+\end{description}
+\end{distributions}
+Sous cette notation, on écrit \lfbox[formula]{$x	=	x_{m - 1} x_{m - 2}\hdots x_{1} x_{0}$} où \lfbox[conditions]{$x_{i} \in [0, b - 1]$}. \\
+On peut réécrire ce chiffre comme \lfbox[formula]{$x	=	\sum_{i = 0}^{m - 1}x_{i}b^{i}$}.
+
+Par exemple, le nombre 12 sous la base 10 est $12	=	1 \times 10^{1} + 2 \times 10^{0}$.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Quotient d'une division]
+Partie entière de la division de deux entiers $a$ et $d$ : \lfbox[formula]{$q	=	\left\lfloor \frac{a}{d} \right\rfloor$}.	\\
+
+P. ex. : $\left\lfloor \frac{13}{3} \right\rfloor	=	4$.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Restant d'une division]
+L'écart entre le nombre et le prochain multiple de la division : \lfbox[formula]{$r	=	a	-	d \times \left\lfloor \frac{a}{d} \right\rfloor	=	a \mod d$}.	\\
+
+P. ex. : $13	-	3 \times	\left\lfloor \frac{13}{3} \right\rfloor	=	13	-	3 \times	4	=	1$.
+\begin{itemize}
+	\item	Il s'ensuit que $r \in \{0, 1, d - 1\}$.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILL}[Convertir un nombre de la base 10 à une base $b$]
+Pour convertir un nombre $a$ vers la base $b$, on trouve récursivement le restant $r	=	a	\mod	b$ avec le quotient de la division précédente jusqu'à ce que le quotient soit nul.	\\
+
+P. ex., pour convertir le nombre $12$ à la base 2: 
+\begin{itemize}
+	\item	$a \mod b = 12 \mod 2 = \textcolor{orange}{0} = x_{0}$, le quotient est $\left\lfloor \frac{12}{2} \right\rfloor = 6$ et le restant de la division $\textcolor{orange}{0}$.
+	\item	$q \mod b = 6 \mod 2 = \textcolor{ao(english)}{0} = x_{1}$, le quotient est $\left\lfloor \frac{6}{2} \right\rfloor = 3$ et le restant de la division $\textcolor{ao(english)}{0}$.
+	\item	$3 \mod 2 = \textcolor{amethyst}{1} = x_{2}$, le quotient est $\left\lfloor \frac{3}{2} \right\rfloor = 1$ et le restant de la division $\textcolor{amethyst}{1}$.
+	\item	$1 \mod 2 = \textcolor{teal}{1} = x_{3}$, le quotient est $\left\lfloor \frac{1}{2} \right\rfloor = 0$ et le restant de la division $\textcolor{teal}{1}$.
+	\item	Donc, $12	=	\textcolor{teal}{1} \times 2^{3} + \textcolor{amethyst}{1} \times 2^{2} + \textcolor{ao(english)}{0} \times 2^{1} + \textcolor{orange}{0} \times 2^{0}$
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+
+\end{multicols*}
 
 \end{document}
