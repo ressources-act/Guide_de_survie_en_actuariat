@@ -85,13 +85,6 @@
   \begin{itemize}
 	  \item La solution à ce type de problème est donnée par $\binom{n-1}{r-1}$.
   \end{itemize} 
-=======
-  \item[Théorème multinomial :] Le coefficient multinomial aide à trouver les coefficients devant les variables lors du développement de multinômes. Afin de mieux comprendre le théorème multinomial, voici un exemple :
-  \item[]{$(-3x+5y^2)^4 = \sum_{}^{} \binom{4}{n_1 , n_2} (-3x)^{n_1} (5y^{2})^{n_2}$}
-  \item[] Si on cherche le coefficient devant les variables $x^{3}y^{2}$, on remplace $n_1$ par 3 et $n_2$ par 1 et on obtient -540.
-  \item[Solutions entières non-négatives :] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants». Il peut y avoir aucun objet dans un «contenant». La solution à ce type de problème est donnée par $\binom{n+r-1}{r-1}$ où n est le nombre d'objets et r le nombre de «contenants». Si l'est mentionné dans le problème qu'il n'est pas nécessaire d'utiliser tous les objets pour les mettre dans les contenants, on peut rajouter un contenant pour les objets «non-utilisés».
-  \item[Solutions entières positives:] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants» et ce, de façon à ce que chaque «contenant» ait au moins un objet. La solution à ce type de problème est donnée par $\binom{n-1}{r-1}$.
->>>>>>> Stashed changes
 \end{description}
 \end{probch1}
 
@@ -152,10 +145,10 @@
   \item[Opérations sur les ensembles :] Les événements peuvent agir à un certain point comme des termes mathématiques, c'est-à-dire qu'on peut effectuer des opérations avec ceux-ci.
   \item[Commutativité :] $A_1	\cup	A_2	=	A_2 \cup A_1$
   \item[] $A_1	\cap	A_2	=	A_2 \cap A_1$
-  \item[Associativité :] ($(A_1 \cup A_2)	\cup A_3	=	A_1 \cup		(A_2 \cup A_3)$)
-  \item[] ($(A_1 \cap A_2)	\cap A_3	=	A_1 \cap		(A_2 \cap A_3)$)
-  \item[Distributivité :] $(A_1 \cup A_2)	\cap A_3 = (A_1 \cap A_3) \cup (A_2 \cap A_3)$)
-  \item[] $(A_1 \cap A_2)	\cup A_3 = (A_1 \cup A_3) \cap (A_2 \cup A_3)$)
+  \item[Associativité :] $(A_1 \cup A_2)	\cup A_3	=	A_1 \cup		(A_2 \cup A_3)$)
+  \item[] $(A_1 \cap A_2)	\cap A_3	=	A_1 \cap		(A_2 \cap A_3)$
+  \item[Distributivité :] $(A_1 \cup A_2)	\cap A_3 = (A_1 \cap A_3) \cup (A_2 \cap A_3)$
+  \item[] $(A_1 \cap A_2)	\cup A_3 = (A_1 \cup A_3) \cap (A_2 \cup A_3)$
   \item[Loi de DeMorgan :] $(\bigcup_{i = 1}^{n} A_{i})^{c} = (\bigcap_{i=1}^{n} A_i^{c})$
   \item[] $(\bigcap_{i = 1}^{n} A_{i})^{c} = (\bigcup_{i=1}^{n} A_i^{c})$
 \end{description}
@@ -164,8 +157,14 @@
 \begin{axioms}{Axiomes de probabilité}
 \begin{description}
   \item[Définition :] Des axiomes de probabilités sont en quelque sorte des règles, des contraintes ou des formules relatives aux probabilités.
+  \item[Exemples :]
+  \begin{itemize}
+  \item 0 $\le$ Pr(A) $\le$ 1
+  \item Pr(S) = 1
+  \item Si $A_i$ $\bigcap$ $A_j$ = $\emptyset$ pour i $\neq$ j, alors Pr($\bigcup_{i = 1}^{n}$ $A_i$) = $\sum_{i = 1}^{n}$ Pr($A_i$)
+  \end{itemize}
 \end{description}
-\end{axioms}{Axiomes de probabilité}
+\end{axioms}
 
 \pagebreak
 \section{Chapitre 3: Probabilité conditionnelle}
