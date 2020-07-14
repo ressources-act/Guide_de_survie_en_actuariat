@@ -75,6 +75,40 @@
 \usepackage{scalerel,stackengine,amsmath}
 \newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
     \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
+%%	Créé des cercles avec des chiffres
+%%	Example usage:	\circled{1} [creates an inline circle with 1]
+%%		+	Within a list, \begin{enumerate}[label = \circled{\arabic*}]
+\DeclareRobustCommand*\circled[2]{%
+	\tikz[baseline = (char.base)]{%
+		\node[%
+			shape = circle,%
+			fill = #2!40,%	inner circle
+			draw = #2,%		outer rim
+			inner sep = 2pt%
+		] (char) {#1};%
+	}%
+} 
+\DeclareRobustCommand*\ellipsed[2]{%
+	\tikz[baseline = (char.base)]{%
+		\node[%
+			shape = rectangle,%
+			fill = #2!40,%	inner circle
+			draw = #2,%		outer rim
+			inner sep = 2pt,%
+			rounded corners = 4pt
+		] (char) {#1};%
+	}%
+} 
+\DeclareRobustCommand*\rectangled[2]{%
+	\tikz[baseline = (char.base)]{%
+		\node[%
+			shape = rectangle,%
+			fill = #2!40,%	inner circle
+			draw = #2,%		outer rim
+			inner sep = 2pt%
+		] (char) {#1};%
+	}%
+} 
 \newcommand{\reels}{\mathbb{R}}
 \newcommand{\entiers}{\mathbb{Z}}
 \newcommand{\naturels}{\mathbb{N}}
@@ -168,13 +202,91 @@
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{xparse}
 \tcbuselibrary{breakable}
+%%%	Explanation of various arugments : 
+%%	colframe:	colour of the rim.
+%%	ex.:	colframe	=	blue
+%%	colback:		colour of the box.
+%%	ex.:	colback	=	blue
+%%	--------
+%%	fonttitle: 	font of the title
+%%	ex.:	fonttitle	=	\bfseries
+%%	title: 	actual title text.
+%	ex.:	title	=	Reasons why LaTeX is useful
+%%	--------
+%%	arc:			arc of corners' turn.
+%%	ex.:	arc	=	12pt
+%%	+	an arc of 0 implies a rectangle.
+%%	< type > corners = < location >: 	Creates < type > corners at the specified location.
+%	ex.:	 sharp corners	(creates sharp corners for all corners)
+%	ex.:	 rounded corners = north (creates round corners for top 2 corners)
+%%	+	See pages 34 to 35 for a visualisation of the different types and locations.
+%%	+	We can specify rounded corners after a sharp corners to obtain sharp corners everywhere but one place.
+%%	--------
+%%	attach boxed title to < where > = {}: 	Creates a seperate box for the title.
+%%	ex.:	attach boxed title to top center
+%%	+	Arguments in parantheses are optional and be used to shift the position.
+%%	ex.:	yshift	=	-\tcboxedtitleheight/2
+%%	ex.:	xshift	=	2mm
+%%	boxed title style = {}: 	Modifies style of box which has same functions as a regular tcb.
+%%	<where>rule:		Modifies width of border.
+%	ex.:	bottomrule = 2mm
+%%	frame style tile={width=1cm}{pink_marble.png} can set a background image for the title box
+%%	
 
+%%
+%% 	Generalized colour box for definitions
+%%
+%%	Example usage: \begin{definitionGENERAL}{< title >}[< symbol before title >][< color >]
+\DeclareTColorBox{definitionGENERAL}{
+	m 
+	o
+	O{amber(sae/ece)}
+}
+{
+	enhanced,
+	colback			=	#3!5!white, 
+	arc				=	12pt,
+	sharp corners,
+%	watermark tikz	=	{
+%		\draw[line width = 2mm] circle (1cm) node{
+%			\fontfamily{ptm}
+%			\fontseries{b}
+%			\fontsize{20mm}{20mm}
+%			\selectfont 1
+%		};
+%	},
+%	watermark opacity	=	0.70,
+	rounded corners	=	uphill,
+	pad at break*	=	0mm, 						% to split the box
+	title			=	{#1},
+	fonttitle		=	\bfseries,
+	before title		=	{#2 \quad},
+	minipage boxed title*	=	-3cm,
+	attach boxed title to top left	=	{
+%		xshift	=	\tcboxedtitlewidth/2,
+		yshift	=	-\tcboxedtitleheight/4
+	},
+	boxed title style	=	{
+		size				=	small,
+		colback			=	#3!80,
+		colframe			=	#3,
+        arc				=	5pt,
+        rounded corners,
+        rightrule 		=	0.5mm
+	},
+	frame style	=	{
+		left color	=	#3,
+		right color	=	#3!60,
+		fill	=	white
+	},
+	breakable
+}
 %%
 %% Coloured box "definition" for definitions
 %%
 \DeclareTColorBox{definition}{ o }				% #1 parameter
 {
-	colframe=black,colback=white, % color of the box
+	colframe=blue!60!green,colback=blue!5!white, % color of the box
 	breakable, 
 	pad at break* = 0mm, 						% to split the box
 	title = {#1},
@@ -213,6 +325,7 @@
 	before title = {\faGetPocket \quad }, %faBars  faGetPocket
 	breakable
 }
+
 %%
 %% Coloured box "definition3" for propriétés
 %%
@@ -263,39 +376,6 @@
 	breakable,
 	boxed title style={size=small,colframe=arsenic} ,
 	attach boxed title to top center = {yshift=-3mm,yshifttext=-1mm},
-}
-%%
-%% Coloured box "probch1" pour formules relatives au 1er chapitre de prob
-%%
-\newtcolorbox{probch1}[ 1 ]
-{
-	colback = ao(english)!40!white,
-	colframe = forestgreen(traditional),
-	fonttitle = \bfseries,	
-	breakable,
-	title=#1
-}
-%%
-%% Coloured box "probch2" pour formules relatives au 2e chapitre de prob
-%%
-\newtcolorbox{probch2}[ 1 ]
-{
-	colback = orange!50!white,
-	colframe = burntorange,
-	fonttitle = \bfseries,	
-	breakable,
-	title=#1
-}
-%%
-%% Coloured box "axioms" pour formules relatives à la dernière partie du chapitre 2 de prob
-%%
-\newtcolorbox{axioms}[ 1 ]
-{
-	colback = blue!10!white,
-	colframe = blue!70!white,
-	fonttitle = \bfseries,	
-	breakable,
-	title=#1
 }
 %%
 %% Coloured box "probch3" pour formules relatives au 3ème chapitre de prob
@@ -425,10 +505,10 @@
 \definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
 \definecolor{calpolypomonagreen}{rgb}{0.12, 0.3, 0.17}
 \definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
-\definecolor{lightgreen}{rgb}{0.2, 0.95, 0.2}
 
 \definecolor{antiquebrass}{rgb}{0.8, 0.58, 0.46}	% brown-ish light cardboard color
 
+\definecolor{trueblue}{RGB}{0, 115, 197} 
 \definecolor{blue(munsell)}{rgb}{0.0, 0.5, 0.69}
 \definecolor{blue(matcha)}{rgb}{0.596, 0.819, 1.00}
 \definecolor{blue(munsell)-light}{rgb}{0.5, 0.8, 0.9}
@@ -454,7 +534,8 @@
 \definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
 \definecolor{eggshell}{rgb}{0.94, 0.92, 0.84}
 \definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
-\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}			
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}		
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}	
 \definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}		% prertty apple dark pastel (light) green
 \definecolor{green_rectangle}{RGB}{131, 176, 84}		% ACT-2004
 \definecolor{red_rectangle}{RGB}{241,112,113}		% ACT-2004
@@ -464,7 +545,7 @@
 
 \definecolor{amber(sae/ece)}{rgb}{1.0, 0.49, 0.0} 	%	pretty orange ish
 \definecolor{burntsienna}{rgb}{0.91, 0.45, 0.32}		%%	lighter pastel orange
-\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}		%%	similar but deeper orange
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}		%%	imilar but deeper orange
 \definecolor{orange-red}{rgb}{1.0, 0.27, 0.0}
 
 \definecolor{tealblue}{rgb}{0.21, 0.46, 0.53}
@@ -546,7 +627,7 @@
 % Header
 %
 \fancyhead{} 	% Reset
-\fancyhead[L]{Aide-mémoire pour~ \cours ~(\textbf{\sigle})}
+\fancyhead[L]{Aide-mémoire pour~\cours ~(\textbf{\sigle})}
 \fancyhead[R]{\auteur}
 
 %
