@@ -61,7 +61,6 @@
   &= \frac{n!}{(k_1)! \, (k_2)! \, ..., (k_m)!}
   \end{align*}
   \item[] Où {$n = \sum_{i = 1}^{m} k_i$}
-<<<<<<< Updated upstream
   \item[Théorème multinomial :] Le coefficient multinomial aide à trouver les coefficients devant les variables lors du développement de multinômes. 
   \begin{itemize}
 	  \item Afin de mieux comprendre le théorème multinomial, voici un exemple :
@@ -140,7 +139,7 @@
   	\item	Le complémentaire d'un événement A est désigné par {$\overline{\rm A}$}, $A^{c}$ et $A^{t}$.
   	\end{itemize}
   %C'est quoi le nom des symboles qui suivent, cad la somme d'unions et d'intersections? 
-  \item[«Somme d'unions»($\bigcup_{i=1}^{n} A_i$) :] Représentation plus simple et courte de $A_1 cup A_2 \cup \dots \cup A_n$
+  \item[«Somme d'unions»($\bigcup_{i=1}^{n} A_i$) :] Représentation plus simple et courte de $A_1 \cup A_2 \cup \dots \cup A_n$
   \item[«Somme d'intersections»($\bigcap_{i=1}^{n} A_i$) :] Représentation plus simple et courte de $A_1 \cap A_2 \cap \dots \cap A_n$
   \item[Opérations sur les ensembles :] Les événements peuvent agir à un certain point comme des termes mathématiques, c'est-à-dire qu'on peut effectuer des opérations avec ceux-ci.
   \item[Commutativité :] $A_1	\cup	A_2	=	A_2 \cup A_1$
@@ -163,6 +162,11 @@
   \item Pr(S) = 1
   \item Si $A_i$ $\bigcap$ $A_j$ = $\emptyset$ pour i $\neq$ j, alors Pr($\bigcup_{i = 1}^{n}$ $A_i$) = $\sum_{i = 1}^{n}$ Pr($A_i$)
   \end{itemize}
+  À partir des axiomes de probabilités, on peut trouver un bon nombre de formules de probabilités. On peut donc dire que les axiomes constitue une base logique de ce que représente les probabilités. On peut déduire par exemple les formules suivantes :
+  \begin{itemize}
+  \item Pr(E $\cup$ F) = Pr(E) + Pr(F) - Pr(E $\cap$ F)
+  \item Pr($E^{c}$) = 1 - Pr(E)
+  \end{itemize}
 \end{description}
 \end{axioms}
 
@@ -183,7 +187,7 @@
 \end{description}
 Avec la première définition de la probabilité conditionnelle, on peut trouver ces résultats:
 \begin{description}
-	\item[Relation probabilité conditionnelle: ]	La probabilité que l'événement $E_{2}$ ai lieu sachant que l'événement $E_{1}$ à déjà eu lieu est équivalent à la probabilité que l'événement $E_{1}$ ai lieu sachant que $E_{2}$ à \textit{déjà} eu lieu multiplié par la probabilité que l'événement $E_{2}$ ai lieu peu importe $E_{1}$. \\
+	\item[Relation probabilité conditionnelle: ]	La probabilité que l'événement $E_{2}$ ait lieu sachant que l'événement $E_{1}$ à déjà eu lieu est équivalent à la probabilité que l'événement $E_{1}$ ait lieu sachant que $E_{2}$ à \textit{déjà} eu lieu multiplié par la probabilité que l'événement $E_{2}$ ait lieu peu importe $E_{1}$. \\
 	Le tout est encore pondéré par la probabilité que l'événement $E_{1}$ ai lieu peu importe si $E_{2}$ y a.
 	\begin{align*}
 		\Pr(E_{2} | E_{1})
