@@ -35,7 +35,8 @@
 ### « *Cheatsheets* » exhaustives
 Sujet | Sigles des cours reliés 
 --------- | --------
-[Gestion des risques financiers (GRF)](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-GRF-ACT2011-ACT1006.pdf)  | ACT-1006 et ACT-2011
+[Gestion des risques financiers (GRF)](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-GRF-ACT2011-ACT1006.pdf)  | ACT-1006: Gestion des risques financiers I
+ &nbsp; | ACT-2011: Gestion des risques financiers II
 
 ### Cheatsheets
 Sigle | état  | Nom du cours 
@@ -46,10 +47,10 @@ ACT-1003  | développement, pas encore de feuille dédiée | [Compléments de ma
 ACT-2001  | en cours de rédaction | [Introduction à l'actuariat II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2001.pdf)
 ACT-2000  | en cours de rédaction | [Analyse statistique des risques actuariels](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2000%20(MAS-I)%20(TEMP).pdf)
 ACT-2002  | développement, pas encore de feuille dédiée | [Méthodes numériques](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1XXX.pdf)
-ACT-2003  | en cours de rédaction | [Modèles linéaires](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2003.pdf)
+ACT-2003  | première version complétée, en cours d'amélioration | [Modèles linéaires](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2003.pdf)
 ACT-2004  | première version complétée | [Mathématique actuarielles vie I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2004.pdf)
-ACT-2005  | en cours de rédaction | [Mathématique actuarielles IARD I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2005.pdf)
-ACT-2009  | en cours de rédaction | [Processus stochastiques](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2009.pdf)
+ACT-2005  | première version complétée, en cours d'amélioration | [Mathématique actuarielles IARD I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2005.pdf)
+ACT-2009  | première version complétée, en cours d'amélioration | [Processus stochastiques](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2009.pdf)
 ACT-1005  | première version complétée | [Analyse et traitement collectif du risque](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1005.pdf)
 ACT-2007  | première version complétée | [Mathématique actuarielles vie II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2007.pdf)
 ACT-2008  | première ébauche complétée | [Mathématique actuarielles IARD II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2008.pdf)
