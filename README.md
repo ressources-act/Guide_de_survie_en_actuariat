@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/alec42/actulab-2019">
+  <a href="https://github.com/ressources-act/Guide_de_survie_en_actuariat/">
     <img src="01_DocumentPrincipal/src/GuideEnActuariat/couverture.jpg" alt="Logo" height="280">
   </a>
 
@@ -29,7 +29,7 @@
 
 <a name="siglenomind"/>
 
-## Lien vers les cheatsheets des cours :
+## Liens vers les cheatsheets des cours :
 ### « *Cheatsheets* » exhaustives
 Sujet | Sigles des cours reliés 
 --------- | --------
