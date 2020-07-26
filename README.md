@@ -9,7 +9,7 @@
   <h3 align="center">Guide de survie en actuariat</h3>
 
   <p align="center">
-    Ressources d’études pour les étudiants du baccalauréat en actuariat à l’université Laval.
+    Ressources d’étude pour les étudiants du baccalauréat en actuariat à l’université Laval.
     <br />
     <a href="https://github.com/ressources-act/Guide_de_survie_en_actuariat/tree/master/02_Cheatsheets"><strong>Explorer les feuilles »</strong></a>
     <br />
@@ -46,12 +46,12 @@ ACT-2001  | en cours de rédaction | [Introduction à l'actuariat II](https://gi
 ACT-2000  | première version complétée, en cours d'amélioration | [Analyse statistique des risques actuariels](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2000%20(MAS-I)%20(TEMP).pdf)
 ACT-2002  | développement, pas encore de feuille dédiée | [Méthodes numériques](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1XXX.pdf)
 ACT-2003  | première version complétée, en cours d'amélioration | [Modèles linéaires](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2003.pdf)
-ACT-2004  | première version complétée | [Mathématique actuarielles vie I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2004.pdf)
-ACT-2005  | première version complétée, en cours d'amélioration | [Mathématique actuarielles IARD I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2005.pdf)
+ACT-2004  | première version complétée | [Mathématique actuarielle vie I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2004.pdf)
+ACT-2005  | première version complétée, en cours d'amélioration | [Mathématique actuarielle IARD I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2005.pdf)
 ACT-2009  | première version complétée, en cours d'amélioration | [Processus stochastiques](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2009.pdf)
 ACT-1005  | première version complétée | [Analyse et traitement collectif du risque](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1005.pdf)
-ACT-2007  | première version complétée | [Mathématique actuarielles vie II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2007.pdf)
-ACT-2008  | première ébauche complétée | [Mathématique actuarielles IARD II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2008.pdf)
+ACT-2007  | première version complétée | [Mathématique actuarielle vie II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2007.pdf)
+ACT-2008  | première ébauche complétée | [Mathématique actuarielle IARD II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2008.pdf)
 ACT-3000  | première ébauche complétée | [Théorie du risque](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT3000.pdf)
 ACT-3114  | première ébauche complétée | [Apprentissage statistique en actuariat](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT3114.pdf)
 ACT-4105  | première ébauche complétée | [Tarification en assurance IARD](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT4105.pdf)
@@ -75,7 +75,7 @@ Contenu non adapté à la structure du document principal.
 
 ### 01_DocumentPrincipal
 
-Environnement de compilation du document principal. Pour créer un nouvelle section, suivre les règles suivantes:
+Environnement de compilation du document principal. Pour créer une nouvelle section, suivre les règles suivantes:
 
 - **Chapter-\<nomDuChapitre\>.tex** : Chapitre portant sur une matière précise.
 - **Appendix-\<nomDeAppendix\>.tex** : Ajout pouvant être utile dans plusieurs matières/chapitres.
@@ -85,7 +85,7 @@ Environnement de compilation du document principal. Pour créer un nouvelle sect
 ### 02_Cheatsheets
   
 Environnement de compilation des feuilles de formules. 
-- **Important**, elles doivent tous utiliser le même préambule (**cheatsht-preamble-general.tex**).
+- **Important**, elles doivent toutes utiliser le même préambule (**cheatsht-preamble-general.tex**).
 - **cheatsht-ACT\<XXXX\>.tex** : Code source de la feuille de formule concernant le cours ACT-\<XXXX\>.
 
 ### 03_Docs
