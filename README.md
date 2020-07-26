@@ -30,31 +30,42 @@
 
 <a name="siglenomind"/>
 
-## Index des noms de cours par sigle :
+## Lien vers les cheatsheets des cours :
 
+### « *Cheatsheets* » exhaustives
+Sujet | Sigles des cours reliés 
+--------- | --------
+[Gestion des risques financiers (GRF)](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-GRF-ACT2011-ACT1006.pdf)  | ACT-1006 et ACT-2011
+
+### Cheatsheets
+Sigle | état  | Nom du cours 
+---   | ----  | --------
+ACT-1001  | développement, pas encore de feuille dédiée | [Mathématiques financières](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1XXX.pdf)
+ACT-1002  | en cours de rédaction | [Analye probabiliste des risques actuariels](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1002.pdf)
+ACT-1003  | développement, pas encore de feuille dédiée | [Compléments de mathématiques](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1XXX.pdf)
+ACT-2001  | en cours de rédaction | [Introduction à l'actuariat II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2001.pdf)
+ACT-2000  | en cours de rédaction | [Analyse statistique des risques actuariels](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2000%20(MAS-I)%20(TEMP).pdf)
+ACT-2002  | développement, pas encore de feuille dédiée | [Méthodes numériques](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1XXX.pdf)
+ACT-2003  | en cours de rédaction | [Modèles linéaires](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2003.pdf)
+ACT-2004  | première version complétée | [Mathématique actuarielles vie I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2004.pdf)
+ACT-2005  | en cours de rédaction | [Mathématique actuarielles IARD I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2005.pdf)
+ACT-2009  | en cours de rédaction | [Processus stochastiques](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2009.pdf)
+ACT-1005  | première version complétée | [Analyse et traitement collectif du risque](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1005.pdf)
+ACT-2007  | première version complétée | [Mathématique actuarielles vie II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2007.pdf)
+ACT-2008  | première ébauche complétée | [Mathématique actuarielles IARD II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2008.pdf)
+ACT-3000  | première ébauche complétée | [Théorie du risque](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT3000.pdf)
+ACT-3114  | première ébauche complétée | [Apprentissage statistique en actuariat](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT3114.pdf)
+ACT-4105  | première ébauche complétée | [Tarification en assurance IARD](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT4105.pdf)
+FRN-3003  | première ébauche complétée | [Français avancé: grammaire et rédaction II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-Francais.pdf)
+
+
+### Cheatsheets de R
 Sigle | Nom du cours
 --- | --------
-ACT-1000  | Introduction à l'actuariat I
-ACT-1001  | Mathématiques financières
-ACT-1002  | Analye probabiliste des risques actuariels
-ACT-1003  | Compléments de mathématiques
-ACT-2001  | Introduction à l'actuariat II
-ACT-2000  | Analyse statistique des risques actuariels
-ACT-1006  | Gestion des risques financiers I
-ACT-2003  | Modèles linéaires
-ACT-2004  | Mathématique actuarielles vie I
-ACT-2005  | Mathématique actuarielles IARD I
-ACT-2009  | Processus stochastiques
-ACT-1005  | Analyse et traitement collectif du risque
-ACT-2011  | Gestion des risques financiers II
-ACT-2007  | Mathématique actuarielles vie II
-ACT-2008  | Mathématique actuarielles IARD II
-ACT-3000  | Théorie du risque
-ACT-3114  | Apprentissage statistique en actuariat
-ACT-4105  | Tarification en assurance IARD
-FRN-3003  | Français avancé: grammaire et rédaction II
+ACT-3114  | [Apprentissage statistique en actuariat](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-R-ACT3114.pdf)
 
 <a name="structure"/>
+
 
 ## Structure
 
