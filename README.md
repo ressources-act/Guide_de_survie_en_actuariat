@@ -45,7 +45,7 @@ ACT-1001  | développement, pas encore de feuille dédiée | [Mathématiques fin
 ACT-1002  | en cours de rédaction | [Analye probabiliste des risques actuariels](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1002.pdf)
 ACT-1003  | développement, pas encore de feuille dédiée | [Compléments de mathématiques](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1XXX.pdf)
 ACT-2001  | en cours de rédaction | [Introduction à l'actuariat II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2001.pdf)
-ACT-2000  | en cours de rédaction | [Analyse statistique des risques actuariels](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2000%20(MAS-I)%20(TEMP).pdf)
+ACT-2000  | première version complétée, en cours d'amélioration | [Analyse statistique des risques actuariels](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2000%20(MAS-I)%20(TEMP).pdf)
 ACT-2002  | développement, pas encore de feuille dédiée | [Méthodes numériques](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1XXX.pdf)
 ACT-2003  | première version complétée, en cours d'amélioration | [Modèles linéaires](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2003.pdf)
 ACT-2004  | première version complétée | [Mathématique actuarielles vie I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2004.pdf)
@@ -85,7 +85,7 @@ Environnement de compilation du document principal. Pour créer un nouvelle sect
 - **Main-\<nomDuDocument\>.tex** : Fichier servant à la construction du document principal.
 - **src/\<nomDuChapitre>** : Dossier contenant tous les img/.R/etc utilisé dans la section en question.
   
-  ### 02_Cheatsheets
+### 02_Cheatsheets
   
   Environnement de compilation des feuilles de formules. **Important**, elles doivent tous utiliser le même préambule (**cheatsht-preamble-general.tex**).
 - **cheatsht-ACT\<XXXX\>.tex** : Code source de la feuille de formule concernant le cours ACT-\<XXXX\>.
