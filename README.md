@@ -19,7 +19,6 @@
 </p>
 
 # Guide de survie en actuariat
-
 ## Table des matières
 
 - [Sigles et noms de cours](#siglenomind)
@@ -31,7 +30,6 @@
 <a name="siglenomind"/>
 
 ## Lien vers les cheatsheets des cours :
-
 ### « *Cheatsheets* » exhaustives
 Sujet | Sigles des cours reliés 
 --------- | --------
@@ -69,7 +67,6 @@ ACT-3114  | [Apprentissage statistique en actuariat](https://github.com/ressourc
 
 
 ## Structure
-
 ### 00_Archive
 
 Contenu non adapté à la structure du document principal.
@@ -87,7 +84,8 @@ Environnement de compilation du document principal. Pour créer un nouvelle sect
   
 ### 02_Cheatsheets
   
-  Environnement de compilation des feuilles de formules. **Important**, elles doivent tous utiliser le même préambule (**cheatsht-preamble-general.tex**).
+Environnement de compilation des feuilles de formules. 
+- **Important**, elles doivent tous utiliser le même préambule (**cheatsht-preamble-general.tex**).
 - **cheatsht-ACT\<XXXX\>.tex** : Code source de la feuille de formule concernant le cours ACT-\<XXXX\>.
 
 ### 03_Docs
@@ -98,13 +96,10 @@ Autres documents d'aide.
 
 ##  Contribuer
 
-Voir le fichier CONTRIBUTING.md pour les étapes détaillées avec des images.
-
-## Contents
-
-> TODO
+Voir le fichier [CONTRIBUTING.md](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/CONTRIBUTING.md) pour les étapes détaillées avec des images.
 
 <a name="contributors"/>
+
 # Contributeurs
 
 - [aut.] Nicholas Langevin [:octocat:](https://github.com/NicholasLangevin)
