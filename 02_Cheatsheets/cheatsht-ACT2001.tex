@@ -1591,6 +1591,36 @@ Alors, \lfbox[formula]{$S	=	\sum_{i	=	1}^{n}X_{i}	\sim	\sim \text{PComp}(\lambda
 
 \pagebreak 
 \section{Théorie des copules}
+\begin{definitionNOHFILL}[Famille de copules archimédiennes]
+Une copule $C$ est dite « \textbf{archimédienne} » si elle s'écrit sous la forme \lfbox[formula]{$C(u_{1}, \dots, u_{n}) = \psi\left(\psi^{-1}(u_{1}) + \dots + \psi^{-1}(u_{n}\right)$}.	\\
+
+La fonction $\psi$ est appelé « \textit{générateur} » et satisfait aux propriétés suivantes :
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
+	\item	$\psi: [0, \infty) \rightarrow [0, 1]$ avec $\psi(0) = 1$ et $\lim_{x \rightarrow \infty} \psi(x) = 0$ ;
+	\item	$\psi$ est une fonction continue ;
+	\item	$\psi$ est une fonction strictement décroissante sur $[0, \infty)$ ;
+	\item	$\psi^{-1}$ est la fonction inverse tel que $\psi^{-1} = \inf\{u, \psi(u) \leq x\}$.
+\end{enumerate}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILLsub}[Copule de Clayton]
+Pour $i = 1, 2$, $u \in [0, 1]$ et $\alpha > 0$ :
+\begin{align*}
+	C_{\alpha}(u_{1}, u_{2})
+	&=	\left(u_{1}^{-\alpha} + u_{2}^{-\alpha} - 1\right)^{-1/\alpha}	\\
+	c_{\alpha}(u_{1}, u_{2})
+	&=	\frac{1 + \alpha}{(u_{1}u_{2})^{\alpha + 1}} \left(u_{1}^{-\alpha} + u_{2}^{-\alpha} - 1\right)^{-2 - 1/\alpha}	
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Copule de Gumbel]
+Pour $i = 1, 2$, $u \in [0, 1]$ et $\alpha \geq 1$ :
+\begin{align*}
+	C_{\alpha}(u_{1}, u_{2})
+	&=	\textrm{exp}\left\{-\left([-\ln(u_{1})]^{\alpha} + [-\ln(u_{2})]^{\alpha}\right)^{1/\alpha}\right\}	
+\end{align*}
+\end{definitionNOHFILLsub}
 
 
 \newpage
