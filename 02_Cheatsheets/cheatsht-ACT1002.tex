@@ -179,16 +179,22 @@
 		\Pr(A | B) 
 		&= 	\frac{\Pr(A \cap B)}{\Pr(B)}	
 	\end{align*}
-	où la probabilité que $B$ arrive est non-nulle, $\Pr(B) > 0$.
+	où la probabilité que $B$ arrive est non-nulle, $\Pr(B) > 0$. Il faut alors s'imaginer qu'en sachant que l'événement B est arrivé, B représente le nouvel ensemble des probabilités S.
 	\item[Indépendant:]	Les événements $A$ et $B$ sont indépendant si:
 	\begin{equation*}
 		\Pr(A \cap B) = \Pr(A) \cdot \Pr(B)
 	\end{equation*}
+	\item Cette formule est bien sûr aussi bonne pour trois événements indépendants et plus : 
+	\setlength{\mathindent}{-1cm}
+	\begin{align*}
+	\Pr(A_{1} \cap \dots \cap A_{n}) 
+	  &= \Pr(A_{1}) \Pr(A_{2}) \dots \Pr(A_{n})
+	\end{align*}
 \end{description}
 Avec la première définition de la probabilité conditionnelle, on peut trouver ces résultats:
 \begin{description}
-	\item[Relation probabilité conditionnelle: ]	La probabilité que l'événement $E_{2}$ ait lieu sachant que l'événement $E_{1}$ à déjà eu lieu est équivalent à la probabilité que l'événement $E_{1}$ ait lieu sachant que $E_{2}$ à \textit{déjà} eu lieu multiplié par la probabilité que l'événement $E_{2}$ ait lieu peu importe $E_{1}$. \\
-	Le tout est encore pondéré par la probabilité que l'événement $E_{1}$ ai lieu peu importe si $E_{2}$ y a.
+	\item[Relation probabilité conditionnelle: ]	La probabilité que l'événement $E_{2}$ ait lieu sachant que l'événement $E_{1}$ a déjà eu lieu est équivalent à la probabilité que l'événement $E_{1}$ ait lieu sachant que $E_{2}$ a \textit{déjà} eu lieu multiplié par la probabilité que l'événement $E_{2}$ ait lieu peu importe $E_{1}$. \\
+	Le tout est encore pondéré par la probabilité que l'événement $E_{1}$ ait lieu peu importe si $E_{2}$ y a.
 	\begin{align*}
 		\Pr(E_{2} | E_{1})
 		&= 	\frac{\Pr(E_{2} \cap E_{1})}{\Pr(E_{1})}		\\
@@ -198,14 +204,36 @@ Avec la première définition de la probabilité conditionnelle, on peut trouver
 	\begin{align*}
 		\Pr(E)	&=	\sum_{i = 1}^{n} \Pr(E | F_{i}) \Pr(F_{i})
 	\end{align*}
-	\item[Formule de Bayes: ]	On combine les deux résultats précédent:
+	\item[Formule de Bayes: ]	On combine les deux résultats précédents:
 	\begin{align*}
-		\Pr(F_{i} | E)
-		&=	\frac{\Pr(E | F_{i})}{\sum_{i = 1}^{n} \Pr(E | F_{i}) \Pr(F_{i})}
+		\Pr(F_{j} | E) 
+		&=	\frac{\Pr(E | F_{j}) \cdot \Pr(F_{j})}{\sum_{i = 1}^{n} \Pr(E | F_{i}) \Pr(F_{i})}
 	\end{align*}
+	Cette formule apparaît surtout dans le genre de problèmes où il y a une inconnue parmi Pr(A|B), Pr(B|A), Pr(A) et Pr(B). Il ne restera alors qu'à isoler la probabilité que l'on cherche.
 \end{description}
 \end{probch3}
 
+\pagebreak
+\section{Chapitre 4: Variable aléatoire discrète}
+\begin{probch4}{La variable aléatoire}
+  \begin{description}
+    \item[Définition :] Nous avons déjà vu que les événements sont délimités par l'ensemble échantillonal S, c'est-à-dire les résultats possibles de l'événement. La variable aléatoire, disons X, sera une fonction de cet ensemble S (S $\in$ $\mathbb{R}$).\\
+    Le support, que l'on peut comparer à l'image de la fonction, d'un événement X est composé des résultats possibles d'une expérience, par exemple [0, 1] ou encore un ensemble dénombrable comme \{0, 1/2, 1\}.\\
+    Pour bien comprendre la différence entre l'espace échantillonal et le support de X, voici un petit exemple : \\
+    On lance une pièce de monnaie deux fois et on définit la variable aléatoire X comme étant le nombre de faces obtenus. L'espace échantillonal de l'expérience est \{(P,P), (P,F), (F,P), (F,F)\} et le support de X est de \{0, 1, 2\}.
+    \item[Fonction de répartition ($F_{X} (x)$):] La probabilité d'avoir un résultat inférieur à x.
+    \begin{align*}
+    F_{X} (x) &= \Pr(X \le x) \\
+    &= \sum_{x_{i} \le x}^{} \Pr(X = x_{i})
+    \end{align*}
+    Pour illustrer la fonction de répartition, on peut s'imaginer un lancer de dé et définir X comme le résultat du lancer. $F_{X} (2)$, par exemple, donnerait alors 1/3 car seuls les résultats 1 et 2 sont considérés sur l'ensemble des 6 possibilités. 
+    \item[Propriétés :] La valeur de la fonction de répartition se situe toujours entre 0 et 1, ce qui est logique étant donné que la somme de toutes les probabilités est toujours égale à 1 et qu'il n'existe pas de probabilité inférieure à 0. \\
+    La fonction est aussi toujours non-décroissante, car il est impossible de perdre des probabilités alors que les probabilités qui s'ajoutent à mesure que x augmente sont toujours supérieures à 0 (pour une variable aléatoire discrète, cela donne une fonction en escalier à droite).\\
+    On sait donc que $F_{X} (a) \le F_{X} (b)$ pour a < b. On peut alors trouver que Pr(a < X $\le$ b) = $F_{X} (b) - F_{X} (a)$.
+    \item[Fonction de répartition inverse ($F^{-1}_{X} (u)$):] Aussi nommée la fonction quantile, cette fonction sert à déterminer quel résultat correspond à une quantité u de probabilités accumulées. Par exemple, si je prends un u de 0,5, le résultat sera la médiane. \\
+    Cela fonctionne de la façon suivante : on remplace le x de la fonction de répartition par u et cette nouvelle fonction est mise égale à x et on isole le u. Autrement dit, il faut trouver une fonction réciproque.
+  \end{description}
+\end{probch4}
 \end{multicols*}
 
 \end{document}
