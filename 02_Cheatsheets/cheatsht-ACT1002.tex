@@ -221,18 +221,26 @@ Avec la première définition de la probabilité conditionnelle, on peut trouver
     Le support, que l'on peut comparer à l'image de la fonction, d'un événement X est composé des résultats possibles d'une expérience, par exemple [0, 1] ou encore un ensemble dénombrable comme \{0, 1/2, 1\}.\\
     Pour bien comprendre la différence entre l'espace échantillonal et le support de X, voici un petit exemple : \\
     On lance une pièce de monnaie deux fois et on définit la variable aléatoire X comme étant le nombre de faces obtenus. L'espace échantillonal de l'expérience est \{(P,P), (P,F), (F,P), (F,F)\} et le support de X est de \{0, 1, 2\}.
-    \item[Fonction de répartition ($F_{X} (x)$):] La probabilité d'avoir un résultat inférieur à x.
+	\item [Fonction de masse de probabilité :] La probabilité d'avoir un résultat égal à x. Cette fonction est définie par $\Pr(X = x_i)$ 
+	\item[Fonction de répartition ($F_{X} (x)$):] La probabilité d'avoir un résultat inférieur à x.
     \begin{align*}
     F_{X} (x) &= \Pr(X \le x) \\
     &= \sum_{x_{i} \le x}^{} \Pr(X = x_{i})
     \end{align*}
     Pour illustrer la fonction de répartition, on peut s'imaginer un lancer de dé et définir X comme le résultat du lancer. $F_{X} (2)$, par exemple, donnerait alors 1/3 car seuls les résultats 1 et 2 sont considérés sur l'ensemble des 6 possibilités. 
-    \item[Propriétés :] La valeur de la fonction de répartition se situe toujours entre 0 et 1, ce qui est logique étant donné que la somme de toutes les probabilités est toujours égale à 1 et qu'il n'existe pas de probabilité inférieure à 0. \\
+    \item[Propriétés de la fonction de répartition :] La valeur de la fonction de répartition se situe toujours entre 0 et 1, ce qui est logique étant donné que la somme de toutes les probabilités est toujours égale à 1 et qu'il n'existe pas de probabilité inférieure à 0. \\
     La fonction est aussi toujours non-décroissante, car il est impossible de perdre des probabilités alors que les probabilités qui s'ajoutent à mesure que x augmente sont toujours supérieures à 0 (pour une variable aléatoire discrète, cela donne une fonction en escalier à droite).\\
     On sait donc que $F_{X} (a) \le F_{X} (b)$ pour a < b. On peut alors trouver que Pr(a < X $\le$ b) = $F_{X} (b) - F_{X} (a)$.
     \item[Fonction de répartition inverse ($F^{-1}_{X} (u)$):] Aussi nommée la fonction quantile, cette fonction sert à déterminer quel résultat correspond à une quantité u de probabilités accumulées. Par exemple, si je prends un u de 0,5, le résultat sera la médiane. \\
-    Cela fonctionne de la façon suivante : on remplace le x de la fonction de répartition par u et cette nouvelle fonction est mise égale à x et on isole le u. Autrement dit, il faut trouver une fonction réciproque.
-  \end{description}
+	Cela fonctionne de la façon suivante : on remplace le x de la fonction de répartition par u et cette nouvelle fonction est mise égale à x et on isole le u. Autrement dit, il faut trouver une fonction réciproque. \\
+	\item[Espérance :] L'espérance correspond à une moyenne pondéré des probabilités où les pondérations correspondent aux différents valeurs que peut prendre la variable $X$. Elle est définie de la façon suivante: \\
+	$$ E[X] = \sum_i x_i * \Pr(X = x_i) $$. L'espérance correspond au résultat espéré lors de l'expérience. Par exemple, l'espérance d'une expérience consistant à lancer un dé serait 3.5. De plus, \\
+	il est possible de calculer l'espérance d'une fonction $g(X)$. L'espérance, dans ce cas-ci, est définie de la façon suivante : $E[g(X)] = \sum_i g(x_i) * \Pr(X = x_i) $. \\
+	\item[Propriétés de l'espérance: ] L'espérance est un opérateur linéaire. Ainsi, $E[2x^2+6x+5]$ peut se réécrire, une fois simplifiée, $2E[X^2]+6E[X]+5$. Aussi, si $g(x) \le h(x)$, $\forall x$, alors $E[g(x)] \le E[h(h)]$. \\
+	\item[Variance :] La variance est une mesure de dispersion qui se trouve à être la moyenne du carrée des écarts entre x et sa moyenne. La variance est définie de la façon suivante : $ Var(X) = E[(X - E[X])^2]$. En développant cette \\ 
+	expression, on retrouve l'expression davantage utilisée en probabilité, soit $Var(X) = E[X^2] - (E[X])^2$.  Afin de calculer la variance on trouve habituellement le premier et le deuxième moment de X et on remplace dans la formule. \\
+	De plus, la variance n'est pas un opérateur linéaire. Cependant, $Var(aX + b) = a^2 Var(X)$ où $a$ et $b$ sont des constantes réelles.
+\end{description}
 \end{probch4}
 \end{multicols*}
 
