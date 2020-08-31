@@ -33,7 +33,7 @@
 ### « *Cheatsheets* » exhaustives
 Sujet | Cours reliés 
 --------- | --------
-[Gestion des risques financiers (GRF)](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-GRF-ACT2011-ACT1006.pdf)  | ACT-1006: Gestion des risques financiers I
+[Investment and Financial Markets (IFM)](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-GRF-ACT2011-ACT1006.pdf)  | ACT-1006: Gestion des risques financiers I
  &nbsp; | ACT-2011: Gestion des risques financiers II
  [Modern Actuarial Statistics I (MAS-I)](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2000%20(MAS-I)%20(TEMP).pdf)  | ACT-2000: Analyse statistique des risques actuariels (majorité complétée)
  &nbsp; | ACT-2009: Processus stochastiques (complété)
