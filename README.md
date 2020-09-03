@@ -31,10 +31,18 @@
 
 ## Liens vers les cheatsheets des cours :
 ### « *Cheatsheets* » exhaustives
-Sujet | Sigles des cours reliés 
+Sujet | Cours reliés 
 --------- | --------
-[Gestion des risques financiers (GRF)](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-GRF-ACT2011-ACT1006.pdf)  | ACT-1006: Gestion des risques financiers I
+[Investment and Financial Markets (IFM)](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-GRF-ACT2011-ACT1006.pdf)  | ACT-1006: Gestion des risques financiers I
  &nbsp; | ACT-2011: Gestion des risques financiers II
+ [Modern Actuarial Statistics I (MAS-I)](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2000%20(MAS-I)%20(TEMP).pdf)  | ACT-2000: Analyse statistique des risques actuariels (majorité complétée)
+ &nbsp; | ACT-2009: Processus stochastiques (complété)
+ &nbsp; | ACT-2005: Mathématiques IARD I (majorité complétée)
+ &nbsp; | ACT-2003: Modèles linéaires (en dév.)
+ &nbsp; | ___Couvert en partie___: ACT-2004: Mathématiques vie I, ACT-2001: Introduction à l'actuariat II, ACT-2002: Méthodes numériques
+
+> ___Note___: Les feuilles de formule de mathématiques IARD I (ACT-2005), processus stochastiques (ACT-2009) et de modèles linéaires (ACT-2009) seront éventuellement fusionnées vers le document pour l'examen MAS-I. Déjà, les documents de [Mathématique actuarielle IARD I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2005.pdf) et de [Processus stochastiques](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2009.pdf) sont moins complets que les sections correspondantes du [document pour l'examen MAS-I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2000%20(MAS-I)%20(TEMP).pdf).
+
 
 ### Cheatsheets
 Sigle | état  | Nom du cours 
