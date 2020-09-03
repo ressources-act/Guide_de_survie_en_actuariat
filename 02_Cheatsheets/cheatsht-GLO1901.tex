@@ -1,0 +1,155 @@
+\documentclass[10pt, french]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Introduction à la programmation avec Python}
+\def\sigle{GLO-1901}
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
+\def\SectionColor{burntorange}
+\def\SubSectionColor{burntsienna}
+\def\SubSubSectionColor{burntsienna}
+%% -----------------------------
+%% Colour setup for prestations
+%%	Ajoute couleurs sur les trêmas des signes de prestations
+%% -----------------------------
+\usepackage{stackengine}
+\newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
+%
+% Save more space than default
+%
+\setlength{\abovedisplayskip}{-15pt}
+\setlist{leftmargin=*}
+%
+%	Extra math symbols
+%
+\usepackage{mathrsfs}
+\usetikzlibrary{matrix}
+%
+% thin space, limits underneath in displays
+%
+
+%% -----------------------------
+%% 	Colour setup for sections
+%% -----------------------------
+\def\SectionColor{cobalt}
+\def\SubSectionColor{azure(colorwheel)}
+\def\SubSubSection{azure(colorwheel)}
+%% -----------------------------
+\setcounter{secnumdepth}{0}
+
+%% -----------------------------
+%% Color definitions
+%% -----------------------------
+\definecolor{indigo(web)}{rgb}{0.29, 0.0, 0.51}
+\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+%%
+%% Matrix notation variable (bold style)
+%%
+\newcommand\cololine[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+\newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+
+\begin{document}
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+%\input{contributeurs/contrib-ACT1XXX}
+
+\newpage
+\raggedcolumns
+\begin{multicols*}{2}
+\section{Introduction}
+
+\begin{definitionNOHFILLprop}[Étapes de développement]
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	L'analyse
+		\begin{itemize}
+		\item	Quel est le \textit{problème} ?
+		\item	Que veut l'\textit{utilisateur} ?
+		\item	Quel est son \textit{budget} ?
+		\item	Quelles sont les \textbf{conséquences} d'une \textit{erreur} ?
+		\end{itemize}
+	\item	La conception
+		\begin{itemize}
+		\item	Comment résoudre le problème ?
+		\item	Quelles sont les \textit{structures de données} appropriées ?
+		\item	Quels sont les \textit{algorithmes} nécessaires ? 
+		\item	Quelles sont les \textit{interfaces} requises ?
+		\end{itemize}
+	\item	La programmation
+		\begin{itemize}
+		\item	Implantation de la solution développée aux étapes précédente, en utilisant un ou plusieurs langages de programmation.
+		\end{itemize}
+	\item	Les tests d'intégration
+		\begin{itemize}
+		\item	L'intégration des différents modules en un tout cohérent ;
+		\item	Les procédures de tests qui permettent d'établir la validité et la fiabilité du logiciel.
+		\end{itemize}
+\end{enumerate}
+\end{definitionNOHFILLprop}
+
+
+\begin{definitionNOHFILLpropos}[L'approche hiérarchique pour traiter des données]
+\begin{itemize}
+	\item	les \textbf{programmes} sont composés de \textbf{modules} ;        
+	\item	les \textbf{modules} contiennent des \textbf{énoncés} ;            
+	\item	les \textbf{énoncés} contiennent des \textbf{expressions} ;        
+	\item	les \textbf{expressions} créent et manipulent les \textbf{données}.
+\end{itemize}
+\end{definitionNOHFILLpropos}
+
+
+
+\subsection{Syntaxe de base}
+\begin{description}
+	\item[Affectation]	énoncé (e.g. \texttt{pi = 3.1415}) ayant habituellement 3 éléments :
+		\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+		\item	un nom de variable (e.g. \texttt{pi}) appelé \textbf{identifieur} ;
+		\item	l'opérateur (e.g. \texttt{=}) ;
+		\item	une \textbf{valeur} affectée à la variable (e.g. 3.1415) appelée \textbf{expression}.
+		\end{enumerate}
+	\item[Commentaires]	Des commentaires sont des lignes du code, qui commencent par \#, qui ne sont pas exécutées.
+\end{description}
+	
+	
+\subsubsection{Opérateurs arithmétiques}
+\begin{itemize}[leftmargin = 5mm]
+	\item[+]	addition ;
+	\item[-]	soustraction ;
+	\item[*]	multiplication ;
+	\item[/]	division régulière ;
+	\item[//]	division entière ;
+	\item[\%]	reste de la division entière ;
+	\item[**]	exponentiation.
+\end{itemize}
+
+
+\subsection{Fonctions de base}
+\begin{definitionNOHFILLsub}[\texttt{print}]
+Permet d'afficher à la console la valeur d'une ou de plusieurs expressions.
+\begin{itemize}
+	\item	permet aussi avec toute sorte d'options de spécifier la façon dont cette ou ces valeurs seront affichées.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[\texttt{input}]
+Permet de lire ce que vous entrez au clavier et retourne le résultat sous la forme d'une chaîne de caractères.
+
+\end{definitionNOHFILLsub}
+
+
+
+
+\end{multicols*}
+
+\end{document}
