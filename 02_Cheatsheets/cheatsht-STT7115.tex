@@ -1,0 +1,276 @@
+\documentclass[10pt, french]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Statistiques mathématiques avancées}
+\def\sigle{STT-7115}
+
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
+\def\SectionColor{burntorange}
+\def\SubSectionColor{burntsienna}
+\def\SubSubSectionColor{burntsienna}
+
+%% -----------------------------
+%% Colour setup for prestations
+%%	Ajoute couleurs sur les trêmas des signes de prestations
+%% -----------------------------
+\usepackage{stackengine}
+\newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
+%
+% Save more space than default
+%
+\setlength{\abovedisplayskip}{-15pt}
+\setlist{leftmargin=*}
+%
+%	Extra math symbols
+%
+\usepackage{mathrsfs}
+\usetikzlibrary{matrix}
+%
+% thin space, limits underneath in displays
+%
+
+%% -----------------------------
+%% 	Colour setup for sections
+%% -----------------------------
+\def\SectionColor{cobalt}
+\def\SubSectionColor{azure(colorwheel)}
+\def\SubSubSection{azure(colorwheel)}
+%% -----------------------------
+\setcounter{secnumdepth}{0}
+
+%% -----------------------------
+%% Color definitions
+%% -----------------------------
+\definecolor{indigo(web)}{rgb}{0.29, 0.0, 0.51}
+\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+%%
+%% Matrix notation variable (bold style)
+%%
+\newcommand\cololine[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+\newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+
+\begin{document}
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+%\input{contributeurs/contrib-ACT1XXX}
+
+\newpage
+\raggedcolumns
+\begin{multicols*}{2}
+\section{Variables aléatoires}
+\subsection{Notions aléatoires}
+\begin{definitionGENERAL}{Notion d'expérience aléatoire}[\circled{1}{trueblue}]
+Cadre dans lequel on observe différentes actions dues au hasard.
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\omega$]	Le \textbf{\textit{résultat}} d'une expérience aléatoire, alias \textit{épreuve} ou \textit{issue}.
+	\item[$\Omega$]	L'\textbf{\textit{ensemble} des résultats possibles}.
+		\begin{itemize}
+		\item	Il s'ensuit que $\omega \in \Omega$.
+		\item	Par exemple, pour le lancer d'un dé où l'on désire savoir le résultat $\Omega = \{\text{pile}, \text{face}\}$.
+		\item	On dénote par $\mathcal{P}(\Omega)$ l'\textbf{ensemble de toutes les parties} de $\Omega$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Notion d'événement aléatoire}[\circled{2}{trueblue}]
+Événement lié à une certain expérience aléatoire. 
+
+\bigskip	
+
+Un événement est tout \textbf{sous-ensemble} de $\Omega$. Par exemple, pour l'expérience aléatoire de jeter un dé on a que l'ensemble des résultats possibles $\Omega = \{1, 2, 3, 4, 5, 6\}$. L'événement $A$ \og obtenir un nombre pair \fg{} s'écrit $A = \{2, 4, 6\}$. De ceci on déduit qu'à toute propriété définie sur $\Omega$, on associe un sous-ensemble de $\Omega$ composé de tous les $\omega$ qui vérifient la propriété. 
+\end{definitionGENERAL}
+
+\subsubsection{Algèbre de Boole des événements}
+\begin{definitionNOHFILL}[Algèbre de Boole (\og \textit{boolean algebra} \fg{}) des événements]
+La classe $\mathcal{E}$ des événements est l'\textbf{algèbre de Boole de parties de $\Omega$}, si elle contient $\Omega$ et est stable par intersection, réunion et complémentation.
+
+\bigskip
+
+\paragraph{Note}	On dit habituellement algèbre plutôt qu'algèbre de Boole.
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILLprop}[Opérations logiques]
+Les opérations logiques que l'on peut effectuer sur les événements sont : 
+\begin{enumerate}
+	\item	Soit les événements $A \subset \Omega$ et $B \subset \Omega$, alors : 
+		\begin{itemize}
+		\item	$A \cup B$ est un événement réalisé ssi \textbf{au moins un} des deux est réalisé.
+		\item	$A \cap B$ est un événement réalisé ssi \textbf{les deux} sont réalisés simultanément.
+		\end{itemize}
+	\item	$\emptyset$ est un événement qui ne peut être réalisé appelé l'\textbf{événement impossible}. À chaque expérience, $\Omega$ est toujours réalisé et appelé l'\textbf{événement certain}.
+	\item	$A \subset \Omega$ est un événement.
+		\begin{itemize}
+		\item	Le complément $A^{c}$ ou $\overline{A}$ est appelé \textbf{événement contraire de $A$} et se réalise si $\omega \notin A$.
+		\end{itemize}
+	\item	La \textbf{différence de deux événements} $A$ et $B$ est \lfbox[formula]{$A \smallsetminus B = A \cap B^{c}$} se réalise si $A$ est réalisé mais pas $B$.
+	\item	La \textbf{différence symétrique} de $A$ et $B$ est \lfbox[formula]{$A \Delta B = (A \smallsetminus B) \cup (B \smallsetminus A)$} se réalise si l'un des deux événements est réalisé mais pas l'autre.
+	\item	Si, $\forall n \in \mathbb{N}$, l'événement $A_{n}$ représente \og \textbf{gagner $n$ matchs} \fg{}, alors 
+		\begin{itemize}
+		\item	$\displaystyle \cup_{n = 1}^{\infty} A_{n}$ représente \og \textbf{gagner au moins un match}\fg{}.
+		\item	$\displaystyle \cap_{n = 1}^{\infty} A_{n}^{c}$ représente \og \textbf{ne pas gagner de matchs}\fg{}.
+		\end{itemize}
+	\item	Deux événements sont \textbf{incompatibles} si \lfbox[formula]{$A_{1} \cap A_{2} = \emptyset$}. 
+		\begin{itemize}
+		\item	On peut aussi dire que les parties de $\Omega$ représentées par $A_{1}$ et $A_{2}$ sont disjointes.
+		\item	Si deux événements sont incompatibles, on a une somme au lieu d'une réunion avec \lfbox[formula]{$A_{1} \cup A_{2} = A_{1} + A_{2}$} si $A_{1} \cap A_{2} = \emptyset$.
+		\end{itemize}
+	\item	Si les événements de la suite $(A_{i})_{i \in \mathbb{I}}$ forment une \textbf{partition} de $\Omega$, on dit que ses événements $(A_{i})_{i \in \mathbb{I}}$ forment un \textbf{système exhaustif} de $\Omega$.
+	\item	La suite d'événements $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est : 
+		\begin{description}
+		\item[croissante]	ssi $A_{1} \subset A_{2} \subset \hdots$
+		\item[décroissante]	ssi $A_{1} \supset A_{2} \supset \hdots$
+		\end{description}
+	\item	Si la suite $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements d'un ensemble $\Omega$, on représente que :
+		\begin{description}
+		\item[une infinité de $A_{n}$ est réalisé]	en écrivant que, quel que soit le rang $k \in \mathbb{N}^{\ast}$, il existe des événements de rang supérieur (à $k$) qui sont réalisés : \lfbox[formula]{$\cap_{k = 1}^{\infty}\cup_{n = k}^{\infty} A_{n}$}.
+		\item[un nombre fini de $A_{n}$ est réalisé]	en écrivant qu'il existe un rang tel qu'à partir de ce rang, tous les événements réalisés sont les contraires des événements $A_{n}$ : \lfbox[formula]{$\cup_{k = 1}^{\infty}\cap_{n = k}^{\infty} A_{n}^{c}$}.
+		\end{description}
+		
+\end{enumerate}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLsub}[Limites de suite d'événements]
+Soit $(A_{n})_{n \in \mathbb{N}^{+}}$ une suite d'événements de $\Omega$. On défini les limites $\inf$ et $\sup$ d'événements par : 
+\begin{align*}
+	A_{\ast} 
+	&=	\lim \inf A_{n} 
+	=	\bigcup_{k = 1}^{\infty} \bigcap_{n = k}^{\infty} A_{n}	\\
+	A^{\ast} 
+	&=	\lim \sup A_{n} 
+	=	\bigcap_{k = 1}^{\infty} \bigcup_{n = k}^{\infty} A_{n}
+\end{align*}
+
+De plus, si les ensembles $A_{\ast}$ et $A^{\ast}$ coïncident, alors on écrit $A = A_{\ast} = A^{\ast} = \lim_{n \rightarrow \infty} A_{n}$.
+
+\begin{definitionNOHFILLprop}[Propositions]
+Soit $(A_{n})_{n \in \mathbb{N}^{+}}$ une suite d'événements de $\Omega$.
+\begin{enumerate}[label = \roman*)]
+	\item	Si $A_{1} \subset A_{2} \subset \hdots$ alors \lfbox[formula]{$\displaystyle \lim_{n \rightarrow \infty} A_{n} = \bigcup_{n = 1}^{\infty} A_{n}$}.
+	\item	Si $A_{1} \supset A_{2} \supset \hdots$ alors \lfbox[formula]{$\displaystyle \lim_{n \rightarrow \infty} A_{n} = \bigcap_{n = 1}^{\infty} A_{n}$}.
+\end{enumerate}
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILLsub}
+
+
+
+\columnbreak
+\subsection{Espaces probabilisables}
+\begin{definitionNOHFILL}[Tribu d'événements]
+La tribu (ou $\sigma$-algèbre) sur un ensemble $\Omega$ est un ensemble $\mathcal{A}$ de parties de $\Omega$ tel que : 
+\begin{enumerate}[label = \roman*)]
+	\item	$\Omega \in \mathcal{A}$.
+	\item	Si $A \in \mathcal{A}$, alors $A^{c} \in \mathcal{A}$.
+	\item	$\forall (A_{n})_{n \in \mathbb{N}^{\ast}}$ une suite d'éléments de $\mathcal{A}$, alors l'événement $\displaystyle \bigcup_{n = 1}^{\infty} A_{n} \in \mathcal{A}$.
+\end{enumerate}
+\end{definitionNOHFILL}
+
+Il y a une multitude de façons de choisir une tribu. Par exemple : 
+\begin{itemize}
+	\item	la tribu la plus "grossière" est $\mathcal{A} = \{\emptyset, \Omega\}$.
+	\item	la tribu la plus "grosse" est $\mathcal{A} = \mathcal{P}(\Omega)$.
+\end{itemize}
+
+
+\begin{definitionNOHFILL}[Espace probabilisable (ou mesurable)]
+Le couple $(\Omega, \mathcal{A})$ composé d'un ensemble $\Omega$ et une tribu $\mathcal{A}$ sur $\Omega$.
+
+\bigskip
+
+Les éléments de $\Omega$ sont appelés \textbf{\textit{éventualités}} et les éléments de $\mathcal{A}$ \textbf{\textit{événements}}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[Propriétés de la tribu]
+Soit $\mathcal{A}$ une tribu sur $\Omega$. Alors : 
+\begin{enumerate}[label = \alph*)]
+	\item	\lfbox[formula]{$\emptyset \in \mathcal{A}$}.
+	\item	$\forall A_{1}, \dots, A_{k} \in \mathcal{A}$, alors \lfbox[formula]{$\displaystyle \bigcup_{i = 1}^{k} A_{i} \in \mathcal{A}$} et \lfbox[formula]{$\displaystyle \bigcap_{i = 1}^{k} A_{i} \in \mathcal{A}$}.
+	\item	$\forall (A_{n})_{n \in \mathbb{N}^{\ast}}$ suite d'événements de $\mathcal{A}$, alors \lfbox[formula]{$\displaystyle \bigcap_{n \in \mathbb{N}^{\ast}} A_{n} \in \mathcal{A}$}.
+	\item	$\forall (A_{n})_{n \in \mathbb{N}^{\ast}}$ suite d'événements de $\mathcal{A}$, alors \lfbox[formula]{$\lim \inf A_{ n} \in \mathcal{A}$}.
+	\item	$\forall (A_{n})_{n \in \mathbb{N}^{\ast}}$ suite d'événements de $\mathcal{A}$, alors \lfbox[formula]{$\lim \sup A_{n} \in \mathcal{A}$}.
+\end{enumerate}
+
+\paragraph{Note}	Voir la page 19 des notes de cours du chapitre 1 pour les preuves.
+\end{definitionNOHFILLprop}
+
+
+
+\columnbreak
+\subsection{Variables aléatoires}
+\begin{rappel_enhanced}[Contexte]
+Souvent, un événement s'énonce de façon numérique (p. ex. : \og rouler un 5 \fg{}, \og pluie de 2mm \fg{}, etc.). Donc, à toute expérience $\omega$, on associe un nombre $X(\omega)$ ou un $n$-uple de nombres $(X_{1}(\omega), \dots, X_{n}(\omega))$ mesurant un caractère, ou un ensemble de $n$ caractères, du résultat de l'expérience. 
+
+\bigskip
+
+On suppose que $X$ désigne une application : $\Omega \rightarrow \mathbb{R}$ et que $(X_{1}, \dots, X_{n})$ désigne une application $\Omega \rightarrow \mathbb{R}^{n}$. On dénote les événements les plus simples comme \lfbox[formula]{$\{X \in I\} = \{\omega \in \Omega : X(\omega) \in I\} = X^{-1}(I)$} où $I$ est un intervalle réel.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Variable aléatoire réelle]
+Tout application à valeurs réelles $X: \Omega \rightarrow \mathbb{R}$ telle que, $\forall$ intervalle $I$ de $\mathbb{R}$, $\{X \in I\}$ soit un événement de la tribu $\mathcal{A}$.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Tribu borélienne]
+La tribu borélienne $\mathcal{B}_{\mathbb{R}}$ est la plus petite tribu de $\mathbb{R}$ qui contient tous ses intervalles. Les éléments de $\mathcal{B}_{\mathbb{R}}$ sont appelés les \textbf{\textit{boréliens}} de $\mathbb{R}$.
+
+\bigskip
+
+Pour une v.a. réelle $X$, alors $\forall B \in \mathcal{B}_{\mathbb{R}}$ on a $\{X \in B\} \in \mathcal{A}$. 
+
+\bigskip
+
+Bref, \lfbox[formula]{$(\Omega, \mathcal{A}) \overset{X}{\rightarrow} (\mathbb{R}, \mathcal{B}_{\mathbb{R}})$}. On dit que la tribu $X^{-1}(\mathcal{B}_{\mathbb{R}})$ sur $\Omega$ est la \textbf{\textit{tribu des événements engendrés par $X$}}.
+\end{definitionNOHFILLsub}
+
+
+
+\columnbreak
+\subsection{Probabilités}
+\begin{definitionNOHFILL}[Notion de Probabilité]
+Soit un espace probabilisable $(\Omega, \mathcal{A})$. On appelle \textbf{\textit{probabilité}} sur $(\Omega, \mathcal{A})$ toute application $P: \mathcal{A} \rightarrow [0, 1]$ telle que :
+\begin{enumerate}[label = \roman*)]
+	\item	\lfbox[formula]{$P(\Omega) = 1$}.
+	\item	$\forall (A_{n})_{n \in \mathbb{N}^{\ast}}$ d'événements deux à deux disjoints, \lfbox[formula]{$\displaystyle P\left(\bigcup_{n \in \mathbb{N}^{\ast}} A_{n}\right) = \sum_{n \in \mathbb{N}^{\ast}} P(A_{n})$}.
+\end{enumerate}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Espace probabilisé]
+Le triplet $(\Omega, \mathcal{A}, P)$ s'appelle un espace probabilisé.
+\end{definitionNOHFILL}
+
+On complète la notion précédente sur l'espace borélien avec $(\Omega, \mathcal{A}, P) \overset{X}{\rightarrow} (\mathbb{R}, \mathcal{B}_{\mathbb{R}}, P_{X})$ où $P_{X}$ est appelée loi de probabilité de $X$. On définit $P_{X}(B) = P(X \in B) = P\left(X^{-1}(B)\right)$.
+
+
+\begin{definitionNOHFILLprop}[Propriétés des probabilités]
+Soit $(\Omega, \mathcal{A}, P)$ un espace probabilisé. Alors : 
+\begin{enumerate}[label = \alph*)]
+	\item	$P(\emptyset) = 0$.
+	\item	Si $A$ et $B$ sont des événements disjoints, alors \lfbox[formula]{$P(A \cup B) = P(A) + P(B)$}.
+	\item	Si $A$ et $B$ sont des événements quelconques, alors \lfbox[formula]{$P(A \cup B) = P(A) + P(B) - P(A \cap B)$}.
+	\item	Si $A$ et $B$ sont des événements tels que $A \subset B$, alors \lfbox[formula]{$P(A \smallsetminus B) = P(B) - P(A)$} et \lfbox[formula]{$P(A) \leq P(B)$}.
+	\item	$\forall A \in \mathcal{A}$, \lfbox[formula]{$P(A^{c}) = 1 - P(A)$}.
+	\item	Si $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements quelconques, alors \lfbox[formula]{$\displaystyle P\left(\cup_{n \in \mathbb{N}^{\ast}} A_{n}\right) \leq \sum_{n \in \mathbb{N}^{\ast}} P(A_{n})$}.
+	\item	Si $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements tels que $A_{n} \downarrow \emptyset$, alors \lfbox[formula]{$P(A_{n}) \downarrow 0$}.
+	\item	Si $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements tels que $A_{n} \downarrow A$, alors \lfbox[formula]{$P(A_{n}) \downarrow P(A)$}.
+	\item	Si $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements tels que $A_{n} \uparrow A$, alors \lfbox[formula]{$P(A_{n}) \uparrow P(A)$}.
+\end{enumerate}
+\end{definitionNOHFILLprop}
+
+\end{multicols*}
+
+\end{document}
