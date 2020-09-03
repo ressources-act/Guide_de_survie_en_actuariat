@@ -1826,12 +1826,29 @@ L'intégrale de Riemann-\textit{Stieltjes} généralise l'intégrale de Riemann 
 			&=	\limz{c}{\infty} \int_{d}^{c} (x - d) {\color{teal}dF(x)}	\\
 			&=	\limz{c}{\infty} {\color{teal}-}\int_{d}^{c} (x - d) {\color{teal}d\bar{F}(x)}
 		\end{align*}	
-	\item	Puis, on réécrit l'intégrale sous la forme d'un intégrale impropre :
+	\item	On sépare en 2 intégrales, puis on simplifie avec $\limz{c}{\infty} \bar{F}(c) = 0$:
 		\begin{align*}
-		\limz{c}{\infty} -\int_{d}^{c} (x - d) d\bar{F}(x)
-		&=	-\int_{d}^{{\color{cyan}\infty}} (x - d) d\bar{F}(x)
+		\limz{c}{\infty} -\int_{d}^{{\color{cyan}c}} (x - d) d\bar{F}(x)	
+		&=	\limz{c}{\infty} -\int_{d}^{{\color{cyan}c}} x d\bar{F}(x) + d\int_{d}^{{\color{cyan}c}} d\bar{F}(x)	\\
+		&=	\limz{c}{\infty} -\int_{d}^{{\color{cyan}c}} x d\bar{F}(x) + d\left( \bar{F}(c) - \bar{F}(d)\right)	\\
+		&=	\limz{c}{\infty} -\int_{d}^{{\color{cyan}c}} x d\bar{F}(x) - d\bar{F}(d)	
 		\end{align*}
-	\item	....
+	\item	On applique la substitution ($\int udv = uv - \int vdu$) avec $u = x$ et $dv = d\bar{F}(x)$ : 
+		\begin{align*}
+		\limz{c}{\infty} -\int_{d}^{{\color{cyan}c}} x d\bar{F}(x) - d\bar{F}(d)	
+		&=	\limz{c}{\infty} - x\bar{F}(x)\bigg|_{d}^{{\color{cyan}c}} + \int_{d}^{{\color{cyan}c}} (1) \bar{F}(x) - d\bar{F}(d)	
+		\end{align*}
+	\item	Lorsque $c \rightarrow \infty$, $\bar{F}(c)$ tend vers 0 plus rapidement que $c$ tend vers l'infini. On simplifie donc l'expression : 
+		\begin{align*}
+		&\limz{c}{\infty} - x\bar{F}(x)\bigg|_{d}^{{\color{cyan}c}} + \int_{d}^{{\color{cyan}c}} (1) \bar{F}(x)dx - d\bar{F}(d)	\\
+		&=	d\bar{F}(d) + \limz{c}{\infty} \int_{d}^{{\color{cyan}c}} \bar{F}(x)dx - d\bar{F}(d)	\\
+		&=	 \limz{c}{\infty} \int_{d}^{{\color{cyan}c}} \bar{F}(x)dx
+		\end{align*}
+	\item	Finalement, on réécrit l'intégrale sous la forme d'un intégrale impropre :
+		\begin{align*}
+		\limz{c}{\infty} \int_{d}^{{\color{cyan}c}} \bar{F}(x)dx
+		&=	\int_{d}^{\infty} \bar{F}(x) dx
+		\end{align*}
 \end{enumerate}
 
 \end{multicols*}
