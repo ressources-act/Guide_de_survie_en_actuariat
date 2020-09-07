@@ -44,7 +44,7 @@ Sujet | Cours reliés
 > ___Note___: Les feuilles de formule de mathématiques IARD I (ACT-2005), processus stochastiques (ACT-2009) et de modèles linéaires (ACT-2009) seront éventuellement fusionnées vers le document pour l'examen MAS-I. Déjà, les documents de [Mathématique actuarielle IARD I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2005.pdf) et de [Processus stochastiques](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2009.pdf) sont moins complets que les sections correspondantes du [document pour l'examen MAS-I](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2000%20(MAS-I)%20(TEMP).pdf).
 
 
-### Cheatsheets
+### Cheatsheets pour les cours d'actuariat
 Sigle | état  | Nom du cours 
 ---   | ----  | --------
 ACT-1001  | développement, pas encore de feuille dédiée | [Mathématiques financières](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1XXX.pdf)
@@ -63,13 +63,26 @@ ACT-2008  | première ébauche complétée | [Mathématique actuarielle IARD II]
 ACT-3000  | première ébauche complétée | [Théorie du risque](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT3000.pdf)
 ACT-3114  | première ébauche complétée | [Apprentissage statistique en actuariat](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT3114.pdf)
 ACT-4105  | première ébauche complétée | [Tarification en assurance IARD](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT4105.pdf)
-FRN-3003  | première ébauche complétée | [Français avancé: grammaire et rédaction II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-Francais.pdf)
 
 
-### Cheatsheets de R
+#### Cheatsheets de R
 Sigle | Nom du cours
 --- | --------
 ACT-3114  | [Apprentissage statistique en actuariat](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-R-ACT3114.pdf)
+
+
+### Cheatsheets pour les cours à option (de règle II)
+Sigle | état  | Nom du cours 
+---   | ----  | --------
+FRN-3003  | première ébauche complétée | [Français avancé: grammaire et rédaction II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-Francais.pdf)
+GLO-1901  | développement | [Introduction à la programmation avec Python](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-GLO1901.pdf)
+
+
+### Cheatsheets pour les cours de maîtrise
+Sigle | état  | Nom du cours 
+---   | ----  | --------
+STT-7115  | développement | [Statistique mathématique avancée](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-STT7115.pdf)
+
 
 <a name="structure"/>
 
