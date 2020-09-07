@@ -66,6 +66,7 @@
 	\textsc{\Large Contributeurs}\\[0.5cm] 
 \end{center}
 %\input{contributeurs/contrib-ACT1XXX}
+%https://maurocamaraescudero.netlify.app/post/visualizing-measure-theory-for-markov-chains/
 
 \newpage
 \raggedcolumns
@@ -139,8 +140,8 @@ Les opérations logiques que l'on peut effectuer sur les événements sont :
 		\end{description}
 	\item	Si la suite $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements d'un ensemble $\Omega$, on représente que :
 		\begin{description}
-		\item[une infinité de $A_{n}$ est réalisé]	en écrivant que, quel que soit le rang $k \in \mathbb{N}^{\ast}$, il existe des événements de rang supérieur (à $k$) qui sont réalisés : \lfbox[formula]{$\cap_{k = 1}^{\infty}\cup_{n = k}^{\infty} A_{n}$}.
-		\item[un nombre fini de $A_{n}$ est réalisé]	en écrivant qu'il existe un rang tel qu'à partir de ce rang, tous les événements réalisés sont les contraires des événements $A_{n}$ : \lfbox[formula]{$\cup_{k = 1}^{\infty}\cap_{n = k}^{\infty} A_{n}^{c}$}.
+		\item[une infinité de $A_{n}$ est réalisé]	en écrivant que, quel que soit le rang $k \in \mathbb{N}^{\ast}$, il existe des événements de rang supérieur (à $k$) qui sont réalisés : \lfbox[formula]{$\displaystyle \cap_{k = 1}^{\infty}\cup_{n = k}^{\infty} A_{n}$}.
+		\item[un nombre fini de $A_{n}$ est réalisé]	en écrivant qu'il existe un rang tel qu'à partir de ce rang, tous les événements réalisés sont les contraires des événements $A_{n}$ : \lfbox[formula]{$\displaystyle \cup_{k = 1}^{\infty}\cap_{n = k}^{\infty} A_{n}^{c}$}.
 		\end{description}
 		
 \end{enumerate}
@@ -172,6 +173,32 @@ Soit $(A_{n})_{n \in \mathbb{N}^{+}}$ une suite d'événements de $\Omega$.
 
 \columnbreak
 \subsection{Espaces probabilisables}
+\begin{definitionNOHFILL}[Power set $\mathcal{P}$]
+Le \og \textit{power set} \fg{} $\mathcal{P}$ est l'ensemble de tous les sous-ensembles d'un ensemble $\Omega$; il est plus facile de donner un exemple que d'expliquer en mots.
+
+\bigskip
+
+\begin{formula}{Exemple de \og \textit{power set} \fg{}}
+Soit l'ensemble $\Omega = \{a, b, c\}$, alors
+\begin{align*}
+	\mathcal{P}(\Omega)
+	&=	\begin{Bmatrix}
+		&	\{\}	\\
+		&	\{a\}, \{b\}, \{c\}	\\
+		&	\{a, b\}, \{a, c\}, \{b, c\}	\\
+		&	\{a, b, c\}	\\
+		\end{Bmatrix}
+\end{align*}
+\end{formula}
+
+\bigskip
+
+Pour un ensemble de $n$ éléments, il y aura $2^{n}$ sous-ensembles possibles. Ceci découle du binaire ! Voir \hyperlink{https://www.mathsisfun.com/sets/power-set.html}{\textcolor{bleudefrance}{cette page}} pour plus d'information.
+\end{definitionNOHFILL}
+
+
+\paragraph{Note}	En anglais, on appelle la tribu $\mathcal{A}$ composée des \og \textit{\textbf{events}} \fg{} le \og \textit{event space} \fg{} et l'ensemble $\Omega$ composé des \og \textit{\textbf{outcomes}} \fg{} le \og \textit{sample space} \fg{}.
+
 \begin{definitionNOHFILL}[Tribu d'événements]
 La tribu (ou $\sigma$-algèbre) sur un ensemble $\Omega$ est un ensemble $\mathcal{A}$ de parties de $\Omega$ tel que : 
 \begin{enumerate}[label = \roman*)]
@@ -181,20 +208,81 @@ La tribu (ou $\sigma$-algèbre) sur un ensemble $\Omega$ est un ensemble $\mathc
 \end{enumerate}
 \end{definitionNOHFILL}
 
-Il y a une multitude de façons de choisir une tribu. Par exemple : 
-\begin{itemize}
-	\item	la tribu la plus "grossière" est $\mathcal{A} = \{\emptyset, \Omega\}$.
-	\item	la tribu la plus "grosse" est $\mathcal{A} = \mathcal{P}(\Omega)$.
-\end{itemize}
-
-
 \begin{definitionNOHFILL}[Espace probabilisable (ou mesurable)]
 Le couple $(\Omega, \mathcal{A})$ composé d'un ensemble $\Omega$ et une tribu $\mathcal{A}$ sur $\Omega$.
 
 \bigskip
 
-Les éléments de $\Omega$ sont appelés \textbf{\textit{éventualités}} et les éléments de $\mathcal{A}$ \textbf{\textit{événements}}.
+Les éléments de $\Omega$ sont appelés \textbf{\textit{éventualités}} (\og \textit{outcomes} \fg{}) et les éléments de $\mathcal{A}$ \textbf{\textit{événements}} (\og \textit{events} \fg{}).
+
+\begin{itemize}
+	\item	En anglais, on dit \og \textit{measurable space} \fg{}.
+\end{itemize}
 \end{definitionNOHFILL}
+
+\begin{formula}{Visualisation}
+Voici une visualisation de ce que représente l'espace mesurable : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,379); %set diagram left start at 0, and has height of 379
+
+%Shape: Ellipse [id:dp7098699948138527] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (100,182.7) .. controls (100,85.77) and (161.9,7.2) .. (238.25,7.2) .. controls (314.6,7.2) and (376.5,85.77) .. (376.5,182.7) .. controls (376.5,279.63) and (314.6,358.2) .. (238.25,358.2) .. controls (161.9,358.2) and (100,279.63) .. (100,182.7) -- cycle ;
+%Shape: Circle [id:dp5932459553762595] 
+\draw   (278.8,92.1) .. controls (278.8,83.21) and (286.01,76) .. (294.9,76) .. controls (303.79,76) and (311,83.21) .. (311,92.1) .. controls (311,100.99) and (303.79,108.2) .. (294.9,108.2) .. controls (286.01,108.2) and (278.8,100.99) .. (278.8,92.1) -- cycle ;
+%Shape: Circle [id:dp5490421677451254] 
+\draw   (317.8,152.1) .. controls (317.8,143.21) and (325.01,136) .. (333.9,136) .. controls (342.79,136) and (350,143.21) .. (350,152.1) .. controls (350,160.99) and (342.79,168.2) .. (333.9,168.2) .. controls (325.01,168.2) and (317.8,160.99) .. (317.8,152.1) -- cycle ;
+%Shape: Circle [id:dp31015716407092975] 
+\draw   (313.8,222.1) .. controls (313.8,213.21) and (321.01,206) .. (329.9,206) .. controls (338.79,206) and (346,213.21) .. (346,222.1) .. controls (346,230.99) and (338.79,238.2) .. (329.9,238.2) .. controls (321.01,238.2) and (313.8,230.99) .. (313.8,222.1) -- cycle ;
+%Shape: Ellipse [id:dp6216043390400294] 
+\draw   (127.8,168.6) .. controls (127.8,153.36) and (139.6,141) .. (154.15,141) .. controls (168.7,141) and (180.5,153.36) .. (180.5,168.6) .. controls (180.5,183.84) and (168.7,196.2) .. (154.15,196.2) .. controls (139.6,196.2) and (127.8,183.84) .. (127.8,168.6) -- cycle ;
+%Shape: Ellipse [id:dp34537151087018025] 
+\draw   (162.8,287.6) .. controls (162.8,272.36) and (174.6,260) .. (189.15,260) .. controls (203.7,260) and (215.5,272.36) .. (215.5,287.6) .. controls (215.5,302.84) and (203.7,315.2) .. (189.15,315.2) .. controls (174.6,315.2) and (162.8,302.84) .. (162.8,287.6) -- cycle ;
+%Shape: Ellipse [id:dp9504044872024426] 
+\draw   (243.8,261.6) .. controls (243.8,246.36) and (255.6,234) .. (270.15,234) .. controls (284.7,234) and (296.5,246.36) .. (296.5,261.6) .. controls (296.5,276.84) and (284.7,289.2) .. (270.15,289.2) .. controls (255.6,289.2) and (243.8,276.84) .. (243.8,261.6) -- cycle ;
+%Shape: Ellipse [id:dp7778615271088332] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ] (182.8,74.1) .. controls (182.8,53.06) and (199.09,36) .. (219.17,36) .. controls (239.26,36) and (255.55,53.06) .. (255.55,74.1) .. controls (255.55,95.14) and (239.26,112.2) .. (219.17,112.2) .. controls (199.09,112.2) and (182.8,95.14) .. (182.8,74.1) -- cycle ;
+%Shape: Circle [id:dp6878415033970087] 
+\draw   (229.8,184.1) .. controls (229.8,175.21) and (237.01,168) .. (245.9,168) .. controls (254.79,168) and (262,175.21) .. (262,184.1) .. controls (262,192.99) and (254.79,200.2) .. (245.9,200.2) .. controls (237.01,200.2) and (229.8,192.99) .. (229.8,184.1) -- cycle ;
+
+% Text Node
+\draw (340,36) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \mathcal{A}$};
+% Text Node
+\draw (169,43) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle \Omega $};
+% Text Node
+\draw (289.4,82.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle a$};
+% Text Node
+\draw (328.4,142.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle b$};
+% Text Node
+\draw (324.4,212.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle c$};
+% Text Node
+\draw (150.65,147.1) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle a$};
+% Text Node
+\draw (137.65,172.1) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle b$};
+% Text Node
+\draw (186.65,266.1) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle a$};
+% Text Node
+\draw (173.65,291.1) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle c$};
+% Text Node
+\draw (267.65,240.1) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle c$};
+% Text Node
+\draw (254.65,265.1) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle b$};
+% Text Node
+\draw (217.82,48.03) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle c$};
+% Text Node
+\draw (199.87,82.55) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle b$};
+% Text Node
+\draw (229.87,80.55) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle a$};
+% Text Node
+\draw (262.4,162.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \emptyset $};
+\end{tikzpicture}
+\end{center}
+On peut donc visualiser les 3 conditions dans la définition de la tribu. L'ensemble $\Omega$ est contenu, tous les événements possibles (alias toutes les combinaisons de $\{a, b, c\}$ possibles) sont contenus et tous leurs compléments sont contenus. Finalement, toute union d'événements sera contenue dans la tribu !
+\end{formula}
+
+
+
 
 \begin{definitionNOHFILLprop}[Propriétés de la tribu]
 Soit $\mathcal{A}$ une tribu sur $\Omega$. Alors : 
@@ -213,24 +301,83 @@ Soit $\mathcal{A}$ une tribu sur $\Omega$. Alors :
 
 \columnbreak
 \subsection{Variables aléatoires}
-\begin{rappel_enhanced}[Contexte]
-Souvent, un événement s'énonce de façon numérique (p. ex. : \og rouler un 5 \fg{}, \og pluie de 2mm \fg{}, etc.). Donc, à toute expérience $\omega$, on associe un nombre $X(\omega)$ ou un $n$-uple de nombres $(X_{1}(\omega), \dots, X_{n}(\omega))$ mesurant un caractère, ou un ensemble de $n$ caractères, du résultat de l'expérience. 
+%\begin{rappel_enhanced}[Contexte]
+%Souvent, un événement s'énonce de façon numérique (p. ex. : \og rouler un 5 \fg{}, \og pluie de 2mm \fg{}, etc.). Donc, à toute expérience $\omega$, on associe un nombre $X(\omega)$ (ou un $n$-uple de nombres $(X_{1}(\omega), \dots, X_{n}(\omega))$) mesurant un caractère (ou un ensemble de $n$ caractères) du résultat de l'expérience. 
+%\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Variable aléatoire]
+On définit une \textbf{variable aléatoire} comme une \textit{fonction mesurable}. Pour ce faire, on défini 2 espaces mesurables : 
+\begin{enumerate}
+	\item	On pose que le premier est $(\Omega, \mathcal{A})$.
+	\item	On pose que le deuxième est tout ensemble $E$ et sa tribu $\mathcal{E}$ : $(E, \mathcal{E})$.
+		\begin{itemize}
+		\item	Habituellement, on pose que $E = \mathbb{R}$ et que $\mathcal{E} = \mathcal{B}(\mathbb{R})$.
+		\end{itemize}
+\end{enumerate}
 
 \bigskip
 
-On suppose que $X$ désigne une application : $\Omega \rightarrow \mathbb{R}$ et que $(X_{1}, \dots, X_{n})$ désigne une application $\Omega \rightarrow \mathbb{R}^{n}$. On dénote les événements les plus simples comme \lfbox[formula]{$\{X \in I\} = \{\omega \in \Omega : X(\omega) \in I\} = X^{-1}(I)$} où $I$ est un intervalle réel.
-\end{rappel_enhanced}
+Une fonction mesurable est une fonction qui associe les éléments de $\Omega$ aux éléments de $E$ avec quelques propriétés additionnelles. On note qu'en associant les éléments de $\Omega$, la fonction associe les \textit{\textbf{éventualités}} et non les \textit{événements} aux éléments de $E$.
 
-\begin{definitionNOHFILL}[Variable aléatoire réelle]
-Tout application à valeurs réelles $X: \Omega \rightarrow \mathbb{R}$ telle que, $\forall$ intervalle $I$ de $\mathbb{R}$, $\{X \in I\}$ soit un événement de la tribu $\mathcal{A}$.
+\bigskip
+
+On désire avoir une correspondance entre les événements réalisés de $\mathcal{A}$ et l'ensemble transformé d'événements $\mathcal{E}$. Pour ce faire, on impose que la variable aléatoire (alias, la fonction mesurable) $X: \Omega \rightarrow E$ est définie telle que l'image réciproque $X^{-1}(B)$ sur $\Omega$ de tout ensemble $B \in \mathcal{E}$ sur $E$ : \lfbox[formula]{$X^{-1}(B) = \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{A}$, $\forall B \in \mathcal{E}$}.
+
+\bigskip
+
+Donc, une \textbf{variable aléatoire réelle} est toute application à valeurs réelles $X: \Omega \rightarrow \mathbb{R}$ telle que, $\forall$ intervalle $B$ de $\mathbb{R}$, $\{X \in B\} = X^{-1}(B)$ soit un événement de la tribu $\mathcal{A}$.
 \end{definitionNOHFILL}
 
+\begin{formula}{Visualisation}
+On peut visualiser que l'événement $B$, où $B \in \mathcal{E}$, a un réciproque $X^{-1}(B)$ où $X^{-1}(B) \in \mathcal{A}$.
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,379); %set diagram left start at 0, and has height of 379
+
+%Shape: Ellipse [id:dp41911676863951963] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (99.5,113.2) .. controls (99.5,54.66) and (136.88,7.2) .. (183,7.2) .. controls (229.12,7.2) and (266.5,54.66) .. (266.5,113.2) .. controls (266.5,171.74) and (229.12,219.2) .. (183,219.2) .. controls (136.88,219.2) and (99.5,171.74) .. (99.5,113.2) -- cycle ;
+%Shape: Circle [id:dp8544111010526458] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (187.8,152.1) .. controls (187.8,143.21) and (195.01,136) .. (203.9,136) .. controls (212.79,136) and (220,143.21) .. (220,152.1) .. controls (220,160.99) and (212.79,168.2) .. (203.9,168.2) .. controls (195.01,168.2) and (187.8,160.99) .. (187.8,152.1) -- cycle ;
+%Shape: Ellipse [id:dp9026039051255412] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (142.8,74.1) .. controls (142.8,53.06) and (159.09,36) .. (179.17,36) .. controls (199.26,36) and (215.55,53.06) .. (215.55,74.1) .. controls (215.55,95.14) and (199.26,112.2) .. (179.17,112.2) .. controls (159.09,112.2) and (142.8,95.14) .. (142.8,74.1) -- cycle ;
+%Curve Lines [id:da98017792051424] 
+\draw    (221.5,146.8) .. controls (243.06,116.42) and (308.8,115.24) .. (338.71,147.2) ;
+\draw [shift={(340.5,149.2)}, rotate = 229.54] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Shape: Ellipse [id:dp40560748374308386] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ] (289.5,113.2) .. controls (289.5,54.66) and (326.88,7.2) .. (373,7.2) .. controls (419.12,7.2) and (456.5,54.66) .. (456.5,113.2) .. controls (456.5,171.74) and (419.12,219.2) .. (373,219.2) .. controls (326.88,219.2) and (289.5,171.74) .. (289.5,113.2) -- cycle ;
+%Shape: Circle [id:dp12681144619815132] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ] (337.8,162.1) .. controls (337.8,153.21) and (345.01,146) .. (353.9,146) .. controls (362.79,146) and (370,153.21) .. (370,162.1) .. controls (370,170.99) and (362.79,178.2) .. (353.9,178.2) .. controls (345.01,178.2) and (337.8,170.99) .. (337.8,162.1) -- cycle ;
+%Shape: Ellipse [id:dp4643784990820654] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ] (332.8,74.1) .. controls (332.8,53.06) and (349.09,36) .. (369.17,36) .. controls (389.26,36) and (405.55,53.06) .. (405.55,74.1) .. controls (405.55,95.14) and (389.26,112.2) .. (369.17,112.2) .. controls (349.09,112.2) and (332.8,95.14) .. (332.8,74.1) -- cycle ;
+
+% Text Node
+\draw (102,22) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \mathcal{A}$};
+% Text Node
+\draw (119,73) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle \Omega $};
+% Text Node
+\draw (135,137) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle X^{-1}( B)$};
+% Text Node
+\draw (269.4,99.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle X$};
+% Text Node
+\draw (432,22) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle \mathcal{E}$};
+% Text Node
+\draw (407,86) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle E$};
+% Text Node
+\draw (371,137) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle B$};
+\end{tikzpicture}
+\end{center}
+\end{formula}
+
+\bigskip
+
+En posant $E = \mathbb{R}$ et $\mathcal{E} = \mathcal{B}(\mathbb{R})$, on obtient la \textit{tribu borélienne}.
 \begin{definitionNOHFILLsub}[Tribu borélienne]
 La tribu borélienne $\mathcal{B}_{\mathbb{R}}$ est la plus petite tribu de $\mathbb{R}$ qui contient tous ses intervalles. Les éléments de $\mathcal{B}_{\mathbb{R}}$ sont appelés les \textbf{\textit{boréliens}} de $\mathbb{R}$.
 
 \bigskip
 
-Pour une v.a. réelle $X$, alors $\forall B \in \mathcal{B}_{\mathbb{R}}$ on a $\{X \in B\} \in \mathcal{A}$. 
+Pour une v.a. réelle $X$, $\forall B \in \mathcal{B}_{\mathbb{R}}$ on a $X^{-1}(B) \in \mathcal{A}$. 
 
 \bigskip
 
@@ -241,17 +388,100 @@ Bref, \lfbox[formula]{$(\Omega, \mathcal{A}) \overset{X}{\rightarrow} (\mathbb{R
 
 \columnbreak
 \subsection{Probabilités}
-\begin{definitionNOHFILL}[Notion de Probabilité]
-Soit un espace probabilisable $(\Omega, \mathcal{A})$. On appelle \textbf{\textit{probabilité}} sur $(\Omega, \mathcal{A})$ toute application $P: \mathcal{A} \rightarrow [0, 1]$ telle que :
-\begin{enumerate}[label = \roman*)]
-	\item	\lfbox[formula]{$P(\Omega) = 1$}.
-	\item	$\forall (A_{n})_{n \in \mathbb{N}^{\ast}}$ d'événements deux à deux disjoints, \lfbox[formula]{$\displaystyle P\left(\bigcup_{n \in \mathbb{N}^{\ast}} A_{n}\right) = \sum_{n \in \mathbb{N}^{\ast}} P(A_{n})$}.
+\begin{definitionNOHFILL}[Mesure]
+Pour un espace mesurable $(\Omega, \mathcal{A})$, une fonction \lfbox[formula]{$\mathbb{P}: \mathcal{A} \rightarrow [0, \infty]$} s'appelle une \textbf{mesure} sur $(\Omega, \mathcal{A})$ si :
+\begin{enumerate}
+	\item	Elle attribue une masse de zéro à l'ensemble vide : \lfbox[conditions]{$\mathbb{P}(\emptyset) = 0$}.
+	\item	Elle est \og \textit{countably additive} \fg{} : \lfbox[conditions]{$\displaystyle P\left(\bigcup_{i} A_{i}\right) = \sum_{i} P(A_{i})$, $\forall A_{i} \in \mathcal{A}$}.
 \end{enumerate}
 \end{definitionNOHFILL}
 
+
+\begin{definitionNOHFILLsub}[Mesure de probabilité]
+Pour un espace probabilisable $(\Omega, \mathcal{A})$, on appelle \textbf{\textit{probabilité}} sur $(\Omega, \mathcal{A})$ toute \underline{application} $P: \mathcal{A} \rightarrow [0, 1]$ telle que :
+\begin{enumerate}[label = \roman*)]
+	\item	\lfbox[conditions]{$P(\Omega) = 1$}.
+	\item	$\forall (A_{n})_{n \in \mathbb{N}^{\ast}}$ d'événements deux à deux disjoints, \lfbox[conditions]{$\displaystyle P\left(\bigcup_{n \in \mathbb{N}^{\ast}} A_{n}\right) = \sum_{n \in \mathbb{N}^{\ast}} P(A_{n})$}.
+\end{enumerate}
+
+\bigskip
+
+La mesure de probabilité est donc une mesure qui est \textbf{restreint} sur $[0, 1]$.
+\end{definitionNOHFILLsub}
+
 \begin{definitionNOHFILL}[Espace probabilisé]
-Le triplet $(\Omega, \mathcal{A}, P)$ s'appelle un espace probabilisé.
+Le triplet $(\Omega, \mathcal{A}, P)$ s'appelle un \textbf{espace probabilisé} et est composé de : 
+\begin{description}
+	\item[$\Omega$]	Le \og \textit{sample space} \fg{}.
+	\item[$\mathcal{A}$]	Le \og \textit{event space} \fg{}.
+	\item[$P$]	La \textbf{\textit{mesure} de probabilité}.
+\end{description}
+
+\begin{itemize}
+	\item	En anglais, on dit \og \textit{\textbf{probability space}} \fg{}.
+\end{itemize}
 \end{definitionNOHFILL}
+
+\begin{formula}{Visualisation}
+Voici une visualisation de ce que représente l'\textit{application} $P$ : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,379); %set diagram left start at 0, and has height of 379
+
+%Shape: Ellipse [id:dp7275335040924429] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (143.5,142.4) .. controls (143.5,67.73) and (191.18,7.2) .. (250,7.2) .. controls (308.82,7.2) and (356.5,67.73) .. (356.5,142.4) .. controls (356.5,217.06) and (308.82,277.59) .. (250,277.59) .. controls (191.18,277.59) and (143.5,217.06) .. (143.5,142.4) -- cycle ;
+%Shape: Circle [id:dp7731815975229219] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (277.8,152.1) .. controls (277.8,143.21) and (285.01,136) .. (293.9,136) .. controls (302.79,136) and (310,143.21) .. (310,152.1) .. controls (310,160.99) and (302.79,168.2) .. (293.9,168.2) .. controls (285.01,168.2) and (277.8,160.99) .. (277.8,152.1) -- cycle ;
+%Shape: Ellipse [id:dp05212878447489011] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ] (232.8,74.1) .. controls (232.8,53.06) and (249.09,36) .. (269.17,36) .. controls (289.26,36) and (305.55,53.06) .. (305.55,74.1) .. controls (305.55,95.14) and (289.26,112.2) .. (269.17,112.2) .. controls (249.09,112.2) and (232.8,95.14) .. (232.8,74.1) -- cycle ;
+%Shape: Circle [id:dp7692168919967604] 
+\draw   (278.8,224.1) .. controls (278.8,215.21) and (286.01,208) .. (294.9,208) .. controls (303.79,208) and (311,215.21) .. (311,224.1) .. controls (311,232.99) and (303.79,240.2) .. (294.9,240.2) .. controls (286.01,240.2) and (278.8,232.99) .. (278.8,224.1) -- cycle ;
+%Straight Lines [id:da2483716446626154] 
+\draw    (429,223.8) -- (429,65) (424.5,168.8) -- (433.5,168.8)(424.5,113.8) -- (433.5,113.8) ;
+\draw [shift={(429,62)}, rotate = 450] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Curve Lines [id:da9846347851794925] 
+\draw    (301.5,51.8) .. controls (341.1,22.1) and (391.48,47.29) .. (425.96,111.06) ;
+\draw [shift={(427,113)}, rotate = 242.11] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Curve Lines [id:da7092634548038517] 
+\draw    (314.5,147.8) .. controls (336.17,117.27) and (371.42,108.07) .. (426.47,141.35) ;
+\draw [shift={(429,142.9)}, rotate = 211.85] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Curve Lines [id:da838947272903674] 
+\draw    (312.5,228.7) .. controls (337.25,244.64) and (378.66,223.24) .. (426.06,171.38) ;
+\draw [shift={(427.5,169.8)}, rotate = 492.17] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+% Text Node
+\draw (157,23) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \mathcal{A}$};
+% Text Node
+\draw (209,73) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle \Omega $};
+% Text Node
+\draw (288.4,142.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle b$};
+% Text Node
+\draw (267.82,48.03) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle c$};
+% Text Node
+\draw (249.87,82.55) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle b$};
+% Text Node
+\draw (279.87,80.55) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle a$};
+% Text Node
+\draw (262.4,202.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \emptyset $};
+% Text Node
+\draw (253,137) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,opacity=1 ] [align=left] {$\displaystyle A$};
+% Text Node
+\draw (438.4,54.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \mathbb{R}$};
+% Text Node
+\draw (440.4,105.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 1$};
+% Text Node
+\draw (440.4,160.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (359.4,22.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle P$};
+% Text Node
+\draw (366.4,101.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle P$};
+% Text Node
+\draw (362.4,197.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle P$};
+\end{tikzpicture}
+\end{center}
+On peut donc visualiser les 2 conditions dans la définition de l'espace probabilisé. La probabilité d'observer l'ensemble $\Omega$ est de $1$ car il contient tous les événements possibles. La probabilité d'un événement sera contenu entre $0$ et $1$ ce qui veut dire que la probabilité de quelques événements \textit{disjoints} correspond à la somme des probabilités. 
+\end{formula}
 
 On complète la notion précédente sur l'espace borélien avec $(\Omega, \mathcal{A}, P) \overset{X}{\rightarrow} (\mathbb{R}, \mathcal{B}_{\mathbb{R}}, P_{X})$ où $P_{X}$ est appelée loi de probabilité de $X$. On définit $P_{X}(B) = P(X \in B) = P\left(X^{-1}(B)\right)$.
 
@@ -262,9 +492,9 @@ Soit $(\Omega, \mathcal{A}, P)$ un espace probabilisé. Alors :
 	\item	$P(\emptyset) = 0$.
 	\item	Si $A$ et $B$ sont des événements disjoints, alors \lfbox[formula]{$P(A \cup B) = P(A) + P(B)$}.
 	\item	Si $A$ et $B$ sont des événements quelconques, alors \lfbox[formula]{$P(A \cup B) = P(A) + P(B) - P(A \cap B)$}.
-	\item	Si $A$ et $B$ sont des événements tels que $A \subset B$, alors \lfbox[formula]{$P(A \smallsetminus B) = P(B) - P(A)$} et \lfbox[formula]{$P(A) \leq P(B)$}.
+	\item	Si $A$ et $B$ sont des événements tels que $A \subset B$, alors \lfbox[formula]{$P(B \smallsetminus A) = P(B) - P(A)$} et \lfbox[formula]{$P(A) \leq P(B)$}.
 	\item	$\forall A \in \mathcal{A}$, \lfbox[formula]{$P(A^{c}) = 1 - P(A)$}.
-	\item	Si $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements quelconques, alors \lfbox[formula]{$\displaystyle P\left(\cup_{n \in \mathbb{N}^{\ast}} A_{n}\right) \leq \sum_{n \in \mathbb{N}^{\ast}} P(A_{n})$}.
+	\item	Si $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements quelconques, alors \lfbox[formula]{$\displaystyle P\left(\bigcup_{n \in \mathbb{N}^{\ast}} A_{n}\right) \leq \sum_{n \in \mathbb{N}^{\ast}} P(A_{n})$}.
 	\item	Si $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements tels que $A_{n} \downarrow \emptyset$, alors \lfbox[formula]{$P(A_{n}) \downarrow 0$}.
 	\item	Si $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements tels que $A_{n} \downarrow A$, alors \lfbox[formula]{$P(A_{n}) \downarrow P(A)$}.
 	\item	Si $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements tels que $A_{n} \uparrow A$, alors \lfbox[formula]{$P(A_{n}) \uparrow P(A)$}.
