@@ -501,6 +501,71 @@ Soit $(\Omega, \mathcal{A}, P)$ un espace probabilisé. Alors :
 \end{enumerate}
 \end{definitionNOHFILLprop}
 
-\end{multicols*}
 
+
+\columnbreak
+\subsection{Lemmes de Borel-Cantelli}
+\begin{definitionNOHFILL}[Lemme de Borel-Cantelli \textit{(1ère partie)}]
+Si $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements telle que : \lfbox[conditions]{$\displaystyle \sum_{n = 1}^{\infty} P(A_{n}) < \infty$}, alors \lfbox[formula]{$\displaystyle P\left(\limsup_{n \rightarrow \infty} A_{n}\right) = 0$}.
+\end{definitionNOHFILL}
+
+
+
+\subsubsection{Probabilité conditionnelle}
+\begin{definitionNOHFILLpropos}[Formule de Bayes \textit{(2 événements)}]
+Soit un espace probabilisé $(\Omega, \mathcal{A}, P)$, $A$ et $B$ deux événements de $\mathcal{A}$ tels que $\Pr(A) \neq 0$, $\Pr(A^{C}) \neq 0$  et $\Pr(B) \neq 0$. Alors : 
+\begin{align*}
+	\Pr(A \smallsetminus B)
+	&=	\frac{\Pr(B | A)\Pr(A)}{\Pr(B | A)\Pr(A) + \Pr(B | A^{C})\Pr(A^{C})}
+\end{align*}
+\end{definitionNOHFILLpropos}
+
+
+\begin{definitionNOHFILLpropos}[Théorème des probabilités totales]
+Soit un espace probabilisé $(\Omega, \mathcal{A}, P)$ et $(A_{i})_{i \in \mathbb{N}}$ une partition de $\Omega$ telle que $\forall i$, $\Pr(A_{i}) \neq 0$. Alors, $\forall B \in \mathcal{A}$, \lfbox[formula]{$\displaystyle \Pr(B) = \sum_{i \in \mathbb{N}}\Pr(B | A_{i})\Pr(A_{i})$}.
+
+\end{definitionNOHFILLpropos}
+\begin{definitionNOHFILLpropos}[Formule de Bayes \textit{($n$ événements)}]
+Soit un espace probabilisé $(\Omega, \mathcal{A}, P)$ et $(A_{i})_{i = 1, 2, \dots, n}$ une partition \textbf{finie} de $\Omega$ telle que $\forall i$, $\Pr(A_{i}) \neq 0$. Alors, $\forall B \in \mathcal{A}$ tel que $\Pr(B) \neq 0$,
+\begin{align*}
+	\Pr(A_{i} | B)
+	&=	\frac{\Pr(B | A_{i})\Pr(A_{i})}{\sum_{j = 1}^{n} \Pr(B | A_{j})\Pr(A_{j})}
+\end{align*}
+\end{definitionNOHFILLpropos}
+
+
+\columnbreak
+\subsubsection{Indépendance}
+\begin{definitionNOHFILL}[Indépendance \textit{(2 événements)}]
+Soit un espace probabilisé $(\Omega, \mathcal{A}, P)$, $A$ et $B$ deux événements de $\mathcal{A}$. Alors $A$ et $B$ sont indépendants \underline{pour la probabilité $P$} \textbf{\underline{si et seulement si}} \lfbox[formula]{$\Pr(A \cap B) = \Pr(A) \Pr(B)$}.
+
+\bigskip
+
+Il est important de bien saisir que le notion d'indépendance n'est pas intrinsèque aux événements, mais \textit{dépend} de la probabilité $P$ choisie sur $(\Omega, \mathcal{A})$. Deux événements peuvent êtres indépendants pour une probabilité, \underline{mais être dépendants pour une autre}.
+
+\bigskip
+
+\begin{definitionNOHFILLprop}[Propriétés \textit{(2 événements)}]
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	$A^{C}$ et $B$ sont indépendants.
+	\item	$A$ et $B^{C}$ sont indépendants.
+	\item	$A^{C}$ et $B^{C}$ sont indépendants.
+\end{enumerate}
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Indépendance \textit{($n$ événements)}]
+Soient $(A_{1}, \dots, A_{n})$ un $n$-uple d'événements. On dit qu'ils sont \textbf{indépendants}, ou \textbf{\textit{mutuellement indépendants}}, \underline{\textbf{si et seulement si}} $\forall k = 1, \dots, n$, si $\forall$ sous-ensemble $(A_{i_{1}}, \dots, A_{i_{k}})$ de $k$ événements choisis parmi les $(A_{1}, \dots, A_{n})$, on a \lfbox[formula]{$\Pr(A_{i_{1}} \cap \dots \cap A_{i_{k}}) = \Pr(A_{i_{1}}) \times \cdot \times \Pr(A_{i_{k}})$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Indépendance \textit{(suite d'événements)}]
+Soit un espace probabilisé $(\Omega, \mathcal{A}, P)$, et une suite d'événements indépendants $(A_{n})_{n \in \mathbb{N}^{\ast}}$ de $\mathcal{A}$. Alors on a \lfbox[formula]{$\displaystyle \Pr\left(\bigcap_{n \in \mathbb{N}^{\ast}} A_{n}\right) = \lim_{k \rightarrow \infty} \prod_{n = 1}^{k} \Pr(A_{n})$}.
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Lemme de Borel-Cantelli (2ème partie)]
+Soit $(\Omega, \mathcal{A}, P)$ un espace probabilisé, et une suite d'événements $(A_{n})_{n \in \mathbb{N}^{\ast}}$ indépendants de $\mathcal{A}$ telle que \lfbox[conditions]{$\displaystyle \sum_{n = 1}^{\infty} \Pr(A_{n}) = \infty$}, alors \lfbox[formula]{$\Pr\left(\limsup_{n} A_{n}\right) = 1$}
+\end{definitionNOHFILL}
+
+\end{multicols*}
 \end{document}
