@@ -60,8 +60,8 @@ ACT-2009  | première version complétée, en cours d'amélioration | [Processus
 ACT-1005  | première version complétée | [Analyse et traitement collectif du risque](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT1005.pdf)
 ACT-2007  | première version complétée | [Mathématique actuarielle vie II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2007.pdf)
 ACT-2008  | première ébauche complétée | [Mathématique actuarielle IARD II](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2008.pdf)
-ACT-3000  | première ébauche complétée | [Théorie du risque (fichier uniquement pour ACT-3000)](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT3000.pdf)
-          | en cours de développement | [Théorie du risque (fichier combiné avec ACT-2001)](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2001-3000.pdf)
+ACT-3000  | première ébauche complétée | [Théorie du risque, fichier uniquement pour ACT-3000](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT3000.pdf)
+ACT-3000  | en cours de développement | [Théorie du risque, fichier combiné avec ACT-2001](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT2001-3000.pdf)
 ACT-3114  | première ébauche complétée | [Apprentissage statistique en actuariat](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT3114.pdf)
 ACT-4105  | première ébauche complétée | [Tarification en assurance IARD](https://github.com/ressources-act/Guide_de_survie_en_actuariat/blob/master/02_Cheatsheets/cheatsht-ACT4105.pdf)
 
