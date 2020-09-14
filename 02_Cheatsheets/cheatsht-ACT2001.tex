@@ -448,21 +448,17 @@ Alors, \lfbox[formula]{$S	=	\sum_{i	=	1}^{n} X_{i}	\sim	\text{BinComp}(n_{S}, q;
 \end{distributions}
 
 \begin{definitionNOHFILL}[Processus de comptage]
-Soit le processus de comptage \lfbox[formula]{$\underline{N}	=	\{N(t), t \geq 0\}$} sous les conditions suivantes :
-\begin{enumerate}
-	\item	$N(0)	=	0$ ;
-	\item	$N(t)	\geq	0$ ;
-	\item	$N(t)	\geq	N(s)$ si $t	>	s$ ;
-	\item	$N(t) - N(s)$ correspond au nombre d'événements encourus durant l'intervalle $(s, t]$ où $t	>	s$ ;
+Soit le processus de comptage, ou processus de dénombrement, \lfbox[formula]{$\underline{N}	=	\{N(t), t \geq 0\}$} sous les conditions suivantes :
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	$N(0)	=	0$.
+	\item	$N(t)	\geq	0$.
+	\item	$N(t)	\geq	N(s)$ si $t	>	s$.
+	\item	$N(t) - N(s)$ correspond au nombre d'événements encourus durant l'intervalle $(s, t]$ où $t	>	s$.
 \end{enumerate}
 
+\bigskip
+
 Au lieu de le définir en fonction d'une loi de Poisson, on peut définir \lfbox[formula]{$N(t)	=	\sup\{k \geq 1 : T_{k} \leq t\}$}, \lfbox[conditions]{$\forall t \geq 0$}. C'est-à-dire, le dernier événement à se produire à ou avant le temps $t$.
-
-\tcbline
-
-\begin{itemize}
-	\item	Alias, processus de dénombrement.
-\end{itemize}
 \end{definitionNOHFILL}
 
 
@@ -471,59 +467,78 @@ Au lieu de le définir en fonction d'une loi de Poisson, on peut définir \lfbox
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\lambda$]	Taux, ou intensité, du processus.
-	\item[$\Lambda(t)$]	Intensité cumulée :
-		\begin{align*}
-		\Lambda(t)
-		&=	\int_{0}^{t} \lambda ds
-		=	\lambda t, \quad t > 0
-		\end{align*}
+	\item[$\Lambda(t)$]	Intensité cumulée.
 \end{description}
 \end{distributions}
 
-\begin{definitionNOHFILLsub}[Processus de Poisson]
-$\underline{N}	=	\{N(t), t \geq 0\}$ est un \textbf{processus de Poisson} sous les conditions suivantes :
-\begin{enumerate}
+\begin{definitionNOHFILL}[Processus de Poisson]
+Le processus de comptage $\underline{N}	=	\{N(t), t \geq 0\}$ est un \textbf{processus de Poisson} sous les conditions suivantes :
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
 	\item	$N(0)	=	0$ ;
 	\item	Les accroissements sont indépendants et stationnaires ;
 	\item	$N(t)	\sim	Pois(\lambda t)$ ;
 	\item	$N(t + s) - N(s) \sim Pois(\lambda t)$.
 \end{enumerate}
-\end{definitionNOHFILLsub}
 
-Pour \lfbox[conditions]{$s \geq 0$ et $t > 0$}, \lfbox[formula]{$N(s, s + t]	=	N(s + t)	-	N(s)$}.\\
-Également, pour \lfbox[conditions]{$s \geq 0$ et $t > 0$}, \lfbox[formula]{$\Lambda(s, s + t]	=	\Lambda(s + t)	-	\Lambda(s)$}.
+\bigskip
 
-\subsubsection*{Fonctions d'un processus de Poisson homogène}
-Pour $k \in \mathbb{N}$, $t > 0$, $s \geq 0$ :
+De cette définition, on trouve que pour \lfbox[conditions]{$s \geq 0$ et $t > 0$}, \lfbox[formula]{$N(s, s + t]	=	N(s + t)	-	N(s)$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Taux (intensité) $\lambda$ et taux cumulé $\Lambda(t)$]
+Le paramètre $\lambda$ d'un processus correspond à son \textit{taux} ou \textit{intensité}. On définit l'intensité cumulée par $\Lambda(t)$ où 
 \begin{align*}
-	\Pr(N(t)	=	k)
-	&=	\textrm{e}^{-\lambda t} \frac{(\lambda t)^{k}}{k!}	\\
-	&\underset{\small\shortstack{accroissements\\ stationnaires}}{\equiv} \Pr(N(s, s + t)	=	k)
+\Lambda(t)
+	&=	\int_{0}^{t} \lambda ds
+	=	\lambda t, \quad t > 0
 \end{align*}
 
+\bigskip
+
+Également, pour \lfbox[conditions]{$s \geq 0$ et $t > 0$}, \lfbox[formula]{$\Lambda(s, s + t]	=	\Lambda(s + t)	-	\Lambda(s)$}.
+\end{definitionNOHFILLsub}
+
+\bigskip
+
+Avec ces définitions, on trouve que pour \lfbox[conditions]{$k \in \mathbb{N}$, $t > 0$, $s \geq 0$}, 
+
+\begin{align*}
+	\Pr(N(t)	=	k)
+	&=	\textrm{e}^{-\lambda t} \frac{(\lambda t)^{k}}{k!}	
+	\underset{\small\shortstack{accroissements\\ stationnaires}}{\equiv} \Pr(N(s, s + t)	=	k)
+\end{align*}
+
+\bigskip
 
 \begin{definitionNOHFILLprop}[Propriétés d'un processus de Poisson homogène]
 Soit le processus de Poisson $\underline{N}	=	\{N(t), t \geq 0\}$ avec les propriétés suivantes :
-\begin{enumerate}
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
 	\item	$N(0)	=	0$ ;
 	\item	Les accroissements sont indépendants et stationnaires ;
 	\item	$N(t)	\sim	Pois(\lambda t)$ ;
-	\item	$N(s, s + t]	\equiv N(s + t) - N(s) \sim Pois(\lambda t)$ ;\\
-	Pour \lfbox[conditions]{$h	\rightarrow 0$} et \lfbox[conditions]{$o(h)	\overset{h \rightarrow 0}{\rightarrow} 0$} :
+	\item	$N(s, s + t]	\equiv N(s + t) - N(s) \sim Pois(\lambda t)$ ;
+\end{enumerate}
+
+Pour \lfbox[conditions]{$h	\rightarrow 0$} et \lfbox[conditions]{$o(h)	\overset{h \rightarrow 0}{\rightarrow} 0$} :
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\setcounter{enumi}{4}
 	\item	$\Pr(N(t + h) - N(t) = 0)	=	1 - \lambda h + o(h)$ ;
 	\item	$\Pr(N(t + h) - N(t) = 1)	=	\lambda h + o(h)$ ;
 	\item	$\Pr(N(t + h) - N(t) \geq 2)	=	o(h)$.
 \end{enumerate}
 \end{definitionNOHFILLprop}
 
-\subsubsection*{Propositions}
-\begin{definitionNOHFILLpropos}[Proposition:	Mélange de processus de Poisson avec une suite de v.a. Bernoulli]
+
+
+\subsubsection{Propositions}
+\begin{definitionNOHFILLpropos}[Mélange de processus de Poisson avec une suite de v.a. Bernoulli]
 Soit :
 \begin{itemize}
 	\item	Un processus de Poisson $\underline{N}	=	\{N(t), t \geq 0\}$ de taux $\lambda$ ;
 	\item	La suite de variables aléatoires (iid) Bernoulli $\underline{I}	=	\{I_{k}, k	=		1, 2, \dots\}$ de paramètre $q$.
 \end{itemize}
-On pose que $\underline{N}	\perp	\underline{I}$ et défini :
+
+On pose que les processus $\underline{N}$ et $\underline{I}$ sont indépendants, puis obtient que 
 \begin{align*}
 	M(t)
 	&=	\begin{cases}
@@ -531,17 +546,15 @@ On pose que $\underline{N}	\perp	\underline{I}$ et défini :
 		0,	&	N(t)	=	0
 		\end{cases}
 \end{align*}
-
-On obtient donc le processus de Poisson $\underline{M}	=	\{M(t), t \geq 0\}$ de taux $\lambda q$; c'est-à-dire, \lfbox[formula]{$M(t)	\sim	Pois(\lambda q t)$}.
+est aussi un processus de Poisson; c'est-à-dire, le processus $\underline{M}	=	\{M(t), t \geq 0\}$ est un processus de Poisson de taux $\lambda q$ et donc \lfbox[formula]{$M(t) \sim Pois(\lambda q t)$}.
 \end{definitionNOHFILLpropos}
 
-\begin{definitionNOHFILLpropos}[Proposition:	Somme de processus de Poisson]
-Soit les processus de Poisson indépendants $\underline{N}_{1}	=	\{N_{1}(t), t \geq 0\}$ et $\underline{N}_{2}	=	\{N_{2}(t), t \geq 0\}$ de taux $\lambda_{1}$ et $\lambda_{2}$.\\
-
-Alors, $\underline{M}	=	\{M(t), t \geq 0\}$ est un processus de Poisson de taux $\lambda_{1} + \lambda_{2}$ où $M(t)	=	N_{1}(t) + N_{2}(t)$; c'est-à-dire, \lfbox[formula]{$M(t)	\sim	Pois(\lambda_{1} + \lambda_{2})$}.
+\begin{definitionNOHFILLpropos}[Somme de processus de Poisson]
+Soit les processus de Poisson indépendants $\underline{N}_{1}	=	\{N_{1}(t), t \geq 0\}$ et $\underline{N}_{2}	=	\{N_{2}(t), t \geq 0\}$ de taux $\lambda_{1}$ et $\lambda_{2}$. Alors, $\underline{M}	=	\{M(t), t \geq 0\}$ est un processus de Poisson de taux $\lambda_{1} + \lambda_{2}$ où $M(t)	=	N_{1}(t) + N_{2}(t)$. C'est-à-dire, \lfbox[formula]{$M(t)	\sim	Pois(\lambda_{1} + \lambda_{2})$}.
 \end{definitionNOHFILLpropos}
 
-\begin{algo2}[Algorithme de Processus de Poisson 1 (PP1)]
+
+\begin{algo2}[\hypertarget{PP1}{Algorithme de Processus de Poisson 1 (PP1)}]
 \begin{enumerate}
 	\item	On fixe \lfbox[conditions]{$T_{0}^{(j)}	=	0$} ;
 	\item	Pour $i	=	1, 2, \dots, n$, 
@@ -550,92 +563,59 @@ Alors, $\underline{M}	=	\{M(t), t \geq 0\}$ est un processus de Poisson de taux 
 		\item	On calcule $T_{i}^{(j)}	=	T_{i - 1}^{(j)} + W_{i}^{(j)}$.
 		\end{enumerate}
 \end{enumerate}
-
-\tcbline
-
-\begin{itemize}
-	\item	Cet algorithme est simple d'application ;
-	\item	Cependant, il n'est pas toujours efficace pour produire des simulations du processus $\underline{N}$ sur un intervalle fixe $(0, t]$.
-\end{itemize}
 \end{algo2}
 
-\subsubsection*{Distributions du temps d'occurrence}
-\begin{rappel_enhanced}[Rappel:	Distribution du temps inter-sinistre]
-\begin{equation*}
-	T_{1}	\sim	W_{k}	\sim	W	\sim	\text{Exp}(\lambda)
-\end{equation*}
+\begin{rappel_enhanced}[Limitations de l'algorithme PP1]
+Bien que cet algorithme est simple d'application, il n'est pas toujours efficace pour produire des simulations du processus $\underline{N}$ sur un intervalle fixe $(0, t]$. On peut trouver \textit{\color{bleudefrance}\underline{\hyperlink{PP2}{\color{bleudefrance} un algorithme plus efficace}}} en utilisant la \textit{\underline{\nameref{subsubsec:OccurTimeDistrPP}}} conditionnelle au nombre d'événements sur un intervalle.
 \end{rappel_enhanced}
 
-\begin{description}
-	\item[$(T_{1} | N(t)	=	1)$]	Temps d'occurrence du premier sinistre sachant qu'il est survenu dans l'intervalle $(0, t]$.
-		\begin{itemize}
-		\item	\lfbox[formula]{$(T_{1} | N(t)	=	1) \sim U(0, t)$} ;
-		\item	Pour \lfbox[conditions]{$s \in (0, t)$} :
-		\end{itemize}
-		\begin{align*}
-		f_{T_{1} | N(t)	=	1}(s)	
-		&=	\frac{1}{t}	&
-		F_{T_{1} | N(t)	=	1}(s)	
-		&=	\frac{s}{t}	\\
-		\end{align*}
-\end{description}
-%\begin{align*}
-%	\Pr(T_{1}	\leq	s	|	N(t)	=	1)
-%	&=	\frac{\Pr(T_{2}	>	t)}{\Pr(N(t)	=	1)}	\\
-%	&\equiv	\frac{\Pr(N(s)	=	1, N(s, t]	=	0)}{\Pr(N(t)	=	1)}	\\
-%	&\overset{\small\shortstack{accroissements\\ indépendants}}{=}	...	\\
-%	&=	\frac{s}{t}, \quad s \in (0, t]
-%\end{align*}
 
 
-\begin{description}
-	\item[$(T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n)$]	Temps d'occurrence des $n$ premiers sinistres sachant qu'ils sont survenus dans l'intervalle $(0, t]$.
-\end{description}
+\subsubsection{Distribution du temps d'occurrence}\label{subsubsec:OccurTimeDistrPP}
+\begin{rappel_enhanced}[Contexte]
+On sait que $T_{1} \sim \text{Exp}(\lambda)$. Cependant, on cherche à savoir ce qu'est la distribution de $(T_{1} | N(t) = 1)$. C'est-à-dire, la distribution du temps d'occurrence du premier sinistre sachant qu'un sinistre est survenu entre 0 et t. 
+\end{rappel_enhanced}
 
-Pour \lfbox[conditions]{$0	<	s_{1}	<	s_{2}	<	\dots	<	s_{n}	\leq		n$} :
-\begin{align*}
-	f_{T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n}(s_{1}, s_{2}, \dots, s_{n})	
-	&=	\frac{n!}{t^{n}}	\\
-\end{align*}
+En développant $\Pr(T_{1} \leq s | N(t) = 1)$ pour $s \in (0, t]$, on trouve que \lfbox[formula]{$\Pr(T_{1} \leq s | N(t) = 1) = \frac{s}{t}$} et \lfbox[formula]{$f_{T_{1} | N(t) = 1}(s) = \frac{1}{t}$}. Bref, \lfbox[formula]{$(T_{1} | N(t) = 1) \sim \text{Unif}(0, t)$}.
 
-De plus, pour des très petits nombres $h_{1}, h_{2}, \dots, h_{n}$ tel que les intervalles $(s_{1}, s_{1} + h_{1}], (s_{2}, s_{2} + h_{2}], \dots, (s_{n}, s_{n} + h_{n}]$ sont disjoints, alors :
-\begin{align*}
-	\Pr(T_{1} \in (s_{1}, s_{1} + h_{1}], T_{2} \in (s_{2}, s_{2} + h_{2}], \dots, T_{n} \in (s_{n}, s_{n} + h_{n}] | N(t)	=	n)
-	&=	\frac{n!}{t^{n}}	 \prod_{i = 1}^{n}h_{i}\\
-\end{align*}
+\bigskip
+
+Ayant développé l'intuition pour le cas où seulement un événement se réalise sur l'intervalle de temps $(0, t]$, on peut généralise pour $n$ événements et identifier la loi de $(T_{1}, \dots, T_{n} | N(t) = n)$. Puisque $T_{i}$ représente le temps d'occurrence du $i^{\text{e}}$ événement, il s'ensuit que les temps seront en ordre croissant : \lfbox[conditions]{$0 < s_{1} < s_{2} < \dots < s_{n} \leq n$}. 
+
+\bigskip
 
 
+En développant, on trouve que \lfbox[formula]{$f_{T_{1}, \dots, T_{n} | N(t) = n}(s_{1}, \dots, s_{n}) = \frac{n!}{t^{n}}$} (voir la section 10.2 du manuel de référence pour la preuve). L'intuition est qu'il y a $n!$ façons d'organiser les $n$ temps d'occurrence des événements et que chacune a une densité de $\frac{1}{t}$ qui devient $\frac{1}{t^{n}}$. La page 310 du manuel de Ross (Introduction to Probability Models) explique cette intuition.
 
-\begin{definitionNOHFILLpropos}[Vecteur de statistiques d'ordre]
-Soit le vecteur de v.a. continues (iid) $(Y_{1}, Y_{2}, \dots, Y_{n})$, alors \lfbox[conditions]{$\forall i	=	1, 2, \dots, n$} :
-\begin{itemize}
-	\item	\lfbox[conditions]{$Y_{i} \sim Y$} et 
-	\item	la fonction de densité \lfbox[conditions]{$f_{Y_{i}}	=	f_{Y}$}. 
-\end{itemize}
+\bigskip
 
-On défini le vecteur de statistiques d'ordre $(Y_{[1]}, Y_{[2]}, \dots, Y_{[n]})$ avec la fonction de densité conjointe :
+La distribution de $(T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n)$ découle du \textit{vecteur de statistiques d'ordre} : 
+
+\begin{definitionNOHFILLsub}[Vecteur de statistiques d'ordre]
+Soit le vecteur de v.a. continues (iid) $(Y_{1}, Y_{2}, \dots, Y_{n})$. On déduit que puisque les v.a. sont identiquement distribuées, \lfbox[conditions]{$Y_{i} \sim Y \quad \forall i	=	1, 2, \dots, n$} ce qui veut dire que la fonction de densité \lfbox[formula]{$f_{Y_{i}} = f_{Y}$}. 
+
+\bigskip
+
+On définit le vecteur de statistiques d'ordre $(Y_{[1]}, Y_{[2]}, \dots, Y_{[n]})$ en posant que $Y \sim U(0, t)$ pour obtenir la fonction de densité conjointe :
 \begin{align*}
 	f_{Y_{[1]}, Y_{[2]}, \dots, Y_{[n]}}(y_{1}, y_{2}, \dots, y_{n})	
 	&=	n! \times \prod_{i = 1}^{n} f_{Y}(y_{i}), \quad	y_{1}	<	y_{2}	<	\dots	<	y_{n}	\\
 	&\overset{Y \sim U(0, t)}{=}	\frac{n!}{t^{n}}, \quad 0	<	y_{1}	<	y_{2}	<	\dots	<	y_{n}	\leq		t
 \end{align*}
+\end{definitionNOHFILLsub}
 
-Donc, \lfbox[formula]{$(T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n) \sim (Y_{[1]}, Y_{[2]}, \dots, Y_{[n]})$}.
-\end{definitionNOHFILLpropos}
+Donc, puisque les temps d'événements conditionnels sont uniformément distribués entre $0$ et $t$, \lfbox[formula]{$(T_{1}, T_{2}, \dots, T_{n} | N(t)	=	n) \sim (Y_{[1]}, Y_{[2]}, \dots, Y_{[n]})$}.
 
-\begin{algo2}[Algorithme de Processus de Poisson 2 (PP2)]
+\begin{algo2}[\hypertarget{PP2}{Algorithme de processus de Poisson 2 (PP2)}]
 \begin{enumerate}
 	\item	On fixe \lfbox[conditions]{$T_{0}^{(j)}	=	0$} ;
 	\item	On simule la réalisation $N(t)^{(j)}$ de $N(t)$ ;
 	\item	Sachant $N(t)	=	N(t)^{(j)}	>	0$ :
 		\begin{enumerate}[label = \alph*)]
-		\item	On simule le vecteur de réalisations $\left( U_{1}^{(j)}, U_{2}^{(j)}, \dots, U_{N(t)^{(j)}}^{(j)}\right)$ de $\left( U_{1}, U_{2}, \dots, U_{N(t)^{(j)}}\right)$ ;
+		\item	On simule le vecteur de réalisations $\left( U_{1}^{(j)}, U_{2}^{(j)}, \dots, U_{N(t)^{(j)}}^{(j)}\right)$ de $\left( U_{1}, U_{2}, \dots, U_{N(t)^{(j)}}\right)$ où $U_{i} \sim U \sim U(0, 1)$ ;
 		\item	On trie ces réalisations pour obtenir le vecteur de statistiques d'ordre $\left( U_{[1]}^{(j)}, U_{[2]}^{(j)}, \dots, U_{[N(t)^{(j)}]}^{(j)}\right)$ où $ U_{[1]}^{(j)} < U_{[2]}^{(j)}< \dots < U_{[N(t)^{(j)}]}^{(j)}$ ;
-		\item	On calcule $T_{i}^{(j)}	=	t \times U_{[i]}^{(j)}$ pour $i	=	1, 2, \dots, N(t)^{(j)}$.
+		\item	On multiplie les réalisations par $t$ pour obtenir des réalisations uniformes sur $(0, t)$ au lieu de $(0, 1)$, puis pour $i	=	1, 2, \dots, N(t)^{(j)}$ on pose que $T_{i}^{(j)}	=	t \times U_{[i]}^{(j)}$ .
 		\end{enumerate}
-		\begin{description}
-		\item[Note :]	On pose que $U_{i} \sim U \sim U(0, 1)$.
-		\end{description}
 \end{enumerate}
 \end{algo2}
 
@@ -1151,7 +1131,7 @@ Pour \lfbox[conditions]{$k \in \mathbb{N}^{+}$},
 Soit les v.a. indépendantes continues positives $B_{1}, \dots, B_{n}$.
 Soit $S	=	\sum_{i	=	1}^{n}B_{i}$.
 Afin d'utiliser les algorithmes récursifs de convolution, on approxime la v.a. continue $B_{i}$ par la v.a. discrète $\tilde{B}_{i}$ définie sur le support \lfbox[conditions]{$\mathcal{A}_{h}	=	\{0, 1h, 2h, 3h, \dots\}$} où \lfbox[conditions]{$h	>	0$} est le \textit{pas de discrétisation}.
-On défini donc $\tilde{S}	=	\sum_{i	=	1}^{n}\tilde{B}_{i}$.
+On définit donc $\tilde{S}	=	\sum_{i	=	1}^{n}\tilde{B}_{i}$.
 
 Plusieurs méthodes existent pour approximer $\tilde{B}$.
 
@@ -1533,7 +1513,7 @@ Soit :
 	\item	Les v.a. indépendantes $K_{0}, K_{1}, K_{2}$ avec $K_{i}	\sim \text{Pois}(\alpha_{i})$ pour $i	=	0, 1, 2$ et $\alpha_{i}	=	\lambda_{i}	-	\alpha_{0}$ pour $i	=	1, 2$ où $0	\leq	\alpha_{0}	\leq	\min(\lambda_{1}, \lambda_{2})$.
 \end{itemize}
 
-On défini $M_{i}	=	K_{i} + K_{0}$ pour $i	=	1, 2$.
+On définit $M_{i}	=	K_{i} + K_{0}$ pour $i	=	1, 2$.
 \begin{itemize}
 	\item	$K_{i}$ représente la fréquence d'un \og choc \fg{} spécifique à la $i^{\text{e}}$ ligne d'affaires pour $i = 1, 2$.
 	\item	$K_{0}$ représente la fréquence d'un \og choc \fg{} commun aux deux lignes d'affaires.
