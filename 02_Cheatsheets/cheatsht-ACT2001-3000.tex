@@ -109,7 +109,7 @@ On pose que $X$ est une variable aléatoire tel que $\text{E}[X]	<	\infty$.
 \textbf{Relation :}
 \begin{align*}
 	\pi_{X}(d)
-	&\equiv	\text{E}[X	\times	\bm{1}_{\{X	>	d\}}]	-	d\bar{F}_{X}(d)
+	&=	\text{E}[X	\times	\bm{1}_{\{X	>	d\}}]	-	d\bar{F}_{X}(d)
 \end{align*}
 
 
@@ -150,7 +150,7 @@ Pour une variable aléatoire $X$ continue, on simplifie :
 	TVaR_{\kappa}(X)
 	&=	\frac{1}{1 - \kappa}\left[	\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right] + \underbrace{VaR_{\kappa}(X) \left(F_{X}\left(VaR_{\kappa}(X)\right)	-	\kappa\right)}_{\shortstack{= 0}}	\right]	\\
 	&=	\frac{1}{1 - \kappa}\left[	\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right]	\right]	\\
-	&\equiv	\frac{\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right]}{\Pr(X	>	VaR_{\kappa}(X))}	\\
+	&=	\frac{\text{E}\left[X \times \bm{1}_{\{X	>	VaR_{\kappa}(X)\}}\right]}{\Pr(X	>	VaR_{\kappa}(X))}	\\
 	&=	\esp{X | X	>	VaR_{\kappa}(X)}
 \end{align*}
 
@@ -505,7 +505,7 @@ Avec ces définitions, on trouve que pour \lfbox[conditions]{$k \in \mathbb{N}$,
 \begin{align*}
 	\Pr(N(t)	=	k)
 	&=	\textrm{e}^{-\lambda t} \frac{(\lambda t)^{k}}{k!}	
-	\underset{\small\shortstack{accroissements\\ stationnaires}}{\equiv} \Pr(N(s, s + t)	=	k)
+	\underset{\small\shortstack{accroissements\\ stationnaires}}{=} \Pr(N(s, s + t)	=	k)
 \end{align*}
 
 \bigskip
@@ -516,7 +516,7 @@ Soit le processus de Poisson $\underline{N}	=	\{N(t), t \geq 0\}$ avec les propr
 	\item	$N(0)	=	0$ ;
 	\item	Les accroissements sont indépendants et stationnaires ;
 	\item	$N(t)	\sim	Pois(\lambda t)$ ;
-	\item	$N(s, s + t]	\equiv N(s + t) - N(s) \sim Pois(\lambda t)$ ;
+	\item	$N(s, s + t]	= N(s + t) - N(s) \sim Pois(\lambda t)$ ;
 \end{enumerate}
 
 Pour \lfbox[conditions]{$h	\rightarrow 0$} et \lfbox[conditions]{$o(h)	\overset{h \rightarrow 0}{\rightarrow} 0$} :
@@ -622,36 +622,29 @@ Donc, puisque les temps d'événements conditionnels sont uniformément distribu
 
 \columnbreak
 \subsection{Processus de Poisson non-homogène}
-\begin{definitionNOHFILLsub}[Processus de Poisson non-homogène]
+\begin{definitionNOHFILL}[Processus de Poisson non-homogène]
 $\underline{N}	=	\{N(t), t \geq 0\}$ est un \textbf{processus de Poisson non-homogène} de fonction d'intensité $\lambda(t)	\geq 0$ $\forall t \geq 0$ si :
-\begin{enumerate}
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
 	\item	$N(0)	=	0$ ;
 	\item	Les accroissements sont indépendants ;
 	\item	$\Pr(N(t + h) - N(t)	=	1)	=	\lambda(t)h + o(h)$ ;
-	\item	$\Pr(N(t + h) - N(t)	\geq	2)	=	o(h)$ ;
+	\item	$\Pr(N(t + h) - N(t)	\geq	2)	=	o(h)$.
 \end{enumerate}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Fonction d'intensité]
+Soit le processus de Poisson \textbf{non-homogène} $\underline{N}	=	\{N(t), t \geq 0\}$ avec intensité $\lambda(t)$, alors \lfbox[conditions]{$\forall t, s \geq 0$} \lfbox[formula]{$N(t + s) - N(t) \sim Pois\left(\Lambda(t + s) - \Lambda(s)\right)$} où la fonction d'intensité cumulée $\Lambda(t)	=	\int_{0}^{t}\lambda(y)dy$.
 \end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILLpropos}[Proposition :	]
-Soit le processus de Poisson non-homogène $\underline{N}	=	\{N(t), t \geq 0\}$ avec intensité $\lambda(t)$; alors \lfbox[formula]{$\forall t, s \geq 0$},
+\bigskip
+
+Avec cette définition, on trouve que pour \lfbox[conditions]{$k \in \mathbb{N}$, $t > 0$, $s \geq 0$}, 
 \begin{align*}
-	N(t + s) - N(t)
-	\sim	Pois\left(\Lambda(t + s) - \Lambda(s)\right)
+	\Pr\left(N(t + s) - N(s) = k\right)
+	&=	\frac{\left[ m(t + s) - m(s) \right]^{k} \textrm{e}^{-[ m(t + s) - m(s)]}}{k!}
 \end{align*}
-où $\Lambda(t)	=	\int_{0}^{t}\lambda(y)dy$.
+où la suite $\underline{W}$ des v.a. des temps inter-sinistres n'est pas indépendante ni identiquement distribuée.
 
-\tcbline
-
-Ainsi, 
-\begin{align*}
-	\Pr\left(N(t + s) - N(s) = n\right)
-	&=	\frac{\left[ m(t + s) - m(s) \right]^{n} \textrm{e}^{-[ m(t + s) - m(s)]}}{n!}
-\end{align*}
-
-\begin{itemize}
-	\item	La suite de v.a. des temps inter-sinistres n'est pas $\underline{W}$ indépendante ni identiquement distribuée.
-\end{itemize}
-\end{definitionNOHFILLpropos}
 
 \begin{formula}{Exemples de fonctions d'intensité}
 \begin{description}
@@ -663,17 +656,8 @@ Ainsi,
 \end{formula}
 
 \subsubsection*{Distributions du temps d'occurrence}
-On sait que $T_{1}	\equiv	W_{1}$.
-\begin{align*}
-	F_{W_{1}}(t)
-	&=	1	-	\textrm{e}^{-\Lambda(t)}, \quad t \geq 0
-\end{align*}
+On sait que $T_{1} = W_{1}$, donc \lfbox[formula]{$F_{W_{1}}(t) = 1 - \textrm{e}^{-\Lambda(t)}, \quad t \geq 0$}. De façon plus générale, \lfbox[formula]{$F_{W_{n} | T_{n - 1} = s}(t) = 1 - \textrm{e}^{-\Lambda_{s}(t)},\quad t \geq 0$}.
 
-Plus généralement, 
-\begin{align*}
-	F_{W_{n} | T_{n - 1} = s}(t)
-	&=	1	-	\textrm{e}^{-\Lambda_{s}(t)},\quad t \geq 0
-\end{align*}
 
 \begin{algo2}[Algorithme de Processus de Poisson non-homogène 1 (PPNH1)]
 \begin{enumerate}
@@ -735,28 +719,19 @@ Les hypothèses au vecteur de v.a. (iid) $\left(V_{1}, V_{2}, \dots, V_{N(t)}^{(
 
 \columnbreak
 \subsection{Processus de Poisson mixte}
-\begin{align*}
-	\text{E}[N(t)]
-	&=	t\lambda	\\
-	\text{Var}(N(t))
-	&=	t\lambda	 + t^{2}\text{Var}(\Theta)\\
-\end{align*}
+\begin{definitionNOHFILL}[Processus de Poisson non-homogène]
+Soit la v.a. positive $\Lambda$. Si le processus de dénombrement $\underline{N}	=	\{N(t), t \geq 0\}$ conditionnel à ce que $\Lambda = \lambda$ est un processus de Poisson d'intensité $\lambda$, alors $\underline{N}$ est appelé un \textbf{processus de Poisson mixte}.
 
-Pour $r \in [0, 1]$ :
-\begin{align*}
-	M_{N(t)}(r)
-	&=	M_{\Theta}\left( t(\textrm{e}^{r} - 1)\right)	\\
-	\mathcal{P}_{N(t)}(r)
-	&=	M_{\Theta}\left( t(r - 1)\right)	\\
-\end{align*}
+\bigskip
 
-\begin{itemize}
-	\item	Le processus de Poisson mixte $\underline{N}$ possède des accroissements stationnaires mais pas indépendants.
-		\begin{align*}
-		\Pr\left(N(t + s) - N(s) = n | N(s) = m\right)
-		\neq		\Pr\left(N(t + s)	-	N(s)	=	n\right), \quad m, n \in \mathbb{N}
-		\end{align*}
-\end{itemize}
+On obtient que \lfbox[formula]{$\text{E}[N(t)] = t\text{E}[\Lambda]$} et que \lfbox[formula]{$\text{Var}(N(t)) = t\text{E}[\Lambda] + t^{2}\text{Var}(\Lambda)$}. Puis, pour \lfbox[conditions]{$r \in [0, 1]$}, \lfbox[formula]{$M_{N(t)}(r) = M_{\Theta}\left( t(\textrm{e}^{r} - 1)\right)$}.
+
+\bigskip
+
+La particularité des processus de Poisson mixtes est qu'ils possèdent des accroissements stationnaires mais pas indépendants : $\Pr\left(N(t + s) - N(s) = n | N(s) = m\right) \neq \Pr\left(N(t + s)	-	N(s)	=	n\right), \quad \forall m, n \in \mathbb{N}$
+\end{definitionNOHFILL}
+
+
 
 \begin{algo2}[Algorithme de simulation d'un Processus de Poisson mixte]
 \begin{enumerate}
@@ -767,29 +742,60 @@ Pour $r \in [0, 1]$ :
 \end{algo2}
 
 
+
 \columnbreak
 \subsection{Processus de renouvellement}
-\lfbox[formula]{$\{N(t) \geq k\}	\equiv	\{T_{k} \leq t\}$}, \lfbox[conditions]{$t > 0, k \in \mathbb{N}$}.
-
-\begin{align*}
-	m(t)
-	&=	\text{E}[N(t)]	\\
-	&=	\sumz{\infty}{k = 1}	\text{E}[\bm{1}_{\{T_{k} \leq t\}}]\\
-	&=	\sumz{\infty}{k = 1}	 F_{T_{k}}(t)\\
-\end{align*}
+\begin{rappel_enhanced}[Contexte]
+Les processus de renouvellement généralise les processus de dénombrement avec une distribution inter-événement qui n'est pas exponentielle.
+\end{rappel_enhanced}
 
 
+La relation fondamentale est \lfbox[formula]{$\{N(t) \geq k\}	=	\{T_{k} \leq t\}$}, \lfbox[conditions]{$t > 0, k \in \mathbb{N}$}.
+
+\bigskip
+
+\begin{definitionNOHFILL}[Fonction de renouvellement]
+On dénote le nombre espéré de sinistres sur l'intervalle de temps $(0, t]$ par la \textbf{\textit{fonction de renouvellement}} $m(t) = \text{E}[N(t)]$. L'expression est \lfbox[formula]{$m(t) = \sumz{\infty}{k = 1} F_{T_{k}}(t)$}. 
+
+\bigskip
+
+Pour un processus de Poisson, \lfbox[formula]{$m(t) = \lambda t$}.
+\end{definitionNOHFILL}
+
+
+
+
+
+\columnbreak
 \subsection{Processus agrégés}
+\begin{rappel_enhanced}[Contexte]
+Les processus agrégés sont utiles pour modéliser l'évolution dans le temps du montant total des sinistres. 
+\end{rappel_enhanced}
+
+
+\begin{definitionNOHFILL}[Processus agrégé]
+Soit le processus $\underline{S} = \{S(t), t \geq 0\}$ où 
 \begin{align*}
 	S(t)
 	&=	\begin{cases}
-		\sumz{N(t)}{k = 1} B_{k},	&	N(t)	>	0	\\
-		0,	&	N(t)	=	0
+		\sumz{N(t)}{k = 1} B_{k},	&	N(t) > 0	\\
+		0,							&	N(t) = 0
 		\end{cases}
 \end{align*}
 
+\bigskip
 
-\subsection{Valeur présente et processus agrégés}
+Les montants de sinistres $B_{k}$ pour $k = 1, 2, \dots$ forment une suite de v.a. positives iid qui sont également indépendantes du processus de dénombrement des sinistres $\underline{N}$.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[Propositions]
+Si $\underline{N}$ est un processus de Poisson, alors $\underline{S}$ est appelé un processus de Poisson composé : \lfbox[formula]{$S(t) \sim \text{PComp}(\lambda t, F_{B})$}.
+\end{definitionNOHFILLprop}
+
+
+
+%\columnbreak
+%\subsection{Valeur présente et processus agrégés}
 
 
 
@@ -1699,7 +1705,7 @@ Paramètre
 	\item	On doit prouver que:
 		\begin{align*}
 		\bigg\{	F_{X}^{-1}(U)	\leq	x	\bigg\}
-		\equiv
+		=
 		\bigg\{	U	\leq	F_{X}(x)	\bigg\}
 		\end{align*}
 \end{enumerate}
@@ -1736,7 +1742,7 @@ Paramètre
 Donc :
 \begin{align*}
 	\bigg\{	F_{X}^{-1}(U)	\leq	x	\bigg\}
-	\equiv
+	=
 	\bigg\{	U	\leq	F_{X}(x)	\bigg\}
 \end{align*}
 \end{formula}
