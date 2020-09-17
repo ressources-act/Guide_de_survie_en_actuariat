@@ -567,5 +567,59 @@ Soit un espace probabilisé $(\Omega, \mathcal{A}, P)$, et une suite d'événeme
 Soit $(\Omega, \mathcal{A}, P)$ un espace probabilisé, et une suite d'événements $(A_{n})_{n \in \mathbb{N}^{\ast}}$ indépendants de $\mathcal{A}$ telle que \lfbox[conditions]{$\displaystyle \sum_{n = 1}^{\infty} \Pr(A_{n}) = \infty$}, alors \lfbox[formula]{$\Pr\left(\limsup_{n} A_{n}\right) = 1$}
 \end{definitionNOHFILL}
 
+
+
+\columnbreak
+\subsection{Fonction de répartition}
+\begin{definitionNOHFILL}[Mesure image]
+La mesure image, ou \og \textit{pushforward measure} \fg{} en anglais, est obtenue \og \textit{by pushing} \fg{} une mesure d'un espace mesurable à un autre avec une fonction mesurable.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Loi de probabilité]
+La \textit{mesure image} de $P$ par $X$, notée \lfbox[formula]{$P_{X}$}, s'appelle la \textbf{\textit{loi de probabilité}} de $X$.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Fonction de répartition]
+Pour une mesure de probabilité $P_{X}$, on a que $\forall x \in \mathbb{R}$ la fonction $F$ est définie comme \lfbox[formula]{$F(x) = P_{X}(]-\infty, x])$}. Cette fonction a les propriétés suivantes : 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	$F$ est croissante au sens large.
+	\item	$F$ est continue à droite.
+	\item	$\lim_{x \rightarrow \infty} F(x) = 1$ et $\lim_{x \rightarrow -\infty} F(x) = 0$.
+\end{enumerate}
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	Il y a une relation biunivoque entre les mesures de probabilités sur $(\mathbb{R}, \mathcal{B}_{\mathbb{R}})$ et les fonctions de répartition.
+
+\bigskip
+
+\subsubsection{Classification des lois de probabilité sur la tribu borélienne}
+Pour une probabilité $P$ sur $(\mathbb{R}, \mathcal{B}_{\mathbb{R}})$, on classifie les lois de probabilités en 2 groupes :
+\begin{definitionGENERAL}{Diffuse}[\circled{1}{trueblue}]
+On dit que $P$ est diffuse si $\forall x \in \mathbb{R}$, \lfbox[formula]{$P(x) = 0$}.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Discrète}[\circled{2}{trueblue}]
+On dit que $P$ est discrète s'il existe un ensemble au plus dénombrable $S$ tel que \lfbox[formula]{$P(S) = 1$}.
+\end{definitionGENERAL}
+
+Cependant, si $P$ désigne une probabilité sur $(\mathbb{R}, \mathcal{B}_{\mathbb{R}})$ ni diffuse ni discrète, alors $\exists \alpha \in ]0, 1[$, $P_{1}$ une loi discrète et $P_{2}$ une loi diffuse tel que \lfbox[formula]{$P = \alpha P_{1} + (1 - \alpha)P_{2}$}.
+
+\bigskip
+
+\begin{definitionNOHFILL}[Variable aléatoire discrète]
+Toute variable aléatoire $X$ telle qu'il existe un sous-ensemble fini ou dénombrable $S_{X}$ (ou tout simplement $S$) de $\mathbb{R}$ vérifiant $P(\{X \in S\} = 1$. On peut donc définir \lfbox[formula]{$S = \left\{x \in \mathbb{R} : P_{X}(\{x\}) = P((\{X = x\}) > 0\right\}$}. Donc, on note $p_{x} = P((\{X = x\}) = P_{X}(\{x\})$
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Loi continue]
+Une mesure de probabilité absolument continue est une mesure de probabilité de la forme \lfbox[formula]{$P(B) = \int_{B} f(x)dx$} $\forall B \in \mathcal{B}_{\mathbb{R}}$ où $f$ est une densité de probabilité. C'est-à-dire, une fonction définie sur $\mathbb{R}$ satisfaisant aux conditions : 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	$f(x) \geq 0$ $\forall x \in \mathbb{R}$,
+	\item	$\int_{-\infty}^{\infty} f(x)dx = 1$
+\end{enumerate}
+
+Toute variable aléatoire $X$ telle qu'il existe un sous-ensemble fini ou dénombrable $S_{X}$ (ou tout simplement $S$) de $\mathbb{R}$ vérifiant $P(\{X \in S\} = 1$. On peut donc définir \lfbox[formula]{$S = \left\{x \in \mathbb{R} : P_{X}(\{x\}) = P((\{X = x\}) > 0\right\}$}. Donc, on note $p_{x} = P((\{X = x\}) = P_{X}(\{x\})$
+\end{definitionNOHFILL}
+
+
 \end{multicols*}
 \end{document}
