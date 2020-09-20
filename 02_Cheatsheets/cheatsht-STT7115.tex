@@ -1,4 +1,4 @@
-\documentclass[10pt, french]{article}
+\documentclass[10pt, french]{report}
 %% -----------------------------
 %% Préambule
 %% -----------------------------
@@ -15,6 +15,28 @@
 \def\SectionColor{burntorange}
 \def\SubSectionColor{burntsienna}
 \def\SubSubSectionColor{burntsienna}
+
+\usepackage{titlesec}
+\titleformat
+	{\chapter}	%	command
+	[display]	%	shape
+	{\normalfont\bfseries\filcenter}	%	format
+	{\LARGE\thechapter}	%	label
+	{1ex}	%	sep
+	{
+		\titlerule[2pt]
+		\vspace{2ex}%
+		\LARGE
+	}	%	before-code
+	[
+		\vspace{1ex}%
+		{\titlerule[2pt]}
+	]	%	after-code
+\titlespacing{\chapter}
+	{0pc}	%	left margin spacing
+	{-5mm}	%	vertical space before title
+	{1pc}	%	seperation between title and non-sectioning text
+
 
 %% -----------------------------
 %% Colour setup for prestations
@@ -71,8 +93,8 @@
 \newpage
 \raggedcolumns
 \begin{multicols*}{2}
-\section{Variables aléatoires}
-\subsection{Notions aléatoires}
+\chapter{Variables aléatoires}
+\section{Notions aléatoires}
 \begin{definitionGENERAL}{Notion d'expérience aléatoire}[\circled{1}{trueblue}]
 Cadre dans lequel on observe différentes actions dues au hasard.
 
@@ -97,7 +119,7 @@ Cadre dans lequel on observe différentes actions dues au hasard.
 Un événement est tout \textbf{sous-ensemble} de $\Omega$. Par exemple, pour l'expérience aléatoire de jeter un dé on a que l'ensemble des résultats possibles $\Omega = \{1, 2, 3, 4, 5, 6\}$. L'événement $A$ \og obtenir un nombre pair \fg{} s'écrit $A = \{2, 4, 6\}$. De ceci on déduit qu'à toute propriété définie sur $\Omega$, on associe un sous-ensemble de $\Omega$ composé de tous les $\omega$ qui vérifient la propriété. 
 \end{definitionGENERAL}
 
-\subsubsection{Algèbre de Boole des événements}
+\subsection{Algèbre de Boole des événements}
 \begin{definitionNOHFILL}[Algèbre de Boole (\og \textit{boolean algebra} \fg{}) des événements]
 La classe $\mathcal{E}$ des événements est l'\textbf{algèbre de Boole de parties de $\Omega$}, si elle contient $\Omega$ et est stable par intersection, réunion et complémentation.
 
@@ -172,7 +194,7 @@ Soit $(A_{n})_{n \in \mathbb{N}^{+}}$ une suite d'événements de $\Omega$.
 
 
 \columnbreak
-\subsection{Espaces probabilisables}
+\section{Espaces probabilisables}
 \begin{definitionNOHFILL}[Power set $\mathcal{P}$]
 Le \og \textit{power set} \fg{} $\mathcal{P}$ est l'ensemble de tous les sous-ensembles d'un ensemble $\Omega$; il est plus facile de donner un exemple que d'expliquer en mots.
 
@@ -300,7 +322,7 @@ Soit $\mathcal{A}$ une tribu sur $\Omega$. Alors :
 
 
 \columnbreak
-\subsection{Variables aléatoires}
+\section{Variables aléatoires}
 %\begin{rappel_enhanced}[Contexte]
 %Souvent, un événement s'énonce de façon numérique (p. ex. : \og rouler un 5 \fg{}, \og pluie de 2mm \fg{}, etc.). Donc, à toute expérience $\omega$, on associe un nombre $X(\omega)$ (ou un $n$-uple de nombres $(X_{1}(\omega), \dots, X_{n}(\omega))$) mesurant un caractère (ou un ensemble de $n$ caractères) du résultat de l'expérience. 
 %\end{rappel_enhanced}
@@ -387,7 +409,7 @@ Bref, \lfbox[formula]{$(\Omega, \mathcal{A}) \overset{X}{\rightarrow} (\mathbb{R
 
 
 \columnbreak
-\subsection{Probabilités}
+\section{Probabilités}
 \begin{definitionNOHFILL}[Mesure]
 Pour un espace mesurable $(\Omega, \mathcal{A})$, une fonction \lfbox[formula]{$\mathbb{P}: \mathcal{A} \rightarrow [0, \infty]$} s'appelle une \textbf{mesure} sur $(\Omega, \mathcal{A})$ si :
 \begin{enumerate}
@@ -504,14 +526,14 @@ Soit $(\Omega, \mathcal{A}, P)$ un espace probabilisé. Alors :
 
 
 \columnbreak
-\subsection{Lemmes de Borel-Cantelli}
+\section{Lemmes de Borel-Cantelli}
 \begin{definitionNOHFILL}[Lemme de Borel-Cantelli \textit{(1ère partie)}]
 Si $(A_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite d'événements telle que : \lfbox[conditions]{$\displaystyle \sum_{n = 1}^{\infty} P(A_{n}) < \infty$}, alors \lfbox[formula]{$\displaystyle P\left(\limsup_{n \rightarrow \infty} A_{n}\right) = 0$}.
 \end{definitionNOHFILL}
 
 
 
-\subsubsection{Probabilité conditionnelle}
+\subsection{Probabilité conditionnelle}
 \begin{definitionNOHFILLpropos}[Formule de Bayes \textit{(2 événements)}]
 Soit un espace probabilisé $(\Omega, \mathcal{A}, P)$, $A$ et $B$ deux événements de $\mathcal{A}$ tels que $\Pr(A) \neq 0$, $\Pr(A^{C}) \neq 0$  et $\Pr(B) \neq 0$. Alors : 
 \begin{align*}
@@ -535,7 +557,7 @@ Soit un espace probabilisé $(\Omega, \mathcal{A}, P)$ et $(A_{i})_{i = 1, 2, \d
 
 
 \columnbreak
-\subsubsection{Indépendance}
+\subsection{Indépendance}
 \begin{definitionNOHFILL}[Indépendance \textit{(2 événements)}]
 Soit un espace probabilisé $(\Omega, \mathcal{A}, P)$, $A$ et $B$ deux événements de $\mathcal{A}$. Alors $A$ et $B$ sont indépendants \underline{pour la probabilité $P$} \textbf{\underline{si et seulement si}} \lfbox[formula]{$\Pr(A \cap B) = \Pr(A) \Pr(B)$}.
 
@@ -570,7 +592,7 @@ Soit $(\Omega, \mathcal{A}, P)$ un espace probabilisé, et une suite d'événeme
 
 
 \columnbreak
-\subsection{Fonction de répartition}
+\section{Fonction de répartition}
 \begin{definitionNOHFILL}[Mesure image]
 La mesure image, ou \og \textit{pushforward measure} \fg{} en anglais, est obtenue \og \textit{by pushing} \fg{} une mesure d'un espace mesurable à un autre avec une fonction mesurable.
 \end{definitionNOHFILL}
@@ -592,7 +614,7 @@ Pour une mesure de probabilité $P_{X}$, on a que $\forall x \in \mathbb{R}$ la 
 
 \bigskip
 
-\subsubsection{Classification des lois de probabilité sur la tribu borélienne}
+\subsection{Classification des lois de probabilité sur la tribu borélienne}
 Pour une probabilité $P$ sur $(\mathbb{R}, \mathcal{B}_{\mathbb{R}})$, on classifie les lois de probabilités en 2 groupes :
 \begin{definitionGENERAL}{Diffuse}[\circled{1}{trueblue}]
 On dit que $P$ est diffuse si $\forall x \in \mathbb{R}$, \lfbox[formula]{$P(x) = 0$}.
@@ -619,6 +641,108 @@ Une mesure de probabilité absolument continue est une mesure de probabilité de
 
 Toute variable aléatoire $X$ telle qu'il existe un sous-ensemble fini ou dénombrable $S_{X}$ (ou tout simplement $S$) de $\mathbb{R}$ vérifiant $P(\{X \in S\} = 1$. On peut donc définir \lfbox[formula]{$S = \left\{x \in \mathbb{R} : P_{X}(\{x\}) = P((\{X = x\}) > 0\right\}$}. Donc, on note $p_{x} = P((\{X = x\}) = P_{X}(\{x\})$
 \end{definitionNOHFILL}
+
+
+\newpage
+\chapter{Moments et transformations de variables}
+\section{Cas discret}
+\begin{definitionNOHFILL}[Espérance]
+Sous réserve d'existence, l'\textbf{\textit{espérance mathématique}} ou la \textit{moyenne} de $X$ est le nombre \lfbox[formula]{$\text{E}[X] = m_{X} = \sum_{k} x_{k} P(X = x_{k})$}.
+
+\bigskip
+
+\begin{definitionNOHFILLprop}[Invariance à la translation ou multiplication par un scalaire]
+Pour $a, b \in \mathbb{R}$, \lfbox[formula]{$\text{E}[aX + b] = a\text{E}[X] + b$}.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Espérance d'une puissance $s$]
+Sous réserve d'existence, \lfbox[formula]{$\text{E}[X^{s}] = \sum_{x \in S}x^{s} P_{X}(x)$}.
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Variance]
+Sous réserve d'existence, la \textbf{variance} de $X$ est le nombre \lfbox[formula]{$\text{Var}(X)$} ou \lfbox[formula]{$\sigma^{2}_{X}$} où \lfbox[formula]{$\text{Var}(X) = \text{E}\left[\left(X - \text{E}[X]\right)^{2}\right] = \sum_{x \in S} (x - m_{X})^{2} P(X = x)$}. On peut également réécrire \lfbox[formula]{$\text{E}\left[\left(X - \text{E}[X]\right)^{2}\right]  = \text{E}\left[X^{2}\right] - \left(\text{E}[X]\right)^{2}$}.
+
+\bigskip
+
+\begin{definitionNOHFILLprop}[Translation ou multiplication par un scalaire]
+Pour $a, b \in \mathbb{R}$, \lfbox[formula]{$\text{Var}(aX + b) = a^{2}\text{Var}(X)$}. Donc, contrairement à l'espérance, la variance n'est \textbf{pas} invariante à la translation ou multiplication par un scalaire.
+
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Moment centré et réduit de puissance $s$]
+Sous réserve d'existence, le \textbf{moment centrée $s$} de $X$ est \lfbox[formula]{$\text{E}\left[\left(X - \text{E}[X]\right)^{s}\right]$}.
+
+\begin{definitionNOHFILLsub}[Variable aléatoire réelle centrée]
+Sous réserve d'existence de la moyenne, toute variable dont la moyenne est nulle.
+\end{definitionNOHFILLsub}
+\begin{definitionNOHFILLsub}[Variable aléatoire réelle réduite]
+Sous réserve d'existence de la moyenne, toute variable de variance 1.
+\end{definitionNOHFILLsub}
+Donc, la variable aléatoire réelle \textbf{centrée et réduite} est, sous réserve d'existence, toute variable de moyenne nulle et de variance 1.
+\end{definitionNOHFILL}
+
+\bigskip
+
+
+\begin{definitionNOHFILL}[Covariance]
+La covariance entre deux variables $X$ et $Y$ est \lfbox[formula]{$Cov(X, Y) = \text{E}\left[\left(X - \text{E}[X]\right)\left(Y - \text{E}[Y]\right)\right]$}.
+\end{definitionNOHFILL}
+
+\subsubsection{Vecteur}
+\begin{definitionNOHFILL}[Espérance d'un vecteur]
+Soit un vecteur aléatoire de $n$ v.a. discrètes $\bm{X} = (X_{1}, \dots, X_{n})$. Sous réserve d'existence de $\text{E}[X_{i}]$ pour $i = 1, 2, \dots, n$, l'\textbf{espérance mathématique} de $\bm{X}$ est le $n$-uple \lfbox[formula]{$\left(\text{E}[X_{1}], \dots, \text{E}[X_{n}]\right)$}.
+
+\begin{definitionNOHFILLprop}[Espérance de la somme]
+Si l'espérance mathématique du vecteur $\bm{X}$ existe, alors l'espérance mathématique de la somme $X_{1} + \cdots + X_{n}$ est \lfbox[formula]{$\text{E}[X_{1} + \cdots + X_{n}] = \text{E}[X_{1}] + \cdots + \text{E}[X_{n}]$}.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Espérance du produit]
+Si l'espérance mathématique du vecteur $\bm{X}$ existe, et que les \textbf{composantes du vecteur sont indépendantes}, alors l'espérance mathématique du produit $X_{1} \times \cdots \times X_{n}$ est \lfbox[formula]{$\text{E}[X_{1} \times \cdots \times X_{n}] = \text{E}[X_{1}] \times \cdots \times \text{E}[X_{n}]$}.
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
+
+
+\bigskip
+
+
+\begin{definitionNOHFILL}[Matrice de variances-covariances d'un vecteur]
+Si elle existe, la matrice de variances-covariances d'un vecteur aléatoire $(X_{1}, \dots, X_{n})$ est définie par le terme général $\forall i, j$  t.q. $1 \leq i, j \leq n$ : \lfbox[formula]{$Cov(X_{i}, X_{j}) = \text{E}\left[\left(X_{i} - \text{E}[X_{i}]\right)\left(X_{j} - \text{E}[X_{j}]\right)\right]$}.
+
+\bigskip
+
+\begin{definitionNOHFILLprop}[Variance de la somme]
+Si le vecteur aléatoire $\bm{X}$ est composé de v.a.r. discrètes \textbf{indépendantes}, dont le moment d'ordre 2 existe, alors la variance de la somme \lfbox[formula]{$\sigma^{2}_{X_{1} + \cdots + X_{n}} = \sigma^{2}_{X_{1}} + \cdots  + \sigma^{2}_{X_{n}}$}.
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
+
+
+\subsubsection{Autres mesures}
+\begin{definitionNOHFILL}[Coefficient de corrélation de Pearson]
+Soit le couple de v.a.r. $(X, Y)$, possédant des variances non nulles, le \textbf{coefficient de corrélation} de $X$ et de $Y$ est le nombre \lfbox[formula]{$\rho(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_{X}\sigma_{Y}}$}
+\end{definitionNOHFILL}
+
+
+
+\columnbreak
+\section{Cas continu}
+
+
+\columnbreak
+\section{Lois conditionnelles continues}
+
+
+\columnbreak
+\section{Fonction génératrice des moments}
+
+
+\columnbreak
+\section{Calcul de lois}
+
+
 
 
 \end{multicols*}
