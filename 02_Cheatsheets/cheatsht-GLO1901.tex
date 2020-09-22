@@ -30,6 +30,7 @@
 %
 \usepackage{mathrsfs}
 \usetikzlibrary{matrix}
+\usepackage{listings}
 %
 % thin space, limits underneath in displays
 %
@@ -155,6 +156,68 @@ Permet de lire ce que vous entrez au clavier et retourne le résultat sous la fo
 
 
 
+\newpage
+\section{Fonctions}
+\subsection{Introduction}
+\subsubsection{Qualités d'une fonction}
+\begin{definitionGENERAL}{Cohérence}[\circled{1}{trueblue}]
+Une fonction est \textbf{\textit{cohérente}} si elle accomplit une seule tâche. On doit pouvoir résumer en peu de mots ce qu'accomplit la fonction.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Indépendance}[\circled{2}{trueblue}]
+Une fonction est \textbf{\textit{indépendante}} si sa sortie dépend uniquement de ses entrées (arguments) et d'aucune autre variable. Il ne faut pas définir des fonctions qui dépendent de \textit{variables globales}.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Concision}[\circled{3}{trueblue}]
+La \textit{\textit{concision}} consiste à limiter la longueur des fonctions. Plus la fonction est courte, plus elle sera facile à comprendre pour un humain.
+\end{definitionGENERAL}
+
+
+\subsubsection{Définition}
+De façon générale, on définit une fonction en Python avec \texttt{def} :
+\begin{lstlisting}
+def name(arg1, arg2, ..., argn):
+	#	bloc d'énoncés indentés
+	return expression	#	optionnel
+\end{lstlisting}
+
+
+
+\subsubsection{Booléens}
+Les opérateurs suivants permettent de comparer les valeurs respectives de deux objets : 
+\begin{description}
+	\item[$<$]	inférieur ;
+	\item[$>$]	supérieur ;
+	\item[$<=$]	inférieur ou égal ;
+	\item[$>=$]	supérieur ou égal ;
+	\item[$==$]	égal ;
+	\item[$!=$]	pas égal.
+\end{description}
+
+\bigskip
+
+Les opérateurs suivants permettent de combiner une ou plusieurs expressions booléennes : 
+\begin{description}
+	\item[and]	conjonction ($\cap$) ;
+	\item[or]	disjonction ($\cup$) ;
+	\item[not]	négation ($A^{\complement}$).
+\end{description}
+
+\subsection{Énoncés conditionnels}
+\subsubsection{Forme générale du \texttt{if}}
+\begin{lstlisting}
+if expression_1:
+	#	bloc d'énoncés 1
+elif expression_1:
+	#	bloc d'énoncés 2
+#	...
+elif expression_n:
+	#	bloc d'énoncés n
+else:
+	#	bloc d'énoncés n + 1
+\end{lstlisting}
+
+On peut aussi utiliser l'opérateur \texttt{if else} pour définir une variable. Par exemple, pour l'expression \texttt{a = y if x else z} si \texttt{x} est vraie, alors \texttt{a = y} sinon \texttt{a = z}.
 
 \end{multicols*}
 
