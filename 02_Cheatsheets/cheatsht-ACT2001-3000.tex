@@ -803,8 +803,11 @@ Si $\underline{N}$ est un processus de Poisson, alors $\underline{S}$ est appel�
 \section{Méthodes récursives d'agrégation}
 \subsection{Motivations}
 \subsubsection{Convolution}
-\begin{rappel_enhanced}[Produit de convolution]
-Soit les variables aléatoires indépendantes continues positives $X_{1}$ et $X_{2}$.\\
+\begin{rappel}[Rappel: Produit de convolution]
+Soit les variables aléatoires indépendantes \textbf{\textit{continues}} positives $X_{1}$ et $X_{2}$.
+
+\bigskip
+
 On définit $S	=	X_{1} + X_{2}$, alors :
 \begin{align*}
 	f_{S}(x)
@@ -814,7 +817,7 @@ On définit $S	=	X_{1} + X_{2}$, alors :
 
 \tcbline
 
-Soit les variables aléatoires indépendantes discrètes positives $X_{1}$ et $X_{2}$ définies sur le support arithmétique $0h, 1h, 2h, \dots$.
+Soit les variables aléatoires indépendantes \textbf{\textit{discrètes}} positives $X_{1}$ et $X_{2}$ définies sur le support arithmétique $0h, 1h, 2h, \dots$.
 \begin{itemize}
 	\item	$h$ est un \og \textit{pas de discrétisation} \fg{} positif ($h > 0$) ;
 	\item	Par exemple : $10, 20, 30, \ldots  = 1h, 2h, 3h, \dots$ avec $h = 10$.
@@ -826,7 +829,9 @@ On définit $S	=	X_{1} + X_{2}$, alors pour $k \in \mathbb{N}$ :
 	&=	\sum_{j = 0}^{k} f_{X_{1}}(jh) f_{X_{2}}((k - j)h) 
 	=	f_{X_{1}} \ast f_{X_{2}}(kh)
 \end{align*}
-\end{rappel_enhanced}
+\end{rappel}
+
+
 
 \subsubsection{Nombres complexes}
 \begin{align*}
@@ -930,144 +935,7 @@ avec \lfbox[conditions]{$f_{S_{n}}(0)	=	\left(f_{X}(0)\right)^{n}$} comme point 
 \end{enumerate}
 \end{algo2}
 
-Visuel du produit de sommations infinies: 
-\begin{center}
-
-
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,357); %set diagram left start at 0, and has height of 357
-
-%Shape: Rectangle [id:dp9012494168801195] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (55.42,87.13) -- (107.08,87.13) -- (107.08,138.8) -- (55.42,138.8) -- cycle ;
-%Shape: Rectangle [id:dp13205821049614785] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (107.08,138.8) -- (158.75,138.8) -- (158.75,190.46) -- (107.08,190.46) -- cycle ;
-%Shape: Rectangle [id:dp019003840010249684] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (158.75,190.46) -- (210.42,190.46) -- (210.42,242.13) -- (158.75,242.13) -- cycle ;
-%Shape: Rectangle [id:dp8073038960439742] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (210.42,242.13) -- (262.09,242.13) -- (262.09,293.8) -- (210.42,293.8) -- cycle ;
-%Shape: Rectangle [id:dp417233184317795] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (210.42,138.8) -- (262.09,138.8) -- (262.09,190.46) -- (210.42,190.46) -- cycle ;
-%Shape: Rectangle [id:dp4717191293138612] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (107.08,242.13) -- (158.75,242.13) -- (158.75,293.8) -- (107.08,293.8) -- cycle ;
-%Shape: Rectangle [id:dp13464262358803225] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (55.42,190.46) -- (107.08,190.46) -- (107.08,242.13) -- (55.42,242.13) -- cycle ;
-%Shape: Rectangle [id:dp16637855029421478] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (158.75,87.13) -- (210.42,87.13) -- (210.42,138.8) -- (158.75,138.8) -- cycle ;
-
-%Shape: Rectangle [id:dp610153790892501] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (107.08,87.13) -- (158.75,87.13) -- (158.75,138.8) -- (107.08,138.8) -- cycle ;
-%Shape: Rectangle [id:dp6072589436516438] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (55.42,138.8) -- (107.08,138.8) -- (107.08,190.46) -- (55.42,190.46) -- cycle ;
-%Shape: Rectangle [id:dp780046034963563] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (107.08,190.46) -- (158.75,190.46) -- (158.75,242.13) -- (107.08,242.13) -- cycle ;
-%Shape: Rectangle [id:dp7830217768491039] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (55.42,242.13) -- (107.08,242.13) -- (107.08,293.8) -- (55.42,293.8) -- cycle ;
-%Shape: Rectangle [id:dp31001434819096274] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (158.75,138.8) -- (210.42,138.8) -- (210.42,190.46) -- (158.75,190.46) -- cycle ;
-%Shape: Rectangle [id:dp44510593714460733] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (210.42,87.13) -- (262.09,87.13) -- (262.09,138.8) -- (210.42,138.8) -- cycle ;
-%Shape: Rectangle [id:dp8059448778013303] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (158.75,242.13) -- (210.42,242.13) -- (210.42,293.8) -- (158.75,293.8) -- cycle ;
-%Shape: Rectangle [id:dp2648498855708319] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (210.42,190.46) -- (262.09,190.46) -- (262.09,242.13) -- (210.42,242.13) -- cycle ;
-%Shape: Rectangle [id:dp3178359683590004] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (404.75,129.4) -- (441.29,165.93) -- (404.75,202.46) -- (368.22,165.93) -- cycle ;
-%Shape: Rectangle [id:dp8097615203830828] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (331.68,202.46) -- (368.22,239) -- (331.68,275.53) -- (295.15,239) -- cycle ;
-%Shape: Rectangle [id:dp6579946521796063] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (477.82,129.4) -- (514.36,165.93) -- (477.82,202.46) -- (441.29,165.93) -- cycle ;
-%Shape: Rectangle [id:dp1676638549029934] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (441.29,92.86) -- (477.82,129.4) -- (441.29,165.93) -- (404.75,129.4) -- cycle ;
-%Shape: Rectangle [id:dp8681065944365156] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (368.29,165.86) -- (404.82,202.4) -- (368.29,238.93) -- (331.75,202.4) -- cycle ;
-%Shape: Rectangle [id:dp655906660349328] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (441.29,165.86) -- (477.82,202.4) -- (441.29,238.93) -- (404.75,202.4) -- cycle ;
-%Shape: Rectangle [id:dp08139212530978601] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (514.29,165.86) -- (550.82,202.4) -- (514.29,238.93) -- (477.75,202.4) -- cycle ;
-%Shape: Rectangle [id:dp4420360995937358] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (404.68,202.46) -- (441.22,239) -- (404.68,275.53) -- (368.15,239) -- cycle ;
-%Shape: Rectangle [id:dp766503793931888] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (477.68,202.46) -- (514.22,239) -- (477.68,275.53) -- (441.15,239) -- cycle ;
-%Shape: Rectangle [id:dp5853286419881494] 
-\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (550.68,202.46) -- (587.22,239) -- (550.68,275.53) -- (514.15,239) -- cycle ;
-
-% Text Node
-\draw (71,5) node [anchor=north west][inner sep=0.75pt]  [font=\small] [align=left] {$\displaystyle \sum ^{\infty }_{i=0}\left\{f_{X}( i) \cdotp t^{i}\right\} \ \sum ^{\infty }_{j=0}\left\{j\cdotp f_{S_{n}}( k) \cdotp t^{j}\right\} =\sum ^{\infty }_{k=1}\left\{t^{k} \cdotp \sum ^{j-1}_{l=0}\{( k-l) \cdotp f_{S_{n}}( k-l) \cdotp f_{X}( l)\}\right\}$};
-% Text Node
-\draw (57.7,70.2) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0f_{S_{n}}( 0) t^{0}$};
-% Text Node
-\draw (112.37,70.2) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{S_{n}}( 1) t^{1}$};
-% Text Node
-\draw (160.04,70.2) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 2\ f_{S_{n}}( 2) t^{2}$};
-% Text Node
-\draw (10.08,105.6) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{X}( 0) t^{0}$};
-% Text Node
-\draw (10.08,159.08) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{X}( 1) t^{1}$};
-% Text Node
-\draw (10.08,208.03) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{X}( 2) t^{2}$};
-% Text Node
-\draw (10.08,259.7) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{X}( 3) t^{3}$};
-% Text Node
-\draw (210.8,70.2) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 3\ f_{S_{n}}( 3) t^{3}$};
-% Text Node
-\draw (126.92,158.63) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{2}$};
-% Text Node
-\draw (126.92,106.96) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{1}$};
-% Text Node
-\draw (178.59,106.96) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{2}$};
-% Text Node
-\draw (76.66,261.97) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
-% Text Node
-\draw (76.66,210.3) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
-% Text Node
-\draw (76.66,158.63) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
-% Text Node
-\draw (75.75,106.96) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
-% Text Node
-\draw (126.92,210.3) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
-% Text Node
-\draw (178.59,158.63) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
-% Text Node
-\draw (230.25,106.96) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
-% Text Node
-\draw (230.25,158.63) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
-% Text Node
-\draw (178.59,210.3) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
-% Text Node
-\draw (126.92,261.97) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
-% Text Node
-\draw (178.59,261.97) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{5}$};
-% Text Node
-\draw (230.25,210.3) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{5}$};
-% Text Node
-\draw (227.25,261.97) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle \ddots $};
-% Text Node
-\draw (435.29,123.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{1}$};
-% Text Node
-\draw (362.29,196.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
-% Text Node
-\draw (435.29,196.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
-% Text Node
-\draw (508.29,196.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
-% Text Node
-\draw (398.75,161.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{2}$};
-% Text Node
-\draw (471.82,159.93) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{2}$};
-% Text Node
-\draw (325.68,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
-% Text Node
-\draw (398.68,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
-% Text Node
-\draw (471.68,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
-% Text Node
-\draw (544.68,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
-
-
-\end{tikzpicture}
-
-\end{center}
+\paragraph{Note}	Voir la section de visualisations pour une visualisation du produit de sommations infinies dans la preuve pour l'algorithme de De Pril \textit{\underline{\nameref{subsubsec:DePrilVis}}}.
 
 
 \columnbreak
@@ -1836,6 +1704,146 @@ L'intégrale de Riemann-\textit{Stieltjes} généralise l'intégrale de Riemann 
 		&=	\int_{d}^{\infty} \bar{F}(x) dx
 		\end{align*}
 \end{enumerate}
+
+
+\newpage	
+\section{Visualisations}
+\subsubsection{De Pril}\label{subsubsec:DePrilVis}
+Visuel du produit de sommations infinies: 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,357); %set diagram left start at 0, and has height of 357
+
+%Shape: Rectangle [id:dp9012494168801195] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (55.42,87.13) -- (107.08,87.13) -- (107.08,138.8) -- (55.42,138.8) -- cycle ;
+%Shape: Rectangle [id:dp13205821049614785] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (107.08,138.8) -- (158.75,138.8) -- (158.75,190.46) -- (107.08,190.46) -- cycle ;
+%Shape: Rectangle [id:dp019003840010249684] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (158.75,190.46) -- (210.42,190.46) -- (210.42,242.13) -- (158.75,242.13) -- cycle ;
+%Shape: Rectangle [id:dp8073038960439742] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (210.42,242.13) -- (262.09,242.13) -- (262.09,293.8) -- (210.42,293.8) -- cycle ;
+%Shape: Rectangle [id:dp417233184317795] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (210.42,138.8) -- (262.09,138.8) -- (262.09,190.46) -- (210.42,190.46) -- cycle ;
+%Shape: Rectangle [id:dp4717191293138612] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (107.08,242.13) -- (158.75,242.13) -- (158.75,293.8) -- (107.08,293.8) -- cycle ;
+%Shape: Rectangle [id:dp13464262358803225] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (55.42,190.46) -- (107.08,190.46) -- (107.08,242.13) -- (55.42,242.13) -- cycle ;
+%Shape: Rectangle [id:dp16637855029421478] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (158.75,87.13) -- (210.42,87.13) -- (210.42,138.8) -- (158.75,138.8) -- cycle ;
+
+%Shape: Rectangle [id:dp610153790892501] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (107.08,87.13) -- (158.75,87.13) -- (158.75,138.8) -- (107.08,138.8) -- cycle ;
+%Shape: Rectangle [id:dp6072589436516438] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (55.42,138.8) -- (107.08,138.8) -- (107.08,190.46) -- (55.42,190.46) -- cycle ;
+%Shape: Rectangle [id:dp780046034963563] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (107.08,190.46) -- (158.75,190.46) -- (158.75,242.13) -- (107.08,242.13) -- cycle ;
+%Shape: Rectangle [id:dp7830217768491039] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (55.42,242.13) -- (107.08,242.13) -- (107.08,293.8) -- (55.42,293.8) -- cycle ;
+%Shape: Rectangle [id:dp31001434819096274] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (158.75,138.8) -- (210.42,138.8) -- (210.42,190.46) -- (158.75,190.46) -- cycle ;
+%Shape: Rectangle [id:dp44510593714460733] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (210.42,87.13) -- (262.09,87.13) -- (262.09,138.8) -- (210.42,138.8) -- cycle ;
+%Shape: Rectangle [id:dp8059448778013303] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (158.75,242.13) -- (210.42,242.13) -- (210.42,293.8) -- (158.75,293.8) -- cycle ;
+%Shape: Rectangle [id:dp2648498855708319] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (210.42,190.46) -- (262.09,190.46) -- (262.09,242.13) -- (210.42,242.13) -- cycle ;
+%Shape: Rectangle [id:dp3178359683590004] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (404.75,129.4) -- (441.29,165.93) -- (404.75,202.46) -- (368.22,165.93) -- cycle ;
+%Shape: Rectangle [id:dp8097615203830828] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (331.68,202.46) -- (368.22,239) -- (331.68,275.53) -- (295.15,239) -- cycle ;
+%Shape: Rectangle [id:dp6579946521796063] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (477.82,129.4) -- (514.36,165.93) -- (477.82,202.46) -- (441.29,165.93) -- cycle ;
+%Shape: Rectangle [id:dp1676638549029934] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (441.29,92.86) -- (477.82,129.4) -- (441.29,165.93) -- (404.75,129.4) -- cycle ;
+%Shape: Rectangle [id:dp8681065944365156] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (368.29,165.86) -- (404.82,202.4) -- (368.29,238.93) -- (331.75,202.4) -- cycle ;
+%Shape: Rectangle [id:dp655906660349328] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (441.29,165.86) -- (477.82,202.4) -- (441.29,238.93) -- (404.75,202.4) -- cycle ;
+%Shape: Rectangle [id:dp08139212530978601] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (514.29,165.86) -- (550.82,202.4) -- (514.29,238.93) -- (477.75,202.4) -- cycle ;
+%Shape: Rectangle [id:dp4420360995937358] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (404.68,202.46) -- (441.22,239) -- (404.68,275.53) -- (368.15,239) -- cycle ;
+%Shape: Rectangle [id:dp766503793931888] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (477.68,202.46) -- (514.22,239) -- (477.68,275.53) -- (441.15,239) -- cycle ;
+%Shape: Rectangle [id:dp5853286419881494] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 140; blue, 140 }  ,fill opacity=1 ] (550.68,202.46) -- (587.22,239) -- (550.68,275.53) -- (514.15,239) -- cycle ;
+
+% Text Node
+\draw (71,5) node [anchor=north west][inner sep=0.75pt]  [font=\small] [align=left] {$\displaystyle \sum ^{\infty }_{i=0}\left\{f_{X}( i) \cdotp t^{i}\right\} \ \sum ^{\infty }_{j=0}\left\{j\cdotp f_{S_{n}}( k) \cdotp t^{j}\right\} =\sum ^{\infty }_{k=1}\left\{t^{k} \cdotp \sum ^{j-1}_{l=0}\{( k-l) \cdotp f_{S_{n}}( k-l) \cdotp f_{X}( l)\}\right\}$};
+% Text Node
+\draw (57.7,70.2) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0f_{S_{n}}( 0) t^{0}$};
+% Text Node
+\draw (112.37,70.2) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{S_{n}}( 1) t^{1}$};
+% Text Node
+\draw (160.04,70.2) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 2\ f_{S_{n}}( 2) t^{2}$};
+% Text Node
+\draw (10.08,105.6) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{X}( 0) t^{0}$};
+% Text Node
+\draw (10.08,159.08) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{X}( 1) t^{1}$};
+% Text Node
+\draw (10.08,208.03) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{X}( 2) t^{2}$};
+% Text Node
+\draw (10.08,259.7) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle f_{X}( 3) t^{3}$};
+% Text Node
+\draw (210.8,70.2) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 3\ f_{S_{n}}( 3) t^{3}$};
+% Text Node
+\draw (126.92,158.63) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{2}$};
+% Text Node
+\draw (126.92,106.96) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{1}$};
+% Text Node
+\draw (178.59,106.96) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{2}$};
+% Text Node
+\draw (76.66,261.97) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (76.66,210.3) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (76.66,158.63) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (75.75,106.96) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (126.92,210.3) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
+% Text Node
+\draw (178.59,158.63) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
+% Text Node
+\draw (230.25,106.96) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
+% Text Node
+\draw (230.25,158.63) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+% Text Node
+\draw (178.59,210.3) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+% Text Node
+\draw (126.92,261.97) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+% Text Node
+\draw (178.59,261.97) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{5}$};
+% Text Node
+\draw (230.25,210.3) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{5}$};
+% Text Node
+\draw (227.25,261.97) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle \ddots $};
+% Text Node
+\draw (435.29,123.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{1}$};
+% Text Node
+\draw (362.29,196.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
+% Text Node
+\draw (435.29,196.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
+% Text Node
+\draw (508.29,196.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{3}$};
+% Text Node
+\draw (398.75,161.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{2}$};
+% Text Node
+\draw (471.82,159.93) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{2}$};
+% Text Node
+\draw (325.68,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+% Text Node
+\draw (398.68,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+% Text Node
+\draw (471.68,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+% Text Node
+\draw (544.68,233) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t^{4}$};
+\end{tikzpicture}
+
+\end{center}
+
+
 
 \end{multicols*}
 \end{document}
