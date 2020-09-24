@@ -832,8 +832,30 @@ On définit $S	=	X_{1} + X_{2}$, alors pour $k \in \mathbb{N}$ :
 \end{rappel}
 
 
+\subsubsection{Fonction génératrice de probabilités}
+\begin{rappel}{Rappel: Fonction de masse de probabilité}
+La valeur de $f_{X}(k)$ peut être obtenue de $\mathcal{P}_{X}(t)$ avec \lfbox[formula]{$f_{X}(k) = \frac{1}{k!} \frac{d^{k}}{dr^{k}} \mathcal{P}_{X}(r) \bigg|_{r = 0}$}.
+\end{rappel}
+
+\begin{rappel}{Rappel: Fonction génératrice de probabilités d'une sommation}
+La valeur de $\mathcal{P}_{S_{n}}(t)$ peut être obtenue du produit des $\mathcal{P}_{X_{i}}(t)$ avec \lfbox[formula]{$\mathcal{P}_{S_{n}}(t) = \mathcal{P}_{X_{1}}(t) \times \cdots \times \mathcal{P}_{X_{n}}(t)$} pour \lfbox[conditions]{$r \in [0, 1]$}.
+\end{rappel}
+
+\begin{rappel}{Rappel: Propriétés de la fonction génératrice de probabilités multivariée}
+En développant l'expression de $\mathcal{P}_{\bm{X}}(t_{1}, \dots, t_{n})$, on observe que $\mathcal{P}_{\bm{X}}(0, \dots, 0) = f_{\bm{X}}(0, \dots, 0)$ et $\mathcal{P}_{\bm{X}}(1, \dots, 1) = 1$. 
+
+\bigskip
+
+Également, $\mathcal{P}_{X_{i}}(t_{i}) = \mathcal{P}_{\bm{X}}(t_{1}, \dots, t_{n}) \bigg|_{t_{j} = 1 \forall j = 1, 2, \dots, i - 1, i + 1, \dots, n }$. Finalement, \lfbox[formula]{$\mathcal{P}_{S}(t) = \mathcal{P}_{\bm{X}}(t, \dots, t)$}.
+\end{rappel}
+
+
 
 \subsubsection{Nombres complexes}
+\paragraph{Note}	Ne semble pas être dans le cadre du cours pour l'automne 2020.
+
+\bigskip
+
 \begin{align*}
 	z	&=	\underbrace{x}_{\shortstack{partie réelle,\\ \text{Re}(z)}} + \underbrace{y}_{\shortstack{partie imaginaire,\\ \text{Im}(z)}}\times\underbrace{i}_{\shortstack{Unité imaginaire,\\ $i = \sqrt{-1}$}}
 \end{align*}
@@ -1002,23 +1024,27 @@ Pour \lfbox[conditions]{$k \in \mathbb{N}^{+}$},
 
 \columnbreak
 \subsection{Méthodes de discrétisation}
-Soit les v.a. indépendantes continues positives $B_{1}, \dots, B_{n}$.
-Soit $S	=	\sum_{i	=	1}^{n}B_{i}$.
-Afin d'utiliser les algorithmes récursifs de convolution, on approxime la v.a. continue $B_{i}$ par la v.a. discrète $\tilde{B}_{i}$ définie sur le support \lfbox[conditions]{$\mathcal{A}_{h}	=	\{0, 1h, 2h, 3h, \dots\}$} où \lfbox[conditions]{$h	>	0$} est le \textit{pas de discrétisation}.
-On définit donc $\tilde{S}	=	\sum_{i	=	1}^{n}\tilde{B}_{i}$.
+\begin{rappel_enhanced}[Contexte]
+Soit les v.a. indépendantes continues positives $B_{1}, \dots, B_{n}$ et $S	=	\sum_{i	=	1}^{n}B_{i}$. Afin d'utiliser les algorithmes récursifs de convolution, on doit approximer la v.a. continue $B_{i}$ par la v.a. discrète $\tilde{B}_{i}$. 
 
-Plusieurs méthodes existent pour approximer $\tilde{B}$.
+\bigskip
+
+Puisque $\tilde{B}_{i}$ est discrète, elle est définie sur un support discret \lfbox[conditions]{$\mathcal{A}_{h}	=	\{0, 1h, 2h, 3h, \dots\}$} où \lfbox[conditions]{$h	>	0$} est le \textit{\textbf{pas de discrétisation}}. Il y a plusieurs méthodes qui existent pour approximer $\tilde{B}$; dans le cadre du cours, on voit les méthodes \og \textit{upper} \fg{} et \og \textit{lower} \fg{}.
+\end{rappel_enhanced}
+
 
 
 \subsubsection{Méthodes \textbf{upper} et \textit{lower}}
-\begin{definitionNOHFILLprop}[Méthode upper]
+\begin{definitionNOHFILLsub}[Méthode \og \textit{upper} \fg{}]
+On pose que \lfbox[formula]{$f_{\tilde{B}}(0) = F_{B}(h)$}, puis :
 \begin{align*}
-	f_{\tilde{B}}(0)
-	&=	F_{B}(h)	\\
 	f_{\tilde{B}}(kh)
 	&=	\Pr(kh	\leq	B	<	(k + 1)h), \quad k \in \mathbb{N}^{+}
 \end{align*}
 
+\bigskip
+
+Il s'ensuit que :
 \begin{align*}
 	F_{\tilde{B}}(x)
 	&=	\begin{cases}
@@ -1028,16 +1054,18 @@ Plusieurs méthodes existent pour approximer $\tilde{B}$.
 		...	&	\\
 		\end{cases}
 \end{align*}
-\end{definitionNOHFILLprop}
+\end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILLprop}[Méthode lower]
+\begin{definitionNOHFILLsub}[Méthode \og \textit{lower} \fg{}]
+On pose que \lfbox[formula]{$f_{\tilde{B}}(0) = 0$}, puis :
 \begin{align*}
-	f_{\tilde{B}}(0)
-	&=	0	\\
 	f_{\tilde{B}}(kh)
 	&=	\Pr((k - 1)h	\leq	B	<	kh), \quad k \in \mathbb{N}^{+}
 \end{align*}
 
+\bigskip
+
+Il s'ensuit que :
 \begin{align*}
 	F_{\tilde{B}}(x)
 	&=	\begin{cases}
@@ -1047,13 +1075,11 @@ Plusieurs méthodes existent pour approximer $\tilde{B}$.
 		...	&	\\
 		\end{cases}
 \end{align*}
-\end{definitionNOHFILLprop}
+\end{definitionNOHFILLsub}
 
-Visuellement :
+La visualisation de ces méthodes permet de constater qu'elles sont assez intuitives et simples. Si on veut se compliquer la vie, on peut faire un parallèle à l'estimation d'une fonction continue avec des limites pour définir un intégrale. Sinon, on peut constater que soit on \textbf{sur}estime la fonction continue avec la méthode \og \textit{\textbf{upper}} \fg{} ou on la \textbf{sous}-estime avec la méthode \og \textit{\textbf{lower}} \fg{} :
 \begin{center}
-
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
 
@@ -1111,7 +1137,15 @@ Visuellement :
 \end{tikzpicture}
 \end{center}
 
+
+\paragraph{Note}	Pour comprendre ce que représente le pas de discrétisation, voir la page 21 des diapositives sur les méthodes d'agrégation pour un excellent visuel.
+
+
 \subsubsection{Méthodes de dispersion de la masse avec espérance préservée}
+\paragraph{Note}	Ne semble pas être dans le cadre du cours pour l'automne 2020.
+
+\bigskip
+
 \begin{definitionNOHFILLpropos}[Lemme]
 Soit les scalaires $a, b, c, d$ tels que :
 \begin{itemize}
