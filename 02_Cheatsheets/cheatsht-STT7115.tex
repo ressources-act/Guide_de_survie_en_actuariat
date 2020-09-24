@@ -741,19 +741,95 @@ Soit le couple de v.a.r. $(X, Y)$, possédant des variances non nulles, le \text
 
 \columnbreak
 \section{Cas continu}
+\begin{definitionNOHFILL}[Espérance]
+Si $X$ est une v.a.r. à densité $f$, alors l'\textbf{\textit{espérance mathématique}}, sous réserve d'existence, est le nombre \lfbox[formula]{$\text{E}[X] = \int_{\mathbb{R}} x f(x)dx$}.
+
+\bigskip
+
+\begin{definitionNOHFILLprop}[Espérance d'une fonction $g$ de $X$]
+Si la loi $P_{X}$ de $X$ est \textbf{absolument continue} et de densité $f$, alors, sous réserve d'existence, \lfbox[formula]{$\text{E}[g \circ X] = \text{E}[g(X)] = \int_{\mathbb{R}} g(x) f(x)dx$}.
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Variance]
+Par l'inégalité \lfbox[formula]{$|x| < x^{2} + 1$}, si $\text{E}[X^{2}] < \infty$ alors $\text{E}[X] = m$ est définie. Sous réserve d'existence, la \textbf{variance} de $X$ est donc \lfbox[formula]{$\text{Var}(X) = \int_{\mathbb{R}} (x - m)^{2} f(x)dx$}.
+\end{definitionNOHFILL}
+
+
+\subsubsection{Vecteur}
+on dénote \lfbox[formula]{$\bm{M} = \text{E}[\bm{X}\bm{X}^{\top}]$} et \lfbox[formula]{$\bm{\sigma}_{X} = \text{E}[(\bm{X} - E[\bm{X}])(\bm{X} - E[\bm{X}])^{\top}]$}.
+
 
 
 \columnbreak
 \section{Lois conditionnelles continues}
+On dénote la distribution conditionnelle de $X$ par $Y$ comme \lfbox[formula]{$\displaystyle f^{\{Y = y\}}_{X}(x) = \frac{f(x, y)}{g(y)}$}.
+
 
 
 \columnbreak
 \section{Fonction génératrice des moments}
+Pour la somme $S_{n} = X_{1} + \dots + X_{n}$, \lfbox[formula]{$\displaystyle M_{S_{n}}(t) = \prod_{i = 1}^{n} M_{X_{i}}(t)$}.
+
+\lfbox[formula]{$\text{E}[X^{n}] = \frac{d^{n}}{dt^{n}}M_{X}(t) \bigg|_{t = 0}$}.
+
 
 
 \columnbreak
 \section{Calcul de lois}
 
+
+
+\newpage
+\chapter{Quelques inégalités classiques}
+\begin{definitionNOHFILL}[\hypertarget{SchwartzInegality}{Inégalité de Schwartz}]
+Si $\text{E}[X^{2}]$ et $\text{E}[Y^{2}]$ existent, alors $\text{E}[XY]$ existe et \lfbox[formula]{$\text{E}[|XY|] \leq \sqrt{\text{E}[X^{2}]}\sqrt{\text{E}[Y^{2}]}$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Inégalité de Tchebychev]
+Soit $X$ une v.a.r. positive et $g$ une application strictement croissante de $\mathbb{R}^{+}$ dans $\mathbb{R}^{+}$ telle que $\text{E}[g(X)]$ existe, alors \lfbox[formula]{$\Pr(X \geq \alpha) \leq \frac{\text{E}[g(X)]}{g(\alpha)}$} \lfbox[conditions]{$\forall \alpha > 0$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Inégalité de Markov]
+Soit $X$ une v.a.r. positive et intégrable, alors \lfbox[formula]{$\Pr(X \geq \alpha) \leq \frac{\text{E}[X]}{\alpha}$} \lfbox[conditions]{$\forall \alpha > 0$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Inégalité de Bienaymé-Tchebychev]
+Soit $X$ une v.a.r. de carré intégrable, alors \lfbox[formula]{$\Pr( |X - \text{E}[X]| \geq \alpha) \leq \frac{\text{V}(X)}{\alpha^{2}}$} \lfbox[conditions]{$\forall \alpha > 0$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Inégalité de Jensen (cas unidimensionnel)]
+\begin{rappel}{Rappel: Fonction convexe}
+Une fonction $g$ définie sur un intervalle ouvert $I$ et à valeurs réelles est dite \textbf{\textit{convexe}} ssi \lfbox[conditions]{$\forall a, b \in I$ et $\lambda \in [0, 1]$}, \lfbox[formula]{$g(\lambda a + (1 - \lambda)b) \leq \lambda g(a) + (1 - \lambda) g(b)$}.
+\end{rappel}
+
+Soient $I$ un intervalle ouvert et $g : I \rightarrow \mathbb{R}$, une fonction convexe. Soit $X$ une v.a. à valeurs dans $I$. Alors, \lfbox[formula]{$g(\text{E}[X]) \leq \text{E}[g(X)]$}.
+Soit $X$ une v.a.r. de carré intégrable, alors \lfbox[formula]{$\Pr( |X - \text{E}[X]| \geq \alpha) \leq \frac{\text{V}(X)}{\alpha^{2}}$} \lfbox[conditions]{$\forall \alpha > 0$}.
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Inégalité de Jensen (cas multidimensionnel)]
+\begin{rappel}{Rappel: Fonction convexe multivariée}
+On pose que, $\forall \gamma \in (0, 1)$, pour deux points $x, y \in \mathbb{R}^{k}$ : \lfbox[formula]{$\gamma x + (1 - \gamma)y = (\gamma x_{1} + (1 - \gamma)y_{1} + \cdots + \gamma x_{k} + (1 - \gamma)y_{k})^{t}$}. 
+
+\bigskip
+
+Un sous-ensemble $C \in \mathbb{R}^{k}$ est \textbf{\textit{convexe}} si $\forall x, y \in C$ et $\gamma \in [0, 1]$ : \lfbox[formula]{$\gamma x + (1 - \gamma)y \in C$}. Une fonction réelle $\varphi$ définie sur un ouvert convexe $C$ \textbf{est convexe} si $\forall x, y \in C$ et $\gamma \in [0, 1]$ : \lfbox[formula]{$\varphi(\gamma x + (1 - \gamma)y) \leq \gamma \varphi(x) + (1 - \gamma)\varphi(y)$}.
+\end{rappel}
+
+Soit un vecteur aléatoire $\bm{X}$ à valeurs dans un ouvert convexe $C \in \mathbb{R}^{k}$ ayant une espérance $\text{E}[X]$. Soit $\varphi$ une fonction convexe sur $C$, telle que $\text{E}[\varphi(X)]$ existe. Alors, \lfbox[formula]{$\varphi(\text{E}[X]) \leq \text{E}[\varphi(X)]$}.
+
+\bigskip
+
+Également, sous les mêmes hypothèses, si $\mathcal{B} \subset \mathcal{A}$, alors \lfbox[formula]{$\varphi(\text{E}[X | \mathcal{B}]) \leq \text{E}[\varphi(X) | \mathcal{B}]$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Inégalité de Hölder]
+Soient les nombres conjugués $p$ et $q > 1$ tels que \lfbox[conditions]{$\displaystyle \frac{1}{p} + \frac{1}{q} = 1$}. Si $\text{E}[X^{p}]$ et $\text{E}[Y^{q}]$ existent, alors $\text{E}[XY]	$ existe, et \lfbox[formula]{$\text{E}[|XY|] \leq \text{E}[|X|^{p}]^{1/p}\text{E}[|Y|^{q}]^{1/q}	$}.
+
+\paragraph{Note}	Si $p = q = 2$, on retrouve \textit{\color{bleudefrance}\underline{\hyperlink{SchwartzInegality}{\color{bleudefrance} l'inégalité de Schwartz}}}.
+\end{definitionNOHFILL}
 
 
 
