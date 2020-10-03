@@ -833,5 +833,69 @@ Soient les nombres conjugués $p$ et $q > 1$ tels que \lfbox[conditions]{$\displ
 
 
 
+\newpage
+\chapter{Convergences stochastiques}
+\begin{definitionNOHFILL}[Convergence $L^{r}$]
+La séquence $(X_{n})_{n \in \mathbb{N}}$ converge dans $L^{r}$ si \lfbox[formula]{$\displaystyle \lim_{n \rightarrow \infty} \text{E}\left[|X_{n} - X|^{r}\right] = 0$} où les moments absolus $\text{E}[|X_{n}|^{r}]$ et $\text{E}[|X|^{r}]$ existent. On dit que c'est la convergence dans le $r^{\text{e}}$ moyenne. On appelle $X$ la limite des $X_{n}$.
+\end{definitionNOHFILL}
+
+
+\section{Convergence presque sûre}
+\begin{definitionNOHFILL}[Convergence presque sûre]
+Soit $(X_{n})_{n \geq 1}$ une suite de v.a. définies sur un espace probabilisé $(\Omega, \mathcal{A}, \mu)$. On dit que la suite de v.a. $(X_{n})_{n \geq 1}$ converge presque sûrement vers la v.a. $X$ ssi \lfbox[formula]{$P\left(\{\omega \in \Omega : X_{n}(\omega) \rightarrow X(\omega)\}\right)$}. 
+
+\bigskip
+
+On écrit habituellement \lfbox[formula]{$X_{n} \overset{p.s.}{\longrightarrow} X$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[Conditions équivalentes]
+Soit $(X_{n})_{n \geq 0}$ une suite de v.a. définies sur un espace probabilisé $(\Omega, \mathcal{A}, P)$, $X$ une v.a. définie sur $(\Omega, \mathcal{A}, P)$. On suppose que $(X_{n})$ et $X$ sont \lfbox[formula]{$P$-presque sûrement finies}. Ces conditions sont équivalents : 
+
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	$(X_{n}) \rightarrow X$ $P$-presque sûrement ($P$-p.s.)
+	\item	$P(X_{n} \rightarrow X) = 1$
+	\item	$\displaystyle P\left(\bigcap_{\varepsilon > 0}\bigcup_{n \geq 0}\bigcap_{k \geq n} \{X_{k} - X\} < \varepsilon\right) = 1$.
+	\item	$\forall \varepsilon > 0$, $\displaystyle P\left(\bigcup_{n \geq 0}\bigcap_{k \geq n} \{X_{k} - X\} < \varepsilon\right) = 1$.
+	\item	$\forall \varepsilon > 0$, $\displaystyle \lim_{n \rightarrow \infty}P\left(\bigcap_{k \geq n} \{X_{k} - X\} < \varepsilon\right) = 1$.
+\end{enumerate}
+\end{definitionNOHFILLprop}
+
+
+
+\columnbreak
+\section{Convergence en probabilité}
+\begin{definitionNOHFILL}[Convergence en probabilité]
+Soit une suite $(X_{n})_{n \geq 1}$ de v.a. définies sur un espace probabilisé $(\Omega, \mathcal{A}, P)$. On dit que cette somme converge en probabilité vers $X$ si $\forall \varepsilon > 0$ : \lfbox[formula]{$\displaystyle \lim_{n \rightarrow \infty} P(|X_{n} - X| \geq \varepsilon) = 0$} ou \lfbox[formula]{$\displaystyle \lim_{n \rightarrow \infty} P(|X_{n} - X| < \varepsilon) = 1$}. 
+
+\bigskip
+
+On écrit habituellement \lfbox[formula]{$X_{n} \overset{P}{\longrightarrow} X$}.
+
+\paragraph{Note}	Pour le cas multivarié, on pose que les vecteurs aléatoires $(X_{n})_{n \in \mathbb{N}}$ et $X$ sont définis sur le même espace probabilisé $(\Omega, \mathcal{A}, P)$, et à valeurs dans $(\mathbb{R}^{p}, \mathcal{B}_{\mathbb{R}^{p}})$. Puis, la suite de vecteurs $(X_{n})_{n \in \mathbb{N}}$ converge en probabilité vers $X$ si pour toute composante $i : i = 1, \dots, p$, on a \lfbox[formula]{$X_{i, n} \underset{n \rightarrow \infty}{\overset{P}{\longrightarrow}} X_{i}$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Théorème de Slutsky]
+Soit les vecteurs aléatoires $(X_{n})_{n \in \mathbb{N}}$ et $X$ définis sur le même espace probabilisé $(\Omega, \mathcal{A}, P)$, et à valeurs dans $(\mathbb{R}^{p}, \mathcal{B}_{\mathbb{R}^{p}})$. On suppose que la suite de vecteurs $(X_{n})_{n \in \mathbb{N}}$ converge en probabilité vers $X$. Soit $g$ une application continue de $\mathbb{R}^{p}$ dans $\mathbb{R}^{q}$. On a alors \lfbox[formula]{$g(X_{n}) \underset{n \rightarrow \infty}{\overset{P}{\longrightarrow}}$}.
+\end{definitionNOHFILL}
+
+
+
+\columnbreak
+\section{Convergence en moyenne quadratique}
+\begin{definitionNOHFILL}[Convergence en moyenne quadratique]
+La convergence en moyenne quadratique, alias la convergence au sens de $L^{2}$, implique que \lfbox[formula]{$X_{n} \overset{m.q.}{\underset{n \rightarrow \infty}{\longrightarrow}} a$} ssi \lfbox[conditions]{$\text{E}[X_{n}] \underset{n \rightarrow \infty}{\longrightarrow} a$} et \lfbox[conditions]{$\text{Var}(X_{n}) \underset{n \rightarrow \infty}{\longrightarrow} 0$}.
+\end{definitionNOHFILL}
+
+
+
+
+%\columnbreak
+\section{Rapports}
+
+
+%\columnbreak
+\section{Convergence des lois de probabilité}
+
 \end{multicols*}
 \end{document}

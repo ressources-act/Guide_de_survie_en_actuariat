@@ -219,6 +219,132 @@ else:
 
 On peut aussi utiliser l'opérateur \texttt{if else} pour définir une variable. Par exemple, pour l'expression \texttt{a = y if x else z} si \texttt{x} est vraie, alors \texttt{a = y} sinon \texttt{a = z}.
 
-\end{multicols*}
 
+
+\newpage
+\section{Éléments de procédure}
+\subsection{Types d'énoncés}
+Séquentiels
+Conditionnels
+\begin{definitionNOHFILL}[Énoncé répétitif]
+L'\textbf{\textit{énoncé répétitif}} permet au programmeur de faire des boucles, c'est-à-dire de \textbf{\underline{répéter}} les énoncés d'un bloc d'énoncés tant qu'une certain \textbf{\underline{condition}} demeure vraie.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Boucle \texttt{for}]
+\begin{lstlisting}
+for cible in itérable:
+    # bloc principal d'énoncés indentés
+    if condition: 
+        break     # facultatif
+    if condition: 
+        continue  # facultatif
+else:  # facultatif
+    # bloc supplémentaire d'énoncés indentés
+\end{lstlisting}
+
+\textbf{Notes :}
+\begin{itemize}
+	\item	La \textbf{clause} \texttt{else} est exécutée lorsque la \textbf{boucle} \texttt{for} se termine normalement.
+	\item	L'\textbf{énoncé} \texttt{break} placé à l'\textit{intérieur} d'une boucle met fin à l'exécution de la boucle \underline{\textbf{sans avoir traité toutes les valeurs}} de l'\texttt{itérable}.
+	\item	L'\textbf{énoncé} \texttt{continue} placé à l'\textit{intérieur} d'une boucle met fin à l'\textbf{itération \textit{courante}} de la boucle.
+\end{itemize} 
+\end{definitionNOHFILLsub}
+
+En bref : 
+\begin{description}[font = \ttfamily]
+	\item[break]	sortir d'une boucle \textbf{prématurément} avant sa terminaison normale. Par exemple, si on détermine que les itérations restantes de la boucle ne sont pas utiles ou nécessaires.
+	\item[continue]
+\end{description}
+
+
+\begin{definitionNOHFILLsub}[Boucle \texttt{while}]
+\begin{lstlisting}
+while expression:
+    <bloc principal d'énoncés indentés>
+    if condition: 
+        break     # facultatif
+    if condition: 
+        continue  # facultatif
+else:  # optionnel
+    <bloc supplémentaire d'énoncés indentés>
+\end{lstlisting}
+
+\textbf{Notes :}
+\begin{itemize}
+	\item	Tant que l'\textbf{expression} est vraie, le bloc exécute.
+\end{itemize} 
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	On devrait toujours utiliser la boucle for et non la boucle while.
+
+
+
+\subsection{Fonctions utiles}
+\texttt{range(start = 0, stop, step = 1)} : générer une séquence de chiffres (équivalent de \texttt{seq} en \texttt{R} sauf que la fonction retourne un objet de classe "range".
+
+
+\newpage
+\section{Types de données}
+\begin{definitionNOHFILL}[Dictionnaire]
+Le dictionnaire Python permet de stocker des \textbf{associations} entre une \textbf{clé d'accès} et une \textbf{valeur}. La clé d'accès doit être \textbf{\textit{immuable}} et est souvent une chaine de caractères.
+
+\bigskip
+
+On définit un dictionnaire par une paire d'accolades \lfbox[formula]{\texttt{\{'clé': valeur\}}}
+
+\bigskip
+
+\begin{definitionNOHFILLprop}[Fonctions du dictionnaire]
+\begin{lstlisting}
+a = {'spam': 25, 'eggs': 37, 'coffee': 254}
+print(a)
+print(a.get('spam'))
+print(a.copy())
+print(a.keys())
+print(a.values())
+print(a.items())
+\end{lstlisting}
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Ensemble (\og \textit{set} \fg{})]
+L'ensemble de Python correspond à la définition mathématique d'un ensemble. Il contient une collection de \textbf{clés \underline{unique}}; c'est donc un dictionnaire sans valeurs ! 
+
+\bigskip
+
+\begin{definitionNOHFILLprop}[Opérations sur les ensembles]
+\begin{lstlisting}
+x = set('spam')
+y = {'h', 'a', 'm'}
+x | y	# réunion
+x & y	# intersection
+x - y	# différence, diffère selon 
+	#  l'ordre (x - y vs y - x) ! 
+x ^ y	# différence symétrique, pareille 
+	#  peu importe l'ordre
+\end{lstlisting}
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
+
+
+
+\newpage
+\section{Fichiers}
+On utilise la fonction \lfbox[formula]{\texttt{open(<fichier>, <mode>)}} où on peut avoir 4 modes : 
+\begin{description}[font = \ttfamily]
+	\item['r']	mode lecture (défaut), le fichier doit exister. (\og \textit{\textbf{r}ead} \fg{})
+	\item['w']	mode écriture, le fichier est créé au besoin et remplacé s'il existe déjà. (\og \textit{\textbf{w}rite} \fg{})
+	\item['x']	mode écriture, comme 'w', mais retourne une erreur si le fichier existe déjà.
+	\item['a']	mode écriture, on ajoute au fichier préexistant ou créé le fichier s'il n'existe pas. (\og \textit{\textbf{a}ppend} \fg{})
+\end{description}
+
+On écrit dans le fichier avec \texttt{<fich>.write('text')}. Puis, après nos ajouts on ferme le fichier avec \texttt{<fich>.close()}, puisque les écritures se font de façon asynchrones. Si on ne \texttt{close} pas le fichier on ne peut pas être certain qu'il sera modifié. Pour se simplifier la vie, on peut utiliser \texttt{with open('fichier.txt', <mode>) as fich: fich.write(<texte>)}.
+
+\bigskip
+
+On lit un fichier avec \texttt{<fich>.read()}
+
+
+\end{multicols*}
 \end{document}
