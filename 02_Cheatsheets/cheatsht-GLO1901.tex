@@ -346,5 +346,116 @@ On écrit dans le fichier avec \texttt{<fich>.write('text')}. Puis, après nos a
 On lit un fichier avec \texttt{<fich>.read()}
 
 
+
+\newpage	
+\section{Retour sur les fonctions}
+Qualités d'une fonction
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	\textbf{Cohérence} : Chaque fonction devrait implanter une seule tâche.
+	\item	\textbf{Indépendance} : Le résultat d'une fonction ne doit dépendre que de ses arguments.
+	\item	\textbf{Concision} : garder les fonctions courtes et \textbf{simples} pour en faciliter la lisibilité.
+\end{enumerate}
+
+\paragraph{Note}	Si on ajoute une étoile à un argument (e.g. \texttt{fonc(a, b, *c)} le dernier argument va récupérer tout les arguments hors de position ou supplémentaire. On ne peut pas avoir plus qu'un argument étoilé.
+
+\paragraph{Note}	On peut forcer que des arguments soient spécifiés par nom (e.g. \texttt{fonc(a, b, *, c = 0)} en incluant une étoile comme frontière. Ici, \texttt{c} doit être spécifié par nom.
+
+\paragraph{Note}	Si on insère 2 étoiles devant un argument, il va créer un dictionnaire des arguments nommés non définis par la fonction (e.g. \texttt{fonc(**kargs)}).
+
+\paragraph{Note}	Si on ne spécifie pas de \texttt{return} dans une fonction, elle retourne \texttt{None}.
+
+\bigskip
+
+On peut utiliser \texttt{lambda} pour créer de fonctions anonymes (e.g. \texttt{lambda x: x**2}).
+
+\bigskip
+
+On peut utiliser la fonction \texttt{yield}, au lieu de \texttt{return}, pour retourner des valeurs intermédiaires.
+
+
+\columnbreak
+\subsection{Complexité algorithmique}
+Croissance :
+\begin{itemize}
+	\item	linéaire $O(n)$
+	\item	quadratique $O(n^{2})$
+	\item	cubique $O(n^{3})$
+\end{itemize}
+
+
+
+\newpage	
+\section{Classes et objets}
+\begin{rappel_enhanced}[Contexte]
+Les classes sont le fondement de la \textbf{\textit{programmation orientée objet}}. Nous étudions 5 notions de classes.
+\end{rappel_enhanced}
+
+\begin{definitionGENERAL}{Encapsulation}[\circled{1}{trueblue}]
+Une classe \textit{réunit} des \textbf{\textit{données}} et des \textbf{\textit{fonctions}} applicables sur ces données. On dit qu'elle \textbf{\textit{encapsule}} les données avec une interface publique permettant de facilement les manipuler. 
+
+\bigskip
+
+Un classe permet, entre autre, de définir ses propres \textbf{\textit{types}} de données et les opérateurs applicables sur ses données.
+\end{definitionGENERAL}
+
+\begin{definitionNOHFILL}[Attributs d'une classe]
+Un \textbf{\textit{attribut}} d'une classe est un membre de la classe. Pour accéder à l'attribut \texttt{x} d'un objet \texttt{y}, on écrit \texttt{y.x}. Une classe constitue un \textit{gabarit} qui permet d'engendrer des objets particuliers qu'on nomme des \textbf{\textit{instances}} de lla classe.
+\end{definitionNOHFILL}
+
+
+\begin{definitionGENERAL}{Héritage}[\circled{2}{trueblue}]
+On peut construire une classe à partir d'une autre classe. Dans une tel cas, la classe \textbf{\textit{hérite}} tous les attributs de son ancêtre---c'est la classe \textbf{\textit{dérivée}}.
+
+\bigskip
+
+Par exemple, soit la \textit{classe de base} une \underline{forme géométrique}. Alors, un \underline{triangle}, \underline{rectangle} et \underline{ellipse} sont tous des classes dérivées de la \underline{forme géométrique}.
+\end{definitionGENERAL}
+
+
+\begin{rappel_enhanced}[Contexte]
+La programmation orientée objet vise à favoriser la réutilisation du code. C'est une entité \textbf{\textit{cohérente}} et\textit{\textbf{indépendante}}. 
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Classe en Python]
+Un énoncé \texttt{class} est exécutable et produit un objet de type \texttt{class} qu'il affecte à la variable \texttt{nom} :
+\begin{lstlisting}
+class	nom(classe_de_base):
+	var = valeur   # variable de classe (partagée par toutes les instances)
+	
+	...
+	def fonc1(self, ...):   # fonction membre
+		self.membre = valeur # variable d'instance (spécifique à chaque instance)
+\end{lstlisting}
+
+\bigskip
+
+Il peut contenir des variables \textbf{\textit{locales}} à la classe qui seront partagées par toutes ses objets (instances). Également, il contient des fonctions membres, dont le premier argument \texttt{self} réfère toujours à l'instance pour laquelle la fonction est appelée.
+\end{definitionNOHFILL}
+
+\paragraph{Note}	Une fonction membre définie dans une classe se nomme une \textbf{\textit{méthode}}.
+
+
+\subsection{Opérateurs}
+Une classe peut définir ses propres \textbf{\textit{opérateurs}} en définissant une fonction avec un nom spécial de la forme \texttt{\_\_NOM\_\_}. 
+
+\bigskip
+
+Le \textbf{\textit{constructeur}} est une fonction spéciale qui permet d'initialiser les objets de la classe et porte toujours le nom \texttt{\_\_init\_\_}. Il y existe plusieurs méthodes spéciales : 
+\begin{itemize}
+	\item	Opérations mathématiques (\texttt{add}, \texttt{sub}, \texttt{mul}) et la division (\texttt{\_\_truediv\_\_}).
+	\item	Égalités lt, gt, le, ge, eq (==), ne (!=).
+	\item	Opérateur [] en lecture (\texttt{getitem}) ou en écriture (\texttt{setitem}) qui permettent d'utiliser implicitement les crochets.
+		\begin{itemize}
+		\item	Par exemple, \texttt{def \_\_setitem\_\_(self, index, newArg): self.data[index] = newArg} et \texttt{def \_\_getitem\_\_(self, index): self.data[index] = newArg}.
+		\end{itemize}
+	\item	Longueur (\texttt{len}), conversion en texte (\texttt{str}) et la conversion en booléen (\texttt{bool}).
+\end{itemize}
+\begin{description}
+	\item[\_\_add\_\_]
+	\item[\_\_sub\_\_]
+	\item[\_\_mul\_\_]
+\end{description}
+
+
 \end{multicols*}
 \end{document}
