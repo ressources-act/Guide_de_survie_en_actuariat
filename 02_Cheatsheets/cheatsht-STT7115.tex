@@ -805,7 +805,6 @@ Une fonction $g$ définie sur un intervalle ouvert $I$ et à valeurs réelles es
 \end{rappel}
 
 Soient $I$ un intervalle ouvert et $g : I \rightarrow \mathbb{R}$, une fonction convexe. Soit $X$ une v.a. à valeurs dans $I$. Alors, \lfbox[formula]{$g(\text{E}[X]) \leq \text{E}[g(X)]$}.
-Soit $X$ une v.a.r. de carré intégrable, alors \lfbox[formula]{$\Pr( |X - \text{E}[X]| \geq \alpha) \leq \frac{\text{V}(X)}{\alpha^{2}}$} \lfbox[conditions]{$\forall \alpha > 0$}.
 \end{definitionNOHFILL}
 
 
@@ -861,6 +860,9 @@ Soit $(X_{n})_{n \geq 0}$ une suite de v.a. définies sur un espace probabilisé
 \end{enumerate}
 \end{definitionNOHFILLprop}
 
+\begin{definitionNOHFILLprop}[Théorème convergence]
+Soit $(Z_{n})_{n \geq 0}$ une suite de v.a. définies sur un espace probabilisé $(\Omega, \mathcal{A}, P)$. \lfbox[formula]{$Z_{n} \overset{p.s.}{\longrightarrow} 0$} si \lfbox[conditions]{$\sum_{i = 1}^{n} P(|Z_{n}| \geq \varepsilon) < \infty$} $\forall \varepsilon > 0$.
+\end{definitionNOHFILLprop}
 
 
 \columnbreak
@@ -876,7 +878,7 @@ On écrit habituellement \lfbox[formula]{$X_{n} \overset{P}{\longrightarrow} X$}
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Théorème de Slutsky]
-Soit les vecteurs aléatoires $(X_{n})_{n \in \mathbb{N}}$ et $X$ définis sur le même espace probabilisé $(\Omega, \mathcal{A}, P)$, et à valeurs dans $(\mathbb{R}^{p}, \mathcal{B}_{\mathbb{R}^{p}})$. On suppose que la suite de vecteurs $(X_{n})_{n \in \mathbb{N}}$ converge en probabilité vers $X$. Soit $g$ une application continue de $\mathbb{R}^{p}$ dans $\mathbb{R}^{q}$. On a alors \lfbox[formula]{$g(X_{n}) \underset{n \rightarrow \infty}{\overset{P}{\longrightarrow}}$}.
+Soit les vecteurs aléatoires $(X_{n})_{n \in \mathbb{N}}$ et $X$ définis sur le même espace probabilisé $(\Omega, \mathcal{A}, P)$, et à valeurs dans $(\mathbb{R}^{p}, \mathcal{B}_{\mathbb{R}^{p}})$. On suppose que la suite de vecteurs $(X_{n})_{n \in \mathbb{N}}$ converge en probabilité vers $X$. Soit $g$ une application continue de $\mathbb{R}^{p}$ dans $\mathbb{R}^{q}$. On a alors \lfbox[formula]{$g(X_{n}) \underset{n \rightarrow \infty}{\overset{P}{\longrightarrow}} g(X)$}.
 \end{definitionNOHFILL}
 
 
@@ -892,10 +894,114 @@ La convergence en moyenne quadratique, alias la convergence au sens de $L^{2}$, 
 
 %\columnbreak
 \section{Rapports}
+\begin{itemize}
+	\item	La convergence presque sûre entraîne la convergence en probabilité.
+	\item	La convergence $L^{2}$ entraîne la convergence $L^{1}$.
+	\item	La convergence $L^{1}$ entraîne la convergence en probabilité.
+	\item	La convergence en probabilité de $(X_{n})$ vers $X$ entraîne la convergence en loi de $(X_{n})$ vers $X$.
+\end{itemize}
+
 
 
 %\columnbreak
 \section{Convergence des lois de probabilité}
+\begin{definitionNOHFILL}[Convergence en loi]
+La suite $(X_{n})$ \textbf{\textit{converge en loi}} vers $X$ si, pour tout borélien $A$ t.q. \lfbox[conditions]{$P_{X}(\partial A) = P\{X \in \partial A\} = 0$}, \lfbox[formula]{$\displaystyle \lim_{n \rightarrow \infty} P\{X_{n} \in A\} = P\{X \in A\}$}. On écrit que \lfbox[formula]{$X_{n} \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} X$}.
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILLprop}[Théorème]
+Soit la suite de v.a. $(X_{n})$ qui converge en loi vers $X$ et la suite $(Y_{n})$ telle que $(X_{n} - Y_{n})$ converge vers 0 en probabilité. Alors, \lfbox[formula]{$Y_{n} \overset{\mathcal{L}}{\longrightarrow} X$}.
+\end{definitionNOHFILLprop}
+
+
+\newpage
+\chapter{Loi des grands nombres et théorème centrale limite}
+\section{Loi des grands nombres}
+\begin{definitionNOHFILL}[Loi des grands nombres]
+On dit qu'une suite de v.a. $(X_{n})$ suite une LGN s'il existe deux suites réelles $(\alpha_{n})_{n \in \mathbb{B}}$ et $(\beta_{n})_{n \in \mathbb{B}}$ telles que : \lfbox[formula]{$\displaystyle \lim_{n \rightarrow \infty} \frac{1}{\alpha_{n} \sum_{i = 1}^{n} (X_{i} - \beta_{i})}$} \textbf{existe} en un \og \underline{certain sens} \fg{}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[LFGN de Bernoulli]
+Si la suite d'événements $(A_{n})_{n \in \mathbb{N}}$ est formée d'événements \textit{indépendantes} et de \textit{même probabilité} $p$. Si on désigne par $S_{n}$ le nombre de $A_{i}$ réalisés parmi les événements $A_{1}, \dots, A_{n}$, alors : \lfbox[formula]{$\displaystyle \forall \varepsilon > 0, P\left(\left|\frac{S_{n}}{n} - p\right| > \varepsilon\right) \underset{n \rightarrow \infty}{\rightarrow} 0$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[LFGN]
+Soit la suite de v.a. discrètes iid $(X_{n})_{n \geq 1}$, de moyenne $m$ et variance $\sigma^{2}$ , définies sur un espace probabilisé $(\Omega, \mathcal{A}, P)$, alors : \lfbox[formula]{$\displaystyle \frac{1}{n} \sum_{k = 1}^{n} X_{k} = \bar{X}_{n} \overset{P}{\underset{n \rightarrow \infty}{\longrightarrow}} m$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[LFGN de Khintchine]
+Soit la suite de v.a. iid $(X_{n})_{n \geq 1}$, de moyenne $m$ et variance $\sigma^{2}$ , définies sur un espace probabilisé $L^{1}$ $(\Omega, \mathcal{A}, P)$, alors : \lfbox[formula]{$\displaystyle \frac{S_{n}}{n} \sum_{k = 1}^{n} \bm{X}_{k} = \bar{X}_{n} \overset{P}{\underset{n \rightarrow \infty}{\longrightarrow}} m$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[LFGN dans $L^{2}$]
+Soit la suite de v.a.r. $(X_{n})_{n \geq 1}$ de carré intégrable deux à deux non corrélées. Une condition nettement suffisante (CNS) pour que : \lfbox[formula]{$\displaystyle \frac{1}{n} \sum_{k = 1}^{n} \bm{X}_{k} \overset{L^{2}}{\underset{n \rightarrow \infty}{\longrightarrow}} a$} est que \lfbox[conditions]{$\frac{1}{n} \sum_{i = 1}^{n} \text{E}[X_{i}] \underset{n \rightarrow \infty}{\longrightarrow} a$} et \lfbox[conditions]{$\frac{1}{n^{2}} \sum_{i = 1}^{n} \text{V}(X_{i}) \underset{n \rightarrow \infty}{\longrightarrow} a$}
+\end{definitionNOHFILL}
+
+
+
+\begin{definitionNOHFILL}[Théorème de Kolmogorov]
+Soit la suite de v.a. iid $(X_{n})_{n \geq 1}$, de moyenne $m$, définies sur un espace probabilisé $L^{1}$ $(\Omega, \mathcal{A}, P)$, alors : \lfbox[formula]{$\displaystyle \frac{S_{n}}{n} = \frac{1}{n} \sum_{k = 1}^{n} \bm{X}_{k} \overset{p.s.}{\underset{n \rightarrow \infty}{\longrightarrow}} m$}.
+\end{definitionNOHFILL}
+
+
+
+\columnbreak
+\section{Théorème centrale limite}
+\begin{definitionNOHFILL}[Théorème centrale limite (TCL)]
+Soit une suite de v.a.r. $(X_{n})$ iid, de moyenne $m$ et variance $\sigma^{2}$, alors : \lfbox[formula]{$\displaystyle \frac{\bar{X}_{n} - m}{\sigma/\sqrt{n}} \overset{L}{\underset{n \rightarrow \infty}{\longrightarrow}} \mathcal{N}(0, 1)$}.
+
+\paragraph{Note}	Alias le théorème de \textbf{\textit{Lindeberg-Lévy}}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Théorème de Moivre-Laplace]
+Soient les v.a. indépendantes $(X_{1}, \dots, X_{n})$ suivant la loi de Bernoulli de paramètre $p$, alors $\forall n$ et tous nombre réels $a < b$ : \lfbox[formula]{$\displaystyle \lim_{n \rightarrow \infty} P\left(a \leq \frac{S_{n} - np}{\sqrt{np(1 - p)}} \leq b\right) = \frac{1}{\sqrt{2\pi}} \int_{a}^{b} \textrm{e}^{-x^{2}/2} dx$}.
+
+\paragraph{Note}	Ce théorème est un cas spécial du TCL.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILL}[Théorème centrale limite sur $\mathbb{R}^{k}$]
+Soit la suite de vecteurs aléatoires $(X_{n})$ iid, de moyenne $m$ et covariance $\Gamma$, alors \lfbox[formula]{$S_{n} \overset{L}{\underset{n \rightarrow \infty}{\longrightarrow}} \mathcal{N}(0, \Gamma)$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Théorème centrale limite de Lyapounov]
+Soit les v.a. indépendantes $(X_{1}, X_{2}, \dots)$ et $\delta > 0$ t.q. $\forall k \geq 1$,\lfbox[conditions]{$\text{E}[|X_{k}|^{2 + \delta}] < \infty$} et \lfbox[conditions]{$\lim_{n \rightarrow \infty} \frac{1}{\sigma_{S_{n}}^{2 + \delta}} \sum_{k = 1}^{n} \text{E}[|X_{k} - m_{k}|^{2 + \delta}] = 0$}. Alors, \lfbox[formula]{$\frac{S_{n} - \text{E}[S_{n}]}{\sqrt{\text{Var}(S_{n})}} \overset{L}{\underset{n \rightarrow \infty}{\longrightarrow}} \mathcal{N}(0, 1)$}.
+\end{definitionNOHFILL}
+
+
+
+
+\newpage
+\chapter{Convergence faible et continuité}
+\section{Convergence en probabilité et continuité}
+\begin{definitionNOHFILL}[Proposition]
+Si \lfbox[conditions]{$U_{n} \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} c$} et \lfbox[conditions]{$V_{n} \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} d$}, alors \lfbox[formula]{$(U_{n}, V_{n}) \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} (c, d)$}.
+
+\bigskip
+
+De plus, si $h: \mathbb{R} \rightarrow \mathbb{R}$ est continue au point $c$, alors \lfbox[formula]{$h(U_{n}) \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} h(c)$}. Sinon, si $h: \mathbb{R}^{2} \rightarrow \mathbb{R}$ est continue au point $(c, d)$, alors \lfbox[formula]{$h(U_{n}, V_{n}) \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} h(c, d)$}.
+
+\bigskip
+
+Il s'ensuit que : 
+\begin{enumerate}
+	\item	$U_{n} + V_{n} \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} c + d$.
+	\item	$U_{n} - V_{n} \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} c - d$.
+	\item	$U_{n} V_{n} \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} c d$.
+	\item	$U_{n} / V_{n} \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} c / d$ si $d \neq 0$.
+\end{enumerate}
+\end{definitionNOHFILL}
+
+
+\columnbreak
+\section{Convergence en loi et continuité}
+
+
+\columnbreak
+\section{La méthode du delta}
+\lfbox[formula]{$\sqrt{n} \left(g(\bar{X}_{n} - g(m)\right) \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} \mathcal{N}\left(0, (g'(m))^{2}\sigma^{2}\right)$}.
+
+
 
 \end{multicols*}
 \end{document}
