@@ -31,9 +31,8 @@
 \raggedcolumns
 
 \begin{multicols*}{2}
-
+\section{Rappels}
 \begin{definitionNOHFILL}[Caractéristiques de fonctions]
-
 Il existe trois caractéristiques pour une fonction donnée : la surjectivité, l'injectivité et la bijectivité.\\
 
 Lorsque tous les y d'une fonction, c'est-à-dire chaque élément de son image, sont tous reliés à au moins un x, la fonction est dite surjective. Par exemple, la fonction $x^{2}$ n'est pas surjective car y=-1 n'a pas de x dans les réels. Si on limite toutefois l'image aux réels positifs, la fonction devient surjective, car chaque y des réels positifs ont au moins un x correspondant.\\
@@ -41,7 +40,14 @@ Lorsque tous les y d'une fonction, c'est-à-dire chaque élément de son image, 
 Lorsque tous les y d'une fonction ne sont reliés qu'à un seul x, la fonction est dite injective. En reprenant $x^{2}$, on peut démontrer qu'elle n'est pas injective : $x^{2}=(-x)^{2}$. Toutefois, 2x est injective car il n'existe pas deux x pouvant donner le même y.\\
 
 La fonction est bijective lorsqu'elle est à la fois bijective et injective, ce qui veut dire que chaque y de la fonction ne possède qu'un seul x. En reprenant 2x, on peut démontrer sa bijectivité : chaque y possède un x dans les réels. La fonction étant aussi injective, elle devient alors bijective.
-
+\end{definitionNOHFILL}
+\begin{definitionNOHFILL}[Racines réelles]
+On peut identifier les racines réelles à l'aide d'un calcul simple. Si on a la fonction $ x^{3}-3x^{2}-10x+24 $, on doit utiliser la fonction suivante :\\
+  \begin{align*}
+%% Difficulté à séparer facteurs positifs du a
+			\pm \frac{Facteurs positifs de a_0}{Facteurs positifs de a_k}
+	\end{align*}
+Le numérateur serait 24 et le dénominateur serait 1 (car $24x^{0}$ et $1x^{3}$). Les racines de la fonction sont donc $\in \{ {\pm 1; \pm 2; \pm 3; \pm 4; \pm 6; \pm 8; \pm 12; \pm 24} \}$. Il faut ensuite essayer les chiffres de l'ensemble de la fonction. Par exemple, en ayant x=2, la fonction donne 0. En divisant la fonction par (x-2), il reste $x^{2}-x-12$. On peut encore essayer avec les racines du départ et on verrait qu'en ayant x=-3, la fonction donne 0, ou on peut déjà voir qu'il reste (x+3)(x-4).
 \end{definitionNOHFILL}
 
 
