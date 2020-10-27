@@ -1,0 +1,50 @@
+%% Préambule
+\documentclass[10pt, french]{article}
+\input{cheatsht-preamble-general.tex}
+\usepackage{array, multirow}
+\usepackage{booktabs}
+\usepackage{eurosym}
+\setlist{leftmargin=*}
+
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\def\BackgroundColor{white}
+\def\SectionColor{teal!90!black}
+\def\SubSectionColor{teal!45!black}
+\def\SubSubSectionColor{armygreen}
+\def\cours{Compléments de mathématiques}
+\def\sigle{ACT-1003}
+
+
+%% -----------------------------
+%%	Feuille basée sur 
+\begin{document}
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+%%
+\end{center}
+\input{contributeurs/contrib-ACT1003}
+%% -----------------------------
+\newpage
+
+\raggedcolumns
+
+\begin{multicols*}{2}
+
+\begin{definitionNOHFILL}[Caractéristiques de fonctions]
+
+Il existe trois caractéristiques pour une fonction donnée : la surjectivité, l'injectivité et la bijectivité.\\
+
+Lorsque tous les y d'une fonction, c'est-à-dire chaque élément de son image, sont tous reliés à au moins un x, la fonction est dite surjective. Par exemple, la fonction $x^{2}$ n'est pas surjective car y=-1 n'a pas de x dans les réels. Si on limite toutefois l'image aux réels positifs, la fonction devient surjective, car chaque y des réels positifs ont au moins un x correspondant.\\
+
+Lorsque tous les y d'une fonction ne sont reliés qu'à un seul x, la fonction est dite injective. En reprenant $x^{2}$, on peut démontrer qu'elle n'est pas injective : $x^{2}=(-x)^{2}$. Toutefois, 2x est injective car il n'existe pas deux x pouvant donner le même y.\\
+
+La fonction est bijective lorsqu'elle est à la fois bijective et injective, ce qui veut dire que chaque y de la fonction ne possède qu'un seul x. En reprenant 2x, on peut démontrer sa bijectivité : chaque y possède un x dans les réels. La fonction étant aussi injective, elle devient alors bijective.
+
+\end{definitionNOHFILL}
+
+
+\end{multicols*}
+%% -----------------------------
+\end{document}
