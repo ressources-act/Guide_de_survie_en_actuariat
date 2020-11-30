@@ -975,7 +975,7 @@ Soit les v.a. indépendantes $(X_{1}, X_{2}, \dots)$ et $\delta > 0$ t.q. $\fora
 \chapter{Convergence faible et continuité}
 \section{Convergence en probabilité et continuité}
 \begin{definitionNOHFILL}[Proposition]
-Si \lfbox[conditions]{$U_{n} \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} c$} et \lfbox[conditions]{$V_{n} \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} d$}, alors \lfbox[formula]{$(U_{n}, V_{n}) \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} (c, d)$}.
+\lfbox[formula]{$(U_{n}, V_{n}) \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} (c, d)$} ssi \lfbox[conditions]{$U_{n} \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} c$} et \lfbox[conditions]{$V_{n} \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} d$}.
 
 \bigskip
 
@@ -995,12 +995,309 @@ Il s'ensuit que :
 
 \columnbreak
 \section{Convergence en loi et continuité}
+\begin{enumerate}
+	\item	Si $U_{n} \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} U$ et si la fonction $h: \mathbb{R} \rightarrow \mathbb{R}$ est continue, alors \lfbox[formula]{$h(U_{n}) \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} h(U)$}.
+	\item	Si $(U_{n}, V_{n}) \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} (U, V)$ et si la fonction $h: \mathbb{R}^{2} \rightarrow \mathbb{R}$ est continue, alors \lfbox[formula]{$h(U_{n}, V_{n}) \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} h(U, V)$}.
+\end{enumerate}
+
+
+Il s'ensuit que si $(U_{n}, V_{n}) \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} (U, V)$, alors :
+\begin{enumerate}
+	\item	$U_{n} + V_{n} \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} U + V$.
+	\item	$U_{n} - V_{n} \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} U - V$.
+	\item	$U_{n} V_{n} \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} U V$.
+	\item	$U_{n} / V_{n} \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} U / V$ si $P(V = 0) = 0$.
+\end{enumerate}
+
 
 
 \columnbreak
 \section{La méthode du delta}
-\lfbox[formula]{$\sqrt{n} \left(g(\bar{X}_{n} - g(m)\right) \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} \mathcal{N}\left(0, (g'(m))^{2}\sigma^{2}\right)$}.
+\begin{definitionNOHFILL}[Classe $C^{d}$]
+Une fonction de classe $C^{d}$ admet $d$ dérivées. Par exemple, une fonction de classe $C^{1}$ admet une dérivée.
+\end{definitionNOHFILL}
 
+Pour $X_{1}, \dots, X_{n}$ une suite iid de moyenne $m$ et variable $\sigma^{2}$ et $g$ une fonction de classe $C^{1}$, \lfbox[formula]{$\sqrt{n} \left(g(\bar{X}_{n} - g(m)\right) \overset{\mathcal{L}}{\underset{n \rightarrow \infty}{\longrightarrow}} \mathcal{N}\left(0, (g'(m))^{2}\sigma^{2}\right)$}.
+
+
+
+\newpage
+\chapter{Modèles statistiques}
+
+\section{Modèle statistiques}
+\begin{definitionNOHFILL}[Modèle statistique]
+Un modèle statistique est tout triplet $(\mathcal{X}, \mathcal{A}, \mathcal{P})$ où :
+\begin{description}
+	\item[$\mathcal{X}$]	Ensemble appelé espace des observations.
+	\item[$\mathcal{A}$]	Tribu sur $\mathcal{X}$.
+	\item[$\mathcal{P}$]	Famille de probabilités sur l'espace mesurable $(\mathcal{X}, \mathcal{A})$
+\end{description}
+
+Par exemple, pour la loi binomiale $(\mathcal{X}, \mathcal{A}, \mathcal{P}) = (\{0, 1\}^{n}, \mathcal{P}(\{0, 1\}^{n}), P_{p}^{\otimes n}; p \in (0, 1))$.
+
+\begin{definitionNOHFILLsub}[Modèle statistique paramétrique]
+Un modèle statistique paramétrique est un modèle statistique $(\mathcal{X}, \mathcal{A}, \mathcal{P})$ tel que \lfbox[formula]{$\mathcal{P} = \{P_{\theta}; \theta \in \Theta\}$}, où $\Theta \subset \mathbb{R}^{p}$ et $\Theta$ est l'espace des paramètres. Donc, on définit la loi grâce à un paramètre. 
+\end{definitionNOHFILLsub}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Statistique]
+Soit un modèle statistique $(\mathcal{X}, \mathcal{A}, \mathcal{P})$. On appelle \textit{\textit{statistique}}, définie sur l'espace des observationos $(\mathcal{X}, \mathcal{A})$ à valeurs dans $(\mathcal{X}', \mathcal{A}')$, toute application mesurable \lfbox[formula]{$S$} de $(\mathcal{X}, \mathcal{A})$ dans $(\mathcal{X}', \mathcal{A}')$.
+
+\bigskip
+
+Donc, une statistique joue le rôle pour les statistiques qu'une variable aléatoire jouait pour les probabilités.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Indépendance]
+Deux statistiques $S_{1}$ et $S_{2}$ sont dites indépendantes si $\forall P \in \mathcal{P}$, $S_{1}$ et $S_{2}$ sont $P$-indépendantes où $P$ est une loi quelconque.
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILL}[Modèle d'échantillonnage]
+Soit une expérience aléatoire qui consiste à effectuer $n$ expériences aléatoires iid. On suppose que le modèle statistique, dans le cas d'une seule observation, est $\left(\mathcal{Y}, \mathcal{B}, \tilde{\mathcal{P}}\right)$. Pour l'expérience aléatoire, le modèle statistique $(\mathcal{X}, \mathcal{A}, \mathcal{P})$ sera donc $\left(\mathcal{Y}, \mathcal{B}, \tilde{\mathcal{P}}\right)^{\otimes n} = \left(\left(\mathcal{Y}^{n}, \mathcal{B}^{\otimes n}, \mathcal{P}^{\otimes n}\right); \mathcal{P} \in \tilde{\mathcal{P}}\right)$.
+
+\bigskip
+
+Si les lois de $\tilde{\mathcal{P}}$ sont de densité $f$, alors les lois de $\mathcal{P}$ sont de densité $h$ où \lfbox[formula]{$h(y_{1}, \dots, y_{n}) = f(y_{1}) \times \dots \times f(y_{n})$}.
+\end{definitionNOHFILL}
+
+
+
+\columnbreak
+\section{Modèle réguliers et homogènes}
+\begin{definitionNOHFILL}[Modèle régulier]
+Un modèle paramétrique est régulier si :
+\begin{enumerate}
+	\item	les lois $P_{\theta}$ sont soit toutes absolument continues ou toutes discrètes, et
+	\item	le support ne dépend pas de(s) paramètre(s) $\theta$. 
+\end{enumerate}
+
+C'est-à-dire, $P_{\theta}(X \in D) = 1$ $\forall \theta \in \Theta$, pour un certain ensemble dénombrable $D \subset \mathbb{R}^{n}$ qui ne dépend pas de $\theta$.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Modèle régulier homogène]
+Un modèle régulier $(\mathcal{X}, \mathcal{A}, \mathcal{P})$ est dit homogène si toutes les densités sont \textbf{strictement} positives sur le même support.
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Fonction de vraisemblance]
+La vraisemblance est la densité de l'observation et la fonction de vraisemblance le produit des vraisemblances : \lfbox[formula]{$\theta \rightarrow \frac{d P_{\theta}(x)}{d\mu} = \ell(x; \theta)$}.
+\end{definitionNOHFILL}
+
+
+Habituellement, on pose ces hypothèses de base pour la théorie de la statistique:
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Si $\theta_{1} \neq \theta_{2} \Rightarrow P_{\theta_{1}} \neq P_{\theta_{2}}$.
+	\item	L'espace des paramètres $\Theta$ contient au moins un intervalle dans le cas unidimensionnel, ou un hypercube dans le cas multidimensionnel.
+	\item	La fonction $\theta \rightarrow P_{\theta}$ est continue. Si donc $(\theta_{n})_{n \in \mathbb{N}^{\ast}}$ est une suite de $\Theta$, et si $\displaystyle \lim_{n \rightarrow \infty} \theta_{n} = \theta^{\ast}$, alors $P_{\theta_{n}} \overset{L}{\longrightarrow} P_{\theta^{\ast}}$.
+	\item	Le modèle est régulier.
+\end{enumerate}
+
+
+
+
+\columnbreak
+\section{Classes de modèles}
+\subsection{Le modèle linéaire}
+
+
+
+\subsection{Le modèle exponentiel}
+\begin{definitionNOHFILL}[La famille exponentielle]
+La famille $\left\{P_{\theta}; \theta \in \Theta\right\}$ de lois sur un espace d'observations $(\mathcal{X}, \mathcal{A})$ est appelée \textit{\textbf{famille exponentielle}} si ses lois $P_{\theta}$ ont des densités sur $(\mathcal{X}, \mathcal{A})$, de la forme :
+\begin{align*}
+	f_{\theta}(x)
+	&=	\textrm{e}^{\left[\sum_{i = 1}^{s} \eta_{i}(\theta) T_{i}(x) - B(\theta)\right] h(x)}
+\end{align*}
+où les $\eta_{i}$ et $B$ sont des fonctions réelles définies sur $\Theta$, où les $T_{i}$ sont des fonctions réelles de l'observation $x$, et où $h$ est une fonction positive de l'observation $x$. $T = (T_{1}, \dots, T_{s})^{t}$ s'appelle la \textbf{\textit{statistique exhaustive}} (privilégiée) du modèle. 
+
+\paragraph{Note}	Souvent, $h$ est une fonction « esthétique ». Par exemple, la fonction indicatrice du domaine de la v.a.
+\end{definitionNOHFILL}
+
+
+L'ensemble des points $\eta = (\eta_{1}, \dots, \eta_{s})^{t}$ pour lesquels $f_{\eta}(x)$ est une densité de probabilité est appelée \textbf{\textit{l'espace naturel des paramètres}} $H$. Cet espace est \textbf{convexe} ce qui permet de déduire que pour $\eta_{1}, \eta_{2} \in H$, alors $\forall \alpha \in (0, 1)$ que $\eta = \alpha \eta_{1} + (1 - \alpha)\eta_{2} \in H$. 
+
+\bigskip
+
+Quelques propriétés : 
+\begin{enumerate}
+	\item	La somme de v.a. indépendantes de la famille exponentielle fait également partie de la famille exponentielle.
+	\item	$A(\eta)$ est infiniment dérivable.
+	\item	$\text{Cov}_{\eta}(T_{j}, T_{i}) = \frac{d^{2}}{d \eta_{j} d \eta_{i}} A(\eta)$.
+\end{enumerate}
+
+
+
+\columnbreak
+\section{Fonction de perte et de risque}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$d$]	Décision.
+	\item[$D$]	Espace de toutes les décisions \lfbox[formula]{$D = \{d_{1}, \dots, d_{k}\}$}.
+	\item[$\delta$]	Règle de décision.
+	\item[$\Delta$]	Espace des règles de décisions.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Règle de décision $\delta$]
+Une application mesurable $\delta$ de $(\mathcal{X}, \mathcal{A})$ à valeurs dans $(D, \mathcal{D})$. 
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Fonction de perte]
+La \textbf\textit{{fonction de perte}} est une application mesurable \lfbox[formula]{$L: (\Omega \times D, \mathcal{T} \otimes \mathcal{D}) \longrightarrow (\mathbb{R}^{+}, \mathcal{B}_{\mathbb{R}^{+}})$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Fonction de risque]
+La \textbf\textit{{fonction de risque}} est \lfbox[formula]{$R(\theta, \delta) = \text{E}_{\theta}[L(\theta, \delta(X))]$} pour tout $\theta \in \Theta$, toute règle de décision $\delta \in \Delta$, et où $X$ est une v.a.r. de loi $P_{\theta}$.
+\end{definitionNOHFILL}
+
+
+\subsection{Classement des règles de décisions}
+On dit que $\delta_{1} \leq \delta_{2}$ ($\delta_{1}$ est préférable à $\delta_{2}$) si $\forall \theta \in \Theta$, \lfbox[formula]{$R(\theta, \delta_{1}) \leq R(\theta, \delta_{2})$}.
+
+
+
+\newpage
+\chapter{Exhaustivité, complétion et liberté}
+\section{Exhaustivité}
+\begin{definitionNOHFILL}[Exhaustivité]
+Soit un modèle paramétrique $(\mathcal{X}, \mathcal{A}; P_{\theta}, \theta \in \Theta)$ et l'espace $\mathcal{Y}$ des valeurs prises par la statistique $S$. On suppose que l'observation est la valeur prise par une v.a.r. $X$ définie sur un espace $\Omega$ :
+\begin{align*}
+	(\Omega, \mathcal{C}, P) \overset{X}{\longrightarrow} (\mathcal{X}, \mathcal{A}, P_{\theta})_{\theta \in \Theta} \overset{S}{\longrightarrow} (\mathcal{Y}, \mathcal{B})
+\end{align*}
+
+Donc, la statistique $S$ est exhaustive pour $\theta$ si la loi conditionnelle de $X$ sachant que $S = s$ est indépendante de $\theta$ pour tout $s$.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Critère de factorisation]
+Soit un modèle paramétrique $(\mathcal{X}, \mathcal{A}; P_{\theta}, \theta \in \Theta)$ régulier et une statistique $S: (\mathcal{X}, \mathcal{A}) \overset{S}{\longrightarrow} (\mathcal{Y}, \mathcal{B})$. Une CNS pour que la statistique $S$ soit exhaustive est que les densités s'écrivent \lfbox[formula]{$\ell_{\theta}(x) = g_{\theta}(S(x)) h(x)$} avec $h: (\mathcal{X}, \mathcal{A}) \longrightarrow (\mathbb{R}^{+}, \mathcal{B}_{\mathbb{R}^{+}})$ et $g_{\theta}: (\mathcal{Y}, \mathcal{A}) \longrightarrow (\mathbb{R}^{+}, \mathcal{B}_{\mathbb{R}^{+}})$ mesurables.
+\end{definitionNOHFILLsub}
+
+
+
+\subsection{Exhaustif minimale}
+Soit un modèle statistique paramétrique régulier $(\Omega, \mathcal{A}, P_{\theta})_{\theta \in \Theta}$. On suppose que $S = S(X)$ et $T = T(X)$ sont équivalentes, puis si $S$ est exhaustive, alors $T$ l'est également.  
+
+\bigskip
+
+Soit un modèle paramétrique régulier et deux statistiques $S_{1}$ et $S_{2}$ telles que $S_{1} = h^{\ast}(S_{2})$. Si $S_{1}$ est exhaustive pour $\theta$, $S_{2}$ l'est également. On dit que $S_{1}$ est préférable à $S_{2}$, $S_{1} \mathcal{R} S_{2} \Leftrightarrow \exists h: S_{1} = h(S_{2})$. Donc, pour $h$ qui n'est pas bijective on préfère employer $S_{1}$ qui permet d'écrire les observations sous format plus résumé.
+
+\bigskip
+
+\begin{definitionNOHFILL}[Statistique exhaustive minimale]
+Une statistique $S$ est exhaustive minimale, si elle est d'une part exhaustive, et si, pour toute autre statistique exhaustive $T$, il existe $h$ telle que $S = h(T)$.
+\end{definitionNOHFILL}
+
+
+\columnbreak
+\section{Complétion}
+\begin{definitionNOHFILL}[Statistique libre]
+Soit $\mathcal{P}$ une famille de lois sur un espace d'observations $(\mathcal{X}, \mathcal{A})$, et $S$ une statistique définie sur $(\mathcal{X}, \mathcal{A})$ à valeurs dans $(\mathcal{Y}, \mathcal{B})$. Pour toute loi $P \in \mathcal{P}$, on note $P^{S}$ la loi image de $P$ par $S$. On dit que $S$ est libre si \lfbox[conditions]{$\forall P, Q \in \mathcal{P}$} \lfbox[formula]{$P^{S} = Q^{S}$}.
+
+\bigskip
+
+Dans un modèle paramétrique, si $\mathcal{P} = \{P_{\theta}, \theta \in \Theta\}$, on dit que $S$ est libre si sa loi ne dépend pas du paramètre $\theta$. Une statistique libre ne contient aucune information sur $\theta$, mais des statistiques exhaustives minimales peuvent encore contenir une partie « libre ». Ce qui motive la définition de la statistique complète.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Statistique complète]
+Soit $\mathcal{P} = \{P_{\theta}, \theta \in \Theta\}$, une famille paramétrique de lois sur un espace d'observations $(\mathcal{X}, \mathcal{A})$, et soit $S$ une statistique définie sur $(\mathcal{X}, \mathcal{A})$ à valeur dans $(\mathcal{Y}, \mathcal{B})$. On dira que $S$ est complète ssi \lfbox[conditions]{$\forall \theta \in \Theta$}, \lfbox[formula]{$\text{E}_{\theta}[f(S)] = 0 \Rightarrow f = 0 \quad P_{\theta}^{S}-p.s.$}. C'est-à-dire implique que $P_{\theta}[f(S) = 0] = 1$, $\forall \theta \in \Theta$.
+\end{definitionNOHFILL}
+
+
+
+\newpage
+\chapter{Estimation sans biais}
+\begin{rappel_enhanced}[Contexte]
+Bien que le théorème de Rao-Blackwell nous permet de trouver un estimateur de risque inférieur, il n'y existe pas un estimateur $\delta_{0}$ absolu qui a uniformément le risque minimal. Il faut donc trouver d'autres façons de choisir un estimateur parmi un ensemble d'estimateurs. Pour ce faire, on débute par examiner des propriétés additionnelles que l'on pourrait imposer aux estimateurs.
+\end{rappel_enhanced}
+
+\section{Principes de réduction de l'ensemble des estimateurs}
+Nous observons 3 principes :
+
+\begin{definitionGENERAL}{Principe d'invariance}[\circled{1}{trueblue}]
+Il est logique de vouloir retenir des estimateurs simples à manier. Donc, pour estimer des paramètres de type moyenne on utilise des fonctions linéaires des observations et pour estimer des paramètres de type variance on utilise des fonctions quadratiques des observations.
+
+\bigskip
+
+Ces principes s'interprètent donc comme une propriété \textbf{\textit{d'invariance}}. La condition est que \lfbox[formula]{$\delta\left[f(x)\right] = f\left[\delta(x)\right]$} où $f$ appartient au groupe des applications linéaires inversibles $\mathbb{R}^{n}$ dans $\mathbb{R}^{n}$.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Principe de sans biais}[\circled{2}{trueblue}]
+Un estimateur $\delta$ est dit sans biais si, en moyenne, la valeur proposée est égale à la valeur recherchée. C'est-à-dire que $\delta$ est un estimateur sans biais de $g(\theta)$ ssi \lfbox[formula]{$\text{E}_{\theta}[\delta(X)] = g(\theta)$} pour \lfbox[conditions]{$\forall \theta \in \Theta$}.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Principes asymptotiques}[\circled{3}{trueblue}]
+La suite d'estimateurs $\{\delta_{n}, n \in \mathbb{N}\}$ est asymptotiquement sans biais ssi \lfbox[formula]{$\displaystyle \lim_{n \rightarrow \infty} E_{\theta} \delta_{n}(X) = g(\theta)$}, \lfbox[conditions]{$\forall \theta \in \Theta$}.
+
+\bigskip
+
+Un autre principe est d'imposer que l'estimateur $\delta_{n}$ s'approche « en un certain sens » de la vraie valeur inconnue $g(\theta)$. On a la convergence en probabilité, convergence en moyenne quadratique, forte convergence.
+\end{definitionGENERAL}
+
+
+\columnbreak
+\section{Méthodes de recherche de bons estimateurs}
+Pour trouver un bon estimateur, il y a plusieurs approches que l'on peut prendre : 
+\begin{enumerate}
+	\item	\textbf{Recherche dans une sous-classe}: 
+	\item	\textbf{Optimisation d'un critère}: 
+	\item	\textbf{Estimateurs uniformément de variance minimale}: L'approche de base est de trouver un estimateur uniformément de variance minimale parmi les ESB (estimateurs sans biais).
+\end{enumerate}
+
+On peut généraliser l'approche 3 ci-dessus pour trouver l'estimateur sans biais uniformément à variance minimale avec le \textbf{\textit{théorème de Lehmann-Scheffé}}.
+
+\begin{definitionNOHFILL}[Théorème de Lehmann-Scheffe]
+Soit la statistique exhaustive $S$ complète pour un modèle paramétrique. S'il y existe un ESB de $g(\theta)$, il existe un ESB qui est fonction de $S$. Cet ESB fonction de $S$ est l'unique ESB fonction de $S$, et il est uniformément de variance minimale.
+\end{definitionNOHFILL}
+
+
+
+\newpage
+\chapter{Inégalité d'information}
+\section{Paramètre unidimensionnel}
+\begin{definitionNOHFILL}[Quantité d'information de Fischer]
+On pose les hypothèses suivantes : 
+\begin{itemize}[label = (\Roman*)]
+	\item	$\Theta$ est un intervalle ouvert ;
+	\item	Les lois $(P_{\theta})_{\theta \in \Theta}$ admettant une densité $p_{\theta}(x)$ et l'ensemble $A = \{x : p_{\theta}(x) > 0\}$ ne dépend pas de $\theta$ ;
+	\item	La dérivée (par rapport à $\theta$) $p'_{\theta}(x)$ existe, et est finie. Également, la dérivée (par rapport à $\theta$) de $\int p_{\theta}(x) d\mu(x)$ peut s'obtenir sous le signe d'intégrale.
+\end{itemize}
+
+Sous l'hypothèse (i), on pose que \lfbox[formula]{$\text{E}_{\theta}\left[\frac{\partial}{\partial \theta} \ln p_{\theta}(x)\right] = 0$}, \lfbox[conditions]{$\forall \theta \in \Theta$}. 
+
+\bigskip
+
+Puis, on défini \textbf{\textit{l'information de Fischer}} du modèle statistique la variance du score \lfbox[formula]{$I(\theta) = \text{Var}_{\theta}\left(\frac{\partial \ln p_{\theta}(x)}{\partial \theta}\right)$}. Sous les conditions précédentes et les conditions additionnelles que :
+\begin{enumerate}[label = (\Roman*)]
+	\setcounter{enumi}{3}
+	\item	La dérivée seconde (par rapport à $\theta$) de $p_{\theta}(x)$ existe $\forall x \in A, \theta \in \Theta$ ;
+	\item	La dérivée seconde (par rapport à $\theta$) de $\int p_{\theta}(x) dx$ peut s'obtenir en dérivant sous le signe intégral.
+\end{enumerate}
+
+Alors, \lfbox[formula]{$I(\theta) = -\text{E}_{\theta}\left[\frac{\partial^{2}}{\partial \theta^{2}}\ln p_{\theta}(X)\right]	$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Modèle exponentiel]
+Pour la v.a.r. $X$ dont la loi provient d'un modèle exponentiel avec $s = 1$ et $\theta = \text{E}[T]$ (où $T$ est la statistique privilégiée), alors \lfbox[formula]{$\displaystyle I(\theta) = \frac{1}{\text{Var}_{\eta(\theta)}(T)}$}.
+\end{definitionNOHFILLsub}
+
+\bigskip
+
+Propriétés : 
+\begin{description}
+	\item[Additivité]	\lfbox[formula]{$I(\theta) = I_{1}(\theta) + I_{2}(\theta)$} pour 2 v.a.r. indépendantes vérifiant les 5 hypothèses ci-dessus.
+	\item[Exhaustivité]	L'information apportée sur $\theta$ par une statistique $S = S(X)$ exhaustive dans le modèle image est telle que \lfbox[formula]{$I_{S}(\theta) = I(\theta)$}.
+\end{description}
+
+\bigskip
+
+\lfbox[formula]{$\text{Var}_{\theta}(\delta) \geq \frac{[g'(\theta)]^{2}}{I(\theta)}$}.
+
+
+\columnbreak
+\section{Paramètre multiple}
 
 
 \end{multicols*}

@@ -344,13 +344,42 @@ On maintient les définitions de l'intégrale de Riemann et substitue $(x_{i - 1
 \end{rappel_enhanced}
 
 
-\subsection*{Fonction impaire}
+\subsection*{Fonctions}
 
 Une fonction est impaire \textit{(odd)} lorsque $f(-x) = -f(x)$.\\
 Par exemple, $\sin(-x) = -\sin(x)$.
 
-\newpage
+\bigskip
 
+\begin{definitionNOHFILL}[Fonction]
+Une fonction associe les membre d'un ensemble $A$ \textbf{\textit{vers}} un ensemble $B$. En mathématiques, on dénote l'action \textit{d'associer} d'une fonction $f$ par une flèche d'un ensemble à l'autre avec $f: A \rightarrow B$. 
+
+\bigskip
+
+De cette définition, on déduit la première propriété d'une fonction: elle ne peut pas associer un élément de l'ensemble de départ $A$ à plus qu'un élément de l'ensemble d'arrivé $B$. Cependant, elle peut associer plusieurs éléments de l'ensemble de départ vers un même élément de l'ensemble d'arrivée. 
+
+\bigskip
+
+Par exemple, $f(x) = x^{2}$ associe les deux éléments $\{-3, 3\}$ au même élément $\{9\}$. On dénote l'acte de cette fonction comme $f: \mathbb{R} \rightarrow \mathbb{R}^{+}$. Il s'ensuit qu'on peut avoir différents types de fonctions selon la façon dont elle associe les éléments des deux ensembles.
+\end{definitionNOHFILL}
+
+\bigskip
+
+Une fonction est :
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}m{2cm}  | >{\columncolor{beaublue}}m{5cm}  | >{\columncolor{beaublue}}m{2cm}  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Nom}}	&	\textcolor{white}{\textbf{anglais}}	&	\textcolor{white}{\textbf{description}}	&	\textcolor{white}{\textbf{exemple}}		\\\specialrule{0.1em}{0em}{0em} 
+Injective	&	one-to-one	&	chaque élément de l'ensemble de départ $A$ est associé à un élément distinct de l'ensemble d'arrivée $B$	&	$f(x) = x$	\\\hline
+Surjective	&		&	chaque élément de l'ensemble d'arrivée $B$ est associé à au moins un élément distinct de l'ensemble de départ $A$	&	$VaR_{\kappa}(X)$ pour une loi discrète	\\\hline
+Bijective	&	one-to-one correspondence	&	chaque élément de l'ensemble d'arrivée $B$ est associé à au moins un élément distinct de l'ensemble de départ $A$ et chaque élément de l'ensemble de départ $A$ est associé à un élément distinct de l'ensemble d'arrivée $B$	&	$VaR_{\kappa}(X)$ pour une loi continue	\\\hline
+\end{tabular}
+\end{center}
+
+
+
+\newpage
 \section{Mathématiques financières}
 
 \subsection*{Intérêt simple}
