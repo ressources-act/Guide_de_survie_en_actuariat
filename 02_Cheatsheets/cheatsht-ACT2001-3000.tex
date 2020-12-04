@@ -700,12 +700,12 @@ Les hypothèses au vecteur de v.a. (iid) $\left(V_{1}, V_{2}, \dots, V_{N(t)}^{(
 		\begin{description}
 		\item[Note :]	On pose que $U_{i} \sim U \sim U(0, 1)$.
 		\end{description}
-	\item	Pour $i	=	1, 2, \dots, n$, 
-		\begin{enumerate}[label = \alph*)]
-		\item	On simule les réalisations $\left( Z_{1}^{(j)}, Z_{2}^{(j)}, \dots, Z_{n}^{(j)}\right)$ du vecteur de v.a. (iid) avec $Z_{i} \sim Z \sim Exp(1)$ ;
-		\item	On simule $W_{i}^{(j)}	=	\Lambda^{-1}_{T_{i - 1}^{(j)}}(Z_{i})$ ;
-		\item	On calcule $T_{i}^{(j)}	=	T_{i - 1}^{(j)} + W_{i}^{(j)}$.
-		\end{enumerate}
+%	\item	Pour $i	=	1, 2, \dots, n$, 
+%		\begin{enumerate}[label = \alph*)]
+%		\item	On simule les réalisations $\left( Z_{1}^{(j)}, Z_{2}^{(j)}, \dots, Z_{n}^{(j)}\right)$ du vecteur de v.a. (iid) avec $Z_{i} \sim Z \sim Exp(1)$ ;
+%		\item	On simule $W_{i}^{(j)}	=	\Lambda^{-1}_{T_{i - 1}^{(j)}}(Z_{i})$ ;
+%		\item	On calcule $T_{i}^{(j)}	=	T_{i - 1}^{(j)} + W_{i}^{(j)}$.
+%		\end{enumerate}
 \end{enumerate}
 
 \tcbline
@@ -1320,6 +1320,16 @@ Soit :
 Alors \lfbox[formula]{$W(x_{1}, \dots, x_{n})	\leq	F_{\underline{X}}(x_{1}, \dots, x_{n})	\leq	M(x_{1}, \dots, x_{n})$} pour \lfbox[conditions]{$(x_{1}, \dots, x_{n}) \in \mathbb{R}^{n}$}. 
 \end{definitionNOHFILLprop}
 
+\bigskip
+
+Également, pour $X_{1}, X_{2}$ où $F_{X_{1}, X_{2}} \in \mathcal{CF}(F_{1}, F_{2})$, 
+\begin{enumerate}
+	\item	\lfbox[formula]{$\text{Cov}(X_{1}^{\min}, X_{2}^{\min}) \leq \text{Cov}(X_{1}, X_{2}) \leq \text{Cov}(X_{1}^{\max}, X_{2}^{\max})$}.
+	\item	\lfbox[formula]{$-1 \leq \rho_{P}(X_{1}^{\min}, X_{2}^{\min}) \leq \rho_{P}(X_{1}, X_{2}) \leq \rho_{P}(X_{1}^{\max}, X_{2}^{\max}) \leq 1$}.
+\end{enumerate}
+
+
+
 
 \columnbreak
 \subsection{Notions de dépendance}
@@ -1403,7 +1413,7 @@ Soit le couple de v.a. antimonotones $(X_{1}, X_{2})$.
 \begin{description}
 	\item[$(X_{1}^{+}, X_{2}^{+})$]	Couple de v.a. comonotones avec \lfbox[formula]{$F_{X_{1}^{+}, X_{2}^{+}}(x_{1}, x_{2})	=	M(x_{1}, x_{2})	=	\min\left(F_{1}(x_{1}); F_{2}(x_{2})\right)$}.
 	\item[$(X_{1}^{-}, X_{2}^{-})$]	Couple de v.a. antimonotones avec \lfbox[formula]{$F_{X_{1}^{-}, X_{2}^{-}}(x_{1}, x_{2})	=	W(x_{1}, x_{2})	=	\max\left(F_{1}(x_{1}) + F_{2}(x_{2}) - 1; 0\right)$}.
-	\item[$(X_{1}^{\perp}, X_{2}^{\perp})$]	Couple de v.a. indépendantes avec \lfbox[formula]{$F_{X_{1}^{\perp}, X_{2}^{\perp}}(x_{1}, x_{2})	=	W(x_{1}, x_{2})	=	F_{1}(x_{1}) \times F_{2}(x_{2})$}.
+	\item[$(X_{1}^{\perp}, X_{2}^{\perp})$]	Couple de v.a. indépendantes avec \lfbox[formula]{$F_{X_{1}^{\perp}, X_{2}^{\perp}}(x_{1}, x_{2})	=	F_{1}(x_{1}) \times F_{2}(x_{2})$}.
 \end{description}
 \end{distributions}
 
@@ -1416,6 +1426,36 @@ Soit le couple de v.a. antimonotones $(X_{1}, X_{2})$.
 \end{description}
 \end{distributions}
 
+
+On peut déduire que pour $S = \sum_{i = 1}^{n} X_{i}$ où $F_{\underline{X}}(x_{1}, \dots, x_{n}) \leq F_{\underline{X}^{+}}(x_{1}, \dots, x_{n})$, alias $F_{\underline{X}} \in \mathcal{CF}(F_{1}, \dots, F_{n})$, 
+\begin{enumerate}
+	\item	$\text{E}[S] = \text{E}[S^{+}]$
+	\item	$\text{Var}(S) \leq \text{Var}(S^{+})$.
+	\item	$TVaR_{\kappa}(S) \leq TVaR_{\kappa}(S^{+})$.
+	\item	$\text{E}[\max(S - d; 0)] \leq \text{E}[\max(S^{+} - d; 0)]$.
+\end{enumerate}
+
+
+\begin{definitionNOHFILLprop}[Proposition 7]
+Soit la paire de v.a. continues $\underline{X} = (X_{1}, X_{2})$ dont $F_{X_{1}, X_{2}} \in \mathcal{CF}(F_{1}, F_{2})$ et dont $F_{1}(0) = F_{2}(0) = 0$. De plus, on pose que $X_{1} \sim X_{2} \sim X$, puis que $\phi(u) = F^{-1}(u) + F^{-1}(1 - u)$ est convexe pour $u \in (0, 1)$. 
+
+\bigskip
+
+Alors, \lfbox[formula]{$VaR_{\kappa}(X_{1}^{-} + X_{2}^{-}) = VaR_{\frac{1 - \kappa}{2}}(X) + VaR_{\frac{1 + \kappa}{2}}(X)$} et \lfbox[formula]{$TVaR_{\kappa}(X_{1}^{-} + X_{2}^{-}) = LVaR_{\frac{1 - \kappa}{2}}(X) + LVaR_{\frac{1 + \kappa}{2}}(X)$}.
+
+\bigskip
+
+La convexité de $\phi$ peut être confirmée en vérifiant que $\frac{\partial^{2}}{\partial x^{2}} \bar{F}(x) \geq 0$ pour $x \in \mathbb{R}^{+}$.
+
+%De plus, il s'ensuit que pour $0 < u_{1} < 0.5 < u_{2}$, alors $\phi(u_{1}) = \phi(u_{2}) = x$ et que $F_{X_{1}^{-} + X_{2}^{-}}(x) = u_{2} - u_{1} = \kappa = 2\gamma$. Finalement, on déduit que \lfbox[formula]{$VaR_{\kappa}(X_{1}^{-} + X_{2}^{-}) = \phi\left(\frac{1}{2} - \frac{\kappa}{2}\right)$}
+\end{definitionNOHFILLprop}
+
+\bigskip
+
+Si les v.a. $X_{1}, \dots, X_{n}$ sont indépendantes \lfbox[formula]{$\text{E}[g_{1}(X_{1}) \dots g_{n}(X_{n})] = \text{E}[g_{1}(X_{1})] \times \dots \times \text{E}[g_{n}(X_{n})]$}.
+
+
+
 \columnbreak
 \subsection{Loi multivariées}
 \begin{definitionNOHFILL}[Loi de Poisson bivariée de Teicher]
@@ -1424,6 +1464,8 @@ Soit :
 	\item	Le couple de v.a. $(M_{1}, M_{2})$ où $M_{i} \sim \text{pois}(\lambda_{i})$ pour $i	=	1, 2$.
 	\item	Les v.a. indépendantes $K_{0}, K_{1}, K_{2}$ avec $K_{i}	\sim \text{Pois}(\alpha_{i})$ pour $i	=	0, 1, 2$ et $\alpha_{i}	=	\lambda_{i}	-	\alpha_{0}$ pour $i	=	1, 2$ où $0	\leq	\alpha_{0}	\leq	\min(\lambda_{1}, \lambda_{2})$.
 \end{itemize}
+
+\bigskip
 
 On définit $M_{i}	=	K_{i} + K_{0}$ pour $i	=	1, 2$.
 \begin{itemize}
