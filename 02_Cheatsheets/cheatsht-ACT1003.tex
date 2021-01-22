@@ -1,0 +1,130 @@
+%% Préambule
+\documentclass[10pt, french]{article}
+\input{cheatsht-preamble-general.tex}
+\usepackage{array, multirow}
+\usepackage{booktabs}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\graphicspath{{../figure/}}
+\setlist{leftmargin=*}
+
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\def\BackgroundColor{white}
+\def\SectionColor{teal!90!black}
+\def\SubSectionColor{teal!45!black}
+\def\SubSubSectionColor{armygreen}
+\def\cours{Compléments de mathématiques}
+\def\sigle{ACT-1003}
+
+
+%% -----------------------------
+%%	Feuille basée sur 
+\begin{document}
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+%%
+\end{center}
+\input{contributeurs/contrib-ACT1003}
+%% -----------------------------
+\newpage
+
+\raggedcolumns
+
+\begin{multicols*}{2}
+
+\section{Rappels}
+
+\begin{conceptgen_enhanced}[Propriétés des limites]
+\begin{itemize}
+  \item $\lim_{x \to a}  (f(x) \pm g(x)) = \lim_{x \to a} f(x) \pm \lim_{x \to a} g(x)$ 
+  \item $\lim_{x\to a} k*f(x) = k*\lim_{x\to a} f(x)$
+  \item $\lim_{x\to a} (f(x)g(x)) = \lim_{x\to a} f(x)*\lim_{x\to a} g(x)$
+  \item $\lim_{x\to a} \frac{f(x)}{g(x)} = \frac{\lim_{x\to a} f(x)}{\lim_{x\to a} g(x)}$
+  \item $\lim_{x\to a} (f(x))^{n} = (\lim_{x\to a} f(x))^{n}$
+  \item $\lim_{x\to a} \log_b (x) = \log_b{a} \iff a > 0$
+  \item $\lim_{x\to \infty} \log_b (x) = \hspace{0.35cm}\infty \iff b > 1, \hspace{0.5cm}=-\infty \iff 0 < b < 1$
+  \item $\lim_{x\to 0^{+}} \log_b (x) = -\infty \iff b > 1, \hspace{0.5cm}=\infty \iff 0 < b < 1$
+\end{itemize}
+\end{conceptgen_enhanced}
+
+\begin{conceptgen_enhanced}[Opérations avec les $\infty$]
+\begin{itemize}
+ \item $k \pm \infty = \pm \infty$
+ \item $\pm \infty * \pm \infty = \pm \infty$
+ \item $k * \pm \infty = \pm \infty$
+ \item $\frac{k}{\pm \infty} = 0$
+ \item $\frac{k}{0^{+}} = \infty$, $\frac{k}{0^{-}} = -\infty$, pour k > 0
+\end{itemize}
+\end{conceptgen_enhanced}
+
+\begin{formula}{Limites indéterminées}
+Il est possible d'avoir une limite évaluée à l'infini qui donne $\frac{\infty}{\infty}$, ce qui est indéterminé. Pour   évaluer cette limite, on peut passer par la règle de L'Hospital, où l'on dérive le numérateur et le dénominateur. Il y a  toutefois une autre façon qui est assez simple, c'est-à-dire sortir l'élément qui a la puissance la plus élevée. Voici    un exemple :
+  \begin{itemize}
+  \item $\lim_{x \to \infty} \frac{7*x^{4}-2*x+4}{2*x^{5}-3*x^{3}-11} &= \frac{\infty}{\infty}$
+  \item On peut toutefois sortir $x^{4}$ du numérateur et $x^{5}$ du dénominateur.
+  \item $\lim_{x \to \infty} \frac{x^{4}*(7-\frac{2}{x^{3}}+\frac{4}{x^{4}})}{x^{5}*(2-\frac{3}{x^{2}}-\frac{11}{x^{5}})} &= \lim_{x \to \infty} \frac{7-\frac{2}{x^{3}}+\frac{4}{x^{4}}}{x*(2-\frac{3}{x^{2}}-\frac{11}{x^{5}})}$
+  \item De ce qu'on a vu précédemment avec les opérations avec les $\infty$, le numérateur donne 7 et le dénominateur donne $2*\infty$, ce qui nous amène à la valeur de la limite qui est de 0.
+  \end{itemize}
+  
+\end{formula}
+
+\section{Fonctions}
+
+\begin{definitionNOHFILL}[Caractéristiques de fonctions]
+Il existe trois caractéristiques pour une fonction donnée : la surjectivité, l'injectivité et la bijectivité.\\
+
+Lorsque tous les y d'une fonction, c'est-à-dire chaque élément de son image, sont tous reliés à au moins un x, la fonction est dite surjective. Par exemple, la fonction $x^{2}$ n'est pas surjective car y=-1 n'a pas de x dans les réels. Si on limite toutefois l'image aux réels positifs, la fonction devient surjective, car chaque y des réels positifs ont au moins un x correspondant.\\
+
+Lorsque tous les y d'une fonction ne sont reliés qu'à un seul x, la fonction est dite injective. En reprenant $x^{2}$, on peut démontrer qu'elle n'est pas injective : $x^{2}=(-x)^{2}$. Toutefois, 2x est injective car il n'existe pas deux x pouvant donner le même y.\\
+
+La fonction est bijective lorsqu'elle est à la fois bijective et injective, ce qui veut dire que chaque y de la fonction ne possède qu'un seul x. En reprenant 2x, on peut démontrer sa bijectivité : chaque y possède un x dans les réels. La fonction étant aussi injective, elle devient alors bijective.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Racines réelles]
+On peut identifier les racines réelles à l'aide d'un calcul simple. Si on a la fonction $ x^{3}-3x^{2}-10x+24 $, on doit utiliser la fonction suivante : \\
+  \begin{equation*}
+%% Difficulté à enlever l'italique et às séparer les mots dans la fraction
+			\pm \frac{Facteurs positifs de a_{0}}{Facteurs positifs de a_{k}}
+	\end{equation*}
+Le numérateur serait 24 et le dénominateur serait 1 (car $24x^{0}$ et $1x^{3}$). Les racines de la fonction sont donc $\in \{ {\pm 1; \pm 2; \pm 3; \pm 4; \pm 6; \pm 8; \pm 12; \pm 24} \}$. Il faut ensuite essayer les chiffres de l'ensemble de la fonction. Par exemple, en ayant x=2, la fonction donne 0. En divisant la fonction par (x-2), il reste $x^{2}-x-12$. On peut encore essayer avec les racines du départ et on verrait qu'en ayant x=-3, la fonction donne 0, ou on peut déjà voir qu'il reste (x+3)(x-4).
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Fonctions inverses]
+Pour obtenir une fonction inverse, il faut avoir une fonction bijective sur l'intervalle donné dans l'énoncé. Par la suite, on isole x dans la fonction et on remplace x par $f^{-1}(x)$ et y par x. Pour reprendre l'exemple plus haut :
+  \begin{align*}
+  f(x) = x^{2}
+  \end{align*}
+On peut trouver l'inverse lorsque les intervalles sont de $[ 0, \infty [ \rightarrow [ 0, \infty [$ étant donné la bijectivité sur cet intervalle. En isolant x, on a la fonction $\sqrt{y} = x$ et on remplace les variables. On obtient $\sqrt{x} = f^{-1}(x)$ pour les intervalles $[ 0, \infty [ \rightarrow [ 0, y [$. 
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Fonctions monotones]
+Il existe quatre types de fonctions monotones. \\
+La première la fonction dite non-décroissante; elle augmente sans arrêt, mais peut avoir un plateau ($f(x_{1}) \leq f(x_{2})$). \\
+Il y a la fonction strictement croissante, qui s'apparente à la première, mais qui ne peut avoir de plateaux ($f(x_{1}) < f(x_{2})$). On peut penser à une fonction linéaire à pente positive pour se l'imaginer. Une fonction qui est strictement croissante est donc aussi non-décroissante. Une fonction en escalier avec une "pente positive" serait par exemple une fonction non-décroissante, mais pas strictement croissante avec ses plateaux.\\
+Il existe aussi la fonction non-croissante, qui se veut une fonction décroissante sur son domaine, mais qui peut avoir un plateau ($f(x_{1}) \geq f(x_{2})$). \\
+Pour finir, il y a aussi la fonction strictement décroissante, où il ne peut y avoir de plateaux ($f(x_{1}) > f(x_{2})$). On peut penser à une fonction linéaire à pente négative pour se l'imaginer. Une fonction qui est strictement décroissante est donc automatiquement une fonction non-croissante.
+\end{definitionNOHFILL}
+
+\section{Limites}
+%% connaissance limitée avec les limites epsilon et delta, à revoir
+\subsection{Théorème du sandwich}
+Nous avons au départ:
+  \begin{align*}
+    \lim_{x \to a}  f(x) = \lim_{x \to a} g(x) = L
+  \end{align*}
+Nous avons aussi h suivant:
+  \begin{align*}
+    f(x) \leq h(x) \leq g(x)
+  \end{align*}
+  Le but du théorème est alors de trouver la valeur de la limite de h, comme on peut voir par cette image :
+% j'essaye de rentrer la figure
+%  \begin{figure}
+%    \includegraphics[width=\textwidth]{Sandwich.png}
+%  \end{figure}
+
+
+\end{multicols*}
+%% -----------------------------
+\end{document}
