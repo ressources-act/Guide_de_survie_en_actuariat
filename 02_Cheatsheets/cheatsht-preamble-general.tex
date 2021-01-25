@@ -12,6 +12,14 @@
 %% -----------------------------
 %% Encoding packages
 %% -----------------------------
+
+%% -----------------------------
+%% Fontawesome for special symbols
+%% -----------------------------
+\usepackage{fontspec}
+%\defaultfontfeatures{Path = /usr/local/texlive/⁨2018⁩/texmf-dist⁩/fonts/opentype/public/fontawesome/}
+\defaultfontfeatures{Extension = .otf}
+\usepackage{fontawesome}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{babel}
@@ -30,6 +38,7 @@
 % Determine the margin for cheatsheet
 \usepackage[landscape, hmargin=1cm, vmargin=1.7cm]{geometry}
 \usepackage{multicol}
+\usepackage{multirow}
 
 % Remove automatic indentation after section/subsection title.
 \setlength{\parindent}{0cm}
@@ -67,6 +76,7 @@
 \usepackage{ctable} % for \specialrule command
 \usepackage[fleqn]{amsmath}
 \usepackage{amsthm,amssymb,latexsym,amsfonts}
+\usepackage{textcomp} %% j'avais un avertissement, voir https://latex.org/forum/viewtopic.php?f=4&t=3364#p13124 pour pourquoi j'import ce paquetage
 \usepackage{gensymb}
 \usepackage{empheq}
 \usepackage{numprint}
@@ -200,7 +210,7 @@
 %% -----------------------------
 %% tcolorbox configuration
 %% -----------------------------
-\usepackage[most]{tcolorbox}
+\usepackage[many]{tcolorbox}
 \tcbuselibrary{xparse}
 \tcbuselibrary{breakable}
 %%%	Explanation of various arugments : 
@@ -646,12 +656,9 @@
 \newcolumntype{a}{>{\columncolor{red!20!white}$}p{2cm}<{$}}	% ACT-2005
 % configuration to force a line break within a single cell
 \usepackage{makecell}
+\usepackage{booktabs} % \specialrule
 
 
-%% -----------------------------
-%% Fontawesome for special symbols
-%% -----------------------------
-\usepackage{fontawesome}
 
 %% -----------------------------
 %% Section Font customization
@@ -660,6 +667,8 @@
 \sectionfont{\color{\SectionColor}}
 \subsectionfont{\color{\SubSectionColor}}
 \subsubsectionfont{\color{\SubSubSectionColor}}
+
+
 
 %% -----------------------------
 %% Footer/Header Customization

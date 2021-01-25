@@ -1,0 +1,532 @@
+\documentclass[10pt, french]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Introduction à la programmation avec Python}
+\def\sigle{GLO-1901}
+%% -----------------------------
+%% Colour setup for sections
+%% -----------------------------
+\def\SectionColor{burntorange}
+\def\SubSectionColor{burntsienna}
+\def\SubSubSectionColor{burntsienna}
+%% -----------------------------
+%% Colour setup for prestations
+%%	Ajoute couleurs sur les trêmas des signes de prestations
+%% -----------------------------
+\usepackage{stackengine}
+\newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
+%
+% Save more space than default
+%
+\setlength{\abovedisplayskip}{-15pt}
+\setlist{leftmargin=*}
+%
+%	Extra math symbols
+%
+\usepackage{mathrsfs}
+\usetikzlibrary{matrix}
+\usepackage{listings}
+%
+% thin space, limits underneath in displays
+%
+
+%% -----------------------------
+%% 	Colour setup for sections
+%% -----------------------------
+\def\SectionColor{cobalt}
+\def\SubSectionColor{azure(colorwheel)}
+\def\SubSubSection{azure(colorwheel)}
+%% -----------------------------
+\setcounter{secnumdepth}{0}
+
+%% -----------------------------
+%% Color definitions
+%% -----------------------------
+\definecolor{indigo(web)}{rgb}{0.29, 0.0, 0.51}
+\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+%%
+%% Matrix notation variable (bold style)
+%%
+\newcommand\cololine[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+\newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+
+\begin{document}
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+%\input{contributeurs/contrib-ACT1XXX}
+
+\newpage
+\raggedcolumns
+\begin{multicols*}{2}
+\section{Introduction}
+
+\begin{definitionNOHFILLprop}[Étapes de développement]
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	L'analyse
+		\begin{itemize}
+		\item	Quel est le \textit{problème} ?
+		\item	Que veut l'\textit{utilisateur} ?
+		\item	Quel est son \textit{budget} ?
+		\item	Quelles sont les \textbf{conséquences} d'une \textit{erreur} ?
+		\end{itemize}
+	\item	La conception
+		\begin{itemize}
+		\item	Comment résoudre le problème ?
+		\item	Quelles sont les \textit{structures de données} appropriées ?
+		\item	Quels sont les \textit{algorithmes} nécessaires ? 
+		\item	Quelles sont les \textit{interfaces} requises ?
+		\end{itemize}
+	\item	La programmation
+		\begin{itemize}
+		\item	Implantation de la solution développée aux étapes précédente, en utilisant un ou plusieurs langages de programmation.
+		\end{itemize}
+	\item	Les tests d'intégration
+		\begin{itemize}
+		\item	L'intégration des différents modules en un tout cohérent ;
+		\item	Les procédures de tests qui permettent d'établir la validité et la fiabilité du logiciel.
+		\end{itemize}
+\end{enumerate}
+\end{definitionNOHFILLprop}
+
+
+\begin{definitionNOHFILLpropos}[L'approche hiérarchique pour traiter des données]
+\begin{itemize}
+	\item	les \textbf{programmes} sont composés de \textbf{modules} ;        
+	\item	les \textbf{modules} contiennent des \textbf{énoncés} ;            
+	\item	les \textbf{énoncés} contiennent des \textbf{expressions} ;        
+	\item	les \textbf{expressions} créent et manipulent les \textbf{données}.
+\end{itemize}
+\end{definitionNOHFILLpropos}
+
+
+
+\subsection{Syntaxe de base}
+\begin{description}
+	\item[Affectation]	énoncé (e.g. \texttt{pi = 3.1415}) ayant habituellement 3 éléments :
+		\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+		\item	un nom de variable (e.g. \texttt{pi}) appelé \textbf{identifieur} ;
+		\item	l'opérateur (e.g. \texttt{=}) ;
+		\item	une \textbf{valeur} affectée à la variable (e.g. 3.1415) appelée \textbf{expression}.
+		\end{enumerate}
+	\item[Commentaires]	Des commentaires sont des lignes du code, qui commencent par \#, qui ne sont pas exécutées.
+\end{description}
+	
+	
+\subsubsection{Opérateurs arithmétiques}
+\begin{itemize}[leftmargin = 5mm]
+	\item[+]	addition ;
+	\item[-]	soustraction ;
+	\item[*]	multiplication ;
+	\item[/]	division régulière ;
+	\item[//]	division entière ;
+	\item[\%]	reste de la division entière ;
+	\item[**]	exponentiation.
+\end{itemize}
+
+Fonction \texttt{int} retourne la partie entière d'un nombre.
+3 types de nombres : entiers, flottants et complexes. Lorsque l'on effectue une opération arithmétique entre certains nombres, Python conserve le type le plus général.
+	de même pour \texttt{float}
+	
+Module de maths a plus d'opérateur (e.g. sin, cos, sqrt) et est importé avec \texttt{import math}. Puis, on utilise ses fonctions avec, p. ex., \texttt{math.sqrt()}.
+
+
+\subsection{Fonctions de base}
+\begin{definitionNOHFILLsub}[\texttt{print}]
+Permet d'afficher à la console la valeur d'une ou de plusieurs expressions.
+\begin{itemize}
+	\item	permet aussi avec toute sorte d'options de spécifier la façon dont cette ou ces valeurs seront affichées.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[\texttt{input}]
+Permet de lire ce que vous entrez au clavier et retourne le résultat sous la forme d'une chaîne de caractères.
+
+\end{definitionNOHFILLsub}
+
+
+
+\newpage
+\section{Fonctions}
+\subsection{Introduction}
+\subsubsection{Qualités d'une fonction}
+\begin{definitionGENERAL}{Cohérence}[\circled{1}{trueblue}]
+Une fonction est \textbf{\textit{cohérente}} si elle accomplit une seule tâche. On doit pouvoir résumer en peu de mots ce qu'accomplit la fonction.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Indépendance}[\circled{2}{trueblue}]
+Une fonction est \textbf{\textit{indépendante}} si sa sortie dépend uniquement de ses entrées (arguments) et d'aucune autre variable. Il ne faut pas définir des fonctions qui dépendent de \textit{variables globales}.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Concision}[\circled{3}{trueblue}]
+La \textit{\textit{concision}} consiste à limiter la longueur des fonctions. Plus la fonction est courte, plus elle sera facile à comprendre pour un humain.
+\end{definitionGENERAL}
+
+
+\subsubsection{Définition}
+De façon générale, on définit une fonction en Python avec \texttt{def} :
+\begin{lstlisting}
+def name(arg1, arg2, ..., argn):
+	#	bloc d'énoncés indentés
+	return expression	#	optionnel
+\end{lstlisting}
+
+
+
+\subsubsection{Booléens}
+Les opérateurs suivants permettent de comparer les valeurs respectives de deux objets : 
+\begin{description}
+	\item[$<$]	inférieur ;
+	\item[$>$]	supérieur ;
+	\item[$<=$]	inférieur ou égal ;
+	\item[$>=$]	supérieur ou égal ;
+	\item[$==$]	égal ;
+	\item[$!=$]	pas égal.
+\end{description}
+
+\bigskip
+
+Les opérateurs suivants permettent de combiner une ou plusieurs expressions booléennes : 
+\begin{description}
+	\item[and]	conjonction ($\cap$) ;
+	\item[or]	disjonction ($\cup$) ;
+	\item[not]	négation ($A^{\complement}$).
+\end{description}
+
+\subsection{Énoncés conditionnels}
+\subsubsection{Forme générale du \texttt{if}}
+\begin{lstlisting}
+if expression_1:
+	#	bloc d'énoncés 1
+elif expression_1:
+	#	bloc d'énoncés 2
+#	...
+elif expression_n:
+	#	bloc d'énoncés n
+else:
+	#	bloc d'énoncés n + 1
+\end{lstlisting}
+
+On peut aussi utiliser l'opérateur \texttt{if else} pour définir une variable. Par exemple, pour l'expression \texttt{a = y if x else z} si \texttt{x} est vraie, alors \texttt{a = y} sinon \texttt{a = z}.
+
+
+
+\newpage
+\section{Éléments de procédure}
+\subsection{Types d'énoncés}
+Séquentiels
+Conditionnels
+\begin{definitionNOHFILL}[Énoncé répétitif]
+L'\textbf{\textit{énoncé répétitif}} permet au programmeur de faire des boucles, c'est-à-dire de \textbf{\underline{répéter}} les énoncés d'un bloc d'énoncés tant qu'une certain \textbf{\underline{condition}} demeure vraie.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Boucle \texttt{for}]
+\begin{lstlisting}
+for cible in itérable:
+    # bloc principal d'énoncés indentés
+    if condition: 
+        break     # facultatif
+    if condition: 
+        continue  # facultatif
+else:  # facultatif
+    # bloc supplémentaire d'énoncés indentés
+\end{lstlisting}
+
+\textbf{Notes :}
+\begin{itemize}
+	\item	La \textbf{clause} \texttt{else} est exécutée lorsque la \textbf{boucle} \texttt{for} se termine normalement.
+	\item	L'\textbf{énoncé} \texttt{break} placé à l'\textit{intérieur} d'une boucle met fin à l'exécution de la boucle \underline{\textbf{sans avoir traité toutes les valeurs}} de l'\texttt{itérable}.
+	\item	L'\textbf{énoncé} \texttt{continue} placé à l'\textit{intérieur} d'une boucle met fin à l'\textbf{itération \textit{courante}} de la boucle.
+\end{itemize} 
+\end{definitionNOHFILLsub}
+
+En bref : 
+\begin{description}[font = \ttfamily]
+	\item[break]	sortir d'une boucle \textbf{prématurément} avant sa terminaison normale. Par exemple, si on détermine que les itérations restantes de la boucle ne sont pas utiles ou nécessaires.
+	\item[continue]
+\end{description}
+
+
+\begin{definitionNOHFILLsub}[Boucle \texttt{while}]
+\begin{lstlisting}
+while expression:
+    <bloc principal d'énoncés indentés>
+    if condition: 
+        break     # facultatif
+    if condition: 
+        continue  # facultatif
+else:  # optionnel
+    <bloc supplémentaire d'énoncés indentés>
+\end{lstlisting}
+
+\textbf{Notes :}
+\begin{itemize}
+	\item	Tant que l'\textbf{expression} est vraie, le bloc exécute.
+\end{itemize} 
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	On devrait toujours utiliser la boucle for et non la boucle while.
+
+
+
+\subsection{Fonctions utiles}
+\texttt{range(start = 0, stop, step = 1)} : générer une séquence de chiffres (équivalent de \texttt{seq} en \texttt{R} sauf que la fonction retourne un objet de classe "range".
+
+
+\newpage
+\section{Types de données}
+\begin{definitionNOHFILL}[Dictionnaire]
+Le dictionnaire Python permet de stocker des \textbf{associations} entre une \textbf{clé d'accès} et une \textbf{valeur}. La clé d'accès doit être \textbf{\textit{immuable}} et est souvent une chaine de caractères.
+
+\bigskip
+
+On définit un dictionnaire par une paire d'accolades \lfbox[formula]{\texttt{\{'clé': valeur\}}}
+
+\bigskip
+
+\begin{definitionNOHFILLprop}[Fonctions du dictionnaire]
+\begin{lstlisting}
+a = {'spam': 25, 'eggs': 37, 'coffee': 254}
+print(a)
+print(a.get('spam'))
+print(a.copy())
+print(a.keys())
+print(a.values())
+print(a.items())
+\end{lstlisting}
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Ensemble (\og \textit{set} \fg{})]
+L'ensemble de Python correspond à la définition mathématique d'un ensemble. Il contient une collection de \textbf{clés \underline{unique}}; c'est donc un dictionnaire sans valeurs ! 
+
+\bigskip
+
+\begin{definitionNOHFILLprop}[Opérations sur les ensembles]
+\begin{lstlisting}
+x = set('spam')
+y = {'h', 'a', 'm'}
+x | y	# réunion
+x & y	# intersection
+x - y	# différence, diffère selon 
+	#  l'ordre (x - y vs y - x) ! 
+x ^ y	# différence symétrique, pareille 
+	#  peu importe l'ordre
+\end{lstlisting}
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
+
+
+
+\newpage
+\section{Fichiers}
+On utilise la fonction \lfbox[formula]{\texttt{open(<fichier>, <mode>)}} où on peut avoir 4 modes : 
+\begin{description}[font = \ttfamily]
+	\item['r']	mode lecture (défaut), le fichier doit exister. (\og \textit{\textbf{r}ead} \fg{})
+	\item['w']	mode écriture, le fichier est créé au besoin et remplacé s'il existe déjà. (\og \textit{\textbf{w}rite} \fg{})
+	\item['x']	mode écriture, comme 'w', mais retourne une erreur si le fichier existe déjà.
+	\item['a']	mode écriture, on ajoute au fichier préexistant ou créé le fichier s'il n'existe pas. (\og \textit{\textbf{a}ppend} \fg{})
+\end{description}
+
+On écrit dans le fichier avec \texttt{<fich>.write('text')}. Puis, après nos ajouts on ferme le fichier avec \texttt{<fich>.close()}, puisque les écritures se font de façon asynchrones. Si on ne \texttt{close} pas le fichier on ne peut pas être certain qu'il sera modifié. Pour se simplifier la vie, on peut utiliser \texttt{with open('fichier.txt', <mode>) as fich: fich.write(<texte>)}.
+
+\bigskip
+
+On lit un fichier avec \texttt{<fich>.read()}
+
+
+
+\newpage	
+\section{Retour sur les fonctions}
+Qualités d'une fonction
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	\textbf{Cohérence} : Chaque fonction devrait implanter une seule tâche.
+	\item	\textbf{Indépendance} : Le résultat d'une fonction ne doit dépendre que de ses arguments.
+	\item	\textbf{Concision} : garder les fonctions courtes et \textbf{simples} pour en faciliter la lisibilité.
+\end{enumerate}
+
+\paragraph{Note}	Si on ajoute une étoile à un argument (e.g. \texttt{fonc(a, b, *c)} le dernier argument va récupérer tout les arguments hors de position ou supplémentaire. On ne peut pas avoir plus qu'un argument étoilé.
+
+\paragraph{Note}	On peut forcer que des arguments soient spécifiés par nom (e.g. \texttt{fonc(a, b, *, c = 0)} en incluant une étoile comme frontière. Ici, \texttt{c} doit être spécifié par nom.
+
+\paragraph{Note}	Si on insère 2 étoiles devant un argument, il va créer un dictionnaire des arguments nommés non définis par la fonction (e.g. \texttt{fonc(**kargs)}).
+
+\paragraph{Note}	Si on ne spécifie pas de \texttt{return} dans une fonction, elle retourne \texttt{None}.
+
+\bigskip
+
+On peut utiliser \texttt{lambda} pour créer de fonctions anonymes (e.g. \texttt{lambda x: x**2}).
+
+\bigskip
+
+On peut utiliser la fonction \texttt{yield}, au lieu de \texttt{return}, pour retourner des valeurs intermédiaires.
+
+
+\columnbreak
+\subsection{Complexité algorithmique}
+Croissance :
+\begin{itemize}
+	\item	linéaire $O(n)$
+	\item	quadratique $O(n^{2})$
+	\item	cubique $O(n^{3})$
+\end{itemize}
+
+
+
+\newpage	
+\section{Classes et objets}
+\begin{rappel_enhanced}[Contexte]
+Les classes sont le fondement de la \textbf{\textit{programmation orientée objet}}. Nous étudions 5 notions de classes.
+\end{rappel_enhanced}
+
+\begin{definitionGENERAL}{Encapsulation}[\circled{1}{trueblue}]
+Une classe \textit{réunit} des \textbf{\textit{données}} et des \textbf{\textit{fonctions}} applicables sur ces données. On dit qu'elle \textbf{\textit{encapsule}} les données avec une interface publique permettant de facilement les manipuler. 
+
+\bigskip
+
+Un classe permet, entre autre, de définir ses propres \textbf{\textit{types}} de données et les opérateurs applicables sur ses données.
+\end{definitionGENERAL}
+
+\begin{definitionNOHFILL}[Attributs d'une classe]
+Un \textbf{\textit{attribut}} d'une classe est un membre de la classe. Pour accéder à l'attribut \texttt{x} d'un objet \texttt{y}, on écrit \texttt{y.x}. Une classe constitue un \textit{gabarit} qui permet d'engendrer des objets particuliers qu'on nomme des \textbf{\textit{instances}} de lla classe.
+\end{definitionNOHFILL}
+
+
+\begin{definitionGENERAL}{Héritage}[\circled{2}{trueblue}]
+On peut construire une classe à partir d'une autre classe. Dans une tel cas, la classe \textbf{\textit{hérite}} tous les attributs de son ancêtre---c'est la classe \textbf{\textit{dérivée}}.
+
+\bigskip
+
+Par exemple, soit la \textit{classe de base} une \underline{forme géométrique}. Alors, un \underline{triangle}, \underline{rectangle} et \underline{ellipse} sont tous des classes dérivées de la \underline{forme géométrique}.
+\end{definitionGENERAL}
+
+
+\begin{rappel_enhanced}[Contexte]
+La programmation orientée objet vise à favoriser la réutilisation du code. C'est une entité \textbf{\textit{cohérente}} et\textit{\textbf{indépendante}}. 
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Classe en Python]
+Un énoncé \texttt{class} est exécutable et produit un objet de type \texttt{class} qu'il affecte à la variable \texttt{nom} :
+\begin{lstlisting}
+class	nom(classe_de_base):
+	var = valeur   # variable de classe (partagée par toutes les instances)
+	
+	...
+	def fonc1(self, ...):   # fonction membre
+		self.membre = valeur # variable d'instance (spécifique à chaque instance)
+\end{lstlisting}
+
+\bigskip
+
+Il peut contenir des variables \textbf{\textit{locales}} à la classe qui seront partagées par toutes ses objets (instances). Également, il contient des fonctions membres, dont le premier argument \texttt{self} réfère toujours à l'instance pour laquelle la fonction est appelée.
+\end{definitionNOHFILL}
+
+\paragraph{Note}	Une fonction membre définie dans une classe se nomme une \textbf{\textit{méthode}}.
+
+
+\subsection{Opérateurs}
+Une classe peut définir ses propres \textbf{\textit{opérateurs}} en définissant une fonction avec un nom spécial de la forme \texttt{\_\_NOM\_\_}. 
+
+\bigskip
+
+Le \textbf{\textit{constructeur}} est une fonction spéciale qui permet d'initialiser les objets de la classe et porte toujours le nom \texttt{\_\_init\_\_}. Il y existe plusieurs méthodes spéciales : 
+\begin{itemize}
+	\item	Opérations mathématiques (\texttt{add}, \texttt{sub}, \texttt{mul}) et la division (\texttt{\_\_truediv\_\_}).
+	\item	Égalités lt, gt, le, ge, eq (==), ne (!=).
+	\item	Opérateur [] en lecture (\texttt{getitem}) ou en écriture (\texttt{setitem}) qui permettent d'utiliser implicitement les crochets.
+		\begin{itemize}
+		\item	Par exemple, \texttt{def \_\_setitem\_\_(self, index, newArg): self.data[index] = newArg} et \texttt{def \_\_getitem\_\_(self, index): self.data[index] = newArg}.
+		\end{itemize}
+	\item	Longueur (\texttt{len}), conversion en texte (\texttt{str}) et la conversion en booléen (\texttt{bool}).
+\end{itemize}
+\begin{description}
+	\item[\_\_add\_\_]
+	\item[\_\_sub\_\_]
+	\item[\_\_mul\_\_]
+\end{description}
+
+
+\columnbreak
+\subsection{Modules}
+\texttt{import module} ou \texttt{from module import fun1, fun2}. Dans le deuxième cas, on importe directement les fonctions dans notre namespace et il n'est pas nécessaire de les précéder de \texttt{module.}.
+
+\bigskip
+
+Un \og \textit{package} \fg{} est un \textbf{\textit{groupe de modules}}. Pour qu'un répertoire soit reconnu comme un package par Python, il doit contenir un fichier nommé \texttt{\_\_ init\_\_ .py}.
+
+
+
+\newpage
+\section{Exceptions}
+\subsection{Traitement}
+\begin{rappel_enhanced}[Contexte]
+Lorsqu'une exception est \textbf{\textit{soulevée}}, mais non traitée par notre programme, l'interpréteur affiche la \textbf{\textit{trace}} (\og \textit{traceback} \fg{}) du programme. Si on désire traiter nous même les exceptions risquant d'être soulevées par les énoncés à exécuter, on doit les placer dans un bloc défini par l'énoncé \texttt{try}. Puis, on peut dire à Python quoi faire en insérant un bloc \texttt{except} après le \texttt{try}. On peut également soulever nous-mêmes une erreur à l'aide de l'énoncé \texttt{raise}.
+\end{rappel_enhanced}
+
+Utilisation :
+\begin{lstlisting}
+try:
+    # exécution normale
+    # insérer du code à rouler comme si il n'y avait pas d'exception qui ne sera pas exécuté s'il y en a une !
+    ...
+except nom1 [as valeur]:
+    # exécuté pour une exception de type nom1
+    ...
+except (nom2, nom3) [as valeur]:
+    # exécuté pour une exception nom2 OU nom3
+    ...
+else:
+    # exécuté si aucune exception
+    ...
+finally:
+    # exécuté dans tous les cas
+    ...
+\end{lstlisting}
+
+\bigskip
+
+Types d'erreurs et leur héritage :
+\begin{description}
+	\item[BaseException]	le type de base pour toutes les exceptions
+	\item[Exception]	le type de base pour les exceptions non liées au système
+	\item[ArithmeticError]	
+		\begin{description}
+		\item[OverflowError]	lorsque le nombre est trop grand pour être représenté
+		\item[ZeroDivisionError]	lors d'une division par zéro
+		\end{description}
+	\item[LookupError]	
+		\begin{description}
+		\item[IndexError]	lorsqu'un indice est invalide (e.g. liste)
+		\item[KeyError]	lorsqu'une clé est invalide (e.g. dictionnaire)
+		\end{description}
+	\item[AssertionError]	lors de l'échec d'un énoncé assert
+	\item[EOFError]	lorsque la fonction input atteint la condition de fin de fichier
+	\item[ImportError]	lorsque l'importation échoue (module introuvable)
+	\item[StopIteration]	lorsqu'il n'y a plus d'autres valeurs pour un itérateur (ou une fonction génératrice)
+\end{description}
+
+\begin{definitionNOHFILL}[Raise]
+Le syntaxe de l'énoncé Raise est : \texttt{raise < objet >}. Cette fonction interrompt l'exécution de la fonction en cours et soulève une exception.
+
+\paragraph{Note}	L'énoncé raise peut seulement soulever des erreurs de type \texttt{BaseException}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Assert]
+Le syntaxe de l'énoncé Assert est : \texttt{assert < expressino >[, < objet >]}. Cette fonction permet de tester une expression et de soulever une exception si elle est fausse. Par exemple, on peut l'utiliser pour tester le domaine de valeurs entrées dans une fonction de densité.
+\end{definitionNOHFILL}
+
+
+
+\end{multicols*}
+\end{document}
