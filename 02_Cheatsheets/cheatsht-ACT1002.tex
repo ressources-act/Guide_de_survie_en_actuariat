@@ -38,57 +38,85 @@
 
 \newpage
 
-\raggedcolumns
-\begin{multicols*}{3}
+\begin{multicols*}{2}
 
-\section{Chapitre 1: Analyse combinatoire}
-\begin{probch1}{L'analyse combinatoire}
-\begin{description}
-  \item[Principe de base de comptage :] Pour une expérience 1 avec m résultats possibles et une expérience 2 avec n résultats possibles, il y a m x n possibilités.
-  \item[Permutations :] Nombre d'arrangements en tenant compte de l'ordre. La façon de dénombrer les arrangements dépend du type de question.
-	  \item[$Exemples$ :] Combien de façons peut-on arranger les chiffres 1, 2, 3 et 4 dans un nombre à 4 chiffres? La réponse est {4!}. La réponse serait la même avec les chiffres 1, 2, 2 et 3, car les deux chiffres 2 ne sont pas considérés comme identiques. 
-	  \item[] Toutefois, si on demande combien de façons peut-on distribuer 12 cadeaux différents à 4 personnes, la réponse sera $ 4^{12} $ étant donné que chaque cadeau peut aller à quatre personnes.
-	\item[Combinaisons :] Nombre d'arrangements en \textbf{ne} tenant \textbf{pas} compte de l'ordre.
-	 \item[$Exemples$ :] En reprenant l'exemple des permutations, mais avec les chiffres 1, 1, 1, 2 et 2, il y aurait 5!/(3!2!) combinaisons puisque les trois 1 et les deux 2 sont considérés identiques.
-	 \item[Coefficient binomial :] De l'exemple précédent, on peut observer l'existence du coefficient binomial, qui est défini selon la formule :
-	 \begin{align*}
-	 \binom{n}{k}
-	 &= \frac{n!}{k! \,(n-k)!}
-	 \end{align*}
-  \item[Coefficient multinomial :] La généralisation du coefficient binomial va comme suit :
-  \begin{align*}
-  \binom{n}{k_1, k_2, ..., k_m}
-  &= \frac{n!}{(k_1)! \, (k_2)! \, ..., (k_m)!}
-  \end{align*}
-  \item[] Où {$n = \sum_{i = 1}^{m} k_i$}
-  \item[Théorème multinomial :] Le coefficient multinomial aide à trouver les coefficients devant les variables lors du développement de multinômes. 
-  \begin{itemize}
-	  \item Afin de mieux comprendre le théorème multinomial, voici un exemple :
-	  	\setlength{\mathindent}{-1cm}
-		  \begin{align*}
-			(-3x+5y^2)^4 
-			&=	\sum_{}^{} \binom{4}{n_1 , n_2} (-3x)^{n_1} (5y^{2})^{n_2}
-		  \end{align*}
-		\setlength{\mathindent}{1cm}
-	 \item Si on cherche le coefficient devant les variables $x^{3}y^{2}$, on remplace $n_1$ par 3 et $n_2$ par 1 et on obtient -540.
-\end{itemize} 
-\end{description}  
-\begin{description}
-  \item[Solutions entières non-négatives :] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants». 
-	\begin{itemize}
-		\item Il peut y avoir aucun objet dans un «contenant». 
-		\item La solution à ce type de problème est donnée par $\binom{n+r-1}{r-1}$ où n est le nombre d'objets et r le nombre de «contenants». 
-		\item S'il est mentionné dans le problème qu'il n'est pas nécessaire d'utiliser tous les objets pour les mettre dans les contenants, on peut rajouter un contenant pour les objets «non-utilisés».
-	\end{itemize}
-  \item[Solutions entières positives:] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants» et ce, de façon à ce que chaque «contenant» ait au moins un objet. 
-  \begin{itemize}
-	  \item La solution à ce type de problème est donnée par $\binom{n-1}{r-1}$.
-  \end{itemize} 
-\end{description}
-\end{probch1}
+\section{Analyse combinatoire}
+
+\begin{definitionNOHFILL}[Principe de base de comptage]
+Pour une expérience 1 avec $m$ résultats possibles et une expérience 2 avec $n$ résultats possibles, il y a $m * n$ résultats possible pour les deux expériences ensemble. Ce résultat peut être généralisé pour r expériences, où il y aurait $n_1*n_2*\dots{}*n_r$ possibilités.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Permutations]
+Lorsqu'on s'intéresse au nombre d'arrangements possibles de $n$ éléments \textbf{distincts} et où \textbf{l'ordre est important}, le nombre total de possibilités est représenté par $n!$.\\
+\\
+Lorsqu'on s'intéresse au nombre d'arrangements possibles de $n$ éléments de $k$ types différents dont $n_1$ sont identiques, $n_2$ sont identiques, \dots, $n_k$ sont identiques, et \textbf{où l'ordre est important}, le nombre total de possibilités est représenté par $$\frac{n!}{n_1!n_2! \dots n_k!}.$$
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Combinaisons]
+Lorsqu'on s'intéresse au nombre de groupes possibles de $k$ éléments parmi $n$ et \textbf{où l'ordre n'est pas important}, le nombre total de possibilités est représenté par $\binom{n}{k}$.
+\end{definitionNOHFILL}
+
+\begin{distributions}[Notation]
+De l'exemple précédent, on peut observer l'existence du coefficient binomial, qui est défini selon la formule suivante : $$\binom{n}{k} = \frac{n!}{k!(n-k)!}.$$
+\end{distributions}
+
+\begin{formula}{Exemples classiques sur les permutations et les combinaisons}
+%changer la couleur%
+\begin{enumerate}[label = \rectangled{\arabic*}{teal}]
+	\item \textbf{Combien de façons différentes peut-on placer $4$ livres distincts sur une étagère?}
+	C'est une permutation entre 4 éléments. La réponse est $4!$.\\
+	\item \textbf{Combien d'arrangements ordonnées différents peut-on faire avec les lettres du mot LAVAL?}\\
+	\\
+	 C'est une permutation d'un ensemble qui contient deux paires d'éléments semblables. Donc, la réponse est $\frac{5!}{2!2!1!}$.
+	 \\
+	\item \textbf{Combien de façons différentes peut-on distribuer 12 cadeaux différents à 4 personnes?} \\
+	\\
+	Attention! Ici, il faut bien voir que pour chaque cadeau, il y a 4 possibilités (et non l'inverse!). Donc, la réponse est $4^{12}$. \\
+\\
+Dans ce numéro, il faut aussi faire attention au fait qu'on précise que les cadeaux sont distincts (donc qu'on différencie les cadeaux). Si ce n'était pas le cas, il s'agirait d'un numéro sur des éléments indissociables.\\
+	\item \textbf{Combien de groupes différents de 2 jouets peut-on faire avec 6 jouets?}\\
+	La réponse est $\binom{6}{2}$.
+\end{enumerate}
+\end{formula}
+
+\begin{definitionNOHFILLprop}[Relation de Pascal]
+$$\binom{n}{k} = \binom{n-1}{k-1}+\binom{n-1}{k}$$ 
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Théorème du binôme]
+$$(x + y)^ n = \sum_{k=0}^{n} \binom{n}{k} x^k y^{n-k}$$
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILL}[Coefficient multinomial]
+La généralisation du coefficient binomial va comme suit:\\ $$\binom{n}{k_1, k_2, \dots, k_m} = \frac{n!}{k_1! k_2!  \dots k_m!}$$ où $n = \sum_{i = 1}^{m} k_i$. Cette formule est utile si on veut séparer des éléments à travers plusieurs groupes. Par exemple, si j'ai 10 jouets à séparer à travers 3 enfants, dont le premier en veut 5, le deuxième en veut 2, et le troisième en veut 3, le nombre de possibilités est donné par $\binom{10}{5, 2, 3}.$ \\
+\\
+\\
+De plus, si on différencie les groupes, et qu'on ne sait pas quel groupe aura quel nombre d'objets, il faut multiplier le coefficient multinomial de la façon suivante: 
+$$ coefficient\ multinomial * \frac{n!}{n_1! n_2! \dots n_n!}$$\\ où $n$ correspond au nombre de groupes et $n_i$ correspond au nombre de groupes dans lesquels $i$ éléments ont été placés. \\
+\\
+Par exemple, si cette fois-ci on dit qu'il faut séparer 10 jouets à travers 3 enfants en donnant 3 jouets à 2 enfants et 4 jouets à l'autre enfant, sans spécifier quel enfant recevra 4 jouets, le résultat sera :\\ $$ \binom{10}{3, 3, 4} * \frac{10!}{1!2!}.$$
+\end{definitionNOHFILL}
+
+% TODO : Théorème multinomial + eléments indissociables
+
+
+
+%\begin{description}
+%  \item[Solutions entières non-négatives :] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants». 
+%	\begin{itemize}
+%		\item Il peut y avoir aucun objet dans un «contenant». 
+%		\item La solution à ce type de problème est donnée par $\binom{n+r-1}{r-1}$ où n est le nombre d'objets et r le nombre de «contenants». 
+%		\item S'il est mentionné dans le problème qu'il n'est pas nécessaire d'utiliser tous les objets pour les mettre dans les contenants, on peut rajouter un contenant pour les objets «non-utilisés».
+%	\end{itemize}
+%  \item[Solutions entières positives:] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants» et ce, de façon à ce que chaque «contenant» ait au moins un objet. 
+%  \begin{itemize}
+%	  \item La solution à ce type de problème est donnée par $\binom{n-1}{r-1}$.
+%  \end{itemize} 
+%\end{description}
+%\end{definitionNOHFILL}
 
 \pagebreak
-\section{Chapitre 2: Axiomes de probabilité}
+\section{Chapitre 2:\\ Axiomes de probabilité}
 %faut trouver une façon de ramener les colonnes à gaucher comme dans probch1 FC
 % effectivement,  pas encore trouvé comment (AJvR)
 \begin{rappel}{Domaine et définition}
@@ -171,7 +199,7 @@
 \end{axioms}
 
 \pagebreak
-\section{Chapitre 3: Probabilité conditionnelle}
+\section{Chapitre 3:\\ Probabilité conditionnelle}
 \begin{probch3}{Probabilité conditionnelle}
 \begin{description}
 	\item[Conditionnel:]	La probabilité que $A$ arrive \textit{sachant} que $B$ est arrivé est: 
@@ -217,7 +245,7 @@ Avec la première définition de la probabilité conditionnelle, on peut trouver
 
 
 \pagebreak
-\section{Chapitre 4: Variable aléatoire discrète}
+\section{Chapitre 4:\\ Variable aléatoire discrète}
 \begin{probch4}{La variable aléatoire}
   \begin{description}
     \item[Définition :] Nous avons déjà vu que les événements sont délimités par l'ensemble échantillonal S, c'est-à-dire les résultats possibles de l'événement. La variable aléatoire, disons X, sera une fonction de cet ensemble S (S $\in$ $\mathbb{R}$).\\
