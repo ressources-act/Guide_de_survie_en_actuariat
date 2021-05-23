@@ -222,6 +222,10 @@ Un événement est un sous-ensemble d'un espace échantillonnal. On dénote l'é
 \end{tikzpicture}
 \end{center}
 
+\begin{definitionNOHFILL}[Événements mutuellement exclusifs]
+Deux événements $A$ et $B$ sont dits mutuellement exclusifs lorsque l'intersection entre les deux événements est vide ($A \cap B = \emptyset$). C'est donc dire que $\Pr(A \cap B) = 0$.
+\end{definitionNOHFILL}
+
 \begin{definitionNOHFILLprop}[Propriétés des ensembles]
 \begin{description}
   \item[Commutativité :] 
@@ -241,7 +245,7 @@ Supposons que pour chaque événement $E$ de $\Omega$ (espace échantillonnal d'
 \begin{description}
   \item[1)] $0 \leq \Pr(A) \leq 1$
   \item[2)] $\Pr(\Omega)=1$
-  \item[3)] Si $A_i$ $\cap$ $A_j$ = $\emptyset$ pour $i \neq j$, alors $\Pr(\bigcup_{i = 1}^{n}$ $A_i) = \sum_{i = 1}^{n} \Pr(A_i)$
+  \item[3)] Si $A_i$ $\cap$ $A_j$ = $\emptyset$ pour $i \neq j$ (mutuellement exclusifs), alors $\Pr(\bigcup_{i = 1}^{n}$ $A_i) = \sum_{i = 1}^{n} \Pr(A_i)$
 \end{description}
 \end{definitionNOHFILLprop}
 
@@ -308,10 +312,11 @@ On utilise la notation suivante afin de désigner la probabilité que l'événem
   $$ \Pr(F_j | E) = \frac{\Pr(E | F_{j}) \Pr(F_{j})}{\sum_{i = 1}^{n} \Pr(E | F_{i}) \Pr(F_{i})} $$
 \end{description}
 \begin{distributions}[Indépendance]
-S'il y a indépendance entre les événements ($A$ et $B$ par exemple), les relations suivantes sont vraies: 
+S'il y a indépendance entre les événements ($A$ n'a aucun impact sur $B$, et vice-versa), les relations suivantes sont vraies:\\
 $$\Pr(A|B) = \Pr(A)$$
-$$\Pr(A \cap B) = \Pr(A)*\Pr(B)$$
-On peut également généraliser ces relations lorsqu'il y a plusieurs événements mutuellement indépendants.
+$$\Pr(A \cap B) = \Pr(A)*\Pr(B)$$\\
+On peut également généraliser ces relations lorsqu'il y a plusieurs événements mutuellement indépendants.\\
+\\ Assurez-vous de bien distinguer les événements indépendants des événements mutuellement exclusifs ($\Pr(A \cap B) = 0$ pour les événements mutuellement exclusifs).
 \end{distributions}
 \end{definitionNOHFILLprop}
 
@@ -319,10 +324,7 @@ On peut également généraliser ces relations lorsqu'il y a plusieurs événeme
 Concernant les questions contextuelles (donc avec une mise en situation) portant sur les notions du chapitre 2 et chapitre 3, voici une démarche qui devrait vous aider.
 \\
 
-\textbf{Exemple} : il y a deux types d'assurés. Il y a les bons assurés et les mauvais assurés. La probabilité qu'un bon assuré ait au moins $1$ accident cette année est de $20~\%$. La probabilité qu'un mauvais assuré n'ait pas d'accident cette année est de $70~\%$. Également, il y a 3 fois plus de bons assurés que de mauvais assurés.
-
-\columnbreak
-\textbf{Quelle est la probabilité que, sachant qu'un assuré a eu au moins un accident au cours de l'année, celui-ci soit un mauvais assuré?}\\
+\textbf{Exemple} : il y a deux types d'assurés. Il y a les bons assurés et les mauvais assurés. La probabilité qu'un bon assuré ait au moins $1$ accident cette année est de $20~\%$. La probabilité qu'un mauvais assuré n'ait pas d'accident cette année est de $70~\%$. Également, il y a 3 fois plus de bons assurés que de mauvais assurés. \textbf{Quelle est la probabilité que, sachant qu'un assuré a eu au moins un accident au cours de l'année, celui-ci soit un mauvais assuré?}\\
 
 \begin{description}
 \item [1)] \textbf{Il faut bien définir les événements.}\\
