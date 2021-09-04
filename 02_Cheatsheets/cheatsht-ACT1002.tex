@@ -1,5 +1,7 @@
 \documentclass[10pt, french]{article}
 \usepackage[landscape, hmargin=1cm, vmargin=1.7cm]{geometry}
+\usepackage{tikz}
+\usepackage{csquotes}
 
 %% -----------------------------
 %% Préambule
@@ -16,20 +18,34 @@
 \fancyfoot[R]{\thepage ~de~ \pageref{LastPage}}
 \setlist{leftmargin=*}
 
-
 %% -----------------------------
 %% Colour setup for sections
 %% -----------------------------
-\def\SectionColor{green!50!black}
-\def\SubSectionColor{green!20!black}
+\def\SectionColor{cobalt}
+\def\SubSectionColor{azure(colorwheel)}
+\def\SubSubSectionColor{azure(colorwheel)}
+\definecolor{burgundy}{rgb}{0.5, 0.0, 0.13}
+
 %% -----------------------------
 %% Definition of LaTex math commands
 %% -----------------------------
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-%
-% Redefine authors
-%
-\definecolor{burgundy}{rgb}{0.5, 0.0, 0.13}
+
+%% -----------------------------
+%% Setup for Venn diagrams
+%% -----------------------------
+\def\firstrectangle{(0,0) rectangle (7, 4)}
+\def\firstcircle{(2.5,2) circle (1.5cm)}
+\def\secondcircle{(4.5, 2) circle (1.5cm)}
+\colorlet{circle edge}{blue!50}
+\colorlet{circle area}{blue!20}\tikzset{filled/.style={fill=circle area, draw=circle edge, thick},
+    outline/.style={draw=circle edge, thick}}
+
+%% French quotation marks
+\MakeOuterQuote{"}
+
+% TODO: Arranger auteurs (Nicolas Chevrette)
+% et arranger espacements (notamment en ce qui a trait aux sources
 
 \begin{document}
 \begin{center}
@@ -39,126 +55,351 @@
 
 \newpage
 
-\raggedcolumns
-\begin{multicols*}{3}
+\begin{multicols*}{2}
 
-\section{Chapitre 1: Analyse combinatoire}
-\begin{probch1}{L'analyse combinatoire}
-\begin{description}
-  \item[Principe de base de comptage :] Pour une expérience 1 avec m résultats possibles et une expérience 2 avec n résultats possibles, il y a m x n possibilités.
+\section{Analyse combinatoire}
+\subsection{Outils d'analyse combinatoire}
+\begin{definitionNOHFILL}[Principe de base de comptage]
+Pour une expérience 1 avec $m$ résultats possibles et une expérience 2 avec $n$ résultats possibles, il y a $m * n$ résultats possibles pour les deux expériences ensemble. Ce résultat peut être généralisé pour r expériences, où il y aurait $n_1*n_2*...{}*n_r$ possibilités.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Permutations]
+Lorsqu'on s'intéresse au nombre d'arrangements possibles de $n$ éléments \textbf{distincts} (\textbf{donc qu'on s'intéresse à l'ordre de ces éléments}), le nombre total de possibilités est représenté par $n!$.\\
+\\
+Lorsqu'on s'intéresse au nombre d'arrangements possibles de $n$ éléments de $k$ types différents dont $n_1$ sont identiques, $n_2$ sont identiques, ..., $n_k$ sont identiques (\textbf{donc qu'on s'intéresse à l'ordre de ces éléments}), le nombre total de possibilités est représenté par : $$\frac{n!}{n_1!*n_2!* ... *n_k!}.$$
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Combinaisons]
+Lorsqu'on s'intéresse au nombre de groupe possibles de $k$ éléments parmi $n$ (\textbf{donc qu'on ne s'intéresse pas à l'ordre de ces éléments}), le nombre total de possibilités est représenté par $\binom{n}{k}$.
+\end{definitionNOHFILL}
+
+\begin{distributions}[Notation]
+Dans l'exemple précédent, on peut observer la notation propre au coefficient binomial. Ce dernier peut être réécrit de la façon suivante : $$\binom{n}{k} = \frac{n!}{k!(n-k)!}.$$
+\end{distributions}
+
+\begin{definitionNOHFILLprop}[Relation de Pascal]
+$$\binom{n}{k} = \binom{n-1}{k-1}+\binom{n-1}{k}$$ 
+\end{definitionNOHFILLprop}
+
+\begin{formula}{Exemples classiques sur les permutations et les combinaisons}
+
+\begin{enumerate}[label = \rectangled{\arabic*}{teal}]
+	\item \textbf{Combien de façons différentes peut-on placer $4$ livres distincts sur une étagère?}
+	C'est une permutation entre 4 éléments. La réponse est $4!$.\\
+	\item \textbf{Combien d'arrangements ordonnés différents peut-on faire avec les lettres du mot LAVAL?}\\
+	\\
+	 C'est une permutation d'un ensemble qui contient deux paires d'éléments semblables. Donc, la réponse est $\frac{5!}{2!2!1!}$.
+	 \\
+	\item \textbf{Combien de façons différentes peut-on distribuer 12 cadeaux différents à 4 personnes?} \\
+	\\
+	Attention! Ici, il faut bien voir que, pour chaque cadeau, il y a 4 possibilités (et  \textbf{non} qu'il y a 12 possibilités pour chaque personne!). Donc, la réponse est $4^{12}$. \\
+\\
+Dans ce numéro, il faut aussi faire attention au fait qu'on précise que les cadeaux sont distincts (donc qu'on différencie les cadeaux). Si ce n'était pas le cas, il s'agirait d'un numéro sur des éléments indissociables.\\
+	\item \textbf{Combien de groupes différents de 2 jouets peut-on faire avec 6 jouets ?}\\
+	La réponse est $\binom{6}{2}$.
+\end{enumerate}
+\end{formula}
+
+\begin{definitionNOHFILL}[Coefficient multinomial]
+La généralisation du coefficient binomial va comme suit:\\ $$\binom{n}{k_1, k_2, ..., k_m} = \frac{n!}{k_1!* k_2!*  ... *k_m!}$$\\ où $n = \sum_{i = 1}^{m} k_i$. Cette formule est utile si on veut séparer des éléments entre plusieurs groupes.
+\end{definitionNOHFILL}
+\begin{definitionNOHFILL}[Coefficient multinomial (suite)]
+Par exemple, si on a 10 jouets à séparer entre 3 enfants, et que le premier en veut 5, le deuxième en veut 2, et le troisième en veut 3, le nombre de possibilités est donné par $\binom{10}{5, 2, 3}.$ \\
+
+Si, cette fois-ci, on différencie les groupes, et qu'on ne sait pas quel groupe aura quel nombre d'objets, il faut multiplier le coefficient multinomial de la façon suivante: 
+$$ coefficient\ multinomial * \frac{n!}{n_1!*n_2!* ... *n_n!}$$\\ où $n$ correspond au nombre total de groupes et $n_i$ correspond au nombre de groupes dans lesquels $i$ éléments ont été placés. \\
+\\
+Par exemple, si cette fois-ci on dit qu'il faut séparer 10 jouets à travers 3 enfants en donnant 3 jouets à 2 enfants et 4 jouets à l'autre enfant, sans spécifier quel enfant recevra 4 jouets, le résultat sera :\\ $$ \binom{10}{3, 3, 4} * \frac{3!}{1!2!}.$$
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[Théorème binomial]
+$$(x + y)^ n = \sum_{k=0}^{n} \binom{n}{k} x^k y^{n-k}$$
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Théorème multinomial]
+$$(x_1 + x_2 + ... + x_r)^n = \sum_{n_1 + n_2 + ... + n_r = n} \binom{n}{n_1, n_2, ..., n_r}x_1^{n_1} x_2^{n_2} ... x_r^{n_r}$$ 
+\end{definitionNOHFILLprop}
+
+\subsection{Nombre de solutions entières}
+\begin{definitionNOHFILLsub}[Nombre de solutions entières] Dans certains cas, on s'intéressera au nombre de façons qu'on peut distribuer des éléments \textbf{indissociables} dans des contenants. Ainsi, c'est le nombre d'éléments dans chaque contenant qui nous intéressent, et non quel élément va dans quel contenant. 
+\end{definitionNOHFILLsub}
+\begin{definitionNOHFILLsub}[Nombre de solutions entières (suite)]
+On peut ramener ce problème à une équation de la forme suivante :\\ $$k_1+k_2+ ... +k_r = n$$\\ où $k_i$ correspond au nombre d'éléments dans le contenant $i$ et $n$ le nombre d'éléments à placer dans les contenants. On essaie donc de trouver le nombre de combinaisons possibles de $k_1$, $k_2$, ..., $k_r$. Voici une façon de résoudre les problèmes reliés aux nombres de solutions entières:
+
+\begin{itemize}
+\item S'il faut placer au moins un élément dans chaque contenant (donc $k_i \geq 1$ pour tout $i$), on peut appliquer la formule : $\binom{n-1}{k-1}$. 
+\item S'il n'y a pas de contraintes en lien avec le nombre d'éléments à placer (donc $k_i \geq 0$ pour tout $i$), on peut appliquer la formule : $\binom{n+k-1}{k-1}$.
+\item Si on mentionne dans l'énoncé qu'on peut ne pas distribuer tous les éléments, on rajoute un contenant de plus à l'équation, qui comprend tous les éléments non distribués (le nombre d'éléments dans ce contenant sera plus grand ou égal à 0).
+\item S'il y a une contrainte supérieure, on fait le problème sans tenir compte de cette contrainte, et on enlève le nombre de cas ne respectant pas la contrainte une fois le problème fait.
+\item Si la contrainte inférieure varie d'un contenant à un autre, ou si elle est supérieure à 2, on applique la stratégie suivante.
+\end{itemize}
+
+Exemple : il y a 10 balles à placer dans trois urnes. La première urne n'a aucune contrainte, la deuxième urne doit contenir au minimum 1 balle et la troisième urne doit contenir au minimum 3 balles. On obtient l'équation ci-dessous : \\
+$$k_1+k_2+k_3 = 10.$$ \\
+Ici, on va poser $y_1 = k_1 + 1$, $y_2 = k_2$ et $y_3 = k_3 - 2$ afin que $y_i \geq 1$ pour tout $i$. On réécrit l'équation ci-dessus de la façon suivante: \\ $$y_1 - 1 + y_2+ y_3 + 2 = 10$$ 
+$$y_1 + y_2+ y_3 = 9.$$\\ On peut par la suite calculer le nombre de possibilités en utilisant la formule lorsque le nombre d'éléments dans chaque contenant doit être plus grand ou égal à 1 : $\binom{9-1}{3-1} = \binom{8}{2}$ possibilités.
+
+\end{definitionNOHFILLsub}
+
+
+\pagebreak
+\section{Axiomes de probabilité}
+\subsection{Définitions importantes}
+\begin{definitionNOHFILL}[Expérience aléatoire]
+Une expérience aléatoire est un processus où on ne peut pas prédire avec certitude le résultat. 
+\end{definitionNOHFILL}
+\begin{definitionNOHFILL}[Espace échantillonnal]
+L'espace échantillonnal est l'ensemble des résultats possibles d'une expérience aléatoire. On dénote cet espace par $\Omega$ ou $S$.
+\end{definitionNOHFILL}
+\begin{definitionNOHFILL}[Événement]
+Un événement est un sous-ensemble d'un espace échantillonnal. On dénote l'événement par une lettre majuscule $A$, $B$, $C$, etc.
+\end{definitionNOHFILL}
+\subsection{Opérations sur les ensembles}
+\begin{description} 
+\item [L'union ({$\cup$}) :] On peut le voir comme un "ou". Lorsqu'il est utilisé, on s'intéresse à savoir si un résultat est présent dans au moins un des ensembles impliqués. 
 \end{description}
-\begin{description}
-  \item[Permutations :] Nombre d'arrangements en tenant compte de l'ordre. La façon de dénombrer les arrangements dépend du type de question.
-  \begin{description}
-	\item[$Exemples$ :] Combien de façons peut-on arranger les chiffres 1, 2, 3 et 4 dans un nombre à 4 chiffres? La réponse est {4!}. La réponse serait la même avec les chiffres 1, 2, 2 et 3, car les deux chiffres 2 ne sont pas considérés comme identiques. 
-	\item[] Toutefois, si on demande combien de façons peut-on distribuer 12 cadeaux différents à 4 personnes, la réponse sera $ 4^{12} $ étant donné que chaque cadeau peut aller à quatre personnes.
-	\end{description}
+\begin{itemize}
+  	\item	Si l'événement $A$ est d'avoir 3 sur un dé et l'événement $B$ est d'avoir 4 sur ce même dé, les résultats possibles de $ A \cup B$ sont 3 et 4.
+\end{itemize}
+\begin{center}
+ \begin{tikzpicture}
+    \draw[outline] \firstrectangle;
+    \draw[filled] \firstcircle node {$A$}
+                  \secondcircle node {$B$};
+    \node[anchor=south] at (current bounding box.north) {$A \cup B$};
+\end{tikzpicture}
+\end{center}
+\columnbreak
+\begin{description} 
+ \item[L'intersection ({$\cap$}) :] On peut le voir comme un "et". Lorsqu'il est utilisé, on s'intéresse à savoir si un résultat est présent dans tous les ensembles impliqués.
 \end{description}
-\begin{description}
-	\item[Combinaisons :] Nombre d'arrangements en \textbf{ne} tenant \textbf{pas} compte de l'ordre.
-	\begin{description}
-	 \item[$Exemples$ :] En reprenant l'exemple des permutations, mais avec les chiffres 1, 1, 1, 2 et 2, il y aurait 5!/(3!2!) combinaisons puisque les trois 1 et les deux 2 sont considérés identiques.
-	 \end{description}
+\begin{itemize}
+  	\item	Si l'événement $A$ est d'avoir un chiffre pair sur un dé et que l'événement $B$ est d'avoir 5 ou 6 sur ce même lancer de dé, le seul résultat possible de $A \cap B$ est 6, car 6 est un nombre pair et fait partie de l'ensemble $B$. 
+  	\item Une notation alternative est de simplement écrire $AB$.
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}
+    \begin{scope}
+        \clip \firstcircle;
+        \fill[filled] \secondcircle;
+    \end{scope}
+    \draw[outline] \firstrectangle;
+    \draw[outline] \firstcircle node {$A$};
+    \draw[outline] \secondcircle node {$B$};
+    \node[anchor=south] at (current bounding box.north) {$A \cap B$};
+\end{tikzpicture}
+\end{center}
+\begin{description} 
+ \item[Complémentaire :] Un événement $A^{c}$ est le complémentaire d'un événement A lorsqu'il correspond à tous les résultats de $\Omega$ excluant les résultats de $A$. 
 \end{description}
-\begin{description}
-	 \item[Coefficient binomial :] De l'exemple précédent, on peut observer l'existence du coefficient binomial, qui est défini selon la formule :
-	 \begin{align*}
-	 \binom{n}{k}
-	 &= \frac{n!}{k! \,(n-k)!}
-	 \end{align*}
+\begin{itemize}
+  	\item	Un exemple est l'événement "Avoir un nombre pair sur un dé"; un événement complémentaire serait donc "Avoir un nombre impair sur un dé".
+  	\item   Le complémentaire d'un événement A est désigné par {$\overline{A}$}, $A^{c}$ et $A^{'}$.
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}
+    \begin{scope}
+    \fill [filled] \firstrectangle;
+    \fill [white] \firstcircle;
+    \end{scope}
+
+    \draw[outline] \firstrectangle;
+    \draw[outline] \firstcircle node {$A$};
+    \draw[outline] \secondcircle node {$B$};
+    \node[anchor=south] at (current bounding box.north) {$A^c$};
+\end{tikzpicture}
+\end{center}
+\pagebreak
+\begin{description} 
+ \item[Inclusion ($\subset$) :] Afin de dire que l'événement B est compris dans l'événement A, on peut écrire le tout avec la notation suivante : $B \subset A$. On peut donc dire que tous les résultats de l'événement $B$ se retrouvent aussi dans l'événement $A$.
 \end{description}
+\begin{center}
+\begin{tikzpicture}
+\draw[outline] \firstrectangle 
+(3.5, 2) circle (1.8) node [text = black, below left]{$A$}
+(4, 2.5) circle (0.7) node {$B$};
+    \node[anchor=south] at (current bounding box.north) {$B \subset A$};
+\end{tikzpicture}
+\end{center}
+
+\begin{definitionNOHFILL}[Événements mutuellement exclusifs]
+Deux événements $A$ et $B$ sont dits mutuellement exclusifs lorsque l'intersection entre les deux événements est vide ($A \cap B = \emptyset$). C'est donc dire que $\Pr(A \cap B) = 0$.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[Propriétés des ensembles]
 \begin{description}
-  \item[Coefficient multinomial :] La généralisation du coefficient binomial va comme suit :
-  \begin{align*}
-  \binom{n}{k_1, k_2, ..., k_m}
-  &= \frac{n!}{(k_1)! \, (k_2)! \, ..., (k_m)!}
+  \item[Commutativité :] 
+  $$A_1	\cup	A_2	=	A_2 \cup A_1$$ $$A_1	\cap	A_2	=	A_2 \cap A_1$$
+  \item[Associativité :] $$(A_1 \cup A_2)	\cup A_3	=	A_1 \cup		(A_2 \cup A_3)$$ $$(A_1 \cap A_2)	\cap A_3	=	A_1 \cap		(A_2 \cap A_3)$$
+  \item[Distributivité :] $$(A_1 \cup A_2)	\cap A_3 = (A_1 \cap A_3) \cup (A_2 \cap A_3)$$ $$(A_1 \cap A_2)	\cup A_3 = (A_1 \cup A_3) \cap (A_2 \cup A_3)$$
+  \item[Loi de DeMorgan :] $$(\bigcup_{i = 1}^{n} A_{i})^{c} = (\bigcap_{i=1}^{n} A_i^{c})$$ $$(\bigcap_{i = 1}^{n} A_{i})^{c} = (\bigcup_{i=1}^{n} A_i^{c})$$
+\end{description}
+\end{definitionNOHFILLprop}
+\vfill\null
+\columnbreak
+
+\subsection{Axiomes de probabilité}
+\begin{definitionNOHFILLprop}[Axiomes de probabilité]
+Supposons que pour chaque événement $E$ de $\Omega$ (espace échantillonnal d'une expérience aléatoire), il existe un nombre $\Pr(E)$. On peut appeler ce nombre $\Pr(E)$ la probabilité de E si celle-ci satisfait les axiomes ci-dessous. Autrement dit, ces axiomes sont des règles que les probabilités se doivent de respecter: 
+
+\begin{description}
+  \item[1)] $0 \leq \Pr(A) \leq 1$
+  \item[2)] $\Pr(\Omega)=1$
+  \item[3)] Si $A_i$ $\cap$ $A_j$ = $\emptyset$ pour $i \neq j$ (mutuellement exclusifs), alors $\Pr(\bigcup_{i = 1}^{n}$ $A_i) = \sum_{i = 1}^{n} \Pr(A_i)$
+\end{description}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Relations à savoir]
+
+\begin{description}
+  \item[1)] $\Pr(\emptyset) = 0$
+  \item[2)] $\Pr(E^c) = 1 - \Pr(E)$
+  \item[3)] Si $E \subset F$, alors $\Pr(E) \leq \Pr(F)$
+  \item[4) (Formule de Poincaré)] \begin{align*} \Pr(E_1 \cup E_2 \cup ... \cup E_n) =& \sum_{i=1}^n \Pr(E_i) - \sum_{i_1<i_2} \Pr(E_{i_1} E_{i_2}) + ...+\\& (-1)^{r+1} \sum_{i_1<i_2<...<i_r} \Pr(E_{i_1}E_{i_2}...E_{i_r}) + ...+\\& (-1)^{n+1} \Pr(E_1E_2...E_n)
   \end{align*}
-  \item[] Où {$n = \sum_{i = 1}^{m} k_i$}
-  \item[Théorème multinomial :] Le coefficient multinomial aide à trouver les coefficients devant les variables lors du développement de multinômes. Afin de mieux comprendre le théorème multinomial, voici un exemple :
-  \item[]{$(-3x+5y^2)^4 = \sum_{}^{} \binom{4}{n_1 , n_2} (-3x)^{n_1} (5y^{2})^{n_2}$}
-  \item[] Si on cherche le coefficient devant les variables $x^{3}y^{2}$, on remplace $n_1$ par 3 et $n_2$ par 1 et on obtient -540.
-\end{description}  
-\begin{description}
-  \item[Solutions entières non-négatives :] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants». Il peut y avoir aucun objet dans un «contenant». La solution à ce type de problème est donnée par $\binom{n+r-1}{r-1}$ où n est le nombre d'objets et r le nombre de «contenants». Si l'est mentionné dans le problème qu'il n'est pas nécessaire d'utiliser tous les objets pour les mettre dans les contenants, on peut rajouter un contenant pour les objets «non-utilisés».
-  \item[Solutions entières positives:] Le nombre de façons dont on peut distribuer un nombre d'objets indissociables dans des «contenants» et ce, de façon à ce que chaque «contenant» ait au moins un objet. La solution à ce type de problème est donnée par $\binom{n-1}{r-1}$.
+  \begin{itemize}
+  \item À deux événements, on obtient :\\ $$\Pr(A \cup B) = \Pr(A) + \Pr(B) - \Pr(A \cap B)$$
+  \item À trois événements, on obtient :\\
+	\begin{align*}  
+  \Pr(A \cup B \cup C) =& \Pr(A) + \Pr(B) + \Pr(C) - \\& \Pr(A \cap B) - \Pr(A \cap C) - \Pr(B \cap C) + \\& \Pr(	A \cap B \cap C)
+  \end{align*}
+  \end{itemize}
 \end{description}
-\end{probch1}
+D'autres relations peuvent être déduites à l'aide d'un diagramme de Venn. Il faut toutefois utiliser la notation probabiliste à travers les calculs. Un diagramme de Venn avec de simples calculs \textbf{ne suffit pas} en examen.
+\end{definitionNOHFILLprop}
+
+\subsection{Résultats équiprobables}
+
+\begin{definitionNOHFILL}[Résultats équiprobables]
+Si chaque résultat de $\Omega$ a la même chance de se réaliser, on peut trouver la probabilité qu'un événement $A$ se réalise à l'aide de la formule suivante :\\ $$\Pr(A) = \frac{Nombre~de~r \acute{e} sultats~dans~A}{Nombre~de~r \acute{e} sultats~dans~\Omega}$$\\
+Par exemple, si on cherche la probabilité d'obtenir un nombre pair au cours d'un lancer de dé, on peut utiliser la formule ci-dessus, car il y a autant de chances d'obtenir chacun des côtés d'un dé au cours d'un lancer. Ainsi, $\Pr$(Obtenir un nombre pair) $= \frac{3}{6} = \frac{1}{2}$
+\end{definitionNOHFILL}
+\vfill\null
+\pagebreak
+
+\section{Probabilité conditionnelle}
+
+\subsection{Notation}
+\begin{distributions}[Notation]
+On utilise la notation suivante afin de désigner la probabilité que l'événement A se réalise sachant que l'événement B s'est réalisé : $\Pr(A|B)$.
+\end{distributions}
+
+\subsection{Relations à savoir}
+\begin{definitionNOHFILLprop}[Relations à savoir]
+\begin{description}
+  \item[1)] On obtient tout d'abord :\\$$\Pr(A | B) = \frac{\Pr(A \cap B)}{\Pr(B)}.$$
+  \item[2)] On peut calculer $\Pr(A \cap B)$ des deux façons suivantes :\\ $$\Pr(A \cap B) = \Pr(A | B)* \Pr(B)$$
+  $$\Pr(A \cap B) = \Pr(B | A)* \Pr(A)$$\\On peut également généraliser ce résultat pour $n$ événements en utilisant la règle de multiplication:\\ $$\Pr(E_1 \cap E_2 \cap ... \cap E_n)= \Pr(E_1)* \Pr(E_2|E_1 \cap E_2)*... *\Pr(E_n|E_1 \cap E_2 ... \cap E_{n-1})$$\\
+  \item[3)] On peut réécrire l'équation du point 1 de la façon suivante (à l'aide du point 2) : 
+   $$\Pr(A | B) = \frac{\Pr(A \cap B)}{\Pr(B)} = \frac{Pr(B | A)* \Pr(A)}{\Pr(B)} $$ 
+   \item[4) (Loi des probabilités totales)] $$\Pr(E) =	\sum_{i = 1}^{n} \Pr(E | F_{i}) \Pr(F_{i})$$
+ Pour pouvoir appliquer cette relation, il faut que $F_i$ forment une partition de $\Omega$, c'est-à-dire que $\Pr(F_1) + \Pr(F_2) + ... + \Pr(F_n) = 1$ et qu'il n'y ait aucun résultat en commun pour aucune paire de $F_i$ (donc que $F_i \cap F_j = \emptyset $ pour toutes paires de $i$ et $j$).
+\end{description}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Relations à savoir (suite)]
+\begin{description}
+
+  \item[5) (Théorème de Bayes)] 
+  Si on reprend la formule du point 3, et qu'on applique la loi des probabilités totales au dénominateur, on obtient la formule de Bayes.
+  
+  \begin{align*}
+  \Pr(A | B) &= \frac{\Pr(A \cap B)}{\Pr(B)} \\&= \frac{Pr(B | A)* \Pr(A)}{\Pr(B)} \\&= \frac{Pr(B | A)* \Pr(A)}{Pr(B | A)* \Pr(A) + \Pr(B|A^c) *  \Pr(A^c)}
+  \end{align*} \\
+
+  On peut également généraliser ce résultat pour un ensemble d'événements $\{F_1,F_2,...,F_n\}$ qui forment une partition de $\Omega$.
+  
+  $$ \Pr(F_j | E) = \frac{\Pr(E | F_{j}) \Pr(F_{j})}{\sum_{i = 1}^{n} \Pr(E | F_{i}) \Pr(F_{i})} $$
+\end{description}
+\begin{distributions}[Indépendance]
+S'il y a indépendance entre les événements ($A$ n'a aucun impact sur $B$, et vice-versa), les relations suivantes sont vraies:\\
+$$\Pr(A|B) = \Pr(A)$$
+$$\Pr(A \cap B) = \Pr(A)*\Pr(B)$$\\
+On peut également généraliser ces relations lorsqu'il y a plusieurs événements mutuellement indépendants.\\
+\\ Assurez-vous de bien distinguer les événements indépendants des événements mutuellement exclusifs ($\Pr(A \cap B) = 0$ pour les événements mutuellement exclusifs).
+\end{distributions}
+\end{definitionNOHFILLprop}
+
+\begin{formula}{Démarche afin de répondre aux questions contextuelles du chapitre 2 et 3}
+Concernant les questions contextuelles (donc avec une mise en situation) portant sur les notions du chapitre 2 et chapitre 3, voici une démarche qui devrait vous aider.
+\\
+
+\textbf{Exemple} : il y a deux types d'assurés. Il y a les bons assurés et les mauvais assurés. La probabilité qu'un bon assuré ait au moins $1$ accident cette année est de $20~\%$. La probabilité qu'un mauvais assuré n'ait pas d'accident cette année est de $70~\%$. Également, il y a 3 fois plus de bons assurés que de mauvais assurés. \textbf{Quelle est la probabilité que, sachant qu'un assuré a eu au moins un accident au cours de l'année, celui-ci soit un mauvais assuré?}\\
+
+\begin{description}
+\item [1)] \textbf{Il faut bien définir les événements.}\\
+
+$A :$ L'assuré est un bon assuré.\\
+$B :$ L'assuré a au moins 1 accident au cours de l'année.\\
+
+\item [2)]\textbf{Il faut bien définir les informations présentes dans le texte sous notation probabiliste. La notation doit être cohérente avec la définition des événements.}
+$$\Pr(A) = 3\Pr(A^c)$$ $$\Pr(B|A) = 0.2$$ $$\Pr(B^c|A^c) = 0.7$$ \item [3)] \textbf{Il faut bien définir l'information recherchée sous notation probabiliste. Encore une fois cette notation doit être cohérente avec la définition des événements.} \\
+
+On cherche $\Pr(A^c|B)$.\\
+\item [4)] \textbf{Selon les informations données, on applique une ou plusieurs des relations présentées dans le chapitre 2 ou dans le chapitre 3. Cette partie est la plus difficile, et c'est à force de faire des numéros qu'on reconnait quelles relations utiliser.}\\
+
+Dans ce cas-ci, on peut développer la probabilité recherchée de la façon suivante :\\
+$$\Pr(A^c | B) = \frac{\Pr(A^c \cap B)}{\Pr(B)}.$$\\
+Puisqu'on n'a aucune information sur $\Pr(A^c \cap B)$ et sur $\Pr(B)$, on développe cette formule davantage (on obtient le théorème de Bayes) :\\$$\frac{\Pr(A^c \cap B)}{\Pr(B)} = \frac{Pr(B | A^c)* \Pr(A^c)}{Pr(B | A)* \Pr(A) + \Pr(B|A^c) *  \Pr(A^c)}.$$\\
+Ici, on peut trouver $\Pr(A)$, $\Pr(A^c)$ et $\Pr(B|A^c)$ à l'aide de la relation qui relie les probabilités d'événements complémentaires et des informations données dans l'exemple.\\
+$$\Pr(A) = 1 - \Pr(A^c)$$
+$$ 3 \Pr(A^c) = 1 - \Pr(A^c)$$
+$$ \Pr(A^c) = \frac{1}{4}$$\\
+Et donc, $\Pr(A^c) = \frac{1}{4}$ et $\Pr(A) = \frac{3}{4}$. Pour trouver $\Pr(B|A^c)$ :\\
+$$\Pr(B|A^c) =  1 - \Pr(B^c|A^c) = 0.3.$$\\ En remplaçant ces valeurs dans la formule de Bayes (et en utilisant $\Pr(B|A) = 0.2$, soit une information qui nous était déjà fournie), on obtient $$\Pr(A^c|B) = \frac{1}{3}. $$
+\end{description}
+\end{formula}
+
+
+\subsection{Montrer l'indépendance}
+\begin{definitionNOHFILL}[Montrer l'indépendance]
+Si on veut montrer que deux événements  ($A$ et $B$) sont indépendants, on veut montrer la relation suivante : \\
+$$ \Pr(A \cap B) = \Pr(A) * \Pr(B) $$\\
+On veut montrer que les deux côtés de l'égalité sont égaux. Faites attention à la façon dont vous calculez $\Pr(A \cap B)$. Il ne faut pas calculer ce terme en faisant $\Pr(A) * \Pr(B)$. Il faut absolument dénombrer les résultats se situant dans $A \cap B$.\\
+\\
+Si on veut montrer que trois événements ($A$, $B$ et $C$) sont mutuellement indépendants, on veut montrer les quatre relations suivantes : \\
+$$\Pr(A \cap B) =  \Pr(A) * \Pr(B)$$
+$$\Pr(A \cap C) =  \Pr(A) * \Pr(C)$$
+$$\Pr(B \cap C) =  \Pr(B) * \Pr(C)$$
+$$\Pr(A \cap B \cap C) =  \Pr(A) * \Pr(B) * \Pr(C).$$
+\end{definitionNOHFILL}
+\vfill\null
+\pagebreak
+
+   
+   
+
+
 
 \pagebreak
-\section{Chapitre 2: Axiomes de probabilité}
-
-\begin{rappel}{Domaine et définition}
-\begin{description}
-	\item[Random Process:]	Famille de variable aléatoires $\{X_{t}: t \in T\}$ qui associe un espace d'états $\Omega$ à un ensemble $S$.
-	\begin{enumerate}
-		\item[$\Omega$: ] L'espace d'états $\Omega$ est composé des événements possibles de la variable aléatoire $X$.
-		\item[] Par exemple, lorsqu'on lance une pièce de monnaie $\Omega = \{\textsf{Face}, \texttt{Pile} \}$.
-		\item[$S$: ] L'ensemble $S$ est l'ensemble des probabilités des événements dans $\Omega$.
-		\item[] Par exemple, lorsqu'on lance une pièce de monnaie $S = \{\frac{1}{2}, \frac{1}{2} \}$.
-	\end{enumerate}
+\section{Chapitre 4:\\ Variable aléatoire discrète}
+\begin{probch4}{La variable aléatoire}
+  \begin{description}
+    \item[Définition :] Nous avons déjà vu que les événements sont délimités par l'ensemble échantillonnal S, c'est-à-dire les résultats possibles de l'événement. La variable aléatoire, disons X, sera une fonction de cet ensemble S (S $\in$ $\mathbb{R}$).\\
+    Le support, que l'on peut comparer à l'image de la fonction, d'un événement X est composé des résultats possibles d'une expérience, par exemple [0, 1] ou encore un ensemble dénombrable comme \{0, 1/2, 1\}.\\
+    Pour bien comprendre la différence entre l'espace échantillonnal et le support de X, voici un petit exemple : \\
+    On lance une pièce de monnaie deux fois et on définit la variable aléatoire X comme étant le nombre de faces obtenus. L'espace échantillonnal de l'expérience est \{(P,P), (P,F), (F,P), (F,F)\} et le support de X est de \{0, 1, 2\}.
+	\item [Fonction de masse de probabilité :] La probabilité d'avoir un résultat égal à x. Cette fonction est définie par $\Pr(X = x_i)$ 
+	\item[Fonction de répartition ($F_{X} (x)$):] La probabilité d'avoir un résultat inférieur à x.
+    \begin{align*}
+    F_{X} (x) &= \Pr(X \le x) \\
+    &= \sum_{x_{i} \le x}^{} \Pr(X = x_{i})
+    \end{align*}
+    Pour illustrer la fonction de répartition, on peut s'imaginer un lancer de dé et définir X comme le résultat du lancer. $F_{X} (2)$, par exemple, donnerait alors 1/3 car seuls les résultats 1 et 2 sont considérés sur l'ensemble des 6 possibilités. 
+    \item[Propriétés de la fonction de répartition :] La valeur de la fonction de répartition se situe toujours entre 0 et 1, ce qui est logique étant donné que la somme de toutes les probabilités est toujours égale à 1 et qu'il n'existe pas de probabilité inférieure à 0. \\
+    La fonction est aussi toujours non-décroissante, car il est impossible de perdre des probabilités alors que les probabilités qui s'ajoutent à mesure que x augmente sont toujours supérieures à 0 (pour une variable aléatoire discrète, cela donne une fonction en escalier à droite).\\
+    On sait donc que $F_{X} (a) \le F_{X} (b)$ pour a < b. On peut alors trouver que Pr(a < X $\le$ b) = $F_{X} (b) - F_{X} (a)$.
+    \item[Fonction de répartition inverse ($F^{-1}_{X} (u)$):] Aussi nommée la fonction quantile, cette fonction sert à déterminer quel résultat correspond à une quantité u de probabilités accumulées. Par exemple, si je prends un u de 0,5, le résultat sera la médiane. \\
+	Cela fonctionne de la façon suivante : on remplace le x de la fonction de répartition par u et cette nouvelle fonction est mise égale à x et on isole le u. Autrement dit, il faut trouver une fonction réciproque. \\
+	\item[Espérance :] L'espérance correspond à une moyenne pondéré des probabilités où les pondérations correspondent aux différents valeurs que peut prendre la variable $X$. Elle est définie de la façon suivante: \\
+	$$ E[X] = \sum_i x_i * \Pr(X = x_i) $$. L'espérance correspond au résultat espéré lors de l'expérience. Par exemple, l'espérance d'une expérience consistant à lancer un dé serait 3.5. De plus, \\
+	il est possible de calculer l'espérance d'une fonction $g(X)$. L'espérance, dans ce cas-ci, est définie de la façon suivante : $E[g(X)] = \sum_i g(x_i) * \Pr(X = x_i) $. \\
+	\item[Propriétés de l'espérance: ] L'espérance est un opérateur linéaire. Ainsi, $E[2x^2+6x+5]$ peut se réécrire, une fois simplifiée, $2E[X^2]+6E[X]+5$. Aussi, si $g(x) \le h(x)$, $\forall x$, alors $E[g(x)] \le E[h(h)]$. \\
+	\item[Variance :] La variance est une mesure de dispersion qui se trouve à être la moyenne du carrée des écarts entre x et sa moyenne. La variance est définie de la façon suivante : $ Var(X) = E[(X - E[X])^2]$. En développant cette \\ 
+	expression, on retrouve l'expression davantage utilisée en probabilité, soit $Var(X) = E[X^2] - (E[X])^2$.  Afin de calculer la variance on trouve habituellement le premier et le deuxième moment de X et on remplace dans la formule. \\
+	De plus, la variance n'est pas un opérateur linéaire. Cependant, $Var(aX + b) = a^2 Var(X)$ où $a$ et $b$ sont des constantes réelles.
 \end{description}
-\begin{description}
-	\item[iid: ]	Les variables aléatoire $X_{t}$ doivent être indépendantes et identiquement distribuées. Ceci est dénoté par \textit{\textbf{i.i.d.}}.				
-	\begin{description}
-		\item[indépendant: ] Si $X_{t}$ est une variable aléatoire \textit{iid} alors, pour 2 variables aléatoires $X_{i}$ et $X_{j}$, où $i, j \in T$, le résultat de $X_{i}$ n'a aucun impact sur le résultat de $X_{j}$ pour tout $t \in T$.
-		\item[identiquement distribué: ] L'ensemble $S$ est l'ensemble des probabilités des événements dans $\Omega$.
-	\end{description}
-	\item[Probabilité de $X_{t}$: ]	La probabilité d'un événement $X_{t}$ est dénoté $\Pr(X_{t})$. 
-	Ces probabilités forment l'ensemble $S$.
-	\begin{description}
-		\item[Propriété: ] $\sum_{i = -\infty}^{\infty} \Pr(X_{i}) = 1$
-	\end{description}
-	\item[Types de variables aléatoire: ]	Il y a 2 types de variables aléatoire, les distributions \textit{discrètes} et \textit{continues}.
-		\begin{description}
-		\item[Discrète: ]	Si l'ensemble $S$ est dénombrable, c'est-à-dire que $S= \{s\}$, alors la variable aléatoire $X$ est dite \textbf{discrète}.
-		\item[Continue: ]	Si l'ensemble $S$ n'est pas dénombrable alors la variable aléatoire $X$ est dite \textbf{continue}.
-	\end{description}
-\end{description}
-\end{rappel}
-
-\begin{probch2}{Concepts et opérations sur les ensembles}
-\begin{description}
-  \item[L'union ({$\displaystyle \cup$}) :] On peut le définir par un ou. Si l'événement A est d'avoir 3 sur un dé et l'événement B est d'avoir 4 sur ce même dé, les résultats possibles de A{$\displaystyle \cup$}B est 3 et 4.
-  \item[L'intersection ({$\displaystyle \cap$}) :] On peut le définir par un et. Si l'événement A est d'avoir un chiffre pair sur un dé et que l'événement B est d'avoir 5 ou 6 sur ce même lancer de dé, le résultat de A{$\displaystyle \cap$}B est 6, car 6 est un nombre pair et fait partie de l'ensemble B.
-\end{description}
-\end{probch2}
-
-\pagebreak
-\section{Chapitre 3: Probabilité conditionnelle}
-\begin{probch3}{Probabilité conditionnelle}
-\begin{description}
-	\item[Conditionnel:]	La probabilité que $A$ arrive \textit{sachant} que $B$ est arrivé est: 
-	\begin{align*}
-		\Pr(A | B) 
-		&= 	\frac{\Pr(A \cap B)}{\Pr(B)}	
-	\end{align*}
-	où la probabilité que $B$ arrive est non-nulle, $\Pr(B) > 0$.
-	\item[Indépendant:]	Les événements $A$ et $B$ sont indépendant si:
-	\begin{equation*}
-		\Pr(A \cap B) = \Pr(A) \cdot \Pr(B)
-	\end{equation*}
-\end{description}
-Avec la première définition de la probabilité conditionnelle, on peut trouver ces résultats:
-\begin{description}
-	\item[Relation probabilité conditionnelle: ]	La probabilité que l'événement $E_{2}$ ai lieu sachant que l'événement $E_{1}$ à déjà eu lieu est équivalent à la probabilité que l'événement $E_{1}$ ai lieu sachant que $E_{2}$ à \textit{déjà} eu lieu multiplié par la probabilité que l'événement $E_{2}$ ai lieu peu importe $E_{1}$. \\
-	Le tout est encore pondéré par la probabilité que l'événement $E_{1}$ ai lieu peu importe si $E_{2}$ y a.
-	\begin{align*}
-		\Pr(E_{2} | E_{1})
-		&= 	\frac{\Pr(E_{2} \cap E_{1})}{\Pr(E_{1})}		\\
-		&=	\frac{\Pr(E_{1} | E_{2}) \Pr(E_{2})}{\Pr(E_{1})}		
-	\end{align*}
-	\item[Loi des probabilités totales: ]	Les probabilités liées à la variable aléatoire $E$ lorsqu'elles sont conditionnelles à la variable aléatoire discrète $F$ est dénoté comme suit:
-	\begin{align*}
-		\Pr(E)	&=	\sum_{i = 1}^{n} \Pr(E | F_{i}) \Pr(F_{i})
-	\end{align*}
-	\item[Formule de Bayes: ]	On combine les deux résultats précédent:
-	\begin{align*}
-		\Pr(F_{i} | E)
-		&=	\frac{\Pr(E | F_{i})}{\sum_{i = 1}^{n} \Pr(E | F_{i}) \Pr(F_{i})}
-	\end{align*}
-\end{description}
-\end{probch3}
-
+\end{probch4}
 \end{multicols*}
 
 \end{document}
